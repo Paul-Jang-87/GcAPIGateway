@@ -29,7 +29,7 @@ public class WebClientApp {
 		CLIENT_SECRET = WebClientConfig.getClientSecret();
 		API_BASE_URL = WebClientConfig.getBaseUrl();
 		API_END_POINTINFO = WebClientConfig.getApiEndpointInfo(apiName);
-		String[] parts = API_END_POINTINFO.split(":"); //api의 endpoint와 어떤 http method를 사용하는지에 대한 정보를 가지고 온다. 
+		String[] parts = API_END_POINTINFO.split(":"); //api의 endpoint와 어떤 http method를 사용하는지에 대한 정보를 가지고 온다.
 		HTTP_METHOD = parts[0];
 		API_END_POINT = parts[1];
 
@@ -52,7 +52,6 @@ public class WebClientApp {
 			e.printStackTrace();
 		}
 
-		System.out.println("Access Token: " + accessToken);
 		return accessToken;
 	}
 

@@ -63,15 +63,22 @@ public class GcController {
 	@PostMapping("/gcapi/post/{topic}")
 	public Mono<Void> receiveMessage(@PathVariable("topic") String tranId, @RequestBody String msg) {
 
+		String result = "";
 
 	    switch (tranId.toUpperCase()) {
 	        case "IF-CRM-003":
-	            Entity_CampMa testEmployee = serviceDb.createCampMaMsg(msg);
-	            serviceDb.insertMsg(testEmployee).thenReturn("Message received and inserted successfully");
-	            break;
+	           CrmSv01 crmapi1 = new CrmSv01();
+	           result = crmapi1.GetApiRequet("campaignId");
+	        	
+	            Entity_CampMa entity = serviceDb.createCampMaMsg(result);
 	            
-	        case "IF-CRM-004":
-	            break;
+	            
+	            return serviceDb.InsertCampMa(entity)
+	                    .flatMap(savedEntity -> {
+	                        return Mono.empty(); // or any other response
+	                    });
+	            
+	        case "IF-CRM-002":
 	        default:
 	            break;
 	    }

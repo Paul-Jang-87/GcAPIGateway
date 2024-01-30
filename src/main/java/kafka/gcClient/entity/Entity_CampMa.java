@@ -40,16 +40,16 @@ public class Entity_CampMa {
 	public void setId(Long id) { this.id = id;}
 	
 
-	public String getCltid() { return coid; }
-	public void setCltid(String coid) {this.coid = coid;}
+	public String getCoid() { return coid; }
+	public void setCoid(String coid) {this.coid = coid;}
 
 	
-	public String getContactId() {return cpid;}
-	public void setContactId(String cpid) {this.cpid = cpid;}
+	public String getCpid() {return cpid;}
+	public void setCpid(String cpid) {this.cpid = cpid;}
 	
 	
-	public String getDidt() {return cpna;}
-	public void setDidt(String cpna) {this.cpna = cpna;}
+	public String getCpna() {return cpna;}
+	public void setCpna(String cpna) {this.cpna = cpna;}
 	
 	
 }

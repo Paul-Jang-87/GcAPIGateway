@@ -2,17 +2,11 @@ package kafka.gcClient.service;
 
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import kafka.gcClient.interfaceCollection.InterfaceJson;
 import kafka.gcClient.interfaceCollection.InterfaceWebClient;
 import kafka.gcClient.webclient.WebClientApp;
 
 @Service
-public class CrmSv05 implements InterfaceWebClient, InterfaceJson {
+public class CrmSv05 extends ServiceJson implements InterfaceWebClient {
 
 	@Override
 	public String GetApiRequet(String endpoint) {
@@ -31,30 +25,5 @@ public class CrmSv05 implements InterfaceWebClient, InterfaceJson {
 		return result;
 	}
 
-	@Override
-	public String ExtractVal(String stringMsg) {
-
-		String jsonResponse = stringMsg;
-		String result = "";
-
-		ObjectMapper objectMapper = new ObjectMapper();
-		JsonNode jsonNode;
-		try {
-			jsonNode = objectMapper.readTree(jsonResponse);
-			result = jsonNode
-					.path("entities")
-					.path(0).path("id")
-					.asText();
-			
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return result;
-	}
 
 }

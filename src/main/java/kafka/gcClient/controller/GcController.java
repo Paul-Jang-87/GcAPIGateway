@@ -12,6 +12,7 @@ import com.mypurecloud.sdk.v2.ApiException;
 
 import kafka.gcClient.entity.Entity_CampMa;
 import kafka.gcClient.entity.Entity_CampRt;
+import kafka.gcClient.entity.Entity_MapCoid;
 import kafka.gcClient.interfaceCollection.InterfaceDB;
 import kafka.gcClient.service.CrmSv01;
 import kafka.gcClient.service.CrmSv05;
@@ -64,21 +65,27 @@ public class GcController {
 	public Mono<Void> receiveMessage(@PathVariable("topic") String tranId, @RequestBody String msg) {
 
 		String result = "";
+		String topic_id = tranId.toUpperCase(); 
 
-	    switch (tranId.toUpperCase()) {
-	        case "IF-CRM-003":
+	    switch (topic_id) {
+	    
+	        case "IF-CRM-003": //시나리오 : 어떤 api호출 후 그 결과 값에서 특정 값을 뽑아 제가공하여 entity 메시지를 만들고 db에 인서트
 	           CrmSv01 crmapi1 = new CrmSv01();
-	           result = crmapi1.GetApiRequet("campaignId");
+	           result = crmapi1.GetApiRequet("campaignId");//api호출 후 결과 값을 받음. 
 	        	
-	            Entity_CampMa entity = serviceDb.createCampMaMsg(result);
-	            
-	            
-	            return serviceDb.InsertCampMa(entity)
+	            Entity_CampMa entity = serviceDb.createCampMaMsg(result);//CMAPMA테이블에 인터트 하기위해 json data 가공작업.
+	            return serviceDb.InsertCampMa(entity)//CMAPMA테이블에 매핑할 수 있는 entity 객체를 테이블에 인서트 
 	                    .flatMap(savedEntity -> {
-	                        return Mono.empty(); // or any other response
+	                        return Mono.empty(); 
 	                    });
 	            
 	        case "IF-CRM-002":
+	        		
+	        		Entity_MapCoid temp = serviceDb.createMapCoIdMsg();
+	        		return serviceDb.InsertMapCoId(temp) 
+	        				.flatMap(savedEntity -> {
+	        					return Mono.empty(); 
+	        				});
 	        default:
 	            break;
 	    }

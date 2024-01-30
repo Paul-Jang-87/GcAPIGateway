@@ -1,4 +1,4 @@
-package interfaceCollection;
+package kafka.gcClient.interfaceCollection;
 
 public interface InterfaceWebClient {
 	

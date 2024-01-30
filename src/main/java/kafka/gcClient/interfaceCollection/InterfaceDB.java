@@ -1,15 +1,15 @@
-package interfaceCollection;
+package kafka.gcClient.interfaceCollection;
 
-import entity.Entity_AppConfig;
-import entity.Entity_CampMa;
-import entity.Entity_CampRt;
-import entity.Entity_ContactLt;
+import kafka.gcClient.entity.Entity_AppConfig;
+import kafka.gcClient.entity.Entity_CampMa;
+import kafka.gcClient.entity.Entity_CampRt;
+import kafka.gcClient.entity.Entity_ContactLt;
 import reactor.core.publisher.Mono;
 
 public interface InterfaceDB {
 
 	Entity_CampRt createCampRtMsg();
-	Entity_CampMa createCampMaMsg();
+	Entity_CampMa createCampMaMsg(String msg);
 	Entity_ContactLt createContactLtMsg();
 	Entity_AppConfig createAppConfigMsg();
 	

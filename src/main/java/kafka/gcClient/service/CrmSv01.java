@@ -1,9 +1,9 @@
-package service;
+package kafka.gcClient.service;
 
 import org.springframework.stereotype.Service;
 
-import interfaceCollection.InterfaceWebClient;
-import webclient.WebClientApp;
+import kafka.gcClient.interfaceCollection.InterfaceWebClient;
+import kafka.gcClient.webclient.WebClientApp;
 
 @Service
 public class CrmSv01 implements InterfaceWebClient{

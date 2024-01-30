@@ -1,4 +1,4 @@
-package service;
+package kafka.gcClient.service;
 
 import org.springframework.stereotype.Service;
 
@@ -7,9 +7,9 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import interfaceCollection.InterfaceJson;
-import interfaceCollection.InterfaceWebClient;
-import webclient.WebClientApp;
+import kafka.gcClient.interfaceCollection.InterfaceJson;
+import kafka.gcClient.interfaceCollection.InterfaceWebClient;
+import kafka.gcClient.webclient.WebClientApp;
 
 @Service
 public class CrmSv05 implements InterfaceWebClient, InterfaceJson {

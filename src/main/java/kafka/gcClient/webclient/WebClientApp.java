@@ -1,4 +1,4 @@
-package webclient;
+package kafka.gcClient.webclient;
 
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClient.RequestHeadersUriSpec;

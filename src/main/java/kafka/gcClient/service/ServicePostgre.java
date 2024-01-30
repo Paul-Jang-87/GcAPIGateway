@@ -1,58 +1,60 @@
-package service;
+package kafka.gcClient.service;
 
 
 import org.springframework.stereotype.Service;
 
-import entity.Entity_AppConfig;
-import entity.Entity_CampMa;
-import entity.Entity_CampRt;
-import entity.Entity_ContactLt;
-import interfaceCollection.InterfaceDB;
+import kafka.gcClient.entity.Entity_AppConfig;
+import kafka.gcClient.entity.Entity_CampMa;
+import kafka.gcClient.entity.Entity_CampRt;
+import kafka.gcClient.entity.Entity_ContactLt;
+import kafka.gcClient.interfaceCollection.InterfaceDB;
+import kafka.gcClient.interfaceCollection.InterfaceJson;
+import kafka.gcClient.repository.Repository_AppConfig;
+import kafka.gcClient.repository.Repository_CampMa;
+import kafka.gcClient.repository.Repository_CampRt;
+import kafka.gcClient.repository.Repository_ContactLt;
 import reactor.core.publisher.Mono;
-import repository.Repository_AppConfig;
-import repository.Repository_CampMa;
-import repository.Repository_CampRt;
-import repository.Repository_ContactLt;
 
 @Service
-public class ServicePostgre implements InterfaceDB{
+public class ServicePostgre implements InterfaceDB,InterfaceJson{
 	
 	private final Repository_CampRt repositoryCampRt;
 	private final Repository_CampMa repositoryCampMa;
 	private final Repository_AppConfig repositoryAppConfig;
 	private final Repository_ContactLt repositoryContactLt;
+	private final InterfaceJson servicejson;
 	
     public ServicePostgre(Repository_CampRt repositoryCampRt,Repository_CampMa repositoryCampMa,
     		Repository_AppConfig repositoryAppConfig,
-    		Repository_ContactLt repositoryContactLt) {
+    		Repository_ContactLt repositoryContactLt,
+    		InterfaceJson servicejson) {
     	
     	this.repositoryCampRt = repositoryCampRt;
     	this.repositoryCampMa = repositoryCampMa;
         this.repositoryAppConfig = repositoryAppConfig;
         this.repositoryContactLt = repositoryContactLt;
+        this.servicejson = servicejson;
     }
 
     @Override
 	public Entity_CampRt createCampRtMsg() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Entity_CampMa createCampMaMsg() {
-		// TODO Auto-generated method stub
+	public Entity_CampMa createCampMaMsg(String message) {
+		String temp = servicejson.ExtractVal(message);
+		System.out.println(temp);
 		return null;
 	}
 
 	@Override
 	public Entity_ContactLt createContactLtMsg() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Entity_AppConfig createAppConfigMsg() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

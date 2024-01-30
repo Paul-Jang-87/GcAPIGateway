@@ -1,4 +1,4 @@
-package webclient;
+package kafka.gcClient.webclient;
 
 public class WebClientConfig {//api들의 정보들 수록. 
 
@@ -15,17 +15,17 @@ public class WebClientConfig {//api들의 정보들 수록.
 		String API_END_POINT = "";
 
 		switch (apiName) {//api들의 method 방식과 endpoint에 대한 정보들. 사용할 신규 api가 있다면 여기에 등록하면 된다. 
-		case "IF-CRM-001":
+		case "campaigns":
+			API_END_POINT = "GET:/api/v2/outbound/campaigns/{campaignId}";
+			break;
+		case "campaign_stats":
+			API_END_POINT = "GET:/api/v2/outbound/campaigns/{campaignId}/stats";
+			break;
+		case "campaignId":
 			API_END_POINT = "GET:/api/v2/outbound/campaigns";
 			break;
-		case "IF-CRM-005":
-			API_END_POINT = "GET:/api/v2/outbound/campaigns/{campaignId}/interactions";
-			break;
-		case "campaigns_agents":
-			API_END_POINT = "PUT:/api/v2/outbound/campaigns/{campaignId}/agents/{userId}";
-			break;
 		case "prompts":
-			API_END_POINT = "GET:/api/v2/architect/prompts/{promptId}/resources";
+			API_END_POINT = "";
 			break;
 		default:
 			API_END_POINT = "Invalid api";

@@ -1,4 +1,4 @@
-package entity;
+package kafka.gcClient.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

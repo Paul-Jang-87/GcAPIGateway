@@ -1,4 +1,4 @@
-package webclient;
+package kafka.gcClient.webclient;
 
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;

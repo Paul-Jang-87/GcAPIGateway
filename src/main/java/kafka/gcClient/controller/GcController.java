@@ -1,6 +1,5 @@
 package kafka.gcClient.controller;
 
-import java.io.IOException;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,18 +7,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mypurecloud.sdk.v2.ApiException;
 
 import kafka.gcClient.entity.Entity_CampMa;
-import kafka.gcClient.entity.Entity_CampRt;
-import kafka.gcClient.entity.Entity_MapCoid;
 import kafka.gcClient.interfaceCollection.InterfaceDB;
 import kafka.gcClient.service.CrmSv01;
 import kafka.gcClient.service.CrmSv05;
+import kafka.gcClient.service.ServiceJson;
 import reactor.core.publisher.Mono;
 
 @RestController
-public class GcController {
+public class GcController extends ServiceJson {
 	
 	private final InterfaceDB serviceDb;
 
@@ -33,7 +30,7 @@ public class GcController {
 
 	
 	@GetMapping("/gcapi/get/{topic}")
-	public String getApiData(@PathVariable("topic") String tranId) throws IOException, ApiException {
+	public String getApiData(@PathVariable("topic") String tranId) {
 		
 		String result = "";
 		String topic_name = tranId.toUpperCase();
@@ -79,13 +76,24 @@ public class GcController {
 	                        return Mono.empty(); 
 	                    });
 	            
-	        case "IF-CRM-002":
-	        		
-	        		Entity_MapCoid temp = serviceDb.createMapCoIdMsg();
-	        		return serviceDb.InsertMapCoId(temp) 
-	        				.flatMap(savedEntity -> {
-	        					return Mono.empty(); 
-	        				});
+	        case "IF-CRM-002"://시나리오 : 들어온 cpid로 MapCoid테이블 조회, cpid와 매칭되는 coid가져와 CampMa테이블에 insert. 
+	        	
+	        	 String cpid = ExtractCpid(msg);
+	        	 System.out.println(cpid);
+
+	        	 return serviceDb.findMapCoidByCpid(cpid)
+	                        .flatMap(foundEntity -> {
+	                            String coid = foundEntity.getCoid();
+	                            System.out.println("Found COID: " + coid);
+	                            String newdata = coid+"|"+cpid+"|"+"cpna_4";
+	                            
+	                            Entity_CampMa entityMa = serviceDb.createCampMaMsg(newdata);
+	            	            return serviceDb.InsertCampMa(entityMa) 
+	            	                    .flatMap(savedEntity -> {
+	            	                        return Mono.empty(); 
+	            	                    });
+	                        });
+	        	
 	        default:
 	            break;
 	    }
@@ -93,23 +101,5 @@ public class GcController {
 	    return  Mono.empty();
 
 	}
-
-
-
-	@PostMapping("/gcapi/kafka/receive-message")
-	public String receiveMessage(@RequestBody String message) {
-	    System.out.println("Received message from the first application: " + message);
-	    return "a";
-	}
-
-	
-//	// Kafka
-//	@PostMapping("/api/receive-message")
-//	public String receiveMessage(@RequestBody String message) {
-//		System.out.println("Received message from the first application: " + message);
-//		KafkaMsgEntity testEmployee = kafkaMsgService.createTestMsg();
-//		return "a";
-//		return kafkaMsgService.insertMsg(testEmployee).thenReturn("Message received and inserted successfully");
-//	}
 
 }

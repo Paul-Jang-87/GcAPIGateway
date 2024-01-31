@@ -25,5 +25,6 @@ public interface InterfaceDB {
 	
 	//select
 	void SelectCampMa(String target);
+	Mono<Entity_MapCoid> findMapCoidByCpid(String cpid);
 	
 }

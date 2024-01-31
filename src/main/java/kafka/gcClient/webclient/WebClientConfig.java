@@ -10,22 +10,22 @@ public class WebClientConfig {//api들의 정보들 수록.
 		return API_BASE_URL;
 	}
 
-	public static String getApiEndpointInfo(String apiName) {
+	public static String getApiEndpoint(String apiName) {
 
 		String API_END_POINT = "";
 
 		switch (apiName) {//api들의 method 방식과 endpoint에 대한 정보들. 사용할 신규 api가 있다면 여기에 등록하면 된다. 
 		case "campaigns":
-			API_END_POINT = "GET:/api/v2/outbound/campaigns/{campaignId}";
+			API_END_POINT = "/api/v2/outbound/campaigns/{campaignId}";
 			break;
 		case "campaign_stats":
-			API_END_POINT = "GET:/api/v2/outbound/campaigns/{campaignId}/stats";
+			API_END_POINT = "/api/v2/outbound/campaigns/{campaignId}/stats";
 			break;
 		case "campaignId":
-			API_END_POINT = "GET:/api/v2/outbound/campaigns";
+			API_END_POINT = "/api/v2/outbound/campaigns";
 			break;
 		case "contactList":
-			API_END_POINT = "GET:/api/v2/outbound/contactlists/{contactListId}/contacts/{contactId}";
+			API_END_POINT = "/api/v2/outbound/contactlists/{contactListId}/contacts/{contactId}";
 			break;
 		default:
 			API_END_POINT = "Invalid api";
@@ -43,5 +43,4 @@ public class WebClientConfig {//api들의 정보들 수록.
 		return CLIENT_SECRET;
 	}
 	
-
 }

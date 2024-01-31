@@ -13,7 +13,7 @@ public class CrmSv01 implements InterfaceWebClient{
 		
 		String result = "";
 		
-		WebClientApp webClientExample = new WebClientApp(endpoint);
+		WebClientApp webClientExample = new WebClientApp(endpoint,"GET");
 		result = webClientExample.makeApiRequest();
 		
 		return result;

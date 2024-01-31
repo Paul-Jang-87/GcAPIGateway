@@ -18,20 +18,16 @@ public class WebClientApp {
 	private static String API_BASE_URL = "";
 	private static String API_END_POINT = "";
 	private static String HTTP_METHOD = "";
-	private static String API_END_POINTINFO = "";
 
 	private WebClient webClient;
 
-	public WebClientApp(String apiName) {// WebClinet 생성자, 기본적인 초기 설정들.
+	public WebClientApp(String apiName, String httpMethod) {// WebClinet 생성자, 기본적인 초기 설정들.
 										 // WebClient를 사용하기 위한 기본 설정들과 매개변수로 온 api를 사용하기 위한 기본 설정들.
-
 		CLIENT_ID = WebClientConfig.getClientId();
 		CLIENT_SECRET = WebClientConfig.getClientSecret();
 		API_BASE_URL = WebClientConfig.getBaseUrl();
-		API_END_POINTINFO = WebClientConfig.getApiEndpointInfo(apiName);
-		String[] parts = API_END_POINTINFO.split(":"); //api의 endpoint와 어떤 http method를 사용하는지에 대한 정보를 가지고 온다.
-		HTTP_METHOD = parts[0];
-		API_END_POINT = parts[1];
+		API_END_POINT = WebClientConfig.getApiEndpoint(apiName);
+		HTTP_METHOD = httpMethod;
 
 		this.webClient = WebClient.builder().baseUrl(API_BASE_URL)
 				.defaultHeader("Authorization", "Bearer " + getAccessToken()).build();

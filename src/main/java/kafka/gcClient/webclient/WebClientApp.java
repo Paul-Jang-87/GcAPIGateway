@@ -10,6 +10,7 @@ import com.mypurecloud.sdk.v2.ApiResponse;
 import com.mypurecloud.sdk.v2.PureCloudRegionHosts;
 import com.mypurecloud.sdk.v2.extensions.AuthResponse;
 
+import kafka.gcClient.service.ServicePostgre;
 
 public class WebClientApp {
 
@@ -21,13 +22,20 @@ public class WebClientApp {
 
 	private WebClient webClient;
 
-	public WebClientApp(String apiName, String httpMethod) {// WebClinet 생성자, 기본적인 초기 설정들.
+	public WebClientApp(String apiName, String httpMethod,ServicePostgre servicePostgre) {// WebClinet 생성자, 기본적인 초기 설정들.
 										 // WebClient를 사용하기 위한 기본 설정들과 매개변수로 온 api를 사용하기 위한 기본 설정들.
+		
+		WebClientConfig webClientConfig = new WebClientConfig(servicePostgre);
+        webClientConfig.getClientIdPwd();
+        
 		CLIENT_ID = WebClientConfig.getClientId();
 		CLIENT_SECRET = WebClientConfig.getClientSecret();
 		API_BASE_URL = WebClientConfig.getBaseUrl();
 		API_END_POINT = WebClientConfig.getApiEndpoint(apiName);
 		HTTP_METHOD = httpMethod;
+		
+		System.out.println("id + "+CLIENT_ID);
+		System.out.println("pwd + "+CLIENT_SECRET);
 
 		this.webClient = WebClient.builder().baseUrl(API_BASE_URL)
 				.defaultHeader("Authorization", "Bearer " + getAccessToken()).build();
@@ -99,7 +107,7 @@ public class WebClientApp {
 	            })
 	            .block(); // Wait for the result
 	}
-
+	
 	
 
 }

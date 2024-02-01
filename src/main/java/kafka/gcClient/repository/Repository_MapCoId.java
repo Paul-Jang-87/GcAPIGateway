@@ -10,5 +10,7 @@ import kafka.gcClient.entity.Entity_MapCoid;
 
 @Repository
 public interface Repository_MapCoId extends CrudRepository<Entity_MapCoid, Long> {
+	
     Optional<Entity_MapCoid> findByCpid(String cpid);
+    
 }

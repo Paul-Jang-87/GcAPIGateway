@@ -25,7 +25,7 @@ public class Entity_AppConfig {
 	
 	@Column(name = "SASL_ID")
  	private String sasl_id;
-
+    
 	@Column(name = "SASL_PWD")
 	private String sasl_pwd;
 

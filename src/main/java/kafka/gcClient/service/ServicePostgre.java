@@ -71,8 +71,19 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 	}
 
 	@Override
-	public Entity_AppConfig createAppConfigMsg() {
-		return null;
+	public Entity_AppConfig createAppConfigMsg(String temp) {
+
+		Entity_AppConfig enAppConfig = new Entity_AppConfig();
+		String parts[] = temp.split("\\|");
+
+		enAppConfig.setApimClId("");
+		enAppConfig.setApimClSecret("");
+		enAppConfig.setGcClientId(parts[0]);
+		enAppConfig.setGcClientSecret(parts[1]);
+		enAppConfig.setSaslId("");
+		enAppConfig.setSaslPwd("");
+
+		return enAppConfig;
 	}
 
 	// **Insert
@@ -114,10 +125,22 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 
 	@Override
 	public Mono<Entity_MapCoid> findMapCoidByCpid(String cpid) {
-		
-	    Optional<Entity_MapCoid> optionalEntity = repositoryMapCoId.findByCpid(cpid);
-	    
-	    return Mono.justOrEmpty(optionalEntity);
+
+		Optional<Entity_MapCoid> optionalEntity = repositoryMapCoId.findByCpid(cpid);
+		return Mono.justOrEmpty(optionalEntity);
+	}
+
+	@Override
+	public Mono<Entity_AppConfig> findAppConfigByid(Long id) {
+
+		Optional<Entity_AppConfig> optionalEntity = repositoryAppConfig.findByid(id);
+		return Mono.justOrEmpty(optionalEntity);
+	}
+
+	@Override
+	public Entity_AppConfig getEntityById(Long id) {
+	    Optional<Entity_AppConfig> optionalEntity = repositoryAppConfig.findByid(id);
+	    return optionalEntity.orElse(null);
 	}
 
 

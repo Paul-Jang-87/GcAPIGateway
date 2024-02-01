@@ -1,10 +1,25 @@
 package kafka.gcClient.webclient;
 
-public class WebClientConfig {//api들의 정보들 수록. 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import kafka.gcClient.encryptdecrypt.AESDecryption;
+import kafka.gcClient.entity.Entity_AppConfig;
+import kafka.gcClient.service.ServicePostgre;
+
+@Component
+public class WebClientConfig {// api들의 정보들 수록.
 
 	private static final String API_BASE_URL = "https://api.apne2.pure.cloud";
-	private static final String CLIENT_ID = "8ed02ed8-2e38-41ee-b70d-ab09e43b3ff1";
-	private static final String CLIENT_SECRET = "0xgqeo_xNbAUAy1JvXyGCrF5jr8yPOAg_TbDDbOOrB4";
+//	private static String CLIENT_ID = "8ed02ed8-2e38-41ee-b70d-ab09e43b3ff1";
+//	private static String CLIENT_SECRET = "0xgqeo_xNbAUAy1JvXyGCrF5jr8yPOAg_TbDDbOOrB4";
+	private static String CLIENT_ID = "";
+	private static String CLIENT_SECRET = "";
+	private final ServicePostgre servicePostgre;
+	
+    public WebClientConfig(ServicePostgre servicePostgre) {
+        this.servicePostgre = servicePostgre;
+    }
 
 	public static String getBaseUrl() {
 		return API_BASE_URL;
@@ -14,7 +29,7 @@ public class WebClientConfig {//api들의 정보들 수록.
 
 		String API_END_POINT = "";
 
-		switch (apiName) {//api들의 method 방식과 endpoint에 대한 정보들. 사용할 신규 api가 있다면 여기에 등록하면 된다. 
+		switch (apiName) {// api들의 method 방식과 endpoint에 대한 정보들. 사용할 신규 api가 있다면 여기에 등록하면 된다.
 		case "campaigns":
 			API_END_POINT = "/api/v2/outbound/campaigns/{campaignId}";
 			break;
@@ -42,5 +57,33 @@ public class WebClientConfig {//api들의 정보들 수록.
 	public static String getClientSecret() {
 		return CLIENT_SECRET;
 	}
-	
+
+	public void getClientIdPwd() {
+
+		Entity_AppConfig enttAppconfig = new Entity_AppConfig();
+
+		enttAppconfig = servicePostgre.getEntityById((long) 1);
+
+		String id = enttAppconfig.getGcClientId();
+		String pwd = enttAppconfig.getGcClientSecret();
+
+		String decryptedId;
+		String decryptedPassword;
+		try {
+			decryptedId = AESDecryption.decrypt(id);
+			decryptedPassword = AESDecryption.decrypt(pwd);
+
+			System.out.println("Decrypted ID: " + decryptedId);
+			System.out.println("Decrypted Password: " + decryptedPassword);
+
+			CLIENT_ID = decryptedId;
+			CLIENT_SECRET = decryptedPassword;
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
 }

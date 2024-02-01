@@ -1,5 +1,6 @@
 package kafka.gcClient.interfaceCollection;
 
+
 import kafka.gcClient.entity.Entity_AppConfig;
 import kafka.gcClient.entity.Entity_CampMa;
 import kafka.gcClient.entity.Entity_CampRt;
@@ -13,7 +14,7 @@ public interface InterfaceDB {
 	Entity_CampRt createCampRtMsg();
 	Entity_CampMa createCampMaMsg(String msg);
 	Entity_ContactLt createContactLtMsg();
-	Entity_AppConfig createAppConfigMsg();
+	Entity_AppConfig createAppConfigMsg(String encryptedPassword);
 	Entity_MapCoid createMapCoIdMsg();
 	
 	//insert
@@ -26,5 +27,7 @@ public interface InterfaceDB {
 	//select
 	void SelectCampMa(String target);
 	Mono<Entity_MapCoid> findMapCoidByCpid(String cpid);
+	Mono<Entity_AppConfig> findAppConfigByid(Long id);
+	Entity_AppConfig getEntityById(Long id);
 	
 }

@@ -54,10 +54,15 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		String campid = parts[0];
 		String contactLtId = parts[1];
 		String contactId = parts[2];
+		String hubId = "";
 		
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
 		enContactLt = findContactLtByid(campid);
+		String temp = enContactLt.getTkda();
+		hubId = temp.split(",")[1];
 		
+//		CrmSv01 crmapi1 = new CrmSv01(serviceDb);
+		//String result = crmapi1.GetApiRequet("campaignId");// api호출 후 결과 값을 받음.
 //		String hubId = 
 		
 		

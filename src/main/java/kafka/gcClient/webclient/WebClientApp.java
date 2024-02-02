@@ -10,6 +10,7 @@ import com.mypurecloud.sdk.v2.ApiResponse;
 import com.mypurecloud.sdk.v2.PureCloudRegionHosts;
 import com.mypurecloud.sdk.v2.extensions.AuthResponse;
 
+import kafka.gcClient.interfaceCollection.InterfaceDB;
 import kafka.gcClient.service.ServicePostgre;
 
 public class WebClientApp {
@@ -22,10 +23,10 @@ public class WebClientApp {
 
 	private WebClient webClient;
 
-	public WebClientApp(String apiName, String httpMethod,ServicePostgre servicePostgre) {// WebClinet 생성자, 기본적인 초기 설정들.
+	public WebClientApp(String apiName, String httpMethod,InterfaceDB servicedb) {// WebClinet 생성자, 기본적인 초기 설정들.
 										 // WebClient를 사용하기 위한 기본 설정들과 매개변수로 온 api를 사용하기 위한 기본 설정들.
 		
-		WebClientConfig webClientConfig = new WebClientConfig(servicePostgre);
+		WebClientConfig webClientConfig = new WebClientConfig(servicedb);
         webClientConfig.getClientIdPwd();
         
 		CLIENT_ID = WebClientConfig.getClientId();

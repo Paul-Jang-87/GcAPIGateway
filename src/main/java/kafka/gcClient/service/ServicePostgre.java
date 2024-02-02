@@ -48,19 +48,39 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 	}
 
 	@Override
-	public Entity_CampRt createCampRtMsg() {
+	public Entity_CampRt createCampRtMsg(String cpid) {
+		String parts[] = cpid.split("\\|");
+		
+		String campid = parts[0];
+		String contactLtId = parts[1];
+		String contactId = parts[2];
+		
+		Entity_ContactLt enContactLt = new Entity_ContactLt();
+		enContactLt = findContactLtByid(campid);
+		
+//		String hubId = 
+		
+		
+		
+		
+		
+		
+		
 		return null;
 	}
 
 	@Override
-	public Entity_CampMa createCampMaMsg(String message) {
+	public Entity_CampMa createCampMaMsg(String cpid) {
 
 		Entity_CampMa enCampMa = new Entity_CampMa();
-		String parts[] = message.split("\\|");
+		Entity_MapCoid enMapcoid = new Entity_MapCoid();
 
-		enCampMa.setCoid(parts[0]);
-		enCampMa.setCpid(parts[1]);
-		enCampMa.setCpna(parts[2]);
+		enMapcoid = findMapCoidByCpid(cpid);
+		String coid = enMapcoid.getCoid();
+
+		enCampMa.setCoid(coid);
+		enCampMa.setCpid(cpid);
+		enCampMa.setCpna("cpna_6");
 
 		return enCampMa;
 	}
@@ -88,60 +108,55 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 
 	// **Insert
 	@Override
-	public Mono<Entity_CampRt> InsertCampRt(Entity_CampRt entity_CampRt) {
-		return Mono.fromCallable(() -> repositoryCampRt.save(entity_CampRt));
+	public Entity_CampRt InsertCampRt(Entity_CampRt entity_CampRt) {
+		return repositoryCampRt.save(entity_CampRt);
 	}
 
 	@Override
-	public Mono<Entity_CampMa> InsertCampMa(Entity_CampMa entityCampMa) {
-		return Mono.fromCallable(() -> repositoryCampMa.save(entityCampMa));
+	public Entity_CampMa InsertCampMa(Entity_CampMa entityCampMa) {
+		return repositoryCampMa.save(entityCampMa);
 	}
 
 	@Override
-	public Mono<Entity_ContactLt> InsertContactLt(Entity_ContactLt entityContactLt) {
-		return Mono.fromCallable(() -> repositoryContactLt.save(entityContactLt));
+	public Entity_ContactLt InsertContactLt(Entity_ContactLt entityContactLt) {
+		return repositoryContactLt.save(entityContactLt);
 	}
 
 	@Override
-	public Mono<Entity_AppConfig> InsertAppConfig(Entity_AppConfig entityAppConfig) {
-		return Mono.fromCallable(() -> repositoryAppConfig.save(entityAppConfig));
+	public Entity_AppConfig InsertAppConfig(Entity_AppConfig entityAppConfig) {
+		return repositoryAppConfig.save(entityAppConfig);
 	}
 
 	@Override
-	public Mono<Entity_MapCoid> InsertMapCoId(Entity_MapCoid entityMapCoid) {
-		return Mono.fromCallable(() -> repositoryMapCoId.save(entityMapCoid));
-	}
-
-	// **Select
-	@Override
-	public void SelectCampMa(String target) {
-
-		Optional<Entity_CampMa> optionalEntity = repositoryCampMa.findByCoid(target);
-
-		if (optionalEntity.isPresent()) {
-		} else {
-		}
+	public Entity_MapCoid InsertMapCoId(Entity_MapCoid entityMapCoid) {
+		return repositoryMapCoId.save(entityMapCoid);
 	}
 
 	@Override
-	public Mono<Entity_MapCoid> findMapCoidByCpid(String cpid) {
+	public Entity_MapCoid findMapCoidByCpid(String cpid) {
 
 		Optional<Entity_MapCoid> optionalEntity = repositoryMapCoId.findByCpid(cpid);
-		return Mono.justOrEmpty(optionalEntity);
+		return optionalEntity.orElse(null);
 	}
 
 	@Override
-	public Mono<Entity_AppConfig> findAppConfigByid(Long id) {
-
+	public Entity_ContactLt findContactLtByid(String cpid) {
+		Optional<Entity_ContactLt> optionalEntity = repositoryContactLt.findByCpid(cpid);
+		return optionalEntity.orElse(null);
+	}
+	
+	@Override
+	public Entity_AppConfig findAppConfigByid(Long id) {
 		Optional<Entity_AppConfig> optionalEntity = repositoryAppConfig.findByid(id);
-		return Mono.justOrEmpty(optionalEntity);
+		return optionalEntity.orElse(null);
 	}
 
 	@Override
 	public Entity_AppConfig getEntityById(Long id) {
-	    Optional<Entity_AppConfig> optionalEntity = repositoryAppConfig.findByid(id);
-	    return optionalEntity.orElse(null);
+		Optional<Entity_AppConfig> optionalEntity = repositoryAppConfig.findByid(id);
+		return optionalEntity.orElse(null);
 	}
-
+	
+	
 
 }

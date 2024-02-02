@@ -1,11 +1,10 @@
 package kafka.gcClient.webclient;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import kafka.gcClient.encryptdecrypt.AESDecryption;
 import kafka.gcClient.entity.Entity_AppConfig;
-import kafka.gcClient.service.ServicePostgre;
+import kafka.gcClient.interfaceCollection.InterfaceDB;
 
 @Component
 public class WebClientConfig {// api들의 정보들 수록.
@@ -15,10 +14,10 @@ public class WebClientConfig {// api들의 정보들 수록.
 //	private static String CLIENT_SECRET = "0xgqeo_xNbAUAy1JvXyGCrF5jr8yPOAg_TbDDbOOrB4";
 	private static String CLIENT_ID = "";
 	private static String CLIENT_SECRET = "";
-	private final ServicePostgre servicePostgre;
+	private final InterfaceDB servicedb;
 	
-    public WebClientConfig(ServicePostgre servicePostgre) {
-        this.servicePostgre = servicePostgre;
+    public WebClientConfig(InterfaceDB servicedb) {
+        this.servicedb = servicedb;
     }
 
 	public static String getBaseUrl() {
@@ -62,7 +61,7 @@ public class WebClientConfig {// api들의 정보들 수록.
 
 		Entity_AppConfig enttAppconfig = new Entity_AppConfig();
 
-		enttAppconfig = servicePostgre.getEntityById((long) 1);
+		enttAppconfig = servicedb.getEntityById((long) 1);
 
 		String id = enttAppconfig.getGcClientId();
 		String pwd = enttAppconfig.getGcClientSecret();

@@ -43,12 +43,26 @@ public class ServiceJson implements InterfaceJson {
 	}
 	
 	@Override
-	public String ExtractName(String stringMsg) {
+	public String ExtractCpidfromThird(String stringMsg) {//나중에 변경해야함.
 		
-		String result = "a";
+		String jsonResponse = stringMsg; 
+
+		ObjectMapper objectMapper = new ObjectMapper();
+		JsonNode jsonNode = null;
+		String result = "";
+
+		try {
+			jsonNode = objectMapper.readTree(jsonResponse);
+			result = jsonNode.path("cpid").asText();
+			
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
 		
-        return result;
-  }
+		return result;
+	}
 
 	@Override
 	public String ExtractCpid(String stringMsg) {

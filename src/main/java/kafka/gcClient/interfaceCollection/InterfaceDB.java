@@ -11,23 +11,23 @@ import reactor.core.publisher.Mono;
 public interface InterfaceDB {
 
 	//table 별 매핑
-	Entity_CampRt createCampRtMsg();
-	Entity_CampMa createCampMaMsg(String msg);
+	Entity_CampRt createCampRtMsg(String cpid);
+	Entity_CampMa createCampMaMsg(String cpid);
 	Entity_ContactLt createContactLtMsg();
 	Entity_AppConfig createAppConfigMsg(String encryptedPassword);
 	Entity_MapCoid createMapCoIdMsg();
 	
 	//insert
-	Mono<Entity_CampRt> InsertCampRt(Entity_CampRt entityCampRt);
-	Mono<Entity_CampMa> InsertCampMa(Entity_CampMa entityCampMa);
-	Mono<Entity_ContactLt> InsertContactLt(Entity_ContactLt entityContactLt);
-	Mono<Entity_AppConfig> InsertAppConfig(Entity_AppConfig entityAppConfig);
-	Mono<Entity_MapCoid> InsertMapCoId(Entity_MapCoid entityMapCoid);
+	Entity_CampRt InsertCampRt(Entity_CampRt entityCampRt);
+	Entity_CampMa InsertCampMa(Entity_CampMa entityCampMa);
+	Entity_ContactLt InsertContactLt(Entity_ContactLt entityContactLt);
+	Entity_AppConfig InsertAppConfig(Entity_AppConfig entityAppConfig);
+	Entity_MapCoid InsertMapCoId(Entity_MapCoid entityMapCoid);
 	
 	//select
-	void SelectCampMa(String target);
-	Mono<Entity_MapCoid> findMapCoidByCpid(String cpid);
-	Mono<Entity_AppConfig> findAppConfigByid(Long id);
+	Entity_MapCoid findMapCoidByCpid(String cpid);
+	Entity_ContactLt findContactLtByid(String id);
+	Entity_AppConfig findAppConfigByid(Long id);
 	Entity_AppConfig getEntityById(Long id);
 	
 }

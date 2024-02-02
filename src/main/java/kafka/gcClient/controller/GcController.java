@@ -1,57 +1,60 @@
 package kafka.gcClient.controller;
 
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.reactive.function.BodyInserters;
+import org.springframework.web.reactive.function.client.WebClient;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kafka.gcClient.encryptdecrypt.AESDecryption;
 import kafka.gcClient.entity.Entity_CampMa;
+import kafka.gcClient.entity.Entity_CampRt;
+import kafka.gcClient.entity.Entity_MapCoid;
 import kafka.gcClient.interfaceCollection.InterfaceDB;
+import kafka.gcClient.kafkamessages.MessageToProducer;
 import kafka.gcClient.service.CrmSv01;
 import kafka.gcClient.service.CrmSv05;
 import kafka.gcClient.service.ServiceJson;
-import kafka.gcClient.service.ServicePostgre;
 import reactor.core.publisher.Mono;
 
 @RestController
 public class GcController extends ServiceJson {
-	
-	private final InterfaceDB serviceDb;
-	private final ServicePostgre servicePostgre;
 
-	public GcController(InterfaceDB serviceDb, ServicePostgre servicePostgre) {
+	private final InterfaceDB serviceDb;
+
+	public GcController(InterfaceDB serviceDb) {
 		this.serviceDb = serviceDb;
-		this.servicePostgre = servicePostgre;
 	}
 
 	// APIM
 
 	// GC API
 
-	
 	@GetMapping("/gcapi/get/{topic}")
 	public String getApiData(@PathVariable("topic") String tranId) {
-		
+
 		String result = "";
 		String topic_name = tranId.toUpperCase();
-		
+
 		switch (topic_name) {
 		case "IF-CRM-001":
-			CrmSv01 api1 = new CrmSv01(servicePostgre);
+			CrmSv01 api1 = new CrmSv01(serviceDb);
 			api1.GetApiRequet("campaignId");
 			break;
-			
+
 		case "IF-CRM-002":
 			break;
-			
+
 		case "IF-CRM-005":
 			CrmSv05 api5 = new CrmSv05();
 			api5.GetApiRequet(topic_name);
 			break;
-			
+
 		case "IF-CRM-006":
 			break;
 		default:
@@ -65,73 +68,71 @@ public class GcController extends ServiceJson {
 	public Mono<Void> receiveMessage(@PathVariable("topic") String tranId, @RequestBody String msg) {
 
 		String result = "";
-		String topic_id = tranId.toUpperCase(); 
+		String topic_id = tranId;
 
-	    switch (topic_id) {
-	    
-	        case "IF-CRM-003": //시나리오 : 어떤 api호출 후 그 결과 값에서 특정 값을 뽑아 제가공하여 entity 메시지를 만들고 db에 인서트
-	           CrmSv01 crmapi1 = new CrmSv01(servicePostgre);
-	           result = crmapi1.GetApiRequet("campaignId");//api호출 후 결과 값을 받음. 
-	           
-	           System.out.println(result);
-	        	
-//	            Entity_CampMa entity = serviceDb.createCampMaMsg(result);//CMAPMA테이블에 인터트 하기위해 json data 가공작업.
-//	            return serviceDb.InsertCampMa(entity)//CMAPMA테이블에 매핑할 수 있는 entity 객체를 테이블에 인서트 
-//	                    .flatMap(savedEntity -> {
-//	                        return Mono.empty(); 
-//	                    });
-	            
-	        case "IF-CRM-002"://시나리오 : 들어온 cpid로 MapCoid테이블 조회, cpid와 매칭되는 coid가져와 CampMa테이블에 insert. 
-	        	
-	        	 String cpid = ExtractCpid(msg);
-	        	 System.out.println(cpid);
+		switch (topic_id) {
 
-	        	 return serviceDb.findMapCoidByCpid(cpid)
-	                        .flatMap(foundEntity -> {
-	                            String coid = foundEntity.getCoid();
-	                            System.out.println("Found COID: " + coid);
-	                            String newdata = coid+"|"+cpid+"|"+"cpna_4";
-	                            
-	                            Entity_CampMa entityMa = serviceDb.createCampMaMsg(newdata);
-	            	            return serviceDb.InsertCampMa(entityMa) 
-	            	                    .flatMap(savedEntity -> {
-	            	                        return Mono.empty(); 
-	            	                    });
-	                        });
-	        	
-	        default:
-	            break;
-	    }
-	    
-	    return  Mono.empty();
+		case "firsttopic": // 시나리오 : 어떤 api호출 후 그 결과 값에서 특정 값을 뽑아 제가공하여 entity 메시지를 만들고 db에 인서트
+			CrmSv01 crmapi1 = new CrmSv01(serviceDb);
+			result = crmapi1.GetApiRequet("campaignId");// api호출 후 결과 값을 받음.
+
+			System.out.println(result);
+
+			Entity_CampMa entity = serviceDb.createCampMaMsg(result);// CMAPMA테이블에 인터트 하기위해 json data 가공작업.
+			serviceDb.InsertCampMa(entity);// CMAPMA테이블에 매핑할 수 있는 entity 객체를 테이블에 인서트
+			return Mono.empty();
+
+		case "secondtopic":// 시나리오 : 들어온 cpid로 MapCoid테이블 조회, cpid와 매칭되는 coid가져와
+							// kafkaProducer로 보내고 CampMa테이블에 insert
+
+			String cpid = ExtractCpid(msg);
+			System.out.println(cpid);
+
+			Entity_CampMa entityMa = serviceDb.createCampMaMsg(cpid);
+			ObjectMapper objectMapper = new ObjectMapper();
+
+			try {
+				String jsonString = objectMapper.writeValueAsString(entityMa);
+				System.out.println(jsonString);
+				MessageToProducer producer = new MessageToProducer();
+				producer.sendMsgToProducer("secondtopic", jsonString);
+
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
+
+			serviceDb.InsertCampMa(entityMa);
+
+			return Mono.empty();
+
+		case "thirdtopic":
+
+			String cpid_3 = ExtractCpidfromThird(msg);
+			System.out.println(cpid_3);
+
+			Entity_CampRt entityCmRt_3 = serviceDb.createCampRtMsg(cpid_3);
+			ObjectMapper objectMapper_3 = new ObjectMapper();
+
+			try {
+				String jsonString = objectMapper_3.writeValueAsString(entityCmRt_3);
+				System.out.println(jsonString);
+				
+				MessageToProducer producer = new MessageToProducer();
+				producer.sendMsgToProducer("thirdtopic", jsonString);
+
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
+
+			serviceDb.InsertCampRt(entityCmRt_3);
+
+			return Mono.empty();
+
+		default:
+			break;
+		}
+
+		return Mono.empty();
 	}
-	
-	
-	
-	@GetMapping("/api/pwd")
-	public Mono<String>  getApiData()  {
-		
-		return serviceDb.findAppConfigByid((long) 1)
-                .flatMap(foundEntity -> {
-                    String id = foundEntity.getGcClientId();
-                    String pwd = foundEntity.getGcClientSecret();
-                    
-                    String decryptedId;
-					try { 
-						decryptedId = AESDecryption.decrypt(id);
-						String decryptedPassword = AESDecryption.decrypt(pwd);
-						
-						System.out.println("Decrypted ID: " + decryptedId);
-						System.out.println("Decrypted Password: " + decryptedPassword);
-						
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-                    
-                    return Mono.empty();
-                    
-                });
-	}
-	
+
 }

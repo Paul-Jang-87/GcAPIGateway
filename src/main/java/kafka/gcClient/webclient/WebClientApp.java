@@ -1,9 +1,9 @@
 package kafka.gcClient.webclient;
 
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClient.RequestHeadersUriSpec;
 import org.springframework.web.util.UriComponents;
-import reactor.core.publisher.Mono;
 
 import com.mypurecloud.sdk.v2.ApiClient;
 import com.mypurecloud.sdk.v2.ApiResponse;
@@ -11,7 +11,7 @@ import com.mypurecloud.sdk.v2.PureCloudRegionHosts;
 import com.mypurecloud.sdk.v2.extensions.AuthResponse;
 
 import kafka.gcClient.interfaceCollection.InterfaceDB;
-import kafka.gcClient.service.ServicePostgre;
+import reactor.core.publisher.Mono;
 
 public class WebClientApp {
 
@@ -20,7 +20,8 @@ public class WebClientApp {
 	private static String API_BASE_URL = "";
 	private static String API_END_POINT = "";
 	private static String HTTP_METHOD = "";
-
+	private String accessToken = "";
+	
 	private WebClient webClient;
 
 	public WebClientApp(String apiName, String httpMethod,InterfaceDB servicedb) {// WebClinet 생성자, 기본적인 초기 설정들.
@@ -37,15 +38,19 @@ public class WebClientApp {
 		
 		System.out.println("id + "+CLIENT_ID);
 		System.out.println("pwd + "+CLIENT_SECRET);
-
+		
+ 
+		getAccessToken();
 		this.webClient = WebClient.builder().baseUrl(API_BASE_URL)
-				.defaultHeader("Authorization", "Bearer " + getAccessToken()).build();
+				.defaultHeader("Authorization", "Bearer " + accessToken).build();
 	}
 
-	private String getAccessToken() {
+	// OAuth access token 유효기간 86400초 (24시간)
+	// 24시간 마다 token 다시 받아오게끔 스케쥴링
+	@Scheduled(fixedDelay=86400*1000)
+	private void getAccessToken() {
 		// Replace the region with your desired one
 		String region = "ap_northeast_2";
-		String accessToken = "";
 
 		ApiClient apiClient = ApiClient.Builder.standard().withBasePath(PureCloudRegionHosts.valueOf(region)).build();
 
@@ -56,8 +61,6 @@ public class WebClientApp {
 			// Handle the exception more gracefully, e.g., log it
 			e.printStackTrace();
 		}
-
-		return accessToken;
 	}
 
 	public Mono<String> makeApiRequestAsync() {

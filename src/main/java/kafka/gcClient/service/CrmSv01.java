@@ -27,5 +27,18 @@ public class CrmSv01 implements InterfaceWebClient {
 		
 		return result;
 	}
+	
+	@Override
+	public String GetStatusApiRequet(String endpoint, String campaignId) {
+		
+		String result = "";
+		
+		WebClientApp webClientExample = new WebClientApp(endpoint,"GET",serviceDb);
+		result = webClientExample.makeApiRequest(campaignId);
+		
+		System.out.println(result);
+		
+		return result;
+	}
 
 }

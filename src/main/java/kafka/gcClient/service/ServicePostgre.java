@@ -1,9 +1,11 @@
 package kafka.gcClient.service;
 
+import java.sql.Date;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import kafka.gcClient.datamapping.MappingHomeCenter;
 import kafka.gcClient.entity.Entity_AppConfig;
 import kafka.gcClient.entity.Entity_CampMa;
 import kafka.gcClient.entity.Entity_CampRt;
@@ -49,29 +51,136 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 
 	@Override
 	public Entity_CampRt createCampRtMsg(String cpid) {
+
+		Entity_CampRt enCampRt = new Entity_CampRt();
+
 		String parts[] = cpid.split("\\|");
-		
+
 		String campid = parts[0];
 		String contactLtId = parts[1];
-		String contactId = parts[2];
-		String hubId = "";
-		
+		String contactId = "";
+		int hubId = 0;
+		Date didt = Date.valueOf("2022-02-01");
+		int dirt = 880382;
+		int dict = 100;
+		String coid = "";
+
+		System.out.println("campid: " + campid);
+		System.out.println("contactLtId: " + contactLtId);
+		System.out.println("contactId: " + contactId);
+		System.out.println("hubid: " + hubId);
+		System.out.println("didt: " + didt);
+		System.out.println("dirt: " + dirt);
+		System.out.println("dict: " + dict);
+		System.out.println("coid: " + coid);
+
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
 		enContactLt = findContactLtByid(campid);
-		String temp = enContactLt.getTkda();
-		hubId = temp.split(",")[1];
-		
-//		CrmSv01 crmapi1 = new CrmSv01(serviceDb);
-		//String result = crmapi1.GetApiRequet("campaignId");// api호출 후 결과 값을 받음.
-//		String hubId = 
-		
-		
-		
-		
-		
-		
-		
-		return null;
+
+		contactId = enContactLt.getCske();
+		hubId = Integer.parseInt(enContactLt.getTkda().split(",")[1]);
+
+		// api 호출 후. didt,dirt 가져오는 부분.
+//		CrmSv01 crmapi1 = new CrmSv01(this);
+//		String result = crmapi1.GetApiRequet("campaignId");
+//		String cpid_3 = ExtractCpidfromThird(result);
+
+		CrmSv01 crmapi1 = new CrmSv01(this);
+		String result = crmapi1.GetStatusApiRequet("campaign_stats", campid);
+		dict = ExtractDict(result);
+
+		Entity_CampMa enCampMa = new Entity_CampMa();
+
+		enCampMa = findCampMaByCpid(campid);
+		coid = enCampMa.getCoid();
+
+		enCampRt.setCpid(campid);
+		enCampRt.setContactLtId(contactLtId);
+		enCampRt.setContactId(contactId);
+		enCampRt.setHubId(hubId);
+		enCampRt.setDidt(didt);
+		enCampRt.setDirt(dirt);
+		enCampRt.setDict(dict);
+		enCampRt.setCoid(coid);
+
+		System.out.println("campid: " + campid);
+		System.out.println("contactLtId: " + contactLtId);
+		System.out.println("contactId: " + contactId);
+		System.out.println("hubid: " + hubId);
+		System.out.println("didt: " + didt);
+		System.out.println("dirt: " + dirt);
+		System.out.println("dict: " + dict);
+		System.out.println("coid: " + coid);
+
+		return enCampRt;
+	}
+
+	@Override
+	public Entity_CampRt createCampRtToJson(String cpid) {
+
+		Entity_CampRt enCampRt = new Entity_CampRt();
+
+		String parts[] = cpid.split("\\|");
+
+		String campid = parts[0];
+		String contactLtId = parts[1];
+		String contactId = "";
+		int hubId = 0;
+		Date didt = Date.valueOf("2022-02-01");
+		int dirt = 880382;
+		int dict = 100;
+		String coid = "";
+
+		System.out.println("campid: " + campid);
+		System.out.println("contactLtId: " + contactLtId);
+		System.out.println("contactId: " + contactId);
+		System.out.println("hubid: " + hubId);
+		System.out.println("didt: " + didt);
+		System.out.println("dirt: " + dirt);
+		System.out.println("dict: " + dict);
+		System.out.println("coid: " + coid);
+
+		Entity_ContactLt enContactLt = new Entity_ContactLt();
+		enContactLt = findContactLtByid(campid);
+
+		contactId = enContactLt.getCske();
+		hubId = Integer.parseInt(enContactLt.getTkda().split(",")[1]);
+
+		// api 호출 후. didt,dirt 가져오는 부분.
+//		CrmSv01 crmapi1 = new CrmSv01(this);
+//		String result = crmapi1.GetApiRequet("campaignId");
+//		String cpid_3 = ExtractCpidfromThird(result);
+
+		CrmSv01 crmapi1 = new CrmSv01(this);
+		String result = crmapi1.GetStatusApiRequet("campaign_stats", campid);
+		dict = ExtractDict(result);
+
+		Entity_CampMa enCampMa = new Entity_CampMa();
+
+		enCampMa = findCampMaByCpid(campid);
+		coid = enCampMa.getCoid();
+		MappingHomeCenter mappingData = new MappingHomeCenter();
+		coid = mappingData.getCentercodeById(coid);
+
+		enCampRt.setCpid(campid);
+		enCampRt.setContactLtId(contactLtId);
+		enCampRt.setContactId(contactId);
+		enCampRt.setHubId(hubId);
+		enCampRt.setDidt(didt);
+		enCampRt.setDirt(dirt);
+		enCampRt.setDict(dict);
+		enCampRt.setCoid(coid);
+
+		System.out.println("campid: " + campid);
+		System.out.println("contactLtId: " + contactLtId);
+		System.out.println("contactId: " + contactId);
+		System.out.println("hubid: " + hubId);
+		System.out.println("didt: " + didt);
+		System.out.println("dirt: " + dirt);
+		System.out.println("dict: " + dict);
+		System.out.println("coid: " + coid);
+
+		return enCampRt;
 	}
 
 	@Override
@@ -92,7 +201,19 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 
 	@Override
 	public Entity_ContactLt createContactLtMsg() {
-		return null;
+
+		Entity_ContactLt enContactLt = new Entity_ContactLt();
+
+		enContactLt.setCpid("97e6b32d-c266-4d33-92b4-01ddf33898cd");
+		enContactLt.setCpsq(109284);
+		enContactLt.setCske("customerkey");
+		enContactLt.setCsna("카리나");
+		enContactLt.setFlag("HO2");
+		enContactLt.setTkda("custid,111");
+		enContactLt.setTn01("tn01");
+		enContactLt.setTn02("tn02");
+		enContactLt.setTn03("tn03");
+		return enContactLt;
 	}
 
 	@Override
@@ -145,11 +266,18 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 	}
 
 	@Override
+	public Entity_CampMa findCampMaByCpid(String cpid) {
+
+		Optional<Entity_CampMa> optionalEntity = repositoryCampMa.findByCpid(cpid);
+		return optionalEntity.orElse(null);
+	}
+
+	@Override
 	public Entity_ContactLt findContactLtByid(String cpid) {
 		Optional<Entity_ContactLt> optionalEntity = repositoryContactLt.findByCpid(cpid);
 		return optionalEntity.orElse(null);
 	}
-	
+
 	@Override
 	public Entity_AppConfig findAppConfigByid(Long id) {
 		Optional<Entity_AppConfig> optionalEntity = repositoryAppConfig.findByid(id);
@@ -161,7 +289,5 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		Optional<Entity_AppConfig> optionalEntity = repositoryAppConfig.findByid(id);
 		return optionalEntity.orElse(null);
 	}
-	
-	
 
 }

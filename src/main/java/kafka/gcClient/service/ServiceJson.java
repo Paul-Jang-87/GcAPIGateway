@@ -43,7 +43,7 @@ public class ServiceJson implements InterfaceJson {
 	}
 	
 	@Override
-	public String ExtractCpidfromThird(String stringMsg) {//나중에 변경해야함.
+	public String ExtractCpidfromThird(String stringMsg) {
 		
 		String jsonResponse = stringMsg; 
 
@@ -53,7 +53,8 @@ public class ServiceJson implements InterfaceJson {
 
 		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
-			result = jsonNode.path("cpid").asText();
+			result = jsonNode.path("id").asText();
+			result += "|"+jsonNode.path("detail").path("eventBody").path("contactList").path("id").asText();
 			
 		} catch (JsonMappingException e) {
 			e.printStackTrace();
@@ -85,5 +86,28 @@ public class ServiceJson implements InterfaceJson {
 		
 		return result;
 	}
+	
+	@Override
+	public int ExtractDict(String stringMsg) {
+		
+		String jsonResponse = stringMsg; 
+
+		ObjectMapper objectMapper = new ObjectMapper();
+		JsonNode jsonNode = null;
+		int result = 100;
+
+		try {
+			jsonNode = objectMapper.readTree(jsonResponse);
+			result = jsonNode.path("contactRate").path("attempts").asInt();
+			
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+		
+		  return result;
+	  }
 
 }

@@ -11,6 +11,7 @@ public class MessageToProducer {
 
 	    String endpointUrl = "/gcapi/post/"+towhere;
 
+	    System.out.println("Endpoint : "+ endpointUrl);
 	    webClient.post()
 	            .uri(endpointUrl)
 	            .body(BodyInserters.fromValue(jsonString))

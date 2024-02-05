@@ -18,56 +18,72 @@ public class Entity_CampRt {
 	@Column(name = "msg_id")
 	private Long id;
 
-	@Column(name = "CLTID")
-	private String cltid;
+	@Column(name = "CAMP_ID")
+	private String cpid;
 
-	@Column(name = "CONTACTID")
-	private String contactId;
+	@Column(name = "CONTACTID_LIST_ID")
+	private String contactLtId;
+	
+	@Column(name = "CONTACT_ID")
+ 	private String contactid;
+	
+	@Column(name = "IBM_SLTN_CNTA_HUB_ID")
+ 	private int hubid;
 	
 	@Column(name = "DIDT")
  	private Date didt;
 
 	@Column(name = "DIRT")
-	private double dirt;
+	private int dirt;
 
 	@Column(name = "DICT")
-	private double dict;
+	private int dict;
+	
+	@Column(name = "COID")
+	private String coid;
 	
 
 	public Entity_CampRt() {
 	}
 
-	public Entity_CampRt(Long id, String cltid, String contactId, Date didt, double dirt, double dict) {
+	public Entity_CampRt(Long id, String cpid, String contactLtId, String contactid, int hubid, Date didt,
+			int dirt, int dict,String coid) {
 		this.id = id;
-		this.cltid = cltid;
-		this.contactId = contactId;
+		this.cpid = cpid;
+		this.contactLtId = contactLtId;
+		this.contactid = contactid;
+		this.hubid = hubid;
 		this.didt = didt;
 		this.dirt = dirt;
 		this.dict = dict;
+		this.coid = coid;
 	}
 
 	public Long getId() { return id; }
 	public void setId(Long id) { this.id = id;}
-	
 
-	public String getCltid() { return cltid; }
-	public void setCltid(String cltid) {this.cltid = cltid;}
-
+	public String getCpid() { return cpid; }
+	public void setCpid(String cpid) {this.cpid = cpid;}
 	
-	public String getContactId() {return contactId;}
-	public void setContactId(String contactId) {this.contactId = contactId;}
+	public String getContactLtId() {return contactLtId;}
+	public void setContactLtId(String contactLtId) {this.contactLtId = contactLtId;}
 	
+	public String getContactId() {return contactid;}
+	public void setContactId(String contactid) {this.contactid = contactid;}
+	
+	public int getHubId() {return hubid;}
+	public void setHubId(int hubid) {this.hubid = hubid;}
 	
 	public Date getDidt() {return didt;}
 	public void setDidt(Date didt) {this.didt = didt;}
 	
+	public int getDirt() {return dirt;}
+	public void setDirt(int dirt) {this.dirt = dirt;}
 	
-	public double getDirt() {return dirt;}
-	public void setDirt(double dirt) {this.dirt = dirt;}
+	public int getDict() {return dict;}
+	public void setDict(int dict) {this.dict = dict;}
 	
-	
-	public double getDict() {return dict;}
-	public void setDict(double dict) {this.dict = dict;}
-	
+	public String getCoid() { return coid; }
+	public void setCoid(String coid) {this.coid = coid;}
 }
 	

@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import kafka.gcClient.encryptdecrypt.AESDecryption;
 import kafka.gcClient.entity.Entity_CampMa;
 import kafka.gcClient.entity.Entity_CampRt;
+import kafka.gcClient.entity.Entity_ContactLt;
 import kafka.gcClient.entity.Entity_MapCoid;
 import kafka.gcClient.interfaceCollection.InterfaceDB;
 import kafka.gcClient.kafkamessages.MessageToProducer;
@@ -107,18 +108,22 @@ public class GcController extends ServiceJson {
 
 		case "thirdtopic":
 
-			String cpid_3 = ExtractCpidfromThird(msg);
+			String cpid_3 = ExtractCpidfromThird(msg);//request body로 들어돈 json에서 필요 데이터 추출
 			System.out.println(cpid_3);
-
-			Entity_CampRt entityCmRt_3 = serviceDb.createCampRtMsg(cpid_3);
-			ObjectMapper objectMapper_3 = new ObjectMapper();
+			
+			
+			Entity_CampRt entityCmRt_3 = serviceDb.createCampRtMsg(cpid_3);// db 인서트 하기 위한 entity.
+			Entity_CampRt toproducer = serviceDb.createCampRtToJson(cpid_3);// producer로 보내기 위한 entity.
+			ObjectMapper objectMapper_3 = new ObjectMapper(); 
+			
+			
 
 			try {
-				String jsonString = objectMapper_3.writeValueAsString(entityCmRt_3);
-				System.out.println(jsonString);
+				String jsonString = objectMapper_3.writeValueAsString(toproducer);
+				System.out.println("JsonString Data : =="+jsonString);
 				
 				MessageToProducer producer = new MessageToProducer();
-				producer.sendMsgToProducer("thirdtopic", jsonString);
+				producer.sendMsgToProducer("thirdtopic", jsonString);//'thirdtopic'토픽으로 메시지 보냄.
 
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();

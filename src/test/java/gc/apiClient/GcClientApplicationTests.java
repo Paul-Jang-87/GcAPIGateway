@@ -1,4 +1,4 @@
-package kafka.gcClient;
+package gc.apiClient;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

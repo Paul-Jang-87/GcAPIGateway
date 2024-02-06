@@ -43,7 +43,7 @@ public class ServiceJson implements InterfaceJson {
 	}
 	
 	@Override
-	public String ExtractCpidfromThird(String stringMsg) {
+	public String ExtractCrm56(String stringMsg) {
 		
 		String jsonResponse = stringMsg; 
 
@@ -66,7 +66,7 @@ public class ServiceJson implements InterfaceJson {
 	}
 
 	@Override
-	public String ExtractCpid(String stringMsg) {
+	public String ExtractValCrm12(String stringMsg) {
 		
 		String jsonResponse = stringMsg; 
 
@@ -110,4 +110,12 @@ public class ServiceJson implements InterfaceJson {
 		  return result;
 	  }
 
+	@Override
+	public String ExtractDidtDirt(String stringMsg) {//stringMsg에서 didt,dirt추출헤서 리턴해주는 함수.
+		
+		System.out.println("ExtractDidtDirt 들어옴.");
+		String result = "2023-11-29T11:15:31.705Z|0227"; //didt,dirt
+		
+		return result;
+	}
 }

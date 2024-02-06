@@ -14,7 +14,7 @@ public interface InterfaceDB {
 	Entity_CampRt createCampRtMsg(String cpid);
 	Entity_CampRt createCampRtToJson(String cpid);
 	Entity_CampMa createCampMaMsg(String cpid);
-	Entity_ContactLt createContactLtMsg();
+	Entity_ContactLt createContactLtMsg(String msg);
 	Entity_AppConfig createAppConfigMsg(String encryptedPassword);
 	Entity_MapCoid createMapCoIdMsg();
 	
@@ -28,6 +28,7 @@ public interface InterfaceDB {
 	//select
 	Entity_MapCoid findMapCoidByCpid(String cpid);
 	Entity_CampMa findCampMaByCpid(String cpid);
+	Entity_CampRt findCampRtByCpid(String cpid);
 	Entity_ContactLt findContactLtByid(String id);
 	Entity_AppConfig findAppConfigByid(Long id);
 	Entity_AppConfig getEntityById(Long id);

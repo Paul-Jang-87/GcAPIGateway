@@ -1,6 +1,10 @@
 package kafka.gcClient.service;
 
-import java.sql.Date;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -60,7 +64,7 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		String contactLtId = parts[1];
 		String contactId = "";
 		int hubId = 0;
-		Date didt = Date.valueOf("2022-02-01");
+		Date didt = null;
 		int dirt = 880382;
 		int dict = 100;
 		String coid = "";
@@ -81,11 +85,37 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		hubId = Integer.parseInt(enContactLt.getTkda().split(",")[1]);
 
 		// api 호출 후. didt,dirt 가져오는 부분.
-//		CrmSv01 crmapi1 = new CrmSv01(this);
-//		String result = crmapi1.GetApiRequet("campaignId");
-//		String cpid_3 = ExtractCpidfromThird(result);
+//		/api/v2/outbound/contactlists/{contactListId}/contacts/{contactId} 이것을 부르기 위해서는 contactId 데이터가 필요한데
+//		아직 없다. 
 
-		CrmSv01 crmapi1 = new CrmSv01(this);
+//		ServiceWebClient apiContactlt = new ServiceWebClient();
+//		String resultContactlt = apiContactlt.GetContactLtApiRequet("campaignId", contactLtId, contactId);
+		String temp = ExtractDidtDirt("aaa"); //"aaa"대신에 resultContactlt값이 들어가야함.
+		System.out.println(temp);
+		String k[] = temp.split("\\|");
+		System.out.println("k0은 : "+k[0]);
+		System.out.println("k1은 : "+k[1]);
+		
+		SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
+		try {
+			Date parsedDate = inputFormat.parse(k[0]);
+
+            // Formatting the parsed date to the desired format
+            SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            String formattedDateString = outputFormat.format(parsedDate);
+            System.out.println("포맷 변경 (String) : "+formattedDateString);
+            Date formattedDate = outputFormat.parse(formattedDateString);
+            didt = formattedDate;
+            System.out.println("포맷 변경 (Date) : "+didt);
+            
+            System.out.println("Formatted Date: " + didt);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+		
+		dirt = Integer.parseInt(k[1]);
+
+		ServiceWebClient crmapi1 = new ServiceWebClient();
 		String result = crmapi1.GetStatusApiRequet("campaign_stats", campid);
 		dict = ExtractDict(result);
 
@@ -126,7 +156,7 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		String contactLtId = parts[1];
 		String contactId = "";
 		int hubId = 0;
-		Date didt = Date.valueOf("2022-02-01");
+		Date didt = null;
 		int dirt = 880382;
 		int dict = 100;
 		String coid = "";
@@ -147,11 +177,37 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		hubId = Integer.parseInt(enContactLt.getTkda().split(",")[1]);
 
 		// api 호출 후. didt,dirt 가져오는 부분.
-//		CrmSv01 crmapi1 = new CrmSv01(this);
-//		String result = crmapi1.GetApiRequet("campaignId");
-//		String cpid_3 = ExtractCpidfromThird(result);
+//		/api/v2/outbound/contactlists/{contactListId}/contacts/{contactId} 이것을 부르기 위해서는 contactId 데이터가 필요한데
+//		아직 없다. 
 
-		CrmSv01 crmapi1 = new CrmSv01(this);
+//		ServiceWebClient apiContactlt = new ServiceWebClient();
+//		String resultContactlt = apiContactlt.GetContactLtApiRequet("campaignId", contactLtId, contactId);
+		String temp = ExtractDidtDirt("aaa"); //"aaa"대신에 resultContactlt값이 들어가야함.
+		System.out.println(temp);
+		String k[] = temp.split("\\|");
+		System.out.println("k0은 : "+k[0]);
+		System.out.println("k1은 : "+k[1]);
+		
+		SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
+		try {
+            Date parsedDate = inputFormat.parse(k[0]);
+
+            // Formatting the parsed date to the desired format
+            SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            String formattedDateString = outputFormat.format(parsedDate);
+            System.out.println("포맷 변경 (String) : "+formattedDateString);
+            Date formattedDate = outputFormat.parse(formattedDateString);
+            didt = formattedDate;
+            System.out.println("포맷 변경 (Date) : "+didt);
+            
+            System.out.println("Formatted Date: " + didt);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+		
+		dirt = Integer.parseInt(k[1]);
+
+		ServiceWebClient crmapi1 = new ServiceWebClient();
 		String result = crmapi1.GetStatusApiRequet("campaign_stats", campid);
 		dict = ExtractDict(result);
 
@@ -200,19 +256,21 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 	}
 
 	@Override
-	public Entity_ContactLt createContactLtMsg() {
+	public Entity_ContactLt createContactLtMsg(String msg) {
 
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
 
-		enContactLt.setCpid("97e6b32d-c266-4d33-92b4-01ddf33898cd");
-		enContactLt.setCpsq(109284);
-		enContactLt.setCske("customerkey");
-		enContactLt.setCsna("카리나");
-		enContactLt.setFlag("HO2");
-		enContactLt.setTkda("custid,111");
-		enContactLt.setTn01("tn01");
-		enContactLt.setTn02("tn02");
-		enContactLt.setTn03("tn03");
+		// 임시로 데이터 적재
+//		enContactLt.setCpid("97e6b32d-c266-4d33-92b4-01ddf33898cd");
+//		enContactLt.setCpsq(109284);
+//		enContactLt.setCske("customerkey");
+//		enContactLt.setCsna("카리나");
+//		enContactLt.setFlag("HO2");
+//		enContactLt.setTkda("custid,111");
+//		enContactLt.setTn01("tn01");
+//		enContactLt.setTn02("tn02");
+//		enContactLt.setTn03("tn03");
+
 		return enContactLt;
 	}
 
@@ -269,6 +327,13 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 	public Entity_CampMa findCampMaByCpid(String cpid) {
 
 		Optional<Entity_CampMa> optionalEntity = repositoryCampMa.findByCpid(cpid);
+		return optionalEntity.orElse(null);
+	}
+	
+	@Override
+	public Entity_CampRt findCampRtByCpid(String cpid) {
+
+		Optional<Entity_CampRt> optionalEntity = repositoryCampRt.findByCpid(cpid);
 		return optionalEntity.orElse(null);
 	}
 

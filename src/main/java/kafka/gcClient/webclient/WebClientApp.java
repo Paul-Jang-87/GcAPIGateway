@@ -24,11 +24,12 @@ public class WebClientApp {
 	
 	private WebClient webClient;
 
-	public WebClientApp(String apiName, String httpMethod,InterfaceDB servicedb) {// WebClinet 생성자, 기본적인 초기 설정들.
+	public WebClientApp(String apiName, String httpMethod) {// WebClinet 생성자, 기본적인 초기 설정들.
 										 // WebClient를 사용하기 위한 기본 설정들과 매개변수로 온 api를 사용하기 위한 기본 설정들.
 		
-		WebClientConfig webClientConfig = new WebClientConfig(servicedb);
-        webClientConfig.getClientIdPwd();
+		//암호화된 id, 비밀번호 db에서 가져오는 작업.  
+//		WebClientConfig webClientConfig = new WebClientConfig(servicedb);
+//      webClientConfig.getClientIdPwd();
         
 		CLIENT_ID = WebClientConfig.getClientId();
 		CLIENT_SECRET = WebClientConfig.getClientSecret();

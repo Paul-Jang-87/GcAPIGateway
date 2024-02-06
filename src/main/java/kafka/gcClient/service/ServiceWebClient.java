@@ -7,20 +7,15 @@ import kafka.gcClient.interfaceCollection.InterfaceWebClient;
 import kafka.gcClient.webclient.WebClientApp;
 
 @Service
-public class CrmSv01 implements InterfaceWebClient {
+public class ServiceWebClient implements InterfaceWebClient {
 	
-	private final InterfaceDB serviceDb;
-
-	public CrmSv01(InterfaceDB serviceDb) {
-		this.serviceDb = serviceDb;
-	}
 
 	@Override
 	public String GetApiRequet(String endpoint) {
 		
 		String result = "";
 		
-		WebClientApp webClientExample = new WebClientApp(endpoint,"GET",serviceDb);
+		WebClientApp webClientExample = new WebClientApp(endpoint,"GET");
 		result = webClientExample.makeApiRequest();
 		
 		System.out.println(result);
@@ -33,8 +28,21 @@ public class CrmSv01 implements InterfaceWebClient {
 		
 		String result = "";
 		
-		WebClientApp webClientExample = new WebClientApp(endpoint,"GET",serviceDb);
+		WebClientApp webClientExample = new WebClientApp(endpoint,"GET");
 		result = webClientExample.makeApiRequest(campaignId);
+		
+		System.out.println(result);
+		
+		return result;
+	}
+	
+	@Override
+	public String GetContactLtApiRequet(String endpoint, String contactListId, String contactId) {
+		
+		String result = "";
+		
+		WebClientApp webClientExample = new WebClientApp(endpoint,"GET");
+		result = webClientExample.makeApiRequest(contactListId,contactId);
 		
 		System.out.println(result);
 		

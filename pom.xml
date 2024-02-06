@@ -9,11 +9,11 @@
 		<version>3.2.2</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>kafka</groupId>
-	<artifactId>gcClient</artifactId>
+	<groupId>gc</groupId>
+	<artifactId>apiClient</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>gcClient</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Genesys Cloud API GW (Kafka, APIM)</description>
 	<properties>
 		<java.version>21</java.version>
 	</properties>

@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import gc.apiClient.encryptdecrypt.AESDecryption;
 import gc.apiClient.entity.Entity_CampMa;
 import gc.apiClient.entity.Entity_CampRt;
+import gc.apiClient.entity.Entity_CampRtJson;
 import gc.apiClient.entity.Entity_ContactLt;
 import gc.apiClient.entity.Entity_MapCoid;
 import gc.apiClient.interfaceCollection.InterfaceDB;
@@ -76,9 +77,10 @@ public class GcController extends ServiceJson {
 			
 		case "thirdtopic"://IF-CRM_003 
 		case "forthtopic"://IF-CRM_004
-
-			Entity_ContactLt enContactLt = serviceDb.createContactLtMsg(msg);
-			serviceDb.InsertContactLt(enContactLt);
+			
+			
+//			Entity_ContactLt enContactLt = serviceDb.createContactLtMsg(msg);
+//			serviceDb.InsertContactLt(enContactLt);
 
 			return Mono.empty();
 
@@ -91,7 +93,7 @@ public class GcController extends ServiceJson {
 			
 			
 			Entity_CampRt entityCmRt_3 = serviceDb.createCampRtMsg(cpid_3);// db 인서트 하기 위한 entity.
-			Entity_CampRt toproducer = serviceDb.createCampRtToJson(cpid_3);// producer로 보내기 위한 entity.
+			Entity_CampRtJson toproducer = serviceDb.createCampRtJson(cpid_3);// producer로 보내기 위한 entity.
 			ObjectMapper objectMapper_3 = new ObjectMapper(); 
 			
 			try {

@@ -13,6 +13,7 @@ import gc.apiClient.datamapping.MappingHomeCenter;
 import gc.apiClient.entity.Entity_AppConfig;
 import gc.apiClient.entity.Entity_CampMa;
 import gc.apiClient.entity.Entity_CampRt;
+import gc.apiClient.entity.Entity_CampRtJson;
 import gc.apiClient.entity.Entity_ContactLt;
 import gc.apiClient.entity.Entity_MapCoid;
 import gc.apiClient.interfaceCollection.InterfaceDB;
@@ -240,6 +241,99 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 	}
 
 	@Override
+	public Entity_CampRtJson createCampRtJson(String cpid) {
+		
+		Entity_CampRtJson enCampRt = new Entity_CampRtJson();
+		
+		String parts[] = cpid.split("\\|");
+		
+		String campid = parts[0];
+		String contactLtId = parts[1];
+		String contactId = "";
+		int hubId = 0;
+		String didt = "";
+		int dirt = 880382;
+		int dict = 100;
+		String coid = "";
+		
+		System.out.println("campid: " + campid);
+		System.out.println("contactLtId: " + contactLtId);
+		System.out.println("contactId: " + contactId);
+		System.out.println("hubid: " + hubId);
+		System.out.println("didt: " + didt);
+		System.out.println("dirt: " + dirt);
+		System.out.println("dict: " + dict);
+		System.out.println("coid: " + coid);
+		
+		Entity_ContactLt enContactLt = new Entity_ContactLt();
+		enContactLt = findContactLtByid(campid);
+		
+		contactId = enContactLt.getCske();
+		hubId = Integer.parseInt(enContactLt.getTkda().split(",")[1]);
+		
+		// api 호출 후. didt,dirt 가져오는 부분.
+//		/api/v2/outbound/contactlists/{contactListId}/contacts/{contactId} 이것을 부르기 위해서는 contactId 데이터가 필요한데
+//		아직 없다. 
+		
+//		ServiceWebClient apiContactlt = new ServiceWebClient();
+//		String resultContactlt = apiContactlt.GetContactLtApiRequet("campaignId", contactLtId, contactId);
+		String temp = ExtractDidtDirt("aaa"); //"aaa"대신에 resultContactlt값이 들어가야함.
+		System.out.println(temp);
+		String k[] = temp.split("\\|");
+		System.out.println("k0은 : "+k[0]);
+		System.out.println("k1은 : "+k[1]);
+		
+		SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
+		try {
+			Date parsedDate = inputFormat.parse(k[0]);
+			
+			// Formatting the parsed date to the desired format
+			SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			String formattedDateString = outputFormat.format(parsedDate);
+			System.out.println("포맷 변경 (String) : "+formattedDateString);
+			Date formattedDate = outputFormat.parse(formattedDateString);
+			didt = formattedDateString;
+			System.out.println("포맷 변경 (Date) : "+didt);
+			
+			System.out.println("Formatted Date: " + didt);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		dirt = Integer.parseInt(k[1]);
+		
+		ServiceWebClient crmapi1 = new ServiceWebClient();
+		String result = crmapi1.GetStatusApiRequet("campaign_stats", campid);
+		dict = ExtractDict(result);
+		
+		Entity_CampMa enCampMa = new Entity_CampMa();
+		
+		enCampMa = findCampMaByCpid(campid);
+		coid = enCampMa.getCoid();
+		MappingHomeCenter mappingData = new MappingHomeCenter();
+		coid = mappingData.getCentercodeById(coid);
+		
+		enCampRt.setCpid(campid);
+		enCampRt.setContactLtId(contactLtId);
+		enCampRt.setContactId(contactId);
+		enCampRt.setHubId(hubId);
+		enCampRt.setDidt(didt);
+		enCampRt.setDirt(dirt);
+		enCampRt.setDict(dict);
+		enCampRt.setCoid(coid);
+		
+		System.out.println("campid: " + campid);
+		System.out.println("contactLtId: " + contactLtId);
+		System.out.println("contactId: " + contactId);
+		System.out.println("hubid: " + hubId);
+		System.out.println("didt: " + didt);
+		System.out.println("dirt: " + dirt);
+		System.out.println("dict: " + dict);
+		System.out.println("coid: " + coid);
+		
+		return enCampRt;
+	}
+	@Override
 	public Entity_CampMa createCampMaMsg(String cpid) {
 
 		Entity_CampMa enCampMa = new Entity_CampMa();
@@ -261,15 +355,15 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
 
 		// 임시로 데이터 적재
-//		enContactLt.setCpid("97e6b32d-c266-4d33-92b4-01ddf33898cd");
-//		enContactLt.setCpsq(109284);
-//		enContactLt.setCske("customerkey");
-//		enContactLt.setCsna("카리나");
-//		enContactLt.setFlag("HO2");
-//		enContactLt.setTkda("custid,111");
-//		enContactLt.setTn01("tn01");
-//		enContactLt.setTn02("tn02");
-//		enContactLt.setTn03("tn03");
+		enContactLt.setCpid("97e6b32d-c266-4d33-92b4-01ddf33898cd");
+		enContactLt.setCpsq(109284);
+		enContactLt.setCske("customerkey");
+		enContactLt.setCsna("카리나");
+		enContactLt.setFlag("HO2");
+		enContactLt.setTkda("custid,111");
+		enContactLt.setTn01("tn01");
+		enContactLt.setTn02("tn02");
+		enContactLt.setTn03("tn03");
 
 		return enContactLt;
 	}

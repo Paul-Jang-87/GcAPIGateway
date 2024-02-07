@@ -14,7 +14,7 @@ public interface InterfaceJson {//defult로 해놓으면 InterfaceJson을 다른
 		  return "";
 	  }
 	  
-	  default String ExtractCrm56(String stringMsg) {
+	  default String ExtractVal56(String stringMsg) {
 		  return "a";
 	  }
 	  
@@ -23,6 +23,17 @@ public interface InterfaceJson {//defult로 해놓으면 InterfaceJson을 다른
 	  }
 	  
 	  default String ExtractDidtDirt(String stringMsg) {
+		  return "";
+	  }
+	  
+	  
+	  
+	  
+	  //CallBot
+	  default String ExtractValCallbot12(String stringMsg) {
+		  return "";
+	  }
+	  default String ExtractValCallbot34(String stringMsg) {
 		  return "";
 	  }
 

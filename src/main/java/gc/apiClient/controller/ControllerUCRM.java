@@ -1,35 +1,28 @@
 package gc.apiClient.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.reactive.function.BodyInserters;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import gc.apiClient.encryptdecrypt.AESDecryption;
 import gc.apiClient.entity.Entity_CampMa;
 import gc.apiClient.entity.Entity_CampRt;
 import gc.apiClient.entity.Entity_CampRtJson;
 import gc.apiClient.entity.Entity_ContactLt;
-import gc.apiClient.entity.Entity_MapCoid;
 import gc.apiClient.interfaceCollection.InterfaceDB;
 import gc.apiClient.kafkamessages.MessageToProducer;
-import gc.apiClient.service.CrmSv05;
 import gc.apiClient.service.ServiceJson;
-import gc.apiClient.service.ServiceWebClient;
 import reactor.core.publisher.Mono;
 
 @RestController
-public class GcController extends ServiceJson {
+public class ControllerUCRM extends ServiceJson {
 
 	private final InterfaceDB serviceDb;
 
-	public GcController(InterfaceDB serviceDb) {
+	public ControllerUCRM(InterfaceDB serviceDb) {
 		this.serviceDb = serviceDb;
 	}
 
@@ -37,34 +30,37 @@ public class GcController extends ServiceJson {
 
 	// GC API
 
-	@GetMapping("/gcapi/get/{topic}")
-	public String getApiData(@PathVariable("topic") String tranId) {
-
-		String result = "";
-		return result;
-	}
+//	@GetMapping("/gcapi/get/{topic}")
+//	public String getApiData(@PathVariable("topic") String tranId) {
+//
+//		String result = "";
+//		return result;
+//	}
 
 	@PostMapping("/gcapi/post/{topic}")
 	public Mono<Void> receiveMessage(@PathVariable("topic") String tranId, @RequestBody String msg) {
 
+		System.out.println("Class : ControllerUCRM\n Method : receiveMessage");
 		String result = "";
 		String topic_id = tranId;
 		ObjectMapper objectMapper = null;
+		
+		System.out.println("topic_id : "+topic_id);
 
 		switch (topic_id) {
-
+		
 		case "firsttopic":// IF-CRM_001
 		case "secondtopic":// IF-CRM_002
 
 			String cpid = ExtractValCrm12(msg);
-			System.out.println(cpid);
+			System.out.println("cpid : "+cpid);
 
 			Entity_CampMa entityMa = serviceDb.createCampMaMsg(cpid);
 			objectMapper = new ObjectMapper();
 
 			try {
 				String jsonString = objectMapper.writeValueAsString(entityMa);
-				System.out.println(jsonString);
+				System.out.println("jsonString : "+jsonString);
 				MessageToProducer producer = new MessageToProducer();
 				producer.sendMsgToProducer(topic_id, jsonString);
 
@@ -83,6 +79,7 @@ public class GcController extends ServiceJson {
 			//간단한 테스트를 하기 위한 샘플 json 데이터. msg로 위 데이터가 들어 온 것으로 가정. 
 			
 			result = ExtractValCrm34(msg);
+			System.out.println("result : "+result);
 
 			Entity_ContactLt enContactLt = serviceDb.createContactLtMsg(result);
 			serviceDb.InsertContactLt(enContactLt);
@@ -92,25 +89,32 @@ public class GcController extends ServiceJson {
 		case "fifthtopic":// IF-CRM_005
 		case "sixthtopic":// IF-CRM_006
 
-			result = ExtractCrm56(msg);// request body로 들어돈 json에서 필요 데이터 추출
+			result = ExtractVal56(msg);// request body로 들어돈 json에서 필요 데이터 추출
 			System.out.println(result);
 
 			Entity_CampRt entityCmRt = serviceDb.createCampRtMsg(result);// db 인서트 하기 위한 entity.
-			Entity_CampRtJson toproducer = serviceDb.createCampRtJson(result);// producer로 보내기 위한 entity.
-			objectMapper = new ObjectMapper();
-
-			try {
-				String jsonString = objectMapper.writeValueAsString(toproducer);
-				System.out.println("JsonString Data : ==" + jsonString);
-
-				MessageToProducer producer = new MessageToProducer();
-				producer.sendMsgToProducer(topic_id, jsonString);//'thirdtopic'토픽으로 메시지 보냄.
-
-			} catch (JsonProcessingException e) {
-				e.printStackTrace();
+			
+			int dirt = entityCmRt.getDirt();//응답코드
+			
+			if(dirt>1) {
+				
+				Entity_CampRtJson toproducer = serviceDb.createCampRtJson(result);// producer로 보내기 위한 entity.
+				objectMapper = new ObjectMapper();
+				
+				try {
+					String jsonString = objectMapper.writeValueAsString(toproducer);
+					System.out.println("JsonString Data : ==" + jsonString);
+					
+					MessageToProducer producer = new MessageToProducer();
+					producer.sendMsgToProducer(topic_id, jsonString);//'thirdtopic'토픽으로 메시지 보냄.
+					
+				} catch (JsonProcessingException e) {
+					e.printStackTrace();
+				}
+				
+				serviceDb.InsertCampRt(entityCmRt);
+				
 			}
-
-			serviceDb.InsertCampRt(entityCmRt);
 
 			return Mono.empty();
 

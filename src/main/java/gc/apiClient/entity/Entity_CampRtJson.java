@@ -7,9 +7,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-import java.time.LocalDateTime;
-import java.util.Date;
-
 
 @Entity
 @Table(name = "CAMPRT")
@@ -22,6 +19,9 @@ public class Entity_CampRtJson {
 
 	@Column(name = "CAMP_ID")
 	private String cpid;
+	
+	@Column(name = "CPSQ")
+ 	private int cpsq;
 
 	@Column(name = "CONTACTID_LIST_ID")
 	private String contactLtId;
@@ -48,10 +48,11 @@ public class Entity_CampRtJson {
 	public Entity_CampRtJson() {
 	}
 
-	public Entity_CampRtJson(Long id, String cpid, String contactLtId, String contactid, int hubid, String didt,
+	public Entity_CampRtJson(Long id, String cpid,int cpsq, String contactLtId, String contactid, int hubid, String didt,
 			int dirt, int dict,String coid) {
 		this.id = id;
 		this.cpid = cpid;
+		this.cpsq = cpsq;
 		this.contactLtId = contactLtId;
 		this.contactid = contactid;
 		this.hubid = hubid;
@@ -63,9 +64,12 @@ public class Entity_CampRtJson {
 
 	public Long getId() { return id; }
 	public void setId(Long id) { this.id = id;}
-
+	
 	public String getCpid() { return cpid; }
 	public void setCpid(String cpid) {this.cpid = cpid;}
+	
+	public int getCpsq() {return cpsq;}
+	public void setCpsq(int cpsq) {this.cpsq = cpsq;}
 	
 	public String getContactLtId() {return contactLtId;}
 	public void setContactLtId(String contactLtId) {this.contactLtId = contactLtId;}

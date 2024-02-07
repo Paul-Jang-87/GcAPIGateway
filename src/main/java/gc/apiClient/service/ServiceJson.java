@@ -100,7 +100,7 @@ public class ServiceJson implements InterfaceJson {
 	}
 
 	@Override
-	public String ExtractCrm56(String stringMsg) {// IF-CRM_005,IF-CRM_006에서 사용하기 위한 추출함수.
+	public String ExtractVal56(String stringMsg) {// IF-CRM_005,IF-CRM_006에서 사용하기 위한 추출함수.
 
 		String jsonResponse = stringMsg;
 
@@ -147,8 +147,75 @@ public class ServiceJson implements InterfaceJson {
 	@Override
 	public String ExtractDidtDirt(String stringMsg) {// stringMsg에서 didt,dirt추출헤서 리턴해주는 함수.
 
-		String result = "2023-11-29T11:15:31.705Z|0227"; // didt,dirt 임시로 넣어둠.
+		String result = "2023-11-29T11:15:31.705Z|ININ-OUTBOUND-PREVIEW-ERROR-PHONE-NUMBER"; // didt,dirt 임시로 넣어둠.
 
 		return result;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	//Callbot
+	@Override
+	public String ExtractValCallbot12(String stringMsg) {//콜봇용 IF-CRM_001,IF-CRM_002에서 사용하기 위한 추출함수.
+		
+		String jsonResponse = stringMsg;
+
+		System.out.println("=== ExtractValCrm12 ===");
+		System.out.println(jsonResponse);
+
+		ObjectMapper objectMapper = new ObjectMapper();
+		JsonNode jsonNode = null;
+		String result = "";
+
+		try {
+			jsonNode = objectMapper.readTree(jsonResponse);
+			result = jsonNode.path("cpid").asText();
+
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
+	
+
+	@Override
+	public String ExtractValCallbot34(String stringMsg) {//콜봇용 IF-CRM_003,IF-CRM_004에서 사용하기 위한 추출함수.
+
+		String jsonResponse = stringMsg;
+
+		ObjectMapper objectMapper = new ObjectMapper();
+		JsonNode jsonNode = null;
+		String result = "";
+
+		try {
+			jsonNode = objectMapper.readTree(jsonResponse);
+			result = jsonNode.path("cpid").asText();
+			result = result + "|" + jsonNode.path("cpsq").toString();
+			result = result + "|" + jsonNode.path("cske").asText();
+			result = result + "|" + jsonNode.path("tn01").asText();
+			result = result + "|" + jsonNode.path("tkda").asText();
+			result = result + "|" + jsonNode.path("flag").asText();
+
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+		System.out.println("=== ExtractValCrm34 ===");
+		System.out.println("result : "+result);
+		return result;
+	}
+	
+	
+	
+	
 }

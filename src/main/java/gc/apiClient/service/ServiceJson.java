@@ -44,7 +44,7 @@ public class ServiceJson implements InterfaceJson {
 
 	@Override
 	public String ExtractValCrm12(String stringMsg) {// IF-CRM_001,IF-CRM_002에서 사용하기 위한 추출함수.
-
+		
 		String jsonResponse = stringMsg;
 
 		System.out.println("=== ExtractValCrm12 ===");

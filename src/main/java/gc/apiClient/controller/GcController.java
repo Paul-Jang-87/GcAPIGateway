@@ -79,6 +79,9 @@ public class GcController extends ServiceJson {
 		case "thirdtopic":// IF-CRM_003
 		case "forthtopic":// IF-CRM_004
 			
+			//{"id":null,"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","cpsq":109284,"cske":"customerkey","tn01":"tn01","tn02":"tn02","tn03":"tn03","csna":"카리나","tkda":"custid,111","flag":"HO2"}
+			//간단한 테스트를 하기 위한 샘플 json 데이터. msg로 위 데이터가 들어 온 것으로 가정. 
+			
 			result = ExtractValCrm34(msg);
 
 			Entity_ContactLt enContactLt = serviceDb.createContactLtMsg(result);
@@ -119,30 +122,5 @@ public class GcController extends ServiceJson {
 	}
 	
 	
-	
-	
-	@PostMapping("/gcapi/fromkafka/{topic}")
-	public Mono<Void> MessageFormKafka(@PathVariable("topic") String tranId, @RequestBody String msg) {
-
-		String result = "";
-		String topic_id = tranId;
-
-		switch (topic_id) {
-
-		case "thirdtopic":// IF-CRM_003
-		case "forthtopic":// IF-CRM_004
-
-			result = ExtractValCrm34(msg);
-			System.out.println("===MessageFormKafka===");
-			System.out.println("message from consumer : "+msg);
-			System.out.println("after extraction : "+result);
-			
-
-		default:
-			break;
-		}
-
-		return Mono.empty();
-	}
 
 }

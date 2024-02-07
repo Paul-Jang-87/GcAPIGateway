@@ -13,7 +13,6 @@ public interface InterfaceDB {
 
 	//table 별 매핑
 	Entity_CampRt createCampRtMsg(String cpid);
-	Entity_CampRt createCampRtToJson(String cpid);
 	Entity_CampRtJson createCampRtJson(String cpid);
 	Entity_CampMa createCampMaMsg(String cpid);
 	Entity_ContactLt createContactLtMsg(String msg);

@@ -49,17 +49,18 @@ public class GcController extends ServiceJson {
 
 		String result = "";
 		String topic_id = tranId;
+		ObjectMapper objectMapper = null;
 
 		switch (topic_id) {
 
-		case "firsttopic"://IF-CRM_001 
-		case "secondtopic"://IF-CRM_002
-			
+		case "firsttopic":// IF-CRM_001
+		case "secondtopic":// IF-CRM_002
+
 			String cpid = ExtractValCrm12(msg);
 			System.out.println(cpid);
 
 			Entity_CampMa entityMa = serviceDb.createCampMaMsg(cpid);
-			ObjectMapper objectMapper = new ObjectMapper();
+			objectMapper = new ObjectMapper();
 
 			try {
 				String jsonString = objectMapper.writeValueAsString(entityMa);
@@ -74,42 +75,68 @@ public class GcController extends ServiceJson {
 //			serviceDb.InsertCampMa(entityMa);
 
 			return Mono.empty();
+
+		case "thirdtopic":// IF-CRM_003
+		case "forthtopic":// IF-CRM_004
 			
-		case "thirdtopic"://IF-CRM_003 
-		case "forthtopic"://IF-CRM_004
-			
-			
-//			Entity_ContactLt enContactLt = serviceDb.createContactLtMsg(msg);
-//			serviceDb.InsertContactLt(enContactLt);
+			result = ExtractValCrm34(msg);
+
+			Entity_ContactLt enContactLt = serviceDb.createContactLtMsg(result);
+			serviceDb.InsertContactLt(enContactLt);
 
 			return Mono.empty();
 
+		case "fifthtopic":// IF-CRM_005
+		case "sixthtopic":// IF-CRM_006
 
-		case "fifthtopic"://IF-CRM_005
-		case "sixthtopic"://IF-CRM_006
+			result = ExtractCrm56(msg);// request body로 들어돈 json에서 필요 데이터 추출
+			System.out.println(result);
 
-			String cpid_3 = ExtractCrm56(msg);//request body로 들어돈 json에서 필요 데이터 추출
-			System.out.println(cpid_3);
-			
-			
-			Entity_CampRt entityCmRt_3 = serviceDb.createCampRtMsg(cpid_3);// db 인서트 하기 위한 entity.
-			Entity_CampRtJson toproducer = serviceDb.createCampRtJson(cpid_3);// producer로 보내기 위한 entity.
-			ObjectMapper objectMapper_3 = new ObjectMapper(); 
-			
+			Entity_CampRt entityCmRt = serviceDb.createCampRtMsg(result);// db 인서트 하기 위한 entity.
+			Entity_CampRtJson toproducer = serviceDb.createCampRtJson(result);// producer로 보내기 위한 entity.
+			objectMapper = new ObjectMapper();
+
 			try {
-				String jsonString = objectMapper_3.writeValueAsString(toproducer);
-				System.out.println("JsonString Data : =="+jsonString);
-				
-//				MessageToProducer producer = new MessageToProducer();
-//				producer.sendMsgToProducer(topic_id, jsonString);//'thirdtopic'토픽으로 메시지 보냄.
+				String jsonString = objectMapper.writeValueAsString(toproducer);
+				System.out.println("JsonString Data : ==" + jsonString);
+
+				MessageToProducer producer = new MessageToProducer();
+				producer.sendMsgToProducer(topic_id, jsonString);//'thirdtopic'토픽으로 메시지 보냄.
 
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
 			}
 
-//			serviceDb.InsertCampRt(entityCmRt_3);
+			serviceDb.InsertCampRt(entityCmRt);
 
 			return Mono.empty();
+
+		default:
+			break;
+		}
+
+		return Mono.empty();
+	}
+	
+	
+	
+	
+	@PostMapping("/gcapi/fromkafka/{topic}")
+	public Mono<Void> MessageFormKafka(@PathVariable("topic") String tranId, @RequestBody String msg) {
+
+		String result = "";
+		String topic_id = tranId;
+
+		switch (topic_id) {
+
+		case "thirdtopic":// IF-CRM_003
+		case "forthtopic":// IF-CRM_004
+
+			result = ExtractValCrm34(msg);
+			System.out.println("===MessageFormKafka===");
+			System.out.println("message from consumer : "+msg);
+			System.out.println("after extraction : "+result);
+			
 
 		default:
 			break;

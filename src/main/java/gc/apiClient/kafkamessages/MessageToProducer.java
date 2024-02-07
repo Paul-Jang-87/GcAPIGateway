@@ -20,7 +20,8 @@ public class MessageToProducer {
 	            .block(); 
 
 	    
-	    System.out.println("Entity_CampMa as JSON: " + jsonString);
+	    System.out.println("===sendMsgToProducer===");
+	    System.out.println("Entity as JSON: " + jsonString);
 	}
 	
 	

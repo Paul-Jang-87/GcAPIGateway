@@ -21,7 +21,7 @@ public class Entity_ContactLt {
 	private String cpid;
 
 	@Column(name = "CPSQ")
-	private double cpsq;
+	private int cpsq;
 	
 	@Column(name = "CSKE")
  	private String cske;
@@ -50,7 +50,7 @@ public class Entity_ContactLt {
 
 	public Entity_ContactLt(Long id,  
 	 String cpid,  
-	 double cpsq,   
+	 int cpsq,   
 	 String cske,   
 	 String tn01,   
 	 String tn02,   
@@ -80,8 +80,8 @@ public class Entity_ContactLt {
 	public void setCpid(String cpid) {this.cpid = cpid;}
 
 	
-	public double getCpsq() {return cpsq;}
-	public void setCpsq(double cpsq) {this.cpsq = cpsq;}
+	public int getCpsq() {return cpsq;}
+	public void setCpsq(int cpsq) {this.cpsq = cpsq;}
 	
 	
 	public String getCske() {return cske;}

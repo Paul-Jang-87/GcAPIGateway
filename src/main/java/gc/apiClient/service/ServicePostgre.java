@@ -1,6 +1,7 @@
 package gc.apiClient.service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -56,20 +57,20 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 	}
 
 	@Override
-	public Entity_CampRt createCampRtMsg(String cpid) {
+	public Entity_CampRt createCampRtMsg(String cpid) {// contactid(고객키)|contactListId|didt|dirt|cpid
 
 		Entity_CampRt enCampRt = new Entity_CampRt();
 
 		String parts[] = cpid.split("\\|");
 
-		String campid = parts[0];
+		String campid = parts[4];
 		int cpsq = 0;
 		String contactLtId = parts[1];
-		String contactId = "";
+		String contactId = parts[0];
 		int hubId = 0;
 		Date didt = null;
-		int dirt = 880382;
-		int dict = 100;
+		int dirt = 0;
+		int dict = 0;
 		String coid = "";
 
 		System.out.println("=====createCampRtMsg=====");
@@ -84,32 +85,20 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		System.out.println("coid: " + coid);
 
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
-		enContactLt = findContactLtByid(campid);
+		enContactLt = findContactLtByCske(contactId);
 
-		contactId = enContactLt.getCske();
 		String tokendata = enContactLt.getTkda();
-		if(tokendata.charAt(0)=='C') {
+		
+		if (tokendata.charAt(0) == 'C') {
 			hubId = Integer.parseInt(enContactLt.getTkda().split(",")[1]);
-		}else {
+		} else {
 			cpsq = Integer.parseInt(enContactLt.getTkda().split("\\|\\|")[5]);
 		}
 
-		// api 호출 후. didt,dirt 가져오는 부분.
-//		/api/v2/outbound/contactlists/{contactListId}/contacts/{contactId} 이것을 부르기 위해서는 contactId 데이터가 필요한데
-//		아직 없다. 
-
-//		ServiceWebClient apiContactlt = new ServiceWebClient();
-//		String resultContactlt = apiContactlt.GetContactLtApiRequet("campaignId", contactLtId, contactId);
-
-		String temp = ExtractDidtDirt("aaa"); // "aaa"대신에 resultContactlt값이 들어가야함.
-		System.out.println(temp);
-		String k[] = temp.split("\\|");
-		System.out.println("k0은 : " + k[0]);
-		System.out.println("k1은 : " + k[1]);
 
 		SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
 		try {
-			Date parsedDate = inputFormat.parse(k[0]);
+			Date parsedDate = inputFormat.parse(parts[2]);
 
 			// Formatting the parsed date to the desired format
 			SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -125,7 +114,8 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		}
 
 		Map<String, String> properties = customProperties.getProperties();
-		dirt = Integer.parseInt(properties.get(k[1]));  
+		dirt = Integer.parseInt(properties.getOrDefault(parts[3], "6"));
+
 
 		ServiceWebClient crmapi1 = new ServiceWebClient();
 		String result = crmapi1.GetStatusApiRequet("campaign_stats", campid);
@@ -146,7 +136,6 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		enCampRt.setDict(dict);
 		enCampRt.setCoid(coid);
 
-		
 		System.out.println("campid: " + campid);
 		System.out.println("cpsq: " + cpsq);
 		System.out.println("contactLtId: " + contactLtId);
@@ -156,54 +145,43 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		System.out.println("dirt: " + dirt);
 		System.out.println("dict: " + dict);
 		System.out.println("coid: " + coid);
-		System.out.println("=====End=====");
+		System.out.println("===== End =====");
 
 		return enCampRt;
 	}
 
 	@Override
-	public Entity_CampRtJson createCampRtJson(String cpid) {
+	public Entity_CampRtJson createCampRtJson(String cpid) {// contactid(고객키)|contactListId|didt|dirt|cpid
 
 		Entity_CampRtJson enCampRt = new Entity_CampRtJson();
 
 		String parts[] = cpid.split("\\|");
 
-		String campid = parts[0];
+		String campid = parts[4];
 		int cpsq = 0;
 		String contactLtId = parts[1];
-		String contactId = "";
+		String contactId = parts[0];
 		int hubId = 0;
 		String didt = "";
-		int dirt = 880382;
-		int dict = 100;
+		int dirt = 0;
+		int dict = 0;
 		String coid = "";
+		
 
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
-		enContactLt = findContactLtByid(campid);
+		enContactLt = findContactLtByCske(contactId);
 
-		contactId = enContactLt.getCske();
 		String tokendata = enContactLt.getTkda();
-		if(tokendata.charAt(0)=='C') {
+		
+		if (tokendata.charAt(0) == 'C') {
 			hubId = Integer.parseInt(enContactLt.getTkda().split(",")[1]);
-		}else {
+		} else {
 			cpsq = Integer.parseInt(enContactLt.getTkda().split("\\|\\|")[5]);
 		}
 
-		// api 호출 후. didt,dirt 가져오는 부분.
-//		/api/v2/outbound/contactlists/{contactListId}/contacts/{contactId} 이것을 부르기 위해서는 contactId 데이터가 필요한데
-//		아직 없다. 
-
-//		ServiceWebClient apiContactlt = new ServiceWebClient();
-//		String resultContactlt = apiContactlt.GetContactLtApiRequet("campaignId", contactLtId, contactId);
-		String temp = ExtractDidtDirt("aaa"); // "aaa"대신에 resultContactlt값이 들어가야함.
-		System.out.println(temp);
-		String k[] = temp.split("\\|");
-		System.out.println("k0은 : " + k[0]);
-		System.out.println("k1은 : " + k[1]);
-
 		SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
 		try {
-			Date parsedDate = inputFormat.parse(k[0]);
+			Date parsedDate = inputFormat.parse(parts[2]);
 
 			// Formatting the parsed date to the desired format
 			SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -217,7 +195,7 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		}
 
 		Map<String, String> properties = customProperties.getProperties();
-		dirt = Integer.parseInt(properties.get(k[1]));  
+		dirt = Integer.parseInt(properties.getOrDefault(parts[3], "6"));
 
 		ServiceWebClient crmapi1 = new ServiceWebClient();
 		String result = crmapi1.GetStatusApiRequet("campaign_stats", campid);
@@ -240,10 +218,9 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		enCampRt.setDict(dict);
 		enCampRt.setCoid(coid);
 
-
 		return enCampRt;
 	}
-	
+
 	@Override
 	public Entity_CampRt createCampRtMsgCallbot(String cpid) {
 
@@ -273,12 +250,12 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		System.out.println("coid: " + coid);
 
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
-		enContactLt = findContactLtByid(campid);
+		enContactLt = findContactLtByCske(contactId);
 
 		String tokendata = enContactLt.getTkda();
-		if(tokendata.charAt(0)=='C') {
+		if (tokendata.charAt(0) == 'C') {
 			hubId = Integer.parseInt(enContactLt.getTkda().split(",")[1]);
-		}else {
+		} else {
 			cpsq = Integer.parseInt(enContactLt.getTkda().split("\\|\\|")[5]);
 		}
 
@@ -312,7 +289,7 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		}
 
 		Map<String, String> properties = customProperties.getProperties();
-		dirt = Integer.parseInt(properties.get(k[1]));  
+		dirt = Integer.parseInt(properties.get(k[1]));
 
 		ServiceWebClient crmapi1 = new ServiceWebClient();
 		String result = crmapi1.GetStatusApiRequet("campaign_stats", campid);
@@ -328,7 +305,6 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		enCampRt.setDict(dict);
 		enCampRt.setCoid(coid);
 
-		
 		System.out.println("campid: " + campid);
 		System.out.println("cpsq: " + cpsq);
 		System.out.println("contactLtId: " + contactLtId);
@@ -361,12 +337,12 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		String coid = "";
 
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
-		enContactLt = findContactLtByid(campid);
+		enContactLt = findContactLtByCske(contactId);
 
 		String tokendata = enContactLt.getTkda();
-		if(tokendata.charAt(0)=='C') {
+		if (tokendata.charAt(0) == 'C') {
 			hubId = Integer.parseInt(enContactLt.getTkda().split(",")[1]);
-		}else {
+		} else {
 			cpsq = Integer.parseInt(enContactLt.getTkda().split("\\|\\|")[5]);
 		}
 
@@ -398,7 +374,7 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		}
 
 		Map<String, String> properties = customProperties.getProperties();
-		dirt = Integer.parseInt(properties.get(k[1]));  
+		dirt = Integer.parseInt(properties.get(k[1]));
 
 		ServiceWebClient crmapi1 = new ServiceWebClient();
 		String result = crmapi1.GetStatusApiRequet("campaign_stats", campid);
@@ -419,7 +395,7 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 
 	@Override
 	public Entity_CampMa createCampMaMsg(String cpid) {
-		
+
 		System.out.println("Class : ServicePostgre\n Method : createCampMaMsg");
 
 		Entity_CampMa enCampMa = new Entity_CampMa();
@@ -433,7 +409,7 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		enCampMa.setCpna("cpna_6");
 
 		System.out.println("===== END =====");
-		
+
 		return enCampMa;
 	}
 
@@ -457,7 +433,7 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 
 		return enContactLt;
 	}
-	
+
 	@Override
 	public Entity_ContactLt createContactLtMsgCallbot(String msg) {
 
@@ -543,8 +519,21 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 	}
 
 	@Override
-	public Entity_ContactLt findContactLtByid(String cpid) {
-		Optional<Entity_ContactLt> optionalEntity = repositoryContactLt.findByCpid(cpid);
+	public List<Entity_ContactLt> findContactLtByCpid(String cpid) {
+		
+		List<Entity_ContactLt> resultList = repositoryContactLt.findByCpid(cpid);
+
+		if (!resultList.isEmpty()) {
+			return resultList;
+		} else {
+			return null; 
+		}
+	}
+	
+	@Override
+	public Entity_ContactLt findContactLtByCske(String cske) {
+		
+		Optional<Entity_ContactLt> optionalEntity = repositoryContactLt.findByCske(cske);
 		return optionalEntity.orElse(null);
 	}
 

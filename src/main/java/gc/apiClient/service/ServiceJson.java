@@ -121,6 +121,40 @@ public class ServiceJson implements InterfaceJson {
 
 		return result;
 	}
+	
+	
+	@Override
+	public String ExtractContacts56(String stringMsg ,int i) {// IF-CRM_005,IF-CRM_006에서 사용하기 위한 추출함수.
+
+		System.out.println("===== ExtractContacts56 =====");
+		
+		String jsonResponse = stringMsg;
+
+		ObjectMapper objectMapper = new ObjectMapper();
+		JsonNode jsonNode = null;
+		String result = "";
+
+		try {
+			jsonNode = objectMapper.readTree(jsonResponse);
+
+			result = jsonNode.path(i).path("id").asText();
+
+			result = result + "|" + jsonNode.path(i).path("contactListId").asText();
+
+			result = result + "|" + jsonNode.path(i).path("callRecords").path("전화번호").path("lastAttempt").asText();
+			
+			result = result + "|" + jsonNode.path(i).path("callRecords").path("전화번호").path("lastResult").asText();
+
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("result : "+ result);
+
+		return result;
+	}
 
 	@Override
 	public int ExtractDict(String stringMsg) {
@@ -168,17 +202,31 @@ public class ServiceJson implements InterfaceJson {
 
 	@Override
 	public String ExtractDidtDirt(String stringMsg) {// stringMsg에서 didt,dirt추출헤서 리턴해주는 함수.
+		
+		System.out.println("=====ExtractDidtDirt=====");
+//		String result = "2023-11-29T11:15:31.705Z|ININ-OUTBOUND-PREVIEW-ERROR-PHONE-NUMBER"; // didt,dirt 임시로 넣어둠.
+		
+		String jsonResponse = stringMsg;
 
-		String result = "2023-11-29T11:15:31.705Z|ININ-OUTBOUND-PREVIEW-ERROR-PHONE-NUMBER"; // didt,dirt 임시로 넣어둠.
+		ObjectMapper objectMapper = new ObjectMapper();
+		JsonNode jsonNode = null;
+		String result = "";
+
+		try {
+			jsonNode = objectMapper.readTree(jsonResponse);
+			result = jsonNode.path("callRecords").path("전화번호").path("lastAttempt").asText();
+			result += "|" + jsonNode.path("callRecords").path("전화번호").path("lastResult").asText();
+
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		System.out.println("resulte : "+result);
 
 		return result;
+
 	}
-	
-	
-	
-	
-	
-	
 	
 	
 	//Callbot

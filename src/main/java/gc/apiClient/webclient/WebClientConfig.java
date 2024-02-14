@@ -49,7 +49,7 @@ public class WebClientConfig {// api들의 정보들 수록.
 			API_END_POINT = "/api/v2/outbound/campaigns";
 			break;
 		case "contactList":
-			API_END_POINT = "/api/v2/outbound/contactlists/{contactListId}/contacts/{contactId}";
+			API_END_POINT = "/api/v2/outbound/contactlists/{contactListId}/contacts/bulk";
 			break;
 		case "contact":
 			API_END_POINT = "/api/v2/outbound/contactlists/{contactListId}/contacts";

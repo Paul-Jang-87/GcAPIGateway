@@ -1,6 +1,8 @@
 package gc.apiClient.interfaceCollection;
 
 
+import java.util.List;
+
 import gc.apiClient.entity.Entity_AppConfig;
 import gc.apiClient.entity.Entity_CampMa;
 import gc.apiClient.entity.Entity_CampRt;
@@ -32,7 +34,8 @@ public interface InterfaceDB {
 	Entity_MapCoid findMapCoidByCpid(String cpid);
 	Entity_CampMa findCampMaByCpid(String cpid);
 	Entity_CampRt findCampRtByCpid(String cpid);
-	Entity_ContactLt findContactLtByid(String id);
+	Entity_ContactLt findContactLtByCske(String cske);
+	List<Entity_ContactLt> findContactLtByCpid(String cpid);
 	Entity_AppConfig findAppConfigByid(Long id);
 	Entity_AppConfig getEntityById(Long id);
 	

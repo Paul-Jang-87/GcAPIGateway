@@ -18,6 +18,10 @@ public interface InterfaceJson {//defult로 해놓으면 InterfaceJson을 다른
 		  return "a";
 	  }
 	  
+	  default String ExtractContacts56(String stringMsg ,int i) {
+		  return "a";
+	  }
+	  
 	  default int ExtractDict(String stringMsg) {
 		  return 1;
 	  }

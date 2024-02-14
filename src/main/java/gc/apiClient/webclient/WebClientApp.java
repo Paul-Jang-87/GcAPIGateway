@@ -1,5 +1,7 @@
 package gc.apiClient.webclient;
 
+import java.util.List;
+
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -130,6 +132,20 @@ public class WebClientApp {
 	            .block(); // Wait for the result
 	}
 	
+	
+	public String makeApiRequest56(String contactListId, List<String> cskes) {
+
+	    ApiRequestHandler apiRequestHandler = new ApiRequestHandler();
+	    UriComponents api1 = apiRequestHandler.buildApiRequest(API_END_POINT,contactListId);
+
+	    return webClient.post().uri(api1.toUriString()).body(BodyInserters.fromValue(cskes)).retrieve()
+				.bodyToMono(String.class)
+	            .onErrorResume(error -> {
+	                System.err.println("Error making API request: " + error.getMessage());
+	                return Mono.empty();
+	            })
+	            .block(); // Wait for the result
+	}
 	
 
 }

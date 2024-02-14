@@ -26,6 +26,10 @@ public interface InterfaceJson {//defult로 해놓으면 InterfaceJson을 다른
 		  return "";
 	  }
 	  
+	  default String ExtractContactLtId(String stringMsg) {
+		  return "";
+	  }
+	  
 	  
 	  
 	  

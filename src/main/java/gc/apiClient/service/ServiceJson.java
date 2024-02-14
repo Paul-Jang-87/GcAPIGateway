@@ -143,6 +143,28 @@ public class ServiceJson implements InterfaceJson {
 
 		return result;
 	}
+	
+	@Override
+	public String ExtractContactLtId(String stringMsg) {
+
+		String jsonResponse = stringMsg;
+
+		ObjectMapper objectMapper = new ObjectMapper();
+		JsonNode jsonNode = null;
+		String result = "";
+
+		try {
+			jsonNode = objectMapper.readTree(jsonResponse);
+			result = jsonNode.path("contactList").path("id").asText();
+
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
 
 	@Override
 	public String ExtractDidtDirt(String stringMsg) {// stringMsg에서 didt,dirt추출헤서 리턴해주는 함수.

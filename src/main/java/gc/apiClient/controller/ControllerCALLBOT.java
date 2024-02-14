@@ -12,7 +12,9 @@ import gc.apiClient.entity.Entity_CampMa;
 import gc.apiClient.entity.Entity_CampRt;
 import gc.apiClient.entity.Entity_CampRtJson;
 import gc.apiClient.entity.Entity_ContactLt;
+import gc.apiClient.entity.Entity_ContactltMapper;
 import gc.apiClient.interfaceCollection.InterfaceDB;
+import gc.apiClient.interfaceCollection.InterfaceWebClient;
 import gc.apiClient.kafkamessages.MessageToProducer;
 import gc.apiClient.service.ServiceJson;
 import reactor.core.publisher.Mono;
@@ -21,9 +23,11 @@ import reactor.core.publisher.Mono;
 public class ControllerCALLBOT extends ServiceJson {
 
 	private final InterfaceDB serviceDb;
+	private final InterfaceWebClient serviceWeb;
 
-	public ControllerCALLBOT(InterfaceDB serviceDb) {
+	public ControllerCALLBOT(InterfaceDB serviceDb,InterfaceWebClient serviceWeb) {
 		this.serviceDb = serviceDb;
+		this.serviceWeb = serviceWeb;
 	}
 
 	// APIM
@@ -76,8 +80,39 @@ public class ControllerCALLBOT extends ServiceJson {
 			//간단한 테스트를 하기 위한 샘플 json 데이터. msg로 위 데이터가 들어 온 것으로 가정. 
 			
 			result = ExtractValCallbot34(msg);
-
-			Entity_ContactLt enContactLt = serviceDb.createContactLtMsg(result);
+			System.out.println("result : "+result); 
+			Entity_ContactLt enContactLt = serviceDb.createContactLtMsgCallbot(result);//ContactLt 테이블에 들어갈 값들을 Entity_ContactLt 객체에 매핑시킨다.
+			cpid = enContactLt.getCpid();//캠페인 아이디를 가져온다. 
+			
+			result = serviceWeb.GetCampaignsApiRequet("campaigns", cpid);//캠페인 아이디로 "/api/v2/outbound/campaigns/{campaignId}"호출 후 결과 가져온다. 
+		    String contactLtId = ExtractContactLtId(result); //가져온 결과에서 contactlistid만 추출. 
+		    System.out.println("contactLtId : "+contactLtId);
+			
+		  //"api/v2/outbound/contactlists/{contactListId}/contacts"로 request body값 보내기 위한 객체
+		    //객체 안의 속성들(키)은 변동 될 수 있음. 
+			Entity_ContactltMapper contactltMapper = new Entity_ContactltMapper(); 
+			
+			//현재는 이름, 전화번호만 있다고 가정 후 세팅. 
+			contactltMapper.setName("장원영");		
+			contactltMapper.setNumber("01099992222");	
+			
+			objectMapper = new ObjectMapper();
+			
+			try {
+				String jsonString = objectMapper.writeValueAsString(contactltMapper); //매핑한 객체를 jsonString으로 변환. 
+				System.out.println("JsonString Data : ==" + jsonString);
+				
+				//"api/v2/outbound/contactlists/{contactListId}/contacts"로 보냄.
+				//첫번째 인자 : 어떤 api를 호출 할 건지 지정. 
+				//두번째 인자 : path parameter 
+				//세번째 인자 : request body. 
+				serviceWeb.PostContactLtApiRequet("contact", contactLtId, jsonString); 
+				
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
+			
+			//DB인서트
 			serviceDb.InsertContactLt(enContactLt);
 
 			return Mono.empty();

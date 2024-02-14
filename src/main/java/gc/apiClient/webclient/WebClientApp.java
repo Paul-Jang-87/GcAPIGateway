@@ -1,7 +1,9 @@
 package gc.apiClient.webclient;
 
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClient.RequestBodySpec;
 import org.springframework.web.reactive.function.client.WebClient.RequestHeadersUriSpec;
 import org.springframework.web.util.UriComponents;
 
@@ -106,6 +108,21 @@ public class WebClientApp {
 	            .uri(api1.toUriString())
 	            .retrieve()
 	            .bodyToMono(String.class)
+	            .onErrorResume(error -> {
+	                System.err.println("Error making API request: " + error.getMessage());
+	                return Mono.empty();
+	            })
+	            .block(); // Wait for the result
+	}
+	
+	
+	public String makeApiRequest34(String contactListId, String msg) {
+
+	    ApiRequestHandler apiRequestHandler = new ApiRequestHandler();
+	    UriComponents api1 = apiRequestHandler.buildApiRequest(API_END_POINT,contactListId);
+
+	    return webClient.post().uri(api1.toUriString()).body(BodyInserters.fromValue(msg)).retrieve()
+				.bodyToMono(String.class)
 	            .onErrorResume(error -> {
 	                System.err.println("Error making API request: " + error.getMessage());
 	                return Mono.empty();

@@ -49,6 +49,7 @@ public class ControllerCALLBOT extends ServiceJson {
 
 		String result = "";
 		String topic_id = tranId;
+		String endpoint = "/apicallbot/post/"+topic_id;
 		ObjectMapper objectMapper = null;
 
 		switch (topic_id) {
@@ -66,7 +67,7 @@ public class ControllerCALLBOT extends ServiceJson {
 				String jsonString = objectMapper.writeValueAsString(entityMa);
 				System.out.println(jsonString);
 				MessageToProducer producer = new MessageToProducer();
-				producer.sendMsgToProducer("/apicallbot/post/"+topic_id, jsonString);
+				producer.sendMsgToProducer(endpoint, jsonString);
 
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
@@ -161,7 +162,7 @@ public class ControllerCALLBOT extends ServiceJson {
 					System.out.println("JsonString Data : " + i + "번째" + jsonString);
 
 					MessageToProducer producer = new MessageToProducer();
-					producer.sendMsgToProducer("/apicallbot/post/"+topic_id, jsonString);
+					producer.sendMsgToProducer(endpoint, jsonString);
 
 				} catch (JsonProcessingException e) {
 					e.printStackTrace();

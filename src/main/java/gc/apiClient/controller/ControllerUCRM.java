@@ -20,9 +20,11 @@ import gc.apiClient.interfaceCollection.InterfaceDB;
 import gc.apiClient.interfaceCollection.InterfaceWebClient;
 import gc.apiClient.kafkamessages.MessageToProducer;
 import gc.apiClient.service.ServiceJson;
+import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
 @RestController
+@Slf4j
 public class ControllerUCRM extends ServiceJson {
 
 	private final InterfaceDB serviceDb;
@@ -51,6 +53,7 @@ public class ControllerUCRM extends ServiceJson {
 		String result = "";
 		String cpid = "";
 		String topic_id = tranId;
+		String endpoint = "/gcapi/post/"+topic_id;
 		ObjectMapper objectMapper = null;
 
 		System.out.println("topic_id : " + topic_id);
@@ -59,6 +62,11 @@ public class ControllerUCRM extends ServiceJson {
 
 		case "firsttopic":// IF-CRM_001
 		case "secondtopic":// IF-CRM_002
+			
+			
+			String name = "박종연";
+			log.info(name);
+			log.debug("hello : {}",name);
 
 			cpid = ExtractValCrm12(msg);
 			System.out.println("cpid : " + cpid);
@@ -70,7 +78,7 @@ public class ControllerUCRM extends ServiceJson {
 				String jsonString = objectMapper.writeValueAsString(entityMa);
 				System.out.println("jsonString : " + jsonString);
 				MessageToProducer producer = new MessageToProducer();
-				producer.sendMsgToProducer("/gcapi/post/"+topic_id, jsonString);
+				producer.sendMsgToProducer(endpoint, jsonString);
 
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
@@ -168,7 +176,7 @@ public class ControllerUCRM extends ServiceJson {
 						System.out.println("JsonString Data : " + i + "번째" + jsonString);
 
 						MessageToProducer producer = new MessageToProducer();
-						producer.sendMsgToProducer("/gcapi/post/"+topic_id, jsonString);
+						producer.sendMsgToProducer(endpoint, jsonString);
 
 					} catch (JsonProcessingException e) {
 						e.printStackTrace();

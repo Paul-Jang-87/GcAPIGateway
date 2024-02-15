@@ -7,11 +7,14 @@ public class MessageToProducer {
 	
 	public void sendMsgToProducer (String towhere, String jsonString) {
 		
+		System.out.println("===sendMsgToProducer===");
+		
 		WebClient webClient = WebClient.builder().baseUrl("http://localhost:8081").build();
 
-	    String endpointUrl = "/gcapi/post/"+towhere;
+	    String endpointUrl = towhere;
 
 	    System.out.println("Endpoint : "+ endpointUrl);
+	    
 	    webClient.post()
 	            .uri(endpointUrl)
 	            .body(BodyInserters.fromValue(jsonString))
@@ -20,7 +23,6 @@ public class MessageToProducer {
 	            .block(); 
 
 	    
-	    System.out.println("===sendMsgToProducer===");
 	    System.out.println("Entity as JSON: " + jsonString);
 	}
 	

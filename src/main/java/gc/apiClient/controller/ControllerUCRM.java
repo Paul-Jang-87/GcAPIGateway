@@ -1,8 +1,6 @@
 package gc.apiClient.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +20,6 @@ import gc.apiClient.interfaceCollection.InterfaceDB;
 import gc.apiClient.interfaceCollection.InterfaceWebClient;
 import gc.apiClient.kafkamessages.MessageToProducer;
 import gc.apiClient.service.ServiceJson;
-import jakarta.persistence.Column;
 import reactor.core.publisher.Mono;
 
 @RestController
@@ -73,7 +70,7 @@ public class ControllerUCRM extends ServiceJson {
 				String jsonString = objectMapper.writeValueAsString(entityMa);
 				System.out.println("jsonString : " + jsonString);
 				MessageToProducer producer = new MessageToProducer();
-				producer.sendMsgToProducer(topic_id, jsonString);
+				producer.sendMsgToProducer("/gcapi/post/"+topic_id, jsonString);
 
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
@@ -171,7 +168,7 @@ public class ControllerUCRM extends ServiceJson {
 						System.out.println("JsonString Data : " + i + "번째" + jsonString);
 
 						MessageToProducer producer = new MessageToProducer();
-						producer.sendMsgToProducer(topic_id, jsonString);
+						producer.sendMsgToProducer("/gcapi/post/"+topic_id, jsonString);
 
 					} catch (JsonProcessingException e) {
 						e.printStackTrace();

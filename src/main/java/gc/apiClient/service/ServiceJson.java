@@ -84,9 +84,9 @@ public class ServiceJson implements InterfaceJson {
 			result = result + "|" + jsonNode.path("csna").asText();
 			result = result + "|" + jsonNode.path("flag").asText();
 			result = result + "|" + jsonNode.path("tkda").asText();
-			result = result + "|" + jsonNode.path("tn01").asText();
-			result = result + "|" + jsonNode.path("tn02").asText();
-			result = result + "|" + jsonNode.path("tn03").asText();
+			result = result + "|" + jsonNode.path("tno1").asText();
+			result = result + "|" + jsonNode.path("tno2").asText();
+			result = result + "|" + jsonNode.path("tno3").asText();
 
 		} catch (JsonMappingException e) {
 			e.printStackTrace();
@@ -95,7 +95,7 @@ public class ServiceJson implements InterfaceJson {
 		}
 
 		System.out.println("=== ExtractValCrm34 ===");
-		System.out.println("result : "+result);
+		System.out.println("result : "+result); //cpid|cpsq|cske|csna|flag|tkda|tno1|tno2|tno3
 		return result;
 	}
 

@@ -16,6 +16,7 @@ import gc.apiClient.entity.Entity_CampMa;
 import gc.apiClient.entity.Entity_CampRt;
 import gc.apiClient.entity.Entity_CampRtJson;
 import gc.apiClient.entity.Entity_ContactLt;
+import gc.apiClient.entity.Entity_ContactltMapper;
 import gc.apiClient.entity.Entity_MapCoid;
 import gc.apiClient.interfaceCollection.InterfaceDB;
 import gc.apiClient.repository.Repository_AppConfig;
@@ -63,6 +64,7 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 
 		String parts[] = cpid.split("\\|");
 
+		int rlsq = 0;
 		String campid = parts[4];
 		int cpsq = 0;
 		String contactLtId = parts[1];
@@ -74,6 +76,7 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		String coid = "";
 
 		System.out.println("=====createCampRtMsg=====");
+		System.out.println("rlsq: " + rlsq);
 		System.out.println("campid: " + campid);
 		System.out.println("cpsq: " + cpsq);
 		System.out.println("contactLtId: " + contactLtId);
@@ -122,6 +125,7 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		enCampMa = findCampMaByCpid(campid);
 		coid = enCampMa.getCoid();
 
+		enCampRt.setRlsq(rlsq);
 		enCampRt.setCpid(campid);
 		enCampRt.setCpsq(cpsq);
 		enCampRt.setContactLtId(contactLtId);
@@ -132,6 +136,7 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		enCampRt.setDict(dict);
 		enCampRt.setCoid(coid);
 
+		System.out.println("rlsq: " + rlsq);
 		System.out.println("campid: " + campid);
 		System.out.println("cpsq: " + cpsq);
 		System.out.println("contactLtId: " + contactLtId);
@@ -153,6 +158,7 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 
 		String parts[] = cpid.split("\\|");
 
+		int rlsq = 0;
 		String campid = parts[4];
 		int cpsq = 0;
 		String contactLtId = parts[1];
@@ -204,6 +210,7 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		MappingHomeCenter mappingData = new MappingHomeCenter();
 		coid = mappingData.getCentercodeById(coid);
 
+		enCampRt.setRlsq(rlsq);
 		enCampRt.setCpid(campid);
 		enCampRt.setCpsq(cpsq);
 		enCampRt.setContactLtId(contactLtId);
@@ -224,6 +231,7 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 
 		String parts[] = cpid.split("\\|");
 
+		int rlsq = 0;
 		String campid = parts[4];
 		int cpsq = 0;
 		String contactLtId = parts[1];
@@ -234,6 +242,7 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		int dict = 0;
 
 		System.out.println("=====createCampRtMsgCallbot=====");
+		System.out.println("rlsq: " + rlsq);
 		System.out.println("campid: " + campid);
 		System.out.println("cpsq: " + cpsq);
 		System.out.println("contactLtId: " + contactLtId);
@@ -273,6 +282,7 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		dict = ExtractDict(result);
 
 		enCampRt.setCpid(campid);
+		enCampRt.setRlsq(rlsq);
 		enCampRt.setCpsq(cpsq);
 		enCampRt.setContactLtId(contactLtId);
 		enCampRt.setContactId(contactId);
@@ -281,6 +291,7 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		enCampRt.setDirt(dirt);
 		enCampRt.setDict(dict);
 
+		System.out.println("rlsq: " + rlsq);
 		System.out.println("campid: " + campid);
 		System.out.println("cpsq: " + cpsq);
 		System.out.println("contactLtId: " + contactLtId);
@@ -303,6 +314,7 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 
 		String parts[] = cpid.split("\\|");
 
+		int rlsq = 0;
 		String campid = parts[4];
 		int cpsq = 0;
 		String contactLtId = parts[1];
@@ -347,6 +359,7 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		dict = ExtractDict(result);
 
 		enCampRt.setCpid(campid);
+		enCampRt.setRlsq(rlsq);
 		enCampRt.setCpsq(cpsq);
 		enCampRt.setContactLtId(contactLtId);
 		enCampRt.setContactId(contactId);
@@ -399,6 +412,27 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		enContactLt.setTn03(ContactLvalues[8]);// "tn03"
 
 		return enContactLt;
+	}
+	
+	@Override
+	public Entity_ContactltMapper createContactLtGC(String msg) {//cpid|cpsq|cske|csna|flag|tkda|tno1|tno2|tno3
+
+		Entity_ContactltMapper contactltMapper = new Entity_ContactltMapper();
+		String values[] = msg.split("\\|");
+
+		System.out.println(msg);
+		// 임시로 데이터 적재
+		contactltMapper.setCpsq(values[1]); //CPSQ
+		contactltMapper.setCske(values[2]); //CSKE 
+		contactltMapper.setCsna(values[3]); //CSNA
+		contactltMapper.setTkda(values[5]); //TKDA
+		contactltMapper.setCpid(values[0]); //CPID
+		contactltMapper.setTno1(values[6]); //tno1
+		contactltMapper.setTno2(values[7]); //tno2
+		contactltMapper.setTno3(values[8]); //tno3
+		contactltMapper.setTmzo("Asia/Seoul (+09:00)"); //tmzo
+		
+		return contactltMapper;
 	}
 
 	@Override

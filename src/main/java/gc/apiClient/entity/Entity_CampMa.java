@@ -14,7 +14,9 @@ public class Entity_CampMa {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "msg_id")
+	@Column(name = "msg_id")//postgreSQL에서 기본 키로서 역할. 레코드가 하나씩 생성될 때마다 맨앞에 자동으로 붙음. 레코드 하나당 1,2,3.. 이런 식으로
+	  						//이게 기본키로서 역할을 하기 때문에 로컬 테스트 환경에서는 매번 데이터 무결성에 신경 안 써도 되서 편함. 단위 테스트, 통합 테스트 시 
+	  						//삭제 예정. 
 	private Long id;
 
 	@Column(name = "COID")

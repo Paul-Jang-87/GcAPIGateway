@@ -18,6 +18,9 @@ public class Entity_CampRt {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "msg_id")
 	private Long id;
+	
+	@Column(name = "RLSQ")
+	private int rlsq;
 
 	@Column(name = "CAMP_ID")
 	private String cpid;
@@ -50,9 +53,10 @@ public class Entity_CampRt {
 	public Entity_CampRt() {
 	}
 
-	public Entity_CampRt(Long id, String cpid,int cpsq, String contactLtId, String contactid, int hubid, Date didt,
+	public Entity_CampRt(Long id, int rlsq, String cpid,int cpsq, String contactLtId, String contactid, int hubid, Date didt,
 			int dirt, int dict,String coid) {
 		this.id = id;
+		this.rlsq = rlsq;
 		this.cpid = cpid;
 		this.cpsq = cpsq;
 		this.contactLtId = contactLtId;
@@ -66,6 +70,9 @@ public class Entity_CampRt {
 
 	public Long getId() { return id; }
 	public void setId(Long id) { this.id = id;}
+	
+	public int getRlsq() {return rlsq;}
+	public void setRlsq(int rlsq) {this.rlsq = rlsq;}
 
 	public String getCpid() { return cpid; }
 	public void setCpid(String cpid) {this.cpid = cpid;}

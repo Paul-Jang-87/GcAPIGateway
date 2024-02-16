@@ -20,9 +20,11 @@ import gc.apiClient.interfaceCollection.InterfaceDB;
 import gc.apiClient.interfaceCollection.InterfaceWebClient;
 import gc.apiClient.kafkamessages.MessageToProducer;
 import gc.apiClient.service.ServiceJson;
+import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
 @RestController
+@Slf4j
 public class ControllerCALLBOT extends ServiceJson {
 
 	private final InterfaceDB serviceDb;
@@ -47,25 +49,29 @@ public class ControllerCALLBOT extends ServiceJson {
 	@PostMapping("/apicallbot/post/{topic}")
 	public Mono<Void> receiveMessage(@PathVariable("topic") String tranId, @RequestBody String msg) {
 
+		log.info("Class : ControllerCALLBOT - Method : receiveMessage");
+		
 		String result = "";
 		String topic_id = tranId;
 		String endpoint = "/apicallbot/post/"+topic_id;
 		ObjectMapper objectMapper = null;
 
+		log.info("topic_id : {}",topic_id);	
+		
 		switch (topic_id) {
 
 		case "firsttopic":// IF-CRM_001
 		case "secondtopic":// IF-CRM_002
 
 			String cpid = ExtractValCallbot12(msg);
-			System.out.println(cpid);
+			log.info("cpid : {}",cpid);
 
 			Entity_CampMa entityMa = serviceDb.createCampMaMsg(cpid);
 			objectMapper = new ObjectMapper();
 
 			try {
 				String jsonString = objectMapper.writeValueAsString(entityMa);
-				System.out.println(jsonString);
+				log.info("jsonString : {}",jsonString);
 				MessageToProducer producer = new MessageToProducer();
 				producer.sendMsgToProducer(endpoint, jsonString);
 
@@ -84,7 +90,7 @@ public class ControllerCALLBOT extends ServiceJson {
 			// 간단한 테스트를 하기 위한 샘플 json 데이터. msg로 위 데이터가 들어 온 것으로 가정.
 
 			result = ExtractValCallbot34(msg);
-			System.out.println("result : " + result);
+			log.info("result : {}", result);
 			Entity_ContactLt enContactLt = serviceDb.createContactLtMsgCallbot(result);// ContactLt 테이블에 들어갈 값들을
 																						// Entity_ContactLt 객체에 매핑시킨다.
 			cpid = enContactLt.getCpid();// 캠페인 아이디를 가져온다.
@@ -93,7 +99,7 @@ public class ControllerCALLBOT extends ServiceJson {
 																			// "/api/v2/outbound/campaigns/{campaignId}"호출
 																			// 후 결과 가져온다.
 			String contactLtId = ExtractContactLtId(result); // 가져온 결과에서 contactlistid만 추출.
-			System.out.println("contactLtId : " + contactLtId);
+			log.info("contactLtId : {}",  contactLtId);
 
 			// "api/v2/outbound/contactlists/{contactListId}/contacts"로 request body값 보내기 위한
 			// 객체
@@ -108,7 +114,7 @@ public class ControllerCALLBOT extends ServiceJson {
 
 			try {
 				String jsonString = objectMapper.writeValueAsString(contactltMapper); // 매핑한 객체를 jsonString으로 변환.
-				System.out.println("JsonString Data : ==" + jsonString);
+				log.info("JsonString Data : {}" , jsonString);
 
 				// "api/v2/outbound/contactlists/{contactListId}/contacts"로 보냄.
 				// 첫번째 인자 : 어떤 api를 호출 할 건지 지정.
@@ -129,19 +135,19 @@ public class ControllerCALLBOT extends ServiceJson {
 		case "sixthtopic":// IF-CRM_006
 
 			result = ExtractVal56(msg);// request body로 들어돈 json에서 필요 데이터 추출
-			System.out.println("result : " + result); // campaignid, contactlistid 추출
+			log.info("result : " + result); // campaignid, contactlistid 추출
 
 			String parts[] = result.split("\\|");
 
-			cpid = parts[0];
-			contactLtId = parts[1];
+			cpid = parts[0];// campaignid
+			contactLtId = parts[1];// contactlistid
 
 			List<Entity_ContactLt> enContactList = new ArrayList<Entity_ContactLt>();
 			enContactList = serviceDb.findContactLtByCpid(cpid);// campaignid가 같은 모든 엔티디들을 리스트로 가지고 온다.
 
 			List<String> values = new ArrayList<String>();// cske(고객키)들을 담을 list타입 변수.
 
-			for (int i = 0; i < enContactList.size(); i++) {//
+			for (int i = 0; i < enContactList.size(); i++) {
 				values.add(enContactList.get(i).getCske());
 			}
 
@@ -154,12 +160,12 @@ public class ControllerCALLBOT extends ServiceJson {
 				Entity_CampRt entityCmRt = serviceDb.createCampRtMsgCallbot(contactsresult);// db 인서트 하기 위한 entity.
 
 				Entity_CampRtJson toproducer = serviceDb.createCampRtJsonCallbot(contactsresult);// producer로 보내기 위한
-																									// entity.
+																								 // entity.
 				objectMapper = new ObjectMapper();
 
 				try {
 					String jsonString = objectMapper.writeValueAsString(toproducer);
-					System.out.println("JsonString Data : " + i + "번째" + jsonString);
+					log.info("JsonString Data : {}번째 {}" ,i ,jsonString);
 
 					MessageToProducer producer = new MessageToProducer();
 					producer.sendMsgToProducer(endpoint, jsonString);

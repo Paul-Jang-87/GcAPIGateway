@@ -17,6 +17,9 @@ public class Entity_CampRtJson {
 	@Column(name = "msg_id")
 	private Long id;
 
+	@Column(name = "RLSQ")
+ 	private int rlsq;
+	
 	@Column(name = "CAMP_ID")
 	private String cpid;
 	
@@ -48,9 +51,10 @@ public class Entity_CampRtJson {
 	public Entity_CampRtJson() {
 	}
 
-	public Entity_CampRtJson(Long id, String cpid,int cpsq, String contactLtId, String contactid, int hubid, String didt,
+	public Entity_CampRtJson(Long id, int rlsq, String cpid,int cpsq, String contactLtId, String contactid, int hubid, String didt,
 			int dirt, int dict,String coid) {
 		this.id = id;
+		this.rlsq = rlsq;
 		this.cpid = cpid;
 		this.cpsq = cpsq;
 		this.contactLtId = contactLtId;
@@ -64,6 +68,9 @@ public class Entity_CampRtJson {
 
 	public Long getId() { return id; }
 	public void setId(Long id) { this.id = id;}
+	
+	public int getRlsq() {return rlsq;}
+	public void setRlsq(int rlsq) {this.rlsq = rlsq;}
 	
 	public String getCpid() { return cpid; }
 	public void setCpid(String cpid) {this.cpid = cpid;}

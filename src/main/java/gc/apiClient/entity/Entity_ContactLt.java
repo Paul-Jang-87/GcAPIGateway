@@ -26,14 +26,14 @@ public class Entity_ContactLt {
 	@Column(name = "CSKE")
  	private String cske;
 
-	@Column(name = "TN01")
-	private String tn01;
+	@Column(name = "TNO1")
+	private String tno1;
 
-	@Column(name = "TN02")
-	private String tn02;
+	@Column(name = "TNO2")
+	private String tno2;
 	
-	@Column(name = "TN03")
-	private String tn03;
+	@Column(name = "TNO3")
+	private String tno3;
 	
 	@Column(name = "CSNA")
 	private String csna;
@@ -52,9 +52,9 @@ public class Entity_ContactLt {
 	 String cpid,  
 	 int cpsq,   
 	 String cske,   
-	 String tn01,   
-	 String tn02,   
-	 String tn03,   
+	 String tno1,   
+	 String tno2,   
+	 String tno3,   
 	 String csna,   
 	 String tkda,   
 	 String flag) {
@@ -62,9 +62,9 @@ public class Entity_ContactLt {
 	this.cpid =  cpid;
 	this.cpsq =  cpsq ;
     this.cske =  cske ;
-	this.tn01 =  tn01 ;
-	this.tn02 =  tn02 ;
-	this.tn03 =  tn03 ;
+	this.tno1 =  tno1 ;
+	this.tno2 =  tno2 ;
+	this.tno3 =  tno3 ;
 	this.csna =  csna ;
 	this.tkda =  tkda ;
 	this.flag =  flag ;
@@ -88,15 +88,15 @@ public class Entity_ContactLt {
 	public void setCske(String cske) {this.cske = cske;}
 	
 	
-	public String getTn01() {return tn01;}
-	public void setTn01(String tn01) {this.tn01 = tn01;}
+	public String getTn01() {return tno1;}
+	public void setTn01(String tno1) {this.tno1 = tno1;}
 	
 	
-	public String getTn02() {return tn02;}
-	public void setTn02(String tn02) {this.tn02 = tn02;}
+	public String getTn02() {return tno2;}
+	public void setTn02(String tno2) {this.tno2 = tno2;}
 	
-	public String getTn03() { return tn03; }
-	public void setTn03(String tn03) {this.tn03 = tn03;}
+	public String getTn03() { return tno3; }
+	public void setTn03(String tno3) {this.tno3 = tno3;}
 	
 	public String getCsna() { return csna; }
 	public void setCsna(String csna) {this.csna = csna;}

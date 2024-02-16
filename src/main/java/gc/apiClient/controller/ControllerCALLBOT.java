@@ -107,8 +107,6 @@ public class ControllerCALLBOT extends ServiceJson {
 			Entity_ContactltMapper contactltMapper = new Entity_ContactltMapper();
 
 			// 현재는 이름, 전화번호만 있다고 가정 후 세팅.
-			contactltMapper.setName("장원영");
-			contactltMapper.setNumber("01099992222");
 
 			objectMapper = new ObjectMapper();
 

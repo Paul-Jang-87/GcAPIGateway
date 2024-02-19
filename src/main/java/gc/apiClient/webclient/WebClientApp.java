@@ -41,10 +41,6 @@ public class WebClientApp {
 		API_END_POINT = WebClientConfig.getApiEndpoint(apiName);
 		HTTP_METHOD = httpMethod;
 		
-		System.out.println("id + "+CLIENT_ID);
-		System.out.println("pwd + "+CLIENT_SECRET);
-		
- 
 		getAccessToken();
 		this.webClient = WebClient.builder().baseUrl(API_BASE_URL)
 				.defaultHeader("Authorization", "Bearer " + accessToken).build();

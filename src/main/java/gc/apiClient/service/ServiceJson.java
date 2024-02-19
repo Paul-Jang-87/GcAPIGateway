@@ -6,7 +6,9 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import gc.apiClient.interfaceCollection.InterfaceJson;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class ServiceJson implements InterfaceJson {
 
 	@Override
@@ -25,9 +27,9 @@ public class ServiceJson implements InterfaceJson {
 
 			result = jsonNode.path("entities").path(0).path("id").asText();
 
-			result = result + "|" + jsonNode.path("entities").path(0).path("queue").path("name").asText();
+			result = result + "::" + jsonNode.path("entities").path(0).path("queue").path("name").asText();
 
-			result = result + "|" + jsonNode.path("entities").path(0).path("dialingMode").asText();
+			result = result + "::" + jsonNode.path("entities").path(0).path("dialingMode").asText();
 
 		} catch (JsonMappingException e) {
 
@@ -38,7 +40,7 @@ public class ServiceJson implements InterfaceJson {
 			e.printStackTrace();
 		}
 
-		// 리턴 데이터 형식 예) adhoahfd|oadiifaj|ohdhfa
+		// 리턴 데이터 형식 예) adhoahfd::oadiifaj::ohdhfa
 		return result;
 	}
 
@@ -70,6 +72,8 @@ public class ServiceJson implements InterfaceJson {
 	@Override
 	public String ExtractValCrm34(String stringMsg) {// IF-CRM_003,IF-CRM_004에서 사용하기 위한 추출함수.
 
+		log.info("===== ExtractValCrm34 =====");
+		
 		String jsonResponse = stringMsg;
 
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -79,14 +83,14 @@ public class ServiceJson implements InterfaceJson {
 		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
 			result = jsonNode.path("cpid").asText();
-			result = result + "|" + jsonNode.path("cpsq").toString();
-			result = result + "|" + jsonNode.path("cske").asText();
-			result = result + "|" + jsonNode.path("csna").asText();
-			result = result + "|" + jsonNode.path("flag").asText();
-			result = result + "|" + jsonNode.path("tkda").asText();
-			result = result + "|" + jsonNode.path("tno1").asText();
-			result = result + "|" + jsonNode.path("tno2").asText();
-			result = result + "|" + jsonNode.path("tno3").asText();
+			result = result + "::" + jsonNode.path("cpsq").toString();
+			result = result + "::" + jsonNode.path("cske").asText();
+			result = result + "::" + jsonNode.path("csna").asText();
+			result = result + "::" + jsonNode.path("flag").asText();
+			result = result + "::" + jsonNode.path("tkda").asText();
+			result = result + "::" + jsonNode.path("tno1").asText();
+			result = result + "::" + jsonNode.path("tno2").asText();
+			result = result + "::" + jsonNode.path("tno3").asText();
 
 		} catch (JsonMappingException e) {
 			e.printStackTrace();
@@ -94,13 +98,14 @@ public class ServiceJson implements InterfaceJson {
 			e.printStackTrace();
 		}
 
-		System.out.println("=== ExtractValCrm34 ===");
-		System.out.println("result : "+result); //cpid|cpsq|cske|csna|flag|tkda|tno1|tno2|tno3
+		log.info("result : {}",result);
 		return result;
 	}
 
 	@Override
 	public String ExtractVal56(String stringMsg) {// IF-CRM_005,IF-CRM_006에서 사용하기 위한 추출함수.
+		
+		log.info("===== ExtractVal56 =====");
 
 		String jsonResponse = stringMsg;
 
@@ -111,7 +116,7 @@ public class ServiceJson implements InterfaceJson {
 		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
 			result = jsonNode.path("id").asText();
-			result += "|" + jsonNode.path("detail").path("eventBody").path("contactList").path("id").asText();
+			result += "::" + jsonNode.path("detail").path("eventBody").path("contactList").path("id").asText();
 
 		} catch (JsonMappingException e) {
 			e.printStackTrace();
@@ -126,7 +131,7 @@ public class ServiceJson implements InterfaceJson {
 	@Override
 	public String ExtractContacts56(String stringMsg ,int i) {// IF-CRM_005,IF-CRM_006에서 사용하기 위한 추출함수.
 
-		System.out.println("===== ExtractContacts56 =====");
+		log.info("===== ExtractContacts56 =====");
 		
 		String jsonResponse = stringMsg;
 
@@ -139,11 +144,11 @@ public class ServiceJson implements InterfaceJson {
 
 			result = jsonNode.path(i).path("id").asText();
 
-			result = result + "|" + jsonNode.path(i).path("contactListId").asText();
+			result = result + "::" + jsonNode.path(i).path("contactListId").asText();
 
-			result = result + "|" + jsonNode.path(i).path("callRecords").path("전화번호").path("lastAttempt").asText();
+			result = result + "::" + jsonNode.path(i).path("callRecords").path("전화번호").path("lastAttempt").asText();
 			
-			result = result + "|" + jsonNode.path(i).path("callRecords").path("전화번호").path("lastResult").asText();
+			result = result + "::" + jsonNode.path(i).path("callRecords").path("전화번호").path("lastResult").asText();
 
 		} catch (JsonMappingException e) {
 			e.printStackTrace();
@@ -151,7 +156,7 @@ public class ServiceJson implements InterfaceJson {
 			e.printStackTrace();
 		}
 		
-		System.out.println("result : "+ result);
+		log.info("result : {}",result);
 
 		return result;
 	}
@@ -180,7 +185,7 @@ public class ServiceJson implements InterfaceJson {
 	
 	@Override
 	public String ExtractContactLtId(String stringMsg) {
-
+		
 		String jsonResponse = stringMsg;
 
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -204,7 +209,7 @@ public class ServiceJson implements InterfaceJson {
 	public String ExtractDidtDirt(String stringMsg) {// stringMsg에서 didt,dirt추출헤서 리턴해주는 함수.
 		
 		System.out.println("=====ExtractDidtDirt=====");
-//		String result = "2023-11-29T11:15:31.705Z|ININ-OUTBOUND-PREVIEW-ERROR-PHONE-NUMBER"; // didt,dirt 임시로 넣어둠.
+//		String result = "2023-11-29T11:15:31.705Z::ININ-OUTBOUND-PREVIEW-ERROR-PHONE-NUMBER"; // didt,dirt 임시로 넣어둠.
 		
 		String jsonResponse = stringMsg;
 
@@ -215,7 +220,7 @@ public class ServiceJson implements InterfaceJson {
 		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
 			result = jsonNode.path("callRecords").path("전화번호").path("lastAttempt").asText();
-			result += "|" + jsonNode.path("callRecords").path("전화번호").path("lastResult").asText();
+			result += "::" + jsonNode.path("callRecords").path("전화번호").path("lastResult").asText();
 
 		} catch (JsonMappingException e) {
 			e.printStackTrace();
@@ -268,11 +273,11 @@ public class ServiceJson implements InterfaceJson {
 		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
 			result = jsonNode.path("cpid").asText();
-			result = result + "|" + jsonNode.path("cpsq").toString();
-			result = result + "|" + jsonNode.path("cske").asText();
-			result = result + "|" + jsonNode.path("tn01").asText();
-			result = result + "|" + jsonNode.path("tkda").asText();
-			result = result + "|" + jsonNode.path("flag").asText();
+			result = result + "::" + jsonNode.path("cpsq").toString();
+			result = result + "::" + jsonNode.path("cske").asText();
+			result = result + "::" + jsonNode.path("tno1").asText();
+			result = result + "::" + jsonNode.path("tkda").asText();
+			result = result + "::" + jsonNode.path("flag").asText();
 
 		} catch (JsonMappingException e) {
 			e.printStackTrace();
@@ -280,8 +285,9 @@ public class ServiceJson implements InterfaceJson {
 			e.printStackTrace();
 		}
 
-		System.out.println("=== ExtractValCrm34 ===");
-		System.out.println("result : "+result);
+		log.info("===== ExtractValCallbot34 =====");
+		log.info("result : {}",result);
+		
 		return result;
 	}
 	

@@ -24,8 +24,10 @@ import gc.apiClient.repository.Repository_CampMa;
 import gc.apiClient.repository.Repository_CampRt;
 import gc.apiClient.repository.Repository_ContactLt;
 import gc.apiClient.repository.Repository_MapCoId;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class ServicePostgre extends ServiceJson implements InterfaceDB {
 	// 검색 **Create **Insert **Select
 	private final Repository_CampRt repositoryCampRt;
@@ -60,9 +62,11 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 	@Override
 	public Entity_CampRt createCampRtMsg(String cpid) {// contactid(고객키)|contactListId|didt|dirt|cpid
 
+		log.info("===== createCampRtMsg =====");
+		
 		Entity_CampRt enCampRt = new Entity_CampRt();
 
-		String parts[] = cpid.split("\\|");
+		String parts[] = cpid.split("::");
 
 		int rlsq = 0;
 		String campid = parts[4];
@@ -75,18 +79,17 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		int dict = 0;
 		String coid = "";
 
-		System.out.println("=====createCampRtMsg=====");
-		System.out.println("rlsq: " + rlsq);
-		System.out.println("campid: " + campid);
-		System.out.println("cpsq: " + cpsq);
-		System.out.println("contactLtId: " + contactLtId);
-		System.out.println("contactId: " + contactId);
-		System.out.println("hubid: " + hubId);
-		System.out.println("didt: " + didt);
-		System.out.println("dirt: " + dirt);
-		System.out.println("dict: " + dict);
-		System.out.println("coid: " + coid);
-
+		log.info("rlsq: {}" , rlsq);                                        
+		log.info("campid: {}" , campid);                                    
+		log.info("cpsq: {}" , cpsq);                                        
+		log.info("contactLtId: {}" , contactLtId);                          
+		log.info("contactId: {}" , contactId);                              
+		log.info("hubid: {}" , hubId);                                      
+		log.info("didt: {}" , didt);                                        
+		log.info("dirt: {}" , dirt);                                        
+		log.info("dict: {}" , dict);                                        
+		log.info("coid: {}" , coid);                                        
+		
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
 		enContactLt = findContactLtByCske(contactId);
 
@@ -136,17 +139,16 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		enCampRt.setDict(dict);
 		enCampRt.setCoid(coid);
 
-		System.out.println("rlsq: " + rlsq);
-		System.out.println("campid: " + campid);
-		System.out.println("cpsq: " + cpsq);
-		System.out.println("contactLtId: " + contactLtId);
-		System.out.println("contactId: " + contactId);
-		System.out.println("hubid: " + hubId);
-		System.out.println("didt: " + didt);
-		System.out.println("dirt: " + dirt);
-		System.out.println("dict: " + dict);
-		System.out.println("coid: " + coid);
-		System.out.println("===== End =====");
+		log.info("rlsq: {}" , rlsq);                                        
+		log.info("campid: {}" , campid);                                    
+		log.info("cpsq: {}" , cpsq);                                        
+		log.info("contactLtId: {}" , contactLtId);                          
+		log.info("contactId: {}" , contactId);                              
+		log.info("hubid: {}" , hubId);                                      
+		log.info("didt: {}" , didt);                                        
+		log.info("dirt: {}" , dirt);                                        
+		log.info("dict: {}" , dict);                                        
+		log.info("coid: {}" , coid);  
 
 		return enCampRt;
 	}
@@ -154,9 +156,11 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 	@Override
 	public Entity_CampRtJson createCampRtJson(String cpid) {// contactid(고객키)|contactListId|didt|dirt|cpid
 
+		log.info("===== createCampRtJson =====");
+
 		Entity_CampRtJson enCampRt = new Entity_CampRtJson();
 
-		String parts[] = cpid.split("\\|");
+		String parts[] = cpid.split("::");
 
 		int rlsq = 0;
 		String campid = parts[4];
@@ -188,10 +192,7 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 			// Formatting the parsed date to the desired format
 			SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			String formattedDateString = outputFormat.format(parsedDate);
-			System.out.println("포맷 변경 (String) : " + formattedDateString);
 			didt = formattedDateString;
-
-			System.out.println("Formatted Date: " + didt);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -225,11 +226,13 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 	}
 
 	@Override
-	public Entity_CampRt createCampRtMsgCallbot(String cpid) {// contactid(고객키)|contactListId|didt|dirt|cpid
+	public Entity_CampRt createCampRtMsgCallbot(String cpid) {// contactid(고객키)::contactListId::didt::dirt::cpid
 
+		log.info("===== createCampRtMsgCallbot =====");
+		
 		Entity_CampRt enCampRt = new Entity_CampRt();
 
-		String parts[] = cpid.split("\\|");
+		String parts[] = cpid.split("::");
 
 		int rlsq = 0;
 		String campid = parts[4];
@@ -240,17 +243,16 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		Date didt = null;
 		int dirt = 0;
 		int dict = 0;
-
-		System.out.println("=====createCampRtMsgCallbot=====");
-		System.out.println("rlsq: " + rlsq);
-		System.out.println("campid: " + campid);
-		System.out.println("cpsq: " + cpsq);
-		System.out.println("contactLtId: " + contactLtId);
-		System.out.println("contactId: " + contactId);
-		System.out.println("hubid: " + hubId);
-		System.out.println("didt: " + didt);
-		System.out.println("dirt: " + dirt);
-		System.out.println("dict: " + dict);
+		
+		log.info("rlsq: {}" , rlsq);                                        
+		log.info("campid: {}" , campid);                                    
+		log.info("cpsq: {}" , cpsq);                                        
+		log.info("contactLtId: {}" , contactLtId);                          
+		log.info("contactId: {}" , contactId);                              
+		log.info("hubid: {}" , hubId);                                      
+		log.info("didt: {}" , didt);                                        
+		log.info("dirt: {}" , dirt);                                        
+		log.info("dict: {}" , dict);                                        
 
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
 		enContactLt = findContactLtByCske(contactId);
@@ -277,8 +279,8 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		Map<String, String> properties = customProperties.getProperties();
 		dirt = Integer.parseInt(properties.getOrDefault(parts[3], "6"));
 
-		ServiceWebClient crmapi1 = new ServiceWebClient();
-		String result = crmapi1.GetStatusApiRequet("campaign_stats", campid);
+		ServiceWebClient callbotapi = new ServiceWebClient();
+		String result = callbotapi.GetStatusApiRequet("campaign_stats", campid);
 		dict = ExtractDict(result);
 
 		enCampRt.setCpid(campid);
@@ -291,28 +293,25 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		enCampRt.setDirt(dirt);
 		enCampRt.setDict(dict);
 
-		System.out.println("rlsq: " + rlsq);
-		System.out.println("campid: " + campid);
-		System.out.println("cpsq: " + cpsq);
-		System.out.println("contactLtId: " + contactLtId);
-		System.out.println("contactId: " + contactId);
-		System.out.println("hubid: " + hubId);
-		System.out.println("didt: " + didt);
-		System.out.println("dirt: " + dirt);
-		System.out.println("dict: " + dict);
-		System.out.println("===== createCampRtMsgCallbot End =====");
+		log.info("rlsq: {}" , rlsq);                                        
+		log.info("campid: {}" , campid);                                    
+		log.info("cpsq: {}" , cpsq);                                        
+		log.info("contactLtId: {}" , contactLtId);                          
+		log.info("contactId: {}" , contactId);                              
+		log.info("hubid: {}" , hubId);                                      
+		log.info("didt: {}" , didt);                                        
+		log.info("dirt: {}" , dirt);                                        
+		log.info("dict: {}" , dict);
 
 		return enCampRt;
 	}
 
 	@Override
-	public Entity_CampRtJson createCampRtJsonCallbot(String cpid) { // contactid(고객키)|contactListId|didt|dirt|cpid
+	public Entity_CampRtJson createCampRtJsonCallbot(String cpid) { // contactid(고객키)::contactListId::didt::dirt::cpid
 		
-		System.out.println("===== createCampRtJsonCallbot =====");
-
 		Entity_CampRtJson enCampRt = new Entity_CampRtJson();
 
-		String parts[] = cpid.split("\\|");
+		String parts[] = cpid.split("::");
 
 		int rlsq = 0;
 		String campid = parts[4];
@@ -343,10 +342,8 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 			// Formatting the parsed date to the desired format
 			SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			String formattedDateString = outputFormat.format(parsedDate);
-			System.out.println("포맷 변경 (String) : " + formattedDateString);
 			didt = formattedDateString;
 
-			System.out.println("Formatted Date: " + didt);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -354,8 +351,8 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		Map<String, String> properties = customProperties.getProperties();
 		dirt = Integer.parseInt(properties.getOrDefault(parts[3], "6"));
 
-		ServiceWebClient crmapi1 = new ServiceWebClient();
-		String result = crmapi1.GetStatusApiRequet("campaign_stats", campid);
+		ServiceWebClient callbotapi = new ServiceWebClient();
+		String result = callbotapi.GetStatusApiRequet("campaign_stats", campid);
 		dict = ExtractDict(result);
 
 		enCampRt.setCpid(campid);
@@ -369,7 +366,6 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		enCampRt.setDict(dict);
 		enCampRt.setCoid(coid);
 
-		System.out.println("===== createCampRtJsonCallbot End =====");
 		return enCampRt;
 	}
 
@@ -395,9 +391,11 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 
 	@Override
 	public Entity_ContactLt createContactLtMsg(String msg) {
+		
+		log.info("===== createContactLtMsg ===== ");
 
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
-		String ContactLvalues[] = msg.split("\\|");
+		String ContactLvalues[] = msg.split("::");
 
 		System.out.println(msg);
 		// 임시로 데이터 적재
@@ -410,6 +408,16 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		enContactLt.setTn01(ContactLvalues[6]);// "tn01"
 		enContactLt.setTn02(ContactLvalues[7]);// "tn02"
 		enContactLt.setTn03(ContactLvalues[8]);// "tn03"
+		
+		log.info("cpid : {}",ContactLvalues[0]);
+		log.info("cpsq : {}",Integer.parseInt(ContactLvalues[1]));
+		log.info("cske : {}",ContactLvalues[2]);
+		log.info("csna : {}",ContactLvalues[3]);
+		log.info("flag : {}",ContactLvalues[4]);
+		log.info("tkda : {}",ContactLvalues[5]);
+		log.info("tno1 : {}",ContactLvalues[6]);
+		log.info("tno2 : {}",ContactLvalues[7]);
+		log.info("tno3 : {}",ContactLvalues[8]);
 
 		return enContactLt;
 	}
@@ -417,10 +425,13 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 	@Override
 	public Entity_ContactltMapper createContactLtGC(String msg) {//cpid|cpsq|cske|csna|flag|tkda|tno1|tno2|tno3
 
+		log.info("===== createContactLtGC =====");
+		
 		Entity_ContactltMapper contactltMapper = new Entity_ContactltMapper();
-		String values[] = msg.split("\\|");
+		String values[] = msg.split("::");
 
-		System.out.println(msg);
+		log.info("msg : {}",msg);
+		
 		// 임시로 데이터 적재
 		contactltMapper.setCpsq(values[1]); //CPSQ
 		contactltMapper.setCske(values[2]); //CSKE 
@@ -432,16 +443,58 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		contactltMapper.setTno3(values[8]); //tno3
 		contactltMapper.setTmzo("Asia/Seoul (+09:00)"); //tmzo
 		
+		log.info("cpsq :{}",values[1]);
+		log.info("cske :{}",values[2]);
+		log.info("csna :{}",values[3]);
+		log.info("tkda :{}",values[5]);
+		log.info("cpid :{}",values[0]);
+		log.info("tno1 :{}",values[6]);
+		log.info("tno2 :{}",values[7]);
+		log.info("tno3 :{}",values[8]);
+		log.info("tmzo :{}","Asia/Seoul (+09:00)");
+		
+		return contactltMapper;
+	}
+	
+	@Override
+	public Entity_ContactltMapper createContactLCallbottGC(String msg) {//cpid|cpsq|cske|tno1|tkda|flag
+		
+		log.info("===== createContactLCallbottGC =====");
+
+		Entity_ContactltMapper contactltMapper = new Entity_ContactltMapper();
+		String values[] = msg.split("::");
+		
+		log.info("msg : {}",msg);
+
+		// 임시로 데이터 적재
+		contactltMapper.setCpsq(values[1]); //CPSQ
+		contactltMapper.setCske(values[2]); //CSKE 
+		contactltMapper.setCsna(""); //CSNA
+		contactltMapper.setTkda(values[4]); //TKDA
+		contactltMapper.setCpid(values[0]); //CPID
+		contactltMapper.setTno1(values[3]); //tno1
+		contactltMapper.setTno2(""); //tno2
+		contactltMapper.setTno3(""); //tno3
+		contactltMapper.setTmzo("Asia/Seoul (+09:00)"); //tmzo
+		
+		log.info("cpsq : {}",values[1]);
+		log.info("cske : {}",values[2]);
+		log.info("tkda : {}",values[4]);
+		log.info("cpid : {}",values[0]);
+		log.info("tno1 : {}",values[3]);
+		
 		return contactltMapper;
 	}
 
 	@Override
-	public Entity_ContactLt createContactLtMsgCallbot(String msg) {
+	public Entity_ContactLt createContactLtMsgCallbot(String msg) {//cpid::cpsq::cske::tno1::tkda::flag
 
+		log.info("===== createContactLtMsgCallbot =====");
+		
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
-		String ContactLvalues[] = msg.split("\\|");
+		String ContactLvalues[] = msg.split("::");
+		
 
-		System.out.println(msg);
 		// 임시로 데이터 적재
 		enContactLt.setCpid(ContactLvalues[0]);
 		enContactLt.setCpsq(Integer.parseInt(ContactLvalues[1]));
@@ -452,6 +505,13 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		enContactLt.setCsna("");// "카리나"
 		enContactLt.setTn02("");// "tn02"
 		enContactLt.setTn03("");// "tn03"
+		
+		log.info("cpid : {}",ContactLvalues[0]);
+		log.info("cpsq : {}",ContactLvalues[1]);
+		log.info("cske : {}",ContactLvalues[2]);
+		log.info("tno1 : {}",ContactLvalues[3]);
+		log.info("tkda : {}",ContactLvalues[4]);
+		log.info("flag : {}",ContactLvalues[5]);
 
 		return enContactLt;
 	}
@@ -460,7 +520,7 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 	public Entity_AppConfig createAppConfigMsg(String temp) {
 
 		Entity_AppConfig enAppConfig = new Entity_AppConfig();
-		String parts[] = temp.split("\\|");
+		String parts[] = temp.split("::");
 
 		enAppConfig.setApimClId("");
 		enAppConfig.setApimClSecret("");

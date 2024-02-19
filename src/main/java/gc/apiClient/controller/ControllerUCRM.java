@@ -88,11 +88,22 @@ public class ControllerUCRM extends ServiceJson {
 		case "thirdtopic":// IF-CRM_003
 		case "forthtopic":// IF-CRM_004
 
-			// {"id":null,"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","cpsq":109284,"cske":"customerkey","tn01":"tn01","tn02":"tn02","tn03":"tn03","csna":"카리나","tkda":"custid,111","flag":"HO2"}
+//			{
+//			"id":null,
+//			"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd",
+//			"cpsq":892012,
+//			"cske":"83b85d7ff68cb7f0b7b3c59212abefff",
+//			"tno1":"tno1",
+//			"tno2":"tno2",
+//			"tno3":"tno3",
+//			"csna":"카리나",
+//			"tkda":"C,custid,111",
+//			"flag":"HO2"
+//			}
+			
 			// 간단한 테스트를 하기 위한 샘플 json 데이터. msg로 위 데이터가 들어 온 것으로 가정.
 
-			row_result = ExtractValCrm34(msg); // ContactLt 테이블에 들어갈 값들만 뽑아온다.
-			log.info("result : {}" , row_result);//cpid|cpsq|cske|csna|flag|tkda|tno1|tno2|tno3
+			row_result = ExtractValCrm34(msg); // ContactLt 테이블에 들어갈 값들만 뽑아온다.cpid::cpsq::cske::csna::flag::tkda::tno1::tno2::tno3
 			Entity_ContactLt enContactLt = serviceDb.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
 																				// Entity_ContactLt 객체에 매핑시킨다.
 			cpid = enContactLt.getCpid();// 캠페인 아이디를 가져온다.
@@ -136,7 +147,7 @@ public class ControllerUCRM extends ServiceJson {
 			result = ExtractVal56(msg);// request body로 들어돈 json에서 필요 데이터 추출
 			log.info("result : {}" , result); // campaignid, contactlistid 추출
 
-			String parts[] = result.split("\\|");
+			String parts[] = result.split("::");
 
 			cpid = parts[0];
 			contactLtId = parts[1];
@@ -146,7 +157,7 @@ public class ControllerUCRM extends ServiceJson {
 
 			List<String> values = new ArrayList<String>();// cske(고객키)들을 담을 list타입 변수.
 
-			for (int i = 0; i < enContactList.size(); i++) {//
+			for (int i = 0; i < enContactList.size(); i++) {
 				values.add(enContactList.get(i).getCske());
 			}
 
@@ -155,7 +166,7 @@ public class ControllerUCRM extends ServiceJson {
 
 			for (int i = 0; i < enContactList.size(); i++) {
 				String contactsresult = ExtractContacts56(result, i);
-				contactsresult = contactsresult + "|" + cpid;// contactid(고객키)|contactListId|didt|dirt|cpid
+				contactsresult = contactsresult + "::" + cpid;// contactid(고객키)::contactListId::didt::dirt::cpid
 				Entity_CampRt entityCmRt = serviceDb.createCampRtMsg(contactsresult);// db 인서트 하기 위한 entity.
 
 				int dirt = entityCmRt.getDirt();// 응답코드

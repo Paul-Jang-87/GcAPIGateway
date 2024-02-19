@@ -21,6 +21,7 @@ public interface InterfaceDB {
 	Entity_CampMa createCampMaMsg(String cpid);
 	Entity_ContactLt createContactLtMsg(String msg);
 	Entity_ContactltMapper createContactLtGC(String msg);
+	Entity_ContactltMapper createContactLCallbottGC(String msg);
 	Entity_ContactLt createContactLtMsgCallbot(String msg);
 	Entity_AppConfig createAppConfigMsg(String encryptedPassword);
 	Entity_MapCoid createMapCoIdMsg();

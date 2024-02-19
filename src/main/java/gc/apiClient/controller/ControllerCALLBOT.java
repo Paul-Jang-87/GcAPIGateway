@@ -50,7 +50,7 @@ public class ControllerCALLBOT extends ServiceJson {
 	public Mono<Void> receiveMessage(@PathVariable("topic") String tranId, @RequestBody String msg) {
 
 		log.info("Class : ControllerCALLBOT - Method : receiveMessage");
-		
+		String row_result = "";
 		String result = "";
 		String topic_id = tranId;
 		String endpoint = "/apicallbot/post/"+topic_id;
@@ -86,13 +86,11 @@ public class ControllerCALLBOT extends ServiceJson {
 		case "thirdtopic":// IF-CRM_003
 		case "forthtopic":// IF-CRM_004
 
-			// {"id":null,"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","cpsq":109284,"cske":"customerkey","tn01":"tn01","tn02":"tn02","tn03":"tn03","csna":"카리나","tkda":"custid,111","flag":"HO2"}
-			// 간단한 테스트를 하기 위한 샘플 json 데이터. msg로 위 데이터가 들어 온 것으로 가정.
-
-			result = ExtractValCallbot34(msg);
-			log.info("result : {}", result);
-			Entity_ContactLt enContactLt = serviceDb.createContactLtMsgCallbot(result);// ContactLt 테이블에 들어갈 값들을
-																						// Entity_ContactLt 객체에 매핑시킨다.
+			//카프카 컨슈머로 부터 cpid|cpsq|cske|tno1|tkda|flag가 들어가 jsonString을 전달 받음.  
+			
+			row_result = ExtractValCallbot34(msg); // ContactLt 테이블에 들어갈 값들만 뽑아온다.cpid|cpsq|cske|tno1|tkda|flag
+			Entity_ContactLt enContactLt = serviceDb.createContactLtMsgCallbot(row_result);// ContactLt 테이블에 들어갈 값들을
+																						   // Entity_ContactLt 객체에 매핑시킨다.
 			cpid = enContactLt.getCpid();// 캠페인 아이디를 가져온다.
 
 			result = serviceWeb.GetCampaignsApiRequet("campaigns", cpid);// 캠페인 아이디로
@@ -104,9 +102,8 @@ public class ControllerCALLBOT extends ServiceJson {
 			// "api/v2/outbound/contactlists/{contactListId}/contacts"로 request body값 보내기 위한
 			// 객체
 			// 객체 안의 속성들(키)은 변동 될 수 있음.
-			Entity_ContactltMapper contactltMapper = new Entity_ContactltMapper();
-
-			// 현재는 이름, 전화번호만 있다고 가정 후 세팅.
+			
+			Entity_ContactltMapper contactltMapper = serviceDb.createContactLCallbottGC(row_result);
 
 			objectMapper = new ObjectMapper();
 
@@ -135,7 +132,7 @@ public class ControllerCALLBOT extends ServiceJson {
 			result = ExtractVal56(msg);// request body로 들어돈 json에서 필요 데이터 추출
 			log.info("result : " + result); // campaignid, contactlistid 추출
 
-			String parts[] = result.split("\\|");
+			String parts[] = result.split("::");
 
 			cpid = parts[0];// campaignid
 			contactLtId = parts[1];// contactlistid
@@ -154,7 +151,7 @@ public class ControllerCALLBOT extends ServiceJson {
 
 			for (int i = 0; i < enContactList.size(); i++) {
 				String contactsresult = ExtractContacts56(result, i);
-				contactsresult = contactsresult + "|" + cpid;// contactid(고객키)|contactListId|didt|dirt|cpid
+				contactsresult = contactsresult + "::" + cpid;// contactid(고객키)::contactListId::didt::dirt::cpid
 				Entity_CampRt entityCmRt = serviceDb.createCampRtMsgCallbot(contactsresult);// db 인서트 하기 위한 entity.
 
 				Entity_CampRtJson toproducer = serviceDb.createCampRtJsonCallbot(contactsresult);// producer로 보내기 위한
@@ -172,7 +169,7 @@ public class ControllerCALLBOT extends ServiceJson {
 					e.printStackTrace();
 				}
 
-				serviceDb.InsertCampRt(entityCmRt);
+//				serviceDb.InsertCampRt(entityCmRt);
 			}
 
 			return Mono.empty();

@@ -3,6 +3,8 @@ package gc.apiClient.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -92,12 +94,12 @@ public class ControllerUCRM extends ServiceJson {
 //			"id":null,
 //			"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd",
 //			"cpsq":892012,
-//			"cske":"83b85d7ff68cb7f0b7b3c59212abefff",
+//			"cske":"83b85d7ff68cb7f0b7b3c59212abefff",  or   "0b241f9bef1df80679bfba58582c8505"
 //			"tno1":"tno1",
 //			"tno2":"tno2",
 //			"tno3":"tno3",
 //			"csna":"카리나",
-//			"tkda":"C,custid,111",
+//			"tkda":"C,custid,111", or  "A||gg||dfe||feq||ere||666"
 //			"flag":"HO2"
 //			}
 			
@@ -130,14 +132,21 @@ public class ControllerUCRM extends ServiceJson {
 				// 두번째 인자 : path parameter
 				// 세번째 인자 : request body.
 				
-				serviceWeb.PostContactLtApiRequet("contact", contactLtId, jsonString);
+//				serviceWeb.PostContactLtApiRequet("contact", contactLtId, jsonString);
 
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
 			}
 
-			// DB인서트
-			serviceDb.InsertContactLt(enContactLt);
+			//db인서트
+			try {
+				serviceDb.InsertContactLt(enContactLt);
+				
+			} catch (DataIntegrityViolationException ex) {
+				log.error("DataIntegrityViolationException 발생 : {}",ex);
+	        } catch (DataAccessException ex) {
+	        	log.error("DataAccessException 발생 : {}",ex);
+	        }
 
 			return Mono.empty();
 

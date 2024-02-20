@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import gc.apiClient.entity.Entity_MapCoid;
 
 @Repository
-public interface Repository_MapCoId extends CrudRepository<Entity_MapCoid, Long> {
+public interface Repository_MapCoId extends CrudRepository<Entity_MapCoid, String> {
 	
     Optional<Entity_MapCoid> findByCpid(String cpid);
     

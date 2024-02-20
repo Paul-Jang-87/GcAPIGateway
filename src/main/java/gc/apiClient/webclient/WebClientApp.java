@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.reactive.function.client.WebClient.RequestBodySpec;
 import org.springframework.web.reactive.function.client.WebClient.RequestHeadersUriSpec;
 import org.springframework.web.util.UriComponents;
 
@@ -14,9 +13,10 @@ import com.mypurecloud.sdk.v2.ApiResponse;
 import com.mypurecloud.sdk.v2.PureCloudRegionHosts;
 import com.mypurecloud.sdk.v2.extensions.AuthResponse;
 
-import gc.apiClient.interfaceCollection.InterfaceDB;
+import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
+@Slf4j
 public class WebClientApp {
 
 	private static String CLIENT_ID = "";
@@ -59,7 +59,7 @@ public class WebClientApp {
 			ApiResponse<AuthResponse> authResponse = apiClient.authorizeClientCredentials(CLIENT_ID, CLIENT_SECRET);
 			accessToken = authResponse.getBody().getAccess_token();
 		} catch (Exception e) {
-			// Handle the exception more gracefully, e.g., log it
+			log.error("Error is occured during getting AccessToken: {}",e.getMessage());
 			e.printStackTrace();
 		}
 	}
@@ -84,7 +84,7 @@ public class WebClientApp {
 				.retrieve()
 				.bodyToMono(String.class)
 				.onErrorResume(error -> {
-			System.err.println("Error making API request: " + error.getMessage());
+			log.error("Error making API request: {}",error.getMessage());
 			return Mono.empty();
 		});
 	}
@@ -107,7 +107,7 @@ public class WebClientApp {
 	            .retrieve()
 	            .bodyToMono(String.class)
 	            .onErrorResume(error -> {
-	                System.err.println("Error making API request: " + error.getMessage());
+	                log.error("Error making API request: {}",error.getMessage()) ;
 	                return Mono.empty();
 	            })
 	            .block(); // Wait for the result
@@ -122,7 +122,7 @@ public class WebClientApp {
 	    return webClient.post().uri(api1.toUriString()).body(BodyInserters.fromValue(msg)).retrieve()
 				.bodyToMono(String.class)
 	            .onErrorResume(error -> {
-	                System.err.println("Error making API request: " + error.getMessage());
+	            	log.error("Error making API request: {}",error.getMessage());
 	                return Mono.empty();
 	            })
 	            .block(); // Wait for the result
@@ -137,7 +137,7 @@ public class WebClientApp {
 	    return webClient.post().uri(api1.toUriString()).body(BodyInserters.fromValue(cskes)).retrieve()
 				.bodyToMono(String.class)
 	            .onErrorResume(error -> {
-	                System.err.println("Error making API request: " + error.getMessage());
+	                log.error("Error making API request: {}",error.getMessage());
 	                return Mono.empty();
 	            })
 	            .block(); // Wait for the result

@@ -15,6 +15,8 @@ public class ServiceWebClient implements InterfaceWebClient {
 	@Override
 	public String GetApiRequet(String endpoint) {
 
+		log.info("===== GetApiRequet =====");
+		
 		String result = "";
 
 		WebClientApp webClientExample = new WebClientApp(endpoint, "GET");
@@ -59,6 +61,8 @@ public class ServiceWebClient implements InterfaceWebClient {
 	public String GetContactLtApiRequet(String endpoint, String contactListId, String contactId) {// path parameter
 																									// 'contactListId','contactId'
 
+		log.info("===== GetContactLtApiRequet =====");
+		
 		String result = "";
 
 		WebClientApp webClientExample = new WebClientApp(endpoint, "GET");

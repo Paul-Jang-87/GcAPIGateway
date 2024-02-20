@@ -2,9 +2,6 @@ package gc.apiClient.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 import java.util.Date;
@@ -14,19 +11,26 @@ import java.util.Date;
 @Table(name = "CAMPRT")
 public class Entity_CampRt {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "msg_id")
-	private Long id;
-	
 	@Column(name = "RLSQ")
 	private int rlsq;
 
-	@Column(name = "CAMP_ID")
-	private String cpid;
+	@Column(name = "IBM_SLTN_CNTA_HUB_ID")
+	private int hubid;
 	
 	@Column(name = "CPSQ")
 	private int cpsq;
+	
+	@Column(name = "DIRT")
+	private int dirt;
+	
+	@Column(name = "DICT")
+	private int dict;
+	
+	@Column(name = "COID")
+	private int coid;
+	
+	@Column(name = "CAMP_ID")
+	private String cpid;
 
 	@Column(name = "CONTACTID_LIST_ID")
 	private String contactLtId;
@@ -34,28 +38,16 @@ public class Entity_CampRt {
 	@Column(name = "CONTACT_ID")
  	private String contactid;
 	
-	@Column(name = "IBM_SLTN_CNTA_HUB_ID")
- 	private int hubid;
-	
 	@Column(name = "DIDT")
  	private Date didt;
 
-	@Column(name = "DIRT")
-	private int dirt;
-
-	@Column(name = "DICT")
-	private int dict;
-	
-	@Column(name = "COID")
-	private String coid;
 	
 
 	public Entity_CampRt() {
 	}
 
-	public Entity_CampRt(Long id, int rlsq, String cpid,int cpsq, String contactLtId, String contactid, int hubid, Date didt,
-			int dirt, int dict,String coid) {
-		this.id = id;
+	public Entity_CampRt( int rlsq, String cpid,int cpsq, String contactLtId, String contactid, int hubid, Date didt,
+			int dirt, int dict,int coid) {
 		this.rlsq = rlsq;
 		this.cpid = cpid;
 		this.cpsq = cpsq;
@@ -68,8 +60,6 @@ public class Entity_CampRt {
 		this.coid = coid;
 	}
 
-	public Long getId() { return id; }
-	public void setId(Long id) { this.id = id;}
 	
 	public int getRlsq() {return rlsq;}
 	public void setRlsq(int rlsq) {this.rlsq = rlsq;}
@@ -98,7 +88,7 @@ public class Entity_CampRt {
 	public int getDict() {return dict;}
 	public void setDict(int dict) {this.dict = dict;}
 	
-	public String getCoid() { return coid; }
-	public void setCoid(String coid) {this.coid = coid;}
+	public int getCoid() { return coid; }
+	public void setCoid(int coid) {this.coid = coid;}
 }
 	

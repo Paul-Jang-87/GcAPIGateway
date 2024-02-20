@@ -1,21 +1,19 @@
 package gc.apiClient.entity;
 
+import gc.apiClient.embeddable.ContactLtId;
 import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 
 @Entity
 @Table(name = "CONTACTLT")
+
 public class Entity_ContactLt {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "msg_id")
-	private Long id;
+	@EmbeddedId
+    private ContactLtId id;
 
 	@Column(name = "CPID")
 	private String cpid;
@@ -46,9 +44,10 @@ public class Entity_ContactLt {
 	
 
 	public Entity_ContactLt() {
+		
 	}
 
-	public Entity_ContactLt(Long id,  
+	public Entity_ContactLt(
 	 String cpid,  
 	 int cpsq,   
 	 String cske,   
@@ -57,8 +56,9 @@ public class Entity_ContactLt {
 	 String tno3,   
 	 String csna,   
 	 String tkda,   
-	 String flag) {
-	this.id = id;
+	 String flag,
+	 ContactLtId id) {
+	this.id = new ContactLtId();
 	this.cpid =  cpid;
 	this.cpsq =  cpsq ;
     this.cske =  cske ;
@@ -72,9 +72,8 @@ public class Entity_ContactLt {
 		
 	}
 
-	public Long getId() { return id; }
-	public void setId(Long id) { this.id = id;}
-	
+	public ContactLtId getId() {return id;}
+	public void setId(ContactLtId id) {this.id = id;}
 
 	public String getCpid() { return cpid; }
 	public void setCpid(String cpid) {this.cpid = cpid;}

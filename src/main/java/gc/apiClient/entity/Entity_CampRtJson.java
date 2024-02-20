@@ -45,14 +45,14 @@ public class Entity_CampRtJson {
 	private int dict;
 	
 	@Column(name = "COID")
-	private String coid;
+	private int coid;
 	
 
 	public Entity_CampRtJson() {
 	}
 
 	public Entity_CampRtJson(Long id, int rlsq, String cpid,int cpsq, String contactLtId, String contactid, int hubid, String didt,
-			int dirt, int dict,String coid) {
+			int dirt, int dict,int coid) {
 		this.id = id;
 		this.rlsq = rlsq;
 		this.cpid = cpid;
@@ -96,7 +96,7 @@ public class Entity_CampRtJson {
 	public int getDict() {return dict;}
 	public void setDict(int dict) {this.dict = dict;}
 	
-	public String getCoid() { return coid; }
-	public void setCoid(String coid) {this.coid = coid;}
+	public int getCoid() { return coid; }
+	public void setCoid(int coid) {this.coid = coid;}
 }
 	

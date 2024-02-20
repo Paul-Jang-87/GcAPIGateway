@@ -3,6 +3,7 @@ package gc.apiClient.interfaceCollection;
 
 import java.util.List;
 
+import gc.apiClient.embeddable.ContactLtId;
 import gc.apiClient.entity.Entity_AppConfig;
 import gc.apiClient.entity.Entity_CampMa;
 import gc.apiClient.entity.Entity_CampRt;

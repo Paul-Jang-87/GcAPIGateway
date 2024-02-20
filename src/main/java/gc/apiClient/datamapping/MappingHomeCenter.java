@@ -10,7 +10,7 @@ public class MappingHomeCenter {//홈 매핑 클래스.
 
     // Constructor to initialize data
     public MappingHomeCenter() {
-    	idToCentercodeMapping = new HashMap<>();
+    	idToCentercodeMapping = new HashMap<>(); 
     	idToCentercodeMapping.put("21", "H1");
     	idToCentercodeMapping.put("23", "H2");
     	idToCentercodeMapping.put("22", "H3");
@@ -21,10 +21,8 @@ public class MappingHomeCenter {//홈 매핑 클래스.
     	idToCentercodeMapping.put("12", "H9");
     	idToCentercodeMapping.put("11", "H8");
     	idToCentercodeMapping.put("25", "H12");
-        // Add more data as needed
     }
 
-    // Method to get a name based on an ID
     public String getCentercodeById(String id) {
         return idToCentercodeMapping.get(id);
     }

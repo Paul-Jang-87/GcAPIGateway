@@ -1,19 +1,19 @@
 package gc.apiClient.entity;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-
 import java.util.Date;
-
+import gc.apiClient.embeddable.CampRt;
 
 @Entity
 @Table(name = "CAMPRT")
 public class Entity_CampRt {
 	
-	@Column(name = "RLSQ")
-	private int rlsq;
-
+	@EmbeddedId
+    private CampRt id;
+	
 	@Column(name = "IBM_SLTN_CNTA_HUB_ID")
 	private int hubid;
 	
@@ -25,9 +25,6 @@ public class Entity_CampRt {
 	
 	@Column(name = "DICT")
 	private int dict;
-	
-	@Column(name = "COID")
-	private int coid;
 	
 	@Column(name = "CAMP_ID")
 	private String cpid;
@@ -46,9 +43,8 @@ public class Entity_CampRt {
 	public Entity_CampRt() {
 	}
 
-	public Entity_CampRt( int rlsq, String cpid,int cpsq, String contactLtId, String contactid, int hubid, Date didt,
-			int dirt, int dict,int coid) {
-		this.rlsq = rlsq;
+	public Entity_CampRt( String cpid,int cpsq, String contactLtId, String contactid, int hubid, Date didt,
+			int dirt, int dict, CampRt id) {
 		this.cpid = cpid;
 		this.cpsq = cpsq;
 		this.contactLtId = contactLtId;
@@ -57,38 +53,31 @@ public class Entity_CampRt {
 		this.didt = didt;
 		this.dirt = dirt;
 		this.dict = dict;
-		this.coid = coid;
+		this.id = new CampRt();
 	}
 
-	
-	public int getRlsq() {return rlsq;}
-	public void setRlsq(int rlsq) {this.rlsq = rlsq;}
-
-	public String getCpid() { return cpid; }
-	public void setCpid(String cpid) {this.cpid = cpid;}
-	
+	public int getRlsq() {return id.getRlsq();}
+	public int getCoid() {return id.getCoid();}
 	public int getCpsq() {return cpsq;}
-	public void setCpsq(int cpsq) {this.cpsq = cpsq;}
-	
-	public String getContactLtId() {return contactLtId;}
-	public void setContactLtId(String contactLtId) {this.contactLtId = contactLtId;}
-	
-	public String getContactId() {return contactid;}
-	public void setContactId(String contactid) {this.contactid = contactid;}
-	
 	public int getHubId() {return hubid;}
-	public void setHubId(int hubid) {this.hubid = hubid;}
-	
-	public Date getDidt() {return didt;}
-	public void setDidt(Date didt) {this.didt = didt;}
-	
 	public int getDirt() {return dirt;}
-	public void setDirt(int dirt) {this.dirt = dirt;}
-	
 	public int getDict() {return dict;}
+	public String getCpid() { return cpid; }
+	public String getContactLtId() {return contactLtId;}
+	public String getContactId() {return contactid;}
+	public Date getDidt() {return didt;}
+	public CampRt getId() {return id;}
+	
+	public void setId(CampRt id) {this.id = id;}
+	public void setCpid(String cpid) {this.cpid = cpid;}
+	public void setCpsq(int cpsq) {this.cpsq = cpsq;}
+	public void setContactLtId(String contactLtId) {this.contactLtId = contactLtId;}
+	public void setContactId(String contactid) {this.contactid = contactid;}
+	public void setHubId(int hubid) {this.hubid = hubid;}
+	public void setDidt(Date didt) {this.didt = didt;}
+	public void setDirt(int dirt) {this.dirt = dirt;}
 	public void setDict(int dict) {this.dict = dict;}
 	
-	public int getCoid() { return coid; }
-	public void setCoid(int coid) {this.coid = coid;}
+	
 }
 	

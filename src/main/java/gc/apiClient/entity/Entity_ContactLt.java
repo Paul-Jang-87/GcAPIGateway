@@ -14,12 +14,6 @@ public class Entity_ContactLt {
 	
 	@EmbeddedId
     private ContactLtId id;
-
-	@Column(name = "CPID")
-	private String cpid;
-
-	@Column(name = "CPSQ")
-	private int cpsq;
 	
 	@Column(name = "CSKE")
  	private String cske;
@@ -59,8 +53,6 @@ public class Entity_ContactLt {
 	 String flag,
 	 ContactLtId id) {
 	this.id = new ContactLtId();
-	this.cpid =  cpid;
-	this.cpsq =  cpsq ;
     this.cske =  cske ;
 	this.tno1 =  tno1 ;
 	this.tno2 =  tno2 ;
@@ -68,42 +60,26 @@ public class Entity_ContactLt {
 	this.csna =  csna ;
 	this.tkda =  tkda ;
 	this.flag =  flag ;
-		
-		
 	}
 
 	public ContactLtId getId() {return id;}
-	public void setId(ContactLtId id) {this.id = id;}
-
-	public String getCpid() { return cpid; }
-	public void setCpid(String cpid) {this.cpid = cpid;}
-
-	
-	public int getCpsq() {return cpsq;}
-	public void setCpsq(int cpsq) {this.cpsq = cpsq;}
-	
-	
+	public String getCpid() {return id.getCpid();}
+	public int getCpsq() {return id.getCpsq();}
 	public String getCske() {return cske;}
-	public void setCske(String cske) {this.cske = cske;}
-	
-	
 	public String getTn01() {return tno1;}
-	public void setTn01(String tno1) {this.tno1 = tno1;}
-	
-	
 	public String getTn02() {return tno2;}
-	public void setTn02(String tno2) {this.tno2 = tno2;}
-	
 	public String getTn03() { return tno3; }
-	public void setTn03(String tno3) {this.tno3 = tno3;}
-	
 	public String getCsna() { return csna; }
-	public void setCsna(String csna) {this.csna = csna;}
-	
 	public String getTkda() { return tkda; }
-	public void setTkda(String tkda) {this.tkda = tkda;}
-	
 	public String getFlag() { return flag; }
+	
+	public void setId(ContactLtId id) {this.id = id;}
+	public void setCske(String cske) {this.cske = cske;}
+	public void setTn01(String tno1) {this.tno1 = tno1;}
+	public void setTn02(String tno2) {this.tno2 = tno2;}
+	public void setTn03(String tno3) {this.tno3 = tno3;}
+	public void setCsna(String csna) {this.csna = csna;}
+	public void setTkda(String tkda) {this.tkda = tkda;}
 	public void setFlag(String flag) {this.flag = flag;}
 	
 }

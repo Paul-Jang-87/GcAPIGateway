@@ -23,24 +23,11 @@ public class ContactLtId implements Serializable {
     public ContactLtId() {
     }
 
-    // Getter and setter for CPID
-    public String getCpid() {
-        return cpid;
-    }
+    public String getCpid() {return cpid;}
+    public int getCpsq() {return cpsq;}
 
-    public void setCpid(String cpid) {
-        this.cpid = cpid;
-    }
+    public void setCpid(String cpid) {this.cpid = cpid;}
+    public void setCpsq(int cpsq) {this.cpsq = cpsq;}
 
-    // Getter and setter for CPSQ
-    public int getCpsq() {
-        return cpsq;
-    }
-
-    public void setCpsq(int cpsq) {
-        this.cpsq = cpsq;
-    }
-
-    // Override equals and hashCode methods if necessary
 
 }

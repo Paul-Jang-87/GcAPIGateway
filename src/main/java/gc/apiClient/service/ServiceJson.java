@@ -49,9 +49,7 @@ public class ServiceJson implements InterfaceJson {
 		
 		String jsonResponse = stringMsg;
 
-		System.out.println("=== ExtractValCrm12 ===");
-		System.out.println(jsonResponse);
-
+		log.info("===== ExtractValCrm12 =====");
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode jsonNode = null;
 		String result = "";
@@ -59,6 +57,8 @@ public class ServiceJson implements InterfaceJson {
 		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
 			result = jsonNode.path("cpid").asText();
+			result = result + "::" + jsonNode.path("coid").asText();
+			result = result + "::" + jsonNode.path("cpna").asText();
 
 		} catch (JsonMappingException e) {
 			e.printStackTrace();
@@ -66,6 +66,7 @@ public class ServiceJson implements InterfaceJson {
 			e.printStackTrace();
 		}
 
+		log.info("result : {}",result);
 		return result;
 	}
 

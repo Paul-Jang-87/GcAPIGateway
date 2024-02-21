@@ -9,26 +9,22 @@ import java.util.Optional;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.stereotype.Service;
 
 import gc.apiClient.customproperties.CustomProperties;
 import gc.apiClient.datamapping.MappingHomeCenter;
+import gc.apiClient.embeddable.CampRt;
 import gc.apiClient.embeddable.ContactLtId;
-import gc.apiClient.entity.Entity_AppConfig;
 import gc.apiClient.entity.Entity_CampMa;
 import gc.apiClient.entity.Entity_CampRt;
 import gc.apiClient.entity.Entity_CampRtJson;
 import gc.apiClient.entity.Entity_ContactLt;
 import gc.apiClient.entity.Entity_ContactltMapper;
-import gc.apiClient.entity.Entity_MapCoid;
 import gc.apiClient.interfaceCollection.InterfaceDB;
-import gc.apiClient.repository.Repository_AppConfig;
 import gc.apiClient.repository.Repository_CampMa;
 import gc.apiClient.repository.Repository_CampRt;
 import gc.apiClient.repository.Repository_ContactLt;
-import gc.apiClient.repository.Repository_MapCoId;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -37,32 +33,19 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 	// 검색 **Create **Insert **Select
 	private final Repository_CampRt repositoryCampRt;
 	private final Repository_CampMa repositoryCampMa;
-	private final Repository_AppConfig repositoryAppConfig;
 	private final Repository_ContactLt repositoryContactLt;
-	private final Repository_MapCoId repositoryMapCoId;
 	private final CustomProperties customProperties;
 
 	public ServicePostgre(Repository_CampRt repositoryCampRt, Repository_CampMa repositoryCampMa,
-			Repository_AppConfig repositoryAppConfig, Repository_MapCoId repositoryMapCoId,
 			Repository_ContactLt repositoryContactLt, CustomProperties customProperties) {
 
 		this.repositoryCampRt = repositoryCampRt;
 		this.repositoryCampMa = repositoryCampMa;
-		this.repositoryAppConfig = repositoryAppConfig;
 		this.repositoryContactLt = repositoryContactLt;
-		this.repositoryMapCoId = repositoryMapCoId;
 		this.customProperties = customProperties;
 	}
 
 	// **Create
-	@Override
-	public Entity_MapCoid createMapCoIdMsg() {
-		Entity_MapCoid enCampMa = new Entity_MapCoid();
-		enCampMa.setCoid(22);
-		enCampMa.setCpid("cpid_3");
-
-		return enCampMa;
-	}
 
 	@Override
 	public Entity_CampRt createCampRtMsg(String cpid) {// contactid(고객키)|contactListId|didt|dirt|cpid
@@ -70,10 +53,12 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		log.info("===== createCampRtMsg =====");
 
 		Entity_CampRt enCampRt = new Entity_CampRt();
+		CampRt id = new CampRt();
 
 		String parts[] = cpid.split("::");
 
 		int rlsq = 0;
+		int coid = 0;
 		String campid = parts[4];
 		int cpsq = 0;
 		String contactLtId = parts[1];
@@ -82,7 +67,6 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		Date didt = null;
 		int dirt = 0;
 		int dict = 0;
-		int coid = 0;
 
 		log.info("rlsq: {}", rlsq);
 		log.info("campid: {}", campid);
@@ -131,7 +115,9 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		enCampMa = findCampMaByCpid(campid);
 		coid = enCampMa.getCoid();
 
-		enCampRt.setRlsq(rlsq);
+		id.setRlsq(rlsq); 
+		id.setCoid(coid); 
+		enCampRt.setId(id);
 		enCampRt.setCpid(campid);
 		enCampRt.setCpsq(cpsq);
 		enCampRt.setContactLtId(contactLtId);
@@ -140,7 +126,6 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		enCampRt.setDidt(didt);
 		enCampRt.setDirt(dirt);
 		enCampRt.setDict(dict);
-		enCampRt.setCoid(coid);
 
 		log.info("rlsq: {}", rlsq);
 		log.info("campid: {}", campid);
@@ -233,7 +218,8 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		log.info("===== createCampRtMsgCallbot =====");
 
 		Entity_CampRt enCampRt = new Entity_CampRt();
-
+		CampRt id = new CampRt();
+		
 		String parts[] = cpid.split("::");
 
 		int rlsq = 0;
@@ -285,8 +271,9 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		String result = callbotapi.GetStatusApiRequet("campaign_stats", campid);
 		dict = ExtractDict(result);
 
+		id.setRlsq(rlsq);
+		enCampRt.setId(id);
 		enCampRt.setCpid(campid);
-		enCampRt.setRlsq(rlsq);
 		enCampRt.setCpsq(cpsq);
 		enCampRt.setContactLtId(contactLtId);
 		enCampRt.setContactId(contactId);
@@ -372,22 +359,25 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 	}
 
 	@Override
-	public Entity_CampMa createCampMaMsg(String cpid) {
+	public Entity_CampMa createCampMaMsg(String msg) { //cpid::coid::cpna
 
-		System.out.println("Class : ServicePostgre\n Method : createCampMaMsg");
+		log.info("===== createCampMaMsg =====");
 
 		Entity_CampMa enCampMa = new Entity_CampMa();
-		Entity_MapCoid enMapcoid = new Entity_MapCoid();
-
-		enMapcoid = findMapCoidByCpid(cpid);
-		int coid = enMapcoid.getCoid();
-
-		enCampMa.setCoid(coid);
+		String parts[] = msg.split("::");
+		
+		String cpid = parts[0];
+		int coid = Integer.parseInt(parts[1]); 
+		String cpna = parts[2]; 
+		
 		enCampMa.setCpid(cpid);
-		enCampMa.setCpna("cpna_6");
-
-		System.out.println("===== END =====");
-
+		enCampMa.setCoid(coid);
+		enCampMa.setCpna(cpna);
+		
+		log.info("cpid : {}",cpid);;
+		log.info("coid : {}",coid);
+		log.info("cpna : {}",cpna);
+		
 		return enCampMa;
 	}
 
@@ -397,12 +387,15 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		log.info("===== createContactLtMsg ===== ");
 
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
+		ContactLtId id = new ContactLtId();
 		String ContactLvalues[] = msg.split("::");
 
 		log.info("msg : {}", msg);
 		// 임시로 데이터 적재
-		enContactLt.setCpid(ContactLvalues[0]);
-		enContactLt.setCpsq(Integer.parseInt(ContactLvalues[1]));
+		
+		id.setCpid(ContactLvalues[0]); 
+		id.setCpsq(Integer.parseInt(ContactLvalues[1])); 
+		enContactLt.setId(id);
 		enContactLt.setCske(ContactLvalues[2]);// "customerkey"
 		enContactLt.setCsna(ContactLvalues[3]);// "카리나"
 		enContactLt.setFlag(ContactLvalues[4]);// "HO2"
@@ -494,11 +487,14 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		log.info("===== createContactLtMsgCallbot =====");
 
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
+		ContactLtId id = new ContactLtId();
 		String ContactLvalues[] = msg.split("::");
 
-		// 임시로 데이터 적재
-		enContactLt.setCpid(ContactLvalues[0]);
-		enContactLt.setCpsq(Integer.parseInt(ContactLvalues[1]));
+		log.info("msg : {}", msg);
+		
+		id.setCpid(ContactLvalues[0]); 
+		id.setCpsq(Integer.parseInt(ContactLvalues[1])); 
+		enContactLt.setId(id);
 		enContactLt.setCske(ContactLvalues[2]);// "customerkey"
 		enContactLt.setTn01(ContactLvalues[3]);// "tn01"
 		enContactLt.setTkda(ContactLvalues[4]);// "custid,111"
@@ -517,21 +513,6 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		return enContactLt;
 	}
 
-	@Override
-	public Entity_AppConfig createAppConfigMsg(String temp) {
-
-		Entity_AppConfig enAppConfig = new Entity_AppConfig();
-		String parts[] = temp.split("::");
-
-		enAppConfig.setApimClId("");
-		enAppConfig.setApimClSecret("");
-		enAppConfig.setGcClientId(parts[0]);
-		enAppConfig.setGcClientSecret(parts[1]);
-		enAppConfig.setSaslId("");
-		enAppConfig.setSaslPwd("");
-
-		return enAppConfig;
-	}
 
 	// **Insert
 	@Override
@@ -575,36 +556,6 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
         return repositoryContactLt.save(entityContactLt);
 	}
 
-	@Override
-	public Entity_AppConfig InsertAppConfig(Entity_AppConfig entityAppConfig) {
-		return repositoryAppConfig.save(entityAppConfig);
-	}
-
-	@Override
-	public Entity_MapCoid InsertMapCoId(Entity_MapCoid entityMapCoid) {
-		
-		try {
-			return repositoryMapCoId.save(entityMapCoid);
-		} catch (DataIntegrityViolationException ex) {
-			log.error("Data integrity violation while inserting entityMapCoid: {}", entityMapCoid, ex);
-		} catch (DataAccessException ex) {
-			log.error("Data access error while inserting entityMapCoid: {}", entityMapCoid, ex);
-		}
-		return null;
-	}
-
-	@Override
-	public Entity_MapCoid findMapCoidByCpid(String cpid) {
-
-		try {
-			Optional<Entity_MapCoid> optionalEntity = repositoryMapCoId.findByCpid(cpid);
-			return optionalEntity.orElse(null);
-		} catch (IncorrectResultSizeDataAccessException ex) {
-			log.error("Error retrieving Entity_MapCoid by cpid: {}", cpid, ex);
-
-			return null;
-		}
-	}
 
 	@Override
 	public Entity_CampMa findCampMaByCpid(String cpid) {
@@ -661,18 +612,6 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		}
 	}
 
-	@Override
-	public Entity_AppConfig findAppConfigByid(Long id) {
-		Optional<Entity_AppConfig> optionalEntity = repositoryAppConfig.findByid(id);
-		return optionalEntity.orElse(null);
-	}
-
-	@Override
-	public Entity_AppConfig getEntityById(Long id) {
-		Optional<Entity_AppConfig> optionalEntity = repositoryAppConfig.findByid(id);
-		return optionalEntity.orElse(null);
-	}
-
 	// 예외처리 커스터 마이징 부분.
 	@SuppressWarnings("serial")
 	public class MyCustomDataIntegrityException extends RuntimeException {
@@ -680,9 +619,6 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		public MyCustomDataIntegrityException(String message, Throwable cause) {
 	        super(message, cause);
 	    }
-		
-		
-		
 
 //	    private String tableName;
 //	    private String fieldName;

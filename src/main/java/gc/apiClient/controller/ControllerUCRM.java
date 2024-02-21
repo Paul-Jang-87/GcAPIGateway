@@ -65,12 +65,17 @@ public class ControllerUCRM extends ServiceJson {
 
 		case "firsttopic":// IF-CRM_001
 		case "secondtopic":// IF-CRM_002
-
-			cpid = ExtractValCrm12(msg);
-			log.info("cpid : {}", cpid);
 			
+//		{
+//		    "cpid":"e89ccef6-0328-6646-eacc-fa80c605fb99", or "97e6b32d-c266-4d33-92b4-01ddf33898cd"
+//			"coid": "22", or "23"
+//			"cpna":"카리나" or "장원영" 
+//		}
 
-			Entity_CampMa entityMa = serviceDb.createCampMaMsg(cpid);
+			row_result = ExtractValCrm12(msg); //cpid::coid::cpna
+			log.info("row_result : {}", row_result);
+			
+			Entity_CampMa entityMa = serviceDb.createCampMaMsg(row_result);
 			objectMapper = new ObjectMapper();
 
 			try {
@@ -91,7 +96,6 @@ public class ControllerUCRM extends ServiceJson {
 		case "forthtopic":// IF-CRM_004
 
 //			{
-//			"id":null,
 //			"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd",
 //			"cpsq":892012,
 //			"cske":"83b85d7ff68cb7f0b7b3c59212abefff",  or   "0b241f9bef1df80679bfba58582c8505"

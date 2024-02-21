@@ -37,16 +37,6 @@ public class ControllerUCRM extends ServiceJson {
 		this.serviceWeb = serviceWeb;
 	}
 
-	// APIM
-
-	// GC API
-
-//	@GetMapping("/gcapi/get/{topic}")
-//	public String getApiData(@PathVariable("topic") String tranId) {
-//
-//		String result = "";
-//		return result;
-//	}
 
 	@PostMapping("/gcapi/post/{topic}")
 	public Mono<Void> receiveMessage(@PathVariable("topic") String tranId, @RequestBody String msg) {
@@ -88,7 +78,14 @@ public class ControllerUCRM extends ServiceJson {
 				e.printStackTrace();
 			}
 
-//			serviceDb.InsertCampMa(entityMa);
+			//db인서트
+			try {
+				serviceDb.InsertCampMa(entityMa);
+			} catch (DataIntegrityViolationException ex) {
+				log.error("DataIntegrityViolationException 발생 : {}",ex.getMessage());
+	        } catch (DataAccessException ex) {
+	        	log.error("DataAccessException 발생 : {}",ex.getMessage());
+	        }
 
 			return Mono.empty();
 
@@ -98,12 +95,12 @@ public class ControllerUCRM extends ServiceJson {
 //			{
 //			"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd",
 //			"cpsq":892012,
-//			"cske":"83b85d7ff68cb7f0b7b3c59212abefff",  or   "0b241f9bef1df80679bfba58582c8505"
+//			"cske":"83b85d7ff68cb7f0b7b3c59212abefff",  or   "0b241f9bef1df80679bfba58582c8505",
 //			"tno1":"tno1",
 //			"tno2":"tno2",
 //			"tno3":"tno3",
 //			"csna":"카리나",
-//			"tkda":"C,custid,111", or  "A||gg||dfe||feq||ere||666"
+//			"tkda":"C,111,custid", or  "A||gg||dfe||feq||ere||666",
 //			"flag":"HO2"
 //			}
 			
@@ -136,7 +133,7 @@ public class ControllerUCRM extends ServiceJson {
 				// 두번째 인자 : path parameter
 				// 세번째 인자 : request body.
 				
-//				serviceWeb.PostContactLtApiRequet("contact", contactLtId, jsonString);
+				serviceWeb.PostContactLtApiRequet("contact", contactLtId, jsonString);
 
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
@@ -147,9 +144,9 @@ public class ControllerUCRM extends ServiceJson {
 				serviceDb.InsertContactLt(enContactLt);
 				
 			} catch (DataIntegrityViolationException ex) {
-				log.error("DataIntegrityViolationException 발생 : {}",ex);
+				log.error("DataIntegrityViolationException 발생 : {}",ex.getMessage());
 	        } catch (DataAccessException ex) {
-	        	log.error("DataAccessException 발생 : {}",ex);
+	        	log.error("DataAccessException 발생 : {}",ex.getMessage());
 	        }
 
 			return Mono.empty();
@@ -200,7 +197,16 @@ public class ControllerUCRM extends ServiceJson {
 						e.printStackTrace();
 					}
 
-//					serviceDb.InsertCampRt(entityCmRt);
+					
+					//db인서트
+					try {
+						serviceDb.InsertCampRt(entityCmRt);
+						
+					} catch (DataIntegrityViolationException ex) {
+						log.error("DataIntegrityViolationException 발생 : {}",ex.getMessage());
+			        } catch (DataAccessException ex) {
+			        	log.error("DataAccessException 발생 : {}",ex.getMessage());
+			        }
 
 				}
 

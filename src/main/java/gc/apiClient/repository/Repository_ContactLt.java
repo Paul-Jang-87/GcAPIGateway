@@ -13,10 +13,12 @@ import gc.apiClient.entity.Entity_ContactLt;
 
 @Repository
 public interface Repository_ContactLt extends CrudRepository<Entity_ContactLt,  ContactLtId> {
-
+    
     @Query("SELECT c FROM Entity_ContactLt c WHERE c.id.cpid = :cpidValue")
     List<Entity_ContactLt> findByCpid(@Param("cpidValue") String id);
 
     Optional<Entity_ContactLt> findByCske(String id);
+
+    Optional<Entity_ContactLt> findById(ContactLtId id);
 
 }

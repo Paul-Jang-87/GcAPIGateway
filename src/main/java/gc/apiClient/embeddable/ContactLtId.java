@@ -1,6 +1,7 @@
 package gc.apiClient.embeddable;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -11,7 +12,6 @@ public class ContactLtId implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
 
 	@Column(name = "CPID")
     private String cpid;
@@ -28,6 +28,21 @@ public class ContactLtId implements Serializable {
 
     public void setCpid(String cpid) {this.cpid = cpid;}
     public void setCpsq(int cpsq) {this.cpsq = cpsq;}
+    
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ContactLtId that = (ContactLtId) o;
+        return getCpsq() == that.getCpsq() &&
+                Objects.equals(getCpid(), that.getCpid());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCpid(), getCpsq());
+    }
 
 
 }

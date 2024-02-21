@@ -3,6 +3,8 @@ package gc.apiClient.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,16 +37,6 @@ public class ControllerCALLBOT extends ServiceJson {
 		this.serviceWeb = serviceWeb;
 	}
 
-	// APIM
-
-	// GC API
-
-//	@GetMapping("/apicallbot/get/{topic}")
-//	public String getApiData(@PathVariable("topic") String tranId) {
-//
-//		String result = "";
-//		return result;
-//	}
 
 	@PostMapping("/apicallbot/post/{topic}")
 	public Mono<Void> receiveMessage(@PathVariable("topic") String tranId, @RequestBody String msg) {
@@ -52,6 +44,7 @@ public class ControllerCALLBOT extends ServiceJson {
 		log.info("Class : ControllerCALLBOT - Method : receiveMessage");
 		String row_result = "";
 		String result = "";
+		String cpid = "";
 		String topic_id = tranId;
 		String endpoint = "/apicallbot/post/"+topic_id;
 		ObjectMapper objectMapper = null;
@@ -63,10 +56,10 @@ public class ControllerCALLBOT extends ServiceJson {
 		case "firsttopic":// IF-CRM_001
 		case "secondtopic":// IF-CRM_002
 
-			String cpid = ExtractValCallbot12(msg);
-			log.info("cpid : {}",cpid);
+			row_result = ExtractValCallbot12(msg);
+			log.info("cpid : {}",row_result);
 
-			Entity_CampMa entityMa = serviceDb.createCampMaMsg(cpid);
+			Entity_CampMa entityMa = serviceDb.createCampMaMsg(row_result);
 			objectMapper = new ObjectMapper();
 
 			try {
@@ -79,12 +72,31 @@ public class ControllerCALLBOT extends ServiceJson {
 				e.printStackTrace();
 			}
 
-//			serviceDb.InsertCampMa(entityMa);
+			//db인서트
+			try {
+				serviceDb.InsertCampMa(entityMa);
+			} catch (DataIntegrityViolationException ex) {
+				log.error("DataIntegrityViolationException 발생 : {}",ex.getMessage());
+	        } catch (DataAccessException ex) {
+	        	log.error("DataAccessException 발생 : {}",ex.getMessage());
+	        }
 
 			return Mono.empty();
 
 		case "thirdtopic":// IF-CRM_003
 		case "forthtopic":// IF-CRM_004
+			
+//			{
+//			"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd",
+//			"cpsq":892012,
+//			"cske":"83b85d7ff68cb7f0b7b3c59212abefff",  or   "0b241f9bef1df80679bfba58582c8505",
+//			"tno1":"tno1",
+//			"tno2":"tno2",
+//			"tno3":"tno3",
+//			"csna":"카리나",
+//			"tkda":"C,111,custid", or  "A||gg||dfe||feq||ere||666",
+//			"flag":"HO2"
+//			}
 
 			//카프카 컨슈머로 부터 cpid|cpsq|cske|tno1|tkda|flag가 들어가 jsonString을 전달 받음.  
 			
@@ -121,8 +133,15 @@ public class ControllerCALLBOT extends ServiceJson {
 				e.printStackTrace();
 			}
 
-			// DB인서트
-			serviceDb.InsertContactLt(enContactLt);
+			//db인서트
+			try {
+				serviceDb.InsertContactLt(enContactLt);
+				
+			} catch (DataIntegrityViolationException ex) {
+				log.error("DataIntegrityViolationException 발생 : {}",ex.getMessage());
+	        } catch (DataAccessException ex) {
+	        	log.error("DataAccessException 발생 : {}",ex.getMessage());
+	        }
 
 			return Mono.empty();
 
@@ -169,7 +188,15 @@ public class ControllerCALLBOT extends ServiceJson {
 					e.printStackTrace();
 				}
 
-//				serviceDb.InsertCampRt(entityCmRt);
+				//db인서트
+				try {
+					serviceDb.InsertCampRt(entityCmRt);
+					
+				} catch (DataIntegrityViolationException ex) {
+					log.error("DataIntegrityViolationException 발생 : {}",ex.getMessage());
+		        } catch (DataAccessException ex) {
+		        	log.error("DataAccessException 발생 : {}",ex.getMessage());
+		        }
 			}
 
 			return Mono.empty();

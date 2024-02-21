@@ -7,7 +7,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Optional;
 
-import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.stereotype.Service;
@@ -57,7 +56,6 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 
 		String parts[] = cpid.split("::");
 
-		int rlsq = 0;
 		int coid = 0;
 		String campid = parts[4];
 		int cpsq = 0;
@@ -68,7 +66,6 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		int dirt = 0;
 		int dict = 0;
 
-		log.info("rlsq: {}", rlsq);
 		log.info("campid: {}", campid);
 		log.info("cpsq: {}", cpsq);
 		log.info("contactLtId: {}", contactLtId);
@@ -115,19 +112,17 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		enCampMa = findCampMaByCpid(campid);
 		coid = enCampMa.getCoid();
 
-		id.setRlsq(rlsq); 
-		id.setCoid(coid); 
+		id.setContactLtId(contactLtId);
+		id.setContactId(contactId);
+		enCampRt.setCoid(coid); 
 		enCampRt.setId(id);
 		enCampRt.setCpid(campid);
 		enCampRt.setCpsq(cpsq);
-		enCampRt.setContactLtId(contactLtId);
-		enCampRt.setContactId(contactId);
 		enCampRt.setHubId(hubId);
 		enCampRt.setDidt(didt);
 		enCampRt.setDirt(dirt);
 		enCampRt.setDict(dict);
 
-		log.info("rlsq: {}", rlsq);
 		log.info("campid: {}", campid);
 		log.info("cpsq: {}", cpsq);
 		log.info("contactLtId: {}", contactLtId);
@@ -150,7 +145,6 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 
 		String parts[] = cpid.split("::");
 
-		int rlsq = 0;
 		String campid = parts[4];
 		int cpsq = 0;
 		String contactLtId = parts[1];
@@ -159,7 +153,7 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		String didt = "";
 		int dirt = 0;
 		int dict = 0;
-		int coid = 0;
+		String coid = "";
 
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
 		enContactLt = findContactLtByCske(contactId);
@@ -194,11 +188,10 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		Entity_CampMa enCampMa = new Entity_CampMa();
 
 		enCampMa = findCampMaByCpid(campid);
-		coid = enCampMa.getCoid();
+		coid = Integer.toString(enCampMa.getCoid()) ;
 		MappingHomeCenter mappingData = new MappingHomeCenter();
-		coid = Integer.parseInt(mappingData.getCentercodeById(Integer.toString(coid))); 
+		coid = mappingData.getCentercodeById(coid); 
 
-		enCampRt.setRlsq(rlsq);
 		enCampRt.setCpid(campid);
 		enCampRt.setCpsq(cpsq);
 		enCampRt.setContactLtId(contactLtId);
@@ -222,7 +215,6 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		
 		String parts[] = cpid.split("::");
 
-		int rlsq = 0;
 		String campid = parts[4];
 		int cpsq = 0;
 		String contactLtId = parts[1];
@@ -232,7 +224,6 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		int dirt = 0;
 		int dict = 0;
 
-		log.info("rlsq: {}", rlsq);
 		log.info("campid: {}", campid);
 		log.info("cpsq: {}", cpsq);
 		log.info("contactLtId: {}", contactLtId);
@@ -271,18 +262,17 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		String result = callbotapi.GetStatusApiRequet("campaign_stats", campid);
 		dict = ExtractDict(result);
 
-		id.setRlsq(rlsq);
+		
+		id.setContactLtId(contactLtId);
+		id.setContactId(contactId);
 		enCampRt.setId(id);
 		enCampRt.setCpid(campid);
 		enCampRt.setCpsq(cpsq);
-		enCampRt.setContactLtId(contactLtId);
-		enCampRt.setContactId(contactId);
 		enCampRt.setHubId(hubId);
 		enCampRt.setDidt(didt);
 		enCampRt.setDirt(dirt);
 		enCampRt.setDict(dict);
 
-		log.info("rlsq: {}", rlsq);
 		log.info("campid: {}", campid);
 		log.info("cpsq: {}", cpsq);
 		log.info("contactLtId: {}", contactLtId);
@@ -302,7 +292,6 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 
 		String parts[] = cpid.split("::");
 
-		int rlsq = 0;
 		String campid = parts[4];
 		int cpsq = 0;
 		String contactLtId = parts[1];
@@ -311,7 +300,7 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		String didt = "";
 		int dirt = 0;
 		int dict = 0;
-		int coid = 0;
+		String coid = "";
 
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
 		enContactLt = findContactLtByCske(contactId);
@@ -345,7 +334,6 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		dict = ExtractDict(result);
 
 		enCampRt.setCpid(campid);
-		enCampRt.setRlsq(rlsq);
 		enCampRt.setCpsq(cpsq);
 		enCampRt.setContactLtId(contactLtId);
 		enCampRt.setContactId(contactId);
@@ -392,7 +380,6 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 
 		log.info("msg : {}", msg);
 		// 임시로 데이터 적재
-		
 		id.setCpid(ContactLvalues[0]); 
 		id.setCpsq(Integer.parseInt(ContactLvalues[1])); 
 		enContactLt.setId(id);
@@ -518,42 +505,40 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 	@Override
 	public Entity_CampRt InsertCampRt(Entity_CampRt entity_CampRt) {
 
-		try {
-			return repositoryCampRt.save(entity_CampRt);
-		} catch (DataIntegrityViolationException ex) {
-			log.error("Data integrity violation while inserting entity_CampRt: {}", entity_CampRt, ex);
-		} catch (DataAccessException ex) {
-			log.error("Data access error while inserting entity_CampRt: {}", entity_CampRt, ex);
+		Optional<Entity_CampRt> existingEntity = repositoryCampRt.findById(entity_CampRt.getId());
+
+		if (existingEntity.isPresent()) {
+		    throw new DataIntegrityViolationException("Record with the given composite key already exists.");
 		}
 
-		return null;
+		return repositoryCampRt.save(entity_CampRt);
+		
 	}
 
 	@Override
 	public Entity_CampMa InsertCampMa(Entity_CampMa entityCampMa) {
 		
-		try {
-			return repositoryCampMa.save(entityCampMa);
-		} catch (DataIntegrityViolationException ex) {
-			log.error("Data integrity violation while inserting entityCampMa: {}", entityCampMa, ex);
-		} catch (DataAccessException ex) {
-			log.error("Data access error while inserting entityCampMa: {}", entityCampMa, ex);
-		}
-
-		return null;
-		
-	}
-
-	@Override
-	public Entity_ContactLt InsertContactLt(Entity_ContactLt entityContactLt) {
-		
-		Optional<Entity_ContactLt> existingEntity = repositoryContactLt.findByCske(entityContactLt.getCske());
+		Optional<Entity_CampMa> existingEntity = repositoryCampMa.findByCpid(entityCampMa.getCpid());
 
         if (existingEntity.isPresent()) {
             throw new DataIntegrityViolationException("Record with 'cpid' already exists.");
         }
 
-        return repositoryContactLt.save(entityContactLt);
+        return repositoryCampMa.save(entityCampMa);
+	}
+
+	@Override
+	public Entity_ContactLt InsertContactLt(Entity_ContactLt entityContactLt) {
+		
+		
+		Optional<Entity_ContactLt> existingEntity = repositoryContactLt.findById(entityContactLt.getId());
+
+		if (existingEntity.isPresent()) {
+		    throw new DataIntegrityViolationException("Record with the given composite key already exists.");
+		}
+
+		return repositoryContactLt.save(entityContactLt);
+
 	}
 
 

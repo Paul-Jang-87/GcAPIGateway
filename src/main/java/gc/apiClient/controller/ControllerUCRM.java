@@ -207,9 +207,7 @@ public class ControllerUCRM extends ServiceJson {
 			        } catch (DataAccessException ex) {
 			        	log.error("DataAccessException 발생 : {}",ex.getMessage());
 			        }
-
 				}
-
 			}
 
 

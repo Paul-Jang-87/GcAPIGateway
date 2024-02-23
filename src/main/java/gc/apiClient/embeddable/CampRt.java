@@ -9,21 +9,20 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class CampRt implements Serializable {
 
+	@Column(name = "RLSQ")
+	private int rlsq;
 	
-	@Column(name = "CONTACTID_LIST_ID")
-	private String contactLtId;
-	
-	@Column(name = "CONTACT_ID")
- 	private String contactid;
-	
+	@Column(name = "COID")
+    private int coid;
+
     public CampRt() {
     }
 
-    public String getContactLtId() {return contactLtId;}
-    public String getContactId() {return contactid;}
+    public int getRlsq() {return rlsq;}
+    public int getCoid() {return coid;}
 
-	public void setContactLtId(String contactLtId) {this.contactLtId = contactLtId;}
-	public void setContactId(String contactid) {this.contactid = contactid;}
+	public void setRlsq(int rlsq) {this.rlsq = rlsq;}
+	public void setCoid(int coid) {this.coid = coid;}
     
     
     @Override
@@ -31,13 +30,13 @@ public class CampRt implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CampRt that = (CampRt) o;
-        return getContactLtId() == that.getContactLtId() &&
-                Objects.equals(getContactId(), that.getContactId());
+        return getRlsq() == that.getRlsq() &&
+                Objects.equals(getCoid(), that.getCoid());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getContactId(), getContactLtId());
+        return Objects.hash(getCoid(), getRlsq());
     }
 
 

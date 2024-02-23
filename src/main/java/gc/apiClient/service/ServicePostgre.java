@@ -56,6 +56,7 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 
 		String parts[] = cpid.split("::");
 
+		int rlsq = 0;
 		int coid = 0;
 		String campid = parts[4];
 		int cpsq = 0;
@@ -66,6 +67,7 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		int dirt = 0;
 		int dict = 0;
 
+		log.info("rlsq: {}", rlsq);
 		log.info("campid: {}", campid);
 		log.info("cpsq: {}", cpsq);
 		log.info("contactLtId: {}", contactLtId);
@@ -111,11 +113,15 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 
 		enCampMa = findCampMaByCpid(campid);
 		coid = enCampMa.getCoid();
-
-		id.setContactLtId(contactLtId);
-		id.setContactId(contactId);
-		enCampRt.setCoid(coid); 
+		
+		rlsq = findCampRtMaxRlsq().intValue();
+		rlsq++;
+		
+		id.setRlsq(rlsq);
+		id.setCoid(coid);
 		enCampRt.setId(id);
+		enCampRt.setContactLtid(contactLtId);
+		enCampRt.setContactid(contactId);
 		enCampRt.setCpid(campid);
 		enCampRt.setCpsq(cpsq);
 		enCampRt.setHubId(hubId);
@@ -123,6 +129,8 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		enCampRt.setDirt(dirt);
 		enCampRt.setDict(dict);
 
+		log.info("rlsq: {}", rlsq);
+		log.info("coid: {}", coid);
 		log.info("campid: {}", campid);
 		log.info("cpsq: {}", cpsq);
 		log.info("contactLtId: {}", contactLtId);
@@ -131,7 +139,6 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		log.info("didt: {}", didt);
 		log.info("dirt: {}", dirt);
 		log.info("dict: {}", dict);
-		log.info("coid: {}", coid);
 
 		return enCampRt;
 	}
@@ -145,6 +152,8 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 
 		String parts[] = cpid.split("::");
 
+		int rlsq = 0;
+		String coid = "";
 		String campid = parts[4];
 		int cpsq = 0;
 		String contactLtId = parts[1];
@@ -153,7 +162,6 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		String didt = "";
 		int dirt = 0;
 		int dict = 0;
-		String coid = "";
 
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
 		enContactLt = findContactLtByCske(contactId);
@@ -191,7 +199,12 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		coid = Integer.toString(enCampMa.getCoid()) ;
 		MappingHomeCenter mappingData = new MappingHomeCenter();
 		coid = mappingData.getCentercodeById(coid); 
+		
+		rlsq = findCampRtMaxRlsq().intValue();
+		rlsq++;
 
+		enCampRt.setRlsq(rlsq);
+		enCampRt.setCoid(coid);
 		enCampRt.setCpid(campid);
 		enCampRt.setCpsq(cpsq);
 		enCampRt.setContactLtId(contactLtId);
@@ -200,7 +213,6 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		enCampRt.setDidt(didt);
 		enCampRt.setDirt(dirt);
 		enCampRt.setDict(dict);
-		enCampRt.setCoid(coid);
 
 		return enCampRt;
 	}
@@ -215,6 +227,8 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		
 		String parts[] = cpid.split("::");
 
+		int rlsq = 0;
+		int coid = 0;
 		String campid = parts[4];
 		int cpsq = 0;
 		String contactLtId = parts[1];
@@ -224,6 +238,8 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		int dirt = 0;
 		int dict = 0;
 
+		log.info("rlsq: {}", rlsq);
+		log.info("coid: {}", coid);
 		log.info("campid: {}", campid);
 		log.info("cpsq: {}", cpsq);
 		log.info("contactLtId: {}", contactLtId);
@@ -258,14 +274,23 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		Map<String, String> properties = customProperties.getProperties();
 		dirt = Integer.parseInt(properties.getOrDefault(parts[3], "6"));
 
-		ServiceWebClient callbotapi = new ServiceWebClient();
-		String result = callbotapi.GetStatusApiRequet("campaign_stats", campid);
+		ServiceWebClient crmapi1 = new ServiceWebClient();
+		String result = crmapi1.GetStatusApiRequet("campaign_stats", campid);
 		dict = ExtractDict(result);
 
+		Entity_CampMa enCampMa = new Entity_CampMa();
+
+		enCampMa = findCampMaByCpid(campid);
+		coid = enCampMa.getCoid();
 		
-		id.setContactLtId(contactLtId);
-		id.setContactId(contactId);
+		rlsq = findCampRtMaxRlsq().intValue();
+		rlsq++;
+		
+		id.setRlsq(rlsq);
+		id.setCoid(coid);
 		enCampRt.setId(id);
+		enCampRt.setContactLtid(contactLtId);
+		enCampRt.setContactid(contactId);
 		enCampRt.setCpid(campid);
 		enCampRt.setCpsq(cpsq);
 		enCampRt.setHubId(hubId);
@@ -273,6 +298,8 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		enCampRt.setDirt(dirt);
 		enCampRt.setDict(dict);
 
+		log.info("rlsq: {}", rlsq);
+		log.info("coid: {}", coid);
 		log.info("campid: {}", campid);
 		log.info("cpsq: {}", cpsq);
 		log.info("contactLtId: {}", contactLtId);
@@ -292,6 +319,8 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 
 		String parts[] = cpid.split("::");
 
+		int rlsq = 0;
+		String coid = "";
 		String campid = parts[4];
 		int cpsq = 0;
 		String contactLtId = parts[1];
@@ -300,7 +329,6 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		String didt = "";
 		int dirt = 0;
 		int dict = 0;
-		String coid = "";
 
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
 		enContactLt = findContactLtByCske(contactId);
@@ -329,19 +357,30 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 		Map<String, String> properties = customProperties.getProperties();
 		dirt = Integer.parseInt(properties.getOrDefault(parts[3], "6"));
 
-		ServiceWebClient callbotapi = new ServiceWebClient();
-		String result = callbotapi.GetStatusApiRequet("campaign_stats", campid);
+		ServiceWebClient crmapi1 = new ServiceWebClient();
+		String result = crmapi1.GetStatusApiRequet("campaign_stats", campid);
 		dict = ExtractDict(result);
 
-		enCampRt.setCpid(campid);
-		enCampRt.setCpsq(cpsq);
+		Entity_CampMa enCampMa = new Entity_CampMa();
+
+		enCampMa = findCampMaByCpid(campid);
+		coid = Integer.toString(enCampMa.getCoid()) ;
+		MappingHomeCenter mappingData = new MappingHomeCenter();
+		coid = mappingData.getCentercodeById(coid); 
+		
+		rlsq = findCampRtMaxRlsq().intValue();
+		rlsq++;
+
+		enCampRt.setRlsq(rlsq);
+		enCampRt.setCoid(coid);
 		enCampRt.setContactLtId(contactLtId);
 		enCampRt.setContactId(contactId);
+		enCampRt.setCpid(campid);
+		enCampRt.setCpsq(cpsq);
 		enCampRt.setHubId(hubId);
 		enCampRt.setDidt(didt);
 		enCampRt.setDirt(dirt);
 		enCampRt.setDict(dict);
-		enCampRt.setCoid(coid);
 
 		return enCampRt;
 	}
@@ -567,6 +606,21 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 			return null;
 		}
 	}
+	
+	
+	@Override
+	public Integer findCampRtMaxRlsq() {
+
+		try {
+			Optional<Integer> optionalEntity = repositoryCampRt.findMaxRlsq();
+			return optionalEntity.orElse(null);
+		} catch (IncorrectResultSizeDataAccessException ex) {
+			log.error("Error retrieving Entity_CampRt which has hightest value of 'rlsq' column: {}",ex);
+
+			return null;
+		}
+	}
+	
 
 	@Override
 	public List<Entity_ContactLt> findContactLtByCpid(String id) {

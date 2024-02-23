@@ -30,6 +30,7 @@ public interface InterfaceDB {
 	//select
 	Entity_CampMa findCampMaByCpid(String cpid);
 	Entity_CampRt findCampRtByCpid(String cpid);
+	Integer findCampRtMaxRlsq();
 	Entity_ContactLt findContactLtByCske(String cske);
 	List<Entity_ContactLt> findContactLtByCpid(String cpid);
 	

@@ -1,15 +1,9 @@
 package gc.apiClient.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-
 public class Entity_CampRtJson {
 	
+	private int rlsq;
+	private String coid;
 	private String cpid;
  	private int cpsq;
 	private String contactLtId;
@@ -18,14 +12,13 @@ public class Entity_CampRtJson {
  	private String didt;
 	private int dirt;
 	private int dict;
-	private String coid;
 	
 
 	public Entity_CampRtJson() {
 	}
 
 	public Entity_CampRtJson(String cpid,int cpsq, String contactLtId, String contactid, int hubid, String didt,
-			int dirt, int dict,String coid) {
+			int dirt, int dict,String coid,int rlsq) {
 		this.cpid = cpid;
 		this.cpsq = cpsq;
 		this.contactLtId = contactLtId;
@@ -63,5 +56,8 @@ public class Entity_CampRtJson {
 	
 	public String getCoid() { return coid; }
 	public void setCoid(String coid) {this.coid = coid;}
+	
+	public int getRlsq() { return rlsq; }
+	public void setRlsq(int rlsq) {this.rlsq = rlsq;}
 }
 	

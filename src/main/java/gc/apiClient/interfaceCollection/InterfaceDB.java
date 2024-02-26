@@ -8,6 +8,7 @@ import gc.apiClient.entity.Entity_CampRt;
 import gc.apiClient.entity.Entity_CampRtJson;
 import gc.apiClient.entity.Entity_ContactLt;
 import gc.apiClient.entity.Entity_ContactltMapper;
+import gc.apiClient.entity.Entity_MapCoId;
 
 public interface InterfaceDB {
 
@@ -30,6 +31,7 @@ public interface InterfaceDB {
 	//select
 	Entity_CampMa findCampMaByCpid(String cpid);
 	Entity_CampRt findCampRtByCpid(String cpid);
+	Entity_MapCoId findMapcoidByCpid(String cpid);
 	Integer findCampRtMaxRlsq();
 	Entity_ContactLt findContactLtByCske(String cske);
 	List<Entity_ContactLt> findContactLtByCpid(String cpid);

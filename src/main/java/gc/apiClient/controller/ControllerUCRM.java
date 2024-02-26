@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,24 +20,78 @@ import gc.apiClient.entity.Entity_CampRtJson;
 import gc.apiClient.entity.Entity_ContactLt;
 import gc.apiClient.entity.Entity_ContactltMapper;
 import gc.apiClient.interfaceCollection.InterfaceDB;
+import gc.apiClient.interfaceCollection.InterfaceJson;
 import gc.apiClient.interfaceCollection.InterfaceWebClient;
 import gc.apiClient.kafkamessages.MessageToProducer;
-import gc.apiClient.service.ServiceJson;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
 @RestController
 @Slf4j
-public class ControllerUCRM extends ServiceJson {
+public class ControllerUCRM {
 
 	private final InterfaceDB serviceDb;
+	private final InterfaceJson servicejson;
 	private final InterfaceWebClient serviceWeb;
 
-	public ControllerUCRM(InterfaceDB serviceDb, InterfaceWebClient serviceWeb) {
+	public ControllerUCRM(InterfaceDB serviceDb, InterfaceJson servicejson,InterfaceWebClient serviceWeb) {
 		this.serviceDb = serviceDb;
+		this.servicejson = servicejson;
 		this.serviceWeb = serviceWeb;
 	}
 
+	@GetMapping("/gcapi/post/{topic}")
+	public Mono<Void> receiveMessage1(@PathVariable("topic") String tranId) {
+
+		log.info("Class : ControllerUCRM - Method : receiveMessage");
+		String row_result = "";
+		String result = "";
+		String cpid = "";
+		String topic_id = tranId;
+		String endpoint = "/gcapi/post/" + topic_id;
+		ObjectMapper objectMapper = null;
+
+		log.info("topic_id : {}", topic_id);
+
+		switch (topic_id) {
+
+		case "firsttopic":// IF-CRM_001
+		case "secondtopic":// IF-CRM_002
+
+//		{
+//		    "cpid":"e89ccef6-0328-6646-eacc-fa80c605fb99", or "97e6b32d-c266-4d33-92b4-01ddf33898cd"
+//			"coid": "22", or "23"
+//			"cpna":"카리나" or "장원영" 
+//		}
+			result = serviceWeb.GetApiRequet("campaignId");
+
+			row_result = servicejson.ExtractValCrm12(result); // cpid::coid::cpna
+
+//			Entity_CampMa entityMa = serviceDb.createCampMaMsg(row_result);
+//			objectMapper = new ObjectMapper();
+//
+//			try {
+//				String jsonString = objectMapper.writeValueAsString(entityMa);
+//				log.info("jsonString : {}", jsonString);
+//				MessageToProducer producer = new MessageToProducer();
+//				producer.sendMsgToProducer(endpoint, jsonString);
+//
+//			} catch (JsonProcessingException e) {
+//				e.printStackTrace();
+//			}
+//
+//			// db인서트
+//			try {
+//				serviceDb.InsertCampMa(entityMa);
+//			} catch (DataIntegrityViolationException ex) {
+//				log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+//			} catch (DataAccessException ex) {
+//				log.error("DataAccessException 발생 : {}", ex.getMessage());
+//			}
+
+		}
+		return Mono.empty();
+	}
 
 	@PostMapping("/gcapi/post/{topic}")
 	public Mono<Void> receiveMessage(@PathVariable("topic") String tranId, @RequestBody String msg) {
@@ -46,31 +101,31 @@ public class ControllerUCRM extends ServiceJson {
 		String result = "";
 		String cpid = "";
 		String topic_id = tranId;
-		String endpoint = "/gcapi/post/"+topic_id;
+		String endpoint = "/gcapi/post/" + topic_id;
 		ObjectMapper objectMapper = null;
 
-		log.info("topic_id : {}",topic_id);		
+		log.info("topic_id : {}", topic_id);
 
 		switch (topic_id) {
 
 		case "firsttopic":// IF-CRM_001
 		case "secondtopic":// IF-CRM_002
-			
+
 //		{
 //		    "cpid":"e89ccef6-0328-6646-eacc-fa80c605fb99", or "97e6b32d-c266-4d33-92b4-01ddf33898cd"
 //			"coid": "22", or "23"
 //			"cpna":"카리나" or "장원영" 
 //		}
 
-			row_result = ExtractValCrm12(msg); //cpid::coid::cpna
+			row_result = servicejson.ExtractValCrm12(msg); // cpid::coid::cpna
 			log.info("row_result : {}", row_result);
-			
+
 			Entity_CampMa entityMa = serviceDb.createCampMaMsg(row_result);
 			objectMapper = new ObjectMapper();
 
 			try {
 				String jsonString = objectMapper.writeValueAsString(entityMa);
-				log.info("jsonString : {}" , jsonString);
+				log.info("jsonString : {}", jsonString);
 				MessageToProducer producer = new MessageToProducer();
 				producer.sendMsgToProducer(endpoint, jsonString);
 
@@ -78,14 +133,14 @@ public class ControllerUCRM extends ServiceJson {
 				e.printStackTrace();
 			}
 
-			//db인서트
+			// db인서트
 			try {
 				serviceDb.InsertCampMa(entityMa);
 			} catch (DataIntegrityViolationException ex) {
-				log.error("DataIntegrityViolationException 발생 : {}",ex.getMessage());
-	        } catch (DataAccessException ex) {
-	        	log.error("DataAccessException 발생 : {}",ex.getMessage());
-	        }
+				log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+			} catch (DataAccessException ex) {
+				log.error("DataAccessException 발생 : {}", ex.getMessage());
+			}
 
 			return Mono.empty();
 
@@ -103,22 +158,24 @@ public class ControllerUCRM extends ServiceJson {
 //			"tkda":"C,111,custid", or  "A||gg||dfe||feq||ere||666",
 //			"flag":"HO2"
 //			}
-			
+
 			// 간단한 테스트를 하기 위한 샘플 json 데이터. msg로 위 데이터가 들어 온 것으로 가정.
 
-			row_result = ExtractValCrm34(msg); // ContactLt 테이블에 들어갈 값들만 뽑아온다.cpid::cpsq::cske::csna::flag::tkda::tno1::tno2::tno3
+			row_result = servicejson.ExtractValCrm34(msg); // ContactLt 테이블에 들어갈 값들만
+												// 뽑아온다.cpid::cpsq::cske::csna::flag::tkda::tno1::tno2::tno3
 			Entity_ContactLt enContactLt = serviceDb.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
-																				// Entity_ContactLt 객체에 매핑시킨다.
+			// Entity_ContactLt 객체에 매핑시킨다.
 			cpid = enContactLt.getCpid();// 캠페인 아이디를 가져온다.
 
-			result = serviceWeb.GetCampaignsApiRequet("campaigns", cpid);// 캠페인 아이디로 
-																		 //"/api/v2/outbound/campaigns/{campaignId}"호출
-																		 // 후 결과 가져온다.
-			
-			String contactLtId = ExtractContactLtId(result); // 가져온 결과에서 contactlistid만 추출.
-			log.info("contactLtId : {}" , contactLtId);
+			result = serviceWeb.GetCampaignsApiRequet("campaigns", cpid);// 캠페인 아이디로
+																			// "/api/v2/outbound/campaigns/{campaignId}"호출
+																			// 후 결과 가져온다.
 
-			// "api/v2/outbound/contactlists/{contactListId}/contacts"로 request body값 보내기 위한 객체 
+			String contactLtId = servicejson.ExtractContactLtId(result); // 가져온 결과에서 contactlistid만 추출.
+			log.info("contactLtId : {}", contactLtId);
+
+			// "api/v2/outbound/contactlists/{contactListId}/contacts"로 request body값 보내기 위한
+			// 객체
 			// 객체 안의 속성들(키)은 변동 될 수 있음.
 			Entity_ContactltMapper contactltMapper = serviceDb.createContactLtGC(row_result);
 
@@ -126,36 +183,36 @@ public class ControllerUCRM extends ServiceJson {
 
 			try {
 				String jsonString = objectMapper.writeValueAsString(contactltMapper); // 매핑한 객체를 jsonString으로 변환.
-				log.info("JsonString Data : {}" , jsonString);
+				log.info("JsonString Data : {}", jsonString);
 
 				// "api/v2/outbound/contactlists/{contactListId}/contacts"로 보냄.
 				// 첫번째 인자 : 어떤 api를 호출 할 건지 지정.
 				// 두번째 인자 : path parameter
 				// 세번째 인자 : request body.
-				
+
 				serviceWeb.PostContactLtApiRequet("contact", contactLtId, jsonString);
 
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
 			}
 
-			//db인서트
+			// db인서트
 			try {
 				serviceDb.InsertContactLt(enContactLt);
-				
+
 			} catch (DataIntegrityViolationException ex) {
-				log.error("DataIntegrityViolationException 발생 : {}",ex.getMessage());
-	        } catch (DataAccessException ex) {
-	        	log.error("DataAccessException 발생 : {}",ex.getMessage());
-	        }
+				log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+			} catch (DataAccessException ex) {
+				log.error("DataAccessException 발생 : {}", ex.getMessage());
+			}
 
 			return Mono.empty();
 
 		case "fifthtopic":// IF-CRM_005
 		case "sixthtopic":// IF-CRM_006
 
-			result = ExtractVal56(msg);// request body로 들어돈 json에서 필요 데이터 추출
-			log.info("result : {}" , result); // campaignid, contactlistid 추출
+			result = servicejson.ExtractVal56(msg);// request body로 들어돈 json에서 필요 데이터 추출
+			log.info("result : {}", result); // campaignid, contactlistid 추출
 
 			String parts[] = result.split("::");
 
@@ -175,7 +232,7 @@ public class ControllerUCRM extends ServiceJson {
 																							// api bulk호출.
 
 			for (int i = 0; i < enContactList.size(); i++) {
-				String contactsresult = ExtractContacts56(result, i);
+				String contactsresult = servicejson.ExtractContacts56(result, i);
 				contactsresult = contactsresult + "::" + cpid;// contactid(고객키)::contactListId::didt::dirt::cpid
 				Entity_CampRt entityCmRt = serviceDb.createCampRtMsg(contactsresult);// db 인서트 하기 위한 entity.
 
@@ -183,12 +240,13 @@ public class ControllerUCRM extends ServiceJson {
 
 				if (dirt > 1) {// 2이상이면 에러.
 
-					Entity_CampRtJson toproducer = serviceDb.createCampRtJson(contactsresult);// producer로 보내기 위한 entity.
+					Entity_CampRtJson toproducer = serviceDb.createCampRtJson(contactsresult);// producer로 보내기 위한
+																								// entity.
 					objectMapper = new ObjectMapper();
 
 					try {
 						String jsonString = objectMapper.writeValueAsString(toproducer);
-						log.info("JsonString Data : {}번째 {}" ,i,jsonString);
+						log.info("JsonString Data : {}번째 {}", i, jsonString);
 
 						MessageToProducer producer = new MessageToProducer();
 						producer.sendMsgToProducer(endpoint, jsonString);
@@ -197,19 +255,17 @@ public class ControllerUCRM extends ServiceJson {
 						e.printStackTrace();
 					}
 
-					
-					//db인서트
+					// db인서트
 					try {
 						serviceDb.InsertCampRt(entityCmRt);
-						
+
 					} catch (DataIntegrityViolationException ex) {
-						log.error("DataIntegrityViolationException 발생 : {}",ex.getMessage());
-			        } catch (DataAccessException ex) {
-			        	log.error("DataAccessException 발생 : {}",ex.getMessage());
-			        }
+						log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+					} catch (DataAccessException ex) {
+						log.error("DataAccessException 발생 : {}", ex.getMessage());
+					}
 				}
 			}
-
 
 			return Mono.empty();
 

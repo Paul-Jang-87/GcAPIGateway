@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class ServiceJson implements InterfaceJson {
+	
+	
 
 	@Override
 	public String ExtractVal(String stringMsg) { // campMa 테이블의 3가지 속성(coid,cpid,cpna)에 넣기 위한 가공 작업
@@ -56,9 +58,9 @@ public class ServiceJson implements InterfaceJson {
 
 		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
-			result = jsonNode.path("cpid").asText();
-			result = result + "::" + jsonNode.path("coid").asText();
-			result = result + "::" + jsonNode.path("cpna").asText();
+			result = jsonNode.path("entities").path(0).path("id").asText();
+			result = result + "::" + jsonNode.path("entities").path(0).path("name").asText();
+			result = result + "::" + jsonNode.path("entities").path(0).path("name").asText();
 
 		} catch (JsonMappingException e) {
 			e.printStackTrace();

@@ -20,26 +20,31 @@ import gc.apiClient.entity.Entity_CampRt;
 import gc.apiClient.entity.Entity_CampRtJson;
 import gc.apiClient.entity.Entity_ContactLt;
 import gc.apiClient.entity.Entity_ContactltMapper;
+import gc.apiClient.entity.Entity_MapCoId;
 import gc.apiClient.interfaceCollection.InterfaceDB;
 import gc.apiClient.repository.Repository_CampMa;
 import gc.apiClient.repository.Repository_CampRt;
 import gc.apiClient.repository.Repository_ContactLt;
+import gc.apiClient.repository.Repository_MapCoId;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
-public class ServicePostgre extends ServiceJson implements InterfaceDB {
+public class ServicePostgre implements InterfaceDB {
 	// 검색 **Create **Insert **Select
 	private final Repository_CampRt repositoryCampRt;
 	private final Repository_CampMa repositoryCampMa;
+	private final Repository_MapCoId repositoryMapCoid;
 	private final Repository_ContactLt repositoryContactLt;
 	private final CustomProperties customProperties;
 
 	public ServicePostgre(Repository_CampRt repositoryCampRt, Repository_CampMa repositoryCampMa,
-			Repository_ContactLt repositoryContactLt, CustomProperties customProperties) {
+			Repository_ContactLt repositoryContactLt, Repository_MapCoId repositoryMapCoid,
+			CustomProperties customProperties) {
 
 		this.repositoryCampRt = repositoryCampRt;
 		this.repositoryCampMa = repositoryCampMa;
+		this.repositoryMapCoid = repositoryMapCoid;
 		this.repositoryContactLt = repositoryContactLt;
 		this.customProperties = customProperties;
 	}
@@ -107,7 +112,8 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 
 		ServiceWebClient crmapi1 = new ServiceWebClient();
 		String result = crmapi1.GetStatusApiRequet("campaign_stats", campid);
-		dict = ExtractDict(result);
+		ServiceJson sv = new ServiceJson();
+		dict = sv.ExtractDict(result);
 
 		Entity_CampMa enCampMa = new Entity_CampMa();
 
@@ -191,7 +197,8 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 
 		ServiceWebClient crmapi1 = new ServiceWebClient();
 		String result = crmapi1.GetStatusApiRequet("campaign_stats", campid);
-		dict = ExtractDict(result);
+		ServiceJson sv = new ServiceJson();
+		dict = sv.ExtractDict(result);
 
 		Entity_CampMa enCampMa = new Entity_CampMa();
 
@@ -276,7 +283,8 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 
 		ServiceWebClient crmapi1 = new ServiceWebClient();
 		String result = crmapi1.GetStatusApiRequet("campaign_stats", campid);
-		dict = ExtractDict(result);
+		ServiceJson sv = new ServiceJson();
+		dict = sv.ExtractDict(result);
 
 		Entity_CampMa enCampMa = new Entity_CampMa();
 
@@ -359,7 +367,8 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 
 		ServiceWebClient crmapi1 = new ServiceWebClient();
 		String result = crmapi1.GetStatusApiRequet("campaign_stats", campid);
-		dict = ExtractDict(result);
+		ServiceJson sv = new ServiceJson();
+		dict = sv.ExtractDict(result);
 
 		Entity_CampMa enCampMa = new Entity_CampMa();
 
@@ -602,6 +611,19 @@ public class ServicePostgre extends ServiceJson implements InterfaceDB {
 			return optionalEntity.orElse(null);
 		} catch (IncorrectResultSizeDataAccessException ex) {
 			log.error("Error retrieving Entity_CampRt by cpid: {}", cpid, ex);
+
+			return null;
+		}
+	}
+	
+	@Override
+	public Entity_MapCoId findMapcoidByCpid(String cpid) {
+
+		try {
+			Optional<Entity_MapCoId> optionalEntity = repositoryMapCoid.findByCpid(cpid);
+			return optionalEntity.orElse(null);
+		} catch (IncorrectResultSizeDataAccessException ex) {
+			log.error("Error retrieving Entity_MapCoId by cpid: {}", cpid, ex);
 
 			return null;
 		}

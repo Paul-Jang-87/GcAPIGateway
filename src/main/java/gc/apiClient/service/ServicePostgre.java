@@ -395,7 +395,7 @@ public class ServicePostgre implements InterfaceDB {
 	}
 
 	@Override
-	public Entity_CampMa createCampMaMsg(String msg) { //cpid::coid::cpna
+	public Entity_CampMa createCampMaMsg(String msg) { //cpid::cpna::coid
 
 		log.info("===== createCampMaMsg =====");
 
@@ -403,8 +403,8 @@ public class ServicePostgre implements InterfaceDB {
 		String parts[] = msg.split("::");
 		
 		String cpid = parts[0];
-		int coid = Integer.parseInt(parts[1]); 
-		String cpna = parts[2]; 
+		int coid = Integer.parseInt(parts[2]); 
+		String cpna = parts[1]; 
 		
 		enCampMa.setCpid(cpid);
 		enCampMa.setCoid(coid);

@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,7 +29,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @Slf4j
-public class ControllerCALLBOT extends ServiceJson {
+public class ControllerCALLBOT extends ServiceJson{
 
 	private final InterfaceDB serviceDb;
 	private final InterfaceWebClient serviceWeb;
@@ -35,6 +37,68 @@ public class ControllerCALLBOT extends ServiceJson {
 	public ControllerCALLBOT(InterfaceDB serviceDb, InterfaceWebClient serviceWeb) {
 		this.serviceDb = serviceDb;
 		this.serviceWeb = serviceWeb;
+	}
+	
+	@Scheduled(fixedRate = 30000) 
+	public void scheduledMethod() {
+		log.info("Scheduled CallBot method started...");
+		ReceiveMessage("firsttopic");
+	}
+	
+	@GetMapping("/apicallbot/get/{topic}")
+	public Mono<Void> ReceiveMessage(@PathVariable("topic") String tranId) {
+
+		log.info("Class : ControllerUCRM - Method : ReceiveMessage");
+		String row_result = "";
+		String result = "";
+		String cpid = "";
+		String topic_id = tranId;
+		String endpoint = "/apicallbot/post/" + topic_id;
+		ObjectMapper objectMapper = null;
+
+		log.info("topic_id : {}", topic_id);
+
+		switch (topic_id) {
+
+		case "firsttopic":// IF-CRM_001
+		case "secondtopic":// IF-CRM_002
+
+//		{
+//		    "cpid":"e89ccef6-0328-6646-eacc-fa80c605fb99", or "97e6b32d-c266-4d33-92b4-01ddf33898cd"
+//			"coid": "22", or "23"
+//			"cpna":"카리나" or "장원영" 
+//		}
+			result = serviceWeb.GetApiRequet("campaignId");
+
+			row_result = ExtractValCrm12(result); // cpid::cpna
+			cpid = row_result.split("::")[0];
+			int coid = serviceDb.findMapcoidByCpid(cpid).getCoid();
+			row_result = row_result + "::" + coid;
+
+			Entity_CampMa entityMa = serviceDb.createCampMaMsg(row_result);
+			objectMapper = new ObjectMapper();
+
+			try {
+				String jsonString = objectMapper.writeValueAsString(entityMa);
+				log.info("jsonString : {}", jsonString);
+				MessageToProducer producer = new MessageToProducer();
+				producer.sendMsgToProducer(endpoint, jsonString);
+
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
+
+//			 db인서트
+			try {
+				serviceDb.InsertCampMa(entityMa);
+			} catch (DataIntegrityViolationException ex) {
+				log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+			} catch (DataAccessException ex) {
+				log.error("DataAccessException 발생 : {}", ex.getMessage());
+			}
+
+		}
+		return Mono.empty();
 	}
 
 
@@ -52,36 +116,6 @@ public class ControllerCALLBOT extends ServiceJson {
 		log.info("topic_id : {}",topic_id);	
 		
 		switch (topic_id) {
-
-		case "firsttopic":// IF-CRM_001
-		case "secondtopic":// IF-CRM_002
-
-			row_result = ExtractValCallbot12(msg);
-			log.info("cpid : {}",row_result);
-
-			Entity_CampMa entityMa = serviceDb.createCampMaMsg(row_result);
-			objectMapper = new ObjectMapper();
-
-			try {
-				String jsonString = objectMapper.writeValueAsString(entityMa);
-				log.info("jsonString : {}",jsonString);
-				MessageToProducer producer = new MessageToProducer();
-				producer.sendMsgToProducer(endpoint, jsonString);
-
-			} catch (JsonProcessingException e) {
-				e.printStackTrace();
-			}
-
-			//db인서트
-			try {
-				serviceDb.InsertCampMa(entityMa);
-			} catch (DataIntegrityViolationException ex) {
-				log.error("DataIntegrityViolationException 발생 : {}",ex.getMessage());
-	        } catch (DataAccessException ex) {
-	        	log.error("DataAccessException 발생 : {}",ex.getMessage());
-	        }
-
-			return Mono.empty();
 
 		case "thirdtopic":// IF-CRM_003
 		case "forthtopic":// IF-CRM_004

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,16 +35,22 @@ public class ControllerUCRM {
 	private final InterfaceJson servicejson;
 	private final InterfaceWebClient serviceWeb;
 
-	public ControllerUCRM(InterfaceDB serviceDb, InterfaceJson servicejson,InterfaceWebClient serviceWeb) {
+	public ControllerUCRM(InterfaceDB serviceDb, InterfaceJson servicejson, InterfaceWebClient serviceWeb) {
 		this.serviceDb = serviceDb;
 		this.servicejson = servicejson;
 		this.serviceWeb = serviceWeb;
 	}
 
-	@GetMapping("/gcapi/post/{topic}")
-	public Mono<Void> receiveMessage1(@PathVariable("topic") String tranId) {
+	@Scheduled(fixedRate = 60000) 
+	public void scheduledMethod() {
+		log.info("Scheduled method started...");
+		ReceiveMessage("firsttopic");
+	}
 
-		log.info("Class : ControllerUCRM - Method : receiveMessage");
+	@GetMapping("/gcapi/get/{topic}")
+	public Mono<Void> ReceiveMessage(@PathVariable("topic") String tranId) {
+
+		log.info("Class : ControllerUCRM - Method : ReceiveMessage");
 		String row_result = "";
 		String result = "";
 		String cpid = "";
@@ -65,29 +72,32 @@ public class ControllerUCRM {
 //		}
 			result = serviceWeb.GetApiRequet("campaignId");
 
-			row_result = servicejson.ExtractValCrm12(result); // cpid::coid::cpna
+			row_result = servicejson.ExtractValCrm12(result); // cpid::cpna
+			cpid = row_result.split("::")[0];
+			int coid = serviceDb.findMapcoidByCpid(cpid).getCoid();
+			row_result = row_result + "::" + coid;
 
-//			Entity_CampMa entityMa = serviceDb.createCampMaMsg(row_result);
-//			objectMapper = new ObjectMapper();
-//
-//			try {
-//				String jsonString = objectMapper.writeValueAsString(entityMa);
-//				log.info("jsonString : {}", jsonString);
-//				MessageToProducer producer = new MessageToProducer();
-//				producer.sendMsgToProducer(endpoint, jsonString);
-//
-//			} catch (JsonProcessingException e) {
-//				e.printStackTrace();
-//			}
-//
-//			// db인서트
-//			try {
-//				serviceDb.InsertCampMa(entityMa);
-//			} catch (DataIntegrityViolationException ex) {
-//				log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
-//			} catch (DataAccessException ex) {
-//				log.error("DataAccessException 발생 : {}", ex.getMessage());
-//			}
+			Entity_CampMa entityMa = serviceDb.createCampMaMsg(row_result);
+			objectMapper = new ObjectMapper();
+
+			try {
+				String jsonString = objectMapper.writeValueAsString(entityMa);
+				log.info("jsonString : {}", jsonString);
+				MessageToProducer producer = new MessageToProducer();
+				producer.sendMsgToProducer(endpoint, jsonString);
+
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
+
+//			 db인서트
+			try {
+				serviceDb.InsertCampMa(entityMa);
+			} catch (DataIntegrityViolationException ex) {
+				log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+			} catch (DataAccessException ex) {
+				log.error("DataAccessException 발생 : {}", ex.getMessage());
+			}
 
 		}
 		return Mono.empty();
@@ -108,42 +118,6 @@ public class ControllerUCRM {
 
 		switch (topic_id) {
 
-		case "firsttopic":// IF-CRM_001
-		case "secondtopic":// IF-CRM_002
-
-//		{
-//		    "cpid":"e89ccef6-0328-6646-eacc-fa80c605fb99", or "97e6b32d-c266-4d33-92b4-01ddf33898cd"
-//			"coid": "22", or "23"
-//			"cpna":"카리나" or "장원영" 
-//		}
-
-			row_result = servicejson.ExtractValCrm12(msg); // cpid::coid::cpna
-			log.info("row_result : {}", row_result);
-
-			Entity_CampMa entityMa = serviceDb.createCampMaMsg(row_result);
-			objectMapper = new ObjectMapper();
-
-			try {
-				String jsonString = objectMapper.writeValueAsString(entityMa);
-				log.info("jsonString : {}", jsonString);
-				MessageToProducer producer = new MessageToProducer();
-				producer.sendMsgToProducer(endpoint, jsonString);
-
-			} catch (JsonProcessingException e) {
-				e.printStackTrace();
-			}
-
-			// db인서트
-			try {
-				serviceDb.InsertCampMa(entityMa);
-			} catch (DataIntegrityViolationException ex) {
-				log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
-			} catch (DataAccessException ex) {
-				log.error("DataAccessException 발생 : {}", ex.getMessage());
-			}
-
-			return Mono.empty();
-
 		case "thirdtopic":// IF-CRM_003
 		case "forthtopic":// IF-CRM_004
 
@@ -162,7 +136,7 @@ public class ControllerUCRM {
 			// 간단한 테스트를 하기 위한 샘플 json 데이터. msg로 위 데이터가 들어 온 것으로 가정.
 
 			row_result = servicejson.ExtractValCrm34(msg); // ContactLt 테이블에 들어갈 값들만
-												// 뽑아온다.cpid::cpsq::cske::csna::flag::tkda::tno1::tno2::tno3
+			// 뽑아온다.cpid::cpsq::cske::csna::flag::tkda::tno1::tno2::tno3
 			Entity_ContactLt enContactLt = serviceDb.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
 			// Entity_ContactLt 객체에 매핑시킨다.
 			cpid = enContactLt.getCpid();// 캠페인 아이디를 가져온다.

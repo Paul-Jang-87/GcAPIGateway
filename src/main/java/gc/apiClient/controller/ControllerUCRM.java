@@ -49,6 +49,8 @@ public class ControllerUCRM {
 
 	@GetMapping("/gcapi/get/{topic}")
 	public Mono<Void> ReceiveMessage(@PathVariable("topic") String tranId) {
+		
+		
 
 		log.info("Class : ControllerUCRM - Method : ReceiveMessage");
 		String row_result = "";
@@ -62,8 +64,8 @@ public class ControllerUCRM {
 
 		switch (topic_id) {
 
-		case "firsttopic":// IF-CRM_001
-		case "secondtopic":// IF-CRM_002
+		case "firsttopic" :// "from_clcc_cmpnma_h_message"
+		case "secondtopic":// "from_clcc_cmpnma_m_message"
 
 //		{
 //		    "cpid":"e89ccef6-0328-6646-eacc-fa80c605fb99", or "97e6b32d-c266-4d33-92b4-01ddf33898cd"
@@ -182,8 +184,8 @@ public class ControllerUCRM {
 
 			return Mono.empty();
 
-		case "fifthtopic":// IF-CRM_005
-		case "sixthtopic":// IF-CRM_006
+		case "fifthtopic":// "from_clcc_campnrs_h_message"
+		case "sixthtopic":// "from_clcc_campnrs_m_message"
 
 			result = servicejson.ExtractVal56(msg);// request body로 들어돈 json에서 필요 데이터 추출
 			log.info("result : {}", result); // campaignid, contactlistid 추출

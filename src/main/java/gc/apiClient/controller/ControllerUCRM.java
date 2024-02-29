@@ -41,11 +41,11 @@ public class ControllerUCRM {
 		this.serviceWeb = serviceWeb;
 	}
 
-	@Scheduled(fixedRate = 60000) 
-	public void scheduledMethod() {
-		log.info("Scheduled method started...");
-		ReceiveMessage("firsttopic");
-	}
+//	@Scheduled(fixedRate = 60000) 
+//	public void scheduledMethod() {
+//		log.info("Scheduled method started...");
+//		ReceiveMessage("firsttopic");
+//	}
 
 	@GetMapping("/gcapi/get/{topic}")
 	public Mono<Void> ReceiveMessage(@PathVariable("topic") String tranId) {

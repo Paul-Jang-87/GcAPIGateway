@@ -39,16 +39,16 @@ public class ControllerCALLBOT extends ServiceJson{
 		this.serviceWeb = serviceWeb;
 	}
 	
-	@Scheduled(fixedRate = 30000) 
-	public void scheduledMethod() {
-		log.info("Scheduled CallBot method started...");
-		ReceiveMessage("firsttopic");
-	}
+//	@Scheduled(fixedRate = 30000) 
+//	public void scheduledMethod() {
+//		log.info("Scheduled CallBot method started...");
+//		ReceiveMessage("firsttopic");
+//	}
 	
 	@GetMapping("/apicallbot/get/{topic}")
 	public Mono<Void> ReceiveMessage(@PathVariable("topic") String tranId) {
 
-		log.info("Class : ControllerUCRM - Method : ReceiveMessage");
+		log.info("Class : ControllerCALLBOT - Method : ReceiveMessage");
 		String row_result = "";
 		String result = "";
 		String cpid = "";
@@ -122,7 +122,7 @@ public class ControllerCALLBOT extends ServiceJson{
 			
 //			{
 //			"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd",
-//			"cpsq":892012,
+//			"cpsq":892012,2098471
 //			"cske":"83b85d7ff68cb7f0b7b3c59212abefff",  or   "0b241f9bef1df80679bfba58582c8505",
 //			"tno1":"tno1",
 //			"tno2":"tno2",

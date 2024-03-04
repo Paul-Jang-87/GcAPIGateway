@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,8 +48,6 @@ public class ControllerUCRM {
 
 	@GetMapping("/gcapi/get/{topic}")
 	public Mono<Void> ReceiveMessage(@PathVariable("topic") String tranId) {
-		
-		
 
 		log.info("Class : ControllerUCRM - Method : ReceiveMessage");
 		String row_result = "";
@@ -125,7 +122,7 @@ public class ControllerUCRM {
 
 //			{
 //			"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd",
-//			"cpsq":892012,
+//			"cpsq":892012,209481
 //			"cske":"83b85d7ff68cb7f0b7b3c59212abefff",  or   "0b241f9bef1df80679bfba58582c8505",
 //			"tno1":"tno1",
 //			"tno2":"tno2",

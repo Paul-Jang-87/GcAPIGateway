@@ -1,5 +1,8 @@
 package gc.apiClient.configDB;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -35,7 +38,9 @@ public class PostgresqlDataSourceConfig {
                 .dataSource(dataSource)
                 .packages("gc.apiClient.entity")
                 .persistenceUnit("postgresql")
+                .properties(hibernateProperties()) // Apply Hibernate properties here
                 .build();
+        
     }
 
     @Bean
@@ -51,4 +56,15 @@ public class PostgresqlDataSourceConfig {
             @Qualifier("postgresqlEntityManagerFactory") EntityManagerFactory entityManagerFactory) {
         return new JpaTransactionManager(entityManagerFactory);
     }
+    
+    
+    private Map<String, Object> hibernateProperties() {
+        Map<String, Object> hibernateProperties = new HashMap<>();
+        hibernateProperties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+        hibernateProperties.put("hibernate.hbm2ddl.auto", "update");
+        hibernateProperties.put("hibernate.show_sql", true);
+        hibernateProperties.put("hibernate.format_sql", true);
+        return hibernateProperties;
+    }
+    
 }

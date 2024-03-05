@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,11 +41,11 @@ public class ControllerUCRM {
 		this.serviceWeb = serviceWeb;
 	}
 
-//	@Scheduled(fixedRate = 60000) 
-//	public void scheduledMethod() {
-//		log.info("Scheduled method started...");
-//		ReceiveMessage("firsttopic");
-//	}
+	@Scheduled(fixedRate = 60000) 
+	public void scheduledMethod() {
+		log.info("Scheduled method started...");
+		ReceiveMessage("firsttopic");
+	}
 
 	@GetMapping("/gcapi/get/{topic}")
 	public Mono<Void> ReceiveMessage(@PathVariable("topic") String tranId) {

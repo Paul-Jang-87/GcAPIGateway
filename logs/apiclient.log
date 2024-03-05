@@ -1,0 +1,183 @@
+INFO  24-03-05 12:55:11[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 21820 (D:\GitWorkSpace\gcClient\gcClient\target\classes started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+INFO  24-03-05 12:55:11[main] [GcClientApplication:654] - No active profile set, falling back to 1 default profile: "default"
+INFO  24-03-05 12:55:13[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-03-05 12:55:13[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 256 ms. Found 4 JPA repository interfaces.
+INFO  24-03-05 12:55:15[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-03-05 12:55:15[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-03-05 12:55:15[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 3716 ms
+INFO  24-03-05 12:55:16[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: postgresql]
+INFO  24-03-05 12:55:16[main] [Version:44] - HHH000412: Hibernate ORM core version 6.4.1.Final
+INFO  24-03-05 12:55:16[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-03-05 12:55:17[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-03-05 12:55:17[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-03-05 12:55:17[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-03-05 12:55:17[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@6200b644
+INFO  24-03-05 12:55:17[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+WARN  24-03-05 12:55:17[main] [deprecation:153] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-03-05 12:55:19[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-03-05 12:55:19[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgresql'
+INFO  24-03-05 12:55:20[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-03-05 12:55:21[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-03-05 12:55:22[main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8083"]
+INFO  24-03-05 12:55:22[main] [TomcatWebServer:241] - Tomcat started on port 8083 (http) with context path ''
+INFO  24-03-05 12:55:22[main] [GcClientApplication:56] - Started GcClientApplication in 11.283 seconds (process running for 13.476)
+INFO  24-03-05 12:55:22[test-task-scheduling2] [ControllerUCRM:46] - Scheduled method started...
+INFO  24-03-05 12:55:22[test-task-scheduling1] [ControllerCALLBOT:44] - Scheduled CallBot method started...
+INFO  24-03-05 12:55:22[test-task-scheduling2] [ControllerUCRM:53] - Class : ControllerUCRM - Method : ReceiveMessage
+INFO  24-03-05 12:55:22[test-task-scheduling1] [ControllerCALLBOT:51] - Class : ControllerCALLBOT - Method : ReceiveMessage
+INFO  24-03-05 12:55:22[test-task-scheduling2] [ControllerUCRM:61] - topic_id : firsttopic
+INFO  24-03-05 12:55:22[test-task-scheduling1] [ControllerCALLBOT:59] - topic_id : firsttopic
+INFO  24-03-05 12:55:22[test-task-scheduling1] [ServiceWebClient:18] - ===== GetApiRequet =====
+INFO  24-03-05 12:55:22[test-task-scheduling2] [ServiceWebClient:18] - ===== GetApiRequet =====
+INFO  24-03-05 12:55:24[test-task-scheduling1] [ServiceJson:52] - ===== ExtractValCrm12 =====
+INFO  24-03-05 12:55:24[test-task-scheduling2] [ServiceJson:52] - ===== ExtractValCrm12 =====
+INFO  24-03-05 12:55:24[test-task-scheduling2] [ServiceJson:68] - result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연
+INFO  24-03-05 12:55:24[test-task-scheduling1] [ServiceJson:68] - result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연
+INFO  24-03-05 12:55:24[test-task-scheduling2] [ServicePostgre:400] - ===== createCampMaMsg =====
+INFO  24-03-05 12:55:24[test-task-scheduling1] [ServicePostgre:400] - ===== createCampMaMsg =====
+INFO  24-03-05 12:55:24[test-task-scheduling2] [ServicePostgre:413] - cpid : 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-05 12:55:24[test-task-scheduling1] [ServicePostgre:413] - cpid : 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-05 12:55:24[test-task-scheduling2] [ServicePostgre:414] - coid : 23
+INFO  24-03-05 12:55:24[test-task-scheduling1] [ServicePostgre:414] - coid : 23
+INFO  24-03-05 12:55:24[test-task-scheduling1] [ServicePostgre:415] - cpna : [hg] 테스트 시연
+INFO  24-03-05 12:55:24[test-task-scheduling2] [ServicePostgre:415] - cpna : [hg] 테스트 시연
+INFO  24-03-05 12:55:24[test-task-scheduling2] [ControllerUCRM:85] - jsonString : {"coid":23,"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","cpna":"[hg] 테스트 시연"}
+INFO  24-03-05 12:55:24[test-task-scheduling1] [ControllerCALLBOT:83] - jsonString : {"coid":23,"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","cpna":"[hg] 테스트 시연"}
+INFO  24-03-05 12:55:24[test-task-scheduling2] [MessageToProducer:14] - ===== sendMsgToProducer =====
+INFO  24-03-05 12:55:24[test-task-scheduling1] [MessageToProducer:14] - ===== sendMsgToProducer =====
+INFO  24-03-05 12:55:24[test-task-scheduling2] [MessageToProducer:20] - Endpoint : /gcapi/post/firsttopic
+INFO  24-03-05 12:55:24[test-task-scheduling1] [MessageToProducer:20] - Endpoint : /apicallbot/post/firsttopic
+ERROR 24-03-05 12:55:24[reactor-http-nio-12] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-05 12:55:24[reactor-http-nio-10] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+INFO  24-03-05 12:55:24[test-task-scheduling2] [MessageToProducer:33] - Entity as JSON: {"coid":23,"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","cpna":"[hg] 테스트 시연"}
+INFO  24-03-05 12:55:24[test-task-scheduling1] [MessageToProducer:33] - Entity as JSON: {"coid":23,"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","cpna":"[hg] 테스트 시연"}
+ERROR 24-03-05 12:55:24[test-task-scheduling1] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
+ERROR 24-03-05 12:55:24[test-task-scheduling2] [ControllerUCRM:97] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
+INFO  24-03-05 12:55:39[http-nio-8083-exec-2] [DispatcherServlet:532] - Initializing Servlet 'dispatcherServlet'
+INFO  24-03-05 12:55:39[http-nio-8083-exec-2] [DispatcherServlet:554] - Completed initialization in 3 ms
+INFO  24-03-05 12:55:40[http-nio-8083-exec-2] [ControllerUCRM:53] - Class : ControllerUCRM - Method : ReceiveMessage
+INFO  24-03-05 12:55:40[http-nio-8083-exec-2] [ControllerUCRM:61] - topic_id : firsttopic
+INFO  24-03-05 12:55:40[http-nio-8083-exec-2] [ServiceWebClient:18] - ===== GetApiRequet =====
+INFO  24-03-05 12:55:40[http-nio-8083-exec-2] [ServiceJson:52] - ===== ExtractValCrm12 =====
+INFO  24-03-05 12:55:40[http-nio-8083-exec-2] [ServiceJson:68] - result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연
+INFO  24-03-05 12:55:40[http-nio-8083-exec-2] [ServicePostgre:400] - ===== createCampMaMsg =====
+INFO  24-03-05 12:55:40[http-nio-8083-exec-2] [ServicePostgre:413] - cpid : 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-05 12:55:40[http-nio-8083-exec-2] [ServicePostgre:414] - coid : 23
+INFO  24-03-05 12:55:40[http-nio-8083-exec-2] [ServicePostgre:415] - cpna : [hg] 테스트 시연
+INFO  24-03-05 12:55:40[http-nio-8083-exec-2] [ControllerUCRM:85] - jsonString : {"coid":23,"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","cpna":"[hg] 테스트 시연"}
+INFO  24-03-05 12:55:40[http-nio-8083-exec-2] [MessageToProducer:14] - ===== sendMsgToProducer =====
+INFO  24-03-05 12:55:40[http-nio-8083-exec-2] [MessageToProducer:20] - Endpoint : /gcapi/post/firsttopic
+ERROR 24-03-05 12:55:40[reactor-http-nio-14] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+INFO  24-03-05 12:55:40[http-nio-8083-exec-2] [MessageToProducer:33] - Entity as JSON: {"coid":23,"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","cpna":"[hg] 테스트 시연"}
+ERROR 24-03-05 12:55:40[http-nio-8083-exec-2] [ControllerUCRM:97] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
+INFO  24-03-05 12:55:52[test-task-scheduling1] [ControllerCALLBOT:44] - Scheduled CallBot method started...
+INFO  24-03-05 12:55:52[test-task-scheduling1] [ControllerCALLBOT:51] - Class : ControllerCALLBOT - Method : ReceiveMessage
+INFO  24-03-05 12:55:52[test-task-scheduling1] [ControllerCALLBOT:59] - topic_id : firsttopic
+INFO  24-03-05 12:55:52[test-task-scheduling1] [ServiceWebClient:18] - ===== GetApiRequet =====
+INFO  24-03-05 12:55:52[test-task-scheduling1] [ServiceJson:52] - ===== ExtractValCrm12 =====
+INFO  24-03-05 12:55:52[test-task-scheduling1] [ServiceJson:68] - result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연
+INFO  24-03-05 12:55:52[test-task-scheduling1] [ServicePostgre:400] - ===== createCampMaMsg =====
+INFO  24-03-05 12:55:52[test-task-scheduling1] [ServicePostgre:413] - cpid : 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-05 12:55:52[test-task-scheduling1] [ServicePostgre:414] - coid : 23
+INFO  24-03-05 12:55:52[test-task-scheduling1] [ServicePostgre:415] - cpna : [hg] 테스트 시연
+INFO  24-03-05 12:55:52[test-task-scheduling1] [ControllerCALLBOT:83] - jsonString : {"coid":23,"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","cpna":"[hg] 테스트 시연"}
+INFO  24-03-05 12:55:52[test-task-scheduling1] [MessageToProducer:14] - ===== sendMsgToProducer =====
+INFO  24-03-05 12:55:52[test-task-scheduling1] [MessageToProducer:20] - Endpoint : /apicallbot/post/firsttopic
+ERROR 24-03-05 12:55:52[reactor-http-nio-16] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+INFO  24-03-05 12:55:52[test-task-scheduling1] [MessageToProducer:33] - Entity as JSON: {"coid":23,"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","cpna":"[hg] 테스트 시연"}
+ERROR 24-03-05 12:55:52[test-task-scheduling1] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
+INFO  24-03-05 12:56:22[test-task-scheduling4] [ControllerUCRM:46] - Scheduled method started...
+INFO  24-03-05 12:56:22[test-task-scheduling2] [ControllerCALLBOT:44] - Scheduled CallBot method started...
+INFO  24-03-05 12:56:22[test-task-scheduling4] [ControllerUCRM:53] - Class : ControllerUCRM - Method : ReceiveMessage
+INFO  24-03-05 12:56:22[test-task-scheduling2] [ControllerCALLBOT:51] - Class : ControllerCALLBOT - Method : ReceiveMessage
+INFO  24-03-05 12:56:22[test-task-scheduling2] [ControllerCALLBOT:59] - topic_id : firsttopic
+INFO  24-03-05 12:56:22[test-task-scheduling4] [ControllerUCRM:61] - topic_id : firsttopic
+INFO  24-03-05 12:56:22[test-task-scheduling4] [ServiceWebClient:18] - ===== GetApiRequet =====
+INFO  24-03-05 12:56:22[test-task-scheduling2] [ServiceWebClient:18] - ===== GetApiRequet =====
+INFO  24-03-05 12:56:22[test-task-scheduling4] [ServiceJson:52] - ===== ExtractValCrm12 =====
+INFO  24-03-05 12:56:22[test-task-scheduling4] [ServiceJson:68] - result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연
+INFO  24-03-05 12:56:22[test-task-scheduling2] [ServiceJson:52] - ===== ExtractValCrm12 =====
+INFO  24-03-05 12:56:22[test-task-scheduling4] [ServicePostgre:400] - ===== createCampMaMsg =====
+INFO  24-03-05 12:56:22[test-task-scheduling2] [ServiceJson:68] - result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연
+INFO  24-03-05 12:56:22[test-task-scheduling4] [ServicePostgre:413] - cpid : 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-05 12:56:22[test-task-scheduling4] [ServicePostgre:414] - coid : 23
+INFO  24-03-05 12:56:22[test-task-scheduling4] [ServicePostgre:415] - cpna : [hg] 테스트 시연
+INFO  24-03-05 12:56:22[test-task-scheduling4] [ControllerUCRM:85] - jsonString : {"coid":23,"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","cpna":"[hg] 테스트 시연"}
+INFO  24-03-05 12:56:22[test-task-scheduling4] [MessageToProducer:14] - ===== sendMsgToProducer =====
+INFO  24-03-05 12:56:22[test-task-scheduling4] [MessageToProducer:20] - Endpoint : /gcapi/post/firsttopic
+ERROR 24-03-05 12:56:22[reactor-http-nio-2] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+INFO  24-03-05 12:56:22[test-task-scheduling4] [MessageToProducer:33] - Entity as JSON: {"coid":23,"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","cpna":"[hg] 테스트 시연"}
+INFO  24-03-05 12:56:22[test-task-scheduling2] [ServicePostgre:400] - ===== createCampMaMsg =====
+INFO  24-03-05 12:56:22[test-task-scheduling2] [ServicePostgre:413] - cpid : 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-05 12:56:22[test-task-scheduling2] [ServicePostgre:414] - coid : 23
+INFO  24-03-05 12:56:22[test-task-scheduling2] [ServicePostgre:415] - cpna : [hg] 테스트 시연
+INFO  24-03-05 12:56:22[test-task-scheduling2] [ControllerCALLBOT:83] - jsonString : {"coid":23,"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","cpna":"[hg] 테스트 시연"}
+INFO  24-03-05 12:56:22[test-task-scheduling2] [MessageToProducer:14] - ===== sendMsgToProducer =====
+ERROR 24-03-05 12:56:22[test-task-scheduling4] [ControllerUCRM:97] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
+INFO  24-03-05 12:56:22[test-task-scheduling2] [MessageToProducer:20] - Endpoint : /apicallbot/post/firsttopic
+ERROR 24-03-05 12:56:22[reactor-http-nio-4] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+INFO  24-03-05 12:56:22[test-task-scheduling2] [MessageToProducer:33] - Entity as JSON: {"coid":23,"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","cpna":"[hg] 테스트 시연"}
+ERROR 24-03-05 12:56:22[test-task-scheduling2] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
+INFO  24-03-05 12:56:32[http-nio-8083-exec-3] [ControllerUCRM:53] - Class : ControllerUCRM - Method : ReceiveMessage
+INFO  24-03-05 12:56:32[http-nio-8083-exec-3] [ControllerUCRM:61] - topic_id : firsttopic
+INFO  24-03-05 12:56:32[http-nio-8083-exec-3] [ServiceWebClient:18] - ===== GetApiRequet =====
+INFO  24-03-05 12:56:33[http-nio-8083-exec-3] [ServiceJson:52] - ===== ExtractValCrm12 =====
+INFO  24-03-05 12:56:33[http-nio-8083-exec-3] [ServiceJson:68] - result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연
+INFO  24-03-05 12:56:33[http-nio-8083-exec-3] [ServicePostgre:400] - ===== createCampMaMsg =====
+INFO  24-03-05 12:56:33[http-nio-8083-exec-3] [ServicePostgre:413] - cpid : 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-05 12:56:33[http-nio-8083-exec-3] [ServicePostgre:414] - coid : 23
+INFO  24-03-05 12:56:33[http-nio-8083-exec-3] [ServicePostgre:415] - cpna : [hg] 테스트 시연
+INFO  24-03-05 12:56:33[http-nio-8083-exec-3] [ControllerUCRM:85] - jsonString : {"coid":23,"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","cpna":"[hg] 테스트 시연"}
+INFO  24-03-05 12:56:33[http-nio-8083-exec-3] [MessageToProducer:14] - ===== sendMsgToProducer =====
+INFO  24-03-05 12:56:33[http-nio-8083-exec-3] [MessageToProducer:20] - Endpoint : /gcapi/post/firsttopic
+ERROR 24-03-05 12:56:33[reactor-http-nio-6] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+INFO  24-03-05 12:56:33[http-nio-8083-exec-3] [MessageToProducer:33] - Entity as JSON: {"coid":23,"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","cpna":"[hg] 테스트 시연"}
+ERROR 24-03-05 12:56:33[http-nio-8083-exec-3] [ControllerUCRM:97] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
+INFO  24-03-05 12:56:52[test-task-scheduling1] [ControllerCALLBOT:44] - Scheduled CallBot method started...
+INFO  24-03-05 12:56:52[test-task-scheduling1] [ControllerCALLBOT:51] - Class : ControllerCALLBOT - Method : ReceiveMessage
+INFO  24-03-05 12:56:52[test-task-scheduling1] [ControllerCALLBOT:59] - topic_id : firsttopic
+INFO  24-03-05 12:56:52[test-task-scheduling1] [ServiceWebClient:18] - ===== GetApiRequet =====
+INFO  24-03-05 12:56:52[test-task-scheduling1] [ServiceJson:52] - ===== ExtractValCrm12 =====
+INFO  24-03-05 12:56:52[test-task-scheduling1] [ServiceJson:68] - result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연
+INFO  24-03-05 12:56:52[test-task-scheduling1] [ServicePostgre:400] - ===== createCampMaMsg =====
+INFO  24-03-05 12:56:52[test-task-scheduling1] [ServicePostgre:413] - cpid : 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-05 12:56:52[test-task-scheduling1] [ServicePostgre:414] - coid : 23
+INFO  24-03-05 12:56:52[test-task-scheduling1] [ServicePostgre:415] - cpna : [hg] 테스트 시연
+INFO  24-03-05 12:56:52[test-task-scheduling1] [ControllerCALLBOT:83] - jsonString : {"coid":23,"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","cpna":"[hg] 테스트 시연"}
+INFO  24-03-05 12:56:52[test-task-scheduling1] [MessageToProducer:14] - ===== sendMsgToProducer =====
+INFO  24-03-05 12:56:52[test-task-scheduling1] [MessageToProducer:20] - Endpoint : /apicallbot/post/firsttopic
+ERROR 24-03-05 12:56:52[reactor-http-nio-8] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+INFO  24-03-05 12:56:52[test-task-scheduling1] [MessageToProducer:33] - Entity as JSON: {"coid":23,"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","cpna":"[hg] 테스트 시연"}
+ERROR 24-03-05 12:56:52[test-task-scheduling1] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
+INFO  24-03-05 12:57:22[test-task-scheduling4] [ControllerUCRM:46] - Scheduled method started...
+INFO  24-03-05 12:57:22[test-task-scheduling4] [ControllerUCRM:53] - Class : ControllerUCRM - Method : ReceiveMessage
+INFO  24-03-05 12:57:22[test-task-scheduling4] [ControllerUCRM:61] - topic_id : firsttopic
+INFO  24-03-05 12:57:22[test-task-scheduling4] [ServiceWebClient:18] - ===== GetApiRequet =====
+INFO  24-03-05 12:57:22[test-task-scheduling5] [ControllerCALLBOT:44] - Scheduled CallBot method started...
+INFO  24-03-05 12:57:22[test-task-scheduling5] [ControllerCALLBOT:51] - Class : ControllerCALLBOT - Method : ReceiveMessage
+INFO  24-03-05 12:57:22[test-task-scheduling5] [ControllerCALLBOT:59] - topic_id : firsttopic
+INFO  24-03-05 12:57:22[test-task-scheduling5] [ServiceWebClient:18] - ===== GetApiRequet =====
+INFO  24-03-05 12:57:22[test-task-scheduling4] [ServiceJson:52] - ===== ExtractValCrm12 =====
+INFO  24-03-05 12:57:22[test-task-scheduling4] [ServiceJson:68] - result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연
+INFO  24-03-05 12:57:22[test-task-scheduling4] [ServicePostgre:400] - ===== createCampMaMsg =====
+INFO  24-03-05 12:57:22[test-task-scheduling4] [ServicePostgre:413] - cpid : 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-05 12:57:22[test-task-scheduling4] [ServicePostgre:414] - coid : 23
+INFO  24-03-05 12:57:22[test-task-scheduling4] [ServicePostgre:415] - cpna : [hg] 테스트 시연
+INFO  24-03-05 12:57:22[test-task-scheduling4] [ControllerUCRM:85] - jsonString : {"coid":23,"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","cpna":"[hg] 테스트 시연"}
+INFO  24-03-05 12:57:22[test-task-scheduling5] [ServiceJson:52] - ===== ExtractValCrm12 =====
+INFO  24-03-05 12:57:22[test-task-scheduling4] [MessageToProducer:14] - ===== sendMsgToProducer =====
+INFO  24-03-05 12:57:22[test-task-scheduling4] [MessageToProducer:20] - Endpoint : /gcapi/post/firsttopic
+INFO  24-03-05 12:57:22[test-task-scheduling5] [ServiceJson:68] - result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연
+ERROR 24-03-05 12:57:22[reactor-http-nio-10] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+INFO  24-03-05 12:57:22[test-task-scheduling5] [ServicePostgre:400] - ===== createCampMaMsg =====
+INFO  24-03-05 12:57:22[test-task-scheduling5] [ServicePostgre:413] - cpid : 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-05 12:57:22[test-task-scheduling4] [MessageToProducer:33] - Entity as JSON: {"coid":23,"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","cpna":"[hg] 테스트 시연"}
+INFO  24-03-05 12:57:22[test-task-scheduling5] [ServicePostgre:414] - coid : 23
+INFO  24-03-05 12:57:22[test-task-scheduling5] [ServicePostgre:415] - cpna : [hg] 테스트 시연
+INFO  24-03-05 12:57:22[test-task-scheduling5] [ControllerCALLBOT:83] - jsonString : {"coid":23,"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","cpna":"[hg] 테스트 시연"}
+INFO  24-03-05 12:57:22[test-task-scheduling5] [MessageToProducer:14] - ===== sendMsgToProducer =====
+INFO  24-03-05 12:57:22[test-task-scheduling5] [MessageToProducer:20] - Endpoint : /apicallbot/post/firsttopic
+ERROR 24-03-05 12:57:22[test-task-scheduling4] [ControllerUCRM:97] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
+ERROR 24-03-05 12:57:22[reactor-http-nio-12] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+INFO  24-03-05 12:57:22[test-task-scheduling5] [MessageToProducer:33] - Entity as JSON: {"coid":23,"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","cpna":"[hg] 테스트 시연"}
+ERROR 24-03-05 12:57:22[test-task-scheduling5] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.

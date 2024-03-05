@@ -1,0 +1,20 @@
+ERROR 24-03-05 12:55:24[reactor-http-nio-12] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-05 12:55:24[reactor-http-nio-10] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-05 12:55:24[test-task-scheduling1] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
+ERROR 24-03-05 12:55:24[test-task-scheduling2] [ControllerUCRM:97] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
+ERROR 24-03-05 12:55:40[reactor-http-nio-14] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-05 12:55:40[http-nio-8083-exec-2] [ControllerUCRM:97] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
+ERROR 24-03-05 12:55:52[reactor-http-nio-16] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-05 12:55:52[test-task-scheduling1] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
+ERROR 24-03-05 12:56:22[reactor-http-nio-2] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-05 12:56:22[test-task-scheduling4] [ControllerUCRM:97] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
+ERROR 24-03-05 12:56:22[reactor-http-nio-4] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-05 12:56:22[test-task-scheduling2] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
+ERROR 24-03-05 12:56:33[reactor-http-nio-6] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-05 12:56:33[http-nio-8083-exec-3] [ControllerUCRM:97] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
+ERROR 24-03-05 12:56:52[reactor-http-nio-8] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-05 12:56:52[test-task-scheduling1] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
+ERROR 24-03-05 12:57:22[reactor-http-nio-10] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-05 12:57:22[test-task-scheduling4] [ControllerUCRM:97] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
+ERROR 24-03-05 12:57:22[reactor-http-nio-12] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-05 12:57:22[test-task-scheduling5] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.

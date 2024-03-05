@@ -39,11 +39,11 @@ public class ControllerCALLBOT extends ServiceJson{
 		this.serviceWeb = serviceWeb;
 	}
 	
-//	@Scheduled(fixedRate = 30000) 
-//	public void scheduledMethod() {
-//		log.info("Scheduled CallBot method started...");
-//		ReceiveMessage("firsttopic");
-//	}
+	@Scheduled(fixedRate = 30000) 
+	public void scheduledMethod() {
+		log.info("Scheduled CallBot method started...");
+		ReceiveMessage("firsttopic");
+	}
 	
 	@GetMapping("/apicallbot/get/{topic}")
 	public Mono<Void> ReceiveMessage(@PathVariable("topic") String tranId) {

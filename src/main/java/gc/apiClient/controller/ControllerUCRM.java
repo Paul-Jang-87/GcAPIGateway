@@ -182,11 +182,10 @@ public class ControllerUCRM {
 
 			return Mono.empty();
 
-		case "fifthtopic":// "from_clcc_campnrs_h_message"
-		case "sixthtopic":// "from_clcc_campnrs_m_message"
+		case "fifthtopic":// "from_clcc_campnrs_h_message" // "from_clcc_campnrs_m_message"
 
 			result = servicejson.ExtractVal56(msg);// request body로 들어돈 json에서 필요 데이터 추출
-			log.info("result : {}", result); // campaignid, contactlistid 추출
+			log.info("result : {}", result); // campaignid, contactlistid, division 추출
 
 			String parts[] = result.split("::");
 
@@ -206,11 +205,38 @@ public class ControllerUCRM {
 																							// api bulk호출.
 
 			for (int i = 0; i < enContactList.size(); i++) {
+				
 				String contactsresult = servicejson.ExtractContacts56(result, i);
 				contactsresult = contactsresult + "::" + cpid;// contactid(고객키)::contactListId::didt::dirt::cpid
 				Entity_CampRt entityCmRt = serviceDb.createCampRtMsg(contactsresult);// db 인서트 하기 위한 entity.
-
+				
 				int dirt = entityCmRt.getDirt();// 응답코드
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				String contactId = entityCmRt.getContactid();
+				enContactLt = serviceDb.findContactLtByCske(contactId);
+				String tokendata = enContactLt.getTkda();
+				
+				if (tokendata.charAt(0) == 'C') {
+					//UCRM
+				} else {
+					//Callbot
+				}
+				
+				
+				
+				
+				
+				
+				
+				
 
 				if (dirt > 1) {// 2이상이면 에러.
 

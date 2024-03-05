@@ -117,6 +117,7 @@ public class ServiceJson implements InterfaceJson {
 			jsonNode = objectMapper.readTree(jsonResponse);
 			result = jsonNode.path("id").asText();
 			result += "::" + jsonNode.path("detail").path("eventBody").path("contactList").path("id").asText();
+			result += "::" + jsonNode.path("detail").path("eventBody").path("division").path("id").asText();
 
 		} catch (JsonMappingException e) {
 			e.printStackTrace();

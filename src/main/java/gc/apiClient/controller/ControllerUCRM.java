@@ -90,7 +90,7 @@ public class ControllerUCRM {
 				e.printStackTrace();
 			}
 
-//			 db인서트
+//			db인서트
 			try {
 				serviceDb.InsertCampMa(entityMa);
 			} catch (DataIntegrityViolationException ex) {

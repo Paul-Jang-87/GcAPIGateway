@@ -9,14 +9,14 @@
 	<property name="LOG_PATH" value="./logs" />
 	<!-- server log file path -->
 	<property name="SERVER_LOG_PATH" value="./logs/tomcat" />
+	<!-- catalina log file name -->
+	<property name="CATALINA_LOG_FILE_NAME" value="catalina" />
 	<!-- log file storage path -->
 	<property name="STORAGE_PATH" value="./logs/log_back" />
 	<!-- error_log file path -->
 	<property name="ERR_LOG_PATH" value="./logs/error" />
 	<!-- log file name -->
 	<property name="LOG_FILE_NAME" value="apiclient" />
-	<!-- catalina log file name -->
-	<property name="CATALINA_LOG_FILE_NAME" value="catalina" />
 	<!-- err log file name -->
 	<property name="ERR_LOG_FILE_NAME" value="apiclient_err" />
 	<!-- pattern -->

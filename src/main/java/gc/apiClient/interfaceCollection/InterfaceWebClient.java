@@ -11,6 +11,10 @@ public interface InterfaceWebClient {
 		return "b";
 	}
 
+	default String GetDivisionName(String endpoint, String divisionid) {/// api/v2/outbound/campaigns/{campaignId}/stats를
+		return "b";
+	}
+
 	default String GetCampaignsApiRequet(String endpoint, String campaignId) {// "/api/v2/outbound/campaigns/{campaignId}"
 		return "b";
 	}

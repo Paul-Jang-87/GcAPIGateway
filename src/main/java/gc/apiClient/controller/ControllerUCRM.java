@@ -21,30 +21,28 @@ import gc.apiClient.entity.Entity_CampRtJson;
 import gc.apiClient.entity.Entity_ContactLt;
 import gc.apiClient.entity.Entity_ContactltMapper;
 import gc.apiClient.interfaceCollection.InterfaceDB;
-import gc.apiClient.interfaceCollection.InterfaceJson;
 import gc.apiClient.interfaceCollection.InterfaceWebClient;
 import gc.apiClient.kafkamessages.MessageToProducer;
+import gc.apiClient.service.ServiceJson;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
 @RestController
 @Slf4j
-public class ControllerUCRM {
+public class ControllerUCRM extends ServiceJson{
 
 	private final InterfaceDB serviceDb;
-	private final InterfaceJson servicejson;
 	private final InterfaceWebClient serviceWeb;
 
-	public ControllerUCRM(InterfaceDB serviceDb, InterfaceJson servicejson, InterfaceWebClient serviceWeb) {
+	public ControllerUCRM(InterfaceDB serviceDb,  InterfaceWebClient serviceWeb) {
 		this.serviceDb = serviceDb;
-		this.servicejson = servicejson;
 		this.serviceWeb = serviceWeb;
 	}
 
-	@Scheduled(fixedRate = 60000) 
+	@Scheduled(fixedRate = 60000)
 	public void scheduledMethod() {
 		log.info("Scheduled method started...");
-		ReceiveMessage("firsttopic");
+		ReceiveMessage("campma");
 	}
 
 	@GetMapping("/gcapi/get/{topic}")
@@ -55,6 +53,7 @@ public class ControllerUCRM {
 		String result = "";
 		String cpid = "";
 		String topic_id = tranId;
+		String division = "";
 		String endpoint = "/gcapi/post/" + topic_id;
 		ObjectMapper objectMapper = null;
 
@@ -62,8 +61,7 @@ public class ControllerUCRM {
 
 		switch (topic_id) {
 
-		case "firsttopic" :// "from_clcc_cmpnma_h_message"
-		case "secondtopic":// "from_clcc_cmpnma_m_message"
+		case "campma":
 
 //		{
 //		    "cpid":"e89ccef6-0328-6646-eacc-fa80c605fb99", or "97e6b32d-c266-4d33-92b4-01ddf33898cd"
@@ -72,34 +70,50 @@ public class ControllerUCRM {
 //		}
 			result = serviceWeb.GetApiRequet("campaignId");
 
-			row_result = servicejson.ExtractValCrm12(result); // cpid::cpna
+			row_result = ExtractValCrm12(result); // cpid::cpna::division -> 캠페인아이디::캠페인명
 			cpid = row_result.split("::")[0];
-			int coid = serviceDb.findMapcoidByCpid(cpid).getCoid();
-			row_result = row_result + "::" + coid;
-
-			Entity_CampMa entityMa = serviceDb.createCampMaMsg(row_result);
-			objectMapper = new ObjectMapper();
-
-			try {
-				String jsonString = objectMapper.writeValueAsString(entityMa);
-				log.info("jsonString : {}", jsonString);
-				MessageToProducer producer = new MessageToProducer();
-				producer.sendMsgToProducer(endpoint, jsonString);
-
-			} catch (JsonProcessingException e) {
-				e.printStackTrace();
+			division = row_result.split("::")[2];
+			
+			if( serviceDb.findCampMaByCpid(cpid) !=null ) {// campma 테이블에 이미 있는 캠페인이라면 pass.
+				
+			}else{
+					//division에 따라 토픽 정해줌.
+					if ( division.equals("Home")||division.equals("홈") ) {
+						topic_id = "firsttopic";  //"from_clcc_cmpnma_h_message"
+					} else if( division.equals("Mobile") || division.equals("모바일")){
+						topic_id = "secondtopic"; //"from_clcc_cmpnma_m_message"
+					}else {
+						topic_id = "callbot"; //나중에 정하는 걸로.
+					}
+				
+				int coid = serviceDb.findMapcoidByCpid(cpid).getCoid();//cpid를 가지고 Mapcoid테이블에서 일치하는 레코드 검색 후 coid 추출.
+				row_result = row_result + "::" + coid;
+				
+				Entity_CampMa entityMa = serviceDb.createCampMaMsg(row_result);
+				objectMapper = new ObjectMapper();
+				
+				try {
+					String jsonString = objectMapper.writeValueAsString(entityMa);
+					log.info("jsonString : {}", jsonString);
+					MessageToProducer producer = new MessageToProducer();
+					endpoint = "/gcapi/post/" + topic_id;
+					producer.sendMsgToProducer(endpoint, jsonString);
+					
+				} catch (JsonProcessingException e) {
+					e.printStackTrace();
+				}
+				
+				//db인서트
+				try {
+					serviceDb.InsertCampMa(entityMa);
+				} catch (DataIntegrityViolationException ex) {
+					log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+				} catch (DataAccessException ex) {
+					log.error("DataAccessException 발생 : {}", ex.getMessage());
+				}
 			}
-
-//			db인서트
-			try {
-				serviceDb.InsertCampMa(entityMa);
-			} catch (DataIntegrityViolationException ex) {
-				log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
-			} catch (DataAccessException ex) {
-				log.error("DataAccessException 발생 : {}", ex.getMessage());
-			}
-
 		}
+		
 		return Mono.empty();
 	}
 
@@ -111,6 +125,7 @@ public class ControllerUCRM {
 		String result = "";
 		String cpid = "";
 		String topic_id = tranId;
+		String division = "";
 		String endpoint = "/gcapi/post/" + topic_id;
 		ObjectMapper objectMapper = null;
 
@@ -135,7 +150,7 @@ public class ControllerUCRM {
 
 			// 간단한 테스트를 하기 위한 샘플 json 데이터. msg로 위 데이터가 들어 온 것으로 가정.
 
-			row_result = servicejson.ExtractValCrm34(msg); // ContactLt 테이블에 들어갈 값들만
+			row_result = ExtractValCrm34(msg); // ContactLt 테이블에 들어갈 값들만
 			// 뽑아온다.cpid::cpsq::cske::csna::flag::tkda::tno1::tno2::tno3
 			Entity_ContactLt enContactLt = serviceDb.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
 			// Entity_ContactLt 객체에 매핑시킨다.
@@ -145,7 +160,7 @@ public class ControllerUCRM {
 																			// "/api/v2/outbound/campaigns/{campaignId}"호출
 																			// 후 결과 가져온다.
 
-			String contactLtId = servicejson.ExtractContactLtId(result); // 가져온 결과에서 contactlistid만 추출.
+			String contactLtId = ExtractContactLtId(result); // 가져온 결과에서 contactlistid만 추출.
 			log.info("contactLtId : {}", contactLtId);
 
 			// "api/v2/outbound/contactlists/{contactListId}/contacts"로 request body값 보내기 위한
@@ -182,15 +197,17 @@ public class ControllerUCRM {
 
 			return Mono.empty();
 
-		case "fifthtopic":// "from_clcc_campnrs_h_message" // "from_clcc_campnrs_m_message"
+		case "camprtMsg":// "from_clcc_campnrs_h_message" // "from_clcc_campnrs_m_message"
 
-			result = servicejson.ExtractVal56(msg);// request body로 들어돈 json에서 필요 데이터 추출
+			result = ExtractVal56(msg);// request body로 들어돈 json에서 필요 데이터 추출
 			log.info("result : {}", result); // campaignid, contactlistid, division 추출
 
 			String parts[] = result.split("::");
 
 			cpid = parts[0];
 			contactLtId = parts[1];
+			division = parts[2];
+			String divisionName = serviceWeb.GetDivisionName("divisionId", division);
 
 			List<Entity_ContactLt> enContactList = new ArrayList<Entity_ContactLt>();
 			enContactList = serviceDb.findContactLtByCpid(cpid);// campaignid가 같은 모든 엔티디들을 리스트로 가지고 온다.
@@ -198,50 +215,48 @@ public class ControllerUCRM {
 			List<String> values = new ArrayList<String>();// cske(고객키)들을 담을 list타입 변수.
 
 			for (int i = 0; i < enContactList.size(); i++) {
-				values.add(enContactList.get(i).getCske());
+				values.add(enContactList.get(i).getCske()); 
 			}
 
 			result = serviceWeb.PostContactLtApiBulk("contactList", contactLtId, values);// 고객키 list를 request body 담아서
-																							// api bulk호출.
 
 			for (int i = 0; i < enContactList.size(); i++) {
-				
-				String contactsresult = servicejson.ExtractContacts56(result, i);
+
+				String contactsresult = ExtractContacts56(result, i);
 				contactsresult = contactsresult + "::" + cpid;// contactid(고객키)::contactListId::didt::dirt::cpid
 				Entity_CampRt entityCmRt = serviceDb.createCampRtMsg(contactsresult);// db 인서트 하기 위한 entity.
-				
+
 				int dirt = entityCmRt.getDirt();// 응답코드
+				String tkda = entityCmRt.getTkda();// 토큰데이터
 				
-				
-				
-				
-				
-				
-				
-				
-				
-				String contactId = entityCmRt.getContactid();
-				enContactLt = serviceDb.findContactLtByCske(contactId);
-				String tokendata = enContactLt.getTkda();
-				
-				if (tokendata.charAt(0) == 'C') {
-					//UCRM
-				} else {
-					//Callbot
+				//UCRM,콜봇,APIM 구분
+				if (tkda.charAt(0) == 'C') {	// UCRM
+					//홈
+					if (divisionName.equals("Home") || divisionName.equals("홈")) { 
+						topic_id = "fifthtopic";//"from_clcc_campnrs_h_message";
+					//모바일
+					} else {
+						topic_id = "sixthtopic"; //"from_clcc_campnrs_m_message";
+					}
+					
+				} else if(tkda.charAt(0) == 'A'){//Callbot
+					//홈
+					if (divisionName.equals("Home") || divisionName.equals("홈")) { 
+						topic_id = "callbot(임시)"; //나중에 실제 토픽 명으로 교체해야함. 
+					//모바일
+					} else {
+						topic_id = "callbot(임시)"; //나중에 실제 토픽 명으로 교체해야함. 
+					}
+				} else {//APIM
+					
 				}
 				
-				
-				
-				
-				
-				
-				
-				
 
-				if (dirt > 1) {// 2이상이면 에러.
+				if ((tkda.charAt(0) == 'C') && (dirt == 1)) {//URM이면서 정상일 때.
 
+				} else {
 					Entity_CampRtJson toproducer = serviceDb.createCampRtJson(contactsresult);// producer로 보내기 위한
-																								// entity.
+					// entity.
 					objectMapper = new ObjectMapper();
 
 					try {
@@ -249,24 +264,27 @@ public class ControllerUCRM {
 						log.info("JsonString Data : {}번째 {}", i, jsonString);
 
 						MessageToProducer producer = new MessageToProducer();
+						endpoint = "/gcapi/post/" + topic_id;
 						producer.sendMsgToProducer(endpoint, jsonString);
 
 					} catch (JsonProcessingException e) {
 						e.printStackTrace();
 					}
-
-					// db인서트
-					try {
-						serviceDb.InsertCampRt(entityCmRt);
-
-					} catch (DataIntegrityViolationException ex) {
-						log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
-					} catch (DataAccessException ex) {
-						log.error("DataAccessException 발생 : {}", ex.getMessage());
-					}
 				}
+				
+				// db인서트
+				try {
+					serviceDb.InsertCampRt(entityCmRt);
+					
+				} catch (DataIntegrityViolationException ex) {
+					log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+				} catch (DataAccessException ex) {
+					log.error("DataAccessException 발생 : {}", ex.getMessage());
+				}
+				
 			}
 
+			
 			return Mono.empty();
 
 		default:

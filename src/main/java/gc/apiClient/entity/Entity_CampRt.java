@@ -35,6 +35,9 @@ public class Entity_CampRt {
 	@Column(name = "CAMP_ID")
 	private String cpid;
 	
+	@Column(name = "TKDA")
+	private String tkda;
+	
 	@Column(name = "DIDT")
  	private Date didt;
 	
@@ -44,13 +47,16 @@ public class Entity_CampRt {
 	}
 
 	public Entity_CampRt( String cpid,int cpsq, int hubid, Date didt,
-			int dirt, int dict, CampRt id,int coid,String contactLtId,String contactid) {
+			int dirt, int dict, CampRt id,int coid,String contactLtId,
+			String contactid,
+			 String tkda) {
 		this.cpid = cpid;
 		this.cpsq = cpsq;
 		this.hubid = hubid;
 		this.didt = didt;
 		this.dirt = dirt;
 		this.dict = dict;
+		this.tkda = tkda ;
 		this.contactLtId = contactLtId;
 		this.contactid = contactid;
 		this.id = new CampRt();
@@ -62,6 +68,7 @@ public class Entity_CampRt {
 	public int getHubId() {return hubid;}
 	public int getDirt() {return dirt;}
 	public int getDict() {return dict;}
+	public String getTkda() { return tkda; }
 	public String getCpid() { return cpid; }
 	public String getContactLtid() { return contactLtId; }
 	public String getContactid() { return contactid; }
@@ -77,6 +84,7 @@ public class Entity_CampRt {
 	public void setDidt(Date didt) {this.didt = didt;}
 	public void setDirt(int dirt) {this.dirt = dirt;}
 	public void setDict(int dict) {this.dict = dict;}
+	public void setTkda(String tkda) {this.tkda = tkda;}
 	
 	
 }

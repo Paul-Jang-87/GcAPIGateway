@@ -15,13 +15,9 @@ public interface InterfaceDB {
 	//table 별 매핑
 	Entity_CampRt createCampRtMsg(String cpid);
 	Entity_CampRtJson createCampRtJson(String cpid);
-	Entity_CampRt createCampRtMsgCallbot(String cpid);
-	Entity_CampRtJson createCampRtJsonCallbot(String cpid);
 	Entity_CampMa createCampMaMsg(String cpid);
 	Entity_ContactLt createContactLtMsg(String msg);
 	Entity_ContactltMapper createContactLtGC(String msg);
-	Entity_ContactltMapper createContactLCallbottGC(String msg);
-	Entity_ContactLt createContactLtMsgCallbot(String msg);
 	
 	//insert
 	Entity_CampRt InsertCampRt(Entity_CampRt entityCampRt);

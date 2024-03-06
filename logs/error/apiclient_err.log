@@ -1,86 +1,93 @@
-ERROR 24-03-05 14:21:43[reactor-http-nio-10] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 14:21:43[reactor-http-nio-12] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 14:21:43[test-task-scheduling2] [SqlExceptionHelper:150] - 오류: 중복된 키 값이 "campma_pkey" 고유 제약 조건을 위반함
+ERROR 24-03-06 10:49:38[reactor-http-nio-10] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-06 10:49:38[reactor-http-nio-13] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-06 10:49:38[test-task-scheduling2] [SqlExceptionHelper:150] - 오류: 중복된 키 값이 "campma_pkey" 고유 제약 조건을 위반함
   Detail: (cpid)=(97e6b32d-c266-4d33-92b4-01ddf33898cd) 키가 이미 있습니다.
-ERROR 24-03-05 14:21:43[test-task-scheduling2] [ControllerUCRM:97] - DataIntegrityViolationException 발생 : could not execute statement [오류: 중복된 키 값이 "campma_pkey" 고유 제약 조건을 위반함
+ERROR 24-03-06 10:49:38[test-task-scheduling2] [ControllerUCRM:102] - DataIntegrityViolationException 발생 : could not execute statement [오류: 중복된 키 값이 "campma_pkey" 고유 제약 조건을 위반함
   Detail: (cpid)=(97e6b32d-c266-4d33-92b4-01ddf33898cd) 키가 이미 있습니다.] [insert into CAMPMA (COID,CPNA,CPID) values (?,?,?)]; SQL [insert into CAMPMA (COID,CPNA,CPID) values (?,?,?)]; constraint [null]
-ERROR 24-03-05 14:22:09[reactor-http-nio-13] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 14:22:09[test-task-scheduling1] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:22:44[test-task-scheduling3] [ControllerUCRM:97] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:22:44[test-task-scheduling2] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:23:09[test-task-scheduling5] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:23:39[test-task-scheduling4] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:23:39[test-task-scheduling5] [ControllerUCRM:97] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:24:09[test-task-scheduling4] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:24:39[test-task-scheduling4] [ControllerUCRM:97] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:24:39[test-task-scheduling2] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:25:09[test-task-scheduling2] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:25:39[test-task-scheduling4] [ControllerUCRM:97] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:25:39[test-task-scheduling2] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:26:09[test-task-scheduling2] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:26:14[reactor-http-nio-8] [WebClientApp:125] - Error making API request: 415 Unsupported Media Type from POST https://api.apne2.pure.cloud/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts
-ERROR 24-03-05 14:26:39[test-task-scheduling2] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:26:39[test-task-scheduling4] [ControllerUCRM:97] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:26:54[reactor-http-nio-6] [WebClientApp:125] - Error making API request: 415 Unsupported Media Type from POST https://api.apne2.pure.cloud/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts
-ERROR 24-03-05 14:27:09[test-task-scheduling2] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:27:39[test-task-scheduling2] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:27:39[test-task-scheduling9] [ControllerUCRM:97] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:28:09[test-task-scheduling2] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:38:43[reactor-http-nio-10] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 14:38:43[reactor-http-nio-14] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 14:38:43[test-task-scheduling1] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:38:43[test-task-scheduling2] [ControllerUCRM:97] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:39:08[reactor-http-nio-15] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 14:39:08[test-task-scheduling1] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:39:38[reactor-http-nio-16] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 14:39:38[test-task-scheduling2] [ControllerUCRM:97] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:39:38[reactor-http-nio-2] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 14:39:38[test-task-scheduling3] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:40:08[reactor-http-nio-4] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 14:40:08[test-task-scheduling1] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:40:38[reactor-http-nio-6] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 14:40:38[test-task-scheduling2] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:40:38[reactor-http-nio-8] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 14:40:38[test-task-scheduling4] [ControllerUCRM:97] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:41:08[reactor-http-nio-10] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 14:41:08[test-task-scheduling6] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:41:38[reactor-http-nio-14] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 14:41:38[reactor-http-nio-15] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 14:41:38[test-task-scheduling1] [ControllerUCRM:97] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:41:38[test-task-scheduling6] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:42:08[reactor-http-nio-16] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 14:42:08[test-task-scheduling6] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:42:38[reactor-http-nio-2] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 14:42:38[test-task-scheduling4] [ControllerUCRM:97] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:42:38[reactor-http-nio-4] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 14:42:38[test-task-scheduling6] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:43:08[reactor-http-nio-6] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 14:43:08[test-task-scheduling6] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:43:38[reactor-http-nio-8] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 14:43:38[test-task-scheduling4] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:43:38[reactor-http-nio-10] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 14:43:38[test-task-scheduling3] [ControllerUCRM:97] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:43:55[reactor-http-nio-6] [WebClientApp:125] - Error making API request: 415 Unsupported Media Type from POST https://api.apne2.pure.cloud/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts
-ERROR 24-03-05 14:44:08[reactor-http-nio-14] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 14:44:08[test-task-scheduling4] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:44:38[reactor-http-nio-15] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 14:44:38[test-task-scheduling2] [ControllerUCRM:97] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:44:38[reactor-http-nio-16] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 14:44:38[test-task-scheduling4] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 14:45:08[reactor-http-nio-2] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 14:45:08[test-task-scheduling4] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 15:00:38[reactor-http-nio-9] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 15:00:38[reactor-http-nio-7] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 15:00:38[test-task-scheduling2] [ControllerUCRM:97] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 15:00:38[test-task-scheduling1] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 15:01:17[reactor-http-nio-12] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 15:01:17[reactor-http-nio-10] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 15:01:17[test-task-scheduling1] [ControllerUCRM:97] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 15:01:17[test-task-scheduling2] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 15:01:45[reactor-http-nio-14] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 15:01:45[test-task-scheduling1] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 15:01:53[reactor-http-nio-6] [WebClientApp:125] - Error making API request: 415 Unsupported Media Type from POST https://api.apne2.pure.cloud/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts
-ERROR 24-03-05 15:02:15[reactor-http-nio-15] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 15:02:15[reactor-http-nio-2] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-05 15:02:15[test-task-scheduling1] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-03-05 15:02:15[test-task-scheduling4] [ControllerUCRM:97] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
+ERROR 24-03-06 10:50:02[reactor-http-nio-15] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-06 10:50:02[test-task-scheduling1] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
+ERROR 24-03-06 11:10:38[reactor-http-nio-3] [MessageToProducer:28] - Error making API request: 404 Not Found from POST http://localhost:8081/apicallbot/post/firsttopic
+ERROR 24-03-06 11:11:05[reactor-http-nio-3] [MessageToProducer:28] - Error making API request: 404 Not Found from POST http://localhost:8081/apicallbot/post/firsttopic
+ERROR 24-03-06 11:11:05[test-task-scheduling1] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
+ERROR 24-03-06 11:11:35[reactor-http-nio-3] [MessageToProducer:28] - Error making API request: 404 Not Found from POST http://localhost:8081/apicallbot/post/firsttopic
+ERROR 24-03-06 11:11:35[test-task-scheduling2] [ControllerCALLBOT:95] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
+ERROR 24-03-06 12:09:31[test-task-scheduling1] [TaskUtils$LoggingErrorHandler:95] - Unexpected error occurred in scheduled task
+java.lang.NumberFormatException: For input string: "Home"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
+	at java.base/java.lang.Integer.parseInt(Integer.java:661)
+	at java.base/java.lang.Integer.parseInt(Integer.java:777)
+	at gc.apiClient.service.ServicePostgre.createCampMaMsg(ServicePostgre.java:244)
+	at gc.apiClient.controller.ControllerUCRM.ReceiveMessage(ControllerUCRM.java:94)
+	at gc.apiClient.controller.ControllerUCRM.scheduledMethod(ControllerUCRM.java:47)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)
+	at io.micrometer.observation.Observation.observe(Observation.java:499)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+ERROR 24-03-06 12:11:38[test-task-scheduling1] [TaskUtils$LoggingErrorHandler:95] - Unexpected error occurred in scheduled task
+java.lang.NumberFormatException: For input string: "Home"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
+	at java.base/java.lang.Integer.parseInt(Integer.java:661)
+	at java.base/java.lang.Integer.parseInt(Integer.java:777)
+	at gc.apiClient.service.ServicePostgre.createCampMaMsg(ServicePostgre.java:244)
+	at gc.apiClient.controller.ControllerUCRM.ReceiveMessage(ControllerUCRM.java:94)
+	at gc.apiClient.controller.ControllerUCRM.scheduledMethod(ControllerUCRM.java:47)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)
+	at io.micrometer.observation.Observation.observe(Observation.java:499)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+ERROR 24-03-06 12:12:36[test-task-scheduling1] [TaskUtils$LoggingErrorHandler:95] - Unexpected error occurred in scheduled task
+java.lang.NumberFormatException: For input string: "Home"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
+	at java.base/java.lang.Integer.parseInt(Integer.java:661)
+	at java.base/java.lang.Integer.parseInt(Integer.java:777)
+	at gc.apiClient.service.ServicePostgre.createCampMaMsg(ServicePostgre.java:244)
+	at gc.apiClient.controller.ControllerUCRM.ReceiveMessage(ControllerUCRM.java:94)
+	at gc.apiClient.controller.ControllerUCRM.scheduledMethod(ControllerUCRM.java:47)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)
+	at io.micrometer.observation.Observation.observe(Observation.java:499)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+ERROR 24-03-06 12:18:07[reactor-http-nio-2] [WebClientApp:125] - Error making API request: 415 Unsupported Media Type from POST https://api.apne2.pure.cloud/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts
+ERROR 24-03-06 12:19:08[reactor-http-nio-2] [WebClientApp:125] - Error making API request: 415 Unsupported Media Type from POST https://api.apne2.pure.cloud/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts
+ERROR 24-03-06 13:25:30[main] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 1 of constructor in gc.apiClient.controller.ControllerUCRM required a bean of type 'gc.apiClient.interfaceCollection.InterfaceJson' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'gc.apiClient.interfaceCollection.InterfaceJson' in your configuration.
+

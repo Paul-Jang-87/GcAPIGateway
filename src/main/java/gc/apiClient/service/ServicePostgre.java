@@ -63,32 +63,34 @@ public class ServicePostgre implements InterfaceDB {
 
 		int rlsq = 0;
 		int coid = 0;
-		String campid = parts[4];
 		int cpsq = 0;
-		String contactLtId = parts[1];
-		String contactId = parts[0];
 		int hubId = 0;
-		Date didt = null;
 		int dirt = 0;
 		int dict = 0;
+		String campid = parts[4];
+		String contactLtId = parts[1];
+		String contactId = parts[0];
+		String tkda = "";
+		Date didt = null;
 
 		log.info("rlsq: {}", rlsq);
-		log.info("campid: {}", campid);
+		log.info("coid: {}", coid);
 		log.info("cpsq: {}", cpsq);
-		log.info("contactLtId: {}", contactLtId);
-		log.info("contactId: {}", contactId);
 		log.info("hubid: {}", hubId);
-		log.info("didt: {}", didt);
 		log.info("dirt: {}", dirt);
 		log.info("dict: {}", dict);
-		log.info("coid: {}", coid);
+		log.info("campid: {}", campid);
+		log.info("contactLtId: {}", contactLtId);
+		log.info("contactId: {}", contactId);
+		log.info("tkda: {}", tkda);
+		log.info("didt: {}", didt);
 
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
 		enContactLt = findContactLtByCske(contactId);
 
-		String tokendata = enContactLt.getTkda();
+		tkda = enContactLt.getTkda();
 
-		if (tokendata.charAt(0) == 'C') {
+		if (tkda.charAt(0) == 'C') {
 			hubId = Integer.parseInt(enContactLt.getTkda().split(",")[1]);
 		} else {
 			cpsq = Integer.parseInt(enContactLt.getTkda().split("\\|\\|")[5]);
@@ -129,6 +131,7 @@ public class ServicePostgre implements InterfaceDB {
 		enCampRt.setContactLtid(contactLtId);
 		enCampRt.setContactid(contactId);
 		enCampRt.setCpid(campid);
+		enCampRt.setTkda(tkda);
 		enCampRt.setCpsq(cpsq);
 		enCampRt.setHubId(hubId);
 		enCampRt.setDidt(didt);
@@ -141,6 +144,7 @@ public class ServicePostgre implements InterfaceDB {
 		log.info("cpsq: {}", cpsq);
 		log.info("contactLtId: {}", contactLtId);
 		log.info("contactId: {}", contactId);
+		log.info("tkda: {}", tkda);
 		log.info("hubid: {}", hubId);
 		log.info("didt: {}", didt);
 		log.info("dirt: {}", dirt);
@@ -159,22 +163,23 @@ public class ServicePostgre implements InterfaceDB {
 		String parts[] = cpid.split("::");
 
 		int rlsq = 0;
-		String coid = "";
-		String campid = parts[4];
 		int cpsq = 0;
-		String contactLtId = parts[1];
-		String contactId = parts[0];
 		int hubId = 0;
-		String didt = "";
 		int dirt = 0;
 		int dict = 0;
+		String coid = "";
+		String tkda = "";
+		String campid = parts[4];
+		String contactLtId = parts[1];
+		String contactId = parts[0];
+		String didt = "";
 
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
 		enContactLt = findContactLtByCske(contactId);
 
-		String tokendata = enContactLt.getTkda();
+		tkda = enContactLt.getTkda();
 
-		if (tokendata.charAt(0) == 'C') {
+		if (tkda.charAt(0) == 'C') {
 			hubId = Integer.parseInt(enContactLt.getTkda().split(",")[1]);
 		} else {
 			cpsq = Integer.parseInt(enContactLt.getTkda().split("\\|\\|")[5]);
@@ -211,6 +216,7 @@ public class ServicePostgre implements InterfaceDB {
 		rlsq++;
 
 		enCampRt.setRlsq(rlsq);
+		enCampRt.setTkda(tkda);
 		enCampRt.setCoid(coid);
 		enCampRt.setCpid(campid);
 		enCampRt.setCpsq(cpsq);
@@ -224,178 +230,10 @@ public class ServicePostgre implements InterfaceDB {
 		return enCampRt;
 	}
 
-	@Override
-	public Entity_CampRt createCampRtMsgCallbot(String cpid) {// contactid(고객키)::contactListId::didt::dirt::cpid
 
-		log.info("===== createCampRtMsgCallbot =====");
-
-		Entity_CampRt enCampRt = new Entity_CampRt();
-		CampRt id = new CampRt();
-		
-		String parts[] = cpid.split("::");
-
-		int rlsq = 0;
-		int coid = 0;
-		String campid = parts[4];
-		int cpsq = 0;
-		String contactLtId = parts[1];
-		String contactId = parts[0];
-		int hubId = 0;
-		Date didt = null;
-		int dirt = 0;
-		int dict = 0;
-
-		log.info("rlsq: {}", rlsq);
-		log.info("coid: {}", coid);
-		log.info("campid: {}", campid);
-		log.info("cpsq: {}", cpsq);
-		log.info("contactLtId: {}", contactLtId);
-		log.info("contactId: {}", contactId);
-		log.info("hubid: {}", hubId);
-		log.info("didt: {}", didt);
-		log.info("dirt: {}", dirt);
-		log.info("dict: {}", dict);
-
-		Entity_ContactLt enContactLt = new Entity_ContactLt();
-		enContactLt = findContactLtByCske(contactId);
-
-		String tokendata = enContactLt.getTkda();
-		if (tokendata.charAt(0) == 'C') {
-			hubId = Integer.parseInt(enContactLt.getTkda().split(",")[1]);
-		} else {
-			cpsq = Integer.parseInt(enContactLt.getTkda().split("\\|\\|")[5]);
-		}
-
-		SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
-		try {
-			Date parsedDate = inputFormat.parse(parts[2]);
-
-			SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-			String formattedDateString = outputFormat.format(parsedDate);
-			Date formattedDate = outputFormat.parse(formattedDateString);
-			didt = formattedDate;
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-
-		Map<String, String> properties = customProperties.getProperties();
-		dirt = Integer.parseInt(properties.getOrDefault(parts[3], "6"));
-
-		ServiceWebClient crmapi1 = new ServiceWebClient();
-		String result = crmapi1.GetStatusApiRequet("campaign_stats", campid);
-		ServiceJson sv = new ServiceJson();
-		dict = sv.ExtractDict(result);
-
-		Entity_CampMa enCampMa = new Entity_CampMa();
-
-		enCampMa = findCampMaByCpid(campid);
-		coid = enCampMa.getCoid();
-		
-		rlsq = findCampRtMaxRlsq().intValue();
-		rlsq++;
-		
-		id.setRlsq(rlsq);
-		id.setCoid(coid);
-		enCampRt.setId(id);
-		enCampRt.setContactLtid(contactLtId);
-		enCampRt.setContactid(contactId);
-		enCampRt.setCpid(campid);
-		enCampRt.setCpsq(cpsq);
-		enCampRt.setHubId(hubId);
-		enCampRt.setDidt(didt);
-		enCampRt.setDirt(dirt);
-		enCampRt.setDict(dict);
-
-		log.info("rlsq: {}", rlsq);
-		log.info("coid: {}", coid);
-		log.info("campid: {}", campid);
-		log.info("cpsq: {}", cpsq);
-		log.info("contactLtId: {}", contactLtId);
-		log.info("contactId: {}", contactId);
-		log.info("hubid: {}", hubId);
-		log.info("didt: {}", didt);
-		log.info("dirt: {}", dirt);
-		log.info("dict: {}", dict);
-
-		return enCampRt;
-	}
 
 	@Override
-	public Entity_CampRtJson createCampRtJsonCallbot(String cpid) { // contactid(고객키)::contactListId::didt::dirt::cpid
-
-		Entity_CampRtJson enCampRt = new Entity_CampRtJson();
-
-		String parts[] = cpid.split("::");
-
-		int rlsq = 0;
-		String coid = "";
-		String campid = parts[4];
-		int cpsq = 0;
-		String contactLtId = parts[1];
-		String contactId = parts[0];
-		int hubId = 0;
-		String didt = "";
-		int dirt = 0;
-		int dict = 0;
-
-		Entity_ContactLt enContactLt = new Entity_ContactLt();
-		enContactLt = findContactLtByCske(contactId);
-
-		String tokendata = enContactLt.getTkda();
-
-		if (tokendata.charAt(0) == 'C') {
-			hubId = Integer.parseInt(enContactLt.getTkda().split(",")[1]);
-		} else {
-			cpsq = Integer.parseInt(enContactLt.getTkda().split("\\|\\|")[5]);
-		}
-
-		SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
-		try {
-			Date parsedDate = inputFormat.parse(parts[2]);
-
-			// Formatting the parsed date to the desired format
-			SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-			String formattedDateString = outputFormat.format(parsedDate);
-			didt = formattedDateString;
-
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-
-		Map<String, String> properties = customProperties.getProperties();
-		dirt = Integer.parseInt(properties.getOrDefault(parts[3], "6"));
-
-		ServiceWebClient crmapi1 = new ServiceWebClient();
-		String result = crmapi1.GetStatusApiRequet("campaign_stats", campid);
-		ServiceJson sv = new ServiceJson();
-		dict = sv.ExtractDict(result);
-
-		Entity_CampMa enCampMa = new Entity_CampMa();
-
-		enCampMa = findCampMaByCpid(campid);
-		coid = Integer.toString(enCampMa.getCoid()) ;
-		MappingHomeCenter mappingData = new MappingHomeCenter();
-		coid = mappingData.getCentercodeById(coid); 
-		
-		rlsq = findCampRtMaxRlsq().intValue();
-		rlsq++;
-
-		enCampRt.setRlsq(rlsq);
-		enCampRt.setCoid(coid);
-		enCampRt.setContactLtId(contactLtId);
-		enCampRt.setContactId(contactId);
-		enCampRt.setCpid(campid);
-		enCampRt.setCpsq(cpsq);
-		enCampRt.setHubId(hubId);
-		enCampRt.setDidt(didt);
-		enCampRt.setDirt(dirt);
-		enCampRt.setDict(dict);
-
-		return enCampRt;
-	}
-
-	@Override
-	public Entity_CampMa createCampMaMsg(String msg) { //cpid::cpna::coid
+	public Entity_CampMa createCampMaMsg(String msg) { //cpid::cpna::division::coid
 
 		log.info("===== createCampMaMsg =====");
 
@@ -403,7 +241,7 @@ public class ServicePostgre implements InterfaceDB {
 		String parts[] = msg.split("::");
 		
 		String cpid = parts[0];
-		int coid = Integer.parseInt(parts[2]); 
+		int coid = Integer.parseInt(parts[3]); 
 		String cpna = parts[1]; 
 		
 		enCampMa.setCpid(cpid);
@@ -486,67 +324,6 @@ public class ServicePostgre implements InterfaceDB {
 		return contactltMapper;
 	}
 
-	@Override
-	public Entity_ContactltMapper createContactLCallbottGC(String msg) {// cpid|cpsq|cske|tno1|tkda|flag
-
-		log.info("===== createContactLCallbottGC =====");
-
-		Entity_ContactltMapper contactltMapper = new Entity_ContactltMapper();
-		String values[] = msg.split("::");
-
-		log.info("msg : {}", msg);
-
-		// 임시로 데이터 적재
-		contactltMapper.setCpsq(values[1]); // CPSQ
-		contactltMapper.setCske(values[2]); // CSKE
-		contactltMapper.setCsna(""); // CSNA
-		contactltMapper.setTkda(values[4]); // TKDA
-		contactltMapper.setCpid(values[0]); // CPID
-		contactltMapper.setTno1(values[3]); // tno1
-		contactltMapper.setTno2(""); // tno2
-		contactltMapper.setTno3(""); // tno3
-		contactltMapper.setTmzo("Asia/Seoul (+09:00)"); // tmzo
-
-		log.info("cpsq : {}", values[1]);
-		log.info("cske : {}", values[2]);
-		log.info("tkda : {}", values[4]);
-		log.info("cpid : {}", values[0]);
-		log.info("tno1 : {}", values[3]);
-
-		return contactltMapper;
-	}
-
-	@Override
-	public Entity_ContactLt createContactLtMsgCallbot(String msg) {// cpid::cpsq::cske::tno1::tkda::flag
-
-		log.info("===== createContactLtMsgCallbot =====");
-
-		Entity_ContactLt enContactLt = new Entity_ContactLt();
-		ContactLtId id = new ContactLtId();
-		String ContactLvalues[] = msg.split("::");
-
-		log.info("msg : {}", msg);
-		
-		id.setCpid(ContactLvalues[0]); 
-		id.setCpsq(Integer.parseInt(ContactLvalues[1])); 
-		enContactLt.setId(id);
-		enContactLt.setCske(ContactLvalues[2]);// "customerkey"
-		enContactLt.setTn01(ContactLvalues[3]);// "tn01"
-		enContactLt.setTkda(ContactLvalues[4]);// "custid,111"
-		enContactLt.setFlag(ContactLvalues[5]);// "HO2"
-		enContactLt.setCsna("");// "카리나"
-		enContactLt.setTn02("");// "tn02"
-		enContactLt.setTn03("");// "tn03"
-
-		log.info("cpid : {}", ContactLvalues[0]);
-		log.info("cpsq : {}", ContactLvalues[1]);
-		log.info("cske : {}", ContactLvalues[2]);
-		log.info("tno1 : {}", ContactLvalues[3]);
-		log.info("tkda : {}", ContactLvalues[4]);
-		log.info("flag : {}", ContactLvalues[5]);
-
-		return enContactLt;
-	}
 
 
 	// **Insert

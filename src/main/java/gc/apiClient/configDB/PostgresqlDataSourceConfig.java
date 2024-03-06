@@ -25,7 +25,7 @@ import jakarta.persistence.EntityManagerFactory;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        basePackages = "gc.apiClient.repository",
+        basePackages = "gc.apiClient.repository", //참고할 repository
         entityManagerFactoryRef = "postgresqlEntityManagerFactory",
         transactionManagerRef = "postgresqlTransactionManager"
 )
@@ -36,7 +36,7 @@ public class PostgresqlDataSourceConfig {
             @Qualifier("postgresqlDataSource") DataSource dataSource) {
         return builder
                 .dataSource(dataSource)
-                .packages("gc.apiClient.entity")
+                .packages("gc.apiClient.entity")//참고할 엔티티
                 .persistenceUnit("postgresql")
                 .properties(hibernateProperties()) // Apply Hibernate properties here
                 .build();
@@ -46,7 +46,7 @@ public class PostgresqlDataSourceConfig {
     @Bean
     @Primary
     @ConfigurationProperties(prefix = "spring.datasource.postgresql")
-    public DataSource postgresqlDataSource() {
+    public DataSource postgresqlDataSource() {//DB커넥션을 위한 정보들. application.properties에서 확인할 수 있다. 
         return DataSourceBuilder.create().build();
     }
 
@@ -58,7 +58,7 @@ public class PostgresqlDataSourceConfig {
     }
     
     
-    private Map<String, Object> hibernateProperties() {
+    private Map<String, Object> hibernateProperties() {//Hibernate 옵션들 설정. 
         Map<String, Object> hibernateProperties = new HashMap<>();
         hibernateProperties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         hibernateProperties.put("hibernate.hbm2ddl.auto", "update");

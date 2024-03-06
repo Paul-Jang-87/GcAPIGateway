@@ -18,3 +18,6 @@
 '127.0.0.1 - - [24-03-05:14:39:34] "POST /gcapi/post/thirdtopic HTTP/1.1" 500 133 25860 ReactorNetty/1.1.15'
 '127.0.0.1 - - [24-03-05:14:43:55] "POST /gcapi/post/thirdtopic HTTP/1.1" 200 - 1685797 ReactorNetty/1.1.15'
 '127.0.0.1 - - [24-03-05:15:01:53] "POST /gcapi/post/thirdtopic HTTP/1.1" 200 - 1093290 ReactorNetty/1.1.15'
+'0:0:0:0:0:0:0:1 - - [24-03-06:12:18:07] "POST /gcapi/post/thirdtopic HTTP/1.1" 200 - 1984185 PostmanRuntime/7.36.1'
+'0:0:0:0:0:0:0:1 - - [24-03-06:12:19:08] "POST /gcapi/post/thirdtopic HTTP/1.1" 200 - 812909 PostmanRuntime/7.36.1'
+'0:0:0:0:0:0:0:1 - - [24-03-06:13:31:09] "POST /gcapi/post/camprtMsg HTTP/1.1" 200 - 8513108 PostmanRuntime/7.36.1'

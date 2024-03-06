@@ -19,13 +19,29 @@ public class ServiceWebClient implements InterfaceWebClient {
 		
 		String result = "";
 
-		WebClientApp webClientExample = new WebClientApp(endpoint, "GET");
-		result = webClientExample.makeApiRequest();
+		WebClientApp webClient = new WebClientApp(endpoint, "GET");
+		result = webClient.makeApiRequest();
 
 		System.out.println("GetApiRequet 요청 후 결과 값 : " + result);
 
 		return result;
 	}
+	
+	@Override
+	public String GetDivisionName(String endpoint, String divisionid) {// path parameter 'divisionid'
+
+		log.info("===== GetDivisionName =====");
+		
+		String result = "";
+
+		WebClientApp webClient = new WebClientApp(endpoint, "GET");
+		result = webClient.makeApiRequest(divisionid);
+
+		log.info("GetDivisionName 요청 후 결과 값 : {}",result);
+
+		return result;
+	}
+	
 
 	@Override
 	public String GetStatusApiRequet(String endpoint, String campaignId) {// path parameter 'campaignId'
@@ -34,8 +50,8 @@ public class ServiceWebClient implements InterfaceWebClient {
 		
 		String result = "";
 
-		WebClientApp webClientExample = new WebClientApp(endpoint, "GET");
-		result = webClientExample.makeApiRequest(campaignId);
+		WebClientApp webClient = new WebClientApp(endpoint, "GET");
+		result = webClient.makeApiRequest(campaignId);
 
 		log.info("GetStatusApiRequet 요청 후 결과 값 : {}",result);
 
@@ -49,8 +65,8 @@ public class ServiceWebClient implements InterfaceWebClient {
 		
 		String result = "";
 
-		WebClientApp webClientExample = new WebClientApp(endpoint, "GET");
-		result = webClientExample.makeApiRequest(campaignId);
+		WebClientApp webClient = new WebClientApp(endpoint, "GET");
+		result = webClient.makeApiRequest(campaignId);
 
 		log.info("GetStatusApiRequet 요청 후 결과 값 : {}",result);
 
@@ -65,8 +81,8 @@ public class ServiceWebClient implements InterfaceWebClient {
 		
 		String result = "";
 
-		WebClientApp webClientExample = new WebClientApp(endpoint, "GET");
-		result = webClientExample.makeApiRequest(contactListId, contactId);
+		WebClientApp webClient = new WebClientApp(endpoint, "GET");
+		result = webClient.makeApiRequest(contactListId, contactId);
 
 		System.out.println("GetContactLtApiRequet 요청 후 결과 값 : " + result);
 
@@ -80,8 +96,8 @@ public class ServiceWebClient implements InterfaceWebClient {
 		
 		String result = "";
 
-		WebClientApp webClientExample = new WebClientApp(endpoint, "POST");
-		result = webClientExample.makeApiRequest34(contactListId, msg);
+		WebClientApp webClient = new WebClientApp(endpoint, "POST");
+		result = webClient.makeApiRequest34(contactListId, msg);
 
 		log.info("PostContactLtApiRequet 요청 후 결과 값 : {}",result);
 		return result;
@@ -96,8 +112,8 @@ public class ServiceWebClient implements InterfaceWebClient {
 		
 		String result = "";
 
-		WebClientApp webClientExample = new WebClientApp(endpoint, "POST");
-		result = webClientExample.makeApiRequest56(contactListId, cskes);
+		WebClientApp webClient = new WebClientApp(endpoint, "POST");
+		result = webClient.makeApiRequest56(contactListId, cskes);
 
 		log.info("PostContactLtApiBulk 요청 후 결과 값 : {}",result);
 

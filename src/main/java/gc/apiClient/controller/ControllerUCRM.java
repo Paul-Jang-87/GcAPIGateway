@@ -2,6 +2,7 @@ package gc.apiClient.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -15,35 +16,41 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import gc.apiClient.customproperties.CustomProperties;
 import gc.apiClient.entity.Entity_CampMa;
 import gc.apiClient.entity.Entity_CampRt;
 import gc.apiClient.entity.Entity_CampRtJson;
 import gc.apiClient.entity.Entity_ContactLt;
 import gc.apiClient.entity.Entity_ContactltMapper;
+import gc.apiClient.entity.Entity_ToApim;
 import gc.apiClient.interfaceCollection.InterfaceDB;
 import gc.apiClient.interfaceCollection.InterfaceWebClient;
-import gc.apiClient.kafkamessages.MessageToProducer;
+import gc.apiClient.messages.MessageToApim;
+import gc.apiClient.messages.MessageToProducer;
 import gc.apiClient.service.ServiceJson;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
 @RestController
 @Slf4j
-public class ControllerUCRM extends ServiceJson{
+public class ControllerUCRM extends ServiceJson {
 
 	private final InterfaceDB serviceDb;
 	private final InterfaceWebClient serviceWeb;
+	private final CustomProperties customProperties;
+	private static List<Entity_ToApim> apimEntitylt = new ArrayList<Entity_ToApim>();
 
-	public ControllerUCRM(InterfaceDB serviceDb,  InterfaceWebClient serviceWeb) {
+	public ControllerUCRM(InterfaceDB serviceDb, InterfaceWebClient serviceWeb, CustomProperties customProperties) {
 		this.serviceDb = serviceDb;
 		this.serviceWeb = serviceWeb;
+		this.customProperties = customProperties;
 	}
 
-	@Scheduled(fixedRate = 60000)
-	public void scheduledMethod() {
-		log.info("Scheduled method started...");
-		ReceiveMessage("campma");
-	}
+//	@Scheduled(fixedRate = 60000)
+//	public void scheduledMethod() {
+//		log.info("Scheduled method started...");
+//		ReceiveMessage("campma");
+//	}
 
 	@GetMapping("/gcapi/get/{topic}")
 	public Mono<Void> ReceiveMessage(@PathVariable("topic") String tranId) {
@@ -73,37 +80,37 @@ public class ControllerUCRM extends ServiceJson{
 			row_result = ExtractValCrm12(result); // cpid::cpna::division -> 캠페인아이디::캠페인명
 			cpid = row_result.split("::")[0];
 			division = row_result.split("::")[2];
-			
-			if( serviceDb.findCampMaByCpid(cpid) !=null ) {// campma 테이블에 이미 있는 캠페인이라면 pass.
-				
-			}else{
-					//division에 따라 토픽 정해줌.
-					if ( division.equals("Home")||division.equals("홈") ) {
-						topic_id = "firsttopic";  //"from_clcc_cmpnma_h_message"
-					} else if( division.equals("Mobile") || division.equals("모바일")){
-						topic_id = "secondtopic"; //"from_clcc_cmpnma_m_message"
-					}else {
-						topic_id = "callbot"; //나중에 정하는 걸로.
-					}
-				
-				int coid = serviceDb.findMapcoidByCpid(cpid).getCoid();//cpid를 가지고 Mapcoid테이블에서 일치하는 레코드 검색 후 coid 추출.
+
+			if (serviceDb.findCampMaByCpid(cpid) != null) {// campma 테이블에 이미 있는 캠페인이라면 pass.
+
+			} else {
+				// division에 따라 토픽 정해줌.
+				if (division.equals("Home") || division.equals("홈")) {
+					topic_id = "firsttopic"; // "from_clcc_cmpnma_h_message"
+				} else if (division.equals("Mobile") || division.equals("모바일")) {
+					topic_id = "secondtopic"; // "from_clcc_cmpnma_m_message"
+				} else {
+					topic_id = "callbot"; // 나중에 정하는 걸로.
+				}
+
+				int coid = serviceDb.findMapcoidByCpid(cpid).getCoid();// cpid를 가지고 Mapcoid테이블에서 일치하는 레코드 검색 후 coid 추출.
 				row_result = row_result + "::" + coid;
-				
+
 				Entity_CampMa entityMa = serviceDb.createCampMaMsg(row_result);
 				objectMapper = new ObjectMapper();
-				
+
 				try {
 					String jsonString = objectMapper.writeValueAsString(entityMa);
 					log.info("jsonString : {}", jsonString);
 					MessageToProducer producer = new MessageToProducer();
 					endpoint = "/gcapi/post/" + topic_id;
 					producer.sendMsgToProducer(endpoint, jsonString);
-					
+
 				} catch (JsonProcessingException e) {
 					e.printStackTrace();
 				}
-				
-				//db인서트
+
+				// db인서트
 				try {
 					serviceDb.InsertCampMa(entityMa);
 				} catch (DataIntegrityViolationException ex) {
@@ -113,7 +120,7 @@ public class ControllerUCRM extends ServiceJson{
 				}
 			}
 		}
-		
+
 		return Mono.empty();
 	}
 
@@ -197,7 +204,7 @@ public class ControllerUCRM extends ServiceJson{
 
 			return Mono.empty();
 
-		case "camprtMsg":// "from_clcc_campnrs_h_message" // "from_clcc_campnrs_m_message"
+		case "camprtMsg":// "from_clcc_campnrs_h_message" , "from_clcc_campnrs_m_message"
 
 			result = ExtractVal56(msg);// request body로 들어돈 json에서 필요 데이터 추출
 			log.info("result : {}", result); // campaignid, contactlistid, division 추출
@@ -207,7 +214,10 @@ public class ControllerUCRM extends ServiceJson{
 			cpid = parts[0];
 			contactLtId = parts[1];
 			division = parts[2];
-			String divisionName = serviceWeb.GetDivisionName("divisionId", division);
+
+			Map<String, String> properties = customProperties.getDivision();
+			String divisionName = properties.getOrDefault(division, "couldn't find division");
+			log.info("division : {}", divisionName);
 
 			List<Entity_ContactLt> enContactList = new ArrayList<Entity_ContactLt>();
 			enContactList = serviceDb.findContactLtByCpid(cpid);// campaignid가 같은 모든 엔티디들을 리스트로 가지고 온다.
@@ -215,76 +225,119 @@ public class ControllerUCRM extends ServiceJson{
 			List<String> values = new ArrayList<String>();// cske(고객키)들을 담을 list타입 변수.
 
 			for (int i = 0; i < enContactList.size(); i++) {
-				values.add(enContactList.get(i).getCske()); 
+				values.add(enContactList.get(i).getCske());
 			}
 
 			result = serviceWeb.PostContactLtApiBulk("contactList", contactLtId, values);// 고객키 list를 request body 담아서
+																							// bulk로 호출.
 
-			for (int i = 0; i < enContactList.size(); i++) {
+			String contactsresult = ExtractContacts56(result, 0);
+			contactsresult = contactsresult + "::" + cpid;// contactid(고객키)::contactListId::didt::dirt::cpid
+			Entity_CampRt entityCmRt = serviceDb.createCampRtMsg(contactsresult);// db 인서트 하기 위한 entity.
 
-				String contactsresult = ExtractContacts56(result, i);
-				contactsresult = contactsresult + "::" + cpid;// contactid(고객키)::contactListId::didt::dirt::cpid
-				Entity_CampRt entityCmRt = serviceDb.createCampRtMsg(contactsresult);// db 인서트 하기 위한 entity.
+			int dirt = entityCmRt.getDirt();// 응답코드
+			String tkda = entityCmRt.getTkda();// 토큰데이터
 
-				int dirt = entityCmRt.getDirt();// 응답코드
-				String tkda = entityCmRt.getTkda();// 토큰데이터
-				
-				//UCRM,콜봇,APIM 구분
-				if (tkda.charAt(0) == 'C') {	// UCRM
-					//홈
-					if (divisionName.equals("Home") || divisionName.equals("홈")) { 
-						topic_id = "fifthtopic";//"from_clcc_campnrs_h_message";
-					//모바일
-					} else {
-						topic_id = "sixthtopic"; //"from_clcc_campnrs_m_message";
+			switch (tkda.charAt(0)) {
+			case 'C':
+			case 'A':
+
+				for (int i = 0; i < enContactList.size(); i++) {
+
+					contactsresult = ExtractContacts56(result, i);
+					contactsresult = contactsresult + "::" + cpid;// contactid(고객키)::contactListId::didt::dirt::cpid
+					entityCmRt = serviceDb.createCampRtMsg(contactsresult);// db 인서트 하기 위한 entity.
+
+					dirt = entityCmRt.getDirt();// 응답코드
+					tkda = entityCmRt.getTkda();// 토큰데이터
+
+					// UCRM,콜봇,APIM 구분
+					if (tkda.charAt(0) == 'C') { // UCRM
+						// 홈
+						if (divisionName.equals("Home")) {
+							topic_id = "fifthtopic";// "from_clcc_campnrs_h_message";
+							// 모바일
+						} else {
+							topic_id = "sixthtopic"; // "from_clcc_campnrs_m_message";
+						}
+
+					} else {// Callbot
+						// 홈
+						if (divisionName.equals("Home")) {
+							topic_id = "callbot(임시)"; // 나중에 실제 토픽 명으로 교체해야함.
+							// 모바일
+						} else {
+							topic_id = "callbot(임시)"; // 나중에 실제 토픽 명으로 교체해야함.
+						}
 					}
-					
-				} else if(tkda.charAt(0) == 'A'){//Callbot
-					//홈
-					if (divisionName.equals("Home") || divisionName.equals("홈")) { 
-						topic_id = "callbot(임시)"; //나중에 실제 토픽 명으로 교체해야함. 
-					//모바일
+
+					if ((tkda.charAt(0) == 'C') && (dirt == 1)) {// URM이면서 정상일 때.
+
 					} else {
-						topic_id = "callbot(임시)"; //나중에 실제 토픽 명으로 교체해야함. 
+						Entity_CampRtJson toproducer = serviceDb.createCampRtJson(contactsresult);// producer로 보내기 위한
+						// entity.
+						objectMapper = new ObjectMapper();
+
+						try {
+							String jsonString = objectMapper.writeValueAsString(toproducer);
+							log.info("JsonString Data : {}번째 {}", i, jsonString);
+
+							MessageToProducer producer = new MessageToProducer();
+							endpoint = "/gcapi/post/" + topic_id;
+							producer.sendMsgToProducer(endpoint, jsonString);
+
+						} catch (JsonProcessingException e) {
+							e.printStackTrace();
+						}
 					}
-				} else {//APIM
-					
-				}
-				
 
-				if ((tkda.charAt(0) == 'C') && (dirt == 1)) {//URM이면서 정상일 때.
-
-				} else {
-					Entity_CampRtJson toproducer = serviceDb.createCampRtJson(contactsresult);// producer로 보내기 위한
-					// entity.
-					objectMapper = new ObjectMapper();
-
+					// db인서트
 					try {
-						String jsonString = objectMapper.writeValueAsString(toproducer);
-						log.info("JsonString Data : {}번째 {}", i, jsonString);
-
-						MessageToProducer producer = new MessageToProducer();
-						endpoint = "/gcapi/post/" + topic_id;
-						producer.sendMsgToProducer(endpoint, jsonString);
-
-					} catch (JsonProcessingException e) {
-						e.printStackTrace();
+						serviceDb.InsertCampRt(entityCmRt);
+					} catch (DataIntegrityViolationException ex) {
+						log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+					} catch (DataAccessException ex) {
+						log.error("DataAccessException 발생 : {}", ex.getMessage());
 					}
 				}
-				
-				// db인서트
-				try {
-					serviceDb.InsertCampRt(entityCmRt);
+
+			default:
+
+				for (int i = 0; i < enContactList.size(); i++) {
+
+					contactsresult = ExtractContacts56(result, i);
+					contactsresult = contactsresult + "::" + cpid;// contactid(고객키)::contactListId::didt::dirt::cpid
+					entityCmRt = serviceDb.createCampRtMsg(contactsresult);// db 인서트 하기 위한 entity.
+
+					dirt = entityCmRt.getDirt();// 응답코드
+					tkda = entityCmRt.getTkda();// 토큰데이터
 					
-				} catch (DataIntegrityViolationException ex) {
-					log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
-				} catch (DataAccessException ex) {
-					log.error("DataAccessException 발생 : {}", ex.getMessage());
+					Entity_ToApim enToApim = new Entity_ToApim();
+					enToApim.setDirt(dirt);
+					enToApim.setTkda(tkda);
+					
+					apimEntitylt.add(enToApim);
+
 				}
 				
+				objectMapper = new ObjectMapper();
+
+				try {
+					String jsonString = objectMapper.writeValueAsString(apimEntitylt);
+					
+					// localhost:8084/dspRslt
+					// 192.168.219.134:8084/dspRslt
+					MessageToApim apim = new MessageToApim();
+					endpoint = "dspRslt";
+					apim.sendMsgToApim(endpoint, jsonString);
+					log.info("아빠 안잔다. : {} ",jsonString);
+
+				} catch (JsonProcessingException e) {
+					e.printStackTrace();
+				}
+
 			}
 
-			
 			return Mono.empty();
 
 		default:

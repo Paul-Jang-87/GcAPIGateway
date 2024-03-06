@@ -4210,3 +4210,2143 @@ Consider defining a bean of type 'gc.apiClient.interfaceCollection.InterfaceJson
 				===== ExtractValCrm12 =====
 2024-03-06 13:31:10 [test-task-scheduling1] INFO  gc.apiClient.service.ServiceJson -
 				result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연::Home
+2024-03-06 15:35:26 [main] INFO  gc.apiClient.GcClientApplication -
+				Starting GcClientApplication using Java 21.0.1 with PID 25252 (D:\GitWorkSpace\gcClient\gcClient\target\classes started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+2024-03-06 15:35:26 [main] INFO  gc.apiClient.GcClientApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2024-03-06 15:35:28 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-06 15:35:28 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 232 ms. Found 4 JPA repository interfaces.
+2024-03-06 15:35:30 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -
+				Tomcat initialized with port 8083 (http)
+2024-03-06 15:35:30 [main] INFO  o.a.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8083"]
+2024-03-06 15:35:30 [main] INFO  o.a.catalina.core.StandardService -
+				Starting service [Tomcat]
+2024-03-06 15:35:30 [main] INFO  o.a.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-06 15:35:30 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2024-03-06 15:35:30 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 3907 ms
+2024-03-06 15:35:31 [main] INFO  o.h.jpa.internal.util.LogHelper -
+				HHH000204: Processing PersistenceUnitInfo [name: postgresql]
+2024-03-06 15:35:31 [main] INFO  org.hibernate.Version -
+				HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-03-06 15:35:31 [main] INFO  o.h.c.i.RegionFactoryInitiator -
+				HHH000026: Second-level cache disabled
+2024-03-06 15:35:32 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -
+				No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-06 15:35:32 [main] WARN  com.zaxxer.hikari.HikariConfig -
+				Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2024-03-06 15:35:32 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				Infognc-hikari-pool - Starting...
+2024-03-06 15:35:33 [main] INFO  com.zaxxer.hikari.pool.HikariPool -
+				Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@1e6cb932
+2024-03-06 15:35:33 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				Infognc-hikari-pool - Start completed.
+2024-03-06 15:35:33 [main] WARN  org.hibernate.orm.deprecation -
+				HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-03-06 15:35:37 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -
+				HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-03-06 15:35:37 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -
+				Initialized JPA EntityManagerFactory for persistence unit 'postgresql'
+2024-03-06 15:35:39 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory -
+				Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-03-06 15:35:41 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -
+				spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-06 15:35:42 [main] INFO  o.a.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8083"]
+2024-03-06 15:35:42 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -
+				Tomcat started on port 8083 (http) with context path ''
+2024-03-06 15:35:42 [main] INFO  gc.apiClient.GcClientApplication -
+				Started GcClientApplication in 16.686 seconds (process running for 19.664)
+2024-03-06 15:35:42 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				Scheduled method started...
+2024-03-06 15:35:42 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				Class : ControllerUCRM - Method : ReceiveMessage
+2024-03-06 15:35:42 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				topic_id : campma
+2024-03-06 15:35:42 [test-task-scheduling1] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetApiRequet =====
+2024-03-06 15:35:47 [test-task-scheduling1] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractValCrm12 =====
+2024-03-06 15:35:47 [test-task-scheduling1] INFO  gc.apiClient.service.ServiceJson -
+				result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연::Home
+2024-03-06 15:36:20 [http-nio-8083-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-06 15:36:20 [http-nio-8083-exec-2] INFO  o.s.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2024-03-06 15:36:20 [http-nio-8083-exec-2] INFO  o.s.web.servlet.DispatcherServlet -
+				Completed initialization in 13 ms
+2024-03-06 15:36:20 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				Class : ControllerUCRM - Method : receiveMessage
+2024-03-06 15:36:20 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				topic_id : camprtMsg
+2024-03-06 15:36:20 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractVal56 =====
+2024-03-06 15:36:20 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::85aecd05-21b5-46a1-86f3-357f252d10a0::0aebaa53-2e66-4720-acdb-8a766e2ea6ae
+2024-03-06 15:36:20 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				division : couldn't find division
+2024-03-06 15:36:20 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				===== PostContactLtApiBulk =====
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				PostContactLtApiBulk 요청 후 결과 값 : [{"id":"83b85d7ff68cb7f0b7b3c59212abefff","contactListId":"85aecd05-21b5-46a1-86f3-357f252d10a0","data":{"이름":"장현규","전화번호":"01088336327"},"callRecords":{"전화번호":{"lastAttempt":"2023-11-29T11:51:15.033Z","lastResult":"e269acc9-bad4-4533-91da-2e31d2998f45"}},"callable":true,"phoneNumberStatus":{"전화번호":{"callable":true}},"contactableStatus":{"Email":{"contactable":true}},"dateCreated":"2023-11-29T11:49:21.701Z","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts/83b85d7ff68cb7f0b7b3c59212abefff"},{"id":"0b241f9bef1df80679bfba58582c8505","contactListId":"85aecd05-21b5-46a1-86f3-357f252d10a0","data":{"이름":"황윤석","전화번호":"01074710415"},"callRecords":{"전화번호":{"lastAttempt":"2023-11-29T11:51:14.022Z","lastResult":"e269acc9-bad4-4533-91da-2e31d2998f45"}},"callable":true,"phoneNumberStatus":{"전화번호":{"callable":true}},"contactableStatus":{"Email":{"contactable":true}},"dateCreated":"2023-11-29T11:49:21.701Z","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts/0b241f9bef1df80679bfba58582c8505"}]
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractContacts56 =====
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServiceJson -
+				result : 83b85d7ff68cb7f0b7b3c59212abefff::85aecd05-21b5-46a1-86f3-357f252d10a0::2023-11-29T11:51:15.033Z::e269acc9-bad4-4533-91da-2e31d2998f45
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtMsg =====
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 0
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 0
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 0
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 0
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 0
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: 
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				didt: null
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetStatusApiRequet =====
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 3
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 23
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 0
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: C,111,custid
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 111
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				didt: Wed Nov 29 20:51:15 KST 2023
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 6
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtJson =====
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetStatusApiRequet =====
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				JsonString Data : 0번째 {"rlsq":3,"cpsq":0,"dirt":6,"dict":0,"tkda":"C,111,custid","coid":"H2","cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","contactLtId":"85aecd05-21b5-46a1-86f3-357f252d10a0","didt":"2023/11/29 20:51:15","contactId":"83b85d7ff68cb7f0b7b3c59212abefff","hubId":111}
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				===== sendMsgToProducer =====
+2024-03-06 15:36:21 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				Endpoint : /gcapi/post/sixthtopic
+2024-03-06 15:36:25 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				Entity as JSON: {"rlsq":3,"cpsq":0,"dirt":6,"dict":0,"tkda":"C,111,custid","coid":"H2","cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","contactLtId":"85aecd05-21b5-46a1-86f3-357f252d10a0","didt":"2023/11/29 20:51:15","contactId":"83b85d7ff68cb7f0b7b3c59212abefff","hubId":111}
+2024-03-06 15:36:25 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractContacts56 =====
+2024-03-06 15:36:25 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServiceJson -
+				result : 0b241f9bef1df80679bfba58582c8505::85aecd05-21b5-46a1-86f3-357f252d10a0::2023-11-29T11:51:14.022Z::e269acc9-bad4-4533-91da-2e31d2998f45
+2024-03-06 15:36:25 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtMsg =====
+2024-03-06 15:36:25 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 0
+2024-03-06 15:36:25 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 0
+2024-03-06 15:36:25 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 0
+2024-03-06 15:36:25 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 0
+2024-03-06 15:36:25 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 0
+2024-03-06 15:36:25 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 15:36:25 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 15:36:25 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 15:36:25 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 0b241f9bef1df80679bfba58582c8505
+2024-03-06 15:36:25 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: 
+2024-03-06 15:36:25 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				didt: null
+2024-03-06 15:36:25 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetStatusApiRequet =====
+2024-03-06 15:36:26 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+2024-03-06 15:36:26 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 4
+2024-03-06 15:36:26 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 23
+2024-03-06 15:36:26 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 15:36:26 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 666
+2024-03-06 15:36:26 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 15:36:26 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 0b241f9bef1df80679bfba58582c8505
+2024-03-06 15:36:26 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: A||gg||dfe||feq||ere||666
+2024-03-06 15:36:26 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 0
+2024-03-06 15:36:26 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				didt: Wed Nov 29 20:51:14 KST 2023
+2024-03-06 15:36:26 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 6
+2024-03-06 15:36:26 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 15:36:26 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtJson =====
+2024-03-06 15:36:26 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetStatusApiRequet =====
+2024-03-06 15:36:26 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+2024-03-06 15:36:26 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				JsonString Data : 1번째 {"rlsq":4,"cpsq":666,"dirt":6,"dict":0,"tkda":"A||gg||dfe||feq||ere||666","coid":"H2","cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","contactLtId":"85aecd05-21b5-46a1-86f3-357f252d10a0","didt":"2023/11/29 20:51:14","contactId":"0b241f9bef1df80679bfba58582c8505","hubId":0}
+2024-03-06 15:36:26 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				===== sendMsgToProducer =====
+2024-03-06 15:36:26 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				Endpoint : /gcapi/post/callbot(임시)
+2024-03-06 15:36:26 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				Entity as JSON: {"rlsq":4,"cpsq":666,"dirt":6,"dict":0,"tkda":"A||gg||dfe||feq||ere||666","coid":"H2","cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","contactLtId":"85aecd05-21b5-46a1-86f3-357f252d10a0","didt":"2023/11/29 20:51:14","contactId":"0b241f9bef1df80679bfba58582c8505","hubId":0}
+2024-03-06 15:36:42 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				Scheduled method started...
+2024-03-06 15:36:42 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				Class : ControllerUCRM - Method : ReceiveMessage
+2024-03-06 15:36:42 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				topic_id : campma
+2024-03-06 15:36:42 [test-task-scheduling1] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetApiRequet =====
+2024-03-06 15:36:43 [test-task-scheduling1] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractValCrm12 =====
+2024-03-06 15:36:43 [test-task-scheduling1] INFO  gc.apiClient.service.ServiceJson -
+				result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연::Home
+2024-03-06 15:40:30 [main] INFO  gc.apiClient.GcClientApplication -
+				Starting GcClientApplication using Java 21.0.1 with PID 20720 (D:\GitWorkSpace\gcClient\gcClient\target\classes started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+2024-03-06 15:40:30 [main] INFO  gc.apiClient.GcClientApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2024-03-06 15:40:33 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-06 15:40:33 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 591 ms. Found 4 JPA repository interfaces.
+2024-03-06 15:40:36 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -
+				Tomcat initialized with port 8083 (http)
+2024-03-06 15:40:36 [main] INFO  o.a.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8083"]
+2024-03-06 15:40:36 [main] INFO  o.a.catalina.core.StandardService -
+				Starting service [Tomcat]
+2024-03-06 15:40:36 [main] INFO  o.a.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-06 15:40:36 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2024-03-06 15:40:36 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 6273 ms
+2024-03-06 15:40:36 [main] INFO  o.h.jpa.internal.util.LogHelper -
+				HHH000204: Processing PersistenceUnitInfo [name: postgresql]
+2024-03-06 15:40:37 [main] INFO  org.hibernate.Version -
+				HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-03-06 15:40:37 [main] INFO  o.h.c.i.RegionFactoryInitiator -
+				HHH000026: Second-level cache disabled
+2024-03-06 15:40:38 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -
+				No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-06 15:40:38 [main] WARN  com.zaxxer.hikari.HikariConfig -
+				Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2024-03-06 15:40:38 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				Infognc-hikari-pool - Starting...
+2024-03-06 15:40:38 [main] INFO  com.zaxxer.hikari.pool.HikariPool -
+				Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@15d79b70
+2024-03-06 15:40:38 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				Infognc-hikari-pool - Start completed.
+2024-03-06 15:40:38 [main] WARN  org.hibernate.orm.deprecation -
+				HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-03-06 15:40:41 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -
+				HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-03-06 15:40:42 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -
+				Initialized JPA EntityManagerFactory for persistence unit 'postgresql'
+2024-03-06 15:40:43 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory -
+				Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-03-06 15:40:46 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -
+				spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-06 15:40:47 [main] INFO  o.a.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8083"]
+2024-03-06 15:40:47 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -
+				Tomcat started on port 8083 (http) with context path ''
+2024-03-06 15:40:47 [main] INFO  gc.apiClient.GcClientApplication -
+				Started GcClientApplication in 18.486 seconds (process running for 20.232)
+2024-03-06 15:40:47 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				Scheduled method started...
+2024-03-06 15:40:47 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				Class : ControllerUCRM - Method : ReceiveMessage
+2024-03-06 15:40:47 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				topic_id : campma
+2024-03-06 15:40:47 [test-task-scheduling1] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetApiRequet =====
+2024-03-06 15:40:51 [test-task-scheduling1] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractValCrm12 =====
+2024-03-06 15:40:51 [test-task-scheduling1] INFO  gc.apiClient.service.ServiceJson -
+				result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연::Home
+2024-03-06 15:40:53 [http-nio-8083-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-06 15:40:53 [http-nio-8083-exec-2] INFO  o.s.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2024-03-06 15:40:53 [http-nio-8083-exec-2] INFO  o.s.web.servlet.DispatcherServlet -
+				Completed initialization in 5 ms
+2024-03-06 15:40:53 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				Class : ControllerUCRM - Method : receiveMessage
+2024-03-06 15:40:53 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				topic_id : camprtMsg
+2024-03-06 15:40:53 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractVal56 =====
+2024-03-06 15:40:53 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::85aecd05-21b5-46a1-86f3-357f252d10a0::0aebaa53-2e66-4720-acdb-8a766e2ea6ae
+2024-03-06 15:40:53 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				division : couldn't find division
+2024-03-06 15:40:53 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				===== PostContactLtApiBulk =====
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				PostContactLtApiBulk 요청 후 결과 값 : [{"id":"83b85d7ff68cb7f0b7b3c59212abefff","contactListId":"85aecd05-21b5-46a1-86f3-357f252d10a0","data":{"이름":"장현규","전화번호":"01088336327"},"callRecords":{"전화번호":{"lastAttempt":"2023-11-29T11:51:15.033Z","lastResult":"e269acc9-bad4-4533-91da-2e31d2998f45"}},"callable":true,"phoneNumberStatus":{"전화번호":{"callable":true}},"contactableStatus":{"Email":{"contactable":true}},"dateCreated":"2023-11-29T11:49:21.701Z","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts/83b85d7ff68cb7f0b7b3c59212abefff"},{"id":"0b241f9bef1df80679bfba58582c8505","contactListId":"85aecd05-21b5-46a1-86f3-357f252d10a0","data":{"이름":"황윤석","전화번호":"01074710415"},"callRecords":{"전화번호":{"lastAttempt":"2023-11-29T11:51:14.022Z","lastResult":"e269acc9-bad4-4533-91da-2e31d2998f45"}},"callable":true,"phoneNumberStatus":{"전화번호":{"callable":true}},"contactableStatus":{"Email":{"contactable":true}},"dateCreated":"2023-11-29T11:49:21.701Z","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts/0b241f9bef1df80679bfba58582c8505"}]
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractContacts56 =====
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServiceJson -
+				result : 83b85d7ff68cb7f0b7b3c59212abefff::85aecd05-21b5-46a1-86f3-357f252d10a0::2023-11-29T11:51:15.033Z::e269acc9-bad4-4533-91da-2e31d2998f45
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtMsg =====
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 0
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 0
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 0
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 0
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 0
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: 
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				didt: null
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetStatusApiRequet =====
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 5
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 23
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 0
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: C,111,custid
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 111
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				didt: Wed Nov 29 20:51:15 KST 2023
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 6
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtJson =====
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetStatusApiRequet =====
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				JsonString Data : 0번째 {"rlsq":5,"cpsq":0,"dirt":6,"dict":0,"tkda":"C,111,custid","coid":"H2","cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","contactLtId":"85aecd05-21b5-46a1-86f3-357f252d10a0","didt":"2023/11/29 20:51:15","hubId":111,"contactId":"83b85d7ff68cb7f0b7b3c59212abefff"}
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				===== sendMsgToProducer =====
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				Endpoint : /gcapi/post/sixthtopic
+2024-03-06 15:40:54 [reactor-http-nio-3] ERROR g.a.kafkamessages.MessageToProducer -
+				Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+2024-03-06 15:40:54 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				Entity as JSON: {"rlsq":5,"cpsq":0,"dirt":6,"dict":0,"tkda":"C,111,custid","coid":"H2","cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","contactLtId":"85aecd05-21b5-46a1-86f3-357f252d10a0","didt":"2023/11/29 20:51:15","hubId":111,"contactId":"83b85d7ff68cb7f0b7b3c59212abefff"}
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractContacts56 =====
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServiceJson -
+				result : 0b241f9bef1df80679bfba58582c8505::85aecd05-21b5-46a1-86f3-357f252d10a0::2023-11-29T11:51:14.022Z::e269acc9-bad4-4533-91da-2e31d2998f45
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtMsg =====
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 0
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 0
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 0
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 0
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 0
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 0b241f9bef1df80679bfba58582c8505
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: 
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				didt: null
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetStatusApiRequet =====
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 6
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 23
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 666
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 0b241f9bef1df80679bfba58582c8505
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: A||gg||dfe||feq||ere||666
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 0
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				didt: Wed Nov 29 20:51:14 KST 2023
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 6
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtJson =====
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetStatusApiRequet =====
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				JsonString Data : 1번째 {"rlsq":6,"cpsq":666,"dirt":6,"dict":0,"tkda":"A||gg||dfe||feq||ere||666","coid":"H2","cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","contactLtId":"85aecd05-21b5-46a1-86f3-357f252d10a0","didt":"2023/11/29 20:51:14","hubId":0,"contactId":"0b241f9bef1df80679bfba58582c8505"}
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				===== sendMsgToProducer =====
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				Endpoint : /gcapi/post/callbot(임시)
+2024-03-06 15:40:55 [reactor-http-nio-4] ERROR g.a.kafkamessages.MessageToProducer -
+				Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+2024-03-06 15:40:55 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				Entity as JSON: {"rlsq":6,"cpsq":666,"dirt":6,"dict":0,"tkda":"A||gg||dfe||feq||ere||666","coid":"H2","cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","contactLtId":"85aecd05-21b5-46a1-86f3-357f252d10a0","didt":"2023/11/29 20:51:14","hubId":0,"contactId":"0b241f9bef1df80679bfba58582c8505"}
+2024-03-06 15:49:24 [main] INFO  gc.apiClient.GcClientApplication -
+				Starting GcClientApplication using Java 21.0.1 with PID 6680 (D:\GitWorkSpace\gcClient\gcClient\target\classes started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+2024-03-06 15:49:24 [main] INFO  gc.apiClient.GcClientApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2024-03-06 15:49:26 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-06 15:49:27 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 365 ms. Found 4 JPA repository interfaces.
+2024-03-06 15:49:29 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -
+				Tomcat initialized with port 8083 (http)
+2024-03-06 15:49:29 [main] INFO  o.a.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8083"]
+2024-03-06 15:49:29 [main] INFO  o.a.catalina.core.StandardService -
+				Starting service [Tomcat]
+2024-03-06 15:49:29 [main] INFO  o.a.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-06 15:49:29 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2024-03-06 15:49:29 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 4784 ms
+2024-03-06 15:49:30 [main] INFO  o.h.jpa.internal.util.LogHelper -
+				HHH000204: Processing PersistenceUnitInfo [name: postgresql]
+2024-03-06 15:49:30 [main] INFO  org.hibernate.Version -
+				HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-03-06 15:49:30 [main] INFO  o.h.c.i.RegionFactoryInitiator -
+				HHH000026: Second-level cache disabled
+2024-03-06 15:49:31 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -
+				No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-06 15:49:31 [main] WARN  com.zaxxer.hikari.HikariConfig -
+				Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2024-03-06 15:49:31 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				Infognc-hikari-pool - Starting...
+2024-03-06 15:49:31 [main] INFO  com.zaxxer.hikari.pool.HikariPool -
+				Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@45424c0
+2024-03-06 15:49:31 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				Infognc-hikari-pool - Start completed.
+2024-03-06 15:49:32 [main] WARN  org.hibernate.orm.deprecation -
+				HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-03-06 15:49:35 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -
+				HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-03-06 15:49:36 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -
+				Initialized JPA EntityManagerFactory for persistence unit 'postgresql'
+2024-03-06 15:49:37 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory -
+				Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-03-06 15:49:41 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -
+				spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-06 15:49:42 [main] INFO  o.a.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8083"]
+2024-03-06 15:49:42 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -
+				Tomcat started on port 8083 (http) with context path ''
+2024-03-06 15:49:42 [main] INFO  gc.apiClient.GcClientApplication -
+				Started GcClientApplication in 19.542 seconds (process running for 23.7)
+2024-03-06 15:49:42 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				Scheduled method started...
+2024-03-06 15:49:42 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				Class : ControllerUCRM - Method : ReceiveMessage
+2024-03-06 15:49:42 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				topic_id : campma
+2024-03-06 15:49:42 [test-task-scheduling1] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetApiRequet =====
+2024-03-06 15:49:45 [http-nio-8083-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-06 15:49:45 [http-nio-8083-exec-2] INFO  o.s.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2024-03-06 15:49:45 [http-nio-8083-exec-2] INFO  o.s.web.servlet.DispatcherServlet -
+				Completed initialization in 3 ms
+2024-03-06 15:49:46 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				Class : ControllerUCRM - Method : receiveMessage
+2024-03-06 15:49:46 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				topic_id : camprtMsg
+2024-03-06 15:49:46 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractVal56 =====
+2024-03-06 15:49:46 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::85aecd05-21b5-46a1-86f3-357f252d10a0::0aebaa53-2e66-4720-acdb-8a766e2ea6ae
+2024-03-06 15:49:46 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				division : couldn't find division
+2024-03-06 15:49:46 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				===== PostContactLtApiBulk =====
+2024-03-06 15:49:46 [test-task-scheduling1] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractValCrm12 =====
+2024-03-06 15:49:46 [test-task-scheduling1] INFO  gc.apiClient.service.ServiceJson -
+				result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연::Home
+2024-03-06 15:49:46 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				PostContactLtApiBulk 요청 후 결과 값 : [{"id":"83b85d7ff68cb7f0b7b3c59212abefff","contactListId":"85aecd05-21b5-46a1-86f3-357f252d10a0","data":{"이름":"장현규","전화번호":"01088336327"},"callRecords":{"전화번호":{"lastAttempt":"2023-11-29T11:51:15.033Z","lastResult":"e269acc9-bad4-4533-91da-2e31d2998f45"}},"callable":true,"phoneNumberStatus":{"전화번호":{"callable":true}},"contactableStatus":{"Email":{"contactable":true}},"dateCreated":"2023-11-29T11:49:21.701Z","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts/83b85d7ff68cb7f0b7b3c59212abefff"},{"id":"0b241f9bef1df80679bfba58582c8505","contactListId":"85aecd05-21b5-46a1-86f3-357f252d10a0","data":{"이름":"황윤석","전화번호":"01074710415"},"callRecords":{"전화번호":{"lastAttempt":"2023-11-29T11:51:14.022Z","lastResult":"e269acc9-bad4-4533-91da-2e31d2998f45"}},"callable":true,"phoneNumberStatus":{"전화번호":{"callable":true}},"contactableStatus":{"Email":{"contactable":true}},"dateCreated":"2023-11-29T11:49:21.701Z","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts/0b241f9bef1df80679bfba58582c8505"}]
+2024-03-06 15:49:46 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractContacts56 =====
+2024-03-06 15:49:46 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServiceJson -
+				result : 83b85d7ff68cb7f0b7b3c59212abefff::85aecd05-21b5-46a1-86f3-357f252d10a0::2023-11-29T11:51:15.033Z::e269acc9-bad4-4533-91da-2e31d2998f45
+2024-03-06 15:49:46 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtMsg =====
+2024-03-06 15:49:46 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 0
+2024-03-06 15:49:46 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 0
+2024-03-06 15:49:46 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 0
+2024-03-06 15:49:46 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 0
+2024-03-06 15:49:46 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 0
+2024-03-06 15:49:46 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 15:49:46 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 15:49:46 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 15:49:46 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+2024-03-06 15:49:46 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: 
+2024-03-06 15:49:46 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				didt: null
+2024-03-06 15:49:46 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				adfadfadfajfdajlkfjladjlfkajldfjaldjflasjfl : í
+2024-03-06 15:49:46 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetStatusApiRequet =====
+2024-03-06 15:49:47 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+2024-03-06 15:49:47 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 7
+2024-03-06 15:49:47 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 23
+2024-03-06 15:49:47 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 15:49:47 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 0
+2024-03-06 15:49:47 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 15:49:47 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+2024-03-06 15:49:47 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: C,111,custid
+2024-03-06 15:49:47 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 111
+2024-03-06 15:49:47 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				didt: Wed Nov 29 20:51:15 KST 2023
+2024-03-06 15:49:47 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 6
+2024-03-06 15:49:47 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 15:49:47 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtJson =====
+2024-03-06 15:49:47 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetStatusApiRequet =====
+2024-03-06 15:49:47 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+2024-03-06 15:49:47 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				JsonString Data : 0번째 {"rlsq":7,"cpsq":0,"dirt":6,"dict":0,"tkda":"C,111,custid","coid":"H2","cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","contactLtId":"85aecd05-21b5-46a1-86f3-357f252d10a0","didt":"2023/11/29 20:51:15","hubId":111,"contactId":"83b85d7ff68cb7f0b7b3c59212abefff"}
+2024-03-06 15:49:47 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				===== sendMsgToProducer =====
+2024-03-06 15:49:47 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				Endpoint : /gcapi/post/sixthtopic
+2024-03-06 15:49:48 [reactor-http-nio-3] ERROR g.a.kafkamessages.MessageToProducer -
+				Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				Entity as JSON: {"rlsq":7,"cpsq":0,"dirt":6,"dict":0,"tkda":"C,111,custid","coid":"H2","cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","contactLtId":"85aecd05-21b5-46a1-86f3-357f252d10a0","didt":"2023/11/29 20:51:15","hubId":111,"contactId":"83b85d7ff68cb7f0b7b3c59212abefff"}
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractContacts56 =====
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServiceJson -
+				result : 0b241f9bef1df80679bfba58582c8505::85aecd05-21b5-46a1-86f3-357f252d10a0::2023-11-29T11:51:14.022Z::e269acc9-bad4-4533-91da-2e31d2998f45
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtMsg =====
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 0
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 0
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 0
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 0
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 0
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 0b241f9bef1df80679bfba58582c8505
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: 
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				didt: null
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				adfadfadfajfdajlkfjladjlfkajldfjaldjflasjfl : í
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetStatusApiRequet =====
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 8
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 23
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 666
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 0b241f9bef1df80679bfba58582c8505
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: A||gg||dfe||feq||ere||666
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 0
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				didt: Wed Nov 29 20:51:14 KST 2023
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 6
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtJson =====
+2024-03-06 15:49:48 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetStatusApiRequet =====
+2024-03-06 15:49:49 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+2024-03-06 15:49:49 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				JsonString Data : 1번째 {"rlsq":8,"cpsq":666,"dirt":6,"dict":0,"tkda":"A||gg||dfe||feq||ere||666","coid":"H2","cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","contactLtId":"85aecd05-21b5-46a1-86f3-357f252d10a0","didt":"2023/11/29 20:51:14","hubId":0,"contactId":"0b241f9bef1df80679bfba58582c8505"}
+2024-03-06 15:49:49 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				===== sendMsgToProducer =====
+2024-03-06 15:49:49 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				Endpoint : /gcapi/post/callbot(임시)
+2024-03-06 15:49:49 [reactor-http-nio-4] ERROR g.a.kafkamessages.MessageToProducer -
+				Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+2024-03-06 15:49:49 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				Entity as JSON: {"rlsq":8,"cpsq":666,"dirt":6,"dict":0,"tkda":"A||gg||dfe||feq||ere||666","coid":"H2","cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","contactLtId":"85aecd05-21b5-46a1-86f3-357f252d10a0","didt":"2023/11/29 20:51:14","hubId":0,"contactId":"0b241f9bef1df80679bfba58582c8505"}
+2024-03-06 15:54:07 [main] INFO  gc.apiClient.GcClientApplication -
+				Starting GcClientApplication using Java 21.0.1 with PID 28604 (D:\GitWorkSpace\gcClient\gcClient\target\classes started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+2024-03-06 15:54:07 [main] INFO  gc.apiClient.GcClientApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2024-03-06 15:54:09 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-06 15:54:09 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 361 ms. Found 4 JPA repository interfaces.
+2024-03-06 15:54:12 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -
+				Tomcat initialized with port 8083 (http)
+2024-03-06 15:54:12 [main] INFO  o.a.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8083"]
+2024-03-06 15:54:12 [main] INFO  o.a.catalina.core.StandardService -
+				Starting service [Tomcat]
+2024-03-06 15:54:12 [main] INFO  o.a.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-06 15:54:12 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2024-03-06 15:54:12 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 4930 ms
+2024-03-06 15:54:12 [main] INFO  o.h.jpa.internal.util.LogHelper -
+				HHH000204: Processing PersistenceUnitInfo [name: postgresql]
+2024-03-06 15:54:13 [main] INFO  org.hibernate.Version -
+				HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-03-06 15:54:13 [main] INFO  o.h.c.i.RegionFactoryInitiator -
+				HHH000026: Second-level cache disabled
+2024-03-06 15:54:14 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -
+				No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-06 15:54:14 [main] WARN  com.zaxxer.hikari.HikariConfig -
+				Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2024-03-06 15:54:14 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				Infognc-hikari-pool - Starting...
+2024-03-06 15:54:15 [main] INFO  com.zaxxer.hikari.pool.HikariPool -
+				Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@6200b644
+2024-03-06 15:54:15 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				Infognc-hikari-pool - Start completed.
+2024-03-06 15:54:16 [main] WARN  org.hibernate.orm.deprecation -
+				HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-03-06 15:54:19 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -
+				HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-03-06 15:54:20 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -
+				Initialized JPA EntityManagerFactory for persistence unit 'postgresql'
+2024-03-06 15:54:21 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory -
+				Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-03-06 15:54:24 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -
+				spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-06 15:54:25 [main] INFO  o.a.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8083"]
+2024-03-06 15:54:25 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -
+				Tomcat started on port 8083 (http) with context path ''
+2024-03-06 15:54:25 [main] INFO  gc.apiClient.GcClientApplication -
+				Started GcClientApplication in 19.272 seconds (process running for 23.896)
+2024-03-06 15:54:25 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				Scheduled method started...
+2024-03-06 15:54:25 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				Class : ControllerUCRM - Method : ReceiveMessage
+2024-03-06 15:54:25 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				topic_id : campma
+2024-03-06 15:54:25 [test-task-scheduling1] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetApiRequet =====
+2024-03-06 15:54:29 [test-task-scheduling1] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractValCrm12 =====
+2024-03-06 15:54:29 [test-task-scheduling1] INFO  gc.apiClient.service.ServiceJson -
+				result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연::Home
+2024-03-06 15:54:31 [http-nio-8083-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-06 15:54:31 [http-nio-8083-exec-1] INFO  o.s.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2024-03-06 15:54:31 [http-nio-8083-exec-1] INFO  o.s.web.servlet.DispatcherServlet -
+				Completed initialization in 10 ms
+2024-03-06 15:54:32 [http-nio-8083-exec-1] INFO  g.a.controller.ControllerUCRM -
+				Class : ControllerUCRM - Method : receiveMessage
+2024-03-06 15:54:32 [http-nio-8083-exec-1] INFO  g.a.controller.ControllerUCRM -
+				topic_id : camprtMsg
+2024-03-06 15:54:32 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractVal56 =====
+2024-03-06 15:54:32 [http-nio-8083-exec-1] INFO  g.a.controller.ControllerUCRM -
+				result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::85aecd05-21b5-46a1-86f3-357f252d10a0::0aebaa53-2e66-4720-acdb-8a766e2ea6ae
+2024-03-06 15:54:32 [http-nio-8083-exec-1] INFO  g.a.controller.ControllerUCRM -
+				division : couldn't find division
+2024-03-06 15:54:32 [http-nio-8083-exec-1] INFO  g.apiClient.service.ServiceWebClient -
+				===== PostContactLtApiBulk =====
+2024-03-06 15:54:32 [http-nio-8083-exec-1] INFO  g.apiClient.service.ServiceWebClient -
+				PostContactLtApiBulk 요청 후 결과 값 : [{"id":"83b85d7ff68cb7f0b7b3c59212abefff","contactListId":"85aecd05-21b5-46a1-86f3-357f252d10a0","data":{"이름":"장현규","전화번호":"01088336327"},"callRecords":{"전화번호":{"lastAttempt":"2023-11-29T11:51:15.033Z","lastResult":"e269acc9-bad4-4533-91da-2e31d2998f45"}},"callable":true,"phoneNumberStatus":{"전화번호":{"callable":true}},"contactableStatus":{"Email":{"contactable":true}},"dateCreated":"2023-11-29T11:49:21.701Z","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts/83b85d7ff68cb7f0b7b3c59212abefff"},{"id":"0b241f9bef1df80679bfba58582c8505","contactListId":"85aecd05-21b5-46a1-86f3-357f252d10a0","data":{"이름":"황윤석","전화번호":"01074710415"},"callRecords":{"전화번호":{"lastAttempt":"2023-11-29T11:51:14.022Z","lastResult":"e269acc9-bad4-4533-91da-2e31d2998f45"}},"callable":true,"phoneNumberStatus":{"전화번호":{"callable":true}},"contactableStatus":{"Email":{"contactable":true}},"dateCreated":"2023-11-29T11:49:21.701Z","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts/0b241f9bef1df80679bfba58582c8505"}]
+2024-03-06 15:54:32 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractContacts56 =====
+2024-03-06 15:54:32 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServiceJson -
+				result : 83b85d7ff68cb7f0b7b3c59212abefff::85aecd05-21b5-46a1-86f3-357f252d10a0::2023-11-29T11:51:15.033Z::e269acc9-bad4-4533-91da-2e31d2998f45
+2024-03-06 15:54:32 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtMsg =====
+2024-03-06 15:54:32 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 0
+2024-03-06 15:54:32 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 0
+2024-03-06 15:54:32 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 0
+2024-03-06 15:54:32 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 0
+2024-03-06 15:54:32 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 0
+2024-03-06 15:54:32 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 15:54:32 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 15:54:32 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 15:54:32 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+2024-03-06 15:54:32 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: 
+2024-03-06 15:54:32 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				didt: null
+2024-03-06 15:54:32 [http-nio-8083-exec-1] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetStatusApiRequet =====
+2024-03-06 15:54:32 [http-nio-8083-exec-1] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 9
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 23
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 0
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: C,111,custid
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 111
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				didt: Wed Nov 29 20:51:15 KST 2023
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 6
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtJson =====
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetStatusApiRequet =====
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  g.a.controller.ControllerUCRM -
+				JsonString Data : 0번째 {"rlsq":9,"cpsq":0,"dirt":6,"dict":0,"tkda":"C,111,custid","coid":"H2","cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","contactLtId":"85aecd05-21b5-46a1-86f3-357f252d10a0","didt":"2023/11/29 20:51:15","hubId":111,"contactId":"83b85d7ff68cb7f0b7b3c59212abefff"}
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  g.a.kafkamessages.MessageToProducer -
+				===== sendMsgToProducer =====
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  g.a.kafkamessages.MessageToProducer -
+				Endpoint : /gcapi/post/sixthtopic
+2024-03-06 15:54:33 [reactor-http-nio-3] ERROR g.a.kafkamessages.MessageToProducer -
+				Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  g.a.kafkamessages.MessageToProducer -
+				Entity as JSON: {"rlsq":9,"cpsq":0,"dirt":6,"dict":0,"tkda":"C,111,custid","coid":"H2","cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","contactLtId":"85aecd05-21b5-46a1-86f3-357f252d10a0","didt":"2023/11/29 20:51:15","hubId":111,"contactId":"83b85d7ff68cb7f0b7b3c59212abefff"}
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractContacts56 =====
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServiceJson -
+				result : 0b241f9bef1df80679bfba58582c8505::85aecd05-21b5-46a1-86f3-357f252d10a0::2023-11-29T11:51:14.022Z::e269acc9-bad4-4533-91da-2e31d2998f45
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtMsg =====
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 0
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 0
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 0
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 0
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 0
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 0b241f9bef1df80679bfba58582c8505
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: 
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				didt: null
+2024-03-06 15:54:33 [http-nio-8083-exec-1] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetStatusApiRequet =====
+2024-03-06 15:54:34 [http-nio-8083-exec-1] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+2024-03-06 15:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 10
+2024-03-06 15:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 23
+2024-03-06 15:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 15:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 666
+2024-03-06 15:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 15:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 0b241f9bef1df80679bfba58582c8505
+2024-03-06 15:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: A||gg||dfe||feq||ere||666
+2024-03-06 15:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 0
+2024-03-06 15:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				didt: Wed Nov 29 20:51:14 KST 2023
+2024-03-06 15:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 6
+2024-03-06 15:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 15:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtJson =====
+2024-03-06 15:54:34 [http-nio-8083-exec-1] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetStatusApiRequet =====
+2024-03-06 15:54:34 [http-nio-8083-exec-1] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+2024-03-06 15:54:34 [http-nio-8083-exec-1] INFO  g.a.controller.ControllerUCRM -
+				JsonString Data : 1번째 {"rlsq":10,"cpsq":666,"dirt":6,"dict":0,"tkda":"A||gg||dfe||feq||ere||666","coid":"H2","cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","contactLtId":"85aecd05-21b5-46a1-86f3-357f252d10a0","didt":"2023/11/29 20:51:14","hubId":0,"contactId":"0b241f9bef1df80679bfba58582c8505"}
+2024-03-06 15:54:34 [http-nio-8083-exec-1] INFO  g.a.kafkamessages.MessageToProducer -
+				===== sendMsgToProducer =====
+2024-03-06 15:54:34 [http-nio-8083-exec-1] INFO  g.a.kafkamessages.MessageToProducer -
+				Endpoint : /gcapi/post/callbot(임시)
+2024-03-06 15:54:34 [reactor-http-nio-4] ERROR g.a.kafkamessages.MessageToProducer -
+				Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+2024-03-06 15:54:34 [http-nio-8083-exec-1] INFO  g.a.kafkamessages.MessageToProducer -
+				Entity as JSON: {"rlsq":10,"cpsq":666,"dirt":6,"dict":0,"tkda":"A||gg||dfe||feq||ere||666","coid":"H2","cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","contactLtId":"85aecd05-21b5-46a1-86f3-357f252d10a0","didt":"2023/11/29 20:51:14","hubId":0,"contactId":"0b241f9bef1df80679bfba58582c8505"}
+2024-03-06 16:00:00 [main] INFO  gc.apiClient.GcClientApplication -
+				Starting GcClientApplication using Java 21.0.1 with PID 8832 (D:\GitWorkSpace\gcClient\gcClient\target\classes started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+2024-03-06 16:00:00 [main] INFO  gc.apiClient.GcClientApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2024-03-06 16:00:04 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-06 16:00:04 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 669 ms. Found 4 JPA repository interfaces.
+2024-03-06 16:00:08 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -
+				Tomcat initialized with port 8083 (http)
+2024-03-06 16:00:08 [main] INFO  o.a.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8083"]
+2024-03-06 16:00:08 [main] INFO  o.a.catalina.core.StandardService -
+				Starting service [Tomcat]
+2024-03-06 16:00:08 [main] INFO  o.a.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-06 16:00:08 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2024-03-06 16:00:08 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 7957 ms
+2024-03-06 16:00:09 [main] INFO  o.h.jpa.internal.util.LogHelper -
+				HHH000204: Processing PersistenceUnitInfo [name: postgresql]
+2024-03-06 16:00:09 [main] INFO  org.hibernate.Version -
+				HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-03-06 16:00:09 [main] INFO  o.h.c.i.RegionFactoryInitiator -
+				HHH000026: Second-level cache disabled
+2024-03-06 16:00:10 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -
+				No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-06 16:00:10 [main] WARN  com.zaxxer.hikari.HikariConfig -
+				Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2024-03-06 16:00:10 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				Infognc-hikari-pool - Starting...
+2024-03-06 16:00:11 [main] INFO  com.zaxxer.hikari.pool.HikariPool -
+				Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@12a6e8ed
+2024-03-06 16:00:11 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				Infognc-hikari-pool - Start completed.
+2024-03-06 16:00:11 [main] WARN  org.hibernate.orm.deprecation -
+				HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-03-06 16:00:13 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -
+				HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-03-06 16:00:13 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -
+				Initialized JPA EntityManagerFactory for persistence unit 'postgresql'
+2024-03-06 16:00:14 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory -
+				Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-03-06 16:00:17 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -
+				spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-06 16:00:18 [main] INFO  o.a.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8083"]
+2024-03-06 16:00:18 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -
+				Tomcat started on port 8083 (http) with context path ''
+2024-03-06 16:00:18 [main] INFO  gc.apiClient.GcClientApplication -
+				Started GcClientApplication in 19.168 seconds (process running for 23.382)
+2024-03-06 16:00:18 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				Scheduled method started...
+2024-03-06 16:00:18 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				Class : ControllerUCRM - Method : ReceiveMessage
+2024-03-06 16:00:18 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				topic_id : campma
+2024-03-06 16:00:18 [test-task-scheduling1] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetApiRequet =====
+2024-03-06 16:00:21 [test-task-scheduling1] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractValCrm12 =====
+2024-03-06 16:00:21 [test-task-scheduling1] INFO  gc.apiClient.service.ServiceJson -
+				result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연::Home
+2024-03-06 16:00:21 [http-nio-8083-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-06 16:00:21 [http-nio-8083-exec-2] INFO  o.s.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2024-03-06 16:00:21 [http-nio-8083-exec-2] INFO  o.s.web.servlet.DispatcherServlet -
+				Completed initialization in 2 ms
+2024-03-06 16:00:21 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				Class : ControllerUCRM - Method : receiveMessage
+2024-03-06 16:00:21 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				topic_id : camprtMsg
+2024-03-06 16:00:21 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractVal56 =====
+2024-03-06 16:00:21 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::85aecd05-21b5-46a1-86f3-357f252d10a0::0aebaa53-2e66-4720-acdb-8a766e2ea6ae
+2024-03-06 16:00:21 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				division : í
+2024-03-06 16:00:21 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				===== PostContactLtApiBulk =====
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				PostContactLtApiBulk 요청 후 결과 값 : [{"id":"83b85d7ff68cb7f0b7b3c59212abefff","contactListId":"85aecd05-21b5-46a1-86f3-357f252d10a0","data":{"이름":"장현규","전화번호":"01088336327"},"callRecords":{"전화번호":{"lastAttempt":"2023-11-29T11:51:15.033Z","lastResult":"e269acc9-bad4-4533-91da-2e31d2998f45"}},"callable":true,"phoneNumberStatus":{"전화번호":{"callable":true}},"contactableStatus":{"Email":{"contactable":true}},"dateCreated":"2023-11-29T11:49:21.701Z","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts/83b85d7ff68cb7f0b7b3c59212abefff"},{"id":"0b241f9bef1df80679bfba58582c8505","contactListId":"85aecd05-21b5-46a1-86f3-357f252d10a0","data":{"이름":"황윤석","전화번호":"01074710415"},"callRecords":{"전화번호":{"lastAttempt":"2023-11-29T11:51:14.022Z","lastResult":"e269acc9-bad4-4533-91da-2e31d2998f45"}},"callable":true,"phoneNumberStatus":{"전화번호":{"callable":true}},"contactableStatus":{"Email":{"contactable":true}},"dateCreated":"2023-11-29T11:49:21.701Z","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts/0b241f9bef1df80679bfba58582c8505"}]
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractContacts56 =====
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServiceJson -
+				result : 83b85d7ff68cb7f0b7b3c59212abefff::85aecd05-21b5-46a1-86f3-357f252d10a0::2023-11-29T11:51:15.033Z::e269acc9-bad4-4533-91da-2e31d2998f45
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtMsg =====
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 0
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 0
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 0
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 0
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 0
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: 
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				didt: null
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetStatusApiRequet =====
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 11
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 23
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 0
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: C,111,custid
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 111
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				didt: Wed Nov 29 20:51:15 KST 2023
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 6
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtJson =====
+2024-03-06 16:00:22 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetStatusApiRequet =====
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				JsonString Data : 0번째 {"rlsq":11,"cpsq":0,"dirt":6,"dict":0,"tkda":"C,111,custid","coid":"H2","cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","contactLtId":"85aecd05-21b5-46a1-86f3-357f252d10a0","didt":"2023/11/29 20:51:15","contactId":"83b85d7ff68cb7f0b7b3c59212abefff","hubId":111}
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				===== sendMsgToProducer =====
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				Endpoint : /gcapi/post/sixthtopic
+2024-03-06 16:00:23 [reactor-http-nio-3] ERROR g.a.kafkamessages.MessageToProducer -
+				Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				Entity as JSON: {"rlsq":11,"cpsq":0,"dirt":6,"dict":0,"tkda":"C,111,custid","coid":"H2","cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","contactLtId":"85aecd05-21b5-46a1-86f3-357f252d10a0","didt":"2023/11/29 20:51:15","contactId":"83b85d7ff68cb7f0b7b3c59212abefff","hubId":111}
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractContacts56 =====
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServiceJson -
+				result : 0b241f9bef1df80679bfba58582c8505::85aecd05-21b5-46a1-86f3-357f252d10a0::2023-11-29T11:51:14.022Z::e269acc9-bad4-4533-91da-2e31d2998f45
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtMsg =====
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 0
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 0
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 0
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 0
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 0
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 0b241f9bef1df80679bfba58582c8505
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: 
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				didt: null
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetStatusApiRequet =====
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 12
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 23
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 666
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 0b241f9bef1df80679bfba58582c8505
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: A||gg||dfe||feq||ere||666
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 0
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				didt: Wed Nov 29 20:51:14 KST 2023
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 6
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 16:00:23 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtJson =====
+2024-03-06 16:00:24 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetStatusApiRequet =====
+2024-03-06 16:00:24 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+2024-03-06 16:00:24 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				JsonString Data : 1번째 {"rlsq":12,"cpsq":666,"dirt":6,"dict":0,"tkda":"A||gg||dfe||feq||ere||666","coid":"H2","cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","contactLtId":"85aecd05-21b5-46a1-86f3-357f252d10a0","didt":"2023/11/29 20:51:14","contactId":"0b241f9bef1df80679bfba58582c8505","hubId":0}
+2024-03-06 16:00:24 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				===== sendMsgToProducer =====
+2024-03-06 16:00:24 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				Endpoint : /gcapi/post/callbot(임시)
+2024-03-06 16:00:24 [reactor-http-nio-4] ERROR g.a.kafkamessages.MessageToProducer -
+				Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+2024-03-06 16:00:24 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				Entity as JSON: {"rlsq":12,"cpsq":666,"dirt":6,"dict":0,"tkda":"A||gg||dfe||feq||ere||666","coid":"H2","cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","contactLtId":"85aecd05-21b5-46a1-86f3-357f252d10a0","didt":"2023/11/29 20:51:14","contactId":"0b241f9bef1df80679bfba58582c8505","hubId":0}
+2024-03-06 16:01:20 [main] INFO  gc.apiClient.GcClientApplication -
+				Starting GcClientApplication using Java 21.0.1 with PID 24556 (D:\GitWorkSpace\gcClient\gcClient\target\classes started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+2024-03-06 16:01:20 [main] INFO  gc.apiClient.GcClientApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2024-03-06 16:01:22 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-06 16:01:22 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 364 ms. Found 4 JPA repository interfaces.
+2024-03-06 16:01:25 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -
+				Tomcat initialized with port 8083 (http)
+2024-03-06 16:01:25 [main] INFO  o.a.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8083"]
+2024-03-06 16:01:25 [main] INFO  o.a.catalina.core.StandardService -
+				Starting service [Tomcat]
+2024-03-06 16:01:25 [main] INFO  o.a.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-06 16:01:26 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2024-03-06 16:01:26 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 4940 ms
+2024-03-06 16:01:26 [main] INFO  o.h.jpa.internal.util.LogHelper -
+				HHH000204: Processing PersistenceUnitInfo [name: postgresql]
+2024-03-06 16:01:26 [main] INFO  org.hibernate.Version -
+				HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-03-06 16:01:26 [main] INFO  o.h.c.i.RegionFactoryInitiator -
+				HHH000026: Second-level cache disabled
+2024-03-06 16:01:27 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -
+				No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-06 16:01:28 [main] WARN  com.zaxxer.hikari.HikariConfig -
+				Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2024-03-06 16:01:28 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				Infognc-hikari-pool - Starting...
+2024-03-06 16:01:29 [main] INFO  com.zaxxer.hikari.pool.HikariPool -
+				Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@1e6cb932
+2024-03-06 16:01:29 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				Infognc-hikari-pool - Start completed.
+2024-03-06 16:01:29 [main] WARN  org.hibernate.orm.deprecation -
+				HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-03-06 16:01:32 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -
+				HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-03-06 16:01:32 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -
+				Initialized JPA EntityManagerFactory for persistence unit 'postgresql'
+2024-03-06 16:01:34 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory -
+				Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-03-06 16:01:36 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -
+				spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-06 16:01:38 [main] INFO  o.a.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8083"]
+2024-03-06 16:01:38 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -
+				Tomcat started on port 8083 (http) with context path ''
+2024-03-06 16:01:38 [main] INFO  gc.apiClient.GcClientApplication -
+				Started GcClientApplication in 18.872 seconds (process running for 22.871)
+2024-03-06 16:01:38 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				Scheduled method started...
+2024-03-06 16:01:38 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				Class : ControllerUCRM - Method : ReceiveMessage
+2024-03-06 16:01:38 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				topic_id : campma
+2024-03-06 16:01:38 [test-task-scheduling1] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetApiRequet =====
+2024-03-06 16:01:42 [test-task-scheduling1] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractValCrm12 =====
+2024-03-06 16:01:42 [test-task-scheduling1] INFO  gc.apiClient.service.ServiceJson -
+				result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연::Home
+2024-03-06 16:01:44 [http-nio-8083-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-06 16:01:44 [http-nio-8083-exec-2] INFO  o.s.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2024-03-06 16:01:44 [http-nio-8083-exec-2] INFO  o.s.web.servlet.DispatcherServlet -
+				Completed initialization in 7 ms
+2024-03-06 16:01:44 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				Class : ControllerUCRM - Method : receiveMessage
+2024-03-06 16:01:44 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				topic_id : camprtMsg
+2024-03-06 16:01:44 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractVal56 =====
+2024-03-06 16:01:44 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::85aecd05-21b5-46a1-86f3-357f252d10a0::0aebaa53-2e66-4720-acdb-8a766e2ea6ae
+2024-03-06 16:01:44 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				division : Home
+2024-03-06 16:01:44 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				===== PostContactLtApiBulk =====
+2024-03-06 16:01:44 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				PostContactLtApiBulk 요청 후 결과 값 : [{"id":"83b85d7ff68cb7f0b7b3c59212abefff","contactListId":"85aecd05-21b5-46a1-86f3-357f252d10a0","data":{"이름":"장현규","전화번호":"01088336327"},"callRecords":{"전화번호":{"lastAttempt":"2023-11-29T11:51:15.033Z","lastResult":"e269acc9-bad4-4533-91da-2e31d2998f45"}},"callable":true,"phoneNumberStatus":{"전화번호":{"callable":true}},"contactableStatus":{"Email":{"contactable":true}},"dateCreated":"2023-11-29T11:49:21.701Z","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts/83b85d7ff68cb7f0b7b3c59212abefff"},{"id":"0b241f9bef1df80679bfba58582c8505","contactListId":"85aecd05-21b5-46a1-86f3-357f252d10a0","data":{"이름":"황윤석","전화번호":"01074710415"},"callRecords":{"전화번호":{"lastAttempt":"2023-11-29T11:51:14.022Z","lastResult":"e269acc9-bad4-4533-91da-2e31d2998f45"}},"callable":true,"phoneNumberStatus":{"전화번호":{"callable":true}},"contactableStatus":{"Email":{"contactable":true}},"dateCreated":"2023-11-29T11:49:21.701Z","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts/0b241f9bef1df80679bfba58582c8505"}]
+2024-03-06 16:01:44 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractContacts56 =====
+2024-03-06 16:01:44 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServiceJson -
+				result : 83b85d7ff68cb7f0b7b3c59212abefff::85aecd05-21b5-46a1-86f3-357f252d10a0::2023-11-29T11:51:15.033Z::e269acc9-bad4-4533-91da-2e31d2998f45
+2024-03-06 16:01:44 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtMsg =====
+2024-03-06 16:01:44 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 0
+2024-03-06 16:01:44 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 0
+2024-03-06 16:01:44 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 0
+2024-03-06 16:01:44 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 0
+2024-03-06 16:01:44 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 0
+2024-03-06 16:01:44 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 16:01:44 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 16:01:44 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 16:01:44 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+2024-03-06 16:01:44 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: 
+2024-03-06 16:01:44 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				didt: null
+2024-03-06 16:01:44 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetStatusApiRequet =====
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 13
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 23
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 0
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: C,111,custid
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 111
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				didt: Wed Nov 29 20:51:15 KST 2023
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 6
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtJson =====
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetStatusApiRequet =====
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				JsonString Data : 0번째 {"rlsq":13,"cpsq":0,"dirt":6,"dict":0,"tkda":"C,111,custid","coid":"H2","cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","contactLtId":"85aecd05-21b5-46a1-86f3-357f252d10a0","didt":"2023/11/29 20:51:15","hubId":111,"contactId":"83b85d7ff68cb7f0b7b3c59212abefff"}
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				===== sendMsgToProducer =====
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				Endpoint : /gcapi/post/fifthtopic
+2024-03-06 16:01:45 [reactor-http-nio-3] ERROR g.a.kafkamessages.MessageToProducer -
+				Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				Entity as JSON: {"rlsq":13,"cpsq":0,"dirt":6,"dict":0,"tkda":"C,111,custid","coid":"H2","cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","contactLtId":"85aecd05-21b5-46a1-86f3-357f252d10a0","didt":"2023/11/29 20:51:15","hubId":111,"contactId":"83b85d7ff68cb7f0b7b3c59212abefff"}
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractContacts56 =====
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServiceJson -
+				result : 0b241f9bef1df80679bfba58582c8505::85aecd05-21b5-46a1-86f3-357f252d10a0::2023-11-29T11:51:14.022Z::e269acc9-bad4-4533-91da-2e31d2998f45
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtMsg =====
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 0
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 0
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 0
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 0
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 0
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 0b241f9bef1df80679bfba58582c8505
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: 
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				didt: null
+2024-03-06 16:01:45 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetStatusApiRequet =====
+2024-03-06 16:01:46 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+2024-03-06 16:01:46 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 14
+2024-03-06 16:01:46 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 23
+2024-03-06 16:01:46 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 16:01:46 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 666
+2024-03-06 16:01:46 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 16:01:46 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 0b241f9bef1df80679bfba58582c8505
+2024-03-06 16:01:46 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: A||gg||dfe||feq||ere||666
+2024-03-06 16:01:46 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 0
+2024-03-06 16:01:46 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				didt: Wed Nov 29 20:51:14 KST 2023
+2024-03-06 16:01:46 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 6
+2024-03-06 16:01:46 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 16:01:46 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtJson =====
+2024-03-06 16:01:46 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetStatusApiRequet =====
+2024-03-06 16:01:46 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+2024-03-06 16:01:46 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				JsonString Data : 1번째 {"rlsq":14,"cpsq":666,"dirt":6,"dict":0,"tkda":"A||gg||dfe||feq||ere||666","coid":"H2","cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","contactLtId":"85aecd05-21b5-46a1-86f3-357f252d10a0","didt":"2023/11/29 20:51:14","hubId":0,"contactId":"0b241f9bef1df80679bfba58582c8505"}
+2024-03-06 16:01:46 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				===== sendMsgToProducer =====
+2024-03-06 16:01:46 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				Endpoint : /gcapi/post/callbot(임시)
+2024-03-06 16:01:46 [reactor-http-nio-4] ERROR g.a.kafkamessages.MessageToProducer -
+				Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+2024-03-06 16:01:46 [http-nio-8083-exec-2] INFO  g.a.kafkamessages.MessageToProducer -
+				Entity as JSON: {"rlsq":14,"cpsq":666,"dirt":6,"dict":0,"tkda":"A||gg||dfe||feq||ere||666","coid":"H2","cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","contactLtId":"85aecd05-21b5-46a1-86f3-357f252d10a0","didt":"2023/11/29 20:51:14","hubId":0,"contactId":"0b241f9bef1df80679bfba58582c8505"}
+2024-03-06 16:53:33 [main] INFO  gc.apiClient.GcClientApplication -
+				Starting GcClientApplication using Java 21.0.1 with PID 20688 (D:\GitWorkSpace\gcClient\gcClient\target\classes started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+2024-03-06 16:53:33 [main] INFO  gc.apiClient.GcClientApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2024-03-06 16:53:35 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-06 16:53:36 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 488 ms. Found 4 JPA repository interfaces.
+2024-03-06 16:53:39 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -
+				Tomcat initialized with port 8083 (http)
+2024-03-06 16:53:39 [main] INFO  o.a.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8083"]
+2024-03-06 16:53:39 [main] INFO  o.a.catalina.core.StandardService -
+				Starting service [Tomcat]
+2024-03-06 16:53:39 [main] INFO  o.a.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-06 16:53:39 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2024-03-06 16:53:39 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 6140 ms
+2024-03-06 16:53:40 [main] INFO  o.h.jpa.internal.util.LogHelper -
+				HHH000204: Processing PersistenceUnitInfo [name: postgresql]
+2024-03-06 16:53:40 [main] INFO  org.hibernate.Version -
+				HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-03-06 16:53:40 [main] INFO  o.h.c.i.RegionFactoryInitiator -
+				HHH000026: Second-level cache disabled
+2024-03-06 16:53:41 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -
+				No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-06 16:53:41 [main] WARN  com.zaxxer.hikari.HikariConfig -
+				Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2024-03-06 16:53:41 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				Infognc-hikari-pool - Starting...
+2024-03-06 16:53:43 [main] INFO  com.zaxxer.hikari.pool.HikariPool -
+				Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@521a506c
+2024-03-06 16:53:43 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				Infognc-hikari-pool - Start completed.
+2024-03-06 16:53:43 [main] WARN  org.hibernate.orm.deprecation -
+				HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-03-06 16:53:47 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -
+				HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-03-06 16:53:47 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -
+				Initialized JPA EntityManagerFactory for persistence unit 'postgresql'
+2024-03-06 16:53:49 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory -
+				Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-03-06 16:53:51 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -
+				spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-06 16:53:52 [main] INFO  o.a.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8083"]
+2024-03-06 16:53:52 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -
+				Tomcat started on port 8083 (http) with context path ''
+2024-03-06 16:53:52 [main] INFO  gc.apiClient.GcClientApplication -
+				Started GcClientApplication in 20.777 seconds (process running for 24.895)
+2024-03-06 16:53:52 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				Scheduled method started...
+2024-03-06 16:53:52 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				Class : ControllerUCRM - Method : ReceiveMessage
+2024-03-06 16:53:52 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				topic_id : campma
+2024-03-06 16:53:52 [test-task-scheduling1] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetApiRequet =====
+2024-03-06 16:53:56 [test-task-scheduling1] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractValCrm12 =====
+2024-03-06 16:53:56 [test-task-scheduling1] INFO  gc.apiClient.service.ServiceJson -
+				result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연::Home
+2024-03-06 16:54:33 [http-nio-8083-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-06 16:54:33 [http-nio-8083-exec-1] INFO  o.s.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2024-03-06 16:54:33 [http-nio-8083-exec-1] INFO  o.s.web.servlet.DispatcherServlet -
+				Completed initialization in 5 ms
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  g.a.controller.ControllerUCRM -
+				Class : ControllerUCRM - Method : receiveMessage
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  g.a.controller.ControllerUCRM -
+				topic_id : thirdtopic
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractValCrm34 =====
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServiceJson -
+				result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::5555::83b85d7ff68cb7f0b7b3c59212abefff::안유진::KO2::O,111,custid::tno1::tno2::tno3
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				===== createContactLtMsg ===== 
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				msg : 97e6b32d-c266-4d33-92b4-01ddf33898cd::5555::83b85d7ff68cb7f0b7b3c59212abefff::안유진::KO2::O,111,custid::tno1::tno2::tno3
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				cpid : 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq : 5555
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				cske : 83b85d7ff68cb7f0b7b3c59212abefff
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				csna : 안유진
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				flag : KO2
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				tkda : O,111,custid
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				tno1 : tno1
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				tno2 : tno2
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				tno3 : tno3
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetCampaignsApiRequet =====
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"id":"97e6b32d-c266-4d33-92b4-01ddf33898cd","name":"[hg] 테스트 시연","dateCreated":"2023-11-29T11:15:31.705Z","dateModified":"2024-02-13T00:45:50.660Z","version":23,"contactList":{"id":"85aecd05-21b5-46a1-86f3-357f252d10a0","name":"[hg] 테스트 시연2","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0"},"queue":{"id":"d9c1327d-476c-458b-a85e-3086604fefb6","selfUri":"/api/v2/routing/queues/d9c1327d-476c-458b-a85e-3086604fefb6"},"dialingMode":"power","script":{"id":"476c2b71-7429-11e4-9a5b-3f91746bffa3","name":"Default Outbound Script","selfUri":"/api/v2/scripts/476c2b71-7429-11e4-9a5b-3f91746bffa3"},"site":{"id":"139054d6-9b1e-494e-b7ee-09e4c9de32f4","name":"lguplus-dev","selfUri":"/api/v2/telephony/providers/edges/sites/139054d6-9b1e-494e-b7ee-09e4c9de32f4"},"campaignStatus":"invalid","phoneColumns":[{"columnName":"전화번호","type":"휴대폰"}],"abandonRate":5.0,"dncLists":[],"callAnalysisResponseSet":{"id":"f3b42acd-ae79-40f1-ad46-bd0c1d8948e0","name":"[hg] 테스트 시연","selfUri":"/api/v2/outbound/callanalysisresponsesets/f3b42acd-ae79-40f1-ad46-bd0c1d8948e0"},"errors":[{"error":"QUEUE_NOT_FOUND","details":"Resource not found"}],"callerName":"GSNeotek","callerAddress":"+82316001441","outboundLineCount":2,"ruleSets":[],"skipPreviewDisabled":false,"previewTimeOutSeconds":0,"singleNumberPreview":false,"alwaysRunning":false,"noAnswerTimeout":30,"priority":5,"contactListFilters":[],"division":{"id":"0aebaa53-2e66-4720-acdb-8a766e2ea6ae","name":"Home","selfUri":"/api/v2/authorization/divisions/0aebaa53-2e66-4720-acdb-8a766e2ea6ae"},"dynamicContactQueueingSettings":{"sort":false},"selfUri":"/api/v2/outbound/campaigns/97e6b32d-c266-4d33-92b4-01ddf33898cd"}
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  g.a.controller.ControllerUCRM -
+				contactLtId : 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				===== createContactLtGC =====
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				msg : 97e6b32d-c266-4d33-92b4-01ddf33898cd::5555::83b85d7ff68cb7f0b7b3c59212abefff::안유진::KO2::O,111,custid::tno1::tno2::tno3
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq :5555
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				cske :83b85d7ff68cb7f0b7b3c59212abefff
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				csna :안유진
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				tkda :O,111,custid
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				cpid :97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				tno1 :tno1
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				tno2 :tno2
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				tno3 :tno3
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  gc.apiClient.service.ServicePostgre -
+				tmzo :Asia/Seoul (+09:00)
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  g.a.controller.ControllerUCRM -
+				JsonString Data : {"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","cpsq":"5555","cske":"83b85d7ff68cb7f0b7b3c59212abefff","tno1":"tno1","tno2":"tno2","tno3":"tno3","tmzo":"Asia/Seoul (+09:00)","csna":"안유진","tkda":"O,111,custid"}
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  g.apiClient.service.ServiceWebClient -
+				===== PostContactLtApiRequet =====
+2024-03-06 16:54:34 [reactor-http-nio-2] ERROR gc.apiClient.webclient.WebClientApp -
+				Error making API request: 415 Unsupported Media Type from POST https://api.apne2.pure.cloud/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts
+2024-03-06 16:54:34 [http-nio-8083-exec-1] INFO  g.apiClient.service.ServiceWebClient -
+				PostContactLtApiRequet 요청 후 결과 값 : null
+2024-03-06 16:54:52 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				Scheduled method started...
+2024-03-06 16:54:52 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				Class : ControllerUCRM - Method : ReceiveMessage
+2024-03-06 16:54:52 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				topic_id : campma
+2024-03-06 16:54:52 [test-task-scheduling1] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetApiRequet =====
+2024-03-06 16:54:53 [test-task-scheduling1] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractValCrm12 =====
+2024-03-06 16:54:53 [test-task-scheduling1] INFO  gc.apiClient.service.ServiceJson -
+				result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연::Home
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  g.a.controller.ControllerUCRM -
+				Class : ControllerUCRM - Method : receiveMessage
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  g.a.controller.ControllerUCRM -
+				topic_id : thirdtopic
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractValCrm34 =====
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  gc.apiClient.service.ServiceJson -
+				result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::99999::0b241f9bef1df80679bfba58582c8505::비비::PO2::P||gg||dfe||feq||ere||666::tno1::tno2::tno3
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  gc.apiClient.service.ServicePostgre -
+				===== createContactLtMsg ===== 
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  gc.apiClient.service.ServicePostgre -
+				msg : 97e6b32d-c266-4d33-92b4-01ddf33898cd::99999::0b241f9bef1df80679bfba58582c8505::비비::PO2::P||gg||dfe||feq||ere||666::tno1::tno2::tno3
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  gc.apiClient.service.ServicePostgre -
+				cpid : 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq : 99999
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  gc.apiClient.service.ServicePostgre -
+				cske : 0b241f9bef1df80679bfba58582c8505
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  gc.apiClient.service.ServicePostgre -
+				csna : 비비
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  gc.apiClient.service.ServicePostgre -
+				flag : PO2
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  gc.apiClient.service.ServicePostgre -
+				tkda : P||gg||dfe||feq||ere||666
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  gc.apiClient.service.ServicePostgre -
+				tno1 : tno1
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  gc.apiClient.service.ServicePostgre -
+				tno2 : tno2
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  gc.apiClient.service.ServicePostgre -
+				tno3 : tno3
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetCampaignsApiRequet =====
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"id":"97e6b32d-c266-4d33-92b4-01ddf33898cd","name":"[hg] 테스트 시연","dateCreated":"2023-11-29T11:15:31.705Z","dateModified":"2024-02-13T00:45:50.660Z","version":23,"contactList":{"id":"85aecd05-21b5-46a1-86f3-357f252d10a0","name":"[hg] 테스트 시연2","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0"},"queue":{"id":"d9c1327d-476c-458b-a85e-3086604fefb6","selfUri":"/api/v2/routing/queues/d9c1327d-476c-458b-a85e-3086604fefb6"},"dialingMode":"power","script":{"id":"476c2b71-7429-11e4-9a5b-3f91746bffa3","name":"Default Outbound Script","selfUri":"/api/v2/scripts/476c2b71-7429-11e4-9a5b-3f91746bffa3"},"site":{"id":"139054d6-9b1e-494e-b7ee-09e4c9de32f4","name":"lguplus-dev","selfUri":"/api/v2/telephony/providers/edges/sites/139054d6-9b1e-494e-b7ee-09e4c9de32f4"},"campaignStatus":"invalid","phoneColumns":[{"columnName":"전화번호","type":"휴대폰"}],"abandonRate":5.0,"dncLists":[],"callAnalysisResponseSet":{"id":"f3b42acd-ae79-40f1-ad46-bd0c1d8948e0","name":"[hg] 테스트 시연","selfUri":"/api/v2/outbound/callanalysisresponsesets/f3b42acd-ae79-40f1-ad46-bd0c1d8948e0"},"errors":[{"error":"QUEUE_NOT_FOUND","details":"Resource not found"}],"callerName":"GSNeotek","callerAddress":"+82316001441","outboundLineCount":2,"ruleSets":[],"skipPreviewDisabled":false,"previewTimeOutSeconds":0,"singleNumberPreview":false,"alwaysRunning":false,"noAnswerTimeout":30,"priority":5,"contactListFilters":[],"division":{"id":"0aebaa53-2e66-4720-acdb-8a766e2ea6ae","name":"Home","selfUri":"/api/v2/authorization/divisions/0aebaa53-2e66-4720-acdb-8a766e2ea6ae"},"dynamicContactQueueingSettings":{"sort":false},"selfUri":"/api/v2/outbound/campaigns/97e6b32d-c266-4d33-92b4-01ddf33898cd"}
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  g.a.controller.ControllerUCRM -
+				contactLtId : 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  gc.apiClient.service.ServicePostgre -
+				===== createContactLtGC =====
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  gc.apiClient.service.ServicePostgre -
+				msg : 97e6b32d-c266-4d33-92b4-01ddf33898cd::99999::0b241f9bef1df80679bfba58582c8505::비비::PO2::P||gg||dfe||feq||ere||666::tno1::tno2::tno3
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq :99999
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  gc.apiClient.service.ServicePostgre -
+				cske :0b241f9bef1df80679bfba58582c8505
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  gc.apiClient.service.ServicePostgre -
+				csna :비비
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  gc.apiClient.service.ServicePostgre -
+				tkda :P||gg||dfe||feq||ere||666
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  gc.apiClient.service.ServicePostgre -
+				cpid :97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  gc.apiClient.service.ServicePostgre -
+				tno1 :tno1
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  gc.apiClient.service.ServicePostgre -
+				tno2 :tno2
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  gc.apiClient.service.ServicePostgre -
+				tno3 :tno3
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  gc.apiClient.service.ServicePostgre -
+				tmzo :Asia/Seoul (+09:00)
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  g.a.controller.ControllerUCRM -
+				JsonString Data : {"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd","cpsq":"99999","cske":"0b241f9bef1df80679bfba58582c8505","tno1":"tno1","tno2":"tno2","tno3":"tno3","tmzo":"Asia/Seoul (+09:00)","csna":"비비","tkda":"P||gg||dfe||feq||ere||666"}
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  g.apiClient.service.ServiceWebClient -
+				===== PostContactLtApiRequet =====
+2024-03-06 16:55:29 [reactor-http-nio-2] ERROR gc.apiClient.webclient.WebClientApp -
+				Error making API request: 415 Unsupported Media Type from POST https://api.apne2.pure.cloud/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts
+2024-03-06 16:55:29 [http-nio-8083-exec-3] INFO  g.apiClient.service.ServiceWebClient -
+				PostContactLtApiRequet 요청 후 결과 값 : null
+2024-03-06 16:55:52 [test-task-scheduling2] INFO  g.a.controller.ControllerUCRM -
+				Scheduled method started...
+2024-03-06 16:55:52 [test-task-scheduling2] INFO  g.a.controller.ControllerUCRM -
+				Class : ControllerUCRM - Method : ReceiveMessage
+2024-03-06 16:55:52 [test-task-scheduling2] INFO  g.a.controller.ControllerUCRM -
+				topic_id : campma
+2024-03-06 16:55:52 [test-task-scheduling2] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetApiRequet =====
+2024-03-06 16:55:52 [test-task-scheduling2] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractValCrm12 =====
+2024-03-06 16:55:52 [test-task-scheduling2] INFO  gc.apiClient.service.ServiceJson -
+				result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연::Home
+2024-03-06 16:56:52 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				Scheduled method started...
+2024-03-06 16:56:52 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				Class : ControllerUCRM - Method : ReceiveMessage
+2024-03-06 16:56:52 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				topic_id : campma
+2024-03-06 16:56:52 [test-task-scheduling1] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetApiRequet =====
+2024-03-06 16:56:53 [test-task-scheduling1] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractValCrm12 =====
+2024-03-06 16:56:53 [test-task-scheduling1] INFO  gc.apiClient.service.ServiceJson -
+				result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연::Home
+2024-03-06 16:57:52 [test-task-scheduling3] INFO  g.a.controller.ControllerUCRM -
+				Scheduled method started...
+2024-03-06 16:57:52 [test-task-scheduling3] INFO  g.a.controller.ControllerUCRM -
+				Class : ControllerUCRM - Method : ReceiveMessage
+2024-03-06 16:57:52 [test-task-scheduling3] INFO  g.a.controller.ControllerUCRM -
+				topic_id : campma
+2024-03-06 16:57:52 [test-task-scheduling3] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetApiRequet =====
+2024-03-06 16:57:53 [test-task-scheduling3] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractValCrm12 =====
+2024-03-06 16:57:53 [test-task-scheduling3] INFO  gc.apiClient.service.ServiceJson -
+				result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연::Home
+2024-03-06 16:58:52 [test-task-scheduling2] INFO  g.a.controller.ControllerUCRM -
+				Scheduled method started...
+2024-03-06 16:58:52 [test-task-scheduling2] INFO  g.a.controller.ControllerUCRM -
+				Class : ControllerUCRM - Method : ReceiveMessage
+2024-03-06 16:58:52 [test-task-scheduling2] INFO  g.a.controller.ControllerUCRM -
+				topic_id : campma
+2024-03-06 16:58:52 [test-task-scheduling2] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetApiRequet =====
+2024-03-06 16:58:52 [test-task-scheduling2] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractValCrm12 =====
+2024-03-06 16:58:53 [test-task-scheduling2] INFO  gc.apiClient.service.ServiceJson -
+				result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연::Home
+2024-03-06 16:59:52 [test-task-scheduling4] INFO  g.a.controller.ControllerUCRM -
+				Scheduled method started...
+2024-03-06 16:59:52 [test-task-scheduling4] INFO  g.a.controller.ControllerUCRM -
+				Class : ControllerUCRM - Method : ReceiveMessage
+2024-03-06 16:59:52 [test-task-scheduling4] INFO  g.a.controller.ControllerUCRM -
+				topic_id : campma
+2024-03-06 16:59:52 [test-task-scheduling4] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetApiRequet =====
+2024-03-06 16:59:53 [test-task-scheduling4] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractValCrm12 =====
+2024-03-06 16:59:53 [test-task-scheduling4] INFO  gc.apiClient.service.ServiceJson -
+				result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연::Home
+2024-03-06 17:00:52 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				Scheduled method started...
+2024-03-06 17:00:52 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				Class : ControllerUCRM - Method : ReceiveMessage
+2024-03-06 17:00:52 [test-task-scheduling1] INFO  g.a.controller.ControllerUCRM -
+				topic_id : campma
+2024-03-06 17:00:52 [test-task-scheduling1] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetApiRequet =====
+2024-03-06 17:00:53 [test-task-scheduling1] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractValCrm12 =====
+2024-03-06 17:00:53 [test-task-scheduling1] INFO  gc.apiClient.service.ServiceJson -
+				result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연::Home
+2024-03-06 17:01:23 [http-nio-8083-exec-6] INFO  g.a.controller.ControllerUCRM -
+				Class : ControllerUCRM - Method : receiveMessage
+2024-03-06 17:01:23 [http-nio-8083-exec-6] INFO  g.a.controller.ControllerUCRM -
+				topic_id : camprtMsg
+2024-03-06 17:01:23 [http-nio-8083-exec-6] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractVal56 =====
+2024-03-06 17:01:23 [http-nio-8083-exec-6] INFO  g.a.controller.ControllerUCRM -
+				result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::85aecd05-21b5-46a1-86f3-357f252d10a0::0aebaa53-2e66-4720-acdb-8a766e2ea6ae
+2024-03-06 17:01:23 [http-nio-8083-exec-6] INFO  g.a.controller.ControllerUCRM -
+				division : Home
+2024-03-06 17:01:23 [http-nio-8083-exec-6] INFO  g.apiClient.service.ServiceWebClient -
+				===== PostContactLtApiBulk =====
+2024-03-06 17:01:23 [http-nio-8083-exec-6] INFO  g.apiClient.service.ServiceWebClient -
+				PostContactLtApiBulk 요청 후 결과 값 : [{"id":"83b85d7ff68cb7f0b7b3c59212abefff","contactListId":"85aecd05-21b5-46a1-86f3-357f252d10a0","data":{"이름":"장현규","전화번호":"01088336327"},"callRecords":{"전화번호":{"lastAttempt":"2023-11-29T11:51:15.033Z","lastResult":"e269acc9-bad4-4533-91da-2e31d2998f45"}},"callable":true,"phoneNumberStatus":{"전화번호":{"callable":true}},"contactableStatus":{"Email":{"contactable":true}},"dateCreated":"2023-11-29T11:49:21.701Z","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts/83b85d7ff68cb7f0b7b3c59212abefff"},{"id":"0b241f9bef1df80679bfba58582c8505","contactListId":"85aecd05-21b5-46a1-86f3-357f252d10a0","data":{"이름":"황윤석","전화번호":"01074710415"},"callRecords":{"전화번호":{"lastAttempt":"2023-11-29T11:51:14.022Z","lastResult":"e269acc9-bad4-4533-91da-2e31d2998f45"}},"callable":true,"phoneNumberStatus":{"전화번호":{"callable":true}},"contactableStatus":{"Email":{"contactable":true}},"dateCreated":"2023-11-29T11:49:21.701Z","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts/0b241f9bef1df80679bfba58582c8505"}]
+2024-03-06 17:01:23 [http-nio-8083-exec-6] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractContacts56 =====
+2024-03-06 17:01:23 [http-nio-8083-exec-6] INFO  gc.apiClient.service.ServiceJson -
+				result : 83b85d7ff68cb7f0b7b3c59212abefff::85aecd05-21b5-46a1-86f3-357f252d10a0::2023-11-29T11:51:15.033Z::e269acc9-bad4-4533-91da-2e31d2998f45
+2024-03-06 17:01:23 [http-nio-8083-exec-6] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtMsg =====
+2024-03-06 17:01:23 [http-nio-8083-exec-6] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 0
+2024-03-06 17:01:23 [http-nio-8083-exec-6] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 0
+2024-03-06 17:01:23 [http-nio-8083-exec-6] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 0
+2024-03-06 17:01:23 [http-nio-8083-exec-6] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 0
+2024-03-06 17:01:23 [http-nio-8083-exec-6] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 0
+2024-03-06 17:01:23 [http-nio-8083-exec-6] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 17:01:23 [http-nio-8083-exec-6] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 17:01:23 [http-nio-8083-exec-6] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 17:01:23 [http-nio-8083-exec-6] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+2024-03-06 17:01:23 [http-nio-8083-exec-6] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: 
+2024-03-06 17:01:23 [http-nio-8083-exec-6] INFO  gc.apiClient.service.ServicePostgre -
+				didt: null
+2024-03-06 17:01:23 [http-nio-8083-exec-6] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] -
+				Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 1] with root cause
+java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 1
+	at gc.apiClient.service.ServicePostgre.createCampRtMsg(ServicePostgre.java:96)
+	at gc.apiClient.controller.ControllerUCRM.receiveMessage(ControllerUCRM.java:235)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:261)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:189)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:917)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:829)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:673)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:340)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2024-03-06 17:01:52 [test-task-scheduling5] INFO  g.a.controller.ControllerUCRM -
+				Scheduled method started...
+2024-03-06 17:01:52 [test-task-scheduling5] INFO  g.a.controller.ControllerUCRM -
+				Class : ControllerUCRM - Method : ReceiveMessage
+2024-03-06 17:01:52 [test-task-scheduling5] INFO  g.a.controller.ControllerUCRM -
+				topic_id : campma
+2024-03-06 17:01:52 [test-task-scheduling5] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetApiRequet =====
+2024-03-06 17:01:52 [test-task-scheduling5] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractValCrm12 =====
+2024-03-06 17:01:52 [test-task-scheduling5] INFO  gc.apiClient.service.ServiceJson -
+				result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연::Home
+2024-03-06 17:03:28 [main] INFO  gc.apiClient.GcClientApplication -
+				Starting GcClientApplication using Java 21.0.1 with PID 29348 (D:\GitWorkSpace\gcClient\gcClient\target\classes started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+2024-03-06 17:03:28 [main] INFO  gc.apiClient.GcClientApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2024-03-06 17:03:30 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-06 17:03:30 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 227 ms. Found 4 JPA repository interfaces.
+2024-03-06 17:03:32 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -
+				Tomcat initialized with port 8083 (http)
+2024-03-06 17:03:32 [main] INFO  o.a.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8083"]
+2024-03-06 17:03:32 [main] INFO  o.a.catalina.core.StandardService -
+				Starting service [Tomcat]
+2024-03-06 17:03:32 [main] INFO  o.a.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-06 17:03:32 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2024-03-06 17:03:32 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 3603 ms
+2024-03-06 17:03:32 [main] INFO  o.h.jpa.internal.util.LogHelper -
+				HHH000204: Processing PersistenceUnitInfo [name: postgresql]
+2024-03-06 17:03:33 [main] INFO  org.hibernate.Version -
+				HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-03-06 17:03:33 [main] INFO  o.h.c.i.RegionFactoryInitiator -
+				HHH000026: Second-level cache disabled
+2024-03-06 17:03:33 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -
+				No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-06 17:03:33 [main] WARN  com.zaxxer.hikari.HikariConfig -
+				Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2024-03-06 17:03:33 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				Infognc-hikari-pool - Starting...
+2024-03-06 17:03:34 [main] INFO  com.zaxxer.hikari.pool.HikariPool -
+				Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@6a902015
+2024-03-06 17:03:34 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				Infognc-hikari-pool - Start completed.
+2024-03-06 17:03:34 [main] WARN  org.hibernate.orm.deprecation -
+				HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-03-06 17:03:36 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -
+				HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-03-06 17:03:36 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -
+				Initialized JPA EntityManagerFactory for persistence unit 'postgresql'
+2024-03-06 17:03:37 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory -
+				Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-03-06 17:03:40 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -
+				spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-06 17:03:41 [main] INFO  o.a.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8083"]
+2024-03-06 17:03:42 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -
+				Tomcat started on port 8083 (http) with context path ''
+2024-03-06 17:03:42 [main] INFO  gc.apiClient.GcClientApplication -
+				Started GcClientApplication in 14.223 seconds (process running for 17.283)
+2024-03-06 17:03:56 [http-nio-8083-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-06 17:03:56 [http-nio-8083-exec-2] INFO  o.s.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2024-03-06 17:03:56 [http-nio-8083-exec-2] INFO  o.s.web.servlet.DispatcherServlet -
+				Completed initialization in 7 ms
+2024-03-06 17:03:56 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				Class : ControllerUCRM - Method : receiveMessage
+2024-03-06 17:03:56 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				topic_id : camprtMsg
+2024-03-06 17:03:56 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractVal56 =====
+2024-03-06 17:03:56 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::85aecd05-21b5-46a1-86f3-357f252d10a0::0aebaa53-2e66-4720-acdb-8a766e2ea6ae
+2024-03-06 17:03:56 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				division : Home
+2024-03-06 17:03:56 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				===== PostContactLtApiBulk =====
+2024-03-06 17:04:01 [http-nio-8083-exec-2] INFO  g.apiClient.service.ServiceWebClient -
+				PostContactLtApiBulk 요청 후 결과 값 : [{"id":"83b85d7ff68cb7f0b7b3c59212abefff","contactListId":"85aecd05-21b5-46a1-86f3-357f252d10a0","data":{"이름":"장현규","전화번호":"01088336327"},"callRecords":{"전화번호":{"lastAttempt":"2023-11-29T11:51:15.033Z","lastResult":"e269acc9-bad4-4533-91da-2e31d2998f45"}},"callable":true,"phoneNumberStatus":{"전화번호":{"callable":true}},"contactableStatus":{"Email":{"contactable":true}},"dateCreated":"2023-11-29T11:49:21.701Z","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts/83b85d7ff68cb7f0b7b3c59212abefff"},{"id":"0b241f9bef1df80679bfba58582c8505","contactListId":"85aecd05-21b5-46a1-86f3-357f252d10a0","data":{"이름":"황윤석","전화번호":"01074710415"},"callRecords":{"전화번호":{"lastAttempt":"2023-11-29T11:51:14.022Z","lastResult":"e269acc9-bad4-4533-91da-2e31d2998f45"}},"callable":true,"phoneNumberStatus":{"전화번호":{"callable":true}},"contactableStatus":{"Email":{"contactable":true}},"dateCreated":"2023-11-29T11:49:21.701Z","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts/0b241f9bef1df80679bfba58582c8505"}]
+2024-03-06 17:04:01 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractContacts56 =====
+2024-03-06 17:04:01 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServiceJson -
+				result : 83b85d7ff68cb7f0b7b3c59212abefff::85aecd05-21b5-46a1-86f3-357f252d10a0::2023-11-29T11:51:15.033Z::e269acc9-bad4-4533-91da-2e31d2998f45
+2024-03-06 17:04:01 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtMsg =====
+2024-03-06 17:04:01 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 0
+2024-03-06 17:04:01 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 0
+2024-03-06 17:04:01 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 0
+2024-03-06 17:04:01 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 0
+2024-03-06 17:04:01 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 0
+2024-03-06 17:04:01 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 17:04:01 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 17:04:01 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 17:04:01 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+2024-03-06 17:04:01 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: 
+2024-03-06 17:04:01 [http-nio-8083-exec-2] INFO  gc.apiClient.service.ServicePostgre -
+				didt: null
+2024-03-06 17:04:01 [http-nio-8083-exec-2] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] -
+				Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 1] with root cause
+java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 1
+	at gc.apiClient.service.ServicePostgre.createCampRtMsg(ServicePostgre.java:96)
+	at gc.apiClient.controller.ControllerUCRM.receiveMessage(ControllerUCRM.java:235)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:261)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:189)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:917)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:829)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:673)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:340)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2024-03-06 17:12:21 [main] INFO  gc.apiClient.GcClientApplication -
+				Starting GcClientApplication using Java 21.0.1 with PID 29040 (D:\GitWorkSpace\gcClient\gcClient\target\classes started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+2024-03-06 17:12:21 [main] INFO  gc.apiClient.GcClientApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2024-03-06 17:12:22 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-06 17:12:23 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 337 ms. Found 4 JPA repository interfaces.
+2024-03-06 17:12:25 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -
+				Tomcat initialized with port 8083 (http)
+2024-03-06 17:12:25 [main] INFO  o.a.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8083"]
+2024-03-06 17:12:25 [main] INFO  o.a.catalina.core.StandardService -
+				Starting service [Tomcat]
+2024-03-06 17:12:25 [main] INFO  o.a.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-06 17:12:26 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2024-03-06 17:12:26 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 4979 ms
+2024-03-06 17:12:26 [main] INFO  o.h.jpa.internal.util.LogHelper -
+				HHH000204: Processing PersistenceUnitInfo [name: postgresql]
+2024-03-06 17:12:26 [main] INFO  org.hibernate.Version -
+				HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-03-06 17:12:26 [main] INFO  o.h.c.i.RegionFactoryInitiator -
+				HHH000026: Second-level cache disabled
+2024-03-06 17:12:27 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -
+				No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-06 17:12:27 [main] WARN  com.zaxxer.hikari.HikariConfig -
+				Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2024-03-06 17:12:27 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				Infognc-hikari-pool - Starting...
+2024-03-06 17:12:28 [main] INFO  com.zaxxer.hikari.pool.HikariPool -
+				Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@3f4a605f
+2024-03-06 17:12:28 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				Infognc-hikari-pool - Start completed.
+2024-03-06 17:12:28 [main] WARN  org.hibernate.orm.deprecation -
+				HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-03-06 17:12:30 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -
+				HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-03-06 17:12:30 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -
+				Initialized JPA EntityManagerFactory for persistence unit 'postgresql'
+2024-03-06 17:12:32 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory -
+				Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-03-06 17:12:34 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -
+				spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-06 17:12:35 [main] INFO  o.a.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8083"]
+2024-03-06 17:12:35 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -
+				Tomcat started on port 8083 (http) with context path ''
+2024-03-06 17:12:35 [main] INFO  gc.apiClient.GcClientApplication -
+				Started GcClientApplication in 15.357 seconds (process running for 17.476)
+2024-03-06 17:12:41 [http-nio-8083-exec-4] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-06 17:12:41 [http-nio-8083-exec-4] INFO  o.s.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2024-03-06 17:12:41 [http-nio-8083-exec-4] INFO  o.s.web.servlet.DispatcherServlet -
+				Completed initialization in 3 ms
+2024-03-06 17:12:41 [http-nio-8083-exec-4] INFO  g.a.controller.ControllerUCRM -
+				Class : ControllerUCRM - Method : receiveMessage
+2024-03-06 17:12:41 [http-nio-8083-exec-4] INFO  g.a.controller.ControllerUCRM -
+				topic_id : camprtMsg
+2024-03-06 17:12:41 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractVal56 =====
+2024-03-06 17:12:41 [http-nio-8083-exec-4] INFO  g.a.controller.ControllerUCRM -
+				result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::85aecd05-21b5-46a1-86f3-357f252d10a0::0aebaa53-2e66-4720-acdb-8a766e2ea6ae
+2024-03-06 17:12:41 [http-nio-8083-exec-4] INFO  g.a.controller.ControllerUCRM -
+				division : Home
+2024-03-06 17:12:42 [http-nio-8083-exec-4] INFO  g.apiClient.service.ServiceWebClient -
+				===== PostContactLtApiBulk =====
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  g.apiClient.service.ServiceWebClient -
+				PostContactLtApiBulk 요청 후 결과 값 : [{"id":"83b85d7ff68cb7f0b7b3c59212abefff","contactListId":"85aecd05-21b5-46a1-86f3-357f252d10a0","data":{"이름":"장현규","전화번호":"01088336327"},"callRecords":{"전화번호":{"lastAttempt":"2023-11-29T11:51:15.033Z","lastResult":"e269acc9-bad4-4533-91da-2e31d2998f45"}},"callable":true,"phoneNumberStatus":{"전화번호":{"callable":true}},"contactableStatus":{"Email":{"contactable":true}},"dateCreated":"2023-11-29T11:49:21.701Z","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts/83b85d7ff68cb7f0b7b3c59212abefff"},{"id":"0b241f9bef1df80679bfba58582c8505","contactListId":"85aecd05-21b5-46a1-86f3-357f252d10a0","data":{"이름":"황윤석","전화번호":"01074710415"},"callRecords":{"전화번호":{"lastAttempt":"2023-11-29T11:51:14.022Z","lastResult":"e269acc9-bad4-4533-91da-2e31d2998f45"}},"callable":true,"phoneNumberStatus":{"전화번호":{"callable":true}},"contactableStatus":{"Email":{"contactable":true}},"dateCreated":"2023-11-29T11:49:21.701Z","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts/0b241f9bef1df80679bfba58582c8505"}]
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractContacts56 =====
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServiceJson -
+				result : 83b85d7ff68cb7f0b7b3c59212abefff::85aecd05-21b5-46a1-86f3-357f252d10a0::2023-11-29T11:51:15.033Z::e269acc9-bad4-4533-91da-2e31d2998f45
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtMsg =====
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 0
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 0
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 0
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 0
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 0
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: 
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				didt: null
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetStatusApiRequet =====
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 3
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 23
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 0
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: O,111,custid
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 0
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				didt: Wed Nov 29 20:51:15 KST 2023
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 6
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractContacts56 =====
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServiceJson -
+				result : 83b85d7ff68cb7f0b7b3c59212abefff::85aecd05-21b5-46a1-86f3-357f252d10a0::2023-11-29T11:51:15.033Z::e269acc9-bad4-4533-91da-2e31d2998f45
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtMsg =====
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 0
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 0
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 0
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 0
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 0
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: 
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				didt: null
+2024-03-06 17:12:45 [http-nio-8083-exec-4] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetStatusApiRequet =====
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 3
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 23
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 0
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: O,111,custid
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 0
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				didt: Wed Nov 29 20:51:15 KST 2023
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 6
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServiceJson -
+				===== ExtractContacts56 =====
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServiceJson -
+				result : 0b241f9bef1df80679bfba58582c8505::85aecd05-21b5-46a1-86f3-357f252d10a0::2023-11-29T11:51:14.022Z::e269acc9-bad4-4533-91da-2e31d2998f45
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				===== createCampRtMsg =====
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 0
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 0
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 0
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 0
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 0
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 0b241f9bef1df80679bfba58582c8505
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: 
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				didt: null
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  g.apiClient.service.ServiceWebClient -
+				===== GetStatusApiRequet =====
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  g.apiClient.service.ServiceWebClient -
+				GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				rlsq: 3
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				coid: 23
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				cpsq: 0
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				contactId: 0b241f9bef1df80679bfba58582c8505
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				tkda: P||gg||dfe||feq||ere||666
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				hubid: 0
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				didt: Wed Nov 29 20:51:14 KST 2023
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				dirt: 6
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  gc.apiClient.service.ServicePostgre -
+				dict: 0
+2024-03-06 17:12:46 [http-nio-8083-exec-4] INFO  g.a.controller.ControllerUCRM -
+				아빠 안잔다. : [{"dirt":6,"tkda":"O,111,custid"},{"dirt":6,"tkda":"P||gg||dfe||feq||ere||666"}] 

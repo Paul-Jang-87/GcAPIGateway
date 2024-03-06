@@ -91,3 +91,15 @@ Action:
 
 Consider defining a bean of type 'gc.apiClient.interfaceCollection.InterfaceJson' in your configuration.
 
+ERROR 24-03-06 15:40:54[reactor-http-nio-3] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-06 15:40:55[reactor-http-nio-4] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-06 15:49:48[reactor-http-nio-3] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-06 15:49:49[reactor-http-nio-4] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-06 15:54:33[reactor-http-nio-3] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-06 15:54:34[reactor-http-nio-4] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-06 16:00:23[reactor-http-nio-3] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-06 16:00:24[reactor-http-nio-4] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-06 16:01:45[reactor-http-nio-3] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-06 16:01:46[reactor-http-nio-4] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-06 16:54:34[reactor-http-nio-2] [WebClientApp:125] - Error making API request: 415 Unsupported Media Type from POST https://api.apne2.pure.cloud/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts
+ERROR 24-03-06 16:55:29[reactor-http-nio-2] [WebClientApp:125] - Error making API request: 415 Unsupported Media Type from POST https://api.apne2.pure.cloud/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts

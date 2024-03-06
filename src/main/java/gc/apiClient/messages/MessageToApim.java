@@ -1,4 +1,4 @@
-package gc.apiClient.kafkamessages;
+package gc.apiClient.messages;
 
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -7,13 +7,13 @@ import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
 @Slf4j
-public class MessageToProducer {
+public class MessageToApim {
 	
-	public void sendMsgToProducer (String towhere, String jsonString) {
+	public void sendMsgToApim (String towhere, String jsonString) {
 		
-		log.info("===== sendMsgToProducer =====");
+		log.info("===== ToApim =====");
 		
-		WebClient webClient = WebClient.builder().baseUrl("http://localhost:8081").build();
+		WebClient webClient = WebClient.builder().baseUrl("http://localhost:8084").build();
 
 	    String endpointUrl = towhere;
 

@@ -92,8 +92,9 @@ public class ServicePostgre implements InterfaceDB {
 
 		if (tkda.charAt(0) == 'C') {
 			hubId = Integer.parseInt(enContactLt.getTkda().split(",")[1]);
-		} else {
+		} else if(tkda.charAt(0) == 'A'){
 			cpsq = Integer.parseInt(enContactLt.getTkda().split("\\|\\|")[5]);
+		}else {
 		}
 
 		SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");

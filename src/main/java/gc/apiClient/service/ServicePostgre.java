@@ -15,12 +15,12 @@ import gc.apiClient.customproperties.CustomProperties;
 import gc.apiClient.datamapping.MappingHomeCenter;
 import gc.apiClient.embeddable.CampRt;
 import gc.apiClient.embeddable.ContactLtId;
-import gc.apiClient.entity.Entity_CampMa;
-import gc.apiClient.entity.Entity_CampRt;
 import gc.apiClient.entity.Entity_CampRtJson;
-import gc.apiClient.entity.Entity_ContactLt;
 import gc.apiClient.entity.Entity_ContactltMapper;
-import gc.apiClient.entity.Entity_MapCoId;
+import gc.apiClient.entity.postgresql.Entity_CampMa;
+import gc.apiClient.entity.postgresql.Entity_CampRt;
+import gc.apiClient.entity.postgresql.Entity_ContactLt;
+import gc.apiClient.entity.postgresql.Entity_MapCoId;
 import gc.apiClient.interfaceCollection.InterfaceDB;
 import gc.apiClient.repository.Repository_CampMa;
 import gc.apiClient.repository.Repository_CampRt;
@@ -87,7 +87,7 @@ public class ServicePostgre implements InterfaceDB {
 
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
 		enContactLt = findContactLtByCske(contactId);
-
+		
 		tkda = enContactLt.getTkda();
 
 		if (tkda.charAt(0) == 'C') {

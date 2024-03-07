@@ -3,12 +3,12 @@ package gc.apiClient.interfaceCollection;
 
 import java.util.List;
 
-import gc.apiClient.entity.Entity_CampMa;
-import gc.apiClient.entity.Entity_CampRt;
 import gc.apiClient.entity.Entity_CampRtJson;
-import gc.apiClient.entity.Entity_ContactLt;
 import gc.apiClient.entity.Entity_ContactltMapper;
-import gc.apiClient.entity.Entity_MapCoId;
+import gc.apiClient.entity.postgresql.Entity_CampMa;
+import gc.apiClient.entity.postgresql.Entity_CampRt;
+import gc.apiClient.entity.postgresql.Entity_ContactLt;
+import gc.apiClient.entity.postgresql.Entity_MapCoId;
 
 public interface InterfaceDB {
 

@@ -22,7 +22,7 @@ public class ServiceWebClient implements InterfaceWebClient {
 		WebClientApp webClient = new WebClientApp(endpoint, "GET");
 		result = webClient.makeApiRequest();
 
-		System.out.println("GetApiRequet 요청 후 결과 값 : " + result);
+		log.info("GetApiRequet 요청 후 결과 값 : {}",result);
 
 		return result;
 	}

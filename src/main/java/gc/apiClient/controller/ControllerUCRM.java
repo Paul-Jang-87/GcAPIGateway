@@ -16,13 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import gc.apiClient.BusinessLogic;
 import gc.apiClient.customproperties.CustomProperties;
-import gc.apiClient.entity.Entity_CampMa;
-import gc.apiClient.entity.Entity_CampRt;
 import gc.apiClient.entity.Entity_CampRtJson;
-import gc.apiClient.entity.Entity_ContactLt;
 import gc.apiClient.entity.Entity_ContactltMapper;
 import gc.apiClient.entity.Entity_ToApim;
+import gc.apiClient.entity.postgresql.Entity_CampMa;
+import gc.apiClient.entity.postgresql.Entity_CampRt;
+import gc.apiClient.entity.postgresql.Entity_ContactLt;
 import gc.apiClient.interfaceCollection.InterfaceDB;
 import gc.apiClient.interfaceCollection.InterfaceWebClient;
 import gc.apiClient.messages.MessageToApim;
@@ -61,6 +62,7 @@ public class ControllerUCRM extends ServiceJson {
 		String cpid = "";
 		String topic_id = tranId;
 		String division = "";
+		String business = "";
 		String endpoint = "/gcapi/post/" + topic_id;
 		ObjectMapper objectMapper = null;
 
@@ -75,6 +77,7 @@ public class ControllerUCRM extends ServiceJson {
 //			"coid": "22", or "23"
 //			"cpna":"카리나" or "장원영" 
 //		}
+
 			result = serviceWeb.GetApiRequet("campaignId");
 
 			row_result = ExtractValCrm12(result); // cpid::cpna::division -> 캠페인아이디::캠페인명
@@ -84,39 +87,63 @@ public class ControllerUCRM extends ServiceJson {
 			if (serviceDb.findCampMaByCpid(cpid) != null) {// campma 테이블에 이미 있는 캠페인이라면 pass.
 
 			} else {
-				// division에 따라 토픽 정해줌.
-				if (division.equals("Home") || division.equals("홈")) {
-					topic_id = "firsttopic"; // "from_clcc_cmpnma_h_message"
-				} else if (division.equals("Mobile") || division.equals("모바일")) {
-					topic_id = "secondtopic"; // "from_clcc_cmpnma_m_message"
-				} else {
-					topic_id = "callbot"; // 나중에 정하는 걸로.
-				}
+
+				Map<String, String> businessLogic = BusinessLogic.SelectedBusiness(division);
+
+				business = businessLogic.get("business");
+				topic_id = businessLogic.get("topic_id");
 
 				int coid = serviceDb.findMapcoidByCpid(cpid).getCoid();// cpid를 가지고 Mapcoid테이블에서 일치하는 레코드 검색 후 coid 추출.
 				row_result = row_result + "::" + coid;
-
 				Entity_CampMa entityMa = serviceDb.createCampMaMsg(row_result);
-				objectMapper = new ObjectMapper();
+				
+				switch (business) {
+				case "UCRM":
+				case "Callbot": 
+					
+					objectMapper = new ObjectMapper();
 
-				try {
-					String jsonString = objectMapper.writeValueAsString(entityMa);
-					log.info("jsonString : {}", jsonString);
-					MessageToProducer producer = new MessageToProducer();
-					endpoint = "/gcapi/post/" + topic_id;
-					producer.sendMsgToProducer(endpoint, jsonString);
+					try {
+						String jsonString = objectMapper.writeValueAsString(entityMa);
+						log.info("jsonString : {}", jsonString);
+						MessageToProducer producer = new MessageToProducer();
+						endpoint = "/gcapi/post/" + topic_id;
+						producer.sendMsgToProducer(endpoint, jsonString);
 
-				} catch (JsonProcessingException e) {
-					e.printStackTrace();
-				}
+					} catch (JsonProcessingException e) {
+						e.printStackTrace();
+					}
 
-				// db인서트
-				try {
-					serviceDb.InsertCampMa(entityMa);
-				} catch (DataIntegrityViolationException ex) {
-					log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
-				} catch (DataAccessException ex) {
-					log.error("DataAccessException 발생 : {}", ex.getMessage());
+					// db인서트
+					try {
+						serviceDb.InsertCampMa(entityMa);
+					} catch (DataIntegrityViolationException ex) {
+						log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+					} catch (DataAccessException ex) {
+						log.error("DataAccessException 발생 : {}", ex.getMessage());
+					}
+					
+					break;
+					
+				default:
+					
+					objectMapper = new ObjectMapper();
+
+					try {
+						String jsonString = objectMapper.writeValueAsString(entityMa);
+
+						// localhost:8084/dspRslt
+						// 192.168.219.134:8084/dspRslt
+						MessageToApim apim = new MessageToApim();
+						endpoint = "/cmpnMstrRegist";
+						apim.sendMsgToApim(endpoint, jsonString);
+						log.info("CAMPMA 로직 : {} APIM으로 보냄. : {}", jsonString);
+
+					} catch (JsonProcessingException e) {
+						e.printStackTrace();
+					}
+					
+					break;
 				}
 			}
 		}
@@ -133,6 +160,7 @@ public class ControllerUCRM extends ServiceJson {
 		String cpid = "";
 		String topic_id = tranId;
 		String division = "";
+		String business = "";
 		String endpoint = "/gcapi/post/" + topic_id;
 		ObjectMapper objectMapper = null;
 
@@ -236,16 +264,21 @@ public class ControllerUCRM extends ServiceJson {
 			Entity_CampRt entityCmRt = serviceDb.createCampRtMsg(contactsresult);// db 인서트 하기 위한 entity.
 
 			int dirt = entityCmRt.getDirt();// 응답코드
-			String tkda = entityCmRt.getTkda();// 토큰데이터
+			Character tkda = entityCmRt.getTkda().charAt(0);// 토큰데이터
+			
+			Map<String, String> businessLogic = BusinessLogic.SelectedBusiness(tkda);
+
+			business = businessLogic.get("business");
+			topic_id = businessLogic.get("topic_id");
 
 			switch (tkda.charAt(0)) {
-			case 'C':
-			case 'A':
+			case 'C': // UCRM일 경우.
+			case 'A': // 콜봇일 경우.
 
 				for (int i = 0; i < enContactList.size(); i++) {
 
 					contactsresult = ExtractContacts56(result, i);
-					contactsresult = contactsresult + "::" + cpid;// contactid(고객키)::contactListId::didt::dirt::cpid
+					contactsresult = contactsresult + "::" + cpid; // contactid(고객키)::contactListId::didt::dirt::cpid
 					entityCmRt = serviceDb.createCampRtMsg(contactsresult);// db 인서트 하기 위한 entity.
 
 					dirt = entityCmRt.getDirt();// 응답코드
@@ -301,6 +334,8 @@ public class ControllerUCRM extends ServiceJson {
 					}
 				}
 
+				break;
+
 			default:
 
 				for (int i = 0; i < enContactList.size(); i++) {
@@ -311,31 +346,31 @@ public class ControllerUCRM extends ServiceJson {
 
 					dirt = entityCmRt.getDirt();// 응답코드
 					tkda = entityCmRt.getTkda();// 토큰데이터
-					
+
 					Entity_ToApim enToApim = new Entity_ToApim();
 					enToApim.setDirt(dirt);
 					enToApim.setTkda(tkda);
-					
+
 					apimEntitylt.add(enToApim);
 
 				}
-				
+
 				objectMapper = new ObjectMapper();
 
 				try {
 					String jsonString = objectMapper.writeValueAsString(apimEntitylt);
-					
+
 					// localhost:8084/dspRslt
 					// 192.168.219.134:8084/dspRslt
 					MessageToApim apim = new MessageToApim();
-					endpoint = "dspRslt";
+					endpoint = "/dspRslt";
 					apim.sendMsgToApim(endpoint, jsonString);
-					log.info("아빠 안잔다. : {} ",jsonString);
+					log.info("CAMPRT 로직, APIM으로 보냄. : {} ", jsonString);
 
 				} catch (JsonProcessingException e) {
 					e.printStackTrace();
 				}
-
+				break;
 			}
 
 			return Mono.empty();

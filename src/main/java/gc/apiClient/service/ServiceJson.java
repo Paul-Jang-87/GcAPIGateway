@@ -65,8 +65,9 @@ public class ServiceJson implements InterfaceJson {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-
+		
 		log.info("result : {}",result);
+		log.info("===== END ExtractValCrm12 =====");
 		return result;
 	}
 

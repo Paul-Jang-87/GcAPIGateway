@@ -1,4 +1,4 @@
-package gc.apiClient.entity;
+package gc.apiClient.entity.postgresql;
 
 import gc.apiClient.embeddable.ContactLtId;
 import jakarta.persistence.Column;

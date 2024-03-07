@@ -1,10 +1,12 @@
-package gc.apiClient.entity;
+package gc.apiClient.entity.postgresql;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+
 import java.util.Date;
+
 import gc.apiClient.embeddable.CampRt;
 
 @Entity

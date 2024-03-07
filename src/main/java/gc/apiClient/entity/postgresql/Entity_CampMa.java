@@ -1,4 +1,6 @@
-package gc.apiClient.entity;
+package gc.apiClient.entity.postgresql;
+
+import org.jetbrains.annotations.NotNull;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,6 +16,7 @@ public class Entity_CampMa {
 	private int coid;
 
 	@Id
+	@NotNull
 	@Column(name = "CPID")
 	private String cpid;
 	

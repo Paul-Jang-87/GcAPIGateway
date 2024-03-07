@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 import gc.apiClient.embeddable.ContactLtId;
-import gc.apiClient.entity.Entity_ContactLt;
+import gc.apiClient.entity.postgresql.Entity_ContactLt;
 
 @Repository
 public interface Repository_ContactLt extends CrudRepository<Entity_ContactLt,  ContactLtId> {

@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import gc.apiClient.embeddable.CampRt;
-import gc.apiClient.entity.Entity_CampRt;
+import gc.apiClient.entity.postgresql.Entity_CampRt;
 
 @Repository
 public interface Repository_CampRt extends CrudRepository<Entity_CampRt, CampRt> {

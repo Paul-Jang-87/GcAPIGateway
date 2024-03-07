@@ -266,14 +266,14 @@ public class ControllerUCRM extends ServiceJson {
 			int dirt = entityCmRt.getDirt();// 응답코드
 			Character tkda = entityCmRt.getTkda().charAt(0);// 토큰데이터
 			
-			Map<String, String> businessLogic = BusinessLogic.SelectedBusiness(tkda);
+			Map<String, String> businessLogic = BusinessLogic.SelectedBusiness(tkda,divisionName);
 
 			business = businessLogic.get("business");
 			topic_id = businessLogic.get("topic_id");
 
-			switch (tkda.charAt(0)) {
-			case 'C': // UCRM일 경우.
-			case 'A': // 콜봇일 경우.
+			switch (business) {
+			case "UCRM": // UCRM일 경우.
+			case "CALLBOT": // 콜봇일 경우.
 
 				for (int i = 0; i < enContactList.size(); i++) {
 
@@ -282,29 +282,8 @@ public class ControllerUCRM extends ServiceJson {
 					entityCmRt = serviceDb.createCampRtMsg(contactsresult);// db 인서트 하기 위한 entity.
 
 					dirt = entityCmRt.getDirt();// 응답코드
-					tkda = entityCmRt.getTkda();// 토큰데이터
 
-					// UCRM,콜봇,APIM 구분
-					if (tkda.charAt(0) == 'C') { // UCRM
-						// 홈
-						if (divisionName.equals("Home")) {
-							topic_id = "fifthtopic";// "from_clcc_campnrs_h_message";
-							// 모바일
-						} else {
-							topic_id = "sixthtopic"; // "from_clcc_campnrs_m_message";
-						}
-
-					} else {// Callbot
-						// 홈
-						if (divisionName.equals("Home")) {
-							topic_id = "callbot(임시)"; // 나중에 실제 토픽 명으로 교체해야함.
-							// 모바일
-						} else {
-							topic_id = "callbot(임시)"; // 나중에 실제 토픽 명으로 교체해야함.
-						}
-					}
-
-					if ((tkda.charAt(0) == 'C') && (dirt == 1)) {// URM이면서 정상일 때.
+					if ( (business.equals("UCRM"))&&(dirt == 1) ) {// URM이면서 정상일 때.
 
 					} else {
 						Entity_CampRtJson toproducer = serviceDb.createCampRtJson(contactsresult);// producer로 보내기 위한
@@ -345,14 +324,13 @@ public class ControllerUCRM extends ServiceJson {
 					entityCmRt = serviceDb.createCampRtMsg(contactsresult);// db 인서트 하기 위한 entity.
 
 					dirt = entityCmRt.getDirt();// 응답코드
-					tkda = entityCmRt.getTkda();// 토큰데이터
+					String tokendata = entityCmRt.getTkda();// 토큰데이터
 
 					Entity_ToApim enToApim = new Entity_ToApim();
 					enToApim.setDirt(dirt);
-					enToApim.setTkda(tkda);
+					enToApim.setTkda(tokendata);
 
 					apimEntitylt.add(enToApim);
-
 				}
 
 				objectMapper = new ObjectMapper();

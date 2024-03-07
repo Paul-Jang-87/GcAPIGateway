@@ -75,68 +75,49 @@ public class BusinessLogic {
 		return businesslogic;
 	}
 
-	public static Map<String, String> SelectedBusiness(Character division) {
-
-		log.info("====== Class : BusinessLogic - Method : SelectedBusiness ======");
-		log.info("division : {}", division);
-
+	public static Map<String, String> SelectedBusiness(Character tkda ,String divisionName) {
+		
 		businesslogic = new HashMap<String, String>();
 		String topic_id = "";
 		String business = "";
-
-		switch (division) {
-		case "Home":
-		case "홈":
-
+		
+		if ( (tkda=='C')&&(divisionName.equals("Home")) ) { // UCRM
+			
 			business = "UCRM";
-			topic_id = "firsttopic"; // "from_clcc_cmpnma_h_message"
+			topic_id = "fifthtopic";// "from_clcc_campnrs_h_message";
 			businesslogic.put("business", business);
 			businesslogic.put("topic_id", topic_id);
 
-			break;
-
-		case "Mobile":
-		case "모바일":
-
+		} else if( (tkda=='C')&&(divisionName.equals("Mobile")) ){
+			
 			business = "UCRM";
-			topic_id = "secondtopic"; // "from_clcc_cmpnma_m_message"
+			topic_id = "sixthtopic"; // "from_clcc_campnrs_m_message";
 			businesslogic.put("business", business);
 			businesslogic.put("topic_id", topic_id);
-
-			break;
-
-		case "CallbotHome":
-		case "콜봇홈":
-
-			business = "Callbot";
-			topic_id = "callbotHtopic"; // "from_clcc_aiccmpnma_h_message"
+			
+		} else if( (tkda=='A')&&(divisionName.equals("Home")) ){
+			
+			business = "CALLBOT";
+			topic_id = "from_clcc_aiccmpnma_h_message"; // 나중에 실제 토픽 명으로 교체해야함.
 			businesslogic.put("business", business);
 			businesslogic.put("topic_id", topic_id);
-
-			break;
-
-		case "CallbotMobile":
-		case "콜봇모바일":
-
-			business = "Callbot";
-			topic_id = "callbotMtopic"; // "from_clcc_aiccmpnma_m_message"
+			
+		}else if( (tkda=='A')&&(divisionName.equals("Mobile")) ){
+			
+			business = "CALLBOT";
+			topic_id = "from_clcc_aiccmpnma_m_message"; // 나중에 실제 토픽 명으로 교체해야함.
 			businesslogic.put("business", business);
 			businesslogic.put("topic_id", topic_id);
-
-			break;
-
-		default:
-
+			
+		}else {
+			
 			business = "APIM";
-			topic_id = "APIMcamptopic";
+			topic_id = ""; 
 			businesslogic.put("business", business);
 			businesslogic.put("topic_id", topic_id);
+			
 		}
-
-		log.info("business : {}", business);
-		log.info("topic_id : {}", topic_id);
-
-		log.info("===== END SelectedBusiness =====");
+			
 		return businesslogic;
 	}
 

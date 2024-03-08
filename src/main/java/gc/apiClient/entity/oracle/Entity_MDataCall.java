@@ -4,27 +4,24 @@ import java.util.Date;
 
 import org.jetbrains.annotations.NotNull;
 
+import gc.apiClient.embeddable.oracle.DataCall;
 import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "WA_DATA_CALL")
-public class Entity_WaDataCall {
+@Table(name = "M_DATA_CALL")
+public class Entity_MDataCall {
 	
-	@Id
+	@EmbeddedId
+    private DataCall id;
+	
 	@NotNull
-	@Column(name = "WCSEQ")
- 	private int wcseq;
-	
-	@Column(name = "ICID")
-	private String icid;
-	
-	@Column(name = "ENTERED_DATE")
-	private Date entered_date;
+	@Column(name = "ENTERED_TIME")
+	private String entered_time;
 	
 	@NotNull
 	@Column(name = "CEP_REPS_CNT")

@@ -36,7 +36,7 @@ public class PostgresqlDataSourceConfig {
             @Qualifier("postgresqlDataSource") DataSource dataSource) {
         return builder
                 .dataSource(dataSource)
-                .packages("gc.apiClient.entity")//참고할 엔티티
+                .packages("gc.apiClient.entity.postgresql")//참고할 엔티티
                 .persistenceUnit("postgresql")
                 .properties(hibernateProperties()) // Apply Hibernate properties here
                 .build();

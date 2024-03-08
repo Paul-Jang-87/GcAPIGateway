@@ -57,8 +57,7 @@ public class ServicePostgre implements InterfaceDB {
 		log.info("===== createCampRtMsg =====");
 
 		Entity_CampRt enCampRt = new Entity_CampRt();
-		CampRt id = new CampRt();
-
+		CampRt id = new CampRt(0, 0);
 		String parts[] = cpid.split("::");
 
 		int rlsq = 0;
@@ -129,12 +128,12 @@ public class ServicePostgre implements InterfaceDB {
 		id.setRlsq(rlsq);
 		id.setCoid(coid);
 		enCampRt.setId(id);
-		enCampRt.setContactLtid(contactLtId);
+		enCampRt.setContactLtId(contactLtId);
 		enCampRt.setContactid(contactId);
 		enCampRt.setCpid(campid);
 		enCampRt.setTkda(tkda);
 		enCampRt.setCpsq(cpsq);
-		enCampRt.setHubId(hubId);
+		enCampRt.setHubid(hubId);
 		enCampRt.setDidt(didt);
 		enCampRt.setDirt(dirt);
 		enCampRt.setDict(dict);
@@ -262,7 +261,7 @@ public class ServicePostgre implements InterfaceDB {
 		log.info("===== createContactLtMsg ===== ");
 
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
-		ContactLtId id = new ContactLtId();
+		ContactLtId id = new ContactLtId("", 0);
 		String ContactLvalues[] = msg.split("::");
 
 		log.info("msg : {}", msg);
@@ -274,9 +273,9 @@ public class ServicePostgre implements InterfaceDB {
 		enContactLt.setCsna(ContactLvalues[3]);// "카리나"
 		enContactLt.setFlag(ContactLvalues[4]);// "HO2"
 		enContactLt.setTkda(ContactLvalues[5]);// "custid,111"
-		enContactLt.setTn01(ContactLvalues[6]);// "tn01"
-		enContactLt.setTn02(ContactLvalues[7]);// "tn02"
-		enContactLt.setTn03(ContactLvalues[8]);// "tn03"
+		enContactLt.setTno1(ContactLvalues[6]);// "tn01"
+		enContactLt.setTno2(ContactLvalues[7]);// "tn02"
+		enContactLt.setTno3(ContactLvalues[8]);// "tn03"
 
 		log.info("cpid : {}", ContactLvalues[0]);
 		log.info("cpsq : {}", Integer.parseInt(ContactLvalues[1]));

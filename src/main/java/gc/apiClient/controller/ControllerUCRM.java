@@ -189,7 +189,7 @@ public class ControllerUCRM extends ServiceJson {
 			// 뽑아온다.cpid::cpsq::cske::csna::flag::tkda::tno1::tno2::tno3
 			Entity_ContactLt enContactLt = serviceDb.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
 			// Entity_ContactLt 객체에 매핑시킨다.
-			cpid = enContactLt.getCpid();// 캠페인 아이디를 가져온다.
+			cpid = enContactLt.getId().getCpid();// 캠페인 아이디를 가져온다.
 
 			result = serviceWeb.GetCampaignsApiRequet("campaigns", cpid);// 캠페인 아이디로
 																			// "/api/v2/outbound/campaigns/{campaignId}"호출
@@ -234,40 +234,44 @@ public class ControllerUCRM extends ServiceJson {
 
 		case "camprtMsg":// "from_clcc_campnrs_h_message" , "from_clcc_campnrs_m_message"
 
-			result = ExtractVal56(msg);// request body로 들어돈 json에서 필요 데이터 추출
+			result = ExtractVal56(msg);// request body로 들어온 json에서 필요 데이터 추출
 			log.info("result : {}", result); // campaignid, contactlistid, division 추출
 
 			String parts[] = result.split("::");
-
+			
+			int dirt = 0;
 			cpid = parts[0];
 			contactLtId = parts[1];
 			division = parts[2];
-
+			
+			//appliction.properties 파일에서 division와 매치되는 divisionName을 가지고 옴.
 			Map<String, String> properties = customProperties.getDivision();
 			String divisionName = properties.getOrDefault(division, "couldn't find division");
 			log.info("division : {}", divisionName);
 
+			//contactlt테이블에서 cpid가 같은 모든 레코드들을 엔티티 오브젝트로 리스트 형태로 가지고 온다.
 			List<Entity_ContactLt> enContactList = new ArrayList<Entity_ContactLt>();
-			enContactList = serviceDb.findContactLtByCpid(cpid);// campaignid가 같은 모든 엔티디들을 리스트로 가지고 온다.
+			enContactList = serviceDb.findContactLtByCpid(cpid);
 
-			List<String> values = new ArrayList<String>();// cske(고객키)들을 담을 list타입 변수.
-
+			//가지고 온 모든 엔티티들의 숫자만큼 for문들 돌면서 레코드들 각각의 cske(고객키)들을 가지고 온다. 그리고 values리스트에 담는다. 
+			List<String> values = new ArrayList<String>();
 			for (int i = 0; i < enContactList.size(); i++) {
 				values.add(enContactList.get(i).getCske());
 			}
 
-			result = serviceWeb.PostContactLtApiBulk("contactList", contactLtId, values);// 고객키 list를 request body 담아서
-																							// bulk로 호출.
+			//contactLtId를 키로 하여 제네시스의 api를 호출한다. 호출할 때는 values리스트 담겨져 있던 cske(고객키)들 각각에 맞는 결과 값들을 
+			//jsonString문자열로 한꺼번에 받는다. 
+			result = serviceWeb.PostContactLtApiBulk("contactList", contactLtId, values);
 
-			String contactsresult = ExtractContacts56(result, 0);
+			//캠페인이 어느 비즈니스 로직인지 판단하기 위해서 일단 목록 중 하나만 꺼내서 확인해 보도록한다. 
+			//왜냐면 나머지는 똑같을테니.
+			String contactsresult = ExtractContacts56(result, 0);//JsonString 결과값과 조회하고 싶은 인덱스(첫번째)를 인자로 넣는다. 
 			contactsresult = contactsresult + "::" + cpid;// contactid(고객키)::contactListId::didt::dirt::cpid
-			Entity_CampRt entityCmRt = serviceDb.createCampRtMsg(contactsresult);// db 인서트 하기 위한 entity.
-
-			int dirt = entityCmRt.getDirt();// 응답코드
-			Character tkda = entityCmRt.getTkda().charAt(0);// 토큰데이터
+			Entity_CampRt entityCmRt = serviceDb.createCampRtMsg(contactsresult);//contactsresult값으로 entity하나를 만든다. 
+			Character tkda = entityCmRt.getTkda().charAt(0);//그리고 비즈니스 로직을 구분하게 해줄 수 있는 토큰데이터를 구해온다. 
 			
+			//토큰데이터와 디비젼네임을 인자로 넘겨서 어떤 비지니스 로직인지, 토픽은 어떤 것으로 해야하는지를 결과 값으로 반환 받는다. 
 			Map<String, String> businessLogic = BusinessLogic.SelectedBusiness(tkda,divisionName);
-
 			business = businessLogic.get("business");
 			topic_id = businessLogic.get("topic_id");
 

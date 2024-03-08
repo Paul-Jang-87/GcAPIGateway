@@ -12,8 +12,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "WA_DATA_CALL")
-public class Entity_WaDataCall {
+@Table(name = "M_WA_DATA_CALL")
+public class Entity_MWaDataCall {
 	
 	@Id
 	@NotNull
@@ -25,6 +25,9 @@ public class Entity_WaDataCall {
 	
 	@Column(name = "ENTERED_DATE")
 	private Date entered_date;
+	
+	@Column(name = "CNT")
+	private String cnt;
 	
 	@NotNull
 	@Column(name = "CEP_REPS_CNT")

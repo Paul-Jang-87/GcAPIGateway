@@ -9,8 +9,8 @@ import gc.apiClient.embeddable.oracle.WaDataCallTrace;
 
 @Data
 @Entity
-@Table(name = "WA_M_TRACECODE")
-public class Entity_WaMTracecode {
+@Table(name = "M_WA_M_TRACECODE")
+public class Entity_MWaMTracecode {
 	
 	@EmbeddedId
     private WaDataCallTrace id;

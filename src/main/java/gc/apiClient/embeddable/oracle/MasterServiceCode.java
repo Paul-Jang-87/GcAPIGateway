@@ -11,13 +11,14 @@ import lombok.Data;
 
 @Data
 @Embeddable
-public class WaDataCallTrace implements Serializable {
+public class MasterServiceCode implements Serializable {
 
 	@NotNull
-	@Column(name = "WCSEQ")
-	private int wcseq;
+	@Column(name = "SITE_CODE")
+	private int site_code;
 	
 	@NotNull
-	@Column(name = "TC_SEQ")
-    private int tc_seq;
+	@Column(name = "SERVICE_CODE")
+    private String service_code;
+
 }

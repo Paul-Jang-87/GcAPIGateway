@@ -11,14 +11,26 @@ import lombok.Data;
 
 @Data
 @Embeddable
-public class WaMTracecode implements Serializable {
+public class DataCallCustomer implements Serializable {
 
+	@NotNull
+	@Column(name = "CSEQ")
+	private int cseq;
+	
+	@NotNull
+	@Column(name = "ENTERED_DATE")
+	private String entered_date;
+	
 	@NotNull
 	@Column(name = "SITE_CODE")
 	private int site_code;
 	
 	@NotNull
-	@Column(name = "TRACECODE")
-    private String tracecode;
-
+	@Column(name = "ICID")
+    private String icid;
+	
+	@NotNull
+	@Column(name = "CALL_SEQ")
+    private int call_seq;
+	
 }

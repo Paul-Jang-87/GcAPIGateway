@@ -43,3 +43,7 @@
 '0:0:0:0:0:0:0:1 - - [24-03-07:14:52:50] "POST /gcapi/post/camprtMsg HTTP/1.1" 200 - 6958271 PostmanRuntime/7.36.1'
 '0:0:0:0:0:0:0:1 - - [24-03-07:16:05:53] "GET /gcapi/get/campma HTTP/1.1" 200 - 4500618 PostmanRuntime/7.36.1'
 '0:0:0:0:0:0:0:1 - - [24-03-07:16:09:45] "GET /gcapi/get/campma HTTP/1.1" 200 - 706221 PostmanRuntime/7.36.1'
+'0:0:0:0:0:0:0:1 - - [24-03-08:13:18:53] "GET /gcapi/get/thirdtopic HTTP/1.1" 200 - 533868 PostmanRuntime/7.36.1'
+'0:0:0:0:0:0:0:1 - - [24-03-08:13:20:42] "POST /gcapi/post/thirdtopic HTTP/1.1" 200 - 5925996 PostmanRuntime/7.36.1'
+'0:0:0:0:0:0:0:1 - - [24-03-08:13:21:51] "POST /gcapi/post/thirdtopic HTTP/1.1" 200 - 782684 PostmanRuntime/7.36.1'
+'0:0:0:0:0:0:0:1 - - [24-03-08:14:00:56] "POST /gcapi/post/thirdtopic HTTP/1.1" 200 - 4980473 PostmanRuntime/7.36.1'

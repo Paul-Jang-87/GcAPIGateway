@@ -10,8 +10,8 @@ import org.jetbrains.annotations.NotNull;
 
 @Data
 @Entity
-@Table(name = "WA_DATA_CALL_OPTIONAL")
-public class Entity_WaDataCallOptional {
+@Table(name = "M_WA_DATA_CALL_OPTIONAL")
+public class Entity_MWaDataCallOptional {
 	
 	@Id
 	@NotNull

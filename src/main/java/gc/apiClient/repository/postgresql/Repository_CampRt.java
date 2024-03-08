@@ -1,4 +1,4 @@
-package gc.apiClient.repository;
+package gc.apiClient.repository.postgresql;
 
 import java.util.Optional;
 

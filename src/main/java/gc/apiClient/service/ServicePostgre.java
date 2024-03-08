@@ -22,10 +22,10 @@ import gc.apiClient.entity.postgresql.Entity_CampRt;
 import gc.apiClient.entity.postgresql.Entity_ContactLt;
 import gc.apiClient.entity.postgresql.Entity_MapCoId;
 import gc.apiClient.interfaceCollection.InterfaceDB;
-import gc.apiClient.repository.Repository_CampMa;
-import gc.apiClient.repository.Repository_CampRt;
-import gc.apiClient.repository.Repository_ContactLt;
-import gc.apiClient.repository.Repository_MapCoId;
+import gc.apiClient.repository.postgresql.Repository_CampMa;
+import gc.apiClient.repository.postgresql.Repository_CampRt;
+import gc.apiClient.repository.postgresql.Repository_ContactLt;
+import gc.apiClient.repository.postgresql.Repository_MapCoId;
 import lombok.extern.slf4j.Slf4j;
 
 @Service

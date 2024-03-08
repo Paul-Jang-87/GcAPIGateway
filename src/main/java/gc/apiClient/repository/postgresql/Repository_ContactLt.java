@@ -1,4 +1,4 @@
-package gc.apiClient.repository;
+package gc.apiClient.repository.postgresql;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

@@ -14,7 +14,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "DATA_CALL")
-public class Entity_DataCall2 {
+public class Entity_DataCall {
 	
 	@EmbeddedId
     private DataCall id;

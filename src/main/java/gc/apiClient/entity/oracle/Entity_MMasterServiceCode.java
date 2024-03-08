@@ -9,7 +9,6 @@ import lombok.Data;
 import org.jetbrains.annotations.NotNull;
 
 import gc.apiClient.embeddable.oracle.MasterServiceCode;
-import gc.apiClient.embeddable.oracle.WaDataCallTrace;
 
 @Data
 @Entity

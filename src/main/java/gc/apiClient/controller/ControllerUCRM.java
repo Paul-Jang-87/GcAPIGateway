@@ -363,5 +363,13 @@ public class ControllerUCRM extends ServiceJson {
 
 		return Mono.empty();
 	}
+	
+	
+	@PostMapping("/360view/{topic}")
+	public Mono<Void> Msgfor360view(@PathVariable("topic") String tranId, @RequestBody String msg) {
+		
+		return Mono.empty();
+	}
+	
 
 }

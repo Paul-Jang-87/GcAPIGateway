@@ -1,7 +1,6 @@
 package gc.apiClient.embeddable;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 

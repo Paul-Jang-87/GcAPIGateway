@@ -25,5 +25,9 @@ public class Entity_MMasterServiceCode {
 	@Column(name = "SERVICE_CODE_YPE")
  	private int service_code_type;
 	
+	public Entity_MMasterServiceCode(){
+		
+	}
+	
 }
 	

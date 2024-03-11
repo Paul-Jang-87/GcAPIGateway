@@ -24,6 +24,9 @@ public class Entity_DataCallCustomer {
 	@Column(name = "CUSTOMER_DATA03")
 	private String customer_data03;
 	
+	public Entity_DataCallCustomer(){
+		
+	}
 	
 }
 	

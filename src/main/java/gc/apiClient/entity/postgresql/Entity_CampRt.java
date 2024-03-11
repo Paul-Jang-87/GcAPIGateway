@@ -45,5 +45,9 @@ public class Entity_CampRt {
 	@Column(name = "DIDT")
  	private Date didt;
 	
+	public Entity_CampRt(){
+		
+	}
+	
 }
 	

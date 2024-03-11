@@ -135,5 +135,9 @@ public class Entity_DataCallService {
 	@Column(name = "SERVICE_CODE40")
 	private String service_code40;
 	
+	public Entity_DataCallService(){
+		
+	}
+	
 }
 	

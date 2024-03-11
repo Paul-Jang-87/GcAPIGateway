@@ -38,5 +38,9 @@ public class Entity_MDataCall {
 	@Column(name = "CEP_UPDATE_DATE")
 	private Date cep_update_date;
 	
+	public Entity_MDataCall(){
+		
+	}
+	
 }
 	

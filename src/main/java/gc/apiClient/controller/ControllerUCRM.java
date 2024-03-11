@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import gc.apiClient.BusinessLogic;
@@ -21,10 +23,12 @@ import gc.apiClient.customproperties.CustomProperties;
 import gc.apiClient.entity.Entity_CampRtJson;
 import gc.apiClient.entity.Entity_ContactltMapper;
 import gc.apiClient.entity.Entity_ToApim;
+import gc.apiClient.entity.oracle.Entity_WaDataCallOptional;
 import gc.apiClient.entity.postgresql.Entity_CampMa;
 import gc.apiClient.entity.postgresql.Entity_CampRt;
 import gc.apiClient.entity.postgresql.Entity_ContactLt;
-import gc.apiClient.interfaceCollection.InterfaceDB;
+import gc.apiClient.interfaceCollection.InterfaceDBOracle;
+import gc.apiClient.interfaceCollection.InterfaceDBPostgreSQL;
 import gc.apiClient.interfaceCollection.InterfaceWebClient;
 import gc.apiClient.messages.MessageToApim;
 import gc.apiClient.messages.MessageToProducer;
@@ -36,13 +40,18 @@ import reactor.core.publisher.Mono;
 @Slf4j
 public class ControllerUCRM extends ServiceJson {
 
-	private final InterfaceDB serviceDb;
+	private final InterfaceDBPostgreSQL serviceDb;
+	private final InterfaceDBOracle serviceOracle;
 	private final InterfaceWebClient serviceWeb;
 	private final CustomProperties customProperties;
 	private static List<Entity_ToApim> apimEntitylt = new ArrayList<Entity_ToApim>();
 
-	public ControllerUCRM(InterfaceDB serviceDb, InterfaceWebClient serviceWeb, CustomProperties customProperties) {
+	public ControllerUCRM(InterfaceDBPostgreSQL serviceDb,
+			InterfaceDBOracle serviceOracle,
+			InterfaceWebClient serviceWeb, 
+			CustomProperties customProperties) {
 		this.serviceDb = serviceDb;
+		this.serviceOracle = serviceOracle;
 		this.serviceWeb = serviceWeb;
 		this.customProperties = customProperties;
 	}
@@ -79,7 +88,7 @@ public class ControllerUCRM extends ServiceJson {
 //		}
 
 			result = serviceWeb.GetApiRequet("campaignId");
-
+			
 			row_result = ExtractValCrm12(result); // cpid::cpna::division -> 캠페인아이디::캠페인명
 			cpid = row_result.split("::")[0];
 			division = row_result.split("::")[2];
@@ -367,6 +376,51 @@ public class ControllerUCRM extends ServiceJson {
 	
 	@PostMapping("/360view/{topic}")
 	public Mono<Void> Msgfor360view(@PathVariable("topic") String tranId, @RequestBody String msg) {
+		
+		String topic_id = tranId;
+		log.info("topic_id : {}", topic_id);
+		switch (topic_id) {
+		
+		case "first":
+			
+			String jsonResponse = msg;
+			log.info("msg : {}",jsonResponse); 
+
+			ObjectMapper objectMapper = new ObjectMapper();
+			JsonNode jsonNode = null;
+			String result = "";
+
+			try {
+				jsonNode = objectMapper.readTree(jsonResponse);
+				result = jsonNode.path("WCSEQ").asText();
+				log.info("wcseq : {}",result);
+
+			} catch (JsonMappingException e) {
+				e.printStackTrace();
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
+			
+			log.info("result : {}",result);
+			
+			serviceOracle.findWaDataCallOptional(Integer.parseInt(result));
+			
+			objectMapper = new ObjectMapper();
+
+			try {
+				String jsonString = objectMapper.writeValueAsString(serviceOracle.findWaDataCallOptional(Integer.parseInt(result))); // 매핑한 객체를 jsonString으로 변환.
+				log.info("JsonString Data : {}", jsonString);
+
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
+			
+			break;
+		
+		default:
+			
+			log.info("adfadf");
+		}
 		
 		return Mono.empty();
 	}

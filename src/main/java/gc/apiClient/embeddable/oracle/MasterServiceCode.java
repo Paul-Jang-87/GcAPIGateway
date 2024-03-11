@@ -20,5 +20,9 @@ public class MasterServiceCode implements Serializable {
 	@NotNull
 	@Column(name = "SERVICE_CODE")
     private String service_code;
+	
+	public MasterServiceCode(){
+		
+	}
 
 }

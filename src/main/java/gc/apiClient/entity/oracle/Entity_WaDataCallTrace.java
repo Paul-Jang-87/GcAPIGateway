@@ -18,5 +18,9 @@ public class Entity_WaDataCallTrace {
 	@Column(name = "TRACECODE")
 	private String tracecode;
 	
+	public Entity_WaDataCallTrace(){
+		
+	}
+	
 }
 	

@@ -20,4 +20,8 @@ public class WaDataCallTrace implements Serializable {
 	@NotNull
 	@Column(name = "TC_SEQ")
     private int tc_seq;
+	
+	public WaDataCallTrace(){
+		
+	}
 }

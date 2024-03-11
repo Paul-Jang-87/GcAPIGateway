@@ -37,5 +37,9 @@ public class Entity_ContactLt {
 	@Column(name = "FLAG")
 	private String flag;
 	
+	public Entity_ContactLt(){
+		
+	}
+	
 }
 	

@@ -28,5 +28,9 @@ public class DataCallService implements Serializable {
 	@NotNull
 	@Column(name = "SITE_CODE")
     private int site_code;
+	
+	public DataCallService(){
+		
+	}
 
 }

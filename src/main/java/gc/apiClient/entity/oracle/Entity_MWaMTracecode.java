@@ -17,5 +17,9 @@ public class Entity_MWaMTracecode {
 	
 	@Column(name = "TRACECODE")
  	private String tracecode;
+	
+	public Entity_MWaMTracecode(){
+		
+	}
 }
 	

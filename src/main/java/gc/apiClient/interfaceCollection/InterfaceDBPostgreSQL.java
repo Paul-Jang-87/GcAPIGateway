@@ -5,12 +5,13 @@ import java.util.List;
 
 import gc.apiClient.entity.Entity_CampRtJson;
 import gc.apiClient.entity.Entity_ContactltMapper;
+import gc.apiClient.entity.oracle.Entity_WaDataCallOptional;
 import gc.apiClient.entity.postgresql.Entity_CampMa;
 import gc.apiClient.entity.postgresql.Entity_CampRt;
 import gc.apiClient.entity.postgresql.Entity_ContactLt;
 import gc.apiClient.entity.postgresql.Entity_MapCoId;
 
-public interface InterfaceDB {
+public interface InterfaceDBPostgreSQL {
 
 	//table 별 매핑
 	Entity_CampRt createCampRtMsg(String cpid);
@@ -31,5 +32,6 @@ public interface InterfaceDB {
 	Integer findCampRtMaxRlsq();
 	Entity_ContactLt findContactLtByCske(String cske);
 	List<Entity_ContactLt> findContactLtByCpid(String cpid);
+	
 	
 }

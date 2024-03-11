@@ -20,5 +20,10 @@ public class ContactLtId implements Serializable {
 	@NotNull
     @Column(name = "CPSQ")
     private int cpsq;
+	
+	public ContactLtId(){
+		
+	}
+	
 
 }

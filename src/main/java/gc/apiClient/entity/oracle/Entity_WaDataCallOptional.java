@@ -21,5 +21,9 @@ public class Entity_WaDataCallOptional {
 	@Column(name = "DATA02")
 	private String data02;
 	
+	public Entity_WaDataCallOptional(){
+		
+	}
+	
 }
 	

@@ -19,5 +19,9 @@ public class CampRt implements Serializable {
 	@NotNull
 	@Column(name = "COID")
     private int coid;
+	
+	public CampRt(){
+		
+	}
 
 }

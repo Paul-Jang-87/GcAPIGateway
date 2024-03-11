@@ -21,7 +21,7 @@ import gc.apiClient.entity.postgresql.Entity_CampMa;
 import gc.apiClient.entity.postgresql.Entity_CampRt;
 import gc.apiClient.entity.postgresql.Entity_ContactLt;
 import gc.apiClient.entity.postgresql.Entity_MapCoId;
-import gc.apiClient.interfaceCollection.InterfaceDB;
+import gc.apiClient.interfaceCollection.InterfaceDBPostgreSQL;
 import gc.apiClient.repository.postgresql.Repository_CampMa;
 import gc.apiClient.repository.postgresql.Repository_CampRt;
 import gc.apiClient.repository.postgresql.Repository_ContactLt;
@@ -30,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
-public class ServicePostgre implements InterfaceDB {
+public class ServicePostgre implements InterfaceDBPostgreSQL {
 	// 검색 **Create **Insert **Select
 	private final Repository_CampRt repositoryCampRt;
 	private final Repository_CampMa repositoryCampMa;
@@ -57,7 +57,7 @@ public class ServicePostgre implements InterfaceDB {
 		log.info("===== createCampRtMsg =====");
 
 		Entity_CampRt enCampRt = new Entity_CampRt();
-		CampRt id = new CampRt(0, 0);
+		CampRt id = new CampRt();
 		String parts[] = cpid.split("::");
 
 		int rlsq = 0;
@@ -261,7 +261,7 @@ public class ServicePostgre implements InterfaceDB {
 		log.info("===== createContactLtMsg ===== ");
 
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
-		ContactLtId id = new ContactLtId("", 0);
+		ContactLtId id = new ContactLtId();
 		String ContactLvalues[] = msg.split("::");
 
 		log.info("msg : {}", msg);
@@ -365,7 +365,7 @@ public class ServicePostgre implements InterfaceDB {
 		return repositoryContactLt.save(entityContactLt);
 
 	}
-
+	
 
 	@Override
 	public Entity_CampMa findCampMaByCpid(String cpid) {

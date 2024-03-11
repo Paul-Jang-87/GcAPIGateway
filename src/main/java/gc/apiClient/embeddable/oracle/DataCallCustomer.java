@@ -33,4 +33,8 @@ public class DataCallCustomer implements Serializable {
 	@Column(name = "CALL_SEQ")
     private int call_seq;
 	
+	public DataCallCustomer(){
+		
+	}
+	
 }

@@ -20,5 +20,9 @@ public class WaMTracecode implements Serializable {
 	@NotNull
 	@Column(name = "TRACECODE")
     private String tracecode;
+	
+	public WaMTracecode(){
+		
+	}
 
 }

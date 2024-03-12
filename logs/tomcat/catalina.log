@@ -12469,3 +12469,331 @@ java.lang.NullPointerException: Cannot invoke "gc.apiClient.entity.postgresql.En
 				result : 501
 2024-03-11 17:15:28 [http-nio-8083-exec-10] INFO  g.a.controller.ControllerUCRM -
 				JsonString Data : {"wcseq":501,"data02":"fwantastic"}
+2024-03-12 10:05:51 [main] INFO  gc.apiClient.GcClientApplication -
+				Starting GcClientApplication using Java 21.0.1 with PID 9656 (D:\GitWorkSpace\gcClient\gcClient\target\classes started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+2024-03-12 10:05:51 [main] INFO  gc.apiClient.GcClientApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2024-03-12 10:05:54 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-12 10:05:54 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 508 ms. Found 16 JPA repository interfaces.
+2024-03-12 10:05:54 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-12 10:05:54 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 36 ms. Found 4 JPA repository interfaces.
+2024-03-12 10:05:59 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -
+				Tomcat initialized with port 8083 (http)
+2024-03-12 10:05:59 [main] INFO  o.a.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8083"]
+2024-03-12 10:05:59 [main] INFO  o.a.catalina.core.StandardService -
+				Starting service [Tomcat]
+2024-03-12 10:05:59 [main] INFO  o.a.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-12 10:06:00 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2024-03-12 10:06:00 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 8489 ms
+2024-03-12 10:06:01 [main] INFO  o.h.jpa.internal.util.LogHelper -
+				HHH000204: Processing PersistenceUnitInfo [name: oracle]
+2024-03-12 10:06:01 [main] INFO  org.hibernate.Version -
+				HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-03-12 10:06:02 [main] INFO  o.h.c.i.RegionFactoryInitiator -
+				HHH000026: Second-level cache disabled
+2024-03-12 10:06:03 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -
+				No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-12 10:06:03 [main] WARN  com.zaxxer.hikari.HikariConfig -
+				InfogncORCL-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2024-03-12 10:06:03 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				InfogncORCL-hikari-pool - Starting...
+2024-03-12 10:06:03 [main] WARN  c.z.hikari.util.DriverDataSource -
+				Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+2024-03-12 10:06:04 [main] INFO  com.zaxxer.hikari.pool.HikariPool -
+				InfogncORCL-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@460e5ffe
+2024-03-12 10:06:04 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				InfogncORCL-hikari-pool - Start completed.
+2024-03-12 10:06:04 [main] WARN  org.hibernate.orm.deprecation -
+				HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-03-12 10:06:08 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -
+				HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-03-12 10:10:07 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -
+				Initialized JPA EntityManagerFactory for persistence unit 'oracle'
+2024-03-12 10:10:07 [main] INFO  o.h.jpa.internal.util.LogHelper -
+				HHH000204: Processing PersistenceUnitInfo [name: postgresql]
+2024-03-12 10:10:07 [main] INFO  o.h.c.i.RegionFactoryInitiator -
+				HHH000026: Second-level cache disabled
+2024-03-12 10:10:08 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -
+				No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-12 10:10:08 [main] WARN  com.zaxxer.hikari.HikariConfig -
+				Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2024-03-12 10:10:08 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				Infognc-hikari-pool - Starting...
+2024-03-12 10:10:09 [main] INFO  com.zaxxer.hikari.pool.HikariPool -
+				Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@7ef8cfbb
+2024-03-12 10:10:09 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				Infognc-hikari-pool - Start completed.
+2024-03-12 10:10:09 [main] WARN  org.hibernate.orm.deprecation -
+				HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-03-12 10:10:09 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -
+				HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-03-12 10:10:10 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -
+				Initialized JPA EntityManagerFactory for persistence unit 'postgresql'
+2024-03-12 10:10:11 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory -
+				Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-03-12 10:10:14 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -
+				spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-12 10:10:15 [main] INFO  o.a.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8083"]
+2024-03-12 10:10:15 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -
+				Tomcat started on port 8083 (http) with context path ''
+2024-03-12 10:10:15 [main] INFO  gc.apiClient.GcClientApplication -
+				Started GcClientApplication in 266.083 seconds (process running for 270.303)
+2024-03-12 10:26:11 [http-nio-8083-exec-3] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-12 10:26:11 [http-nio-8083-exec-3] INFO  o.s.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2024-03-12 10:26:11 [http-nio-8083-exec-3] INFO  o.s.web.servlet.DispatcherServlet -
+				Completed initialization in 6 ms
+2024-03-12 10:26:12 [http-nio-8083-exec-3] INFO  g.a.controller.ControllerUCRM -
+				topic_id : first
+2024-03-12 10:26:12 [http-nio-8083-exec-3] INFO  g.a.controller.ControllerUCRM -
+				msg : {
+    "WCSEQ" : 501,
+    "DATA01" : "oierbaodr"
+}
+2024-03-12 10:26:12 [http-nio-8083-exec-3] INFO  g.a.controller.ControllerUCRM -
+				wcseq : 501
+2024-03-12 10:26:12 [http-nio-8083-exec-3] INFO  g.a.controller.ControllerUCRM -
+				result : 501
+2024-03-12 10:26:12 [http-nio-8083-exec-3] INFO  g.a.messages.MessageTo360View -
+				JsonString Data : null
+2024-03-12 10:26:12 [http-nio-8083-exec-3] INFO  g.a.messages.MessageTo360View -
+				===== To360View =====
+2024-03-12 10:26:12 [http-nio-8083-exec-3] INFO  g.a.messages.MessageTo360View -
+				Endpoint : /360view/first
+2024-03-12 10:26:18 [http-nio-8083-exec-3] INFO  g.a.messages.MessageTo360View -
+				Entity as JSON: null
+2024-03-12 10:27:21 [http-nio-8083-exec-9] INFO  g.a.controller.ControllerUCRM -
+				topic_id : first
+2024-03-12 10:27:21 [http-nio-8083-exec-9] INFO  g.a.controller.ControllerUCRM -
+				msg : {
+    "WCSEQ" : 501,
+    "DATA02" : "oierbaodr"
+}
+2024-03-12 10:27:21 [http-nio-8083-exec-9] INFO  g.a.controller.ControllerUCRM -
+				wcseq : 501
+2024-03-12 10:27:21 [http-nio-8083-exec-9] INFO  g.a.controller.ControllerUCRM -
+				result : 501
+2024-03-12 10:27:21 [http-nio-8083-exec-9] INFO  g.a.messages.MessageTo360View -
+				JsonString Data : null
+2024-03-12 10:27:21 [http-nio-8083-exec-9] INFO  g.a.messages.MessageTo360View -
+				===== To360View =====
+2024-03-12 10:27:21 [http-nio-8083-exec-9] INFO  g.a.messages.MessageTo360View -
+				Endpoint : /360view/first
+2024-03-12 10:27:21 [http-nio-8083-exec-9] INFO  g.a.messages.MessageTo360View -
+				Entity as JSON: null
+2024-03-12 10:30:28 [main] INFO  gc.apiClient.GcClientApplication -
+				Starting GcClientApplication using Java 21.0.1 with PID 20888 (D:\GitWorkSpace\gcClient\gcClient\target\classes started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+2024-03-12 10:30:28 [main] INFO  gc.apiClient.GcClientApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2024-03-12 10:30:30 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-12 10:30:31 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 562 ms. Found 16 JPA repository interfaces.
+2024-03-12 10:30:31 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-12 10:30:31 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 56 ms. Found 4 JPA repository interfaces.
+2024-03-12 10:30:35 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -
+				Tomcat initialized with port 8083 (http)
+2024-03-12 10:30:35 [main] INFO  o.a.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8083"]
+2024-03-12 10:30:35 [main] INFO  o.a.catalina.core.StandardService -
+				Starting service [Tomcat]
+2024-03-12 10:30:35 [main] INFO  o.a.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-12 10:30:36 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2024-03-12 10:30:36 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 7481 ms
+2024-03-12 10:30:37 [main] INFO  o.h.jpa.internal.util.LogHelper -
+				HHH000204: Processing PersistenceUnitInfo [name: oracle]
+2024-03-12 10:30:37 [main] INFO  org.hibernate.Version -
+				HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-03-12 10:30:37 [main] INFO  o.h.c.i.RegionFactoryInitiator -
+				HHH000026: Second-level cache disabled
+2024-03-12 10:30:38 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -
+				No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-12 10:30:38 [main] WARN  com.zaxxer.hikari.HikariConfig -
+				InfogncORCL-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2024-03-12 10:30:38 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				InfogncORCL-hikari-pool - Starting...
+2024-03-12 10:30:38 [main] WARN  c.z.hikari.util.DriverDataSource -
+				Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+2024-03-12 10:30:39 [main] INFO  com.zaxxer.hikari.pool.HikariPool -
+				InfogncORCL-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@4be460e5
+2024-03-12 10:30:39 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				InfogncORCL-hikari-pool - Start completed.
+2024-03-12 10:30:40 [main] WARN  org.hibernate.orm.deprecation -
+				HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-03-12 10:30:44 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -
+				HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-03-12 10:34:15 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -
+				Initialized JPA EntityManagerFactory for persistence unit 'oracle'
+2024-03-12 10:34:15 [main] INFO  o.h.jpa.internal.util.LogHelper -
+				HHH000204: Processing PersistenceUnitInfo [name: postgresql]
+2024-03-12 10:34:15 [main] INFO  o.h.c.i.RegionFactoryInitiator -
+				HHH000026: Second-level cache disabled
+2024-03-12 10:34:16 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -
+				No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-12 10:34:16 [main] WARN  com.zaxxer.hikari.HikariConfig -
+				Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2024-03-12 10:34:16 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				Infognc-hikari-pool - Starting...
+2024-03-12 10:34:17 [main] INFO  com.zaxxer.hikari.pool.HikariPool -
+				Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@1a6ab328
+2024-03-12 10:34:17 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				Infognc-hikari-pool - Start completed.
+2024-03-12 10:34:17 [main] WARN  org.hibernate.orm.deprecation -
+				HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-03-12 10:34:17 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -
+				HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-03-12 10:34:17 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -
+				Initialized JPA EntityManagerFactory for persistence unit 'postgresql'
+2024-03-12 10:34:19 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory -
+				Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-03-12 10:34:21 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -
+				spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-12 10:34:22 [main] INFO  o.a.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8083"]
+2024-03-12 10:34:22 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -
+				Tomcat started on port 8083 (http) with context path ''
+2024-03-12 10:34:22 [main] INFO  gc.apiClient.GcClientApplication -
+				Started GcClientApplication in 235.223 seconds (process running for 238.1)
+2024-03-12 10:34:58 [http-nio-8083-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-12 10:34:58 [http-nio-8083-exec-2] INFO  o.s.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2024-03-12 10:34:58 [http-nio-8083-exec-2] INFO  o.s.web.servlet.DispatcherServlet -
+				Completed initialization in 3 ms
+2024-03-12 10:34:58 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				topic_id : first
+2024-03-12 10:34:58 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				msg : {
+    "WCSEQ" : 501,
+    "DATA02" : "oierbaodr"
+}
+2024-03-12 10:34:58 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				wcseq : 501
+2024-03-12 10:34:58 [http-nio-8083-exec-2] INFO  g.a.controller.ControllerUCRM -
+				result : 501
+2024-03-12 10:34:58 [http-nio-8083-exec-2] INFO  g.a.messages.MessageTo360View -
+				JsonString Data : {"wcseq":501,"data02":"fwantastic"}
+2024-03-12 10:34:58 [http-nio-8083-exec-2] INFO  g.a.messages.MessageTo360View -
+				===== To360View =====
+2024-03-12 10:34:59 [http-nio-8083-exec-2] INFO  g.a.messages.MessageTo360View -
+				Endpoint : /360view/first
+2024-03-12 10:35:05 [http-nio-8083-exec-2] INFO  g.a.messages.MessageTo360View -
+				Entity as JSON: {"wcseq":501,"data02":"fwantastic"}
+2024-03-12 10:46:17 [main] INFO  gc.apiClient.GcClientApplication -
+				Starting GcClientApplication using Java 21.0.1 with PID 2432 (D:\GitWorkSpace\gcClient\gcClient\target\classes started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+2024-03-12 10:46:17 [main] INFO  gc.apiClient.GcClientApplication -
+				No active profile set, falling back to 1 default profile: "default"
+2024-03-12 10:46:20 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-12 10:46:20 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 515 ms. Found 16 JPA repository interfaces.
+2024-03-12 10:46:20 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-12 10:46:21 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -
+				Finished Spring Data repository scanning in 50 ms. Found 4 JPA repository interfaces.
+2024-03-12 10:46:23 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -
+				Tomcat initialized with port 8083 (http)
+2024-03-12 10:46:23 [main] INFO  o.a.coyote.http11.Http11NioProtocol -
+				Initializing ProtocolHandler ["http-nio-8083"]
+2024-03-12 10:46:23 [main] INFO  o.a.catalina.core.StandardService -
+				Starting service [Tomcat]
+2024-03-12 10:46:23 [main] INFO  o.a.catalina.core.StandardEngine -
+				Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-12 10:46:23 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -
+				Initializing Spring embedded WebApplicationContext
+2024-03-12 10:46:23 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -
+				Root WebApplicationContext: initialization completed in 5896 ms
+2024-03-12 10:46:24 [main] INFO  o.h.jpa.internal.util.LogHelper -
+				HHH000204: Processing PersistenceUnitInfo [name: oracle]
+2024-03-12 10:46:24 [main] INFO  org.hibernate.Version -
+				HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-03-12 10:46:25 [main] INFO  o.h.c.i.RegionFactoryInitiator -
+				HHH000026: Second-level cache disabled
+2024-03-12 10:46:25 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -
+				No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-12 10:46:25 [main] WARN  com.zaxxer.hikari.HikariConfig -
+				InfogncORCL-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2024-03-12 10:46:25 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				InfogncORCL-hikari-pool - Starting...
+2024-03-12 10:46:25 [main] WARN  c.z.hikari.util.DriverDataSource -
+				Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+2024-03-12 10:46:26 [main] INFO  com.zaxxer.hikari.pool.HikariPool -
+				InfogncORCL-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@35d114f4
+2024-03-12 10:46:26 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				InfogncORCL-hikari-pool - Start completed.
+2024-03-12 10:46:26 [main] WARN  org.hibernate.orm.deprecation -
+				HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-03-12 10:46:30 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -
+				HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-03-12 10:49:57 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -
+				Initialized JPA EntityManagerFactory for persistence unit 'oracle'
+2024-03-12 10:49:57 [main] INFO  o.h.jpa.internal.util.LogHelper -
+				HHH000204: Processing PersistenceUnitInfo [name: postgresql]
+2024-03-12 10:49:57 [main] INFO  o.h.c.i.RegionFactoryInitiator -
+				HHH000026: Second-level cache disabled
+2024-03-12 10:49:57 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo -
+				No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-12 10:49:57 [main] WARN  com.zaxxer.hikari.HikariConfig -
+				Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2024-03-12 10:49:57 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				Infognc-hikari-pool - Starting...
+2024-03-12 10:49:59 [main] INFO  com.zaxxer.hikari.pool.HikariPool -
+				Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@4e24db00
+2024-03-12 10:49:59 [main] INFO  com.zaxxer.hikari.HikariDataSource -
+				Infognc-hikari-pool - Start completed.
+2024-03-12 10:49:59 [main] WARN  org.hibernate.orm.deprecation -
+				HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-03-12 10:49:59 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -
+				HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-03-12 10:49:59 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -
+				Initialized JPA EntityManagerFactory for persistence unit 'postgresql'
+2024-03-12 10:50:01 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory -
+				Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-03-12 10:50:04 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -
+				spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-12 10:50:05 [main] INFO  o.a.coyote.http11.Http11NioProtocol -
+				Starting ProtocolHandler ["http-nio-8083"]
+2024-03-12 10:50:05 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer -
+				Tomcat started on port 8083 (http) with context path ''
+2024-03-12 10:50:06 [main] INFO  gc.apiClient.GcClientApplication -
+				Started GcClientApplication in 229.728 seconds (process running for 233.667)
+2024-03-12 10:50:54 [http-nio-8083-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] -
+				Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-12 10:50:54 [http-nio-8083-exec-1] INFO  o.s.web.servlet.DispatcherServlet -
+				Initializing Servlet 'dispatcherServlet'
+2024-03-12 10:50:54 [http-nio-8083-exec-1] INFO  o.s.web.servlet.DispatcherServlet -
+				Completed initialization in 5 ms
+2024-03-12 10:50:55 [http-nio-8083-exec-1] INFO  g.a.controller.ControllerUCRM -
+				topic_id : first
+2024-03-12 10:50:55 [http-nio-8083-exec-1] INFO  g.a.controller.ControllerUCRM -
+				msg : {
+    "WCSEQ" : 501,
+    "DATA02" : "oierbaodr"
+}
+2024-03-12 10:50:55 [http-nio-8083-exec-1] INFO  g.a.controller.ControllerUCRM -
+				wcseq : 501
+2024-03-12 10:50:55 [http-nio-8083-exec-1] INFO  g.a.controller.ControllerUCRM -
+				result : 501
+2024-03-12 10:50:56 [http-nio-8083-exec-1] INFO  g.a.messages.MessageTo360View -
+				JsonString Data : {"wcseq":501,"data02":"fwantastic"}
+2024-03-12 10:50:56 [http-nio-8083-exec-1] INFO  g.a.messages.MessageTo360View -
+				===== To360View =====
+2024-03-12 10:50:56 [http-nio-8083-exec-1] INFO  g.a.messages.MessageTo360View -
+				Endpoint : /360view/first
+2024-03-12 10:51:02 [http-nio-8083-exec-1] INFO  g.a.messages.MessageTo360View -
+				Entity as JSON: {"wcseq":501,"data02":"fwantastic"}

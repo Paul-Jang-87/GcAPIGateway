@@ -58,3 +58,7 @@
 '0:0:0:0:0:0:0:1 - - [24-03-11:17:13:29] "POST /gcapi/post/camprtMsg HTTP/1.1" 200 - 2807664 PostmanRuntime/7.36.3'
 '0:0:0:0:0:0:0:1 - - [24-03-11:17:14:13] "POST /gcapi/post/camprtMsg HTTP/1.1" 200 - 1792778 PostmanRuntime/7.36.3'
 '0:0:0:0:0:0:0:1 - - [24-03-11:17:15:28] "POST /360view/first HTTP/1.1" 200 - 43879 PostmanRuntime/7.36.3'
+'0:0:0:0:0:0:0:1 - - [24-03-12:10:26:18] "POST /360view/first HTTP/1.1" 200 - 6730045 PostmanRuntime/7.36.3'
+'0:0:0:0:0:0:0:1 - - [24-03-12:10:27:21] "POST /360view/first HTTP/1.1" 200 - 339656 PostmanRuntime/7.36.3'
+'0:0:0:0:0:0:0:1 - - [24-03-12:10:35:05] "POST /360view/first HTTP/1.1" 200 - 7476213 PostmanRuntime/7.36.3'
+'0:0:0:0:0:0:0:1 - - [24-03-12:10:51:02] "POST /360view/first HTTP/1.1" 200 - 7809139 PostmanRuntime/7.36.3'

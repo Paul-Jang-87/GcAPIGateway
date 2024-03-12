@@ -1,6 +1,6 @@
 package gc.apiClient.interfaceCollection;
 
-public interface InterfaceJson {//defult로 해놓으면 InterfaceJson을 다른 class에서 implements 했을 때 모두 구현할 필요 없음.
+public interface InterfaceJson  {//defult로 해놓으면 InterfaceJson을 다른 class에서 implements 했을 때 모두 구현할 필요 없음.
 								//원하는 함수가 구현할 수 있음.
 	
 	  default String ExtractVal(String stringMsg) {
@@ -34,15 +34,4 @@ public interface InterfaceJson {//defult로 해놓으면 InterfaceJson을 다른
 		  return "";
 	  }
 	  
-	  
-	  
-	  
-	  //CallBot
-	  default String ExtractValCallbot12(String stringMsg) {
-		  return "";
-	  }
-	  default String ExtractValCallbot34(String stringMsg) {
-		  return "";
-	  }
-
 }

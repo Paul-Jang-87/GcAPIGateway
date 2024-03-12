@@ -29,7 +29,9 @@ import gc.apiClient.entity.postgresql.Entity_CampRt;
 import gc.apiClient.entity.postgresql.Entity_ContactLt;
 import gc.apiClient.interfaceCollection.InterfaceDBOracle;
 import gc.apiClient.interfaceCollection.InterfaceDBPostgreSQL;
+import gc.apiClient.interfaceCollection.InterfaceJsonOracle;
 import gc.apiClient.interfaceCollection.InterfaceWebClient;
+import gc.apiClient.messages.MessageTo360View;
 import gc.apiClient.messages.MessageToApim;
 import gc.apiClient.messages.MessageToProducer;
 import gc.apiClient.service.ServiceJson;
@@ -42,16 +44,19 @@ public class ControllerUCRM extends ServiceJson {
 
 	private final InterfaceDBPostgreSQL serviceDb;
 	private final InterfaceDBOracle serviceOracle;
+	private final InterfaceJsonOracle serviceJsonOracle;
 	private final InterfaceWebClient serviceWeb;
 	private final CustomProperties customProperties;
 	private static List<Entity_ToApim> apimEntitylt = new ArrayList<Entity_ToApim>();
 
 	public ControllerUCRM(InterfaceDBPostgreSQL serviceDb,
 			InterfaceDBOracle serviceOracle,
-			InterfaceWebClient serviceWeb, 
+			InterfaceWebClient serviceWeb,
+			InterfaceJsonOracle serviceJsonOracle,
 			CustomProperties customProperties) {
 		this.serviceDb = serviceDb;
 		this.serviceOracle = serviceOracle;
+		this.serviceJsonOracle = serviceJsonOracle;
 		this.serviceWeb = serviceWeb;
 		this.customProperties = customProperties;
 	}
@@ -379,48 +384,14 @@ public class ControllerUCRM extends ServiceJson {
 		
 		String topic_id = tranId;
 		log.info("topic_id : {}", topic_id);
-		switch (topic_id) {
+			 
+			serviceJsonOracle.returnKey(topic_id, msg);
+			
+			
+			
+//			MessageTo360View.sendMsgTo360View(topic_id, serviceOracle.returnGenericType(serviceOracle.findWaDataCallOptional(Integer.parseInt(result))));			
+			
 		
-		case "first":
-			
-			String jsonResponse = msg;
-			log.info("msg : {}",jsonResponse); 
-
-			ObjectMapper objectMapper = new ObjectMapper();
-			JsonNode jsonNode = null;
-			String result = "";
-
-			try {
-				jsonNode = objectMapper.readTree(jsonResponse);
-				result = jsonNode.path("WCSEQ").asText();
-				log.info("wcseq : {}",result);
-
-			} catch (JsonMappingException e) {
-				e.printStackTrace();
-			} catch (JsonProcessingException e) {
-				e.printStackTrace();
-			}
-			
-			log.info("result : {}",result);
-			
-			serviceOracle.findWaDataCallOptional(Integer.parseInt(result));
-			
-			objectMapper = new ObjectMapper();
-
-			try {
-				String jsonString = objectMapper.writeValueAsString(serviceOracle.findWaDataCallOptional(Integer.parseInt(result))); // 매핑한 객체를 jsonString으로 변환.
-				log.info("JsonString Data : {}", jsonString);
-
-			} catch (JsonProcessingException e) {
-				e.printStackTrace();
-			}
-			
-			break;
-		
-		default:
-			
-			log.info("adfadf");
-		}
 		
 		return Mono.empty();
 	}

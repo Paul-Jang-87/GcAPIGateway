@@ -15,7 +15,7 @@ public class MessageToProducer {
 		
 		WebClient webClient = WebClient.builder().baseUrl("http://localhost:8081").build();
 
-	    String endpointUrl = towhere;
+	    String endpointUrl = towhere; //ex)"/gcapi/post/firsttopic" 
 
 	    log.info("Endpoint : {}",endpointUrl);
 	    

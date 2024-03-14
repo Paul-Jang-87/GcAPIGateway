@@ -27,9 +27,11 @@ public class ServiceJsonOracle implements InterfaceJsonOracle {
 		String result = "";
 
 		try {
+			//테이블별고 어떤 거 추출해서 리턴할지 정함(변동부분.)
+			
 			jsonNode = objectMapper.readTree(jsonResponse);
-			result = jsonNode.path("WCSEQ").asText();
-			log.info("wcseq : {}",result);
+//			result = jsonNode.path("WCSEQ").asText();
+//			log.info("wcseq : {}",result);
 
 		} catch (JsonMappingException e) {
 			e.printStackTrace();
@@ -40,29 +42,31 @@ public class ServiceJsonOracle implements InterfaceJsonOracle {
 		log.info("result : {}",result);
 		return result;
 	}
+	
+	
 
-	public <T> T returnKey(String topic, String msg) {
-
-		T result = null;
-		switch (topic) {
-
-		case "a":
-
-			result = (T) ExtractDataCall(msg);
-			
-			break;
-
-		case "b":
-			
-			Entity_ContactLt entityContactLt = new Entity_ContactLt();
-			result = (T) entityContactLt.getId();
-			
-			break;
-		default:
-		}
-		
-		return result; 
-
-	}
+//	public <T> T returnKey(String topic, String msg, Class<T> returnType) {
+//
+//		T result = null;
+//		switch (topic) {
+//
+//		case "a":
+//
+//			result = (T) ExtractDataCall(msg);
+//			
+//			break;
+//
+//		case "b":
+//			
+//			Entity_ContactLt entityContactLt = new Entity_ContactLt();
+//			result = (T) entityContactLt.getId();
+//			
+//			break;
+//		default:
+//		}
+//		
+//		return result; 
+//
+//	}
 
 }

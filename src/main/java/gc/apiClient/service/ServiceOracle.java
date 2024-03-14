@@ -1,5 +1,7 @@
 package gc.apiClient.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.dao.DataIntegrityViolationException;
@@ -7,6 +9,7 @@ import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.stereotype.Service;
 
 import gc.apiClient.entity.oracle.Entity_DataCall;
+import gc.apiClient.entity.oracle.Entity_DataCallCustomer;
 import gc.apiClient.entity.oracle.Entity_WaDataCallOptional;
 import gc.apiClient.entity.postgresql.Entity_CampMa;
 import gc.apiClient.interfaceCollection.InterfaceDBOracle;
@@ -116,6 +119,24 @@ public class ServiceOracle implements InterfaceDBOracle {
 			return null;
 		}
 	}
-	
+
+	@Override
+	public int getRecordCount(String topic_id) {
+		switch (topic_id) {
+		case "datacall": {
+			return repositoryDataCall.countBy();
+		}
+		
+		
+		default:
+		}
+		return repositoryWaDataCallOptional.countBy();
+	}
+
+	@Override
+	public List<Entity_WaDataCallOptional> getAllDataCalls() {
+		return repositoryWaDataCallOptional.findAll();
+	}
+
 
 }

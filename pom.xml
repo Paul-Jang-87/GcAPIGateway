@@ -42,6 +42,11 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-access</artifactId>
 		</dependency>
@@ -67,33 +72,36 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.oracle.database.jdbc</groupId>
 			<artifactId>ojdbc8</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-			<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ucp -->
+		<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ucp -->
 		<dependency>
-		    <groupId>com.oracle.database.jdbc</groupId>
-		    <artifactId>ucp</artifactId>
+			<groupId>com.oracle.database.jdbc</groupId>
+			<artifactId>ucp</artifactId>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.oracle.database.security/oraclepki -->
+		<!--
+		https://mvnrepository.com/artifact/com.oracle.database.security/oraclepki -->
 		<dependency>
-		    <groupId>com.oracle.database.security</groupId>
-		    <artifactId>oraclepki</artifactId>
+			<groupId>com.oracle.database.security</groupId>
+			<artifactId>oraclepki</artifactId>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.oracle.database.security/osdt_core -->
+		<!--
+		https://mvnrepository.com/artifact/com.oracle.database.security/osdt_core -->
 		<dependency>
-		    <groupId>com.oracle.database.security</groupId>
-		    <artifactId>osdt_core</artifactId>
+			<groupId>com.oracle.database.security</groupId>
+			<artifactId>osdt_core</artifactId>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.oracle.database.security/osdt_cert -->
+		<!--
+		https://mvnrepository.com/artifact/com.oracle.database.security/osdt_cert -->
 		<dependency>
-		    <groupId>com.oracle.database.security</groupId>
-		    <artifactId>osdt_cert</artifactId>
+			<groupId>com.oracle.database.security</groupId>
+			<artifactId>osdt_cert</artifactId>
 		</dependency>
-		
+
 
 		<dependency>
 			<groupId>org.postgresql</groupId>

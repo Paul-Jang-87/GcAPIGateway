@@ -52,5 +52,5 @@ public interface InterfaceJsonOracle {
 		  return "";
 	  }
 	  
-	  public <T> T returnKey(String topic, String msg);
+//	  public <T> T returnKey(String topic, String msg, Class<T> returnType);
 }

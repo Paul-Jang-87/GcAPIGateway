@@ -12,6 +12,7 @@ import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -30,7 +31,7 @@ public class PostgresqlDataSourceConfig {
 	public LocalContainerEntityManagerFactoryBean postgresqlEntityManagerFactory(EntityManagerFactoryBuilder builder,
 			@Qualifier("postgresqlDataSource") DataSource dataSource) {
 		return builder.dataSource(dataSource).packages("gc.apiClient.entity.postgresql")// 참고할 엔티티
-				.persistenceUnit("postgresql").properties(hibernateProperties()) // Apply Hibernate properties here
+				.persistenceUnit("postgres").properties(hibernateProperties()) // Apply Hibernate properties here
 				.build();
 
 	}

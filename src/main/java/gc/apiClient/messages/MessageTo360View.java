@@ -12,16 +12,16 @@ import reactor.core.publisher.Mono;
 @Slf4j
 public class MessageTo360View {
 
-	public static void sendMsgTo360View(String towhere, String entity) {
+	public static void sendMsgTo360View(String towhere,String key, String massage) {
 
-			String jsonString = entity;
+			String jsonString = massage;
 			log.info("JsonString Data : {}", jsonString);
 
 			log.info("===== To360View =====");
 
 			WebClient webClient = WebClient.builder().baseUrl("http://localhost:8081").build();
 
-			String endpointUrl = "/360view/" + towhere;
+			String endpointUrl = "/360view/" + towhere+ "/" +key;
 
 			log.info("Endpoint : {}", endpointUrl);
 

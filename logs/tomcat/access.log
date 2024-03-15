@@ -69,3 +69,8 @@
 '0:0:0:0:0:0:0:1 - - [24-03-14:14:39:49] "GET /360view/datacalloptional HTTP/1.1" 200 - 1213794 PostmanRuntime/7.36.3'
 '0:0:0:0:0:0:0:1 - - [24-03-14:16:35:57] "GET /360view/datacalloptional HTTP/1.1" 200 - 1174700 PostmanRuntime/7.36.3'
 '0:0:0:0:0:0:0:1 - - [24-03-14:16:49:38] "GET /360view/datacalloptional HTTP/1.1" 200 - 2948921 PostmanRuntime/7.36.3'
+'0:0:0:0:0:0:0:1 - - [24-03-15:10:45:37] "GET /gcapi/get/campma HTTP/1.1" 200 - 5254457 PostmanRuntime/7.36.3'
+'0:0:0:0:0:0:0:1 - - [24-03-15:10:54:54] "GET /gcapi/get/campma HTTP/1.1" 200 - 12124592 PostmanRuntime/7.36.3'
+'0:0:0:0:0:0:0:1 - - [24-03-15:11:44:48] "GET /360view/datacalloptional HTTP/1.1" 200 - 2517439 PostmanRuntime/7.36.3'
+'0:0:0:0:0:0:0:1 - - [24-03-15:13:03:05] "GET /360view/datacalloptional HTTP/1.1" 200 - 4984501 PostmanRuntime/7.36.3'
+'0:0:0:0:0:0:0:1 - - [24-03-15:13:13:07] "GET /360view/datacalloptional HTTP/1.1" 200 - 4456133 PostmanRuntime/7.36.3'

@@ -98,7 +98,7 @@ public class ControllerUCRM extends ServiceJson {
 
 			result = serviceWeb.GetApiRequet("campaignId");
 
-			row_result = ExtractValCrm12(result); // cpid::cpna::division -> 캠페인아이디::캠페인명
+			row_result = ExtractValCrm12(result); // cpid::cpna::division -> 캠페인아이디::캠페인명::디비전
 			cpid = row_result.split("::")[0];
 			division = row_result.split("::")[2];
 
@@ -397,8 +397,9 @@ public class ControllerUCRM extends ServiceJson {
 			List<Entity_WaDataCallOptional> entitylist = serviceOracle.getAllWaDataCallOptional();
 				// 2. 구분해서 토픽으로 보낸다.
 
+			String key = "hihello";
 			for (int i = 0; i < entitylist.size(); i++) {
-				MessageTo360View.sendMsgTo360View(topic_id, serviceMsgObjOrcl.msg(entitylist.get(i)));
+				MessageTo360View.sendMsgTo360View(topic_id, key, serviceMsgObjOrcl.msg(entitylist.get(i)));
 			}
 		}
 		return Mono.empty();
@@ -417,8 +418,9 @@ public class ControllerUCRM extends ServiceJson {
 			List<Entity_DataCall> entitylist = serviceOracle.getAllDataCall();
 				// 2. 구분해서 토픽으로 보낸다.
 
+			String key = "hihello";
 			for (int i = 0; i < entitylist.size(); i++) {
-				MessageTo360View.sendMsgTo360View(topic_id, serviceMsgObjOrcl.msg(entitylist.get(i)));
+				MessageTo360View.sendMsgTo360View(topic_id,key, serviceMsgObjOrcl.msg(entitylist.get(i)));
 			}
 		}
 		return Mono.empty();

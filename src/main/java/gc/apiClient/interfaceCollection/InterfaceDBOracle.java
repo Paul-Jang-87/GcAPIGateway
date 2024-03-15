@@ -17,7 +17,8 @@ public interface InterfaceDBOracle<T> {
 
 	int getRecordCount(String topic_id);
 
-	List<Entity_WaDataCallOptional> getAllDataCalls();
+	List<Entity_WaDataCallOptional> getAllWaDataCallOptional();
+	List<Entity_DataCall> getAllDataCall();
 
 
 }

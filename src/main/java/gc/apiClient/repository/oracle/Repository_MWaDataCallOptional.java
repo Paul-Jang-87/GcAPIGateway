@@ -14,5 +14,5 @@ public interface Repository_MWaDataCallOptional extends CrudRepository<Entity_MW
 
 	List<Entity_MWaDataCallOptional> findAll();
     Optional<Entity_MWaDataCallOptional> findById(int wcseq);
-
+    int countBy();
 }

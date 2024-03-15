@@ -24,6 +24,7 @@ import gc.apiClient.embeddable.oracle.DataCall;
 import gc.apiClient.entity.Entity_CampRtJson;
 import gc.apiClient.entity.Entity_ContactltMapper;
 import gc.apiClient.entity.Entity_ToApim;
+import gc.apiClient.entity.oracle.Entity_DataCall;
 import gc.apiClient.entity.oracle.Entity_WaDataCallOptional;
 import gc.apiClient.entity.postgresql.Entity_CampMa;
 import gc.apiClient.entity.postgresql.Entity_CampRt;
@@ -383,16 +384,17 @@ public class ControllerUCRM extends ServiceJson {
 		return Mono.empty();
 	}
 
+	
 	@GetMapping("/360view/datacalloptional")
 	public Mono<Void> Msgfor360view1() {
 		String topic_id = "datacalloptional";
-		int numberOfRecords = serviceOracle.getRecordCount();
+		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
 		if (numberOfRecords < 1) {
 
 		} else {// 1.테이블에 있는 레코드들을 다 긁어 온다.
-			List<Entity_WaDataCallOptional> entitylist = serviceOracle.getAllDataCalls();
+			List<Entity_WaDataCallOptional> entitylist = serviceOracle.getAllWaDataCallOptional();
 				// 2. 구분해서 토픽으로 보낸다.
 
 			for (int i = 0; i < entitylist.size(); i++) {
@@ -406,13 +408,13 @@ public class ControllerUCRM extends ServiceJson {
 	@GetMapping("/360view/datacall")
 	public Mono<Void> Msgfor360view2() {
 		String topic_id = "datacall";
-		int numberOfRecords = serviceOracle.getRecordCount();
+		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
 		if (numberOfRecords < 1) {
 
 		} else {// 1.테이블에 있는 레코드들을 다 긁어 온다.
-			List<Entity_WaDataCallOptional> entitylist = serviceOracle.getAllDataCalls();
+			List<Entity_DataCall> entitylist = serviceOracle.getAllDataCall();
 				// 2. 구분해서 토픽으로 보낸다.
 
 			for (int i = 0; i < entitylist.size(); i++) {
@@ -421,5 +423,6 @@ public class ControllerUCRM extends ServiceJson {
 		}
 		return Mono.empty();
 	}
-
+	
+	
 }

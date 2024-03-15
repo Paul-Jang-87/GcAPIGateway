@@ -15,5 +15,5 @@ public interface Repository_MasterServiceCode extends CrudRepository<Entity_Mast
 
 	List<Entity_MasterServiceCode> findAll();
     Optional<Entity_MasterServiceCode> findById(MasterServiceCode id);
-
+    int countBy();
 }

@@ -15,5 +15,5 @@ public interface Repository_MDataCallCustomer extends CrudRepository<Entity_MDat
 
 	List<Entity_MDataCallCustomer> findAll();
     Optional<Entity_MDataCallCustomer> findById(DataCallCustomer id);
-
+    int countBy();
 }

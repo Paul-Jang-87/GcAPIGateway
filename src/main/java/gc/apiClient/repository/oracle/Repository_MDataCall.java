@@ -15,5 +15,5 @@ public interface Repository_MDataCall extends CrudRepository<Entity_MDataCall,  
 
 	List<Entity_MDataCall> findAll();
     Optional<Entity_MDataCall> findById(DataCall id);
-
+    int countBy();
 }

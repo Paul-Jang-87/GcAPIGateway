@@ -122,20 +122,29 @@ public class ServiceOracle implements InterfaceDBOracle {
 
 	@Override
 	public int getRecordCount(String topic_id) {
+		
 		switch (topic_id) {
+		
 		case "datacall": {
 			return repositoryDataCall.countBy();
+		}case "datacalloptional": {
+			return repositoryWaDataCallOptional.countBy();
 		}
 		
 		
 		default:
+			return 0;
 		}
-		return repositoryWaDataCallOptional.countBy();
 	}
 
 	@Override
-	public List<Entity_WaDataCallOptional> getAllDataCalls() {
+	public List<Entity_WaDataCallOptional> getAllWaDataCallOptional() {
 		return repositoryWaDataCallOptional.findAll();
+	}
+	
+	@Override
+	public List<Entity_DataCall> getAllDataCall() {
+		return repositoryDataCall.findAll();
 	}
 
 

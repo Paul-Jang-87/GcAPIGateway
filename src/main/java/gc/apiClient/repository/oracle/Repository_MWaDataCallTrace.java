@@ -15,5 +15,5 @@ public interface Repository_MWaDataCallTrace extends CrudRepository<Entity_MWaDa
 
 	List<Entity_MWaDataCallTrace> findAll();
     Optional<Entity_MWaDataCallTrace> findById(WaDataCallTrace id);
-
+    int countBy();
 }

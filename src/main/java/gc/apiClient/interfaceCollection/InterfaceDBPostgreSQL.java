@@ -16,7 +16,7 @@ public interface InterfaceDBPostgreSQL {
 
 	//table 별 매핑
 	Entity_CampRt createCampRtMsg(String cpid);
-	Entity_CampRtJson createCampRtJson(String cpid);
+	Entity_CampRtJson createCampRtJson(Entity_CampRt enCampRt);
 	Entity_CampMaJson createCampMaJson(Entity_CampMa enCampMa, String datachgcd);
 	Entity_CampMa createCampMaMsg(String cpid, String crudtype);
 	Entity_ContactLt createContactLtMsg(String msg);

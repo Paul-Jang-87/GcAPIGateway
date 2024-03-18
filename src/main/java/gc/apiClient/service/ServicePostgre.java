@@ -159,51 +159,28 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
-	public Entity_CampRtJson createCampRtJson(String cpid) {// contactid(고객키)|contactListId|didt|dirt|cpid
+	public Entity_CampRtJson createCampRtJson(Entity_CampRt enCampRt) {// contactid(고객키)::contactListId::didt::dirt::cpid
 
 		log.info("===== createCampRtJson =====");
 
-		Entity_CampRtJson enCampRt = new Entity_CampRtJson();
-
-		String parts[] = cpid.split("::");
-
-		int rlsq = 0;
-		int cpsq = 0;
-		int hubId = 0;
-		int dirt = 0;
-		int dict = 0;
+		Entity_CampRtJson enCampRtJson = new Entity_CampRtJson();
+		
+		LocalDateTime now = LocalDateTime.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSSSSS");
+		String topcDataIsueDtm = now.format(formatter);
+		
+		int hubId = enCampRt.getHubid();
+		int dirt = enCampRt.getDirt();
+		int dict = enCampRt.getDict();
 		String coid = "";
-		String tkda = "";
-		String campid = parts[4];
-		String contactLtId = parts[1];
-		String contactId = parts[0];
+		String campid = enCampRt.getCpid();
 		String didt = "";
 
-		Entity_ContactLt enContactLt = new Entity_ContactLt();
-		enContactLt = findContactLtByCske(contactId);
+		SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		String formattedDateString = outputFormat.format(enCampRt.getDidt());
+		didt = formattedDateString;
 
-		tkda = enContactLt.getTkda();
-
-		if (tkda.charAt(0) == 'C') {
-			hubId = Integer.parseInt(enContactLt.getTkda().split(",")[1]);
-		} else {
-			cpsq = Integer.parseInt(enContactLt.getTkda().split("\\|\\|")[5]);
-		}
-
-		SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
-		try {
-			Date parsedDate = inputFormat.parse(parts[2]);
-
-			// Formatting the parsed date to the desired format
-			SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-			String formattedDateString = outputFormat.format(parsedDate);
-			didt = formattedDateString;
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-
-		Map<String, String> properties = customProperties.getProperties();
-		dirt = Integer.parseInt(properties.getOrDefault(parts[3], "6"));
+		dirt = enCampRt.getDirt();
 
 		ServiceWebClient crmapi1 = new ServiceWebClient();
 		String result = crmapi1.GetStatusApiRequet("campaign_stats", campid);
@@ -217,22 +194,14 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		MappingHomeCenter mappingData = new MappingHomeCenter();
 		coid = mappingData.getCentercodeById(coid);
 
-		rlsq = findCampRtMaxRlsq().intValue();
-		rlsq++;
-
-		enCampRt.setRlsq(rlsq);
-		enCampRt.setTkda(tkda);
-		enCampRt.setCoid(coid);
-		enCampRt.setCpid(campid);
-		enCampRt.setCpsq(cpsq);
-		enCampRt.setContactLtId(contactLtId);
-		enCampRt.setContactId(contactId);
-		enCampRt.setHubId(hubId);
-		enCampRt.setDidt(didt);
-		enCampRt.setDirt(dirt);
-		enCampRt.setDict(dict);
-
-		return enCampRt;
+		enCampRtJson.setCenterCd(coid);
+		enCampRtJson.setIbmHubId(hubId);
+		enCampRtJson.setLastAttempt(didt);
+		enCampRtJson.setLastResult(dirt);
+		enCampRtJson.setTopcDataIsueDtm(topcDataIsueDtm);	
+		enCampRtJson.setTotAttempt(dict);
+		
+		return enCampRtJson;
 	}
 
 	@Override

@@ -377,7 +377,7 @@ public class ControllerUCRM extends ServiceJson {
 					if ((business.equals("UCRM")) && (dirt == 1)) {// URM이면서 정상일 때.
 
 					} else {
-						Entity_CampRtJson toproducer = serviceDb.createCampRtJson(contactsresult);// producer로 보내기 위한
+						Entity_CampRtJson toproducer = serviceDb.createCampRtJson(entityCmRt);// producer로 보내기 위한
 						// entity.
 						objectMapper = new ObjectMapper();
 

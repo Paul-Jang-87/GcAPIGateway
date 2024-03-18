@@ -82,3 +82,6 @@
 '0:0:0:0:0:0:0:1 - - [24-03-18:16:08:05] "POST /gcapi/updateOrDelCampma HTTP/1.1" 200 - 2708270 PostmanRuntime/7.36.3'
 '0:0:0:0:0:0:0:1 - - [24-03-18:16:09:35] "POST /gcapi/updateOrDelCampma HTTP/1.1" 200 - 5551504 PostmanRuntime/7.36.3'
 '0:0:0:0:0:0:0:1 - - [24-03-18:16:10:21] "POST /gcapi/updateOrDelCampma HTTP/1.1" 200 - 184109 PostmanRuntime/7.36.3'
+'0:0:0:0:0:0:0:1 - - [24-03-18:17:20:46] "POST /gcapi/post/camprtMsg HTTP/1.1" 200 - 7487463 PostmanRuntime/7.36.3'
+'0:0:0:0:0:0:0:1 - - [24-03-18:17:34:58] "POST /gcapi/post/camprtMsg HTTP/1.1" 200 - 7528834 PostmanRuntime/7.36.3'
+'0:0:0:0:0:0:0:1 - - [24-03-18:17:47:20] "POST /gcapi/post/camprtMsg HTTP/1.1" 200 - 10173982 PostmanRuntime/7.36.3'

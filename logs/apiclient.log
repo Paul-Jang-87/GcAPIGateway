@@ -2286,3 +2286,536 @@ INFO  24-03-18 16:10:21[http-nio-8083-exec-8] [ControllerUCRM:201] - jsonString 
 INFO  24-03-18 16:10:21[http-nio-8083-exec-8] [MessageToProducer:14] - ===== sendMsgToProducer =====
 INFO  24-03-18 16:10:21[http-nio-8083-exec-8] [MessageToProducer:20] - Endpoint : /gcapi/post/firsttopic
 INFO  24-03-18 16:10:21[http-nio-8083-exec-8] [MessageToProducer:33] - Entity as JSON: {"topcDataIsueDtm":"2024/03/18 16:10:21.801551","dataChgCd":"update","dataDelYn":"N","centerCd":"","cmpnId":"","cmpnNm":"[ys] Campaign_tes"}
+INFO  24-03-18 17:15:14[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 26992 (D:\GitWorkSpace\gcClient\gcClient\target\classes started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+INFO  24-03-18 17:15:14[main] [GcClientApplication:654] - No active profile set, falling back to 1 default profile: "default"
+INFO  24-03-18 17:15:16[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-03-18 17:15:16[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 448 ms. Found 16 JPA repository interfaces.
+INFO  24-03-18 17:15:16[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-03-18 17:15:16[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 34 ms. Found 4 JPA repository interfaces.
+INFO  24-03-18 17:15:18[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-03-18 17:15:18[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-03-18 17:15:19[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 4984 ms
+INFO  24-03-18 17:15:21[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracle]
+INFO  24-03-18 17:15:21[main] [Version:44] - HHH000412: Hibernate ORM core version 6.4.1.Final
+INFO  24-03-18 17:15:21[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-03-18 17:15:22[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-03-18 17:15:22[main] [HikariConfig:1089] - InfogncORCL-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-03-18 17:15:22[main] [HikariDataSource:110] - InfogncORCL-hikari-pool - Starting...
+WARN  24-03-18 17:15:22[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-03-18 17:15:23[main] [HikariPool:565] - InfogncORCL-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@7b795db7
+INFO  24-03-18 17:15:23[main] [HikariDataSource:123] - InfogncORCL-hikari-pool - Start completed.
+WARN  24-03-18 17:15:23[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-03-18 17:15:26[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-03-18 17:19:08[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracle'
+INFO  24-03-18 17:19:08[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: postgres]
+INFO  24-03-18 17:19:08[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-03-18 17:19:08[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-03-18 17:19:08[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-03-18 17:19:08[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-03-18 17:19:09[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@15974f4e
+INFO  24-03-18 17:19:09[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+WARN  24-03-18 17:19:09[main] [deprecation:153] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-03-18 17:19:09[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-03-18 17:19:09[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-03-18 17:19:10[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-03-18 17:19:12[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-03-18 17:19:13[main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8083"]
+INFO  24-03-18 17:19:13[main] [TomcatWebServer:241] - Tomcat started on port 8083 (http) with context path ''
+INFO  24-03-18 17:19:13[main] [GcClientApplication:56] - Started GcClientApplication in 240.557 seconds (process running for 243.402)
+INFO  24-03-18 17:20:39[http-nio-8083-exec-1] [DispatcherServlet:532] - Initializing Servlet 'dispatcherServlet'
+INFO  24-03-18 17:20:39[http-nio-8083-exec-1] [DispatcherServlet:554] - Completed initialization in 3 ms
+INFO  24-03-18 17:20:39[http-nio-8083-exec-1] [ControllerUCRM:242] - Class : ControllerUCRM - Method : receiveMessage
+INFO  24-03-18 17:20:39[http-nio-8083-exec-1] [ControllerUCRM:252] - topic_id : camprtMsg
+INFO  24-03-18 17:20:39[http-nio-8083-exec-1] [ServiceJson:140] - ===== ExtractVal56 =====
+INFO  24-03-18 17:20:39[http-nio-8083-exec-1] [ControllerUCRM:323] - result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::85aecd05-21b5-46a1-86f3-357f252d10a0::0aebaa53-2e66-4720-acdb-8a766e2ea6ae
+INFO  24-03-18 17:20:39[http-nio-8083-exec-1] [ControllerUCRM:335] - division : Home
+INFO  24-03-18 17:20:40[http-nio-8083-exec-1] [ServiceWebClient:111] - ===== PostContactLtApiBulk =====
+INFO  24-03-18 17:20:44[http-nio-8083-exec-1] [ServiceWebClient:118] - PostContactLtApiBulk 요청 후 결과 값 : [{"id":"83b85d7ff68cb7f0b7b3c59212abefff","contactListId":"85aecd05-21b5-46a1-86f3-357f252d10a0","data":{"이름":"장현규","전화번호":"01088336327"},"callRecords":{"전화번호":{"lastAttempt":"2023-11-29T11:51:15.033Z","lastResult":"e269acc9-bad4-4533-91da-2e31d2998f45"}},"callable":true,"phoneNumberStatus":{"전화번호":{"callable":true}},"contactableStatus":{"Email":{"contactable":true}},"dateCreated":"2023-11-29T11:49:21.701Z","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts/83b85d7ff68cb7f0b7b3c59212abefff"},{"id":"0b241f9bef1df80679bfba58582c8505","contactListId":"85aecd05-21b5-46a1-86f3-357f252d10a0","data":{"이름":"황윤석","전화번호":"01074710415"},"callRecords":{"전화번호":{"lastAttempt":"2023-11-29T11:51:14.022Z","lastResult":"e269acc9-bad4-4533-91da-2e31d2998f45"}},"callable":true,"phoneNumberStatus":{"전화번호":{"callable":true}},"contactableStatus":{"Email":{"contactable":true}},"dateCreated":"2023-11-29T11:49:21.701Z","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts/0b241f9bef1df80679bfba58582c8505"}]
+INFO  24-03-18 17:20:44[http-nio-8083-exec-1] [ServiceJson:167] - ===== ExtractContacts56 =====
+INFO  24-03-18 17:20:44[http-nio-8083-exec-1] [ServiceJson:192] - result : 83b85d7ff68cb7f0b7b3c59212abefff::85aecd05-21b5-46a1-86f3-357f252d10a0::2023-11-29T11:51:15.033Z::e269acc9-bad4-4533-91da-2e31d2998f45
+INFO  24-03-18 17:20:44[http-nio-8083-exec-1] [ServicePostgre:62] - ===== createCampRtMsg =====
+INFO  24-03-18 17:20:44[http-nio-8083-exec-1] [ServicePostgre:80] - rlsq: 0
+INFO  24-03-18 17:20:44[http-nio-8083-exec-1] [ServicePostgre:81] - coid: 0
+INFO  24-03-18 17:20:44[http-nio-8083-exec-1] [ServicePostgre:82] - cpsq: 0
+INFO  24-03-18 17:20:44[http-nio-8083-exec-1] [ServicePostgre:83] - hubid: 0
+INFO  24-03-18 17:20:44[http-nio-8083-exec-1] [ServicePostgre:84] - dirt: 0
+INFO  24-03-18 17:20:44[http-nio-8083-exec-1] [ServicePostgre:85] - dict: 0
+INFO  24-03-18 17:20:44[http-nio-8083-exec-1] [ServicePostgre:86] - campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-18 17:20:44[http-nio-8083-exec-1] [ServicePostgre:87] - contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+INFO  24-03-18 17:20:44[http-nio-8083-exec-1] [ServicePostgre:88] - contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+INFO  24-03-18 17:20:44[http-nio-8083-exec-1] [ServicePostgre:89] - tkda: 
+INFO  24-03-18 17:20:44[http-nio-8083-exec-1] [ServicePostgre:90] - didt: null
+INFO  24-03-18 17:20:44[http-nio-8083-exec-1] [ServiceWebClient:49] - ===== GetStatusApiRequet =====
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServiceWebClient:56] - GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:146] - rlsq: 2
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:147] - coid: 23
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:148] - campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:149] - cpsq: 0
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:150] - contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:151] - contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:152] - tkda: C,111,custid
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:153] - hubid: 111
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:154] - didt: Wed Nov 29 20:51:15 KST 2023
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:155] - dirt: 6
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:156] - dict: 0
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServiceJson:167] - ===== ExtractContacts56 =====
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServiceJson:192] - result : 83b85d7ff68cb7f0b7b3c59212abefff::85aecd05-21b5-46a1-86f3-357f252d10a0::2023-11-29T11:51:15.033Z::e269acc9-bad4-4533-91da-2e31d2998f45
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:62] - ===== createCampRtMsg =====
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:80] - rlsq: 0
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:81] - coid: 0
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:82] - cpsq: 0
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:83] - hubid: 0
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:84] - dirt: 0
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:85] - dict: 0
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:86] - campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:87] - contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:88] - contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:89] - tkda: 
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:90] - didt: null
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServiceWebClient:49] - ===== GetStatusApiRequet =====
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServiceWebClient:56] - GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:146] - rlsq: 2
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:147] - coid: 23
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:148] - campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:149] - cpsq: 0
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:150] - contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:151] - contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:152] - tkda: C,111,custid
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:153] - hubid: 111
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:154] - didt: Wed Nov 29 20:51:15 KST 2023
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:155] - dirt: 6
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:156] - dict: 0
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServicePostgre:164] - ===== createCampRtJson =====
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServiceWebClient:49] - ===== GetStatusApiRequet =====
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ServiceWebClient:56] - GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [ControllerUCRM:386] - JsonString Data : 0번째 {"topcDataIsueDtm":"2024/03/18 17:20:45.441525","ibmHubId":111,"lastAttempt":"2023/11/29 20:51:15","lastResult":6,"totAttempt":0,"centerCd":"H2"}
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [MessageToProducer:14] - ===== sendMsgToProducer =====
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [MessageToProducer:20] - Endpoint : /gcapi/post/fifthtopic
+ERROR 24-03-18 17:20:45[reactor-http-nio-3] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+INFO  24-03-18 17:20:45[http-nio-8083-exec-1] [MessageToProducer:33] - Entity as JSON: {"topcDataIsueDtm":"2024/03/18 17:20:45.441525","ibmHubId":111,"lastAttempt":"2023/11/29 20:51:15","lastResult":6,"totAttempt":0,"centerCd":"H2"}
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServiceJson:167] - ===== ExtractContacts56 =====
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServiceJson:192] - result : 0b241f9bef1df80679bfba58582c8505::85aecd05-21b5-46a1-86f3-357f252d10a0::2023-11-29T11:51:14.022Z::e269acc9-bad4-4533-91da-2e31d2998f45
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServicePostgre:62] - ===== createCampRtMsg =====
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServicePostgre:80] - rlsq: 0
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServicePostgre:81] - coid: 0
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServicePostgre:82] - cpsq: 0
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServicePostgre:83] - hubid: 0
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServicePostgre:84] - dirt: 0
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServicePostgre:85] - dict: 0
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServicePostgre:86] - campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServicePostgre:87] - contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServicePostgre:88] - contactId: 0b241f9bef1df80679bfba58582c8505
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServicePostgre:89] - tkda: 
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServicePostgre:90] - didt: null
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServiceWebClient:49] - ===== GetStatusApiRequet =====
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServiceWebClient:56] - GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServicePostgre:146] - rlsq: 3
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServicePostgre:147] - coid: 23
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServicePostgre:148] - campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServicePostgre:149] - cpsq: 666
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServicePostgre:150] - contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServicePostgre:151] - contactId: 0b241f9bef1df80679bfba58582c8505
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServicePostgre:152] - tkda: A||gg||dfe||feq||ere||666
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServicePostgre:153] - hubid: 0
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServicePostgre:154] - didt: Wed Nov 29 20:51:14 KST 2023
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServicePostgre:155] - dirt: 6
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServicePostgre:156] - dict: 0
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServicePostgre:164] - ===== createCampRtJson =====
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServiceWebClient:49] - ===== GetStatusApiRequet =====
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ServiceWebClient:56] - GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [ControllerUCRM:386] - JsonString Data : 1번째 {"topcDataIsueDtm":"2024/03/18 17:20:46.533604","ibmHubId":0,"lastAttempt":"2023/11/29 20:51:14","lastResult":6,"totAttempt":0,"centerCd":"H2"}
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [MessageToProducer:14] - ===== sendMsgToProducer =====
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [MessageToProducer:20] - Endpoint : /gcapi/post/fifthtopic
+ERROR 24-03-18 17:20:46[reactor-http-nio-4] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+INFO  24-03-18 17:20:46[http-nio-8083-exec-1] [MessageToProducer:33] - Entity as JSON: {"topcDataIsueDtm":"2024/03/18 17:20:46.533604","ibmHubId":0,"lastAttempt":"2023/11/29 20:51:14","lastResult":6,"totAttempt":0,"centerCd":"H2"}
+INFO  24-03-18 17:29:51[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 8332 (D:\GitWorkSpace\gcClient\gcClient\target\classes started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+INFO  24-03-18 17:29:51[main] [GcClientApplication:654] - No active profile set, falling back to 1 default profile: "default"
+INFO  24-03-18 17:29:53[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-03-18 17:29:53[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 379 ms. Found 16 JPA repository interfaces.
+INFO  24-03-18 17:29:53[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-03-18 17:29:53[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 31 ms. Found 4 JPA repository interfaces.
+INFO  24-03-18 17:29:56[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-03-18 17:29:56[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-03-18 17:29:56[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 4507 ms
+INFO  24-03-18 17:29:57[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracle]
+INFO  24-03-18 17:29:57[main] [Version:44] - HHH000412: Hibernate ORM core version 6.4.1.Final
+INFO  24-03-18 17:29:57[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-03-18 17:29:59[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-03-18 17:29:59[main] [HikariConfig:1089] - InfogncORCL-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-03-18 17:29:59[main] [HikariDataSource:110] - InfogncORCL-hikari-pool - Starting...
+WARN  24-03-18 17:29:59[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-03-18 17:30:01[main] [HikariPool:565] - InfogncORCL-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@3c6fb501
+INFO  24-03-18 17:30:01[main] [HikariDataSource:123] - InfogncORCL-hikari-pool - Start completed.
+WARN  24-03-18 17:30:02[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-03-18 17:30:08[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-03-18 17:33:31[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracle'
+INFO  24-03-18 17:33:31[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: postgres]
+INFO  24-03-18 17:33:31[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-03-18 17:33:31[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-03-18 17:33:31[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-03-18 17:33:31[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-03-18 17:33:32[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@4ceac22d
+INFO  24-03-18 17:33:32[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+WARN  24-03-18 17:33:32[main] [deprecation:153] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-03-18 17:33:33[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-03-18 17:33:33[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-03-18 17:33:34[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-03-18 17:33:36[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-03-18 17:33:37[main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8083"]
+INFO  24-03-18 17:33:37[main] [TomcatWebServer:241] - Tomcat started on port 8083 (http) with context path ''
+INFO  24-03-18 17:33:37[main] [GcClientApplication:56] - Started GcClientApplication in 227.234 seconds (process running for 230.853)
+INFO  24-03-18 17:34:51[http-nio-8083-exec-2] [DispatcherServlet:532] - Initializing Servlet 'dispatcherServlet'
+INFO  24-03-18 17:34:51[http-nio-8083-exec-2] [DispatcherServlet:554] - Completed initialization in 2 ms
+INFO  24-03-18 17:34:51[http-nio-8083-exec-2] [ControllerUCRM:242] - Class : ControllerUCRM - Method : receiveMessage
+INFO  24-03-18 17:34:51[http-nio-8083-exec-2] [ControllerUCRM:252] - topic_id : camprtMsg
+INFO  24-03-18 17:34:51[http-nio-8083-exec-2] [ServiceJson:140] - ===== ExtractVal56 =====
+INFO  24-03-18 17:34:51[http-nio-8083-exec-2] [ControllerUCRM:323] - result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::85aecd05-21b5-46a1-86f3-357f252d10a0::0aebaa53-2e66-4720-acdb-8a766e2ea6ae
+INFO  24-03-18 17:34:51[http-nio-8083-exec-2] [ControllerUCRM:335] - division : Home
+INFO  24-03-18 17:34:51[http-nio-8083-exec-2] [ServiceWebClient:111] - ===== PostContactLtApiBulk =====
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServiceWebClient:118] - PostContactLtApiBulk 요청 후 결과 값 : [{"id":"83b85d7ff68cb7f0b7b3c59212abefff","contactListId":"85aecd05-21b5-46a1-86f3-357f252d10a0","data":{"이름":"장현규","전화번호":"01088336327"},"callRecords":{"전화번호":{"lastAttempt":"2023-11-29T11:51:15.033Z","lastResult":"e269acc9-bad4-4533-91da-2e31d2998f45"}},"callable":true,"phoneNumberStatus":{"전화번호":{"callable":true}},"contactableStatus":{"Email":{"contactable":true}},"dateCreated":"2023-11-29T11:49:21.701Z","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts/83b85d7ff68cb7f0b7b3c59212abefff"},{"id":"0b241f9bef1df80679bfba58582c8505","contactListId":"85aecd05-21b5-46a1-86f3-357f252d10a0","data":{"이름":"황윤석","전화번호":"01074710415"},"callRecords":{"전화번호":{"lastAttempt":"2023-11-29T11:51:14.022Z","lastResult":"e269acc9-bad4-4533-91da-2e31d2998f45"}},"callable":true,"phoneNumberStatus":{"전화번호":{"callable":true}},"contactableStatus":{"Email":{"contactable":true}},"dateCreated":"2023-11-29T11:49:21.701Z","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts/0b241f9bef1df80679bfba58582c8505"}]
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServiceJson:167] - ===== ExtractContacts56 =====
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServiceJson:192] - result : 83b85d7ff68cb7f0b7b3c59212abefff::85aecd05-21b5-46a1-86f3-357f252d10a0::2023-11-29T11:51:15.033Z::e269acc9-bad4-4533-91da-2e31d2998f45
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:62] - ===== createCampRtMsg =====
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:80] - rlsq: 0
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:81] - coid: 0
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:82] - cpsq: 0
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:83] - hubid: 0
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:84] - dirt: 0
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:85] - dict: 0
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:86] - campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:87] - contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:88] - contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:89] - tkda: 
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:90] - didt: null
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServiceWebClient:49] - ===== GetStatusApiRequet =====
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServiceWebClient:56] - GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:146] - rlsq: 4
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:147] - coid: 23
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:148] - campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:149] - cpsq: 0
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:150] - contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:151] - contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:152] - tkda: C,111,custid
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:153] - hubid: 111
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:154] - didt: Wed Nov 29 20:51:15 KST 2023
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:155] - dirt: 6
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:156] - dict: 0
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServiceJson:167] - ===== ExtractContacts56 =====
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServiceJson:192] - result : 83b85d7ff68cb7f0b7b3c59212abefff::85aecd05-21b5-46a1-86f3-357f252d10a0::2023-11-29T11:51:15.033Z::e269acc9-bad4-4533-91da-2e31d2998f45
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:62] - ===== createCampRtMsg =====
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:80] - rlsq: 0
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:81] - coid: 0
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:82] - cpsq: 0
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:83] - hubid: 0
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:84] - dirt: 0
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:85] - dict: 0
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:86] - campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:87] - contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:88] - contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:89] - tkda: 
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServicePostgre:90] - didt: null
+INFO  24-03-18 17:34:56[http-nio-8083-exec-2] [ServiceWebClient:49] - ===== GetStatusApiRequet =====
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServiceWebClient:56] - GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServicePostgre:146] - rlsq: 4
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServicePostgre:147] - coid: 23
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServicePostgre:148] - campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServicePostgre:149] - cpsq: 0
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServicePostgre:150] - contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServicePostgre:151] - contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServicePostgre:152] - tkda: C,111,custid
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServicePostgre:153] - hubid: 111
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServicePostgre:154] - didt: Wed Nov 29 20:51:15 KST 2023
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServicePostgre:155] - dirt: 6
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServicePostgre:156] - dict: 0
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServicePostgre:164] - ===== createCampRtJson =====
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServiceWebClient:49] - ===== GetStatusApiRequet =====
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServiceWebClient:56] - GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ControllerUCRM:386] - JsonString Data : 0번째 {"topcDataIsueDtm":"2024/03/18 17:34:57.167982","ibmHubId":111,"lastAttempt":"2023/11/29 20:51:15","lastResult":6,"totAttempt":0,"centerCd":"H2"}
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [MessageToProducer:14] - ===== sendMsgToProducer =====
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [MessageToProducer:20] - Endpoint : /gcapi/post/fifthtopic
+ERROR 24-03-18 17:34:57[reactor-http-nio-3] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [MessageToProducer:33] - Entity as JSON: {"topcDataIsueDtm":"2024/03/18 17:34:57.167982","ibmHubId":111,"lastAttempt":"2023/11/29 20:51:15","lastResult":6,"totAttempt":0,"centerCd":"H2"}
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServiceJson:167] - ===== ExtractContacts56 =====
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServiceJson:192] - result : 0b241f9bef1df80679bfba58582c8505::85aecd05-21b5-46a1-86f3-357f252d10a0::2023-11-29T11:51:14.022Z::e269acc9-bad4-4533-91da-2e31d2998f45
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServicePostgre:62] - ===== createCampRtMsg =====
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServicePostgre:80] - rlsq: 0
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServicePostgre:81] - coid: 0
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServicePostgre:82] - cpsq: 0
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServicePostgre:83] - hubid: 0
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServicePostgre:84] - dirt: 0
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServicePostgre:85] - dict: 0
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServicePostgre:86] - campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServicePostgre:87] - contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServicePostgre:88] - contactId: 0b241f9bef1df80679bfba58582c8505
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServicePostgre:89] - tkda: 
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServicePostgre:90] - didt: null
+INFO  24-03-18 17:34:57[http-nio-8083-exec-2] [ServiceWebClient:49] - ===== GetStatusApiRequet =====
+INFO  24-03-18 17:34:58[http-nio-8083-exec-2] [ServiceWebClient:56] - GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+INFO  24-03-18 17:34:58[http-nio-8083-exec-2] [ServicePostgre:146] - rlsq: 5
+INFO  24-03-18 17:34:58[http-nio-8083-exec-2] [ServicePostgre:147] - coid: 23
+INFO  24-03-18 17:34:58[http-nio-8083-exec-2] [ServicePostgre:148] - campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-18 17:34:58[http-nio-8083-exec-2] [ServicePostgre:149] - cpsq: 666
+INFO  24-03-18 17:34:58[http-nio-8083-exec-2] [ServicePostgre:150] - contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+INFO  24-03-18 17:34:58[http-nio-8083-exec-2] [ServicePostgre:151] - contactId: 0b241f9bef1df80679bfba58582c8505
+INFO  24-03-18 17:34:58[http-nio-8083-exec-2] [ServicePostgre:152] - tkda: A||gg||dfe||feq||ere||666
+INFO  24-03-18 17:34:58[http-nio-8083-exec-2] [ServicePostgre:153] - hubid: 0
+INFO  24-03-18 17:34:58[http-nio-8083-exec-2] [ServicePostgre:154] - didt: Wed Nov 29 20:51:14 KST 2023
+INFO  24-03-18 17:34:58[http-nio-8083-exec-2] [ServicePostgre:155] - dirt: 6
+INFO  24-03-18 17:34:58[http-nio-8083-exec-2] [ServicePostgre:156] - dict: 0
+INFO  24-03-18 17:34:58[http-nio-8083-exec-2] [ServicePostgre:164] - ===== createCampRtJson =====
+INFO  24-03-18 17:34:58[http-nio-8083-exec-2] [ServiceWebClient:49] - ===== GetStatusApiRequet =====
+INFO  24-03-18 17:34:58[http-nio-8083-exec-2] [ServiceWebClient:56] - GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+INFO  24-03-18 17:34:58[http-nio-8083-exec-2] [ControllerUCRM:386] - JsonString Data : 1번째 {"topcDataIsueDtm":"2024/03/18 17:34:58.047294","ibmHubId":0,"lastAttempt":"2023/11/29 20:51:14","lastResult":6,"totAttempt":0,"centerCd":"H2"}
+INFO  24-03-18 17:34:58[http-nio-8083-exec-2] [MessageToProducer:14] - ===== sendMsgToProducer =====
+INFO  24-03-18 17:34:58[http-nio-8083-exec-2] [MessageToProducer:20] - Endpoint : /gcapi/post/fifthtopic
+ERROR 24-03-18 17:34:58[reactor-http-nio-4] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+INFO  24-03-18 17:34:58[http-nio-8083-exec-2] [MessageToProducer:33] - Entity as JSON: {"topcDataIsueDtm":"2024/03/18 17:34:58.047294","ibmHubId":0,"lastAttempt":"2023/11/29 20:51:14","lastResult":6,"totAttempt":0,"centerCd":"H2"}
+INFO  24-03-18 17:43:04[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 28544 (D:\GitWorkSpace\gcClient\gcClient\target\classes started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+INFO  24-03-18 17:43:04[main] [GcClientApplication:654] - No active profile set, falling back to 1 default profile: "default"
+INFO  24-03-18 17:43:07[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-03-18 17:43:07[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 480 ms. Found 16 JPA repository interfaces.
+INFO  24-03-18 17:43:07[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-03-18 17:43:07[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 38 ms. Found 4 JPA repository interfaces.
+INFO  24-03-18 17:43:10[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-03-18 17:43:10[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-03-18 17:43:10[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 6153 ms
+INFO  24-03-18 17:43:11[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracle]
+INFO  24-03-18 17:43:11[main] [Version:44] - HHH000412: Hibernate ORM core version 6.4.1.Final
+INFO  24-03-18 17:43:11[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-03-18 17:43:12[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-03-18 17:43:12[main] [HikariConfig:1089] - InfogncORCL-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-03-18 17:43:12[main] [HikariDataSource:110] - InfogncORCL-hikari-pool - Starting...
+WARN  24-03-18 17:43:12[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-03-18 17:43:13[main] [HikariPool:565] - InfogncORCL-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@586486c
+INFO  24-03-18 17:43:13[main] [HikariDataSource:123] - InfogncORCL-hikari-pool - Start completed.
+WARN  24-03-18 17:43:14[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-03-18 17:43:18[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-03-18 17:46:47[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracle'
+INFO  24-03-18 17:46:47[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: postgres]
+INFO  24-03-18 17:46:47[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-03-18 17:46:48[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-03-18 17:46:48[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-03-18 17:46:48[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+ERROR 24-03-18 17:46:54[main] [HikariPool:594] - Infognc-hikari-pool - Exception during pool initialization.
+org.postgresql.util.PSQLException: The connection attempt failed.
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:354)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:54)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:263)
+	at org.postgresql.Driver.makeConnection(Driver.java:443)
+	at org.postgresql.Driver.connect(Driver.java:297)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:428)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:61)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:276)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:107)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:129)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215)
+	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:223)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:191)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:170)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1432)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1503)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at gc.apiClient.GcClientApplication.main(GcClientApplication.java:17)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:278)
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:304)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1099)
+	at org.postgresql.core.VisibleBufferedInputStream.readMore(VisibleBufferedInputStream.java:161)
+	at org.postgresql.core.VisibleBufferedInputStream.ensureBytes(VisibleBufferedInputStream.java:128)
+	at org.postgresql.core.VisibleBufferedInputStream.ensureBytes(VisibleBufferedInputStream.java:113)
+	at org.postgresql.core.VisibleBufferedInputStream.read(VisibleBufferedInputStream.java:73)
+	at org.postgresql.core.PGStream.receiveChar(PGStream.java:465)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.enableSSL(ConnectionFactoryImpl.java:589)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:191)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:258)
+	... 50 common frames omitted
+WARN  24-03-18 17:46:54[main] [JdbcEnvironmentInitiator:345] - HHH000342: Could not obtain connection to query metadata
+java.lang.NullPointerException: Cannot invoke "org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(java.sql.SQLException, String)" because the return value of "org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.sqlExceptionHelper()" is null
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:116)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:276)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:107)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:129)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215)
+	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:223)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:191)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:170)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1432)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1503)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at gc.apiClient.GcClientApplication.main(GcClientApplication.java:17)
+WARN  24-03-18 17:46:54[main] [deprecation:153] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-03-18 17:46:54[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+WARN  24-03-18 17:46:54[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-03-18 17:46:54[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-03-18 17:46:55[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@76d1acf9
+INFO  24-03-18 17:46:55[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-03-18 17:46:56[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-03-18 17:46:57[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-03-18 17:47:00[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-03-18 17:47:01[main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8083"]
+INFO  24-03-18 17:47:01[main] [TomcatWebServer:241] - Tomcat started on port 8083 (http) with context path ''
+INFO  24-03-18 17:47:01[main] [GcClientApplication:56] - Started GcClientApplication in 238.698 seconds (process running for 242.67)
+INFO  24-03-18 17:47:09[http-nio-8083-exec-1] [DispatcherServlet:532] - Initializing Servlet 'dispatcherServlet'
+INFO  24-03-18 17:47:09[http-nio-8083-exec-1] [DispatcherServlet:554] - Completed initialization in 3 ms
+INFO  24-03-18 17:47:10[http-nio-8083-exec-1] [ControllerUCRM:242] - Class : ControllerUCRM - Method : receiveMessage
+INFO  24-03-18 17:47:10[http-nio-8083-exec-1] [ControllerUCRM:252] - topic_id : camprtMsg
+INFO  24-03-18 17:47:10[http-nio-8083-exec-1] [ServiceJson:140] - ===== ExtractVal56 =====
+INFO  24-03-18 17:47:10[http-nio-8083-exec-1] [ControllerUCRM:323] - result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::85aecd05-21b5-46a1-86f3-357f252d10a0::0aebaa53-2e66-4720-acdb-8a766e2ea6ae
+INFO  24-03-18 17:47:10[http-nio-8083-exec-1] [ControllerUCRM:335] - division : Home
+INFO  24-03-18 17:47:10[http-nio-8083-exec-1] [ServiceWebClient:111] - ===== PostContactLtApiBulk =====
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServiceWebClient:118] - PostContactLtApiBulk 요청 후 결과 값 : [{"id":"83b85d7ff68cb7f0b7b3c59212abefff","contactListId":"85aecd05-21b5-46a1-86f3-357f252d10a0","data":{"이름":"장현규","전화번호":"01088336327"},"callRecords":{"전화번호":{"lastAttempt":"2023-11-29T11:51:15.033Z","lastResult":"e269acc9-bad4-4533-91da-2e31d2998f45"}},"callable":true,"phoneNumberStatus":{"전화번호":{"callable":true}},"contactableStatus":{"Email":{"contactable":true}},"dateCreated":"2023-11-29T11:49:21.701Z","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts/83b85d7ff68cb7f0b7b3c59212abefff"},{"id":"0b241f9bef1df80679bfba58582c8505","contactListId":"85aecd05-21b5-46a1-86f3-357f252d10a0","data":{"이름":"황윤석","전화번호":"01074710415"},"callRecords":{"전화번호":{"lastAttempt":"2023-11-29T11:51:14.022Z","lastResult":"e269acc9-bad4-4533-91da-2e31d2998f45"}},"callable":true,"phoneNumberStatus":{"전화번호":{"callable":true}},"contactableStatus":{"Email":{"contactable":true}},"dateCreated":"2023-11-29T11:49:21.701Z","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0/contacts/0b241f9bef1df80679bfba58582c8505"}]
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServiceJson:167] - ===== ExtractContacts56 =====
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServiceJson:192] - result : 83b85d7ff68cb7f0b7b3c59212abefff::85aecd05-21b5-46a1-86f3-357f252d10a0::2023-11-29T11:51:15.033Z::e269acc9-bad4-4533-91da-2e31d2998f45
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:62] - ===== createCampRtMsg =====
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:80] - rlsq: 0
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:81] - coid: 0
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:82] - cpsq: 0
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:83] - hubid: 0
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:84] - dirt: 0
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:85] - dict: 0
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:86] - campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:87] - contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:88] - contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:89] - tkda: 
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:90] - didt: null
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServiceWebClient:49] - ===== GetStatusApiRequet =====
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServiceWebClient:56] - GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:146] - rlsq: 6
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:147] - coid: 23
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:148] - campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:149] - cpsq: 0
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:150] - contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:151] - contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:152] - tkda: C,111,custid
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:153] - hubid: 111
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:154] - didt: Wed Nov 29 20:51:15 KST 2023
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:155] - dirt: 6
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:156] - dict: 0
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServiceJson:167] - ===== ExtractContacts56 =====
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServiceJson:192] - result : 83b85d7ff68cb7f0b7b3c59212abefff::85aecd05-21b5-46a1-86f3-357f252d10a0::2023-11-29T11:51:15.033Z::e269acc9-bad4-4533-91da-2e31d2998f45
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:62] - ===== createCampRtMsg =====
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:80] - rlsq: 0
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:81] - coid: 0
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:82] - cpsq: 0
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:83] - hubid: 0
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:84] - dirt: 0
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:85] - dict: 0
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:86] - campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:87] - contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:88] - contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:89] - tkda: 
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServicePostgre:90] - didt: null
+INFO  24-03-18 17:47:13[http-nio-8083-exec-1] [ServiceWebClient:49] - ===== GetStatusApiRequet =====
+INFO  24-03-18 17:47:14[http-nio-8083-exec-1] [ServiceWebClient:56] - GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+INFO  24-03-18 17:47:14[http-nio-8083-exec-1] [ServicePostgre:146] - rlsq: 6
+INFO  24-03-18 17:47:14[http-nio-8083-exec-1] [ServicePostgre:147] - coid: 23
+INFO  24-03-18 17:47:14[http-nio-8083-exec-1] [ServicePostgre:148] - campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-18 17:47:14[http-nio-8083-exec-1] [ServicePostgre:149] - cpsq: 0
+INFO  24-03-18 17:47:14[http-nio-8083-exec-1] [ServicePostgre:150] - contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+INFO  24-03-18 17:47:14[http-nio-8083-exec-1] [ServicePostgre:151] - contactId: 83b85d7ff68cb7f0b7b3c59212abefff
+INFO  24-03-18 17:47:14[http-nio-8083-exec-1] [ServicePostgre:152] - tkda: C,111,custid
+INFO  24-03-18 17:47:14[http-nio-8083-exec-1] [ServicePostgre:153] - hubid: 111
+INFO  24-03-18 17:47:14[http-nio-8083-exec-1] [ServicePostgre:154] - didt: Wed Nov 29 20:51:15 KST 2023
+INFO  24-03-18 17:47:14[http-nio-8083-exec-1] [ServicePostgre:155] - dirt: 6
+INFO  24-03-18 17:47:14[http-nio-8083-exec-1] [ServicePostgre:156] - dict: 0
+INFO  24-03-18 17:47:14[http-nio-8083-exec-1] [ServicePostgre:164] - ===== createCampRtJson =====
+INFO  24-03-18 17:47:14[http-nio-8083-exec-1] [ServiceWebClient:49] - ===== GetStatusApiRequet =====
+INFO  24-03-18 17:47:14[http-nio-8083-exec-1] [ServiceWebClient:56] - GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+INFO  24-03-18 17:47:14[http-nio-8083-exec-1] [ControllerUCRM:386] - JsonString Data : 0번째 {"topcDataIsueDtm":"2024/03/18 17:47:14.234010","ibmHubId":111,"lastAttempt":"2023/11/29 20:51:15","lastResult":6,"totAttempt":0,"centerCd":"H2"}
+INFO  24-03-18 17:47:14[http-nio-8083-exec-1] [MessageToProducer:14] - ===== sendMsgToProducer =====
+INFO  24-03-18 17:47:14[http-nio-8083-exec-1] [MessageToProducer:20] - Endpoint : /gcapi/post/fifthtopic
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [MessageToProducer:33] - Entity as JSON: {"topcDataIsueDtm":"2024/03/18 17:47:14.234010","ibmHubId":111,"lastAttempt":"2023/11/29 20:51:15","lastResult":6,"totAttempt":0,"centerCd":"H2"}
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServiceJson:167] - ===== ExtractContacts56 =====
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServiceJson:192] - result : 0b241f9bef1df80679bfba58582c8505::85aecd05-21b5-46a1-86f3-357f252d10a0::2023-11-29T11:51:14.022Z::e269acc9-bad4-4533-91da-2e31d2998f45
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServicePostgre:62] - ===== createCampRtMsg =====
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServicePostgre:80] - rlsq: 0
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServicePostgre:81] - coid: 0
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServicePostgre:82] - cpsq: 0
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServicePostgre:83] - hubid: 0
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServicePostgre:84] - dirt: 0
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServicePostgre:85] - dict: 0
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServicePostgre:86] - campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServicePostgre:87] - contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServicePostgre:88] - contactId: 0b241f9bef1df80679bfba58582c8505
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServicePostgre:89] - tkda: 
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServicePostgre:90] - didt: null
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServiceWebClient:49] - ===== GetStatusApiRequet =====
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServiceWebClient:56] - GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServicePostgre:146] - rlsq: 7
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServicePostgre:147] - coid: 23
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServicePostgre:148] - campid: 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServicePostgre:149] - cpsq: 666
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServicePostgre:150] - contactLtId: 85aecd05-21b5-46a1-86f3-357f252d10a0
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServicePostgre:151] - contactId: 0b241f9bef1df80679bfba58582c8505
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServicePostgre:152] - tkda: A||gg||dfe||feq||ere||666
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServicePostgre:153] - hubid: 0
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServicePostgre:154] - didt: Wed Nov 29 20:51:14 KST 2023
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServicePostgre:155] - dirt: 6
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServicePostgre:156] - dict: 0
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServicePostgre:164] - ===== createCampRtJson =====
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServiceWebClient:49] - ===== GetStatusApiRequet =====
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ServiceWebClient:56] - GetStatusApiRequet 요청 후 결과 값 : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":3.0303030303030303,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [ControllerUCRM:386] - JsonString Data : 1번째 {"topcDataIsueDtm":"2024/03/18 17:47:19.698393","ibmHubId":0,"lastAttempt":"2023/11/29 20:51:14","lastResult":6,"totAttempt":0,"centerCd":"H2"}
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [MessageToProducer:14] - ===== sendMsgToProducer =====
+INFO  24-03-18 17:47:19[http-nio-8083-exec-1] [MessageToProducer:20] - Endpoint : /gcapi/post/fifthtopic
+INFO  24-03-18 17:47:20[http-nio-8083-exec-1] [MessageToProducer:33] - Entity as JSON: {"topcDataIsueDtm":"2024/03/18 17:47:19.698393","ibmHubId":0,"lastAttempt":"2023/11/29 20:51:14","lastResult":6,"totAttempt":0,"centerCd":"H2"}

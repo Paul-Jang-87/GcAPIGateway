@@ -25,6 +25,7 @@ public class MessageTo360View {
 
 			log.info("Endpoint : {}", endpointUrl);
 
+			
 			webClient.post().uri(endpointUrl).body(BodyInserters.fromValue(jsonString)).retrieve()
 					.bodyToMono(String.class).onErrorResume(error -> {
 						log.error("Error making API request: {}", error.getMessage());

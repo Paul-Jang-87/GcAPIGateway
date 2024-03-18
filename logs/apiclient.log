@@ -248,3 +248,61 @@ INFO  24-03-15 13:13:03[http-nio-8083-exec-1] [MessageTo360View:18] - JsonString
 INFO  24-03-15 13:13:03[http-nio-8083-exec-1] [MessageTo360View:20] - ===== To360View =====
 INFO  24-03-15 13:13:04[http-nio-8083-exec-1] [MessageTo360View:26] - Endpoint : /360view/datacalloptional/hihello
 INFO  24-03-15 13:13:07[http-nio-8083-exec-1] [MessageTo360View:34] - Entity as JSON: {"wcseq":501,"data02":"fwantastic"}
+INFO  24-03-15 16:24:08[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 26364 (D:\GitWorkSpace\gcClient\gcClient\target\classes started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+INFO  24-03-15 16:24:08[main] [GcClientApplication:654] - No active profile set, falling back to 1 default profile: "default"
+INFO  24-03-15 16:24:10[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-03-15 16:24:10[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 397 ms. Found 16 JPA repository interfaces.
+INFO  24-03-15 16:24:10[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-03-15 16:24:10[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 24 ms. Found 4 JPA repository interfaces.
+INFO  24-03-15 16:24:15[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-03-15 16:24:15[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-03-15 16:24:16[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 8098 ms
+INFO  24-03-15 16:24:18[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracle]
+INFO  24-03-15 16:24:18[main] [Version:44] - HHH000412: Hibernate ORM core version 6.4.1.Final
+INFO  24-03-15 16:24:18[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-03-15 16:24:19[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-03-15 16:24:19[main] [HikariConfig:1089] - InfogncORCL-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-03-15 16:24:19[main] [HikariDataSource:110] - InfogncORCL-hikari-pool - Starting...
+WARN  24-03-15 16:24:19[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-03-15 16:24:20[main] [HikariPool:565] - InfogncORCL-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@586486c
+INFO  24-03-15 16:24:20[main] [HikariDataSource:123] - InfogncORCL-hikari-pool - Start completed.
+WARN  24-03-15 16:24:21[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-03-15 16:24:24[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-03-15 16:28:19[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracle'
+INFO  24-03-15 16:28:19[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: postgres]
+INFO  24-03-15 16:28:19[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-03-15 16:28:20[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-03-15 16:28:20[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-03-15 16:28:20[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-03-15 16:28:21[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@280d20fb
+INFO  24-03-15 16:28:21[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+WARN  24-03-15 16:28:21[main] [deprecation:153] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-03-15 16:28:21[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-03-15 16:28:22[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-03-15 16:28:23[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-03-15 16:28:26[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-03-15 16:28:27[main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8083"]
+INFO  24-03-15 16:28:27[main] [TomcatWebServer:241] - Tomcat started on port 8083 (http) with context path ''
+INFO  24-03-15 16:28:27[main] [GcClientApplication:56] - Started GcClientApplication in 260.013 seconds (process running for 266.921)
+INFO  24-03-15 16:29:38[http-nio-8083-exec-2] [DispatcherServlet:532] - Initializing Servlet 'dispatcherServlet'
+INFO  24-03-15 16:29:38[http-nio-8083-exec-2] [DispatcherServlet:554] - Completed initialization in 3 ms
+INFO  24-03-15 16:29:38[http-nio-8083-exec-2] [ControllerUCRM:77] - Class : ControllerUCRM - Method : ReceiveMessage
+INFO  24-03-15 16:29:38[http-nio-8083-exec-2] [ControllerUCRM:87] - topic_id : campma
+INFO  24-03-15 16:29:38[http-nio-8083-exec-2] [ServiceWebClient:18] - ===== GetApiRequet =====
+INFO  24-03-15 16:29:44[http-nio-8083-exec-2] [ServiceWebClient:25] - GetApiRequet 요청 후 결과 값 : {"entities":[{"id":"97e6b32d-c266-4d33-92b4-01ddf33898cd","name":"[hg] 테스트 시연","dateCreated":"2023-11-29T11:15:31.705Z","dateModified":"2024-02-13T00:45:50.660Z","version":23,"contactList":{"id":"85aecd05-21b5-46a1-86f3-357f252d10a0","name":"[hg] 테스트 시연2","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0"},"queue":{"id":"d9c1327d-476c-458b-a85e-3086604fefb6","selfUri":"/api/v2/routing/queues/d9c1327d-476c-458b-a85e-3086604fefb6"},"dialingMode":"power","script":{"id":"476c2b71-7429-11e4-9a5b-3f91746bffa3","name":"Default Outbound Script","selfUri":"/api/v2/scripts/476c2b71-7429-11e4-9a5b-3f91746bffa3"},"site":{"id":"139054d6-9b1e-494e-b7ee-09e4c9de32f4","name":"lguplus-dev","selfUri":"/api/v2/telephony/providers/edges/sites/139054d6-9b1e-494e-b7ee-09e4c9de32f4"},"campaignStatus":"invalid","phoneColumns":[{"columnName":"전화번호","type":"휴대폰"}],"abandonRate":5.0,"dncLists":[],"callAnalysisResponseSet":{"id":"f3b42acd-ae79-40f1-ad46-bd0c1d8948e0","name":"[hg] 테스트 시연","selfUri":"/api/v2/outbound/callanalysisresponsesets/f3b42acd-ae79-40f1-ad46-bd0c1d8948e0"},"errors":[{"error":"QUEUE_NOT_FOUND","details":"Resource not found"}],"callerName":"GSNeotek","callerAddress":"+82316001441","outboundLineCount":2,"ruleSets":[],"skipPreviewDisabled":false,"previewTimeOutSeconds":0,"singleNumberPreview":false,"alwaysRunning":false,"noAnswerTimeout":30,"priority":5,"contactListFilters":[],"division":{"id":"0aebaa53-2e66-4720-acdb-8a766e2ea6ae","name":"Home","selfUri":"/api/v2/authorization/divisions/0aebaa53-2e66-4720-acdb-8a766e2ea6ae"},"dynamicContactQueueingSettings":{"sort":false},"selfUri":"/api/v2/outbound/campaigns/97e6b32d-c266-4d33-92b4-01ddf33898cd"},{"id":"a9d66d5c-87cd-43c6-aa97-2320081b5fdb","name":"테스트 시연 - 외부통화모드","dateCreated":"2023-11-29T11:34:55.143Z","dateModified":"2024-02-13T00:45:50.581Z","version":6,"contactList":{"id":"a62c3266-4419-4951-8e06-0e4b9f7b876c","name":"[hg] 테스트 시연","selfUri":"/api/v2/outbound/contactlists/a62c3266-4419-4951-8e06-0e4b9f7b876c"},"queue":{"id":"d9c1327d-476c-458b-a85e-3086604fefb6","selfUri":"/api/v2/routing/queues/d9c1327d-476c-458b-a85e-3086604fefb6"},"dialingMode":"external","script":{"id":"476c2b71-7429-11e4-9a5b-3f91746bffa3","name":"Default Outbound Script","selfUri":"/api/v2/scripts/476c2b71-7429-11e4-9a5b-3f91746bffa3"},"campaignStatus":"invalid","phoneColumns":[{"columnName":"전화번호","type":"휴대폰"}],"abandonRate":5.0,"dncLists":[],"errors":[{"error":"QUEUE_NOT_FOUND","details":"Resource not found"}],"outboundLineCount":0,"ruleSets":[],"skipPreviewDisabled":false,"previewTimeOutSeconds":0,"singleNumberPreview":false,"alwaysRunning":false,"noAnswerTimeout":30,"priority":5,"contactListFilters":[],"division":{"id":"0aebaa53-2e66-4720-acdb-8a766e2ea6ae","name":"Home","selfUri":"/api/v2/authorization/divisions/0aebaa53-2e66-4720-acdb-8a766e2ea6ae"},"dynamicContactQueueingSettings":{"sort":false},"selfUri":"/api/v2/outbound/campaigns/a9d66d5c-87cd-43c6-aa97-2320081b5fdb"}],"pageSize":25,"pageNumber":1,"total":2,"firstUri":"/api/v2/outbound/campaigns?pageSize=25&pageNumber=1","lastUri":"/api/v2/outbound/campaigns?pageSize=25&pageNumber=1","selfUri":"/api/v2/outbound/campaigns?pageSize=25&pageNumber=1","pageCount":1}
+INFO  24-03-15 16:29:44[http-nio-8083-exec-2] [ServiceJson:52] - ===== ExtractValCrm12 =====
+INFO  24-03-15 16:29:44[http-nio-8083-exec-2] [ServiceJson:69] - result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연::Home
+INFO  24-03-15 16:29:44[http-nio-8083-exec-2] [ServiceJson:70] - ===== END ExtractValCrm12 =====
+INFO  24-03-15 16:29:44[http-nio-8083-exec-2] [BusinessLogic:15] - ====== Class : BusinessLogic - Method : SelectedBusiness ======
+INFO  24-03-15 16:29:44[http-nio-8083-exec-2] [BusinessLogic:16] - division : Home
+INFO  24-03-15 16:29:44[http-nio-8083-exec-2] [BusinessLogic:71] - business : UCRM
+INFO  24-03-15 16:29:44[http-nio-8083-exec-2] [BusinessLogic:72] - topic_id : firsttopic
+INFO  24-03-15 16:29:44[http-nio-8083-exec-2] [BusinessLogic:74] - ===== END SelectedBusiness =====
+INFO  24-03-15 16:29:44[http-nio-8083-exec-2] [ServicePostgre:241] - ===== createCampMaMsg =====
+INFO  24-03-15 16:29:44[http-nio-8083-exec-2] [ServicePostgre:272] - cpid : 97e6b32d-c266-4d33-92b4-01ddf33898cd
+INFO  24-03-15 16:29:44[http-nio-8083-exec-2] [ServicePostgre:273] - coid : 23
+INFO  24-03-15 16:29:44[http-nio-8083-exec-2] [ServicePostgre:274] - cpna : [hg] 테스트 시연
+INFO  24-03-15 16:29:44[http-nio-8083-exec-2] [ControllerUCRM:127] - jsonString : {"topcDataIsueDtm":"2024/03/15 16:29:44.931351","dataChgCd":"INSERT","dataDelYn":"Y","centerCd":"23","cmpnId":"97e6b32d-c266-4d33-92b4-01ddf33898cd","cmpnNm":"[hg] 테스트 시연"}
+INFO  24-03-15 16:29:45[http-nio-8083-exec-2] [MessageToProducer:14] - ===== sendMsgToProducer =====
+INFO  24-03-15 16:29:45[http-nio-8083-exec-2] [MessageToProducer:20] - Endpoint : /gcapi/post/firsttopic
+INFO  24-03-15 16:29:49[http-nio-8083-exec-2] [MessageToProducer:33] - Entity as JSON: {"topcDataIsueDtm":"2024/03/15 16:29:44.931351","dataChgCd":"INSERT","dataDelYn":"Y","centerCd":"23","cmpnId":"97e6b32d-c266-4d33-92b4-01ddf33898cd","cmpnNm":"[hg] 테스트 시연"}

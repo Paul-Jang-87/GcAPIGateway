@@ -3,6 +3,7 @@ package gc.apiClient.interfaceCollection;
 
 import java.util.List;
 
+import gc.apiClient.entity.Entity_CampMaJson;
 import gc.apiClient.entity.Entity_CampRtJson;
 import gc.apiClient.entity.Entity_ContactltMapper;
 import gc.apiClient.entity.oracle.Entity_WaDataCallOptional;
@@ -16,7 +17,8 @@ public interface InterfaceDBPostgreSQL {
 	//table 별 매핑
 	Entity_CampRt createCampRtMsg(String cpid);
 	Entity_CampRtJson createCampRtJson(String cpid);
-	Entity_CampMa createCampMaMsg(String cpid);
+	Entity_CampMaJson createCampMaJson(Entity_CampMa enCampMa, String datachgcd);
+	Entity_CampMa createCampMaMsg(String cpid, String crudtype);
 	Entity_ContactLt createContactLtMsg(String msg);
 	Entity_ContactltMapper createContactLtGC(String msg);
 	

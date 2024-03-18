@@ -1,10 +1,14 @@
 package gc.apiClient.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 import org.springframework.dao.DataIntegrityViolationException;
@@ -15,6 +19,7 @@ import gc.apiClient.customproperties.CustomProperties;
 import gc.apiClient.datamapping.MappingHomeCenter;
 import gc.apiClient.embeddable.CampRt;
 import gc.apiClient.embeddable.ContactLtId;
+import gc.apiClient.entity.Entity_CampMaJson;
 import gc.apiClient.entity.Entity_CampRtJson;
 import gc.apiClient.entity.Entity_ContactltMapper;
 import gc.apiClient.entity.postgresql.Entity_CampMa;
@@ -86,14 +91,14 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
 		enContactLt = findContactLtByCske(contactId);
-		
+
 		tkda = enContactLt.getTkda();
 
 		if (tkda.charAt(0) == 'C') {
 			hubId = Integer.parseInt(enContactLt.getTkda().split(",")[1]);
-		} else if(tkda.charAt(0) == 'A'){
+		} else if (tkda.charAt(0) == 'A') {
 			cpsq = Integer.parseInt(enContactLt.getTkda().split("\\|\\|")[5]);
-		}else {
+		} else {
 		}
 
 		SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
@@ -121,10 +126,10 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 		enCampMa = findCampMaByCpid(campid);
 		coid = enCampMa.getCoid();
-		
+
 		rlsq = findCampRtMaxRlsq().intValue();
 		rlsq++;
-		
+
 		id.setRlsq(rlsq);
 		id.setCoid(coid);
 		enCampRt.setId(id);
@@ -208,10 +213,10 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		Entity_CampMa enCampMa = new Entity_CampMa();
 
 		enCampMa = findCampMaByCpid(campid);
-		coid = Integer.toString(enCampMa.getCoid()) ;
+		coid = Integer.toString(enCampMa.getCoid());
 		MappingHomeCenter mappingData = new MappingHomeCenter();
-		coid = mappingData.getCentercodeById(coid); 
-		
+		coid = mappingData.getCentercodeById(coid);
+
 		rlsq = findCampRtMaxRlsq().intValue();
 		rlsq++;
 
@@ -230,29 +235,98 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		return enCampRt;
 	}
 
-
-
 	@Override
-	public Entity_CampMa createCampMaMsg(String msg) { //cpid::cpna::division::coid
+	public Entity_CampMa createCampMaMsg(String msg, String crudtype) { // cpid::cpna::division::coid
 
 		log.info("===== createCampMaMsg =====");
-
+		
 		Entity_CampMa enCampMa = new Entity_CampMa();
 		String parts[] = msg.split("::");
+		String cpid = "";
+		int coid = 0;
+		String cpna = "";  
 		
-		String cpid = parts[0];
-		int coid = Integer.parseInt(parts[3]); 
-		String cpna = parts[1]; 
-		
+		switch (crudtype) {
+		case "INSERT":
+			
+			cpid = parts[0];// 캠페인 아이디
+			coid = Integer.parseInt(parts[3]); // 센터구분 코드
+			cpna = parts[1]; // 캠페인 명
+			break;
+			
+		case "UPDATE":
+			
+//			cpid = parts[0];// 캠페인 아이디
+//			coid = Integer.parseInt(parts[3]); // 센터구분 코드
+//			cpna = parts[1]; // 캠페인 명
+			break;
+			
+		default:
+//			cpid = parts[0];// 캠페인 아이디
+//			coid = Integer.parseInt(parts[3]); // 센터구분 코드
+//			cpna = parts[1]; // 캠페인 명
+			break;
+		}
+
 		enCampMa.setCpid(cpid);
 		enCampMa.setCoid(coid);
 		enCampMa.setCpna(cpna);
-		
-		log.info("cpid : {}",cpid);;
-		log.info("coid : {}",coid);
-		log.info("cpna : {}",cpna);
-		
+
+		log.info("cpid : {}", cpid);
+		;
+		log.info("coid : {}", coid);
+		log.info("cpna : {}", cpna);
+
 		return enCampMa;
+	}
+
+	@Override
+	public Entity_CampMaJson createCampMaJson(Entity_CampMa enCampMa, String datachgcd) { // cpid::cpna::division::coid
+
+		log.info("===== createCampMaJson =====");
+		Entity_CampMaJson enCampMaJson = new Entity_CampMaJson();
+		LocalDateTime now = LocalDateTime.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSSSSS");
+		String topcDataIsueDtm = "";
+		
+		switch (datachgcd) {
+
+		case "INSERT":
+
+			enCampMaJson.setCenterCd(Integer.toString(enCampMa.getCoid()));
+			enCampMaJson.setCmpnId(enCampMa.getCpid());
+			enCampMaJson.setCmpnNm(enCampMa.getCpna());
+
+			topcDataIsueDtm = now.format(formatter);
+
+			enCampMaJson.setDataChgCd(datachgcd);
+			enCampMaJson.setDataDelYn("N");
+			enCampMaJson.setTopcDataIsueDtm(topcDataIsueDtm);
+
+//			log.info("cpid : {}", cpid);
+//			log.info("coid : {}", coid);
+//			log.info("cpna : {}", cpna);
+
+			break;
+			
+		case "UPDATE":
+			
+			enCampMaJson.setCenterCd("");
+			enCampMaJson.setCmpnId("");
+			enCampMaJson.setCmpnNm(enCampMa.getCpna());
+			
+			topcDataIsueDtm = now.format(formatter);
+
+			enCampMaJson.setDataChgCd(datachgcd);
+			enCampMaJson.setDataDelYn("N");
+			enCampMaJson.setTopcDataIsueDtm(topcDataIsueDtm);
+
+			break;
+		default:
+		}
+		
+		return enCampMaJson;
+
 	}
 
 	@Override
@@ -266,8 +340,8 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 		log.info("msg : {}", msg);
 		// 임시로 데이터 적재
-		id.setCpid(ContactLvalues[0]); 
-		id.setCpsq(Integer.parseInt(ContactLvalues[1])); 
+		id.setCpid(ContactLvalues[0]);
+		id.setCpsq(Integer.parseInt(ContactLvalues[1]));
 		enContactLt.setId(id);
 		enContactLt.setCske(ContactLvalues[2]);// "customerkey"
 		enContactLt.setCsna(ContactLvalues[3]);// "카리나"
@@ -324,8 +398,6 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		return contactltMapper;
 	}
 
-
-
 	// **Insert
 	@Override
 	public Entity_CampRt InsertCampRt(Entity_CampRt entity_CampRt) {
@@ -333,39 +405,37 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		Optional<Entity_CampRt> existingEntity = repositoryCampRt.findById(entity_CampRt.getId());
 
 		if (existingEntity.isPresent()) {
-		    throw new DataIntegrityViolationException("Record with the given composite key already exists.");
+			throw new DataIntegrityViolationException("Record with the given composite key already exists.");
 		}
 
 		return repositoryCampRt.save(entity_CampRt);
-		
+
 	}
 
 	@Override
 	public Entity_CampMa InsertCampMa(Entity_CampMa entityCampMa) {
-		
+
 		Optional<Entity_CampMa> existingEntity = repositoryCampMa.findByCpid(entityCampMa.getCpid());
 
-        if (existingEntity.isPresent()) {
-            throw new DataIntegrityViolationException("Record with 'cpid' already exists.");
-        }
+		if (existingEntity.isPresent()) {
+			throw new DataIntegrityViolationException("Record with 'cpid' already exists.");
+		}
 
-        return repositoryCampMa.save(entityCampMa);
+		return repositoryCampMa.save(entityCampMa);
 	}
 
 	@Override
 	public Entity_ContactLt InsertContactLt(Entity_ContactLt entityContactLt) {
-		
-		
+
 		Optional<Entity_ContactLt> existingEntity = repositoryContactLt.findById(entityContactLt.getId());
 
 		if (existingEntity.isPresent()) {
-		    throw new DataIntegrityViolationException("Record with the given composite key already exists.");
+			throw new DataIntegrityViolationException("Record with the given composite key already exists.");
 		}
 
 		return repositoryContactLt.save(entityContactLt);
 
 	}
-	
 
 	@Override
 	public Entity_CampMa findCampMaByCpid(String cpid) {
@@ -392,7 +462,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			return null;
 		}
 	}
-	
+
 	@Override
 	public Entity_MapCoId findMapcoidByCpid(String cpid) {
 
@@ -405,8 +475,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			return null;
 		}
 	}
-	
-	
+
 	@Override
 	public Integer findCampRtMaxRlsq() {
 
@@ -414,12 +483,11 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			Optional<Integer> optionalEntity = repositoryCampRt.findMaxRlsq();
 			return optionalEntity.orElse(null);
 		} catch (IncorrectResultSizeDataAccessException ex) {
-			log.error("Error retrieving Entity_CampRt which has hightest value of 'rlsq' column: {}",ex);
+			log.error("Error retrieving Entity_CampRt which has hightest value of 'rlsq' column: {}", ex);
 
 			return null;
 		}
 	}
-	
 
 	@Override
 	public List<Entity_ContactLt> findContactLtByCpid(String id) {
@@ -453,10 +521,10 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	// 예외처리 커스터 마이징 부분.
 	@SuppressWarnings("serial")
 	public class MyCustomDataIntegrityException extends RuntimeException {
-		
+
 		public MyCustomDataIntegrityException(String message, Throwable cause) {
-	        super(message, cause);
-	    }
+			super(message, cause);
+		}
 
 //	    private String tableName;
 //	    private String fieldName;
@@ -475,13 +543,12 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 //	        return fieldName;
 //	    }
 	}
-	
+
 	@SuppressWarnings("serial")
 	public class MyCustomDataAccessException extends RuntimeException {
-	    public MyCustomDataAccessException(String message, Throwable cause) {
-	        super(message, cause);
-	    }
+		public MyCustomDataAccessException(String message, Throwable cause) {
+			super(message, cause);
+		}
 	}
-
 
 }

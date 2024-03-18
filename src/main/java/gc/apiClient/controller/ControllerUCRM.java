@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import gc.apiClient.BusinessLogic;
 import gc.apiClient.customproperties.CustomProperties;
 import gc.apiClient.embeddable.oracle.DataCall;
+import gc.apiClient.entity.Entity_CampMaJson;
 import gc.apiClient.entity.Entity_CampRtJson;
 import gc.apiClient.entity.Entity_ContactltMapper;
 import gc.apiClient.entity.Entity_ToApim;
@@ -90,12 +91,6 @@ public class ControllerUCRM extends ServiceJson {
 
 		case "campma":
 
-//		{
-//		    "cpid":"e89ccef6-0328-6646-eacc-fa80c605fb99", or "97e6b32d-c266-4d33-92b4-01ddf33898cd"
-//			"coid": "22", or "23"
-//			"cpna":"카리나" or "장원영" 
-//		}
-
 			result = serviceWeb.GetApiRequet("campaignId");
 
 			row_result = ExtractValCrm12(result); // cpid::cpna::division -> 캠페인아이디::캠페인명::디비전
@@ -113,16 +108,17 @@ public class ControllerUCRM extends ServiceJson {
 
 				int coid = serviceDb.findMapcoidByCpid(cpid).getCoid();// cpid를 가지고 Mapcoid테이블에서 일치하는 레코드 검색 후 coid 추출.
 				row_result = row_result + "::" + coid;
-				Entity_CampMa entityMa = serviceDb.createCampMaMsg(row_result);
+				Entity_CampMa enCampMa= serviceDb.createCampMaMsg(row_result,"INSERT");
 
 				switch (business) {
 				case "UCRM":
 				case "Callbot":
 
 					objectMapper = new ObjectMapper();
-
+					Entity_CampMaJson enCampMaJson = serviceDb.createCampMaJson(enCampMa, "INSERT");
 					try {
-						String jsonString = objectMapper.writeValueAsString(entityMa);
+						
+						String jsonString = objectMapper.writeValueAsString(enCampMaJson);
 						log.info("jsonString : {}", jsonString);
 						MessageToProducer producer = new MessageToProducer();
 						endpoint = "/gcapi/post/" + topic_id;
@@ -134,7 +130,7 @@ public class ControllerUCRM extends ServiceJson {
 
 					// db인서트
 					try {
-						serviceDb.InsertCampMa(entityMa);
+						serviceDb.InsertCampMa(enCampMa);
 					} catch (DataIntegrityViolationException ex) {
 						log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
 					} catch (DataAccessException ex) {
@@ -148,7 +144,7 @@ public class ControllerUCRM extends ServiceJson {
 					objectMapper = new ObjectMapper();
 
 					try {
-						String jsonString = objectMapper.writeValueAsString(entityMa);
+						String jsonString = objectMapper.writeValueAsString(enCampMa);
 
 						// localhost:8084/dspRslt
 						// 192.168.219.134:8084/dspRslt
@@ -168,6 +164,25 @@ public class ControllerUCRM extends ServiceJson {
 
 		return Mono.empty();
 	}
+	
+	
+	@PostMapping("/gcapi/updateCampma")
+	public Mono<Void> UpdateCampMa(@RequestBody String msg) {
+
+		log.info("Class : ControllerUCRM - Method : UpdateCampMa");
+
+		return Mono.empty();
+	}
+	
+	
+	@PostMapping("/gcapi/deleteCampma")
+	public Mono<Void> DeleteCampMa(@RequestBody String msg) {
+
+		log.info("Class : ControllerUCRM - Method : DeleteCampMa");
+
+		return Mono.empty();
+	}
+	
 
 	@PostMapping("/gcapi/post/{topic}")
 	public Mono<Void> receiveMessage(@PathVariable("topic") String tranId, @RequestBody String msg) {

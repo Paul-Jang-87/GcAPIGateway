@@ -70,6 +70,36 @@ public class ServiceJson implements InterfaceJson {
 		log.info("===== END ExtractValCrm12 =====");
 		return result;
 	}
+	
+	
+	@Override
+	public String ExtractCampMaUpdateOrDel(String stringMsg) {// IF-CRM_001,IF-CRM_002에서 사용하기 위한 추출함수.
+		
+		String jsonResponse = stringMsg;
+
+		log.info("===== ExtractCampMaUpdateOrDel =====");
+		ObjectMapper objectMapper = new ObjectMapper();
+		JsonNode jsonNode = null;
+		String result = "";
+
+		try {
+			jsonNode = objectMapper.readTree(jsonResponse);
+			result = jsonNode.path("detail").path("eventBody").path("id").asText();
+			result = result + "::" + jsonNode.path("detail").path("eventBody").path("name").asText();
+			result = result + "::" + jsonNode.path("detail").path("eventBody").path("division").path("id").asText();
+			result = result + "::" + jsonNode.path("detail").path("metadata").path("action").asText();
+
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+		log.info("result : {}",result);
+		log.info("===== END ExtractCampMaUpdateOrDel =====");
+		return result;
+	}
+	
 
 	@Override
 	public String ExtractValCrm34(String stringMsg) {// IF-CRM_003,IF-CRM_004에서 사용하기 위한 추출함수.

@@ -108,14 +108,14 @@ public class ControllerUCRM extends ServiceJson {
 
 				int coid = serviceDb.findMapcoidByCpid(cpid).getCoid();// cpid를 가지고 Mapcoid테이블에서 일치하는 레코드 검색 후 coid 추출.
 				row_result = row_result + "::" + coid;
-				Entity_CampMa enCampMa= serviceDb.createCampMaMsg(row_result,"INSERT");
+				Entity_CampMa enCampMa= serviceDb.createCampMaMsg(row_result,"insert");
 
 				switch (business) {
 				case "UCRM":
 				case "Callbot":
 
 					objectMapper = new ObjectMapper();
-					Entity_CampMaJson enCampMaJson = serviceDb.createCampMaJson(enCampMa, "INSERT");
+					Entity_CampMaJson enCampMaJson = serviceDb.createCampMaJson(enCampMa, "insert");
 					try {
 						
 						String jsonString = objectMapper.writeValueAsString(enCampMaJson);
@@ -151,7 +151,7 @@ public class ControllerUCRM extends ServiceJson {
 						MessageToApim apim = new MessageToApim();
 						endpoint = "/cmpnMstrRegist";
 						apim.sendMsgToApim(endpoint, jsonString);
-						log.info("CAMPMA 로직 : {} APIM으로 보냄. : {}", jsonString);
+						log.info("CAMPMA 로직, APIM으로 보냄. : {}", jsonString);
 
 					} catch (JsonProcessingException e) {
 						e.printStackTrace();
@@ -166,19 +166,71 @@ public class ControllerUCRM extends ServiceJson {
 	}
 	
 	
-	@PostMapping("/gcapi/updateCampma")
-	public Mono<Void> UpdateCampMa(@RequestBody String msg) {
+	@PostMapping("/gcapi/updateOrDelCampma")
+	public Mono<Void> UpdateOrDelCampMa(@RequestBody String msg) {
 
-		log.info("Class : ControllerUCRM - Method : UpdateCampMa");
+		log.info("Class : ControllerUCRM - Method : UpdateOrDelCampMa");
+		String row_result = ExtractCampMaUpdateOrDel(msg); //cpid::cpna::divisionid::action  캠페인아이디::캠페인명::디비전아이디
+		String cpid = row_result.split("::")[0];
+		String division = row_result.split("::")[2];
+		String action = row_result.split("::")[3];
+		
+		int coid = serviceDb.findMapcoidByCpid(cpid).getCoid();// cpid를 가지고 Mapcoid테이블에서 일치하는 레코드 검색 후 coid 추출.
+		row_result = row_result + "::" + coid;
+		
+		Entity_CampMa enCampMa= serviceDb.createCampMaMsg(row_result,action);
+		
+		Map<String, String> properties = customProperties.getDivision();
+		String divisionName = properties.getOrDefault(division, "couldn't find division");
+		
+		Map<String, String> businessLogic = BusinessLogic.SelectedBusiness(divisionName);
 
-		return Mono.empty();
-	}
-	
-	
-	@PostMapping("/gcapi/deleteCampma")
-	public Mono<Void> DeleteCampMa(@RequestBody String msg) {
+		String endpoint = "";
+		String business = businessLogic.get("business");
+		String topic_id = businessLogic.get("topic_id");
+		ObjectMapper objectMapper = null;
+		
+		switch (business) {
+		case "UCRM":
+		case "Callbot":
 
-		log.info("Class : ControllerUCRM - Method : DeleteCampMa");
+			objectMapper = new ObjectMapper();
+			Entity_CampMaJson enCampMaJson = serviceDb.createCampMaJson(enCampMa, action);
+			try {
+				
+				String jsonString = objectMapper.writeValueAsString(enCampMaJson);
+				log.info("jsonString : {}", jsonString);
+				MessageToProducer producer = new MessageToProducer();
+				endpoint = "/gcapi/post/" + topic_id;
+				producer.sendMsgToProducer(endpoint, jsonString);
+
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
+
+
+			break;
+
+		default:
+
+			objectMapper = new ObjectMapper();
+
+			try {
+				String jsonString = objectMapper.writeValueAsString(enCampMa);
+
+				// localhost:8084/dspRslt
+				// 192.168.219.134:8084/dspRslt
+				MessageToApim apim = new MessageToApim();
+				endpoint = "/cmpnMstrRegist";
+				apim.sendMsgToApim(endpoint, jsonString);
+				log.info("CAMPMA UPDATE로직,  APIM으로 보냄. : {}", jsonString);
+
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
+
+			break;
+		}
 
 		return Mono.empty();
 	}

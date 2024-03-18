@@ -34,4 +34,10 @@ public interface InterfaceJson  {//defult로 해놓으면 InterfaceJson을 다�
 		  return "";
 	  }
 	  
+	  
+	  default String ExtractCampMaUpdateOrDel(String stringMsg) {
+		  return "";
+	  }
+	  
+	  
 }

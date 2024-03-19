@@ -13,12 +13,11 @@ public interface InterfaceDBOracle {
 	// select
 	Entity_WaDataCallOptional findWaDataCallOptional(int wcseq);
 
-	Entity_DataCall findDataCallByCpid(Entity_DataCall enDataCall);
+	Entity_DataCall findDataCallByCpid(int orderid);
 
 	int getRecordCount(String topic_id);
 
-	List<Entity_WaDataCallOptional> getAllWaDataCallOptional();
-	List<Entity_DataCall> getAllDataCall();
+//	List<Entity_WaDataCallOptional> getAllWaDataCallOptional();
 	
 	<T> List<T> getAll(Class<T> clazz);
 

@@ -14,18 +14,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import gc.apiClient.BusinessLogic;
 import gc.apiClient.customproperties.CustomProperties;
-import gc.apiClient.embeddable.oracle.DataCall;
 import gc.apiClient.entity.Entity_CampMaJson;
 import gc.apiClient.entity.Entity_CampRtJson;
 import gc.apiClient.entity.Entity_ContactltMapper;
 import gc.apiClient.entity.Entity_ToApim;
 import gc.apiClient.entity.oracle.Entity_DataCall;
+import gc.apiClient.entity.oracle.Entity_MDataCall;
 import gc.apiClient.entity.oracle.Entity_WaDataCallOptional;
 import gc.apiClient.entity.postgresql.Entity_CampMa;
 import gc.apiClient.entity.postgresql.Entity_CampRt;
@@ -108,7 +106,7 @@ public class ControllerUCRM extends ServiceJson {
 
 				int coid = serviceDb.findMapcoidByCpid(cpid).getCoid();// cpid를 가지고 Mapcoid테이블에서 일치하는 레코드 검색 후 coid 추출.
 				row_result = row_result + "::" + coid;
-				Entity_CampMa enCampMa= serviceDb.createCampMaMsg(row_result,"insert");
+				Entity_CampMa enCampMa = serviceDb.createCampMaMsg(row_result, "insert");
 
 				switch (business) {
 				case "UCRM":
@@ -117,7 +115,7 @@ public class ControllerUCRM extends ServiceJson {
 					objectMapper = new ObjectMapper();
 					Entity_CampMaJson enCampMaJson = serviceDb.createCampMaJson(enCampMa, "insert");
 					try {
-						
+
 						String jsonString = objectMapper.writeValueAsString(enCampMaJson);
 						log.info("jsonString : {}", jsonString);
 						MessageToProducer producer = new MessageToProducer();
@@ -164,32 +162,31 @@ public class ControllerUCRM extends ServiceJson {
 
 		return Mono.empty();
 	}
-	
-	
+
 	@PostMapping("/gcapi/updateOrDelCampma")
 	public Mono<Void> UpdateOrDelCampMa(@RequestBody String msg) {
 
 		log.info("Class : ControllerUCRM - Method : UpdateOrDelCampMa");
-		String row_result = ExtractCampMaUpdateOrDel(msg); //cpid::cpna::divisionid::action  캠페인아이디::캠페인명::디비전아이디
+		String row_result = ExtractCampMaUpdateOrDel(msg); // cpid::cpna::divisionid::action 캠페인아이디::캠페인명::디비전아이디
 		String cpid = row_result.split("::")[0];
 		String division = row_result.split("::")[2];
 		String action = row_result.split("::")[3];
-		
+
 		int coid = serviceDb.findMapcoidByCpid(cpid).getCoid();// cpid를 가지고 Mapcoid테이블에서 일치하는 레코드 검색 후 coid 추출.
 		row_result = row_result + "::" + coid;
-		
-		Entity_CampMa enCampMa= serviceDb.createCampMaMsg(row_result,action);
-		
+
+		Entity_CampMa enCampMa = serviceDb.createCampMaMsg(row_result, action);
+
 		Map<String, String> properties = customProperties.getDivision();
 		String divisionName = properties.getOrDefault(division, "couldn't find division");
-		
+
 		Map<String, String> businessLogic = BusinessLogic.SelectedBusiness(divisionName);
 
 		String endpoint = "";
 		String business = businessLogic.get("business");
 		String topic_id = businessLogic.get("topic_id");
 		ObjectMapper objectMapper = null;
-		
+
 		switch (business) {
 		case "UCRM":
 		case "Callbot":
@@ -197,7 +194,7 @@ public class ControllerUCRM extends ServiceJson {
 			objectMapper = new ObjectMapper();
 			Entity_CampMaJson enCampMaJson = serviceDb.createCampMaJson(enCampMa, action);
 			try {
-				
+
 				String jsonString = objectMapper.writeValueAsString(enCampMaJson);
 				log.info("jsonString : {}", jsonString);
 				MessageToProducer producer = new MessageToProducer();
@@ -207,7 +204,6 @@ public class ControllerUCRM extends ServiceJson {
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
 			}
-
 
 			break;
 
@@ -234,7 +230,6 @@ public class ControllerUCRM extends ServiceJson {
 
 		return Mono.empty();
 	}
-	
 
 	@PostMapping("/gcapi/post/{topic}")
 	public Mono<Void> receiveMessage(@PathVariable("topic") String tranId, @RequestBody String msg) {
@@ -451,8 +446,6 @@ public class ControllerUCRM extends ServiceJson {
 		return Mono.empty();
 	}
 
-	
-	@GetMapping("/360view/datacall")
 	public Mono<Void> Msg360Datacall() {
 		String topic_id = "datacall";
 		String key = "";
@@ -463,42 +456,70 @@ public class ControllerUCRM extends ServiceJson {
 
 		} else {// 1. 쉐도우 테이블에 레코드가 1개 이상 있다면 있는 레코드들을 다 긁어 온다.
 				// 2. crud 구분해서 메시지 키를 정한다.
-				// 3. 프로듀서로 메시지 재가공해서 보낸다. 
+				// 3. 프로듀서로 메시지 재가공해서 보낸다.
 			List<Entity_DataCall> entitylist = serviceOracle.getAll(Entity_DataCall.class);
 
 			for (int i = 0; i < entitylist.size(); i++) {
-				
-				key = MessageTo360View.ReturnKey(topic_id, topic_id);
-				MessageTo360View.SendMsgTo360View(topic_id, key, serviceMsgObjOrcl.msg(entitylist.get(i)));
+
+				String crudtype = entitylist.get(i).getCmd();
+
+				key = MessageTo360View.ReturnKey(topic_id, crudtype);
+				MessageTo360View.SendMsgTo360View(topic_id, key,
+						serviceMsgObjOrcl.DataCallMsg(entitylist.get(i), crudtype));
 			}
 		}
 		return Mono.empty();
 	}
-	
-	
-	@GetMapping("/360view/datacalloptional")
-	public Mono<Void> Msg360Datacalloptional() {
-		String topic_id = "datacalloptional";
+
+	public Mono<Void> Msg360MDatacall() {
+		String topic_id = "Mdatacall";
+		String key = "";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
 		if (numberOfRecords < 1) {
 
-		} else {// 1.쉐도우 테이블에 레코드가 1개 이상 있다면 있는 레코드들을 다 긁어 온다.
-//			List<Entity_WaDataCallOptional> entitylist = serviceOracle.getAllWaDataCallOptional();
-				// 2. 구분해서 토픽으로 보낸다.
-			
-			List<Entity_WaDataCallOptional> entitylist = serviceOracle.getAll(Entity_WaDataCallOptional.class);
-			
-			
-			
-			String key = "hihello";
+		} else {// 1. 쉐도우 테이블에 레코드가 1개 이상 있다면 있는 레코드들을 다 긁어 온다.
+				// 2. crud 구분해서 메시지 키를 정한다.
+				// 3. 프로듀서로 메시지 재가공해서 보낸다.
+			List<Entity_MDataCall> entitylist = serviceOracle.getAll(Entity_MDataCall.class);
+
 			for (int i = 0; i < entitylist.size(); i++) {
-				MessageTo360View.SendMsgTo360View(topic_id, key, serviceMsgObjOrcl.msg(entitylist.get(i)));
+
+				String crudtype = entitylist.get(i).getCmd();
+
+				key = MessageTo360View.ReturnKey(topic_id, crudtype);
+				MessageTo360View.SendMsgTo360View(topic_id, key,
+						serviceMsgObjOrcl.DataCallMsg(entitylist.get(i), crudtype));
 			}
 		}
 		return Mono.empty();
 	}
-	
-	
+
+	public Mono<Void> Msg360WaDatacalloptional() {
+
+		String topic_id = "wadatacalloptional";
+		String key = "";
+		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
+		log.info("the number of records : {}", numberOfRecords);
+
+		if (numberOfRecords < 1) {
+
+		} else {// 1. 쉐도우 테이블에 레코드가 1개 이상 있다면 있는 레코드들을 다 긁어 온다.
+				// 2. crud 구분해서 메시지 키를 정한다.
+				// 3. 프로듀서로 메시지 재가공해서 보낸다.
+
+			List<Entity_WaDataCallOptional> entitylist = serviceOracle.getAll(Entity_WaDataCallOptional.class);
+
+			for (int i = 0; i < entitylist.size(); i++) {
+
+				String crudtype = entitylist.get(i).getCmd();
+
+				key = MessageTo360View.ReturnKey(topic_id, crudtype);
+				MessageTo360View.SendMsgTo360View(topic_id, key, serviceMsgObjOrcl.WaDataCallOptionalMsg(entitylist.get(i), crudtype));
+			}
+		}
+		return Mono.empty();
+	}
+
 }

@@ -1,17 +1,14 @@
 package gc.apiClient.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.stereotype.Service;
 
 import gc.apiClient.entity.oracle.Entity_DataCall;
-import gc.apiClient.entity.oracle.Entity_DataCallCustomer;
+import gc.apiClient.entity.oracle.Entity_MDataCall;
 import gc.apiClient.entity.oracle.Entity_WaDataCallOptional;
-import gc.apiClient.entity.postgresql.Entity_CampMa;
 import gc.apiClient.interfaceCollection.InterfaceDBOracle;
 import gc.apiClient.repository.oracle.Repository_DataCall;
 import gc.apiClient.repository.oracle.Repository_DataCallCustomer;
@@ -108,13 +105,13 @@ public class ServiceOracle implements InterfaceDBOracle {
 	}
 
 	@Override
-	public Entity_DataCall findDataCallByCpid(Entity_DataCall enDataCall) {
+	public Entity_DataCall findDataCallByCpid(int orderid) {
 
 		try {
-			Optional<Entity_DataCall> optionalEntity = repositoryDataCall.findById(enDataCall.getId());
+			Optional<Entity_DataCall> optionalEntity = repositoryDataCall.findById(orderid);
 			return optionalEntity.orElse(null);
 		} catch (IncorrectResultSizeDataAccessException ex) {
-			log.error("Error retrieving Entity_DataCall by id: {}", enDataCall.getId(), ex);
+			log.error("Error retrieving Entity_DataCall by id: {}", orderid, ex);
 
 			return null;
 		}
@@ -127,6 +124,8 @@ public class ServiceOracle implements InterfaceDBOracle {
 		
 		case "datacall": {
 			return repositoryDataCall.countBy();
+		}case "Mdatacall": {
+			return repositoryMDataCall.countBy();
 		}case "datacalloptional": {
 			return repositoryWaDataCallOptional.countBy();
 		}
@@ -137,22 +136,19 @@ public class ServiceOracle implements InterfaceDBOracle {
 		}
 	}
 
-	@Override
-	public List<Entity_WaDataCallOptional> getAllWaDataCallOptional() {
-		return repositoryWaDataCallOptional.findAll();
-	}
+//	@Override
+//	public List<Entity_WaDataCallOptional> getAllWaDataCallOptional() {
+//		return repositoryWaDataCallOptional.findAll();
+//	}
 	
-	@Override
-	public List<Entity_DataCall> getAllDataCall() {
-		return repositoryDataCall.findAll();
-	}
-
 	@Override
     public <T> List<T> getAll(Class<T> clazz) {
         if (clazz.isAssignableFrom(Entity_WaDataCallOptional.class)) {
             return (List<T>) repositoryWaDataCallOptional.findAll();
         }else if (clazz.isAssignableFrom(Entity_DataCall.class)) {
             return (List<T>) repositoryDataCall.findAll();
+        }else if (clazz.isAssignableFrom(Entity_MDataCall.class)) {
+            return (List<T>) repositoryMDataCall.findAll();
         }
         
         return null; // Dummy return for demonstration

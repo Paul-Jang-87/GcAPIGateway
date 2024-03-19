@@ -1,42 +1,57 @@
 package gc.apiClient.entity.oracle;
 
-import java.util.Date;
 
 import org.jetbrains.annotations.NotNull;
 
-import gc.apiClient.embeddable.oracle.DataCall;
 import jakarta.persistence.Column;
-import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "DATA_CALL")
+@Table(name = "IPIVRADM.DATA_CALL_W")
 public class Entity_DataCall {
 	
-	@EmbeddedId
-    private DataCall id;
+	@Id
+	@NotNull
+	@Column(name = "ORDERID")
+	private int orderid;
 	
 	@NotNull
-	@Column(name = "ENTERED_TIME")
-	private String entered_time;
+	@Column(name = "CMD")
+	private String cmd;
 	
-	@NotNull
-	@Column(name = "CEP_REPS_CNT")
-	private int cep_reps_cnt;
+	@Column(name = "OLD_ENTERED_TIME")
+	private String old_entered_time;
 	
-	@NotNull
-	@Column(name = "CEP_PRSS_STUS_CD")
-	private String cep_prss_stus_cd;
+	@Column(name = "OLD_ENTERED_DATE")
+	private String old_entered_date;
 	
-	@NotNull
-	@Column(name = "CEP_CREATION_DATE")
-	private Date cep_creation_date;
+	@Column(name = "OLD_CALL_SEQ")
+	private int old_call_seq;
 	
-	@Column(name = "CEP_UPDATE_DATE")
-	private Date cep_update_date;
+	@Column(name = "OLD_ICID")
+	private String old_icid;
+	
+	@Column(name = "OLD_SITE_CODE")
+	private int old_site_code;
+	
+	@Column(name = "NEW_ENTERED_TIME")
+	private String new_entered_time;
+	
+	@Column(name = "NEW_ENTERED_DATE")
+	private String new_entered_date;
+	
+	@Column(name = "NEW_CALL_SEQ")
+	private int new_call_seq;
+	
+	@Column(name = "NEW_ICID")
+	private String new_icid;
+	
+	@Column(name = "NEW_SITE_CODE")
+	private int new_site_code;
 	
 	public Entity_DataCall(){
 		

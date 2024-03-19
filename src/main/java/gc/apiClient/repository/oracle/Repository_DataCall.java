@@ -6,15 +6,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-import gc.apiClient.embeddable.oracle.DataCall;
 import gc.apiClient.entity.oracle.Entity_DataCall;
-import gc.apiClient.entity.oracle.Entity_WaDataCallOptional;
 
 @Repository
-public interface Repository_DataCall extends CrudRepository<Entity_DataCall,  DataCall> {
+public interface Repository_DataCall extends CrudRepository<Entity_DataCall, Integer> {
 
 	List<Entity_DataCall> findAll();
-    Optional<Entity_DataCall> findById(DataCall id);
+    Optional<Entity_DataCall> findById(int id);
     int countBy();
 
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import gc.apiClient.entity.oracle.Entity_DataCall;
 import gc.apiClient.entity.oracle.Entity_WaDataCallOptional;
 
-public interface InterfaceDBOracle<T> {
+public interface InterfaceDBOracle {
 
 	// insert
 //	Entity_WaDataCallOptional InsertWaDataCallOptional(Entity_WaDataCallOptional entityWaDataCallOptional);
@@ -19,6 +19,7 @@ public interface InterfaceDBOracle<T> {
 
 	List<Entity_WaDataCallOptional> getAllWaDataCallOptional();
 	List<Entity_DataCall> getAllDataCall();
-
+	
+	<T> List<T> getAll(Class<T> clazz);
 
 }

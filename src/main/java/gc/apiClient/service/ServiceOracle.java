@@ -147,5 +147,18 @@ public class ServiceOracle implements InterfaceDBOracle {
 		return repositoryDataCall.findAll();
 	}
 
+	@Override
+    public <T> List<T> getAll(Class<T> clazz) {
+        if (clazz.isAssignableFrom(Entity_WaDataCallOptional.class)) {
+            return (List<T>) repositoryWaDataCallOptional.findAll();
+        }else if (clazz.isAssignableFrom(Entity_DataCall.class)) {
+            return (List<T>) repositoryDataCall.findAll();
+        }
+        
+        return null; // Dummy return for demonstration
+    }
+	
+	
+	
 
 }

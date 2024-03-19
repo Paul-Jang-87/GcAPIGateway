@@ -85,3 +85,4 @@
 '0:0:0:0:0:0:0:1 - - [24-03-18:17:20:46] "POST /gcapi/post/camprtMsg HTTP/1.1" 200 - 7487463 PostmanRuntime/7.36.3'
 '0:0:0:0:0:0:0:1 - - [24-03-18:17:34:58] "POST /gcapi/post/camprtMsg HTTP/1.1" 200 - 7528834 PostmanRuntime/7.36.3'
 '0:0:0:0:0:0:0:1 - - [24-03-18:17:47:20] "POST /gcapi/post/camprtMsg HTTP/1.1" 200 - 10173982 PostmanRuntime/7.36.3'
+'0:0:0:0:0:0:0:1 - - [24-03-19:10:27:31] "GET /360view/datacalloptional HTTP/1.1" 200 - 3332223 PostmanRuntime/7.36.3'

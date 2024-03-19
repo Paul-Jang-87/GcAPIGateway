@@ -452,42 +452,49 @@ public class ControllerUCRM extends ServiceJson {
 	}
 
 	
+	@GetMapping("/360view/datacall")
+	public Mono<Void> Msg360Datacall() {
+		String topic_id = "datacall";
+		String key = "";
+		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
+		log.info("the number of records : {}", numberOfRecords);
+
+		if (numberOfRecords < 1) {
+
+		} else {// 1. 쉐도우 테이블에 레코드가 1개 이상 있다면 있는 레코드들을 다 긁어 온다.
+				// 2. crud 구분해서 메시지 키를 정한다.
+				// 3. 프로듀서로 메시지 재가공해서 보낸다. 
+			List<Entity_DataCall> entitylist = serviceOracle.getAll(Entity_DataCall.class);
+
+			for (int i = 0; i < entitylist.size(); i++) {
+				
+				key = MessageTo360View.ReturnKey(topic_id, topic_id);
+				MessageTo360View.SendMsgTo360View(topic_id, key, serviceMsgObjOrcl.msg(entitylist.get(i)));
+			}
+		}
+		return Mono.empty();
+	}
+	
+	
 	@GetMapping("/360view/datacalloptional")
-	public Mono<Void> Msgfor360view1() {
+	public Mono<Void> Msg360Datacalloptional() {
 		String topic_id = "datacalloptional";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
 		if (numberOfRecords < 1) {
 
-		} else {// 1.테이블에 있는 레코드들을 다 긁어 온다.
-			List<Entity_WaDataCallOptional> entitylist = serviceOracle.getAllWaDataCallOptional();
+		} else {// 1.쉐도우 테이블에 레코드가 1개 이상 있다면 있는 레코드들을 다 긁어 온다.
+//			List<Entity_WaDataCallOptional> entitylist = serviceOracle.getAllWaDataCallOptional();
 				// 2. 구분해서 토픽으로 보낸다.
-
+			
+			List<Entity_WaDataCallOptional> entitylist = serviceOracle.getAll(Entity_WaDataCallOptional.class);
+			
+			
+			
 			String key = "hihello";
 			for (int i = 0; i < entitylist.size(); i++) {
-				MessageTo360View.sendMsgTo360View(topic_id, key, serviceMsgObjOrcl.msg(entitylist.get(i)));
-			}
-		}
-		return Mono.empty();
-	}
-
-	
-	@GetMapping("/360view/datacall")
-	public Mono<Void> Msgfor360view2() {
-		String topic_id = "datacall";
-		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-		log.info("the number of records : {}", numberOfRecords);
-
-		if (numberOfRecords < 1) {
-
-		} else {// 1.테이블에 있는 레코드들을 다 긁어 온다.
-			List<Entity_DataCall> entitylist = serviceOracle.getAllDataCall();
-				// 2. 구분해서 토픽으로 보낸다.
-
-			String key = "hihello";
-			for (int i = 0; i < entitylist.size(); i++) {
-				MessageTo360View.sendMsgTo360View(topic_id,key, serviceMsgObjOrcl.msg(entitylist.get(i)));
+				MessageTo360View.SendMsgTo360View(topic_id, key, serviceMsgObjOrcl.msg(entitylist.get(i)));
 			}
 		}
 		return Mono.empty();

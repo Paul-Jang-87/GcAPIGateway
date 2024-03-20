@@ -2,8 +2,8 @@ package gc.apiClient.interfaceCollection;
 
 import java.util.List;
 
-import gc.apiClient.entity.oracle.Entity_DataCall;
-import gc.apiClient.entity.oracle.Entity_WaDataCallOptional;
+import gc.apiClient.entity.oracleH.Entity_DataCall;
+import gc.apiClient.entity.oracleH.Entity_WaDataCallOptional;
 
 public interface InterfaceDBOracle {
 

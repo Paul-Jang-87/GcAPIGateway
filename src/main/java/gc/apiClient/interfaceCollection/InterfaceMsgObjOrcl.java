@@ -1,6 +1,6 @@
 package gc.apiClient.interfaceCollection;
 
-import gc.apiClient.entity.oracle.Entity_DataCall;
+import gc.apiClient.entity.oracleH.Entity_DataCall;
 
 public interface InterfaceMsgObjOrcl {
 

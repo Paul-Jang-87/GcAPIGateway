@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import gc.apiClient.entity.oracle.Entity_DataCall;
+import gc.apiClient.entity.oracleH.Entity_DataCall;
 import gc.apiClient.entity.postgresql.Entity_ContactLt;
 import gc.apiClient.interfaceCollection.InterfaceJsonOracle;
 import lombok.extern.slf4j.Slf4j;

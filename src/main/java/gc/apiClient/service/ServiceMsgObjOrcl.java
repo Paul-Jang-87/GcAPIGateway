@@ -12,10 +12,10 @@ import com.google.gson.Gson;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.stereotype.Service;
 
-import gc.apiClient.entity.oracle.Entity_DataCall;
-import gc.apiClient.entity.oracle.Entity_MDataCall;
-import gc.apiClient.entity.oracle.Entity_MWaDataCallOptional;
-import gc.apiClient.entity.oracle.Entity_WaDataCallOptional;
+import gc.apiClient.entity.oracleH.Entity_DataCall;
+import gc.apiClient.entity.oracleH.Entity_WaDataCallOptional;
+import gc.apiClient.entity.oracleM.Entity_MDataCall;
+import gc.apiClient.entity.oracleM.Entity_MWaDataCallOptional;
 import gc.apiClient.interfaceCollection.InterfaceMsgObjOrcl;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;

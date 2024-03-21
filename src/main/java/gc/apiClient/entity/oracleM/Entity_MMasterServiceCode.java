@@ -32,7 +32,7 @@ public class Entity_MMasterServiceCode {
 	@Column(name = "OLD_SERVICE_CODE")
  	private String old_service_code;
 	
-	@Column(name = "OLD_SERVICE_CODE_YPE")
+	@Column(name = "OLD_SERVICE_CODE_TYPE")
  	private int old_service_code_type;
 	
 	@Column(name = "NEW_SERVICE_NAME")
@@ -44,7 +44,7 @@ public class Entity_MMasterServiceCode {
 	@Column(name = "NEW_SERVICE_CODE")
  	private String new_service_code;
 	
-	@Column(name = "NEW_SERVICE_CODE_YPE")
+	@Column(name = "NEW_SERVICE_CODE_TYPE")
  	private int new_service_code_type;
 	
 	public Entity_MMasterServiceCode(){

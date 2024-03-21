@@ -2,10 +2,6 @@ package gc.apiClient.messages;
 
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
@@ -13,15 +9,18 @@ import reactor.core.publisher.Mono;
 public class MessageTo360View {
 
 	public static void SendMsgTo360View(String towhere, String key, String massage) {
+		
+		log.info("===== SendMsgTo360View =====");
 
 		String jsonString = massage;
+		
 		log.info("JsonString Data : {}", jsonString);
 
-		log.info("===== To360View =====");
 
 		WebClient webClient = WebClient.builder().baseUrl("http://localhost:8081").build();
 
-		String endpointUrl = "/360view/" + towhere + "/" + key;
+		String endpointUrl = "/360view/" + "firsttopic" + "/" + key;
+//		String endpointUrl = "/360view/" + towhere + "/" + key;
 
 		log.info("Endpoint : {}", endpointUrl);
 
@@ -31,14 +30,38 @@ public class MessageTo360View {
 					return Mono.empty();
 				}).block(); // Wait for the result
 
-		log.info("Entity as JSON: {}", jsonString);
+		log.info("===== End SendMsgTo360View =====");
 
 	}
 
 	public static String ReturnKey(String topic, String crudtype) {
-
 		
-		return "";
+		log.info("===== ReturnKey =====");
+		
+		String key = "";
+		String name = topic.split("_")[2];
+		
+		switch (crudtype) {
+		case "INSERT": 
+			
+			key = name+"CreatedEvent";
+			
+			break;
+			
+		case "UPDATE":
+			key = name+"UpdatedEvent";
+			
+			break;
+			
+		default:
+			key = name+"DeletedEvent";
+			break;
+		}
+		
+		log.info("key : {}",key);
+		log.info("===== End ReturnKey =====");
+		
+		return key;
 	}
 
 }

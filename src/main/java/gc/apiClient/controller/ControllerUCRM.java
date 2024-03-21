@@ -3,6 +3,8 @@ package gc.apiClient.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import reactor.core.scheduler.Schedulers;
+
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -23,14 +25,25 @@ import gc.apiClient.entity.Entity_CampRtJson;
 import gc.apiClient.entity.Entity_ContactltMapper;
 import gc.apiClient.entity.Entity_ToApim;
 import gc.apiClient.entity.oracleH.Entity_DataCall;
+import gc.apiClient.entity.oracleH.Entity_DataCallCustomer;
+import gc.apiClient.entity.oracleH.Entity_DataCallService;
+import gc.apiClient.entity.oracleH.Entity_MasterServiceCode;
+import gc.apiClient.entity.oracleH.Entity_WaDataCall;
 import gc.apiClient.entity.oracleH.Entity_WaDataCallOptional;
+import gc.apiClient.entity.oracleH.Entity_WaDataCallTrace;
+import gc.apiClient.entity.oracleH.Entity_WaMTracecode;
 import gc.apiClient.entity.oracleM.Entity_MDataCall;
+import gc.apiClient.entity.oracleM.Entity_MDataCallService;
+import gc.apiClient.entity.oracleM.Entity_MMasterServiceCode;
+import gc.apiClient.entity.oracleM.Entity_MWaDataCall;
+import gc.apiClient.entity.oracleM.Entity_MWaDataCallOptional;
+import gc.apiClient.entity.oracleM.Entity_MWaDataCallTrace;
+import gc.apiClient.entity.oracleM.Entity_MWaMTracecode;
 import gc.apiClient.entity.postgresql.Entity_CampMa;
 import gc.apiClient.entity.postgresql.Entity_CampRt;
 import gc.apiClient.entity.postgresql.Entity_ContactLt;
 import gc.apiClient.interfaceCollection.InterfaceDBOracle;
 import gc.apiClient.interfaceCollection.InterfaceDBPostgreSQL;
-import gc.apiClient.interfaceCollection.InterfaceJsonOracle;
 import gc.apiClient.interfaceCollection.InterfaceMsgObjOrcl;
 import gc.apiClient.interfaceCollection.InterfaceWebClient;
 import gc.apiClient.messages.MessageTo360View;
@@ -47,28 +60,93 @@ public class ControllerUCRM extends ServiceJson {
 
 	private final InterfaceDBPostgreSQL serviceDb;
 	private final InterfaceDBOracle serviceOracle;
-	private final InterfaceJsonOracle serviceJsonOracle;
 	private final InterfaceMsgObjOrcl serviceMsgObjOrcl;
 	private final InterfaceWebClient serviceWeb;
 	private final CustomProperties customProperties;
 	private static List<Entity_ToApim> apimEntitylt = new ArrayList<Entity_ToApim>();
 
 	public ControllerUCRM(InterfaceDBPostgreSQL serviceDb, InterfaceDBOracle serviceOracle,
-			InterfaceWebClient serviceWeb, InterfaceJsonOracle serviceJsonOracle, CustomProperties customProperties,
+			InterfaceWebClient serviceWeb, CustomProperties customProperties,
 			InterfaceMsgObjOrcl serviceMsgObjOrcl) {
 		this.serviceDb = serviceDb;
 		this.serviceOracle = serviceOracle;
-		this.serviceJsonOracle = serviceJsonOracle;
 		this.serviceWeb = serviceWeb;
 		this.customProperties = customProperties;
 		this.serviceMsgObjOrcl = serviceMsgObjOrcl;
 	}
 
-//	@Scheduled(fixedRate = 60000)
-//	public void scheduledMethod() {
-//		log.info("Scheduled method started...");
-//		ReceiveMessage("campma");
-//	}
+	@Scheduled(fixedRate = 60000)
+	public void scheduledMethod() {
+		
+		Mono.fromCallable(() -> ReceiveMessage("campma"))
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360Datacall())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360DataCallCustomer())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360DataCallService())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360MDatacall())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360MDataCallCustomer())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360MDataCallService())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360MMstrsSvcCd())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360MstrsSvcCd())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360MWaDataCall())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360MWaDataCallOptional())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360MWaDataCallTrace())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360MWaMTrCode())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360WaDataCall())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360WaDataCallOptional())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360WaDataCallTrace())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360WaMTrCode())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+	}
 
 	@GetMapping("/gcapi/get/{topic}")
 	public Mono<Void> ReceiveMessage(@PathVariable("topic") String tranId) {
@@ -230,6 +308,7 @@ public class ControllerUCRM extends ServiceJson {
 
 		return Mono.empty();
 	}
+	
 
 	@PostMapping("/gcapi/post/{topic}")
 	public Mono<Void> receiveMessage(@PathVariable("topic") String tranId, @RequestBody String msg) {
@@ -446,8 +525,9 @@ public class ControllerUCRM extends ServiceJson {
 		return Mono.empty();
 	}
 
+	
 	public Mono<Void> Msg360Datacall() {
-		String topic_id = "datacall";
+		String topic_id = "from_clcc_cepcalldt_h_event";
 		String key = "";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
@@ -471,8 +551,10 @@ public class ControllerUCRM extends ServiceJson {
 		return Mono.empty();
 	}
 
+	
+	
 	public Mono<Void> Msg360MDatacall() {
-		String topic_id = "Mdatacall";
+		String topic_id = "from_clcc_cepcalldt_m_event";
 		String key = "";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
@@ -489,16 +571,17 @@ public class ControllerUCRM extends ServiceJson {
 				String crudtype = entitylist.get(i).getCmd();
 
 				key = MessageTo360View.ReturnKey(topic_id, crudtype);
+				
 				MessageTo360View.SendMsgTo360View(topic_id, key,
 						serviceMsgObjOrcl.DataCallMsg(entitylist.get(i), crudtype));
 			}
 		}
 		return Mono.empty();
 	}
-
-	public Mono<Void> Msg360WaDatacalloptional() {
-
-		String topic_id = "wadatacalloptional";
+	
+	
+	public Mono<Void> Msg360DataCallCustomer() {
+		String topic_id = "from_clcc_cepcalldtcust_h_event";
 		String key = "";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
@@ -508,18 +591,362 @@ public class ControllerUCRM extends ServiceJson {
 		} else {// 1. 쉐도우 테이블에 레코드가 1개 이상 있다면 있는 레코드들을 다 긁어 온다.
 				// 2. crud 구분해서 메시지 키를 정한다.
 				// 3. 프로듀서로 메시지 재가공해서 보낸다.
-
-			List<Entity_WaDataCallOptional> entitylist = serviceOracle.getAll(Entity_WaDataCallOptional.class);
+			List<Entity_DataCallCustomer> entitylist = serviceOracle.getAll(Entity_DataCallCustomer.class);
 
 			for (int i = 0; i < entitylist.size(); i++) {
 
 				String crudtype = entitylist.get(i).getCmd();
 
 				key = MessageTo360View.ReturnKey(topic_id, crudtype);
-				MessageTo360View.SendMsgTo360View(topic_id, key, serviceMsgObjOrcl.WaDataCallOptionalMsg(entitylist.get(i), crudtype));
+				
+				MessageTo360View.SendMsgTo360View(topic_id, key,
+						serviceMsgObjOrcl.DataCallCustomerMsg(entitylist.get(i), crudtype));
 			}
 		}
 		return Mono.empty();
 	}
+	
+	
+	public Mono<Void> Msg360MDataCallCustomer() {
+		String topic_id = "from_clcc_cepcalldtcust_m_event";
+		String key = "";
+		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
+		log.info("the number of records : {}", numberOfRecords);
+
+		if (numberOfRecords < 1) {
+
+		} else {// 1. 쉐도우 테이블에 레코드가 1개 이상 있다면 있는 레코드들을 다 긁어 온다.
+				// 2. crud 구분해서 메시지 키를 정한다.
+				// 3. 프로듀서로 메시지 재가공해서 보낸다.
+			List<Entity_DataCallCustomer> entitylist = serviceOracle.getAll(Entity_DataCallCustomer.class);
+
+			for (int i = 0; i < entitylist.size(); i++) {
+
+				String crudtype = entitylist.get(i).getCmd();
+
+				key = MessageTo360View.ReturnKey(topic_id, crudtype);
+				
+				MessageTo360View.SendMsgTo360View(topic_id, key,
+						serviceMsgObjOrcl.DataCallCustomerMsg(entitylist.get(i), crudtype));
+			}
+		}
+		return Mono.empty();
+	}
+	
+	public Mono<Void> Msg360DataCallService() {
+		String topic_id = "from_clcc_cepcallsvccd_h_event";
+		String key = "";
+		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
+		log.info("the number of records : {}", numberOfRecords);
+
+		if (numberOfRecords < 1) {
+
+		} else {// 1. 쉐도우 테이블에 레코드가 1개 이상 있다면 있는 레코드들을 다 긁어 온다.
+				// 2. crud 구분해서 메시지 키를 정한다.
+				// 3. 프로듀서로 메시지 재가공해서 보낸다.
+			List<Entity_DataCallService> entitylist = serviceOracle.getAll(Entity_DataCallService.class);
+
+			for (int i = 0; i < entitylist.size(); i++) {
+
+				String crudtype = entitylist.get(i).getCmd();
+
+				key = MessageTo360View.ReturnKey(topic_id, crudtype);
+				
+				MessageTo360View.SendMsgTo360View(topic_id, key,
+						serviceMsgObjOrcl.DataCallService(entitylist.get(i), crudtype));
+			}
+		}
+		return Mono.empty();
+	}
+	
+	
+	public Mono<Void> Msg360MDataCallService() {
+		String topic_id = "from_clcc_cepcallsvccd_m_event";
+		String key = "";
+		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
+		log.info("the number of records : {}", numberOfRecords);
+
+		if (numberOfRecords < 1) {
+
+		} else {// 1. 쉐도우 테이블에 레코드가 1개 이상 있다면 있는 레코드들을 다 긁어 온다.
+				// 2. crud 구분해서 메시지 키를 정한다.
+				// 3. 프로듀서로 메시지 재가공해서 보낸다.
+			List<Entity_MDataCallService> entitylist = serviceOracle.getAll(Entity_MDataCallService.class);
+
+			for (int i = 0; i < entitylist.size(); i++) {
+
+				String crudtype = entitylist.get(i).getCmd();
+
+				key = MessageTo360View.ReturnKey(topic_id, crudtype);
+				
+				MessageTo360View.SendMsgTo360View(topic_id, key,
+						serviceMsgObjOrcl.DataCallService(entitylist.get(i), crudtype));
+			}
+		}
+		return Mono.empty();
+	}
+	
+	
+	public Mono<Void> Msg360MstrsSvcCd() {
+		String topic_id = "from_clcc_cepcallmstrsvccd_h_event";
+		String key = "";
+		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
+		log.info("the number of records : {}", numberOfRecords);
+
+		if (numberOfRecords < 1) {
+
+		} else {// 1. 쉐도우 테이블에 레코드가 1개 이상 있다면 있는 레코드들을 다 긁어 온다.
+				// 2. crud 구분해서 메시지 키를 정한다.
+				// 3. 프로듀서로 메시지 재가공해서 보낸다.
+			List<Entity_MasterServiceCode> entitylist = serviceOracle.getAll(Entity_MasterServiceCode.class);
+
+			for (int i = 0; i < entitylist.size(); i++) {
+
+				String crudtype = entitylist.get(i).getCmd();
+
+				key = MessageTo360View.ReturnKey(topic_id, crudtype);
+				
+				MessageTo360View.SendMsgTo360View(topic_id, key,
+						serviceMsgObjOrcl.MstrSvcCdMsg(entitylist.get(i), crudtype));
+			}
+		}
+		return Mono.empty();
+	}
+	
+	
+	public Mono<Void> Msg360MMstrsSvcCd() {
+		String topic_id = "from_clcc_cepcallmstrsvccd_m_event";
+		String key = "";
+		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
+		log.info("the number of records : {}", numberOfRecords);
+
+		if (numberOfRecords < 1) {
+
+		} else {// 1. 쉐도우 테이블에 레코드가 1개 이상 있다면 있는 레코드들을 다 긁어 온다.
+				// 2. crud 구분해서 메시지 키를 정한다.
+				// 3. 프로듀서로 메시지 재가공해서 보낸다.
+			List<Entity_MMasterServiceCode> entitylist = serviceOracle.getAll(Entity_MMasterServiceCode.class);
+
+			for (int i = 0; i < entitylist.size(); i++) {
+
+				String crudtype = entitylist.get(i).getCmd();
+
+				key = MessageTo360View.ReturnKey(topic_id, crudtype);
+				
+				MessageTo360View.SendMsgTo360View(topic_id, key,
+						serviceMsgObjOrcl.MstrSvcCdMsg(entitylist.get(i), crudtype));
+			}
+		}
+		return Mono.empty();
+	}
+	
+	
+	public Mono<Void> Msg360WaDataCall() {
+		String topic_id = "from_clcc_cepwacalldt_h_event";
+		String key = "";
+		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
+		log.info("the number of records : {}", numberOfRecords);
+
+		if (numberOfRecords < 1) {
+
+		} else {// 1. 쉐도우 테이블에 레코드가 1개 이상 있다면 있는 레코드들을 다 긁어 온다.
+				// 2. crud 구분해서 메시지 키를 정한다.
+				// 3. 프로듀서로 메시지 재가공해서 보낸다.
+			List<Entity_WaDataCall> entitylist = serviceOracle.getAll(Entity_WaDataCall.class);
+
+			for (int i = 0; i < entitylist.size(); i++) {
+
+				String crudtype = entitylist.get(i).getCmd();
+				key = MessageTo360View.ReturnKey(topic_id, crudtype);
+				
+				MessageTo360View.SendMsgTo360View(topic_id, key,
+						serviceMsgObjOrcl.WaDataCallMsg(entitylist.get(i), crudtype));
+			}
+		}
+		return Mono.empty();
+	}
+	
+	
+	public Mono<Void> Msg360MWaDataCall() {
+		String topic_id = "from_clcc_cepwacalldt_m_event";
+		String key = "";
+		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
+		log.info("the number of records : {}", numberOfRecords);
+
+		if (numberOfRecords < 1) {
+
+		} else {// 1. 쉐도우 테이블에 레코드가 1개 이상 있다면 있는 레코드들을 다 긁어 온다.
+				// 2. crud 구분해서 메시지 키를 정한다.
+				// 3. 프로듀서로 메시지 재가공해서 보낸다.
+			List<Entity_MWaDataCall> entitylist = serviceOracle.getAll(Entity_MWaDataCall.class);
+
+			for (int i = 0; i < entitylist.size(); i++) {
+
+				String crudtype = entitylist.get(i).getCmd();
+				key = MessageTo360View.ReturnKey(topic_id, crudtype);
+				
+				MessageTo360View.SendMsgTo360View(topic_id, key,
+						serviceMsgObjOrcl.WaDataCallMsg(entitylist.get(i), crudtype));
+			}
+		}
+		return Mono.empty();
+	}
+	
+	
+	public Mono<Void> Msg360WaDataCallOptional() {
+		String topic_id = "from_clcc_cepwacallopt_h_event";
+		String key = "";
+		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
+		log.info("the number of records : {}", numberOfRecords);
+
+		if (numberOfRecords < 1) {
+
+		} else {// 1. 쉐도우 테이블에 레코드가 1개 이상 있다면 있는 레코드들을 다 긁어 온다.
+				// 2. crud 구분해서 메시지 키를 정한다.
+				// 3. 프로듀서로 메시지 재가공해서 보낸다.
+			List<Entity_WaDataCallOptional> entitylist = serviceOracle.getAll(Entity_WaDataCallOptional.class);
+
+			for (int i = 0; i < entitylist.size(); i++) {
+
+				String crudtype = entitylist.get(i).getCmd();
+				key = MessageTo360View.ReturnKey(topic_id, crudtype);
+				
+				MessageTo360View.SendMsgTo360View(topic_id, key,
+						serviceMsgObjOrcl.WaDataCallOptionalMsg(entitylist.get(i), crudtype));
+			}
+		}
+		return Mono.empty();
+	}
+	
+	
+	public Mono<Void> Msg360MWaDataCallOptional() {
+		String topic_id = "from_clcc_cepwacallopt_m_event";
+		String key = "";
+		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
+		log.info("the number of records : {}", numberOfRecords);
+
+		if (numberOfRecords < 1) {
+
+		} else {// 1. 쉐도우 테이블에 레코드가 1개 이상 있다면 있는 레코드들을 다 긁어 온다.
+				// 2. crud 구분해서 메시지 키를 정한다.
+				// 3. 프로듀서로 메시지 재가공해서 보낸다.
+			List<Entity_MWaDataCallOptional> entitylist = serviceOracle.getAll(Entity_MWaDataCallOptional.class);
+
+			for (int i = 0; i < entitylist.size(); i++) {
+
+				String crudtype = entitylist.get(i).getCmd();
+				key = MessageTo360View.ReturnKey(topic_id, crudtype);
+				
+				MessageTo360View.SendMsgTo360View(topic_id, key,
+						serviceMsgObjOrcl.WaDataCallOptionalMsg(entitylist.get(i), crudtype));
+			}
+		}
+		return Mono.empty();
+	}
+	
+	
+	public Mono<Void> Msg360WaDataCallTrace() {
+		String topic_id = "from_clcc_cepwacalltr_h_event";
+		String key = "";
+		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
+		log.info("the number of records : {}", numberOfRecords);
+
+		if (numberOfRecords < 1) {
+
+		} else {// 1. 쉐도우 테이블에 레코드가 1개 이상 있다면 있는 레코드들을 다 긁어 온다.
+				// 2. crud 구분해서 메시지 키를 정한다.
+				// 3. 프로듀서로 메시지 재가공해서 보낸다.
+			List<Entity_WaDataCallTrace> entitylist = serviceOracle.getAll(Entity_WaDataCallTrace.class);
+
+			for (int i = 0; i < entitylist.size(); i++) {
+
+				String crudtype = entitylist.get(i).getCmd();
+				key = MessageTo360View.ReturnKey(topic_id, crudtype);
+				
+				MessageTo360View.SendMsgTo360View(topic_id, key,
+						serviceMsgObjOrcl.WaDataCallTraceMsg(entitylist.get(i), crudtype));
+			}
+		}
+		return Mono.empty();
+	}
+	
+	
+	public Mono<Void> Msg360MWaDataCallTrace() {
+		String topic_id = "from_clcc_cepwacalltr_m_event";
+		String key = "";
+		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
+		log.info("the number of records : {}", numberOfRecords);
+
+		if (numberOfRecords < 1) {
+
+		} else {// 1. 쉐도우 테이블에 레코드가 1개 이상 있다면 있는 레코드들을 다 긁어 온다.
+				// 2. crud 구분해서 메시지 키를 정한다.
+				// 3. 프로듀서로 메시지 재가공해서 보낸다.
+			List<Entity_MWaDataCallTrace> entitylist = serviceOracle.getAll(Entity_MWaDataCallTrace.class);
+
+			for (int i = 0; i < entitylist.size(); i++) {
+
+				String crudtype = entitylist.get(i).getCmd();
+				key = MessageTo360View.ReturnKey(topic_id, crudtype);
+				
+				MessageTo360View.SendMsgTo360View(topic_id, key,
+						serviceMsgObjOrcl.WaDataCallTraceMsg(entitylist.get(i), crudtype));
+			}
+		}
+		return Mono.empty();
+	}
+	
+	
+	public Mono<Void> Msg360WaMTrCode() {
+		String topic_id = "from_clcc_cepwatrcd_h_event";
+		String key = "";
+		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
+		log.info("the number of records : {}", numberOfRecords);
+
+		if (numberOfRecords < 1) {
+
+		} else {// 1. 쉐도우 테이블에 레코드가 1개 이상 있다면 있는 레코드들을 다 긁어 온다.
+				// 2. crud 구분해서 메시지 키를 정한다.
+				// 3. 프로듀서로 메시지 재가공해서 보낸다.
+			List<Entity_WaMTracecode> entitylist = serviceOracle.getAll(Entity_WaMTracecode.class);
+
+			for (int i = 0; i < entitylist.size(); i++) {
+
+				String crudtype = entitylist.get(i).getCmd();
+				key = MessageTo360View.ReturnKey(topic_id, crudtype);
+				
+				MessageTo360View.SendMsgTo360View(topic_id, key,
+						serviceMsgObjOrcl.WaMTraceCdMsg(entitylist.get(i), crudtype));
+			}
+		}
+		return Mono.empty();
+	}
+	
+	
+	public Mono<Void> Msg360MWaMTrCode() {
+		String topic_id = "from_clcc_cepwatrcd_m_event";
+		String key = "";
+		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
+		log.info("the number of records : {}", numberOfRecords);
+
+		if (numberOfRecords < 1) {
+
+		} else {// 1. 쉐도우 테이블에 레코드가 1개 이상 있다면 있는 레코드들을 다 긁어 온다.
+				// 2. crud 구분해서 메시지 키를 정한다.
+				// 3. 프로듀서로 메시지 재가공해서 보낸다.
+			List<Entity_MWaMTracecode> entitylist = serviceOracle.getAll(Entity_MWaMTracecode.class);
+
+			for (int i = 0; i < entitylist.size(); i++) {
+
+				String crudtype = entitylist.get(i).getCmd();
+				key = MessageTo360View.ReturnKey(topic_id, crudtype);
+				
+				MessageTo360View.SendMsgTo360View(topic_id, key,
+						serviceMsgObjOrcl.WaMTraceCdMsg(entitylist.get(i), crudtype));
+			}
+		}
+		return Mono.empty();
+	}
+
 
 }

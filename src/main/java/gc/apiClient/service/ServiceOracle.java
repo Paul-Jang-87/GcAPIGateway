@@ -7,8 +7,21 @@ import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.stereotype.Service;
 
 import gc.apiClient.entity.oracleH.Entity_DataCall;
+import gc.apiClient.entity.oracleH.Entity_DataCallCustomer;
+import gc.apiClient.entity.oracleH.Entity_DataCallService;
+import gc.apiClient.entity.oracleH.Entity_MasterServiceCode;
+import gc.apiClient.entity.oracleH.Entity_WaDataCall;
 import gc.apiClient.entity.oracleH.Entity_WaDataCallOptional;
+import gc.apiClient.entity.oracleH.Entity_WaDataCallTrace;
+import gc.apiClient.entity.oracleH.Entity_WaMTracecode;
 import gc.apiClient.entity.oracleM.Entity_MDataCall;
+import gc.apiClient.entity.oracleM.Entity_MDataCallCustomer;
+import gc.apiClient.entity.oracleM.Entity_MDataCallService;
+import gc.apiClient.entity.oracleM.Entity_MMasterServiceCode;
+import gc.apiClient.entity.oracleM.Entity_MWaDataCall;
+import gc.apiClient.entity.oracleM.Entity_MWaDataCallOptional;
+import gc.apiClient.entity.oracleM.Entity_MWaDataCallTrace;
+import gc.apiClient.entity.oracleM.Entity_MWaMTracecode;
 import gc.apiClient.interfaceCollection.InterfaceDBOracle;
 import gc.apiClient.repository.oracleH.Repository_DataCall;
 import gc.apiClient.repository.oracleH.Repository_DataCallCustomer;
@@ -122,13 +135,36 @@ public class ServiceOracle implements InterfaceDBOracle {
 		
 		switch (topic_id) {
 		
-		case "datacall": {
-			return repositoryDataCall.countBy();
-		}case "Mdatacall": {
-			return repositoryMDataCall.countBy();
-		}case "datacalloptional": {
+		case "from_clcc_cepcalldtcust_h_event": {
+			return repositoryDataCallCustomer.countBy();
+		}case "from_clcc_cepcalldtcust_m_event": {
+			return repositoryMDataCallCustomer.countBy();
+		}case "from_clcc_cepcallsvccd_h_event": {
+			return repositoryDataCallService.countBy();
+		}case "from_clcc_cepcallsvccd_m_event": {
+			return repositoryMDataCallService.countBy();
+		}case "from_clcc_cepcallmstrsvccd_h_event": {
+			return repositoryMasterServiceCode.countBy();
+		}case "from_clcc_cepcallmstrsvccd_m_event": {
+			return repositoryMMasterServiceCode.countBy();
+		}case "from_clcc_cepwacalldt_h_event": {
+			return repositoryWaDataCall.countBy();
+		}case "from_clcc_cepwacalldt_m_event": {
+			return repositoryMWaDataCall.countBy();
+		}case "from_clcc_cepwacallopt_h_event": {
 			return repositoryWaDataCallOptional.countBy();
+		}case "from_clcc_cepwacallopt_m_event": {
+			return repositoryMWaDataCallOptional.countBy();
+		}case "from_clcc_cepwacalltr_h_event": {
+			return repositoryWaDataCallTrace.countBy();
+		}case "from_clcc_cepwacalltr_m_event": {
+			return repositoryMWaDataCallTrace.countBy();
+		}case "from_clcc_cepwatrcd_h_event": {
+			return repositoryWaMTraceCode.countBy();
+		}case "from_clcc_cepwatrcd_m_event": {
+			return repositoryMWaMTraceCode.countBy();
 		}
+		
 		
 		
 		default:
@@ -136,22 +172,45 @@ public class ServiceOracle implements InterfaceDBOracle {
 		}
 	}
 
-//	@Override
-//	public List<Entity_WaDataCallOptional> getAllWaDataCallOptional() {
-//		return repositoryWaDataCallOptional.findAll();
-//	}
 	
 	@Override
     public <T> List<T> getAll(Class<T> clazz) {
-        if (clazz.isAssignableFrom(Entity_WaDataCallOptional.class)) {
-            return (List<T>) repositoryWaDataCallOptional.findAll();
-        }else if (clazz.isAssignableFrom(Entity_DataCall.class)) {
+        if (clazz.isAssignableFrom(Entity_DataCall.class)) {
             return (List<T>) repositoryDataCall.findAll();
         }else if (clazz.isAssignableFrom(Entity_MDataCall.class)) {
             return (List<T>) repositoryMDataCall.findAll();
+        }else if (clazz.isAssignableFrom(Entity_DataCallCustomer.class)) {
+            return (List<T>) repositoryDataCallCustomer.findAll();
+        }else if (clazz.isAssignableFrom(Entity_MDataCallCustomer.class)) {
+            return (List<T>) repositoryMDataCallCustomer.findAll();
+        }else if (clazz.isAssignableFrom(Entity_DataCallService.class)) {
+            return (List<T>) repositoryDataCallService.findAll();
+        }else if (clazz.isAssignableFrom(Entity_MDataCallService.class)) {
+            return (List<T>) repositoryMDataCallService.findAll();
+        }else if (clazz.isAssignableFrom(Entity_MasterServiceCode.class)) {
+            return (List<T>) repositoryMasterServiceCode.findAll();
+        }else if (clazz.isAssignableFrom(Entity_MMasterServiceCode.class)) {
+            return (List<T>) repositoryMMasterServiceCode.findAll();
+        }else if (clazz.isAssignableFrom(Entity_WaDataCall.class)) {
+            return (List<T>) repositoryWaDataCall.findAll();
+        }else if (clazz.isAssignableFrom(Entity_MWaDataCall.class)) {
+            return (List<T>) repositoryMWaDataCall.findAll();
+        }else if (clazz.isAssignableFrom(Entity_WaDataCallOptional.class)) {
+            return (List<T>) repositoryWaDataCallOptional.findAll();
+        }else if (clazz.isAssignableFrom(Entity_MWaDataCallOptional.class)) {
+            return (List<T>) repositoryMWaDataCallOptional.findAll();
+        }else if (clazz.isAssignableFrom(Entity_WaDataCallTrace.class)) {
+            return (List<T>) repositoryWaDataCallTrace.findAll();
+        }else if (clazz.isAssignableFrom(Entity_MWaDataCallTrace.class)) {
+            return (List<T>) repositoryMWaDataCallTrace.findAll();
+        }else if (clazz.isAssignableFrom(Entity_WaMTracecode.class)) {
+            return (List<T>) repositoryWaMTraceCode.findAll();
+        }else if (clazz.isAssignableFrom(Entity_MWaMTracecode.class)) {
+            return (List<T>) repositoryMWaMTraceCode.findAll();
         }
         
-        return null; // Dummy return for demonstration
+        
+        return null; 
     }
 	
 	

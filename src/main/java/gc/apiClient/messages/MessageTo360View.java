@@ -19,8 +19,8 @@ public class MessageTo360View {
 
 		WebClient webClient = WebClient.builder().baseUrl("http://localhost:8081").build();
 
-		String endpointUrl = "/360view/" + "firsttopic";
-//		String endpointUrl = "/360view/" + towhere + "/" + key;
+//		String endpointUrl = "/360view/" + "firsttopic";
+		String endpointUrl = "/360view/" + towhere;
 
 		log.info("Endpoint : {}", endpointUrl);
 

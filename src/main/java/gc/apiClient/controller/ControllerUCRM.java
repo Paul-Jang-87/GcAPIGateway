@@ -552,7 +552,7 @@ public class ControllerUCRM extends ServiceJson {
 	
 	public Mono<Void> Msg360MDatacall() {
 
-		String topic_id = "from_clcc_mmcepcalldt_message";
+		String topic_id = "from_clcc_mblcepcalldt_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -576,7 +576,7 @@ public class ControllerUCRM extends ServiceJson {
 	
 	
 	public Mono<Void> Msg360DataCallCustomer() {
-		String topic_id = "from_clcc_cepcalldtcust_h_event";
+		String topic_id = "from_clcc_hmcepcalldtcust_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -601,7 +601,7 @@ public class ControllerUCRM extends ServiceJson {
 	
 	
 	public Mono<Void> Msg360MDataCallCustomer() {
-		String topic_id = "from_clcc_cepcalldtcust_m_event";
+		String topic_id = "from_clcc_mblcepcalldtcust_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -623,7 +623,7 @@ public class ControllerUCRM extends ServiceJson {
 	}
 	
 	public Mono<Void> Msg360DataCallService() {
-		String topic_id = "from_clcc_cepcallsvccd_h_event";
+		String topic_id = "from_clcc_hmcepcallsvccd_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -647,7 +647,7 @@ public class ControllerUCRM extends ServiceJson {
 	
 	
 	public Mono<Void> Msg360MDataCallService() {
-		String topic_id = "from_clcc_cepcallsvccd_m_event";
+		String topic_id = "from_clcc_mblcepcallsvccd_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -670,7 +670,7 @@ public class ControllerUCRM extends ServiceJson {
 	
 	
 	public Mono<Void> Msg360MstrsSvcCd() {
-		String topic_id = "from_clcc_cepcallmstrsvccd_h_event";
+		String topic_id = "from_clcc_hmcepcallmstrsvccd_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -694,7 +694,7 @@ public class ControllerUCRM extends ServiceJson {
 	
 	
 	public Mono<Void> Msg360MMstrsSvcCd() {
-		String topic_id = "from_clcc_cepcallmstrsvccd_m_event";
+		String topic_id = "from_clcc_mblcepcallmstrsvccd_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -718,7 +718,7 @@ public class ControllerUCRM extends ServiceJson {
 	
 	
 	public Mono<Void> Msg360WaDataCall() {
-		String topic_id = "from_clcc_cepwacalldt_h_event";
+		String topic_id = "from_clcc_hmcepwacalldt_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -742,7 +742,7 @@ public class ControllerUCRM extends ServiceJson {
 	
 	
 	public Mono<Void> Msg360MWaDataCall() {
-		String topic_id = "from_clcc_cepwacalldt_m_event";
+		String topic_id = "from_clcc_mblcepwacalldt_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -766,7 +766,7 @@ public class ControllerUCRM extends ServiceJson {
 	
 	
 	public Mono<Void> Msg360WaDataCallOptional() {
-		String topic_id = "from_clcc_cepwacallopt_h_event";
+		String topic_id = "from_clcc_hmcepwacallopt_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -790,7 +790,7 @@ public class ControllerUCRM extends ServiceJson {
 	
 	
 	public Mono<Void> Msg360MWaDataCallOptional() {
-		String topic_id = "from_clcc_cepwacallopt_m_event";
+		String topic_id = "from_clcc_mblcepwacallopt_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -814,7 +814,7 @@ public class ControllerUCRM extends ServiceJson {
 	
 	
 	public Mono<Void> Msg360WaDataCallTrace() {
-		String topic_id = "from_clcc_cepwacalltr_h_event";
+		String topic_id = "from_clcc_hmcepwacalltr_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -838,7 +838,7 @@ public class ControllerUCRM extends ServiceJson {
 	
 	
 	public Mono<Void> Msg360MWaDataCallTrace() {
-		String topic_id = "from_clcc_cepwacalltr_m_event";
+		String topic_id = "from_clcc_mblcepwacalltr_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -862,7 +862,7 @@ public class ControllerUCRM extends ServiceJson {
 	
 	
 	public Mono<Void> Msg360WaMTrCode() {
-		String topic_id = "from_clcc_cepwatrcd_h_event";
+		String topic_id = "from_clcc_hmcepwatrcd_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -886,7 +886,7 @@ public class ControllerUCRM extends ServiceJson {
 	
 	
 	public Mono<Void> Msg360MWaMTrCode() {
-		String topic_id = "from_clcc_cepwatrcd_m_event";
+		String topic_id = "from_clcc_mblcepwatrcd_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 

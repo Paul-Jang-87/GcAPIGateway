@@ -135,37 +135,37 @@ public class ServiceOracle implements InterfaceDBOracle {
 		
 		switch (topic_id) {
 		
-		case "from_clcc_hcepcalldt_message": {
+		case "from_clcc_hmcepcalldt_message": {
 			return repositoryDataCall.countBy();
-		}case "from_clcc_mcepcalldt_message": {
+		}case "from_clcc_mblcepcalldt_message": {
 			return repositoryMDataCall.countBy();
-		}case "from_clcc_hcepcalldtcust_message": {
+		}case "from_clcc_hmcepcalldtcust_message": {
 			return repositoryDataCallCustomer.countBy();
-		}case "from_clcc_mcepcalldtcust_message": {
+		}case "from_clcc_mblcepcalldtcust_message": {
 			return repositoryMDataCallCustomer.countBy();
-		}case "from_clcc_hcepcallsvccd_message": {
+		}case "from_clcc_hmcepcallsvccd_message": {
 			return repositoryDataCallService.countBy();
-		}case "from_clcc_mcepcallsvccd_message": {
+		}case "from_clcc_mblcepcallsvccd_message": {
 			return repositoryMDataCallService.countBy();
-		}case "from_clcc_hcepcallmstrsvccd_message": {
+		}case "from_clcc_hmcepcallmstrsvccd_message": {
 			return repositoryMasterServiceCode.countBy();
-		}case "from_clcc_mcepcallmstrsvccd_message": {
+		}case "from_clcc_mblcepcallmstrsvccd_message": {
 			return repositoryMMasterServiceCode.countBy();
-		}case "from_clcc_hcepwacalldt_message": {
+		}case "from_clcc_hmcepwacalldt_message": {
 			return repositoryWaDataCall.countBy();
-		}case "from_clcc_mcepwacalldt_message": {
+		}case "from_clcc_mblcepwacalldt_message": {
 			return repositoryMWaDataCall.countBy();
-		}case "from_clcc_hcepwacallopt_message": {
+		}case "from_clcc_hmcepwacallopt_message": {
 			return repositoryWaDataCallOptional.countBy();
-		}case "from_clcc_mcepwacallopt_message": {
+		}case "from_clcc_mblcepwacallopt_message": {
 			return repositoryMWaDataCallOptional.countBy();
-		}case "from_clcc_hcepwacalltr_message": {
+		}case "from_clcc_hmcepwacalltr_message": {
 			return repositoryWaDataCallTrace.countBy();
-		}case "from_clcc_mcepwacalltr_message": {
+		}case "from_clcc_mblcepwacalltr_message": {
 			return repositoryMWaDataCallTrace.countBy();
-		}case "from_clcc_hcepwatrcd_message": {
+		}case "from_clcc_hmcepwatrcd_message": {
 			return repositoryWaMTraceCode.countBy();
-		}case "from_clcc_mcepwatrcd_message": {
+		}case "from_clcc_mblcepwatrcd_message": {
 			return repositoryMWaMTraceCode.countBy();
 		}
 		

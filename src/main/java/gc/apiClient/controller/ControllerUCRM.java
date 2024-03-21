@@ -75,78 +75,78 @@ public class ControllerUCRM extends ServiceJson {
 		this.serviceMsgObjOrcl = serviceMsgObjOrcl;
 	}
 
-	@Scheduled(fixedRate = 60000)
-	public void scheduledMethod() {
-		
-		Mono.fromCallable(() -> ReceiveMessage("campma"))
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360Datacall())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360DataCallCustomer())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360DataCallService())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360MDatacall())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360MDataCallCustomer())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360MDataCallService())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360MMstrsSvcCd())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360MstrsSvcCd())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360MWaDataCall())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360MWaDataCallOptional())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360MWaDataCallTrace())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360MWaMTrCode())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360WaDataCall())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360WaDataCallOptional())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360WaDataCallTrace())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360WaMTrCode())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-	}
+//	@Scheduled(fixedRate = 60000)
+//	public void scheduledMethod() {
+//		
+//		Mono.fromCallable(() -> ReceiveMessage("campma"))
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360Datacall())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360DataCallCustomer())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360DataCallService())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360MDatacall())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360MDataCallCustomer())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360MDataCallService())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360MMstrsSvcCd())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360MstrsSvcCd())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360MWaDataCall())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360MWaDataCallOptional())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360MWaDataCallTrace())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360MWaMTrCode())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360WaDataCall())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360WaDataCallOptional())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360WaDataCallTrace())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360WaMTrCode())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//	}
 
 	@GetMapping("/gcapi/get/{topic}")
 	public Mono<Void> ReceiveMessage(@PathVariable("topic") String tranId) {
@@ -525,10 +525,9 @@ public class ControllerUCRM extends ServiceJson {
 		return Mono.empty();
 	}
 
-	
 	public Mono<Void> Msg360Datacall() {
-		String topic_id = "from_clcc_cepcalldt_h_event";
-		String key = "";
+		
+		String topic_id = "from_clcc_hmcepcalldt_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -543,9 +542,7 @@ public class ControllerUCRM extends ServiceJson {
 
 				String crudtype = entitylist.get(i).getCmd();
 
-				key = MessageTo360View.ReturnKey(topic_id, crudtype);
-				MessageTo360View.SendMsgTo360View(topic_id, key,
-						serviceMsgObjOrcl.DataCallMsg(entitylist.get(i), crudtype));
+				MessageTo360View.SendMsgTo360View(topic_id, serviceMsgObjOrcl.DataCallMsg(entitylist.get(i), crudtype) );
 			}
 		}
 		return Mono.empty();
@@ -554,8 +551,8 @@ public class ControllerUCRM extends ServiceJson {
 	
 	
 	public Mono<Void> Msg360MDatacall() {
-		String topic_id = "from_clcc_cepcalldt_m_event";
-		String key = "";
+
+		String topic_id = "from_clcc_mmcepcalldt_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -570,19 +567,16 @@ public class ControllerUCRM extends ServiceJson {
 
 				String crudtype = entitylist.get(i).getCmd();
 
-				key = MessageTo360View.ReturnKey(topic_id, crudtype);
-				
-				MessageTo360View.SendMsgTo360View(topic_id, key,
-						serviceMsgObjOrcl.DataCallMsg(entitylist.get(i), crudtype));
+				MessageTo360View.SendMsgTo360View(topic_id, serviceMsgObjOrcl.DataCallMsg(entitylist.get(i), crudtype) );
 			}
 		}
 		return Mono.empty();
+		
 	}
 	
 	
 	public Mono<Void> Msg360DataCallCustomer() {
 		String topic_id = "from_clcc_cepcalldtcust_h_event";
-		String key = "";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -597,9 +591,8 @@ public class ControllerUCRM extends ServiceJson {
 
 				String crudtype = entitylist.get(i).getCmd();
 
-				key = MessageTo360View.ReturnKey(topic_id, crudtype);
 				
-				MessageTo360View.SendMsgTo360View(topic_id, key,
+				MessageTo360View.SendMsgTo360View(topic_id, 
 						serviceMsgObjOrcl.DataCallCustomerMsg(entitylist.get(i), crudtype));
 			}
 		}
@@ -609,7 +602,6 @@ public class ControllerUCRM extends ServiceJson {
 	
 	public Mono<Void> Msg360MDataCallCustomer() {
 		String topic_id = "from_clcc_cepcalldtcust_m_event";
-		String key = "";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -623,10 +615,7 @@ public class ControllerUCRM extends ServiceJson {
 			for (int i = 0; i < entitylist.size(); i++) {
 
 				String crudtype = entitylist.get(i).getCmd();
-
-				key = MessageTo360View.ReturnKey(topic_id, crudtype);
-				
-				MessageTo360View.SendMsgTo360View(topic_id, key,
+				MessageTo360View.SendMsgTo360View(topic_id,
 						serviceMsgObjOrcl.DataCallCustomerMsg(entitylist.get(i), crudtype));
 			}
 		}
@@ -635,7 +624,6 @@ public class ControllerUCRM extends ServiceJson {
 	
 	public Mono<Void> Msg360DataCallService() {
 		String topic_id = "from_clcc_cepcallsvccd_h_event";
-		String key = "";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -650,9 +638,7 @@ public class ControllerUCRM extends ServiceJson {
 
 				String crudtype = entitylist.get(i).getCmd();
 
-				key = MessageTo360View.ReturnKey(topic_id, crudtype);
-				
-				MessageTo360View.SendMsgTo360View(topic_id, key,
+				MessageTo360View.SendMsgTo360View(topic_id,
 						serviceMsgObjOrcl.DataCallService(entitylist.get(i), crudtype));
 			}
 		}
@@ -662,7 +648,6 @@ public class ControllerUCRM extends ServiceJson {
 	
 	public Mono<Void> Msg360MDataCallService() {
 		String topic_id = "from_clcc_cepcallsvccd_m_event";
-		String key = "";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -676,10 +661,7 @@ public class ControllerUCRM extends ServiceJson {
 			for (int i = 0; i < entitylist.size(); i++) {
 
 				String crudtype = entitylist.get(i).getCmd();
-
-				key = MessageTo360View.ReturnKey(topic_id, crudtype);
-				
-				MessageTo360View.SendMsgTo360View(topic_id, key,
+				MessageTo360View.SendMsgTo360View(topic_id,
 						serviceMsgObjOrcl.DataCallService(entitylist.get(i), crudtype));
 			}
 		}
@@ -689,7 +671,6 @@ public class ControllerUCRM extends ServiceJson {
 	
 	public Mono<Void> Msg360MstrsSvcCd() {
 		String topic_id = "from_clcc_cepcallmstrsvccd_h_event";
-		String key = "";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -703,10 +684,8 @@ public class ControllerUCRM extends ServiceJson {
 			for (int i = 0; i < entitylist.size(); i++) {
 
 				String crudtype = entitylist.get(i).getCmd();
-
-				key = MessageTo360View.ReturnKey(topic_id, crudtype);
 				
-				MessageTo360View.SendMsgTo360View(topic_id, key,
+				MessageTo360View.SendMsgTo360View(topic_id,
 						serviceMsgObjOrcl.MstrSvcCdMsg(entitylist.get(i), crudtype));
 			}
 		}
@@ -716,7 +695,6 @@ public class ControllerUCRM extends ServiceJson {
 	
 	public Mono<Void> Msg360MMstrsSvcCd() {
 		String topic_id = "from_clcc_cepcallmstrsvccd_m_event";
-		String key = "";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -731,9 +709,7 @@ public class ControllerUCRM extends ServiceJson {
 
 				String crudtype = entitylist.get(i).getCmd();
 
-				key = MessageTo360View.ReturnKey(topic_id, crudtype);
-				
-				MessageTo360View.SendMsgTo360View(topic_id, key,
+				MessageTo360View.SendMsgTo360View(topic_id, 
 						serviceMsgObjOrcl.MstrSvcCdMsg(entitylist.get(i), crudtype));
 			}
 		}
@@ -743,7 +719,6 @@ public class ControllerUCRM extends ServiceJson {
 	
 	public Mono<Void> Msg360WaDataCall() {
 		String topic_id = "from_clcc_cepwacalldt_h_event";
-		String key = "";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -757,9 +732,8 @@ public class ControllerUCRM extends ServiceJson {
 			for (int i = 0; i < entitylist.size(); i++) {
 
 				String crudtype = entitylist.get(i).getCmd();
-				key = MessageTo360View.ReturnKey(topic_id, crudtype);
 				
-				MessageTo360View.SendMsgTo360View(topic_id, key,
+				MessageTo360View.SendMsgTo360View(topic_id, 
 						serviceMsgObjOrcl.WaDataCallMsg(entitylist.get(i), crudtype));
 			}
 		}
@@ -769,7 +743,6 @@ public class ControllerUCRM extends ServiceJson {
 	
 	public Mono<Void> Msg360MWaDataCall() {
 		String topic_id = "from_clcc_cepwacalldt_m_event";
-		String key = "";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -783,9 +756,8 @@ public class ControllerUCRM extends ServiceJson {
 			for (int i = 0; i < entitylist.size(); i++) {
 
 				String crudtype = entitylist.get(i).getCmd();
-				key = MessageTo360View.ReturnKey(topic_id, crudtype);
 				
-				MessageTo360View.SendMsgTo360View(topic_id, key,
+				MessageTo360View.SendMsgTo360View(topic_id,
 						serviceMsgObjOrcl.WaDataCallMsg(entitylist.get(i), crudtype));
 			}
 		}
@@ -795,7 +767,6 @@ public class ControllerUCRM extends ServiceJson {
 	
 	public Mono<Void> Msg360WaDataCallOptional() {
 		String topic_id = "from_clcc_cepwacallopt_h_event";
-		String key = "";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -809,9 +780,8 @@ public class ControllerUCRM extends ServiceJson {
 			for (int i = 0; i < entitylist.size(); i++) {
 
 				String crudtype = entitylist.get(i).getCmd();
-				key = MessageTo360View.ReturnKey(topic_id, crudtype);
 				
-				MessageTo360View.SendMsgTo360View(topic_id, key,
+				MessageTo360View.SendMsgTo360View(topic_id,
 						serviceMsgObjOrcl.WaDataCallOptionalMsg(entitylist.get(i), crudtype));
 			}
 		}
@@ -821,7 +791,6 @@ public class ControllerUCRM extends ServiceJson {
 	
 	public Mono<Void> Msg360MWaDataCallOptional() {
 		String topic_id = "from_clcc_cepwacallopt_m_event";
-		String key = "";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -835,9 +804,8 @@ public class ControllerUCRM extends ServiceJson {
 			for (int i = 0; i < entitylist.size(); i++) {
 
 				String crudtype = entitylist.get(i).getCmd();
-				key = MessageTo360View.ReturnKey(topic_id, crudtype);
 				
-				MessageTo360View.SendMsgTo360View(topic_id, key,
+				MessageTo360View.SendMsgTo360View(topic_id, 
 						serviceMsgObjOrcl.WaDataCallOptionalMsg(entitylist.get(i), crudtype));
 			}
 		}
@@ -847,7 +815,6 @@ public class ControllerUCRM extends ServiceJson {
 	
 	public Mono<Void> Msg360WaDataCallTrace() {
 		String topic_id = "from_clcc_cepwacalltr_h_event";
-		String key = "";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -861,9 +828,8 @@ public class ControllerUCRM extends ServiceJson {
 			for (int i = 0; i < entitylist.size(); i++) {
 
 				String crudtype = entitylist.get(i).getCmd();
-				key = MessageTo360View.ReturnKey(topic_id, crudtype);
 				
-				MessageTo360View.SendMsgTo360View(topic_id, key,
+				MessageTo360View.SendMsgTo360View(topic_id, 
 						serviceMsgObjOrcl.WaDataCallTraceMsg(entitylist.get(i), crudtype));
 			}
 		}
@@ -873,7 +839,6 @@ public class ControllerUCRM extends ServiceJson {
 	
 	public Mono<Void> Msg360MWaDataCallTrace() {
 		String topic_id = "from_clcc_cepwacalltr_m_event";
-		String key = "";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -887,9 +852,8 @@ public class ControllerUCRM extends ServiceJson {
 			for (int i = 0; i < entitylist.size(); i++) {
 
 				String crudtype = entitylist.get(i).getCmd();
-				key = MessageTo360View.ReturnKey(topic_id, crudtype);
 				
-				MessageTo360View.SendMsgTo360View(topic_id, key,
+				MessageTo360View.SendMsgTo360View(topic_id, 
 						serviceMsgObjOrcl.WaDataCallTraceMsg(entitylist.get(i), crudtype));
 			}
 		}
@@ -899,7 +863,6 @@ public class ControllerUCRM extends ServiceJson {
 	
 	public Mono<Void> Msg360WaMTrCode() {
 		String topic_id = "from_clcc_cepwatrcd_h_event";
-		String key = "";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -913,9 +876,8 @@ public class ControllerUCRM extends ServiceJson {
 			for (int i = 0; i < entitylist.size(); i++) {
 
 				String crudtype = entitylist.get(i).getCmd();
-				key = MessageTo360View.ReturnKey(topic_id, crudtype);
 				
-				MessageTo360View.SendMsgTo360View(topic_id, key,
+				MessageTo360View.SendMsgTo360View(topic_id, 
 						serviceMsgObjOrcl.WaMTraceCdMsg(entitylist.get(i), crudtype));
 			}
 		}
@@ -925,7 +887,6 @@ public class ControllerUCRM extends ServiceJson {
 	
 	public Mono<Void> Msg360MWaMTrCode() {
 		String topic_id = "from_clcc_cepwatrcd_m_event";
-		String key = "";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
 
@@ -939,9 +900,8 @@ public class ControllerUCRM extends ServiceJson {
 			for (int i = 0; i < entitylist.size(); i++) {
 
 				String crudtype = entitylist.get(i).getCmd();
-				key = MessageTo360View.ReturnKey(topic_id, crudtype);
 				
-				MessageTo360View.SendMsgTo360View(topic_id, key,
+				MessageTo360View.SendMsgTo360View(topic_id,
 						serviceMsgObjOrcl.WaMTraceCdMsg(entitylist.get(i), crudtype));
 			}
 		}

@@ -279,3 +279,96 @@ INFO  24-03-21 10:28:12[http-nio-8083-exec-3] [MessageTo360View:13] - ===== Send
 INFO  24-03-21 10:28:12[http-nio-8083-exec-3] [MessageTo360View:17] - JsonString Data : {"siteCd":456,"trCdType":2,"trCdNm":"NEW_TRACECODE_NAME_VALUE","trCd":"NEW_TRACECODE_VALUE","topcDataIsueDtm":"2024/03/21 10:28:12.099411"}
 INFO  24-03-21 10:28:12[http-nio-8083-exec-3] [MessageTo360View:25] - Endpoint : /360view/firsttopic/cepwatrcdDeletedEvent
 INFO  24-03-21 10:28:12[http-nio-8083-exec-3] [MessageTo360View:33] - ===== End SendMsgTo360View =====
+INFO  24-03-21 14:45:31[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 24180 (D:\GitWorkSpace\gcClient\gcClient\target\classes started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+INFO  24-03-21 14:45:31[main] [GcClientApplication:654] - No active profile set, falling back to 1 default profile: "default"
+INFO  24-03-21 14:45:34[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-03-21 14:45:34[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 408 ms. Found 8 JPA repository interfaces.
+INFO  24-03-21 14:45:34[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-03-21 14:45:35[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 81 ms. Found 8 JPA repository interfaces.
+INFO  24-03-21 14:45:35[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-03-21 14:45:35[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 48 ms. Found 4 JPA repository interfaces.
+INFO  24-03-21 14:45:37[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-03-21 14:45:37[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-03-21 14:45:38[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 5837 ms
+INFO  24-03-21 14:45:38[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleH]
+INFO  24-03-21 14:45:38[main] [Version:44] - HHH000412: Hibernate ORM core version 6.4.1.Final
+INFO  24-03-21 14:45:38[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-03-21 14:45:39[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-03-21 14:45:39[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-03-21 14:45:39[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
+WARN  24-03-21 14:45:39[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-03-21 14:45:40[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@57f725b8
+INFO  24-03-21 14:45:40[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
+WARN  24-03-21 14:45:40[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-03-21 14:45:45[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-03-21 14:45:45[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-03-21 14:45:45[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleM]
+INFO  24-03-21 14:45:45[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-03-21 14:45:46[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-03-21 14:45:46[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-03-21 14:45:46[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
+WARN  24-03-21 14:45:46[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-03-21 14:45:46[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@7ae49d52
+INFO  24-03-21 14:45:46[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
+WARN  24-03-21 14:45:46[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-03-21 14:45:47[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-03-21 14:45:47[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-03-21 14:45:47[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: postgres]
+INFO  24-03-21 14:45:47[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-03-21 14:45:48[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-03-21 14:45:48[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-03-21 14:45:48[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-03-21 14:45:48[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@8941d98
+INFO  24-03-21 14:45:48[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+WARN  24-03-21 14:45:48[main] [deprecation:153] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-03-21 14:45:49[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-03-21 14:45:49[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-03-21 14:45:51[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-03-21 14:45:53[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-03-21 14:45:54[main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8083"]
+INFO  24-03-21 14:45:54[main] [TomcatWebServer:241] - Tomcat started on port 8083 (http) with context path ''
+INFO  24-03-21 14:45:54[main] [GcClientApplication:56] - Started GcClientApplication in 24.247 seconds (process running for 27.972)
+INFO  24-03-21 14:46:34[http-nio-8083-exec-1] [DispatcherServlet:532] - Initializing Servlet 'dispatcherServlet'
+INFO  24-03-21 14:46:34[http-nio-8083-exec-1] [DispatcherServlet:554] - Completed initialization in 4 ms
+INFO  24-03-21 14:46:34[http-nio-8083-exec-1] [ControllerUCRM:532] - the number of records : 2
+INFO  24-03-21 14:46:34[http-nio-8083-exec-1] [MessageTo360View:13] - ===== SendMsgTo360View =====
+INFO  24-03-21 14:46:34[http-nio-8083-exec-1] [MessageTo360View:17] - JsonString Data : {"callSeq":101,"siteCd":2,"entDate":"2024-01-02 10:00:00","icId":"NEW_ICID_1","topcDataIsueDtm":"2024/03/21 14:46:34.896755","entTime":"2024-01-02","dataChgCd":"INSERT"}
+INFO  24-03-21 14:46:35[http-nio-8083-exec-1] [MessageTo360View:25] - Endpoint : /360view/firsttopic
+ERROR 24-03-21 14:46:36[reactor-http-nio-2] [MessageTo360View:29] - Error making API request: 404 Not Found from POST http://localhost:8081/360view/firsttopic
+INFO  24-03-21 14:46:36[http-nio-8083-exec-1] [MessageTo360View:33] - ===== End SendMsgTo360View =====
+INFO  24-03-21 14:46:36[http-nio-8083-exec-1] [MessageTo360View:13] - ===== SendMsgTo360View =====
+INFO  24-03-21 14:46:36[http-nio-8083-exec-1] [MessageTo360View:17] - JsonString Data : {"callSeq":201,"siteCd":3,"entDate":"2024-01-04 10:00:00","icId":"NEW_ICID_2","topcDataIsueDtm":"2024/03/21 14:46:36.931318","entTime":"2024-01-04","dataChgCd":"UPDATE"}
+INFO  24-03-21 14:46:36[http-nio-8083-exec-1] [MessageTo360View:25] - Endpoint : /360view/firsttopic
+ERROR 24-03-21 14:46:37[reactor-http-nio-3] [MessageTo360View:29] - Error making API request: 404 Not Found from POST http://localhost:8081/360view/firsttopic
+INFO  24-03-21 14:46:37[http-nio-8083-exec-1] [MessageTo360View:33] - ===== End SendMsgTo360View =====
+INFO  24-03-21 14:50:05[http-nio-8083-exec-5] [ControllerUCRM:532] - the number of records : 2
+INFO  24-03-21 14:50:05[http-nio-8083-exec-5] [MessageTo360View:13] - ===== SendMsgTo360View =====
+INFO  24-03-21 14:50:05[http-nio-8083-exec-5] [MessageTo360View:17] - JsonString Data : {"callSeq":101,"siteCd":2,"entDate":"2024-01-02 10:00:00","icId":"NEW_ICID_1","topcDataIsueDtm":"2024/03/21 14:50:05.827037","entTime":"2024-01-02","dataChgCd":"INSERT"}
+INFO  24-03-21 14:50:05[http-nio-8083-exec-5] [MessageTo360View:25] - Endpoint : /360view/firsttopic
+ERROR 24-03-21 14:50:06[reactor-http-nio-4] [MessageTo360View:29] - Error making API request: 500 Internal Server Error from POST http://localhost:8081/360view/firsttopic
+INFO  24-03-21 14:50:06[http-nio-8083-exec-5] [MessageTo360View:33] - ===== End SendMsgTo360View =====
+INFO  24-03-21 14:50:06[http-nio-8083-exec-5] [MessageTo360View:13] - ===== SendMsgTo360View =====
+INFO  24-03-21 14:50:06[http-nio-8083-exec-5] [MessageTo360View:17] - JsonString Data : {"callSeq":201,"siteCd":3,"entDate":"2024-01-04 10:00:00","icId":"NEW_ICID_2","topcDataIsueDtm":"2024/03/21 14:50:06.398510","entTime":"2024-01-04","dataChgCd":"UPDATE"}
+INFO  24-03-21 14:50:06[http-nio-8083-exec-5] [MessageTo360View:25] - Endpoint : /360view/firsttopic
+ERROR 24-03-21 14:50:06[reactor-http-nio-5] [MessageTo360View:29] - Error making API request: 500 Internal Server Error from POST http://localhost:8081/360view/firsttopic
+INFO  24-03-21 14:50:06[http-nio-8083-exec-5] [MessageTo360View:33] - ===== End SendMsgTo360View =====
+INFO  24-03-21 14:51:36[http-nio-8083-exec-8] [ControllerUCRM:532] - the number of records : 2
+INFO  24-03-21 14:51:36[http-nio-8083-exec-8] [MessageTo360View:13] - ===== SendMsgTo360View =====
+INFO  24-03-21 14:51:36[http-nio-8083-exec-8] [MessageTo360View:17] - JsonString Data : {"callSeq":101,"siteCd":2,"entDate":"2024-01-02 10:00:00","icId":"NEW_ICID_1","topcDataIsueDtm":"2024/03/21 14:51:36.991481","entTime":"2024-01-02","dataChgCd":"INSERT"}
+INFO  24-03-21 14:51:36[http-nio-8083-exec-8] [MessageTo360View:25] - Endpoint : /360view/firsttopic
+ERROR 24-03-21 14:51:38[reactor-http-nio-6] [MessageTo360View:29] - Error making API request: 500 Internal Server Error from POST http://localhost:8081/360view/firsttopic
+INFO  24-03-21 14:51:38[http-nio-8083-exec-8] [MessageTo360View:33] - ===== End SendMsgTo360View =====
+INFO  24-03-21 14:51:38[http-nio-8083-exec-8] [MessageTo360View:13] - ===== SendMsgTo360View =====
+INFO  24-03-21 14:51:38[http-nio-8083-exec-8] [MessageTo360View:17] - JsonString Data : {"callSeq":201,"siteCd":3,"entDate":"2024-01-04 10:00:00","icId":"NEW_ICID_2","topcDataIsueDtm":"2024/03/21 14:51:38.116588","entTime":"2024-01-04","dataChgCd":"UPDATE"}
+INFO  24-03-21 14:51:38[http-nio-8083-exec-8] [MessageTo360View:25] - Endpoint : /360view/firsttopic
+ERROR 24-03-21 14:51:38[reactor-http-nio-7] [MessageTo360View:29] - Error making API request: 500 Internal Server Error from POST http://localhost:8081/360view/firsttopic
+INFO  24-03-21 14:51:38[http-nio-8083-exec-8] [MessageTo360View:33] - ===== End SendMsgTo360View =====
+INFO  24-03-21 14:53:23[http-nio-8083-exec-2] [ControllerUCRM:532] - the number of records : 2
+INFO  24-03-21 14:53:23[http-nio-8083-exec-2] [MessageTo360View:13] - ===== SendMsgTo360View =====
+INFO  24-03-21 14:53:23[http-nio-8083-exec-2] [MessageTo360View:17] - JsonString Data : {"callSeq":101,"siteCd":2,"entDate":"2024-01-02 10:00:00","icId":"NEW_ICID_1","topcDataIsueDtm":"2024/03/21 14:53:23.571420","entTime":"2024-01-02","dataChgCd":"INSERT"}
+INFO  24-03-21 14:53:23[http-nio-8083-exec-2] [MessageTo360View:25] - Endpoint : /360view/firsttopic
+INFO  24-03-21 14:53:27[http-nio-8083-exec-2] [MessageTo360View:33] - ===== End SendMsgTo360View =====
+INFO  24-03-21 14:53:27[http-nio-8083-exec-2] [MessageTo360View:13] - ===== SendMsgTo360View =====
+INFO  24-03-21 14:53:27[http-nio-8083-exec-2] [MessageTo360View:17] - JsonString Data : {"callSeq":201,"siteCd":3,"entDate":"2024-01-04 10:00:00","icId":"NEW_ICID_2","topcDataIsueDtm":"2024/03/21 14:53:27.597389","entTime":"2024-01-04","dataChgCd":"UPDATE"}
+INFO  24-03-21 14:53:27[http-nio-8083-exec-2] [MessageTo360View:25] - Endpoint : /360view/firsttopic
+INFO  24-03-21 14:53:27[http-nio-8083-exec-2] [MessageTo360View:33] - ===== End SendMsgTo360View =====

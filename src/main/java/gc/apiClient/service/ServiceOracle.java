@@ -135,37 +135,39 @@ public class ServiceOracle implements InterfaceDBOracle {
 		
 		switch (topic_id) {
 		
-		case "from_clcc_cepcalldtcust_h_event": {
+		case "from_clcc_hcepcalldt_message": {
+			return repositoryDataCall.countBy();
+		}case "from_clcc_mcepcalldt_message": {
+			return repositoryMDataCall.countBy();
+		}case "from_clcc_hcepcalldtcust_message": {
 			return repositoryDataCallCustomer.countBy();
-		}case "from_clcc_cepcalldtcust_m_event": {
+		}case "from_clcc_mcepcalldtcust_message": {
 			return repositoryMDataCallCustomer.countBy();
-		}case "from_clcc_cepcallsvccd_h_event": {
+		}case "from_clcc_hcepcallsvccd_message": {
 			return repositoryDataCallService.countBy();
-		}case "from_clcc_cepcallsvccd_m_event": {
+		}case "from_clcc_mcepcallsvccd_message": {
 			return repositoryMDataCallService.countBy();
-		}case "from_clcc_cepcallmstrsvccd_h_event": {
+		}case "from_clcc_hcepcallmstrsvccd_message": {
 			return repositoryMasterServiceCode.countBy();
-		}case "from_clcc_cepcallmstrsvccd_m_event": {
+		}case "from_clcc_mcepcallmstrsvccd_message": {
 			return repositoryMMasterServiceCode.countBy();
-		}case "from_clcc_cepwacalldt_h_event": {
+		}case "from_clcc_hcepwacalldt_message": {
 			return repositoryWaDataCall.countBy();
-		}case "from_clcc_cepwacalldt_m_event": {
+		}case "from_clcc_mcepwacalldt_message": {
 			return repositoryMWaDataCall.countBy();
-		}case "from_clcc_cepwacallopt_h_event": {
+		}case "from_clcc_hcepwacallopt_message": {
 			return repositoryWaDataCallOptional.countBy();
-		}case "from_clcc_cepwacallopt_m_event": {
+		}case "from_clcc_mcepwacallopt_message": {
 			return repositoryMWaDataCallOptional.countBy();
-		}case "from_clcc_cepwacalltr_h_event": {
+		}case "from_clcc_hcepwacalltr_message": {
 			return repositoryWaDataCallTrace.countBy();
-		}case "from_clcc_cepwacalltr_m_event": {
+		}case "from_clcc_mcepwacalltr_message": {
 			return repositoryMWaDataCallTrace.countBy();
-		}case "from_clcc_cepwatrcd_h_event": {
+		}case "from_clcc_hcepwatrcd_message": {
 			return repositoryWaMTraceCode.countBy();
-		}case "from_clcc_cepwatrcd_m_event": {
+		}case "from_clcc_mcepwatrcd_message": {
 			return repositoryMWaMTraceCode.countBy();
 		}
-		
-		
 		
 		default:
 			return 0;

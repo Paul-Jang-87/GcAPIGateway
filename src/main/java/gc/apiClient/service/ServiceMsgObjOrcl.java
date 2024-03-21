@@ -23,10 +23,8 @@ import gc.apiClient.entity.oracleM.Entity_MWaDataCallOptional;
 import gc.apiClient.entity.oracleM.Entity_MWaDataCallTrace;
 import gc.apiClient.entity.oracleM.Entity_MWaMTracecode;
 import gc.apiClient.interfaceCollection.InterfaceMsgObjOrcl;
-import lombok.extern.slf4j.Slf4j;
 
 @Service
-@Slf4j
 public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 
 	@Override
@@ -39,6 +37,7 @@ public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 		String topcDataIsueDtm = now.format(formatter);
 
 		obj.put("topcDataIsueDtm", topcDataIsueDtm);
+		obj.put("dataChgCd", crudtype);
 
 		// Check the type of t and cast it accordingly
 		if (t instanceof Entity_DataCall) {
@@ -71,7 +70,8 @@ public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 		String topcDataIsueDtm = now.format(formatter);
 
 		obj.put("topcDataIsueDtm", topcDataIsueDtm);
-
+		obj.put("dataChgCd", crudtype);
+		
 		// Check the type of t and cast it accordingly
 		if (t instanceof Entity_DataCallCustomer) {
 			Entity_DataCallCustomer en = (Entity_DataCallCustomer) t;
@@ -110,7 +110,8 @@ public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 		String topcDataIsueDtm = now.format(formatter);
 
 		obj.put("topcDataIsueDtm", topcDataIsueDtm);
-
+		obj.put("dataChgCd", crudtype);
+		
 		// Check the type of t and cast it accordingly
 		if (t instanceof Entity_DataCallService) {
 			Entity_DataCallService en = (Entity_DataCallService) t;
@@ -225,7 +226,8 @@ public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 		String topcDataIsueDtm = now.format(formatter);
 
 		obj.put("topcDataIsueDtm", topcDataIsueDtm);
-
+		obj.put("dataChgCd", crudtype);
+		
 		// Check the type of t and cast it accordingly
 		if (t instanceof Entity_MasterServiceCode) {
 			Entity_MasterServiceCode en = (Entity_MasterServiceCode) t;
@@ -255,7 +257,8 @@ public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 		String topcDataIsueDtm = now.format(formatter);
 
 		obj.put("topcDataIsueDtm", topcDataIsueDtm);
-
+		obj.put("dataChgCd", crudtype);
+		
 		// Check the type of t and cast it accordingly
 		if (t instanceof Entity_WaDataCall) {
 			Entity_WaDataCall en = (Entity_WaDataCall) t;
@@ -284,7 +287,8 @@ public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 		String topcDataIsueDtm = now.format(formatter);
 
 		obj.put("topcDataIsueDtm", topcDataIsueDtm);
-
+		obj.put("dataChgCd", crudtype);
+		
 		// Check the type of t and cast it accordingly
 		if (t instanceof Entity_WaDataCallOptional) {
 			Entity_WaDataCallOptional en = (Entity_WaDataCallOptional) t;
@@ -310,7 +314,8 @@ public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 		String topcDataIsueDtm = now.format(formatter);
 
 		obj.put("topcDataIsueDtm", topcDataIsueDtm);
-
+		obj.put("dataChgCd", crudtype);
+		
 		// Check the type of t and cast it accordingly
 		if (t instanceof Entity_WaDataCallTrace) {
 			Entity_WaDataCallTrace en = (Entity_WaDataCallTrace) t;
@@ -338,8 +343,8 @@ public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 		String topcDataIsueDtm = now.format(formatter);
 
 		obj.put("topcDataIsueDtm", topcDataIsueDtm);
-
-		// Check the type of t and cast it accordingly
+		obj.put("dataChgCd", crudtype);
+		
 		if (t instanceof Entity_WaMTracecode) {
 			Entity_WaMTracecode en = (Entity_WaMTracecode) t;
 			obj.put("siteCd", en.getNew_site_code());

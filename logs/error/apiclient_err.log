@@ -4,3 +4,21 @@ ERROR 24-03-21 14:50:06[reactor-http-nio-4] [MessageTo360View:29] - Error making
 ERROR 24-03-21 14:50:06[reactor-http-nio-5] [MessageTo360View:29] - Error making API request: 500 Internal Server Error from POST http://localhost:8081/360view/firsttopic
 ERROR 24-03-21 14:51:38[reactor-http-nio-6] [MessageTo360View:29] - Error making API request: 500 Internal Server Error from POST http://localhost:8081/360view/firsttopic
 ERROR 24-03-21 14:51:38[reactor-http-nio-7] [MessageTo360View:29] - Error making API request: 500 Internal Server Error from POST http://localhost:8081/360view/firsttopic
+ERROR 24-03-26 15:58:25[reactor-http-nio-11] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-26 15:58:25[reactor-http-nio-14] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-26 15:58:25[reactor-http-nio-13] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-26 15:58:25[reactor-http-nio-16] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-26 15:58:25[reactor-http-nio-5] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-26 15:58:25[reactor-http-nio-15] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-26 15:58:25[reactor-http-nio-11] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-26 15:58:25[reactor-http-nio-9] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-26 15:58:25[reactor-http-nio-14] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-26 15:58:25[reactor-http-nio-13] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-26 15:58:25[reactor-http-nio-15] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-26 15:58:25[reactor-http-nio-16] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-26 15:58:25[reactor-http-nio-5] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-26 15:58:25[reactor-http-nio-7] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-26 15:58:25[reactor-http-nio-7] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-26 15:58:25[reactor-http-nio-7] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-26 15:58:25[reactor-http-nio-9] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-03-26 15:58:25[reactor-http-nio-11] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081

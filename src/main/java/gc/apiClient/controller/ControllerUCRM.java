@@ -49,7 +49,6 @@ import gc.apiClient.interfaceCollection.InterfaceWebClient;
 import gc.apiClient.messages.MessageTo360View;
 import gc.apiClient.messages.MessageToApim;
 import gc.apiClient.messages.MessageToProducer;
-import gc.apiClient.repository.oracleH.Repository_WaDataCallOptional;
 import gc.apiClient.service.ServiceJson;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
@@ -75,13 +74,13 @@ public class ControllerUCRM extends ServiceJson {
 		this.serviceMsgObjOrcl = serviceMsgObjOrcl;
 	}
 
-//	@Scheduled(fixedRate = 60000)
-//	public void scheduledMethod() {
-//		
-//		Mono.fromCallable(() -> ReceiveMessage("campma"))
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
+	@Scheduled(fixedRate = 60000)
+	public void scheduledMethod() {
+		
+		Mono.fromCallable(() -> ReceiveMessage("campma"))
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
 //		Mono.fromCallable(() -> Msg360Datacall())
 //        .subscribeOn(Schedulers.boundedElastic())
 //        .subscribe();
@@ -145,8 +144,8 @@ public class ControllerUCRM extends ServiceJson {
 //		Mono.fromCallable(() -> Msg360WaMTrCode())
 //        .subscribeOn(Schedulers.boundedElastic())
 //        .subscribe();
-//		
-//	}
+		
+	}
 
 	@GetMapping("/gcapi/get/{topic}")
 	public Mono<Void> ReceiveMessage(@PathVariable("topic") String tranId) {

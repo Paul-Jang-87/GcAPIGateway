@@ -10,7 +10,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "MAPCOID")
+@Table(name = "MAP_COID")
 public class Entity_MapCoId {
 	
 	@Id

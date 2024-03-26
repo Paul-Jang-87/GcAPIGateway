@@ -24,7 +24,7 @@ public class BusinessLogic {
 		case "홈":
 
 			business = "UCRM";
-			topic_id = "firsttopic"; // "from_clcc_cmpnma_h_message"
+			topic_id = "from_clcc_hmucrmcmpnma_message"; 
 			businesslogic.put("business", business);
 			businesslogic.put("topic_id", topic_id);
 
@@ -34,7 +34,7 @@ public class BusinessLogic {
 		case "모바일":
 
 			business = "UCRM";
-			topic_id = "secondtopic"; // "from_clcc_cmpnma_m_message"
+			topic_id = "from_clcc_mblucrmcmpnma_message";
 			businesslogic.put("business", business);
 			businesslogic.put("topic_id", topic_id);
 
@@ -44,7 +44,7 @@ public class BusinessLogic {
 		case "콜봇홈":
 
 			business = "Callbot";
-			topic_id = "callbotHtopic"; // "from_clcc_aiccmpnma_h_message"
+			topic_id = "from_clcc_hmaiccmpnma_message";
 			businesslogic.put("business", business);
 			businesslogic.put("topic_id", topic_id);
 
@@ -54,7 +54,7 @@ public class BusinessLogic {
 		case "콜봇모바일":
 
 			business = "Callbot";
-			topic_id = "callbotMtopic"; // "from_clcc_aiccmpnma_m_message"
+			topic_id = "from_clcc_mblaiccmpnma_message"; 
 			businesslogic.put("business", business);
 			businesslogic.put("topic_id", topic_id);
 
@@ -84,28 +84,28 @@ public class BusinessLogic {
 		if ( (tkda=='C')&&(divisionName.equals("Home")) ) { // UCRM
 			
 			business = "UCRM";
-			topic_id = "fifthtopic";// "from_clcc_campnrs_h_message";
+			topic_id = "from_clcc_hmucrmcmpnrs_message";
 			businesslogic.put("business", business);
 			businesslogic.put("topic_id", topic_id);
 
 		} else if( (tkda=='C')&&(divisionName.equals("Mobile")) ){
 			
 			business = "UCRM";
-			topic_id = "sixthtopic"; // "from_clcc_campnrs_m_message";
+			topic_id = "from_clcc_hmucrmcmpnrs_message"; 
 			businesslogic.put("business", business);
 			businesslogic.put("topic_id", topic_id);
 			
 		} else if( (tkda=='A')&&(divisionName.equals("Home")) ){
 			
 			business = "CALLBOT";
-			topic_id = "from_clcc_aiccmpnma_h_message"; // 나중에 실제 토픽 명으로 교체해야함.
+			topic_id = "from_clcc_hmaiccmpnrs_message"; // 나중에 실제 토픽 명으로 교체해야함.
 			businesslogic.put("business", business);
 			businesslogic.put("topic_id", topic_id);
 			
 		}else if( (tkda=='A')&&(divisionName.equals("Mobile")) ){
 			
 			business = "CALLBOT";
-			topic_id = "from_clcc_aiccmpnma_m_message"; // 나중에 실제 토픽 명으로 교체해야함.
+			topic_id = "from_clcc_mblaiccmpnrs_message"; // 나중에 실제 토픽 명으로 교체해야함.
 			businesslogic.put("business", business);
 			businesslogic.put("topic_id", topic_id);
 			

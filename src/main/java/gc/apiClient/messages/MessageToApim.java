@@ -11,13 +11,14 @@ public class MessageToApim {
 	
 	public void sendMsgToApim (String towhere, String jsonString) {
 		
-		log.info("===== ToApim =====");
+		log.info("====== ClassName : 'MessageToApim' & Method : 'ToApim' ======");
 		
 		WebClient webClient = WebClient.builder().baseUrl("http://localhost:8084").build();
 
 	    String endpointUrl = towhere;
 
-	    log.info("Endpoint : {}",endpointUrl);
+	    log.info("ToApim Endpoint : {}",endpointUrl);
+	    log.info("Message for Apim: {}",jsonString);
 	    
 	    webClient.post()
 	            .uri(endpointUrl)
@@ -30,9 +31,7 @@ public class MessageToApim {
 	            })
 	            .block(); // Wait for the result
 
-	    log.info("Entity as JSON: {}",jsonString);
+	    log.info("====== End ToApim ======");
 	}
 	
-	
-
 }

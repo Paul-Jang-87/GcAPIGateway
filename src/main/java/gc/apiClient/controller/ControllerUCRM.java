@@ -393,7 +393,7 @@ public class ControllerUCRM extends ServiceJson {
 		case "camprtMsg":// "from_clcc_campnrs_h_message" , "from_clcc_campnrs_m_message"
 
 			result = ExtractVal56(msg);// request body로 들어온 json에서 필요 데이터 추출
-			log.info("result : {}", result); // campaignid, contactlistid, division 추출
+			log.info("result : {}", result);
 
 			String parts[] = result.split("::");
 
@@ -401,11 +401,15 @@ public class ControllerUCRM extends ServiceJson {
 			cpid = parts[0];
 			contactLtId = parts[1];
 			division = parts[2];
+			
+			log.info("cpid : {}", cpid);
+			log.info("contactLtId : {}", contactLtId);
+			log.info("Division Info : {}", division);
 
 			// appliction.properties 파일에서 division와 매치되는 divisionName을 가지고 옴.
 			Map<String, String> properties = customProperties.getDivision();
 			String divisionName = properties.getOrDefault(division, "couldn't find division");
-			log.info("division : {}", divisionName);
+			log.info("DivisionName : {}", divisionName);
 
 			// contactlt테이블에서 cpid가 같은 모든 레코드들을 엔티티 오브젝트로 리스트 형태로 가지고 온다.
 			List<Entity_ContactLt> enContactList = new ArrayList<Entity_ContactLt>();

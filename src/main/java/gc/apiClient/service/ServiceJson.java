@@ -137,7 +137,8 @@ public class ServiceJson implements InterfaceJson {
 	@Override
 	public String ExtractVal56(String stringMsg) {// IF-CRM_005,IF-CRM_006에서 사용하기 위한 추출함수.
 		
-		log.info("===== ExtractVal56 =====");
+		log.info("===== ClassName : 'ServiceJson' & Method : 'ExtractVal56' =====");
+		log.info("Incoming Message : {}",stringMsg);
 
 		String jsonResponse = stringMsg;
 
@@ -156,6 +157,8 @@ public class ServiceJson implements InterfaceJson {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
+		log.info("result : {}", result); // campaignid, contactlistid, division 추출
+		log.info("===== End ExtractVal56 =====");
 
 		return result;
 	}
@@ -164,8 +167,8 @@ public class ServiceJson implements InterfaceJson {
 	@Override
 	public String ExtractContacts56(String stringMsg ,int i) {// IF-CRM_005,IF-CRM_006에서 사용하기 위한 추출함수.
 
-		log.info("===== ExtractContacts56 =====");
-		
+		log.info("===== ClassName : 'ServiceJson' & Method : 'ExtractContacts56' =====");
+		log.info("들어온 {}번째 결과 값 result : {}",i,stringMsg);
 		String jsonResponse = stringMsg;
 
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -189,7 +192,8 @@ public class ServiceJson implements InterfaceJson {
 			e.printStackTrace();
 		}
 		
-		log.info("result : {}",result);
+		log.info("추출 이후 결과 값 rs: {}",result);
+		log.info("====== End ExtractContacts56 ======");
 
 		return result;
 	}
@@ -197,6 +201,8 @@ public class ServiceJson implements InterfaceJson {
 	@Override
 	public int ExtractDict(String stringMsg) {
 
+		log.info("====== ClassName : ServiceJson & Method : ExtractDict ======");
+		log.info("GetStatusApiRequet 요청 후 ExtractDict로 들어온 rs : {}",stringMsg);
 		String jsonResponse = stringMsg;
 
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -213,6 +219,8 @@ public class ServiceJson implements InterfaceJson {
 			e.printStackTrace();
 		}
 
+		log.info("rs에서 추출 한 결과 result(dict) : {}",result);
+		log.info("====== End ExtractDict ======");
 		return result;
 	}
 	

@@ -11,13 +11,13 @@ public class MessageToProducer {
 	
 	public void sendMsgToProducer (String towhere, String jsonString) {
 		
-		log.info("===== sendMsgToProducer =====");
+		log.info("====== ClassName : 'MessageToProducer' & Method : 'sendMsgToProducer' ======");
+		log.info("Producer로 보낼 EndPoint : {}",towhere);
+		log.info("Producer로 보낼 Message : {}",jsonString);
 		
 		WebClient webClient = WebClient.builder().baseUrl("http://localhost:8081").build();
 
 	    String endpointUrl = towhere; //ex)"/gcapi/post/firsttopic" 
-
-	    log.info("Endpoint : {}",endpointUrl);
 	    
 	    webClient.post()
 	            .uri(endpointUrl)
@@ -28,9 +28,12 @@ public class MessageToProducer {
 	                log.error("Error making API request: {}",error.getMessage()) ;
 	                return Mono.empty();
 	            })
-	            .block(); // Wait for the result
-
-	    log.info("Entity as JSON: {}",jsonString);
+	            .subscribe(responseBody -> {
+	                // Handle the response body here
+	                log.info("Response received: {}", responseBody);
+	            }); 
+	    
+		log.info("====== End sendMsgToProducer ======");
 	}
 	
 	

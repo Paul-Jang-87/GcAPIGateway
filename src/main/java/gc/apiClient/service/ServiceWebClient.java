@@ -44,17 +44,20 @@ public class ServiceWebClient implements InterfaceWebClient {
 	
 
 	@Override
-	public String GetStatusApiRequet(String endpoint, String campaignId) {// path parameter 'campaignId'
+	public String GetStatusApiRequet(String endpoint, String campaignId) {
 
-		log.info("===== GetStatusApiRequet =====");
+		log.info("====== ClassName : ServiceWebClient & Method : GetStatusApiRequet ======");
+		log.info("Endpoint : {} => {}",endpoint,"/api/v2/outbound/campaigns/{campaignId}/stats");
+		log.info("campaignId : {}",campaignId);
 		
 		String result = "";
 
 		WebClientApp webClient = new WebClientApp(endpoint, "GET");
 		result = webClient.makeApiRequest(campaignId);
 
-		log.info("GetStatusApiRequet 요청 후 결과 값 : {}",result);
+		log.info("GetStatusApiRequet 요청 후 결과 값 rs : {}",result);
 
+		log.info("===== End GetStatusApiRequet =====");
 		return result;
 	}
 
@@ -108,15 +111,18 @@ public class ServiceWebClient implements InterfaceWebClient {
 	@Override // "/api/v2/outbound/contactlists/{contactListId}/contacts/bulk"
 	public String PostContactLtApiBulk(String endpoint, String contactListId, List<String> cskes) {// path parameter
 		
-		log.info("===== PostContactLtApiBulk =====");
+		log.info("====== ClassName : ServiceWebClient & Method : PostContactLtApiBulk ======");
 		
 		String result = "";
+		log.info("Endpoint : {} => {}",endpoint,"/api/v2/outbound/contactlists/{contactListId}/contacts/bulk");
+		log.info("contactListId : {}",contactListId);
+		log.info("cskes : {}",cskes.toString());
 
 		WebClientApp webClient = new WebClientApp(endpoint, "POST");
 		result = webClient.makeApiRequest56(contactListId, cskes);
 
-		log.info("PostContactLtApiBulk 요청 후 결과 값 : {}",result);
-
+		log.info("PostContactLtApiBulk 요청 후 결과 값 result : {}",result);
+		log.info("===== End PostContactLtApiBulk =====");
 		return result;
 	}
 

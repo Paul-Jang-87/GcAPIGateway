@@ -1,380 +1,6 @@
-INFO  24-03-21 09:36:27[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 24544 (D:\GitWorkSpace\gcClient\gcClient\target\classes started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
-INFO  24-03-21 09:36:27[main] [GcClientApplication:654] - No active profile set, falling back to 1 default profile: "default"
-INFO  24-03-21 09:36:30[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-INFO  24-03-21 09:36:30[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 436 ms. Found 8 JPA repository interfaces.
-INFO  24-03-21 09:36:30[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-INFO  24-03-21 09:36:31[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 74 ms. Found 8 JPA repository interfaces.
-INFO  24-03-21 09:36:31[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-INFO  24-03-21 09:36:31[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 43 ms. Found 4 JPA repository interfaces.
-INFO  24-03-21 09:36:34[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
-INFO  24-03-21 09:36:34[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
-INFO  24-03-21 09:36:34[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 6460 ms
-INFO  24-03-21 09:36:35[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleH]
-INFO  24-03-21 09:36:35[main] [Version:44] - HHH000412: Hibernate ORM core version 6.4.1.Final
-INFO  24-03-21 09:36:36[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
-INFO  24-03-21 09:36:37[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
-WARN  24-03-21 09:36:37[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
-INFO  24-03-21 09:36:37[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
-WARN  24-03-21 09:36:37[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
-INFO  24-03-21 09:36:38[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@6c49ea0c
-INFO  24-03-21 09:36:38[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
-WARN  24-03-21 09:36:39[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-INFO  24-03-21 09:36:43[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-INFO  24-03-21 09:36:43[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
-INFO  24-03-21 09:36:43[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleM]
-INFO  24-03-21 09:36:43[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
-INFO  24-03-21 09:36:43[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
-WARN  24-03-21 09:36:43[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
-INFO  24-03-21 09:36:43[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
-WARN  24-03-21 09:36:43[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
-INFO  24-03-21 09:36:44[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@4df8f4e9
-INFO  24-03-21 09:36:44[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
-WARN  24-03-21 09:36:44[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-INFO  24-03-21 09:36:44[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-INFO  24-03-21 09:36:44[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
-INFO  24-03-21 09:36:44[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: postgres]
-INFO  24-03-21 09:36:44[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
-INFO  24-03-21 09:36:45[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
-WARN  24-03-21 09:36:45[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
-INFO  24-03-21 09:36:45[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
-INFO  24-03-21 09:36:45[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@74cf108b
-INFO  24-03-21 09:36:45[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
-WARN  24-03-21 09:36:45[main] [deprecation:153] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-INFO  24-03-21 09:36:46[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-INFO  24-03-21 09:36:46[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
-INFO  24-03-21 09:36:47[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
-WARN  24-03-21 09:36:49[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-INFO  24-03-21 09:36:50[main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8083"]
-INFO  24-03-21 09:36:50[main] [TomcatWebServer:241] - Tomcat started on port 8083 (http) with context path ''
-INFO  24-03-21 09:36:50[main] [GcClientApplication:56] - Started GcClientApplication in 24.963 seconds (process running for 29.229)
-INFO  24-03-21 09:37:29[http-nio-8083-exec-1] [DispatcherServlet:532] - Initializing Servlet 'dispatcherServlet'
-INFO  24-03-21 09:37:29[http-nio-8083-exec-1] [DispatcherServlet:554] - Completed initialization in 5 ms
-INFO  24-03-21 09:37:30[http-nio-8083-exec-1] [ControllerUCRM:674] - the number of records : 2
-INFO  24-03-21 09:37:30[http-nio-8083-exec-1] [MessageTo360View:39] - ===== ReturnKey =====
-INFO  24-03-21 09:37:30[http-nio-8083-exec-1] [MessageTo360View:61] - key : cepwacalldtDeletedEvent
-INFO  24-03-21 09:37:30[http-nio-8083-exec-1] [MessageTo360View:62] - ===== End ReturnKey =====
-INFO  24-03-21 09:37:30[http-nio-8083-exec-1] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-21 09:37:30[http-nio-8083-exec-1] [MessageTo360View:17] - JsonString Data : {"icId":"NEW_ICID_VALUE","entDate":"2024-03-21 00:00:00.0","wcSeq":456,"topcDataIsueDtm":"2024/03/21 09:37:30.842474"}
-INFO  24-03-21 09:37:31[http-nio-8083-exec-1] [MessageTo360View:25] - Endpoint : /360view/firsttopic/cepwacalldtDeletedEvent
-INFO  24-03-21 09:37:38[http-nio-8083-exec-1] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-21 09:37:38[http-nio-8083-exec-1] [MessageTo360View:39] - ===== ReturnKey =====
-INFO  24-03-21 09:37:38[http-nio-8083-exec-1] [MessageTo360View:61] - key : cepwacalldtCreatedEvent
-INFO  24-03-21 09:37:38[http-nio-8083-exec-1] [MessageTo360View:62] - ===== End ReturnKey =====
-INFO  24-03-21 09:37:38[http-nio-8083-exec-1] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-21 09:37:38[http-nio-8083-exec-1] [MessageTo360View:17] - JsonString Data : {"icId":"NEW_ICID_VALUE","entDate":"2024-03-21 00:00:00.0","wcSeq":456,"topcDataIsueDtm":"2024/03/21 09:37:38.759983"}
-INFO  24-03-21 09:37:38[http-nio-8083-exec-1] [MessageTo360View:25] - Endpoint : /360view/firsttopic/cepwacalldtCreatedEvent
-INFO  24-03-21 09:37:38[http-nio-8083-exec-1] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-21 09:38:51[http-nio-8083-exec-9] [ControllerUCRM:701] - the number of records : 2
-INFO  24-03-21 09:38:51[http-nio-8083-exec-9] [MessageTo360View:39] - ===== ReturnKey =====
-INFO  24-03-21 09:38:51[http-nio-8083-exec-9] [MessageTo360View:61] - key : cepwacalldtUpdatedEvent
-INFO  24-03-21 09:38:51[http-nio-8083-exec-9] [MessageTo360View:62] - ===== End ReturnKey =====
-INFO  24-03-21 09:38:51[http-nio-8083-exec-9] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-21 09:38:51[http-nio-8083-exec-9] [MessageTo360View:17] - JsonString Data : {"icId":"NEW_ICID_VALUE","entDate":"2024-03-21 00:00:00.0","wcSeq":456,"topcDataIsueDtm":"2024/03/21 09:38:51.459714","ctn":"NEW_CTN_VALUE"}
-INFO  24-03-21 09:38:51[http-nio-8083-exec-9] [MessageTo360View:25] - Endpoint : /360view/firsttopic/cepwacalldtUpdatedEvent
-INFO  24-03-21 09:38:51[http-nio-8083-exec-9] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-21 09:38:51[http-nio-8083-exec-9] [MessageTo360View:39] - ===== ReturnKey =====
-INFO  24-03-21 09:38:51[http-nio-8083-exec-9] [MessageTo360View:61] - key : cepwacalldtDeletedEvent
-INFO  24-03-21 09:38:51[http-nio-8083-exec-9] [MessageTo360View:62] - ===== End ReturnKey =====
-INFO  24-03-21 09:38:51[http-nio-8083-exec-9] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-21 09:38:51[http-nio-8083-exec-9] [MessageTo360View:17] - JsonString Data : {"icId":"NEW_ICID_VALUE","entDate":"2024-03-21 00:00:00.0","wcSeq":456,"topcDataIsueDtm":"2024/03/21 09:38:51.645217","ctn":"NEW_CTN_VALUE"}
-INFO  24-03-21 09:38:51[http-nio-8083-exec-9] [MessageTo360View:25] - Endpoint : /360view/firsttopic/cepwacalldtDeletedEvent
-INFO  24-03-21 09:38:51[http-nio-8083-exec-9] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-21 09:49:14[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 24044 (D:\GitWorkSpace\gcClient\gcClient\target\classes started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
-INFO  24-03-21 09:49:14[main] [GcClientApplication:654] - No active profile set, falling back to 1 default profile: "default"
-INFO  24-03-21 09:49:16[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-INFO  24-03-21 09:49:17[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 427 ms. Found 8 JPA repository interfaces.
-INFO  24-03-21 09:49:17[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-INFO  24-03-21 09:49:17[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 66 ms. Found 8 JPA repository interfaces.
-INFO  24-03-21 09:49:17[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-INFO  24-03-21 09:49:17[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 36 ms. Found 4 JPA repository interfaces.
-INFO  24-03-21 09:49:19[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
-INFO  24-03-21 09:49:19[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
-INFO  24-03-21 09:49:19[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 5162 ms
-INFO  24-03-21 09:49:20[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleH]
-INFO  24-03-21 09:49:20[main] [Version:44] - HHH000412: Hibernate ORM core version 6.4.1.Final
-INFO  24-03-21 09:49:20[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
-INFO  24-03-21 09:49:21[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
-WARN  24-03-21 09:49:21[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
-INFO  24-03-21 09:49:21[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
-WARN  24-03-21 09:49:21[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
-INFO  24-03-21 09:49:22[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@59b853aa
-INFO  24-03-21 09:49:22[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
-WARN  24-03-21 09:49:22[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-INFO  24-03-21 09:49:26[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-INFO  24-03-21 09:49:26[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
-INFO  24-03-21 09:49:26[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleM]
-INFO  24-03-21 09:49:26[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
-INFO  24-03-21 09:49:26[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
-WARN  24-03-21 09:49:26[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
-INFO  24-03-21 09:49:26[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
-WARN  24-03-21 09:49:26[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
-INFO  24-03-21 09:49:27[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@5ccc07ae
-INFO  24-03-21 09:49:27[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
-WARN  24-03-21 09:49:27[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-INFO  24-03-21 09:49:28[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-INFO  24-03-21 09:49:28[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
-INFO  24-03-21 09:49:28[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: postgres]
-INFO  24-03-21 09:49:28[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
-INFO  24-03-21 09:49:28[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
-WARN  24-03-21 09:49:28[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
-INFO  24-03-21 09:49:28[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
-INFO  24-03-21 09:49:29[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@d4a4ba
-INFO  24-03-21 09:49:29[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
-WARN  24-03-21 09:49:29[main] [deprecation:153] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-INFO  24-03-21 09:49:29[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-INFO  24-03-21 09:49:29[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
-INFO  24-03-21 09:49:31[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
-WARN  24-03-21 09:49:34[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-INFO  24-03-21 09:49:36[main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8083"]
-INFO  24-03-21 09:49:36[main] [TomcatWebServer:241] - Tomcat started on port 8083 (http) with context path ''
-INFO  24-03-21 09:49:36[main] [GcClientApplication:56] - Started GcClientApplication in 23.401 seconds (process running for 27.083)
-INFO  24-03-21 09:50:02[http-nio-8083-exec-1] [DispatcherServlet:532] - Initializing Servlet 'dispatcherServlet'
-INFO  24-03-21 09:50:02[http-nio-8083-exec-1] [DispatcherServlet:554] - Completed initialization in 5 ms
-INFO  24-03-21 09:50:03[http-nio-8083-exec-1] [ControllerUCRM:754] - the number of records : 0
-INFO  24-03-21 09:50:10[http-nio-8083-exec-2] [ControllerUCRM:727] - the number of records : 2
-INFO  24-03-21 09:50:10[http-nio-8083-exec-2] [MessageTo360View:39] - ===== ReturnKey =====
-INFO  24-03-21 09:50:10[http-nio-8083-exec-2] [MessageTo360View:61] - key : cepwacalloptDeletedEvent
-INFO  24-03-21 09:50:10[http-nio-8083-exec-2] [MessageTo360View:62] - ===== End ReturnKey =====
-INFO  24-03-21 09:50:10[http-nio-8083-exec-2] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-21 09:50:10[http-nio-8083-exec-2] [MessageTo360View:17] - JsonString Data : {"wcSeq":456,"topcDataIsueDtm":"2024/03/21 09:50:10.465140","data02":"NEW_DATA02_VALUE"}
-INFO  24-03-21 09:50:11[http-nio-8083-exec-2] [MessageTo360View:25] - Endpoint : /360view/firsttopic/cepwacalloptDeletedEvent
-INFO  24-03-21 09:50:17[http-nio-8083-exec-2] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-21 09:50:17[http-nio-8083-exec-2] [MessageTo360View:39] - ===== ReturnKey =====
-INFO  24-03-21 09:50:17[http-nio-8083-exec-2] [MessageTo360View:61] - key : cepwacalloptUpdatedEvent
-INFO  24-03-21 09:50:17[http-nio-8083-exec-2] [MessageTo360View:62] - ===== End ReturnKey =====
-INFO  24-03-21 09:50:17[http-nio-8083-exec-2] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-21 09:50:17[http-nio-8083-exec-2] [MessageTo360View:17] - JsonString Data : {"wcSeq":456,"topcDataIsueDtm":"2024/03/21 09:50:17.689513","data02":"NEW_DATA02_VALUE"}
-INFO  24-03-21 09:50:17[http-nio-8083-exec-2] [MessageTo360View:25] - Endpoint : /360view/firsttopic/cepwacalloptUpdatedEvent
-INFO  24-03-21 09:50:17[http-nio-8083-exec-2] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-21 10:12:19[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 25892 (D:\GitWorkSpace\gcClient\gcClient\target\classes started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
-INFO  24-03-21 10:12:19[main] [GcClientApplication:654] - No active profile set, falling back to 1 default profile: "default"
-INFO  24-03-21 10:12:22[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-INFO  24-03-21 10:12:22[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 420 ms. Found 8 JPA repository interfaces.
-INFO  24-03-21 10:12:22[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-INFO  24-03-21 10:12:22[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 73 ms. Found 8 JPA repository interfaces.
-INFO  24-03-21 10:12:22[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-INFO  24-03-21 10:12:22[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 39 ms. Found 4 JPA repository interfaces.
-INFO  24-03-21 10:12:25[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
-INFO  24-03-21 10:12:25[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
-INFO  24-03-21 10:12:25[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 5903 ms
-INFO  24-03-21 10:12:26[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleH]
-INFO  24-03-21 10:12:26[main] [Version:44] - HHH000412: Hibernate ORM core version 6.4.1.Final
-INFO  24-03-21 10:12:27[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
-INFO  24-03-21 10:12:27[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
-WARN  24-03-21 10:12:28[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
-INFO  24-03-21 10:12:28[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
-WARN  24-03-21 10:12:28[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
-INFO  24-03-21 10:12:29[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@57f725b8
-INFO  24-03-21 10:12:29[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
-WARN  24-03-21 10:12:30[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-INFO  24-03-21 10:12:34[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-INFO  24-03-21 10:12:34[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
-INFO  24-03-21 10:12:34[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleM]
-INFO  24-03-21 10:12:34[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
-INFO  24-03-21 10:12:35[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
-WARN  24-03-21 10:12:35[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
-INFO  24-03-21 10:12:35[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
-WARN  24-03-21 10:12:35[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
-INFO  24-03-21 10:12:35[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@41a3656f
-INFO  24-03-21 10:12:35[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
-WARN  24-03-21 10:12:35[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-INFO  24-03-21 10:12:36[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-INFO  24-03-21 10:12:36[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
-INFO  24-03-21 10:12:36[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: postgres]
-INFO  24-03-21 10:12:36[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
-INFO  24-03-21 10:12:36[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
-WARN  24-03-21 10:12:36[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
-INFO  24-03-21 10:12:36[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
-INFO  24-03-21 10:12:37[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@2caf182e
-INFO  24-03-21 10:12:37[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
-WARN  24-03-21 10:12:37[main] [deprecation:153] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-INFO  24-03-21 10:12:37[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-INFO  24-03-21 10:12:37[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
-INFO  24-03-21 10:12:39[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
-WARN  24-03-21 10:12:42[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-INFO  24-03-21 10:12:43[main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8083"]
-INFO  24-03-21 10:12:43[main] [TomcatWebServer:241] - Tomcat started on port 8083 (http) with context path ''
-INFO  24-03-21 10:12:43[main] [GcClientApplication:56] - Started GcClientApplication in 25.783 seconds (process running for 29.797)
-INFO  24-03-21 10:13:13[http-nio-8083-exec-1] [DispatcherServlet:532] - Initializing Servlet 'dispatcherServlet'
-INFO  24-03-21 10:13:13[http-nio-8083-exec-1] [DispatcherServlet:554] - Completed initialization in 5 ms
-INFO  24-03-21 10:13:14[http-nio-8083-exec-1] [ControllerUCRM:781] - the number of records : 2
-INFO  24-03-21 10:13:14[http-nio-8083-exec-1] [MessageTo360View:39] - ===== ReturnKey =====
-INFO  24-03-21 10:13:14[http-nio-8083-exec-1] [MessageTo360View:61] - key : cepwacalltrCreatedEvent
-INFO  24-03-21 10:13:14[http-nio-8083-exec-1] [MessageTo360View:62] - ===== End ReturnKey =====
-INFO  24-03-21 10:13:14[http-nio-8083-exec-1] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-21 10:13:14[http-nio-8083-exec-1] [MessageTo360View:17] - JsonString Data : {"tcSeq":987,"wcSeq":789,"trCd":"NEW_TRACECODE_VALUE","topcDataIsueDtm":"2024/03/21 10:13:14.344855"}
-INFO  24-03-21 10:13:14[http-nio-8083-exec-1] [MessageTo360View:25] - Endpoint : /360view/firsttopic/cepwacalltrCreatedEvent
-INFO  24-03-21 10:13:21[http-nio-8083-exec-1] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-21 10:13:21[http-nio-8083-exec-1] [MessageTo360View:39] - ===== ReturnKey =====
-INFO  24-03-21 10:13:21[http-nio-8083-exec-1] [MessageTo360View:61] - key : cepwacalltrUpdatedEvent
-INFO  24-03-21 10:13:21[http-nio-8083-exec-1] [MessageTo360View:62] - ===== End ReturnKey =====
-INFO  24-03-21 10:13:21[http-nio-8083-exec-1] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-21 10:13:21[http-nio-8083-exec-1] [MessageTo360View:17] - JsonString Data : {"tcSeq":987,"wcSeq":789,"trCd":"NEW_TRACECODE_VALUE","topcDataIsueDtm":"2024/03/21 10:13:21.087453"}
-INFO  24-03-21 10:13:21[http-nio-8083-exec-1] [MessageTo360View:25] - Endpoint : /360view/firsttopic/cepwacalltrUpdatedEvent
-INFO  24-03-21 10:13:21[http-nio-8083-exec-1] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-21 10:26:31[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 28148 (D:\GitWorkSpace\gcClient\gcClient\target\classes started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
-INFO  24-03-21 10:26:31[main] [GcClientApplication:654] - No active profile set, falling back to 1 default profile: "default"
-INFO  24-03-21 10:26:33[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-INFO  24-03-21 10:26:34[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 500 ms. Found 8 JPA repository interfaces.
-INFO  24-03-21 10:26:34[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-INFO  24-03-21 10:26:34[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 130 ms. Found 8 JPA repository interfaces.
-INFO  24-03-21 10:26:34[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-INFO  24-03-21 10:26:34[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 63 ms. Found 4 JPA repository interfaces.
-INFO  24-03-21 10:26:38[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
-INFO  24-03-21 10:26:38[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
-INFO  24-03-21 10:26:39[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 7888 ms
-INFO  24-03-21 10:26:40[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleH]
-INFO  24-03-21 10:26:40[main] [Version:44] - HHH000412: Hibernate ORM core version 6.4.1.Final
-INFO  24-03-21 10:26:40[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
-INFO  24-03-21 10:26:41[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
-WARN  24-03-21 10:26:41[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
-INFO  24-03-21 10:26:41[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
-WARN  24-03-21 10:26:41[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
-INFO  24-03-21 10:26:43[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@34652065
-INFO  24-03-21 10:26:43[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
-WARN  24-03-21 10:26:43[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-INFO  24-03-21 10:26:48[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-INFO  24-03-21 10:26:48[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
-INFO  24-03-21 10:26:48[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleM]
-INFO  24-03-21 10:26:48[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
-INFO  24-03-21 10:26:49[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
-WARN  24-03-21 10:26:49[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
-INFO  24-03-21 10:26:49[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
-WARN  24-03-21 10:26:49[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
-INFO  24-03-21 10:26:49[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@40ef1198
-INFO  24-03-21 10:26:49[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
-WARN  24-03-21 10:26:49[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-INFO  24-03-21 10:26:50[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-INFO  24-03-21 10:26:50[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
-INFO  24-03-21 10:26:50[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: postgres]
-INFO  24-03-21 10:26:50[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
-INFO  24-03-21 10:26:50[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
-WARN  24-03-21 10:26:50[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
-INFO  24-03-21 10:26:50[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
-INFO  24-03-21 10:26:51[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@380ea757
-INFO  24-03-21 10:26:51[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
-WARN  24-03-21 10:26:52[main] [deprecation:153] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-INFO  24-03-21 10:26:52[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-INFO  24-03-21 10:26:52[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
-INFO  24-03-21 10:26:53[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
-WARN  24-03-21 10:26:55[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-INFO  24-03-21 10:26:56[main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8083"]
-INFO  24-03-21 10:26:56[main] [TomcatWebServer:241] - Tomcat started on port 8083 (http) with context path ''
-INFO  24-03-21 10:26:56[main] [GcClientApplication:56] - Started GcClientApplication in 26.742 seconds (process running for 30.895)
-INFO  24-03-21 10:27:53[http-nio-8083-exec-2] [DispatcherServlet:532] - Initializing Servlet 'dispatcherServlet'
-INFO  24-03-21 10:27:53[http-nio-8083-exec-2] [DispatcherServlet:554] - Completed initialization in 7 ms
-INFO  24-03-21 10:27:54[http-nio-8083-exec-2] [ControllerUCRM:835] - the number of records : 0
-INFO  24-03-21 10:28:04[http-nio-8083-exec-3] [ControllerUCRM:862] - the number of records : 2
-INFO  24-03-21 10:28:05[http-nio-8083-exec-3] [MessageTo360View:39] - ===== ReturnKey =====
-INFO  24-03-21 10:28:05[http-nio-8083-exec-3] [MessageTo360View:61] - key : cepwatrcdUpdatedEvent
-INFO  24-03-21 10:28:05[http-nio-8083-exec-3] [MessageTo360View:62] - ===== End ReturnKey =====
-INFO  24-03-21 10:28:05[http-nio-8083-exec-3] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-21 10:28:05[http-nio-8083-exec-3] [MessageTo360View:17] - JsonString Data : {"siteCd":456,"trCdType":2,"trCdNm":"NEW_TRACECODE_NAME_VALUE","trCd":"NEW_TRACECODE_VALUE","topcDataIsueDtm":"2024/03/21 10:28:05.035197"}
-INFO  24-03-21 10:28:05[http-nio-8083-exec-3] [MessageTo360View:25] - Endpoint : /360view/firsttopic/cepwatrcdUpdatedEvent
-INFO  24-03-21 10:28:12[http-nio-8083-exec-3] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-21 10:28:12[http-nio-8083-exec-3] [MessageTo360View:39] - ===== ReturnKey =====
-INFO  24-03-21 10:28:12[http-nio-8083-exec-3] [MessageTo360View:61] - key : cepwatrcdDeletedEvent
-INFO  24-03-21 10:28:12[http-nio-8083-exec-3] [MessageTo360View:62] - ===== End ReturnKey =====
-INFO  24-03-21 10:28:12[http-nio-8083-exec-3] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-21 10:28:12[http-nio-8083-exec-3] [MessageTo360View:17] - JsonString Data : {"siteCd":456,"trCdType":2,"trCdNm":"NEW_TRACECODE_NAME_VALUE","trCd":"NEW_TRACECODE_VALUE","topcDataIsueDtm":"2024/03/21 10:28:12.099411"}
-INFO  24-03-21 10:28:12[http-nio-8083-exec-3] [MessageTo360View:25] - Endpoint : /360view/firsttopic/cepwatrcdDeletedEvent
-INFO  24-03-21 10:28:12[http-nio-8083-exec-3] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-21 14:45:31[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 24180 (D:\GitWorkSpace\gcClient\gcClient\target\classes started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
-INFO  24-03-21 14:45:31[main] [GcClientApplication:654] - No active profile set, falling back to 1 default profile: "default"
-INFO  24-03-21 14:45:34[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-INFO  24-03-21 14:45:34[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 408 ms. Found 8 JPA repository interfaces.
-INFO  24-03-21 14:45:34[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-INFO  24-03-21 14:45:35[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 81 ms. Found 8 JPA repository interfaces.
-INFO  24-03-21 14:45:35[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-INFO  24-03-21 14:45:35[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 48 ms. Found 4 JPA repository interfaces.
-INFO  24-03-21 14:45:37[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
-INFO  24-03-21 14:45:37[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
-INFO  24-03-21 14:45:38[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 5837 ms
-INFO  24-03-21 14:45:38[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleH]
-INFO  24-03-21 14:45:38[main] [Version:44] - HHH000412: Hibernate ORM core version 6.4.1.Final
-INFO  24-03-21 14:45:38[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
-INFO  24-03-21 14:45:39[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
-WARN  24-03-21 14:45:39[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
-INFO  24-03-21 14:45:39[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
-WARN  24-03-21 14:45:39[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
-INFO  24-03-21 14:45:40[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@57f725b8
-INFO  24-03-21 14:45:40[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
-WARN  24-03-21 14:45:40[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-INFO  24-03-21 14:45:45[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-INFO  24-03-21 14:45:45[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
-INFO  24-03-21 14:45:45[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleM]
-INFO  24-03-21 14:45:45[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
-INFO  24-03-21 14:45:46[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
-WARN  24-03-21 14:45:46[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
-INFO  24-03-21 14:45:46[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
-WARN  24-03-21 14:45:46[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
-INFO  24-03-21 14:45:46[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@7ae49d52
-INFO  24-03-21 14:45:46[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
-WARN  24-03-21 14:45:46[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-INFO  24-03-21 14:45:47[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-INFO  24-03-21 14:45:47[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
-INFO  24-03-21 14:45:47[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: postgres]
-INFO  24-03-21 14:45:47[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
-INFO  24-03-21 14:45:48[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
-WARN  24-03-21 14:45:48[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
-INFO  24-03-21 14:45:48[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
-INFO  24-03-21 14:45:48[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@8941d98
-INFO  24-03-21 14:45:48[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
-WARN  24-03-21 14:45:48[main] [deprecation:153] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-INFO  24-03-21 14:45:49[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-INFO  24-03-21 14:45:49[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
-INFO  24-03-21 14:45:51[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
-WARN  24-03-21 14:45:53[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-INFO  24-03-21 14:45:54[main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8083"]
-INFO  24-03-21 14:45:54[main] [TomcatWebServer:241] - Tomcat started on port 8083 (http) with context path ''
-INFO  24-03-21 14:45:54[main] [GcClientApplication:56] - Started GcClientApplication in 24.247 seconds (process running for 27.972)
-INFO  24-03-21 14:46:34[http-nio-8083-exec-1] [DispatcherServlet:532] - Initializing Servlet 'dispatcherServlet'
-INFO  24-03-21 14:46:34[http-nio-8083-exec-1] [DispatcherServlet:554] - Completed initialization in 4 ms
-INFO  24-03-21 14:46:34[http-nio-8083-exec-1] [ControllerUCRM:532] - the number of records : 2
-INFO  24-03-21 14:46:34[http-nio-8083-exec-1] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-21 14:46:34[http-nio-8083-exec-1] [MessageTo360View:17] - JsonString Data : {"callSeq":101,"siteCd":2,"entDate":"2024-01-02 10:00:00","icId":"NEW_ICID_1","topcDataIsueDtm":"2024/03/21 14:46:34.896755","entTime":"2024-01-02","dataChgCd":"INSERT"}
-INFO  24-03-21 14:46:35[http-nio-8083-exec-1] [MessageTo360View:25] - Endpoint : /360view/firsttopic
-ERROR 24-03-21 14:46:36[reactor-http-nio-2] [MessageTo360View:29] - Error making API request: 404 Not Found from POST http://localhost:8081/360view/firsttopic
-INFO  24-03-21 14:46:36[http-nio-8083-exec-1] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-21 14:46:36[http-nio-8083-exec-1] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-21 14:46:36[http-nio-8083-exec-1] [MessageTo360View:17] - JsonString Data : {"callSeq":201,"siteCd":3,"entDate":"2024-01-04 10:00:00","icId":"NEW_ICID_2","topcDataIsueDtm":"2024/03/21 14:46:36.931318","entTime":"2024-01-04","dataChgCd":"UPDATE"}
-INFO  24-03-21 14:46:36[http-nio-8083-exec-1] [MessageTo360View:25] - Endpoint : /360view/firsttopic
-ERROR 24-03-21 14:46:37[reactor-http-nio-3] [MessageTo360View:29] - Error making API request: 404 Not Found from POST http://localhost:8081/360view/firsttopic
-INFO  24-03-21 14:46:37[http-nio-8083-exec-1] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-21 14:50:05[http-nio-8083-exec-5] [ControllerUCRM:532] - the number of records : 2
-INFO  24-03-21 14:50:05[http-nio-8083-exec-5] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-21 14:50:05[http-nio-8083-exec-5] [MessageTo360View:17] - JsonString Data : {"callSeq":101,"siteCd":2,"entDate":"2024-01-02 10:00:00","icId":"NEW_ICID_1","topcDataIsueDtm":"2024/03/21 14:50:05.827037","entTime":"2024-01-02","dataChgCd":"INSERT"}
-INFO  24-03-21 14:50:05[http-nio-8083-exec-5] [MessageTo360View:25] - Endpoint : /360view/firsttopic
-ERROR 24-03-21 14:50:06[reactor-http-nio-4] [MessageTo360View:29] - Error making API request: 500 Internal Server Error from POST http://localhost:8081/360view/firsttopic
-INFO  24-03-21 14:50:06[http-nio-8083-exec-5] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-21 14:50:06[http-nio-8083-exec-5] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-21 14:50:06[http-nio-8083-exec-5] [MessageTo360View:17] - JsonString Data : {"callSeq":201,"siteCd":3,"entDate":"2024-01-04 10:00:00","icId":"NEW_ICID_2","topcDataIsueDtm":"2024/03/21 14:50:06.398510","entTime":"2024-01-04","dataChgCd":"UPDATE"}
-INFO  24-03-21 14:50:06[http-nio-8083-exec-5] [MessageTo360View:25] - Endpoint : /360view/firsttopic
-ERROR 24-03-21 14:50:06[reactor-http-nio-5] [MessageTo360View:29] - Error making API request: 500 Internal Server Error from POST http://localhost:8081/360view/firsttopic
-INFO  24-03-21 14:50:06[http-nio-8083-exec-5] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-21 14:51:36[http-nio-8083-exec-8] [ControllerUCRM:532] - the number of records : 2
-INFO  24-03-21 14:51:36[http-nio-8083-exec-8] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-21 14:51:36[http-nio-8083-exec-8] [MessageTo360View:17] - JsonString Data : {"callSeq":101,"siteCd":2,"entDate":"2024-01-02 10:00:00","icId":"NEW_ICID_1","topcDataIsueDtm":"2024/03/21 14:51:36.991481","entTime":"2024-01-02","dataChgCd":"INSERT"}
-INFO  24-03-21 14:51:36[http-nio-8083-exec-8] [MessageTo360View:25] - Endpoint : /360view/firsttopic
-ERROR 24-03-21 14:51:38[reactor-http-nio-6] [MessageTo360View:29] - Error making API request: 500 Internal Server Error from POST http://localhost:8081/360view/firsttopic
-INFO  24-03-21 14:51:38[http-nio-8083-exec-8] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-21 14:51:38[http-nio-8083-exec-8] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-21 14:51:38[http-nio-8083-exec-8] [MessageTo360View:17] - JsonString Data : {"callSeq":201,"siteCd":3,"entDate":"2024-01-04 10:00:00","icId":"NEW_ICID_2","topcDataIsueDtm":"2024/03/21 14:51:38.116588","entTime":"2024-01-04","dataChgCd":"UPDATE"}
-INFO  24-03-21 14:51:38[http-nio-8083-exec-8] [MessageTo360View:25] - Endpoint : /360view/firsttopic
-ERROR 24-03-21 14:51:38[reactor-http-nio-7] [MessageTo360View:29] - Error making API request: 500 Internal Server Error from POST http://localhost:8081/360view/firsttopic
-INFO  24-03-21 14:51:38[http-nio-8083-exec-8] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-21 14:53:23[http-nio-8083-exec-2] [ControllerUCRM:532] - the number of records : 2
-INFO  24-03-21 14:53:23[http-nio-8083-exec-2] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-21 14:53:23[http-nio-8083-exec-2] [MessageTo360View:17] - JsonString Data : {"callSeq":101,"siteCd":2,"entDate":"2024-01-02 10:00:00","icId":"NEW_ICID_1","topcDataIsueDtm":"2024/03/21 14:53:23.571420","entTime":"2024-01-02","dataChgCd":"INSERT"}
-INFO  24-03-21 14:53:23[http-nio-8083-exec-2] [MessageTo360View:25] - Endpoint : /360view/firsttopic
-INFO  24-03-21 14:53:27[http-nio-8083-exec-2] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-21 14:53:27[http-nio-8083-exec-2] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-21 14:53:27[http-nio-8083-exec-2] [MessageTo360View:17] - JsonString Data : {"callSeq":201,"siteCd":3,"entDate":"2024-01-04 10:00:00","icId":"NEW_ICID_2","topcDataIsueDtm":"2024/03/21 14:53:27.597389","entTime":"2024-01-04","dataChgCd":"UPDATE"}
-INFO  24-03-21 14:53:27[http-nio-8083-exec-2] [MessageTo360View:25] - Endpoint : /360view/firsttopic
-INFO  24-03-21 14:53:27[http-nio-8083-exec-2] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-26 14:50:08[main] [AnnotationConfigContextLoaderUtils:83] - Could not detect default configuration classes for test class [gc.apiClient.GcClientApplicationTests]: GcClientApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-INFO  24-03-26 14:50:08[main] [SpringBootTestContextBootstrapper:234] - Found @SpringBootConfiguration gc.apiClient.GcClientApplication for test class gc.apiClient.GcClientApplicationTests
-WARN  24-03-26 14:50:10[main] [DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer:78] - 
+INFO  24-03-29 13:23:43[main] [AnnotationConfigContextLoaderUtils:83] - Could not detect default configuration classes for test class [gc.apiClient.GcClientApplicationTests]: GcClientApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+INFO  24-03-29 13:23:44[main] [SpringBootTestContextBootstrapper:234] - Found @SpringBootConfiguration gc.apiClient.GcClientApplication for test class gc.apiClient.GcClientApplicationTests
+WARN  24-03-29 13:23:45[main] [DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer:78] - 
 
 Found multiple occurrences of org.json.JSONObject on the class path:
 
@@ -383,62 +9,82 @@ Found multiple occurrences of org.json.JSONObject on the class path:
 
 You may wish to exclude one of them to ensure predictable runtime behavior
 
-INFO  24-03-26 14:50:10[main] [GcClientApplicationTests:50] - Starting GcClientApplicationTests using Java 21.0.1 with PID 24832 (started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
-INFO  24-03-26 14:50:10[main] [GcClientApplicationTests:654] - No active profile set, falling back to 1 default profile: "default"
-INFO  24-03-26 14:50:12[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-INFO  24-03-26 14:50:12[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 302 ms. Found 8 JPA repository interfaces.
-INFO  24-03-26 14:50:12[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-INFO  24-03-26 14:50:12[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 74 ms. Found 8 JPA repository interfaces.
-INFO  24-03-26 14:50:12[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-INFO  24-03-26 14:50:12[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 38 ms. Found 4 JPA repository interfaces.
-INFO  24-03-26 14:50:15[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleH]
-INFO  24-03-26 14:50:15[main] [Version:44] - HHH000412: Hibernate ORM core version 6.4.1.Final
-INFO  24-03-26 14:50:15[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
-INFO  24-03-26 14:50:17[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
-WARN  24-03-26 14:50:17[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
-INFO  24-03-26 14:50:17[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
-WARN  24-03-26 14:50:17[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
-INFO  24-03-26 14:50:17[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@69c33ea2
-INFO  24-03-26 14:50:17[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
-WARN  24-03-26 14:50:18[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-INFO  24-03-26 14:50:22[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-INFO  24-03-26 14:50:22[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
-INFO  24-03-26 14:50:22[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleM]
-INFO  24-03-26 14:50:22[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
-INFO  24-03-26 14:50:22[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
-WARN  24-03-26 14:50:22[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
-INFO  24-03-26 14:50:22[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
-WARN  24-03-26 14:50:22[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
-INFO  24-03-26 14:50:22[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@122a6078
-INFO  24-03-26 14:50:22[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
-WARN  24-03-26 14:50:22[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-INFO  24-03-26 14:50:24[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-INFO  24-03-26 14:50:24[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
-INFO  24-03-26 14:50:24[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: postgres]
-INFO  24-03-26 14:50:24[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
-INFO  24-03-26 14:50:24[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
-WARN  24-03-26 14:50:24[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
-INFO  24-03-26 14:50:24[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
-INFO  24-03-26 14:50:24[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@273c4b3
-INFO  24-03-26 14:50:24[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
-WARN  24-03-26 14:50:24[main] [deprecation:153] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-INFO  24-03-26 14:50:25[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-INFO  24-03-26 14:50:25[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
-INFO  24-03-26 14:50:26[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
-WARN  24-03-26 14:50:28[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-INFO  24-03-26 14:50:29[main] [GcClientApplicationTests:56] - Started GcClientApplicationTests in 19.738 seconds (process running for 24.313)
-INFO  24-03-26 14:50:39[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
-INFO  24-03-26 14:50:39[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleM'
-INFO  24-03-26 14:50:39[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLM-hikari-pool - Shutdown initiated...
-INFO  24-03-26 14:50:39[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLM-hikari-pool - Shutdown completed.
-INFO  24-03-26 14:50:39[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleH'
-INFO  24-03-26 14:50:39[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLH-hikari-pool - Shutdown initiated...
-INFO  24-03-26 14:50:39[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLH-hikari-pool - Shutdown completed.
-INFO  24-03-26 14:50:39[SpringApplicationShutdownHook] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
-INFO  24-03-26 14:50:39[SpringApplicationShutdownHook] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
-INFO  24-03-26 15:58:01[main] [AnnotationConfigContextLoaderUtils:83] - Could not detect default configuration classes for test class [gc.apiClient.GcClientApplicationTests]: GcClientApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-INFO  24-03-26 15:58:01[main] [SpringBootTestContextBootstrapper:234] - Found @SpringBootConfiguration gc.apiClient.GcClientApplication for test class gc.apiClient.GcClientApplicationTests
-WARN  24-03-26 15:58:02[main] [DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer:78] - 
+INFO  24-03-29 13:23:45[main] [GcClientApplicationTests:50] - Starting GcClientApplicationTests using Java 21.0.1 with PID 24356 (started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+INFO  24-03-29 13:23:45[main] [GcClientApplicationTests:654] - No active profile set, falling back to 1 default profile: "default"
+INFO  24-03-29 13:23:47[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-03-29 13:23:47[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 351 ms. Found 8 JPA repository interfaces.
+INFO  24-03-29 13:23:47[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-03-29 13:23:47[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 99 ms. Found 8 JPA repository interfaces.
+INFO  24-03-29 13:23:47[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-03-29 13:23:47[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 46 ms. Found 4 JPA repository interfaces.
+INFO  24-03-29 13:23:51[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleH]
+INFO  24-03-29 13:23:51[main] [Version:44] - HHH000412: Hibernate ORM core version 6.4.1.Final
+INFO  24-03-29 13:23:51[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-03-29 13:23:52[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-03-29 13:23:52[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-03-29 13:23:52[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
+WARN  24-03-29 13:23:52[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-03-29 13:23:53[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@430d3021
+INFO  24-03-29 13:23:53[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
+WARN  24-03-29 13:23:53[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-03-29 13:23:59[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-03-29 13:27:47[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-03-29 13:27:47[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleM]
+INFO  24-03-29 13:27:47[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-03-29 13:27:47[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-03-29 13:27:47[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-03-29 13:27:47[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
+WARN  24-03-29 13:27:47[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-03-29 13:27:48[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@1db7c267
+INFO  24-03-29 13:27:48[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
+WARN  24-03-29 13:27:48[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-03-29 13:27:50[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-03-29 13:31:10[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-03-29 13:31:10[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: postgres]
+INFO  24-03-29 13:31:10[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-03-29 13:31:10[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-03-29 13:31:10[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-03-29 13:31:10[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-03-29 13:31:14[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@4ac7927a
+INFO  24-03-29 13:31:14[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+WARN  24-03-29 13:31:14[main] [deprecation:153] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-03-29 13:31:14[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-03-29 13:31:14[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-03-29 13:31:16[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-03-29 13:31:18[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-03-29 13:31:19[main] [GcClientApplicationTests:56] - Started GcClientApplicationTests in 454.759 seconds (process running for 459.387)
+INFO  24-03-29 13:31:19[boundedElastic-1] [ControllerUCRM:153] - Class : ControllerUCRM - Method : ReceiveMessage
+INFO  24-03-29 13:31:19[boundedElastic-1] [ControllerUCRM:163] - topic_id : campma
+INFO  24-03-29 13:31:19[boundedElastic-1] [ServiceWebClient:18] - ===== GetApiRequet =====
+INFO  24-03-29 13:31:22[boundedElastic-1] [ServiceWebClient:25] - GetApiRequet 요청 후 결과 값 : {"entities":[{"id":"97e6b32d-c266-4d33-92b4-01ddf33898cd","name":"[hg] 테스트 시연","dateCreated":"2023-11-29T11:15:31.705Z","dateModified":"2024-02-13T00:45:50.660Z","version":23,"contactList":{"id":"85aecd05-21b5-46a1-86f3-357f252d10a0","name":"[hg] 테스트 시연2","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0"},"queue":{"id":"d9c1327d-476c-458b-a85e-3086604fefb6","selfUri":"/api/v2/routing/queues/d9c1327d-476c-458b-a85e-3086604fefb6"},"dialingMode":"power","script":{"id":"476c2b71-7429-11e4-9a5b-3f91746bffa3","name":"Default Outbound Script","selfUri":"/api/v2/scripts/476c2b71-7429-11e4-9a5b-3f91746bffa3"},"site":{"id":"139054d6-9b1e-494e-b7ee-09e4c9de32f4","name":"lguplus-dev","selfUri":"/api/v2/telephony/providers/edges/sites/139054d6-9b1e-494e-b7ee-09e4c9de32f4"},"campaignStatus":"invalid","phoneColumns":[{"columnName":"전화번호","type":"휴대폰"}],"abandonRate":5.0,"dncLists":[],"callAnalysisResponseSet":{"id":"f3b42acd-ae79-40f1-ad46-bd0c1d8948e0","name":"[hg] 테스트 시연","selfUri":"/api/v2/outbound/callanalysisresponsesets/f3b42acd-ae79-40f1-ad46-bd0c1d8948e0"},"errors":[{"error":"QUEUE_NOT_FOUND","details":"Resource not found"}],"callerName":"GSNeotek","callerAddress":"+82316001441","outboundLineCount":2,"ruleSets":[],"skipPreviewDisabled":false,"previewTimeOutSeconds":0,"singleNumberPreview":false,"alwaysRunning":false,"noAnswerTimeout":30,"priority":5,"contactListFilters":[],"division":{"id":"0aebaa53-2e66-4720-acdb-8a766e2ea6ae","name":"Home","selfUri":"/api/v2/authorization/divisions/0aebaa53-2e66-4720-acdb-8a766e2ea6ae"},"dynamicContactQueueingSettings":{"sort":false},"callbackAutoAnswer":false,"dynamicLineBalancingSettings":{"enabled":false},"selfUri":"/api/v2/outbound/campaigns/97e6b32d-c266-4d33-92b4-01ddf33898cd"},{"id":"a9d66d5c-87cd-43c6-aa97-2320081b5fdb","name":"테스트 시연 - 외부통화모드","dateCreated":"2023-11-29T11:34:55.143Z","dateModified":"2024-02-13T00:45:50.581Z","version":6,"contactList":{"id":"a62c3266-4419-4951-8e06-0e4b9f7b876c","name":"[hg] 테스트 시연","selfUri":"/api/v2/outbound/contactlists/a62c3266-4419-4951-8e06-0e4b9f7b876c"},"queue":{"id":"d9c1327d-476c-458b-a85e-3086604fefb6","selfUri":"/api/v2/routing/queues/d9c1327d-476c-458b-a85e-3086604fefb6"},"dialingMode":"external","script":{"id":"476c2b71-7429-11e4-9a5b-3f91746bffa3","name":"Default Outbound Script","selfUri":"/api/v2/scripts/476c2b71-7429-11e4-9a5b-3f91746bffa3"},"campaignStatus":"invalid","phoneColumns":[{"columnName":"전화번호","type":"휴대폰"}],"abandonRate":5.0,"dncLists":[],"errors":[{"error":"QUEUE_NOT_FOUND","details":"Resource not found"}],"outboundLineCount":0,"ruleSets":[],"skipPreviewDisabled":false,"previewTimeOutSeconds":0,"singleNumberPreview":false,"alwaysRunning":false,"noAnswerTimeout":30,"priority":5,"contactListFilters":[],"division":{"id":"0aebaa53-2e66-4720-acdb-8a766e2ea6ae","name":"Home","selfUri":"/api/v2/authorization/divisions/0aebaa53-2e66-4720-acdb-8a766e2ea6ae"},"dynamicContactQueueingSettings":{"sort":false},"callbackAutoAnswer":false,"dynamicLineBalancingSettings":{"enabled":false},"selfUri":"/api/v2/outbound/campaigns/a9d66d5c-87cd-43c6-aa97-2320081b5fdb"}],"pageSize":25,"pageNumber":1,"total":2,"lastUri":"/api/v2/outbound/campaigns?pageSize=25&pageNumber=1","firstUri":"/api/v2/outbound/campaigns?pageSize=25&pageNumber=1","selfUri":"/api/v2/outbound/campaigns?pageSize=25&pageNumber=1","pageCount":1}
+INFO  24-03-29 13:31:22[boundedElastic-1] [ServiceJson:52] - ===== ExtractValCrm12 =====
+INFO  24-03-29 13:31:22[boundedElastic-1] [ServiceJson:69] - result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연::Home
+INFO  24-03-29 13:31:22[boundedElastic-1] [ServiceJson:70] - ===== END ExtractValCrm12 =====
+INFO  24-03-29 13:32:13[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 3908 (D:\GitWorkSpace\gcClient\gcClient\target\classes started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+INFO  24-03-29 13:32:13[main] [GcClientApplication:654] - No active profile set, falling back to 1 default profile: "default"
+INFO  24-03-29 13:32:15[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-03-29 13:32:15[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 300 ms. Found 8 JPA repository interfaces.
+INFO  24-03-29 13:32:15[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-03-29 13:32:16[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 64 ms. Found 8 JPA repository interfaces.
+INFO  24-03-29 13:32:16[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-03-29 13:32:16[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 34 ms. Found 4 JPA repository interfaces.
+INFO  24-03-29 13:32:18[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-03-29 13:32:18[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-03-29 13:32:18[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 5070 ms
+INFO  24-03-29 13:32:19[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleH]
+INFO  24-03-29 13:32:19[main] [Version:44] - HHH000412: Hibernate ORM core version 6.4.1.Final
+INFO  24-03-29 13:32:19[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-03-29 13:32:20[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-03-29 13:32:20[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-03-29 13:32:20[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
+WARN  24-03-29 13:32:20[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-03-29 13:32:20[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@77ec9fdb
+INFO  24-03-29 13:32:20[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
+WARN  24-03-29 13:32:21[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-03-29 13:32:25[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-03-29 14:03:17[main] [AnnotationConfigContextLoaderUtils:83] - Could not detect default configuration classes for test class [gc.apiClient.GcClientApplicationTests]: GcClientApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+INFO  24-03-29 14:03:17[main] [SpringBootTestContextBootstrapper:234] - Found @SpringBootConfiguration gc.apiClient.GcClientApplication for test class gc.apiClient.GcClientApplicationTests
+WARN  24-03-29 14:03:18[main] [DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer:78] - 
 
 Found multiple occurrences of org.json.JSONObject on the class path:
 
@@ -447,198 +93,65 @@ Found multiple occurrences of org.json.JSONObject on the class path:
 
 You may wish to exclude one of them to ensure predictable runtime behavior
 
-INFO  24-03-26 15:58:02[main] [GcClientApplicationTests:50] - Starting GcClientApplicationTests using Java 21.0.1 with PID 10916 (started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
-INFO  24-03-26 15:58:02[main] [GcClientApplicationTests:654] - No active profile set, falling back to 1 default profile: "default"
-INFO  24-03-26 15:58:04[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-INFO  24-03-26 15:58:04[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 357 ms. Found 8 JPA repository interfaces.
-INFO  24-03-26 15:58:04[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-INFO  24-03-26 15:58:04[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 57 ms. Found 8 JPA repository interfaces.
-INFO  24-03-26 15:58:04[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-INFO  24-03-26 15:58:04[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 41 ms. Found 4 JPA repository interfaces.
-INFO  24-03-26 15:58:06[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleH]
-INFO  24-03-26 15:58:06[main] [Version:44] - HHH000412: Hibernate ORM core version 6.4.1.Final
-INFO  24-03-26 15:58:06[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
-INFO  24-03-26 15:58:07[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
-WARN  24-03-26 15:58:07[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
-INFO  24-03-26 15:58:07[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
-WARN  24-03-26 15:58:07[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
-INFO  24-03-26 15:58:08[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@78e387d6
-INFO  24-03-26 15:58:08[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
-WARN  24-03-26 15:58:09[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-INFO  24-03-26 15:58:15[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-INFO  24-03-26 15:58:15[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
-INFO  24-03-26 15:58:15[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleM]
-INFO  24-03-26 15:58:15[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
-INFO  24-03-26 15:58:15[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
-WARN  24-03-26 15:58:15[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
-INFO  24-03-26 15:58:15[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
-WARN  24-03-26 15:58:15[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
-INFO  24-03-26 15:58:15[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@6d97a357
-INFO  24-03-26 15:58:15[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
-WARN  24-03-26 15:58:15[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-INFO  24-03-26 15:58:16[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-INFO  24-03-26 15:58:16[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
-INFO  24-03-26 15:58:16[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: postgres]
-INFO  24-03-26 15:58:16[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
-INFO  24-03-26 15:58:16[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
-WARN  24-03-26 15:58:16[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
-INFO  24-03-26 15:58:16[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
-INFO  24-03-26 15:58:17[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@48a32c4f
-INFO  24-03-26 15:58:17[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
-WARN  24-03-26 15:58:17[main] [deprecation:153] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-INFO  24-03-26 15:58:17[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-INFO  24-03-26 15:58:17[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
-INFO  24-03-26 15:58:19[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
-WARN  24-03-26 15:58:22[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-INFO  24-03-26 15:58:23[main] [GcClientApplicationTests:56] - Started GcClientApplicationTests in 21.586 seconds (process running for 24.828)
-INFO  24-03-26 15:58:23[boundedElastic-1] [ControllerUCRM:153] - Class : ControllerUCRM - Method : ReceiveMessage
-INFO  24-03-26 15:58:23[boundedElastic-1] [ControllerUCRM:163] - topic_id : campma
-INFO  24-03-26 15:58:23[boundedElastic-1] [ServiceWebClient:18] - ===== GetApiRequet =====
-INFO  24-03-26 15:58:23[boundedElastic-3] [ControllerUCRM:580] - the number of records : 2
-INFO  24-03-26 15:58:23[boundedElastic-8] [ControllerUCRM:698] - the number of records : 2
-INFO  24-03-26 15:58:23[boundedElastic-2] [ControllerUCRM:531] - the number of records : 2
-INFO  24-03-26 15:58:23[boundedElastic-16] [ControllerUCRM:818] - the number of records : 2
-INFO  24-03-26 15:58:23[boundedElastic-11] [ControllerUCRM:794] - the number of records : 0
-INFO  24-03-26 15:58:23[boundedElastic-12] [ControllerUCRM:842] - the number of records : 0
-INFO  24-03-26 15:58:23[boundedElastic-4] [ControllerUCRM:627] - the number of records : 2
-INFO  24-03-26 15:58:23[boundedElastic-7] [ControllerUCRM:651] - the number of records : 0
-INFO  24-03-26 15:58:23[boundedElastic-15] [ControllerUCRM:770] - the number of records : 2
-INFO  24-03-26 15:58:23[boundedElastic-6] [ControllerUCRM:605] - the number of records : 0
-INFO  24-03-26 15:58:23[boundedElastic-17] [ControllerUCRM:866] - the number of records : 0
-INFO  24-03-26 15:58:23[boundedElastic-9] [ControllerUCRM:674] - the number of records : 0
-INFO  24-03-26 15:58:23[boundedElastic-10] [ControllerUCRM:746] - the number of records : 2
-INFO  24-03-26 15:58:23[boundedElastic-5] [ControllerUCRM:556] - the number of records : 0
-INFO  24-03-26 15:58:23[boundedElastic-13] [ControllerUCRM:890] - the number of records : 2
-INFO  24-03-26 15:58:23[boundedElastic-14] [ControllerUCRM:722] - the number of records : 2
-INFO  24-03-26 15:58:24[boundedElastic-4] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-26 15:58:24[boundedElastic-4] [MessageTo360View:17] - JsonString Data : {"svcCd20":"NEW_SERVICE_CODE20_VALUE","svcCd40":"NEW_SERVICE_CODE40_VALUE","callSeq":789,"svcCd19":"NEW_SERVICE_CODE19_VALUE","svcCd18":"NEW_SERVICE_CODE18_VALUE","svcCd13":"NEW_SERVICE_CODE13_VALUE","svcCd35":"NEW_SERVICE_CODE35_VALUE","svcCd12":"NEW_SERVICE_CODE12_VALUE","svcCd34":"NEW_SERVICE_CODE34_VALUE","svcCd11":"NEW_SERVICE_CODE11_VALUE","svcCd33":"NEW_SERVICE_CODE33_VALUE","svcCd10":"NEW_SERVICE_CODE10_VALUE","svcCd32":"NEW_SERVICE_CODE32_VALUE","svcCd17":"NEW_SERVICE_CODE17_VALUE","svcCd39":"NEW_SERVICE_CODE39_VALUE","svcCd16":"NEW_SERVICE_CODE16_VALUE","svcCd38":"NEW_SERVICE_CODE38_VALUE","dataChgCd":"CMD_VALUE","svcCd15":"NEW_SERVICE_CODE15_VALUE","svcCd37":"NEW_SERVICE_CODE37_VALUE","svcCd14":"NEW_SERVICE_CODE14_VALUE","svcCd36":"NEW_SERVICE_CODE36_VALUE","icId":"NEW_ICID_VALUE","svcCd31":"NEW_SERVICE_CODE31_VALUE","svcCd30":"NEW_SERVICE_CODE30_VALUE","topcDataIsueDtm":"2024/03/26 15:58:24.093155","svcCd09":"NEW_SERVICE_CODE9_VALUE","svcCd08":"NEW_SERVICE_CODE8_VALUE","siteCd":123,"svcCd07":"NEW_SERVICE_CODE7_VALUE","svcCd29":"NEW_SERVICE_CODE29_VALUE","entDate":"NEW_ENTERED_DATE_VALUE","svcCd02":"NEW_SERVICE_CODE2_VALUE","svcCd24":"NEW_SERVICE_CODE24_VALUE","svcCd01":"NEW_SERVICE_CODE1_VALUE","svcCd23":"NEW_SERVICE_CODE23_VALUE","svcCd22":"NEW_SERVICE_CODE22_VALUE","svcCd21":"NEW_SERVICE_CODE21_VALUE","svcCd06":"NEW_SERVICE_CODE6_VALUE","svcCd28":"NEW_SERVICE_CODE28_VALUE","svcCd05":"NEW_SERVICE_CODE5_VALUE","svcCd27":"NEW_SERVICE_CODE27_VALUE","svcCd04":"NEW_SERVICE_CODE4_VALUE","svcCd26":"NEW_SERVICE_CODE26_VALUE","svcCd03":"NEW_SERVICE_CODE3_VALUE","svcCd25":"NEW_SERVICE_CODE25_VALUE"}
-INFO  24-03-26 15:58:24[boundedElastic-13] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-26 15:58:24[boundedElastic-2] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-26 15:58:24[boundedElastic-3] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-26 15:58:24[boundedElastic-14] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-26 15:58:24[boundedElastic-15] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-26 15:58:24[boundedElastic-8] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-26 15:58:24[boundedElastic-2] [MessageTo360View:17] - JsonString Data : {"callSeq":101,"siteCd":2,"entDate":"2024-01-02 10:00:00","icId":"NEW_ICID_1","topcDataIsueDtm":"2024/03/26 15:58:24.093155","entTime":"2024-01-02","dataChgCd":"INSERT"}
-INFO  24-03-26 15:58:24[boundedElastic-10] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-26 15:58:24[boundedElastic-16] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-26 15:58:24[boundedElastic-13] [MessageTo360View:17] - JsonString Data : {"siteCd":456,"trCdType":2,"trCdNm":"NEW_TRACECODE_NAME_VALUE","trCd":"NEW_TRACECODE_VALUE","topcDataIsueDtm":"2024/03/26 15:58:24.094152","dataChgCd":"UPDATE"}
-INFO  24-03-26 15:58:24[boundedElastic-3] [MessageTo360View:17] - JsonString Data : {"cSeq":987,"callSeq":654,"siteCd":321,"entDate":"2024-03-21","icId":"NEW_ICID_VALUE","custDt03":"NEW_DATA03_VALUE","custDt01":"NEW_DATA01_VALUE","custDt02":"NEW_DATA02_VALUE","topcDataIsueDtm":"2024/03/26 15:58:24.093155","dataChgCd":"CMD_VALUE"}
-INFO  24-03-26 15:58:24[boundedElastic-15] [MessageTo360View:17] - JsonString Data : {"wcSeq":456,"topcDataIsueDtm":"2024/03/26 15:58:24.094152","data02":"NEW_DATA02_VALUE","dataChgCd":"INSRET"}
-INFO  24-03-26 15:58:24[boundedElastic-14] [MessageTo360View:17] - JsonString Data : {"icId":"NEW_ICID_VALUE","entDate":"2024-03-21 00:00:00.0","wcSeq":456,"topcDataIsueDtm":"2024/03/26 15:58:24.094152","dataChgCd":"CMD_VALUE"}
-INFO  24-03-26 15:58:24[boundedElastic-8] [MessageTo360View:17] - JsonString Data : {"svCd":456,"siteCd":456,"svCdType":2,"topcDataIsueDtm":"2024/03/26 15:58:24.094152","dataChgCd":"CMD_VALUE","svCdNm":"NEW_SERVICE_NAME_VALUE"}
-INFO  24-03-26 15:58:24[boundedElastic-16] [MessageTo360View:17] - JsonString Data : {"tcSeq":987,"wcSeq":789,"trCd":"NEW_TRACECODE_VALUE","topcDataIsueDtm":"2024/03/26 15:58:24.094152","dataChgCd":"INSERT"}
-INFO  24-03-26 15:58:24[boundedElastic-10] [MessageTo360View:17] - JsonString Data : {"icId":"NEW_ICID_VALUE","entDate":"2024-03-21 00:00:00.0","wcSeq":456,"topcDataIsueDtm":"2024/03/26 15:58:24.094152","ctn":"NEW_CTN_VALUE","dataChgCd":"UPDATE"}
-INFO  24-03-26 15:58:24[boundedElastic-10] [MessageTo360View:25] - Endpoint : /360view/from_clcc_mblcepwacalldt_message
-INFO  24-03-26 15:58:24[boundedElastic-16] [MessageTo360View:25] - Endpoint : /360view/from_clcc_hmcepwacalltr_message
-INFO  24-03-26 15:58:24[boundedElastic-3] [MessageTo360View:25] - Endpoint : /360view/from_clcc_hmcepcalldtcust_message
-INFO  24-03-26 15:58:24[boundedElastic-15] [MessageTo360View:25] - Endpoint : /360view/from_clcc_hmcepwacallopt_message
-INFO  24-03-26 15:58:24[boundedElastic-2] [MessageTo360View:25] - Endpoint : /360view/from_clcc_hmcepcalldt_message
-INFO  24-03-26 15:58:24[boundedElastic-8] [MessageTo360View:25] - Endpoint : /360view/from_clcc_mblcepcallmstrsvccd_message
-INFO  24-03-26 15:58:24[boundedElastic-13] [MessageTo360View:25] - Endpoint : /360view/from_clcc_mblcepwatrcd_message
-INFO  24-03-26 15:58:24[boundedElastic-14] [MessageTo360View:25] - Endpoint : /360view/from_clcc_hmcepwacalldt_message
-INFO  24-03-26 15:58:24[boundedElastic-4] [MessageTo360View:25] - Endpoint : /360view/from_clcc_hmcepcallsvccd_message
-ERROR 24-03-26 15:58:25[reactor-http-nio-11] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-26 15:58:25[reactor-http-nio-14] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-26 15:58:25[reactor-http-nio-13] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-26 15:58:25[reactor-http-nio-16] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-26 15:58:25[reactor-http-nio-5] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-INFO  24-03-26 15:58:25[boundedElastic-16] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-26 15:58:25[boundedElastic-8] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-26 15:58:25[boundedElastic-4] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-26 15:58:25[boundedElastic-14] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-26 15:58:25[boundedElastic-16] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-26 15:58:25[boundedElastic-8] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-26 15:58:25[boundedElastic-2] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-26 15:58:25[boundedElastic-4] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-26 15:58:25[boundedElastic-16] [MessageTo360View:17] - JsonString Data : {"tcSeq":987,"wcSeq":789,"trCd":"NEW_TRACECODE_VALUE","topcDataIsueDtm":"2024/03/26 15:58:25.530311","dataChgCd":"UPDATE"}
-INFO  24-03-26 15:58:25[boundedElastic-8] [MessageTo360View:17] - JsonString Data : {"svCd":456,"siteCd":456,"svCdType":2,"topcDataIsueDtm":"2024/03/26 15:58:25.530311","dataChgCd":"UPDATE","svCdNm":"NEW_SERVICE_NAME_VALUE"}
-INFO  24-03-26 15:58:25[boundedElastic-14] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-26 15:58:25[boundedElastic-4] [MessageTo360View:17] - JsonString Data : {"svcCd20":"NEW_SERVICE_CODE20_VALUE","svcCd40":"NEW_SERVICE_CODE40_VALUE","callSeq":789,"svcCd19":"NEW_SERVICE_CODE19_VALUE","svcCd18":"NEW_SERVICE_CODE18_VALUE","svcCd13":"NEW_SERVICE_CODE13_VALUE","svcCd35":"NEW_SERVICE_CODE35_VALUE","svcCd12":"NEW_SERVICE_CODE12_VALUE","svcCd34":"NEW_SERVICE_CODE34_VALUE","svcCd11":"NEW_SERVICE_CODE11_VALUE","svcCd33":"NEW_SERVICE_CODE33_VALUE","svcCd10":"NEW_SERVICE_CODE10_VALUE","svcCd32":"NEW_SERVICE_CODE32_VALUE","svcCd17":"NEW_SERVICE_CODE17_VALUE","svcCd39":"NEW_SERVICE_CODE39_VALUE","svcCd16":"NEW_SERVICE_CODE16_VALUE","svcCd38":"NEW_SERVICE_CODE38_VALUE","dataChgCd":"INSERT","svcCd15":"NEW_SERVICE_CODE15_VALUE","svcCd37":"NEW_SERVICE_CODE37_VALUE","svcCd14":"NEW_SERVICE_CODE14_VALUE","svcCd36":"NEW_SERVICE_CODE36_VALUE","icId":"NEW_ICID_VALUE","svcCd31":"NEW_SERVICE_CODE31_VALUE","svcCd30":"NEW_SERVICE_CODE30_VALUE","topcDataIsueDtm":"2024/03/26 15:58:25.530311","svcCd09":"NEW_SERVICE_CODE9_VALUE","svcCd08":"NEW_SERVICE_CODE8_VALUE","siteCd":123,"svcCd07":"NEW_SERVICE_CODE7_VALUE","svcCd29":"NEW_SERVICE_CODE29_VALUE","entDate":"NEW_ENTERED_DATE_VALUE","svcCd02":"NEW_SERVICE_CODE2_VALUE","svcCd24":"NEW_SERVICE_CODE24_VALUE","svcCd01":"NEW_SERVICE_CODE1_VALUE","svcCd23":"NEW_SERVICE_CODE23_VALUE","svcCd22":"NEW_SERVICE_CODE22_VALUE","svcCd21":"NEW_SERVICE_CODE21_VALUE","svcCd06":"NEW_SERVICE_CODE6_VALUE","svcCd28":"NEW_SERVICE_CODE28_VALUE","svcCd05":"NEW_SERVICE_CODE5_VALUE","svcCd27":"NEW_SERVICE_CODE27_VALUE","svcCd04":"NEW_SERVICE_CODE4_VALUE","svcCd26":"NEW_SERVICE_CODE26_VALUE","svcCd03":"NEW_SERVICE_CODE3_VALUE","svcCd25":"NEW_SERVICE_CODE25_VALUE"}
-INFO  24-03-26 15:58:25[boundedElastic-2] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-26 15:58:25[boundedElastic-16] [MessageTo360View:25] - Endpoint : /360view/from_clcc_hmcepwacalltr_message
-INFO  24-03-26 15:58:25[boundedElastic-8] [MessageTo360View:25] - Endpoint : /360view/from_clcc_mblcepcallmstrsvccd_message
-INFO  24-03-26 15:58:25[boundedElastic-14] [MessageTo360View:17] - JsonString Data : {"icId":"NEW_ICID_VALUE","entDate":"2024-03-21 00:00:00.0","wcSeq":456,"topcDataIsueDtm":"2024/03/26 15:58:25.531308","dataChgCd":"INSERT"}
-INFO  24-03-26 15:58:25[boundedElastic-2] [MessageTo360View:17] - JsonString Data : {"callSeq":201,"siteCd":3,"entDate":"2024-01-04 10:00:00","icId":"NEW_ICID_2","topcDataIsueDtm":"2024/03/26 15:58:25.531308","entTime":"2024-01-04","dataChgCd":"UPDATE"}
-INFO  24-03-26 15:58:25[boundedElastic-4] [MessageTo360View:25] - Endpoint : /360view/from_clcc_hmcepcallsvccd_message
-INFO  24-03-26 15:58:25[boundedElastic-14] [MessageTo360View:25] - Endpoint : /360view/from_clcc_hmcepwacalldt_message
-INFO  24-03-26 15:58:25[boundedElastic-2] [MessageTo360View:25] - Endpoint : /360view/from_clcc_hmcepcalldt_message
-ERROR 24-03-26 15:58:25[reactor-http-nio-15] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-INFO  24-03-26 15:58:25[boundedElastic-15] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-26 15:58:25[boundedElastic-15] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-26 15:58:25[boundedElastic-15] [MessageTo360View:17] - JsonString Data : {"wcSeq":456,"topcDataIsueDtm":"2024/03/26 15:58:25.547266","data02":"NEW_DATA02_VALUE","dataChgCd":"UPDATE"}
-INFO  24-03-26 15:58:25[boundedElastic-15] [MessageTo360View:25] - Endpoint : /360view/from_clcc_hmcepwacallopt_message
-ERROR 24-03-26 15:58:25[reactor-http-nio-11] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-26 15:58:25[reactor-http-nio-9] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-INFO  24-03-26 15:58:25[boundedElastic-10] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-26 15:58:25[boundedElastic-10] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-26 15:58:25[boundedElastic-10] [MessageTo360View:17] - JsonString Data : {"icId":"NEW_ICID_VALUE","entDate":"2024-03-21 00:00:00.0","wcSeq":456,"topcDataIsueDtm":"2024/03/26 15:58:25.615085","ctn":"NEW_CTN_VALUE","dataChgCd":"AIEHH"}
-INFO  24-03-26 15:58:25[boundedElastic-10] [MessageTo360View:25] - Endpoint : /360view/from_clcc_mblcepwacalldt_message
-ERROR 24-03-26 15:58:25[reactor-http-nio-14] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-26 15:58:25[reactor-http-nio-13] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-26 15:58:25[reactor-http-nio-15] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-26 15:58:25[reactor-http-nio-16] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-INFO  24-03-26 15:58:25[boundedElastic-8] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-ERROR 24-03-26 15:58:25[reactor-http-nio-5] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-INFO  24-03-26 15:58:25[boundedElastic-16] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-26 15:58:25[boundedElastic-4] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-26 15:58:25[boundedElastic-2] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-26 15:58:25[boundedElastic-14] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-26 15:58:25[boundedElastic-15] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-ERROR 24-03-26 15:58:25[reactor-http-nio-7] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-INFO  24-03-26 15:58:25[boundedElastic-3] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-ERROR 24-03-26 15:58:25[reactor-http-nio-7] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-INFO  24-03-26 15:58:25[boundedElastic-3] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-26 15:58:25[boundedElastic-13] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-26 15:58:25[boundedElastic-3] [MessageTo360View:17] - JsonString Data : {"cSeq":987,"callSeq":654,"siteCd":321,"entDate":"2024-03-22","icId":"NEW_ICID_VALUE","custDt03":"NEW_CUSTOMER_DATA03_VALUE","custDt01":"NEW_CUSTOMER_DATA01_VALUE","custDt02":"NEW_CUSTOMER_DATA02_VALUE","topcDataIsueDtm":"2024/03/26 15:58:25.627054","dataChgCd":"UPDATE"}
-INFO  24-03-26 15:58:25[boundedElastic-13] [MessageTo360View:13] - ===== SendMsgTo360View =====
-INFO  24-03-26 15:58:25[boundedElastic-13] [MessageTo360View:17] - JsonString Data : {"siteCd":456,"trCdType":2,"trCdNm":"NEW_TRACECODE_NAME_VALUE","trCd":"NEW_TRACECODE_VALUE","topcDataIsueDtm":"2024/03/26 15:58:25.628050","dataChgCd":"ITITI"}
-ERROR 24-03-26 15:58:25[reactor-http-nio-7] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-INFO  24-03-26 15:58:25[boundedElastic-3] [MessageTo360View:25] - Endpoint : /360view/from_clcc_hmcepcalldtcust_message
-INFO  24-03-26 15:58:25[boundedElastic-10] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-INFO  24-03-26 15:58:25[boundedElastic-13] [MessageTo360View:25] - Endpoint : /360view/from_clcc_mblcepwatrcd_message
-ERROR 24-03-26 15:58:25[reactor-http-nio-9] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-INFO  24-03-26 15:58:25[boundedElastic-13] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-ERROR 24-03-26 15:58:25[reactor-http-nio-11] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-INFO  24-03-26 15:58:25[boundedElastic-3] [MessageTo360View:33] - ===== End SendMsgTo360View =====
-WARN  24-03-26 15:58:25[reactor-http-nio-9] [HttpClientConnect:304] - [37e2dcd7, L:/192.168.219.108:51800 ! R:api.apne2.pure.cloud/54.230.61.26:443] The connection observed an error
-java.nio.channels.ClosedChannelException: null
-	at io.netty.handler.ssl.SslHandler.channelInactive(SslHandler.java:1156)
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:303)
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:281)
-	at io.netty.channel.AbstractChannelHandlerContext.fireChannelInactive(AbstractChannelHandlerContext.java:274)
-	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelInactive(DefaultChannelPipeline.java:1405)
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:301)
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelInactive(AbstractChannelHandlerContext.java:281)
-	at io.netty.channel.DefaultChannelPipeline.fireChannelInactive(DefaultChannelPipeline.java:901)
-	at io.netty.channel.AbstractChannel$AbstractUnsafe$7.run(AbstractChannel.java:813)
-	at io.netty.util.concurrent.AbstractEventExecutor.runTask(AbstractEventExecutor.java:173)
-	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:166)
-	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasksFrom(SingleThreadEventExecutor.java:426)
-	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:375)
-	at io.netty.util.concurrent.SingleThreadEventExecutor.confirmShutdown(SingleThreadEventExecutor.java:763)
-	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:596)
-	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
-	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
-	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-	Suppressed: io.netty.handler.ssl.StacklessSSLHandshakeException: Connection closed while SSL/TLS handshake was in progress
-		at io.netty.handler.ssl.SslHandler.channelInactive(Unknown Source)
-INFO  24-03-26 15:58:26[boundedElastic-1] [ServiceWebClient:25] - GetApiRequet 요청 후 결과 값 : {"entities":[{"id":"97e6b32d-c266-4d33-92b4-01ddf33898cd","name":"[hg] 테스트 시연","dateCreated":"2023-11-29T11:15:31.705Z","dateModified":"2024-02-13T00:45:50.660Z","version":23,"contactList":{"id":"85aecd05-21b5-46a1-86f3-357f252d10a0","name":"[hg] 테스트 시연2","selfUri":"/api/v2/outbound/contactlists/85aecd05-21b5-46a1-86f3-357f252d10a0"},"queue":{"id":"d9c1327d-476c-458b-a85e-3086604fefb6","selfUri":"/api/v2/routing/queues/d9c1327d-476c-458b-a85e-3086604fefb6"},"dialingMode":"power","script":{"id":"476c2b71-7429-11e4-9a5b-3f91746bffa3","name":"Default Outbound Script","selfUri":"/api/v2/scripts/476c2b71-7429-11e4-9a5b-3f91746bffa3"},"site":{"id":"139054d6-9b1e-494e-b7ee-09e4c9de32f4","name":"lguplus-dev","selfUri":"/api/v2/telephony/providers/edges/sites/139054d6-9b1e-494e-b7ee-09e4c9de32f4"},"campaignStatus":"invalid","phoneColumns":[{"columnName":"전화번호","type":"휴대폰"}],"abandonRate":5.0,"dncLists":[],"callAnalysisResponseSet":{"id":"f3b42acd-ae79-40f1-ad46-bd0c1d8948e0","name":"[hg] 테스트 시연","selfUri":"/api/v2/outbound/callanalysisresponsesets/f3b42acd-ae79-40f1-ad46-bd0c1d8948e0"},"errors":[{"error":"QUEUE_NOT_FOUND","details":"Resource not found"}],"callerName":"GSNeotek","callerAddress":"+82316001441","outboundLineCount":2,"ruleSets":[],"skipPreviewDisabled":false,"previewTimeOutSeconds":0,"singleNumberPreview":false,"alwaysRunning":false,"noAnswerTimeout":30,"priority":5,"contactListFilters":[],"division":{"id":"0aebaa53-2e66-4720-acdb-8a766e2ea6ae","name":"Home","selfUri":"/api/v2/authorization/divisions/0aebaa53-2e66-4720-acdb-8a766e2ea6ae"},"dynamicContactQueueingSettings":{"sort":false},"callbackAutoAnswer":false,"selfUri":"/api/v2/outbound/campaigns/97e6b32d-c266-4d33-92b4-01ddf33898cd"},{"id":"a9d66d5c-87cd-43c6-aa97-2320081b5fdb","name":"테스트 시연 - 외부통화모드","dateCreated":"2023-11-29T11:34:55.143Z","dateModified":"2024-02-13T00:45:50.581Z","version":6,"contactList":{"id":"a62c3266-4419-4951-8e06-0e4b9f7b876c","name":"[hg] 테스트 시연","selfUri":"/api/v2/outbound/contactlists/a62c3266-4419-4951-8e06-0e4b9f7b876c"},"queue":{"id":"d9c1327d-476c-458b-a85e-3086604fefb6","selfUri":"/api/v2/routing/queues/d9c1327d-476c-458b-a85e-3086604fefb6"},"dialingMode":"external","script":{"id":"476c2b71-7429-11e4-9a5b-3f91746bffa3","name":"Default Outbound Script","selfUri":"/api/v2/scripts/476c2b71-7429-11e4-9a5b-3f91746bffa3"},"campaignStatus":"invalid","phoneColumns":[{"columnName":"전화번호","type":"휴대폰"}],"abandonRate":5.0,"dncLists":[],"errors":[{"error":"QUEUE_NOT_FOUND","details":"Resource not found"}],"outboundLineCount":0,"ruleSets":[],"skipPreviewDisabled":false,"previewTimeOutSeconds":0,"singleNumberPreview":false,"alwaysRunning":false,"noAnswerTimeout":30,"priority":5,"contactListFilters":[],"division":{"id":"0aebaa53-2e66-4720-acdb-8a766e2ea6ae","name":"Home","selfUri":"/api/v2/authorization/divisions/0aebaa53-2e66-4720-acdb-8a766e2ea6ae"},"dynamicContactQueueingSettings":{"sort":false},"callbackAutoAnswer":false,"selfUri":"/api/v2/outbound/campaigns/a9d66d5c-87cd-43c6-aa97-2320081b5fdb"}],"pageSize":25,"pageNumber":1,"total":2,"lastUri":"/api/v2/outbound/campaigns?pageSize=25&pageNumber=1","firstUri":"/api/v2/outbound/campaigns?pageSize=25&pageNumber=1","selfUri":"/api/v2/outbound/campaigns?pageSize=25&pageNumber=1","pageCount":1}
-INFO  24-03-26 15:58:26[boundedElastic-1] [ServiceJson:52] - ===== ExtractValCrm12 =====
-INFO  24-03-26 15:58:26[boundedElastic-1] [ServiceJson:69] - result : 97e6b32d-c266-4d33-92b4-01ddf33898cd::[hg] 테스트 시연::Home
-INFO  24-03-26 15:58:26[boundedElastic-1] [ServiceJson:70] - ===== END ExtractValCrm12 =====
-INFO  24-03-26 15:58:27[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
-INFO  24-03-26 15:58:27[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleM'
-INFO  24-03-26 15:58:27[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLM-hikari-pool - Shutdown initiated...
-INFO  24-03-26 15:58:28[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLM-hikari-pool - Shutdown completed.
-INFO  24-03-26 15:58:28[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleH'
-INFO  24-03-26 15:58:28[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLH-hikari-pool - Shutdown initiated...
-INFO  24-03-26 15:58:28[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLH-hikari-pool - Shutdown completed.
-INFO  24-03-26 15:58:28[SpringApplicationShutdownHook] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
-INFO  24-03-26 15:58:28[SpringApplicationShutdownHook] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
-INFO  24-03-26 16:14:10[main] [AnnotationConfigContextLoaderUtils:83] - Could not detect default configuration classes for test class [gc.apiClient.GcClientApplicationTests]: GcClientApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-INFO  24-03-26 16:14:10[main] [SpringBootTestContextBootstrapper:234] - Found @SpringBootConfiguration gc.apiClient.GcClientApplication for test class gc.apiClient.GcClientApplicationTests
-WARN  24-03-26 16:14:11[main] [DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer:78] - 
+INFO  24-03-29 14:03:18[main] [GcClientApplicationTests:50] - Starting GcClientApplicationTests using Java 21.0.1 with PID 16100 (started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+INFO  24-03-29 14:03:18[main] [GcClientApplicationTests:654] - No active profile set, falling back to 1 default profile: "default"
+INFO  24-03-29 14:03:20[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-03-29 14:03:20[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 293 ms. Found 8 JPA repository interfaces.
+INFO  24-03-29 14:03:20[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-03-29 14:03:20[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 53 ms. Found 8 JPA repository interfaces.
+INFO  24-03-29 14:03:20[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-03-29 14:03:20[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 56 ms. Found 4 JPA repository interfaces.
+INFO  24-03-29 14:03:23[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleH]
+INFO  24-03-29 14:03:23[main] [Version:44] - HHH000412: Hibernate ORM core version 6.4.1.Final
+INFO  24-03-29 14:03:23[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-03-29 14:03:24[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-03-29 14:03:24[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-03-29 14:03:24[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
+WARN  24-03-29 14:03:24[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-03-29 14:03:26[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@75805562
+INFO  24-03-29 14:03:26[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
+WARN  24-03-29 14:03:27[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-03-29 14:03:33[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-03-29 14:03:33[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-03-29 14:03:33[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleM]
+INFO  24-03-29 14:03:33[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-03-29 14:03:33[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-03-29 14:03:33[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-03-29 14:03:33[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
+WARN  24-03-29 14:03:33[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-03-29 14:03:33[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@698394bf
+INFO  24-03-29 14:03:33[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
+WARN  24-03-29 14:03:33[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-03-29 14:03:34[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-03-29 14:03:34[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-03-29 14:03:34[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: postgres]
+INFO  24-03-29 14:03:34[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-03-29 14:03:34[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-03-29 14:03:34[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-03-29 14:03:34[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-03-29 14:03:35[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@4dc23273
+INFO  24-03-29 14:03:35[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+WARN  24-03-29 14:03:35[main] [deprecation:153] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-03-29 14:03:35[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-03-29 14:03:35[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-03-29 14:03:36[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-03-29 14:03:41[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-03-29 14:03:42[main] [GcClientApplicationTests:56] - Started GcClientApplicationTests in 24.219 seconds (process running for 29.077)
+INFO  24-03-29 14:03:42[boundedElastic-1] [ControllerUCRM:153] - Class : ControllerUCRM - Method : ReceiveMessage
+INFO  24-03-29 14:03:42[boundedElastic-1] [ControllerUCRM:163] - topic_id : campma
+INFO  24-03-29 14:03:42[boundedElastic-1] [ServiceWebClient:18] - ===== GetApiRequet =====
+INFO  24-03-29 14:03:44[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-03-29 14:03:44[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-03-29 14:03:44[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLM-hikari-pool - Shutdown initiated...
+INFO  24-03-29 14:03:44[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLM-hikari-pool - Shutdown completed.
+INFO  24-03-29 14:03:44[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-03-29 14:03:44[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLH-hikari-pool - Shutdown initiated...
+INFO  24-03-29 14:03:44[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLH-hikari-pool - Shutdown completed.
+INFO  24-03-29 14:03:44[SpringApplicationShutdownHook] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-03-29 14:03:44[SpringApplicationShutdownHook] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-03-29 16:58:02[main] [AnnotationConfigContextLoaderUtils:83] - Could not detect default configuration classes for test class [gc.apiClient.GcClientApplicationTests]: GcClientApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+INFO  24-03-29 16:58:03[main] [SpringBootTestContextBootstrapper:234] - Found @SpringBootConfiguration gc.apiClient.GcClientApplication for test class gc.apiClient.GcClientApplicationTests
+WARN  24-03-29 16:58:05[main] [DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer:78] - 
 
 Found multiple occurrences of org.json.JSONObject on the class path:
 
@@ -647,59 +160,59 @@ Found multiple occurrences of org.json.JSONObject on the class path:
 
 You may wish to exclude one of them to ensure predictable runtime behavior
 
-INFO  24-03-26 16:14:11[main] [GcClientApplicationTests:50] - Starting GcClientApplicationTests using Java 21.0.1 with PID 29668 (started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
-INFO  24-03-26 16:14:11[main] [GcClientApplicationTests:654] - No active profile set, falling back to 1 default profile: "default"
-INFO  24-03-26 16:14:13[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-INFO  24-03-26 16:14:13[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 338 ms. Found 8 JPA repository interfaces.
-INFO  24-03-26 16:14:13[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-INFO  24-03-26 16:14:14[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 65 ms. Found 8 JPA repository interfaces.
-INFO  24-03-26 16:14:14[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-INFO  24-03-26 16:14:14[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 30 ms. Found 4 JPA repository interfaces.
-INFO  24-03-26 16:14:15[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleH]
-INFO  24-03-26 16:14:16[main] [Version:44] - HHH000412: Hibernate ORM core version 6.4.1.Final
-INFO  24-03-26 16:14:16[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
-INFO  24-03-26 16:14:16[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
-WARN  24-03-26 16:14:16[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
-INFO  24-03-26 16:14:16[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
-WARN  24-03-26 16:14:16[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
-INFO  24-03-26 16:14:17[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@60a6840c
-INFO  24-03-26 16:14:17[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
-WARN  24-03-26 16:14:18[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-INFO  24-03-26 16:14:22[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-INFO  24-03-26 16:14:22[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
-INFO  24-03-26 16:14:22[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleM]
-INFO  24-03-26 16:14:23[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
-INFO  24-03-26 16:14:23[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
-WARN  24-03-26 16:14:23[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
-INFO  24-03-26 16:14:23[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
-WARN  24-03-26 16:14:23[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
-INFO  24-03-26 16:14:23[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@7e9d171c
-INFO  24-03-26 16:14:23[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
-WARN  24-03-26 16:14:23[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-INFO  24-03-26 16:14:24[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-INFO  24-03-26 16:14:24[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
-INFO  24-03-26 16:14:24[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: postgres]
-INFO  24-03-26 16:14:24[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
-INFO  24-03-26 16:14:24[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
-WARN  24-03-26 16:14:24[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
-INFO  24-03-26 16:14:24[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
-INFO  24-03-26 16:14:25[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@2812368
-INFO  24-03-26 16:14:25[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
-WARN  24-03-26 16:14:25[main] [deprecation:153] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-INFO  24-03-26 16:14:25[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-INFO  24-03-26 16:14:25[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
-INFO  24-03-26 16:14:26[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
-WARN  24-03-26 16:14:28[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-INFO  24-03-26 16:14:29[main] [GcClientApplicationTests:56] - Started GcClientApplicationTests in 18.375 seconds (process running for 22.376)
-INFO  24-03-26 16:14:29[boundedElastic-1] [ControllerUCRM:153] - Class : ControllerUCRM - Method : ReceiveMessage
-INFO  24-03-26 16:14:29[boundedElastic-1] [ControllerUCRM:163] - topic_id : campma
-INFO  24-03-26 16:14:29[boundedElastic-1] [ServiceWebClient:18] - ===== GetApiRequet =====
-INFO  24-03-26 16:14:31[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
-INFO  24-03-26 16:14:31[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleM'
-INFO  24-03-26 16:14:31[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLM-hikari-pool - Shutdown initiated...
-INFO  24-03-26 16:14:31[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLM-hikari-pool - Shutdown completed.
-INFO  24-03-26 16:14:31[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleH'
-INFO  24-03-26 16:14:31[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLH-hikari-pool - Shutdown initiated...
-INFO  24-03-26 16:14:31[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLH-hikari-pool - Shutdown completed.
-INFO  24-03-26 16:14:31[SpringApplicationShutdownHook] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
-INFO  24-03-26 16:14:31[SpringApplicationShutdownHook] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-03-29 16:58:05[main] [GcClientApplicationTests:50] - Starting GcClientApplicationTests using Java 21.0.1 with PID 27804 (started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+INFO  24-03-29 16:58:05[main] [GcClientApplicationTests:654] - No active profile set, falling back to 1 default profile: "default"
+INFO  24-03-29 16:58:08[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-03-29 16:58:08[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 376 ms. Found 8 JPA repository interfaces.
+INFO  24-03-29 16:58:08[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-03-29 16:58:08[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 71 ms. Found 8 JPA repository interfaces.
+INFO  24-03-29 16:58:08[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-03-29 16:58:08[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 31 ms. Found 4 JPA repository interfaces.
+INFO  24-03-29 16:58:11[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleH]
+INFO  24-03-29 16:58:11[main] [Version:44] - HHH000412: Hibernate ORM core version 6.4.1.Final
+INFO  24-03-29 16:58:11[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-03-29 16:58:12[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-03-29 16:58:12[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-03-29 16:58:12[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
+WARN  24-03-29 16:58:12[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-03-29 16:58:14[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@60a6840c
+INFO  24-03-29 16:58:14[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
+WARN  24-03-29 16:58:14[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-03-29 16:58:19[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-03-29 16:58:19[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-03-29 16:58:19[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleM]
+INFO  24-03-29 16:58:19[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-03-29 16:58:19[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-03-29 16:58:19[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-03-29 16:58:19[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
+WARN  24-03-29 16:58:19[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-03-29 16:58:19[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@6c2d124e
+INFO  24-03-29 16:58:19[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
+WARN  24-03-29 16:58:19[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-03-29 16:58:20[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-03-29 16:58:20[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-03-29 16:58:20[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: postgres]
+INFO  24-03-29 16:58:20[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-03-29 16:58:20[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-03-29 16:58:20[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-03-29 16:58:20[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-03-29 16:58:21[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@7bd6c35e
+INFO  24-03-29 16:58:21[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+WARN  24-03-29 16:58:21[main] [deprecation:153] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-03-29 16:58:21[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-03-29 16:58:21[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-03-29 16:58:22[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-03-29 16:58:24[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-03-29 16:58:25[main] [GcClientApplicationTests:56] - Started GcClientApplicationTests in 21.473 seconds (process running for 27.521)
+INFO  24-03-29 16:58:25[boundedElastic-1] [ControllerUCRM:153] - Class : ControllerUCRM - Method : ReceiveMessage
+INFO  24-03-29 16:58:25[boundedElastic-1] [ControllerUCRM:163] - topic_id : campma
+INFO  24-03-29 16:58:25[boundedElastic-1] [ServiceWebClient:18] - ===== GetApiRequet =====
+INFO  24-03-29 16:58:27[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-03-29 16:58:27[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-03-29 16:58:27[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLM-hikari-pool - Shutdown initiated...
+INFO  24-03-29 16:58:27[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLM-hikari-pool - Shutdown completed.
+INFO  24-03-29 16:58:27[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-03-29 16:58:27[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLH-hikari-pool - Shutdown initiated...
+INFO  24-03-29 16:58:27[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLH-hikari-pool - Shutdown completed.
+INFO  24-03-29 16:58:28[SpringApplicationShutdownHook] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-03-29 16:58:28[SpringApplicationShutdownHook] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.

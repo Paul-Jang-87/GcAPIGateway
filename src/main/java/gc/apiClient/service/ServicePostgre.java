@@ -59,8 +59,9 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	@Override
 	public Entity_CampRt createCampRtMsg(String cpid) {// contactid(고객키)|contactListId|didt|dirt|cpid
 
-		log.info("===== createCampRtMsg =====");
-
+		log.info("====== Class : ServicePostgre & Method : createCampRtMsg ======");
+		
+		log.info("(cpid붙여서)들어온 rs : {}",cpid);
 		Entity_CampRt enCampRt = new Entity_CampRt();
 		CampRt id = new CampRt();
 		String parts[] = cpid.split("::");
@@ -77,6 +78,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		String tkda = "";
 		Date didt = null;
 
+		log.info("------ 들어온 rs를 분배해여 필요한 변수들 초기화 ------");
 		log.info("rlsq: {}", rlsq);
 		log.info("coid: {}", coid);
 		log.info("cpsq: {}", cpsq);
@@ -88,21 +90,27 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		log.info("contactId: {}", contactId);
 		log.info("tkda: {}", tkda);
 		log.info("didt: {}", didt);
+		log.info("------ 들어온 rs를 분배해여 필요한 변수들 초기화 끝------");
 
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
 		enContactLt = findContactLtByCske(contactId);
 
 		tkda = enContactLt.getTkda();
+		log.info("contactId({})로 조회한 레코드의 token data : {}",contactId,tkda);
+		
 
 		if (tkda.charAt(0) == 'C') {
 			hubId = Integer.parseInt(enContactLt.getTkda().split(",")[1]);
+			log.info("contactId({})로 조회한 레코드의 HubID : {}",contactId,hubId);
 		} else if (tkda.charAt(0) == 'A') {
 			cpsq = Integer.parseInt(enContactLt.getTkda().split("\\|\\|")[5]);
+			log.info("contactId({})로 조회한 레코드의 campaign sequence  : {}",contactId,cpsq);
 		} else {
 		}
 
 		SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
 		try {
+			log.info("didt(포맷 변경 전) : {}",parts[2]);
 			Date parsedDate = inputFormat.parse(parts[2]);
 
 			// Formatting the parsed date to the desired format
@@ -110,13 +118,16 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			String formattedDateString = outputFormat.format(parsedDate);
 			Date formattedDate = outputFormat.parse(formattedDateString);
 			didt = formattedDate;
+			log.info("didt(포맷 변경 후) : {}",didt);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 
+		log.info("dirt(맵핑 전) : {}",parts[3]);
 		Map<String, String> properties = customProperties.getProperties();
 		dirt = Integer.parseInt(properties.getOrDefault(parts[3], "6"));
-
+		log.info("dirt(맵핑 후) : {}",dirt);
+		
 		ServiceWebClient crmapi1 = new ServiceWebClient();
 		String result = crmapi1.GetStatusApiRequet("campaign_stats", campid);
 		ServiceJson sv = new ServiceJson();
@@ -126,10 +137,13 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 		enCampMa = findCampMaByCpid(campid);
 		coid = enCampMa.getCoid();
+		log.info("campid({})로 조회한 레코드의 coid : {}",campid,coid);
 
 		rlsq = findCampRtMaxRlsq().intValue();
+		log.info("camprt테이블에서 현재 가장 큰 rlsq 값 : {}",rlsq);
 		rlsq++;
-
+		log.info("가져온 rlsq의 값에 +1 : {}",rlsq++);
+		
 		id.setRlsq(rlsq);
 		id.setCoid(coid);
 		enCampRt.setId(id);
@@ -143,6 +157,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		enCampRt.setDirt(dirt);
 		enCampRt.setDict(dict);
 
+		log.info("------ return 하기 전 변수들의 최종 값 확인 ------");
 		log.info("rlsq: {}", rlsq);
 		log.info("coid: {}", coid);
 		log.info("campid: {}", campid);
@@ -154,14 +169,15 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		log.info("didt: {}", didt);
 		log.info("dirt: {}", dirt);
 		log.info("dict: {}", dict);
+		log.info("------ return 하기 전 변수들의 최종 값 확인 ------");
 
+		log.info("===== End createCampRtMsg =====");
+		
 		return enCampRt;
 	}
 
 	@Override
 	public Entity_CampRtJson createCampRtJson(Entity_CampRt enCampRt) {// contactid(고객키)::contactListId::didt::dirt::cpid
-
-		log.info("===== createCampRtJson =====");
 
 		Entity_CampRtJson enCampRtJson = new Entity_CampRtJson();
 		

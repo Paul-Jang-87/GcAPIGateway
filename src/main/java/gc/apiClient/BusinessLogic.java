@@ -77,6 +77,10 @@ public class BusinessLogic {
 
 	public static Map<String, String> SelectedBusiness(Character tkda ,String divisionName) {
 		
+		log.info("====== Class : BusinessLogic - Method : SelectedBusiness ======");
+		log.info("tkda : {}", tkda);
+		log.info("divisionName : {}", divisionName);
+		
 		businesslogic = new HashMap<String, String>();
 		String topic_id = "";
 		String business = "";
@@ -117,7 +121,11 @@ public class BusinessLogic {
 			businesslogic.put("topic_id", topic_id);
 			
 		}
-			
+		
+		log.info("business : {}", business);
+		log.info("topic_id : {}", topic_id);
+		
+		log.info("===== END SelectedBusiness =====");
 		return businesslogic;
 	}
 

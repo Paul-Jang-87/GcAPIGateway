@@ -6,7 +6,7 @@ public interface InterfaceJson  {//defult로 해놓으면 InterfaceJson을 다�
 	  default String ExtractVal(String stringMsg) {
 		  return "";
 	  }
-	  default String ExtractValCrm12(String stringMsg) {
+	  default String ExtractValCrm12(String stringMsg, int size) {
 		  return "";
 	  }
 	  
@@ -38,6 +38,8 @@ public interface InterfaceJson  {//defult로 해놓으면 InterfaceJson을 다�
 	  default String ExtractCampMaUpdateOrDel(String stringMsg) {
 		  return "";
 	  }
+	  
+	  int CampaignListSize(String stringMsg);
 	  
 	  
 }

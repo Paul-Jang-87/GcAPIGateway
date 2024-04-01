@@ -25,12 +25,10 @@ import gc.apiClient.entity.Entity_ContactltMapper;
 import gc.apiClient.entity.postgresql.Entity_CampMa;
 import gc.apiClient.entity.postgresql.Entity_CampRt;
 import gc.apiClient.entity.postgresql.Entity_ContactLt;
-import gc.apiClient.entity.postgresql.Entity_MapCoId;
 import gc.apiClient.interfaceCollection.InterfaceDBPostgreSQL;
 import gc.apiClient.repository.postgresql.Repository_CampMa;
 import gc.apiClient.repository.postgresql.Repository_CampRt;
 import gc.apiClient.repository.postgresql.Repository_ContactLt;
-import gc.apiClient.repository.postgresql.Repository_MapCoId;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -39,17 +37,16 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	// 검색 **Create **Insert **Select
 	private final Repository_CampRt repositoryCampRt;
 	private final Repository_CampMa repositoryCampMa;
-	private final Repository_MapCoId repositoryMapCoid;
 	private final Repository_ContactLt repositoryContactLt;
 	private final CustomProperties customProperties;
 
-	public ServicePostgre(Repository_CampRt repositoryCampRt, Repository_CampMa repositoryCampMa,
-			Repository_ContactLt repositoryContactLt, Repository_MapCoId repositoryMapCoid,
+	public ServicePostgre(Repository_CampRt repositoryCampRt, 
+			Repository_CampMa repositoryCampMa,
+			Repository_ContactLt repositoryContactLt, 
 			CustomProperties customProperties) {
 
 		this.repositoryCampRt = repositoryCampRt;
 		this.repositoryCampMa = repositoryCampMa;
-		this.repositoryMapCoid = repositoryMapCoid;
 		this.repositoryContactLt = repositoryContactLt;
 		this.customProperties = customProperties;
 	}
@@ -457,18 +454,6 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		}
 	}
 
-	@Override
-	public Entity_MapCoId findMapcoidByCpid(String cpid) {
-
-		try {
-			Optional<Entity_MapCoId> optionalEntity = repositoryMapCoid.findByCpid(cpid);
-			return optionalEntity.orElse(null);
-		} catch (IncorrectResultSizeDataAccessException ex) {
-			log.error("Error retrieving Entity_MapCoId by cpid: {}", cpid, ex);
-
-			return null;
-		}
-	}
 
 	@Override
 	public Integer findCampRtMaxRlsq() {
@@ -543,6 +528,13 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		public MyCustomDataAccessException(String message, Throwable cause) {
 			super(message, cause);
 		}
+	}
+
+	
+	@Override
+	public int getRecordCount() {
+		log.info("Campma 테이블 레코드 수 : {}",repositoryCampMa.countBy());
+		return repositoryCampMa.countBy();
 	}
 
 }

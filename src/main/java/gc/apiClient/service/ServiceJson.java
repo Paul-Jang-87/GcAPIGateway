@@ -45,7 +45,7 @@ public class ServiceJson implements InterfaceJson {
 	}
 
 	@Override
-	public String ExtractValCrm12(String stringMsg) {// IF-CRM_001,IF-CRM_002에서 사용하기 위한 추출함수.
+	public String ExtractValCrm12(String stringMsg,int i) {// IF-CRM_001,IF-CRM_002에서 사용하기 위한 추출함수.
 		
 		String jsonResponse = stringMsg;
 
@@ -54,13 +54,16 @@ public class ServiceJson implements InterfaceJson {
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode jsonNode = null;
 		String result = "";
+		log.info("메세지 : {}",jsonResponse);
 
 		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
-			result = jsonNode.path("entities").path(0).path("id").asText();
-			result = result + "::" + jsonNode.path("entities").path(0).path("name").asText();
-			result = result + "::" + jsonNode.path("entities").path(0).path("division").path("name").asText();
-
+			result = result +"::"+jsonNode.path("entities").path(i).path("id").asText();
+			String coid = jsonNode.path("entities").path(i).path("contactList").path("name").asText().split("-")[0];
+			String cpnm = jsonNode.path("entities").path(i).path("contactList").path("name").asText().split("-")[1];
+			result = result + "::" + coid;
+			result = result + "::" + cpnm;
+			result = result + "::" + jsonNode.path("entities").path(i).path("division").path("name").asText();
 		} catch (JsonMappingException e) {
 			e.printStackTrace();
 		} catch (JsonProcessingException e) {
@@ -69,6 +72,32 @@ public class ServiceJson implements InterfaceJson {
 		
 		log.info("result : {}",result);
 		log.info("====== END ExtractValCrm12 ======");
+		return result;
+	}
+	
+	
+	@Override
+	public int CampaignListSize(String stringMsg) {
+		String jsonResponse = stringMsg;
+
+		log.info(" ");
+		log.info("====== ClassName : ServiceJson & Method : CampaignListSize ======");
+		ObjectMapper objectMapper = new ObjectMapper();
+		JsonNode jsonNode = null;
+		int result = 0;
+
+		try {
+			jsonNode = objectMapper.readTree(jsonResponse);
+			result = Integer.parseInt(jsonNode.path("total").asText());
+
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+		log.info("캠페인 리스트 사이즈 : {}",result);
+		log.info("====== END CampaignListSize ======");
 		return result;
 	}
 	
@@ -87,7 +116,10 @@ public class ServiceJson implements InterfaceJson {
 		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
 			result = jsonNode.path("detail").path("eventBody").path("id").asText();
-			result = result + "::" + jsonNode.path("detail").path("eventBody").path("name").asText();
+			String coid = jsonNode.path("detail").path("eventBody").path("name").asText().split("-")[0];
+			String cpnm = jsonNode.path("detail").path("eventBody").path("name").asText().split("-")[1];
+			result = result + "::" + coid;
+			result = result + "::" + cpnm;
 			result = result + "::" + jsonNode.path("detail").path("eventBody").path("division").path("id").asText();
 			result = result + "::" + jsonNode.path("detail").path("metadata").path("action").asText();
 
@@ -106,7 +138,7 @@ public class ServiceJson implements InterfaceJson {
 	@Override
 	public String ExtractValCrm34(String stringMsg) {// IF-CRM_003,IF-CRM_004에서 사용하기 위한 추출함수.
 
-		log.info("===== ExtractValCrm34 =====");
+		log.info("====== ExtractValCrm34 ======");
 		
 		String jsonResponse = stringMsg;
 
@@ -278,5 +310,7 @@ public class ServiceJson implements InterfaceJson {
 		return result;
 
 	}
+
+	
 	
 }

@@ -21,7 +21,7 @@ public class ServiceWebClient implements InterfaceWebClient {
 		String result = "";
 
 		WebClientApp webClient = new WebClientApp(endpoint, "GET");
-		result = webClient.makeApiRequest();
+		result = webClient.makeApiRequest("sortBy","dateCreated","sortOrder","descending");
 
 		log.info("GetApiRequet 요청 후 결과 값 : {}",result);
 		log.info("====== End GetApiRequet ======");

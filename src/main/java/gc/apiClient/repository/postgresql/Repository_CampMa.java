@@ -10,4 +10,5 @@ import gc.apiClient.entity.postgresql.Entity_CampMa;
 @Repository
 public interface Repository_CampMa extends CrudRepository<Entity_CampMa , String> {
 	 Optional<Entity_CampMa> findByCpid(String cpid);
+	 int countBy();
 }

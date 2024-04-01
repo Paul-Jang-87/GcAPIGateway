@@ -1,24 +1,15 @@
-ERROR 24-03-21 14:46:36[reactor-http-nio-2] [MessageTo360View:29] - Error making API request: 404 Not Found from POST http://localhost:8081/360view/firsttopic
-ERROR 24-03-21 14:46:37[reactor-http-nio-3] [MessageTo360View:29] - Error making API request: 404 Not Found from POST http://localhost:8081/360view/firsttopic
-ERROR 24-03-21 14:50:06[reactor-http-nio-4] [MessageTo360View:29] - Error making API request: 500 Internal Server Error from POST http://localhost:8081/360view/firsttopic
-ERROR 24-03-21 14:50:06[reactor-http-nio-5] [MessageTo360View:29] - Error making API request: 500 Internal Server Error from POST http://localhost:8081/360view/firsttopic
-ERROR 24-03-21 14:51:38[reactor-http-nio-6] [MessageTo360View:29] - Error making API request: 500 Internal Server Error from POST http://localhost:8081/360view/firsttopic
-ERROR 24-03-21 14:51:38[reactor-http-nio-7] [MessageTo360View:29] - Error making API request: 500 Internal Server Error from POST http://localhost:8081/360view/firsttopic
-ERROR 24-03-26 15:58:25[reactor-http-nio-11] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-26 15:58:25[reactor-http-nio-14] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-26 15:58:25[reactor-http-nio-13] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-26 15:58:25[reactor-http-nio-16] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-26 15:58:25[reactor-http-nio-5] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-26 15:58:25[reactor-http-nio-15] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-26 15:58:25[reactor-http-nio-11] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-26 15:58:25[reactor-http-nio-9] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-26 15:58:25[reactor-http-nio-14] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-26 15:58:25[reactor-http-nio-13] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-26 15:58:25[reactor-http-nio-15] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-26 15:58:25[reactor-http-nio-16] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-26 15:58:25[reactor-http-nio-5] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-26 15:58:25[reactor-http-nio-7] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-26 15:58:25[reactor-http-nio-7] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-26 15:58:25[reactor-http-nio-7] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-26 15:58:25[reactor-http-nio-9] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-03-26 15:58:25[reactor-http-nio-11] [MessageTo360View:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-01 14:43:10[boundedElastic-1] [Operators:324] - Operator called default onErrorDropped
+reactor.core.Exceptions$ErrorCallbackNotImplemented: java.lang.ArrayIndexOutOfBoundsException: Index 1 out of bounds for length 1
+Caused by: java.lang.ArrayIndexOutOfBoundsException: Index 1 out of bounds for length 1
+	at gc.apiClient.service.ServiceJson.ExtractValCrm12(ServiceJson.java:62)
+	at gc.apiClient.controller.ControllerUCRM.ReceiveMessage(ControllerUCRM.java:172)
+	at gc.apiClient.controller.ControllerUCRM.lambda$scheduledMethod$0(ControllerUCRM.java:80)
+	at reactor.core.publisher.MonoCallable.call(MonoCallable.java:72)
+	at reactor.core.publisher.FluxSubscribeOnCallable$CallableSubscribeOnSubscription.run(FluxSubscribeOnCallable.java:228)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:68)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:28)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)

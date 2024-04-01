@@ -77,9 +77,9 @@ public class ControllerUCRM extends ServiceJson {
 	@Scheduled(fixedRate = 60000)
 	public void scheduledMethod() {
 		
-		Mono.fromCallable(() -> ReceiveMessage("campma"))
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
+//		Mono.fromCallable(() -> ReceiveMessage("campma"))
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
 		
 //		Mono.fromCallable(() -> Msg360Datacall())
 //        .subscribeOn(Schedulers.boundedElastic())
@@ -117,9 +117,9 @@ public class ControllerUCRM extends ServiceJson {
 //        .subscribeOn(Schedulers.boundedElastic())
 //        .subscribe();
 //		
-//		Mono.fromCallable(() -> Msg360MWaDataCallOptional())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
+		Mono.fromCallable(() -> Msg360MWaDataCallOptional())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
 //		
 //		Mono.fromCallable(() -> Msg360MWaDataCallTrace())
 //        .subscribeOn(Schedulers.boundedElastic())

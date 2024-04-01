@@ -59,6 +59,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	@Override
 	public Entity_CampRt createCampRtMsg(String cpid) {// contactid(고객키)|contactListId|didt|dirt|cpid
 
+		log.info(" ");
 		log.info("====== Class : ServicePostgre & Method : createCampRtMsg ======");
 		
 		log.info("(cpid붙여서)들어온 rs : {}",cpid);
@@ -93,7 +94,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		log.info("------ 들어온 rs를 분배해여 필요한 변수들 초기화 끝------");
 
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
-		enContactLt = findContactLtByCske(contactId);
+		enContactLt = findContactLtByCske("8226437762");
 
 		tkda = enContactLt.getTkda();
 		log.info("contactId({})로 조회한 레코드의 token data : {}",contactId,tkda);
@@ -142,7 +143,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		rlsq = findCampRtMaxRlsq().intValue();
 		log.info("camprt테이블에서 현재 가장 큰 rlsq 값 : {}",rlsq);
 		rlsq++;
-		log.info("가져온 rlsq의 값에 +1 : {}",rlsq++);
+		log.info("가져온 rlsq의 값에 +1 : {}",rlsq);
 		
 		id.setRlsq(rlsq);
 		id.setCoid(coid);
@@ -151,7 +152,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		enCampRt.setContactid(contactId);
 		enCampRt.setCpid(campid);
 		enCampRt.setTkda(tkda);
-		enCampRt.setCpsq(cpsq);
+		enCampRt.setCamp_seq(cpsq);
 		enCampRt.setHubid(hubId);
 		enCampRt.setDidt(didt);
 		enCampRt.setDirt(dirt);

@@ -12,6 +12,7 @@ public class BusinessLogic {
 
 	public static Map<String, String> SelectedBusiness(String division) {
 
+		log.info(" ");
 		log.info("====== Class : BusinessLogic - Method : SelectedBusiness ======");
 		log.info("division : {}", division);
 
@@ -77,6 +78,7 @@ public class BusinessLogic {
 
 	public static Map<String, String> SelectedBusiness(Character tkda ,String divisionName) {
 		
+		log.info(" ");
 		log.info("====== Class : BusinessLogic - Method : SelectedBusiness ======");
 		log.info("tkda : {}", tkda);
 		log.info("divisionName : {}", divisionName);

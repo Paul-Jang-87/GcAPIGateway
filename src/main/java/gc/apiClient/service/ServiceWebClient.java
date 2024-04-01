@@ -15,7 +15,8 @@ public class ServiceWebClient implements InterfaceWebClient {
 	@Override
 	public String GetApiRequet(String endpoint) {
 
-		log.info("===== GetApiRequet =====");
+		log.info(" ");
+		log.info("====== ClassName : ServiceWebClient & Method : GetApiRequet ======");
 		
 		String result = "";
 
@@ -23,7 +24,7 @@ public class ServiceWebClient implements InterfaceWebClient {
 		result = webClient.makeApiRequest();
 
 		log.info("GetApiRequet 요청 후 결과 값 : {}",result);
-
+		log.info("====== End GetApiRequet ======");
 		return result;
 	}
 	
@@ -46,6 +47,7 @@ public class ServiceWebClient implements InterfaceWebClient {
 	@Override
 	public String GetStatusApiRequet(String endpoint, String campaignId) {
 
+		log.info(" ");
 		log.info("====== ClassName : ServiceWebClient & Method : GetStatusApiRequet ======");
 		log.info("Endpoint : {} => {}",endpoint,"/api/v2/outbound/campaigns/{campaignId}/stats");
 		log.info("campaignId : {}",campaignId);
@@ -64,7 +66,8 @@ public class ServiceWebClient implements InterfaceWebClient {
 	@Override // "/api/v2/outbound/campaigns/{campaignId}"
 	public String GetCampaignsApiRequet(String endpoint, String campaignId) {// path parameter 'campaignId'
 
-		log.info("===== GetCampaignsApiRequet =====");
+		log.info(" ");
+		log.info("====== ClassName : ServiceWebClient & Method : GetCampaignsApiRequet ======");
 		
 		String result = "";
 
@@ -73,6 +76,7 @@ public class ServiceWebClient implements InterfaceWebClient {
 
 		log.info("GetStatusApiRequet 요청 후 결과 값 : {}",result);
 
+		log.info("====== End GetCampaignsApiRequet ======");
 		return result;
 	}
 
@@ -111,6 +115,7 @@ public class ServiceWebClient implements InterfaceWebClient {
 	@Override // "/api/v2/outbound/contactlists/{contactListId}/contacts/bulk"
 	public String PostContactLtApiBulk(String endpoint, String contactListId, List<String> cskes) {// path parameter
 		
+		log.info(" ");
 		log.info("====== ClassName : ServiceWebClient & Method : PostContactLtApiBulk ======");
 		
 		String result = "";
@@ -122,7 +127,7 @@ public class ServiceWebClient implements InterfaceWebClient {
 		result = webClient.makeApiRequest56(contactListId, cskes);
 
 		log.info("PostContactLtApiBulk 요청 후 결과 값 result : {}",result);
-		log.info("===== End PostContactLtApiBulk =====");
+		log.info("====== End PostContactLtApiBulk ======");
 		return result;
 	}
 

@@ -49,7 +49,8 @@ public class ServiceJson implements InterfaceJson {
 		
 		String jsonResponse = stringMsg;
 
-		log.info("===== ExtractValCrm12 =====");
+		log.info(" ");
+		log.info("====== ClassName : ServiceJson & Method : ExtractValCrm12 ======");
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode jsonNode = null;
 		String result = "";
@@ -67,7 +68,7 @@ public class ServiceJson implements InterfaceJson {
 		}
 		
 		log.info("result : {}",result);
-		log.info("===== END ExtractValCrm12 =====");
+		log.info("====== END ExtractValCrm12 ======");
 		return result;
 	}
 	
@@ -77,7 +78,8 @@ public class ServiceJson implements InterfaceJson {
 		
 		String jsonResponse = stringMsg;
 
-		log.info("===== ExtractCampMaUpdateOrDel =====");
+		log.info(" ");
+		log.info("====== ClassName : ServiceJson & Method : ExtractCampMaUpdateOrDel ======");
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode jsonNode = null;
 		String result = "";
@@ -96,7 +98,7 @@ public class ServiceJson implements InterfaceJson {
 		}
 		
 		log.info("result : {}",result);
-		log.info("===== END ExtractCampMaUpdateOrDel =====");
+		log.info("====== END ExtractCampMaUpdateOrDel ======");
 		return result;
 	}
 	
@@ -137,7 +139,8 @@ public class ServiceJson implements InterfaceJson {
 	@Override
 	public String ExtractVal56(String stringMsg) {// IF-CRM_005,IF-CRM_006에서 사용하기 위한 추출함수.
 		
-		log.info("===== ClassName : 'ServiceJson' & Method : 'ExtractVal56' =====");
+		log.info(" ");
+		log.info("====== ClassName : ServiceJson & Method : ExtractVal56 ======");
 		log.info("Incoming Message : {}",stringMsg);
 
 		String jsonResponse = stringMsg;
@@ -158,7 +161,7 @@ public class ServiceJson implements InterfaceJson {
 			e.printStackTrace();
 		}
 		log.info("result : {}", result); // campaignid, contactlistid, division 추출
-		log.info("===== End ExtractVal56 =====");
+		log.info("====== End ExtractVal56 ======");
 
 		return result;
 	}
@@ -167,7 +170,8 @@ public class ServiceJson implements InterfaceJson {
 	@Override
 	public String ExtractContacts56(String stringMsg ,int i) {// IF-CRM_005,IF-CRM_006에서 사용하기 위한 추출함수.
 
-		log.info("===== ClassName : 'ServiceJson' & Method : 'ExtractContacts56' =====");
+		log.info(" ");
+		log.info("====== ClassName : ServiceJson & Method : ExtractContacts56 ======");
 		log.info("들어온 {}번째 결과 값 result : {}",i,stringMsg);
 		String jsonResponse = stringMsg;
 
@@ -201,6 +205,7 @@ public class ServiceJson implements InterfaceJson {
 	@Override
 	public int ExtractDict(String stringMsg) {
 
+		log.info(" ");
 		log.info("====== ClassName : ServiceJson & Method : ExtractDict ======");
 		log.info("GetStatusApiRequet 요청 후 ExtractDict로 들어온 rs : {}",stringMsg);
 		String jsonResponse = stringMsg;

@@ -11,7 +11,8 @@ public class MessageToProducer {
 	
 	public void sendMsgToProducer (String towhere, String jsonString) {
 		
-		log.info("====== ClassName : 'MessageToProducer' & Method : 'sendMsgToProducer' ======");
+		log.info(" ");
+		log.info("====== ClassName : MessageToProducer & Method : sendMsgToProducer ======");
 		log.info("Producer로 보낼 EndPoint : {}",towhere);
 		log.info("Producer로 보낼 Message : {}",jsonString);
 		

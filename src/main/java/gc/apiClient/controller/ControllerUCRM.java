@@ -150,7 +150,8 @@ public class ControllerUCRM extends ServiceJson {
 	@GetMapping("/gcapi/get/{topic}")
 	public Mono<Void> ReceiveMessage(@PathVariable("topic") String tranId) {
 
-		log.info("Class : ControllerUCRM - Method : ReceiveMessage");
+		log.info(" ");
+		log.info("====== Class : ControllerUCRM - Method : ReceiveMessage ======");
 		String row_result = "";
 		String result = "";
 		String cpid = "";
@@ -312,7 +313,8 @@ public class ControllerUCRM extends ServiceJson {
 	@PostMapping("/gcapi/post/{topic}")
 	public Mono<Void> receiveMessage(@PathVariable("topic") String tranId, @RequestBody String msg) {
 
-		log.info("Class : ControllerUCRM - Method : receiveMessage");
+		log.info(" ");
+		log.info("====== Class : ControllerUCRM - Method : receiveMessage ======");
 		String row_result = "";
 		String result = "";
 		String cpid = "";
@@ -419,7 +421,8 @@ public class ControllerUCRM extends ServiceJson {
 			// 담는다.
 			List<String> values = new ArrayList<String>();
 			for (int i = 0; i < enContactList.size(); i++) {
-				values.add(enContactList.get(i).getCske());
+//				values.add(enContactList.get(i).getCske());
+				values.add("0b241f9bef1df80679bfba58582c8505");
 			}
 
 			// contactLtId를 키로 하여 제네시스의 api를 호출한다. 호출할 때는 values리스트 담겨져 있던 cske(고객키)들 각각에 맞는

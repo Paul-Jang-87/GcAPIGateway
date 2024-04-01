@@ -18,7 +18,7 @@ public class Entity_CampRt {
 	@EmbeddedId
     private CampRt id;
 	
-	@Column(name = "CONTACTID_LIST_ID")
+	@Column(name = "CONTACT_LIST_ID")
 	private String contactLtId;
 	
 	@Column(name = "CONTACT_ID")
@@ -27,8 +27,8 @@ public class Entity_CampRt {
 	@Column(name = "IBM_SLTN_CNTA_HUB_ID")
 	private int hubid;
 	
-	@Column(name = "CPSQ")
-	private int cpsq;
+	@Column(name = "CAMP_SEQ")
+	private int camp_seq;
 	
 	@Column(name = "DIRT")
 	private int dirt;

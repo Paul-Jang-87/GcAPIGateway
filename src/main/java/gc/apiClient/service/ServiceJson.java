@@ -58,7 +58,7 @@ public class ServiceJson implements InterfaceJson {
 
 		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
-			result = result +"::"+jsonNode.path("entities").path(i).path("id").asText();
+			result = jsonNode.path("entities").path(i).path("id").asText();
 			String coid = jsonNode.path("entities").path(i).path("contactList").path("name").asText().split("-")[0];
 			String cpnm = jsonNode.path("entities").path(i).path("contactList").path("name").asText().split("-")[1];
 			result = result + "::" + coid;

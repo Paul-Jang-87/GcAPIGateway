@@ -78,9 +78,9 @@ public class ControllerUCRM extends ServiceJson {
 	@Scheduled(fixedRate = 60000)
 	public void scheduledMethod() {
 		
-//		Mono.fromCallable(() -> ReceiveMessage("campma"))
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
+		Mono.fromCallable(() -> ReceiveMessage("campma"))
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
 		
 //		Mono.fromCallable(() -> Msg360Datacall())
 //        .subscribeOn(Schedulers.boundedElastic())
@@ -155,6 +155,7 @@ public class ControllerUCRM extends ServiceJson {
 		log.info("====== Class : ControllerUCRM - Method : ReceiveMessage ======");
 		String row_result = "";
 		String result = "";
+		String cpid = "";
 		String topic_id = tranId;
 		String division = "";
 		String business = "";
@@ -182,9 +183,7 @@ public class ControllerUCRM extends ServiceJson {
 				log.info("{}번 반복",reps);
 				while (reps --> 0 ) {
 					log.info("{}번째 인덱스 ",reps);
-					row_result = ExtractValCrm12(result,reps); // cpid::coid::cpna::division -> 캠페인아이디::캠페인명::디비전
-					
-					int coid = Integer.parseInt(row_result.split("::")[1]);
+					row_result = ExtractValCrm12(result,reps); // cpid::coid::cpna::division -> 캠페인아이디::테넌트아이디::캠페인명::디비전
 					division = row_result.split("::")[3];
 					
 					Map<String, String> businessLogic = BusinessLogic.SelectedBusiness(division);
@@ -192,7 +191,6 @@ public class ControllerUCRM extends ServiceJson {
 					business = businessLogic.get("business");
 					topic_id = businessLogic.get("topic_id");
 					
-					row_result = row_result + "::" + coid;
 					Entity_CampMa enCampMa = serviceDb.createCampMaMsg(row_result, "insert");
 					
 					

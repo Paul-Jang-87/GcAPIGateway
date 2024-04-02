@@ -219,9 +219,10 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
-	public Entity_CampMa createCampMaMsg(String msg, String crudtype) { 
+	public Entity_CampMa createCampMaMsg(String msg, String crudtype) { // cpid::coid::cpna::division
 
-		log.info("===== createCampMaMsg =====");
+		log.info(" ");
+		log.info("====== ClassName : ServicePostgre & Method : createCampMaMsg ======");
 		
 		Entity_CampMa enCampMa = new Entity_CampMa();
 		String parts[] = msg.split("::");
@@ -233,21 +234,21 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		case "insert":
 			log.info("action type : {}", crudtype);
 			cpid = parts[0];// 캠페인 아이디
-			coid = Integer.parseInt(parts[3]); // 센터구분 코드
-			cpna = parts[1]; // 캠페인 명
+			coid = Integer.parseInt(parts[1]); // 센터구분 코드
+			cpna = parts[3]; // 캠페인 명
 			break;
 			
 		case "update": //cpid::cpna::divisionid::action::coid
 			log.info("action type : {}", crudtype);
 			cpid = "";
 			coid = 0;
-			cpna = parts[1]; // 캠페인 명
+			cpna = parts[2]; // 캠페인 명
 			break;
 			
 		default: //cpid::cpna::divisionid::action::coid
 			log.info("action type : {}", crudtype);
 			cpid = parts[0];// 캠페인 아이디
-			coid = Integer.parseInt(parts[4]); // 센터구분 코드
+			coid = Integer.parseInt(parts[1]); // 센터구분 코드
 			cpna = "";
 			break;
 		}

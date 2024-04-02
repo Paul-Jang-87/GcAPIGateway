@@ -1306,3 +1306,205 @@ WARN  24-04-01 17:33:09[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - s
 INFO  24-04-01 17:33:09[main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8083"]
 INFO  24-04-01 17:33:09[main] [TomcatWebServer:241] - Tomcat started on port 8083 (http) with context path ''
 INFO  24-04-01 17:33:09[main] [GcClientApplication:56] - Started GcClientApplication in 24.481 seconds (process running for 28.398)
+INFO  24-04-01 17:36:17[main] [AnnotationConfigContextLoaderUtils:83] - Could not detect default configuration classes for test class [gc.apiClient.GcClientApplicationTests]: GcClientApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+INFO  24-04-01 17:36:17[main] [SpringBootTestContextBootstrapper:234] - Found @SpringBootConfiguration gc.apiClient.GcClientApplication for test class gc.apiClient.GcClientApplicationTests
+WARN  24-04-01 17:36:18[main] [DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer:78] - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/org/json/json/20210307/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+INFO  24-04-01 17:36:18[main] [GcClientApplicationTests:50] - Starting GcClientApplicationTests using Java 21.0.1 with PID 5300 (started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+INFO  24-04-01 17:36:18[main] [GcClientApplicationTests:654] - No active profile set, falling back to 1 default profile: "default"
+INFO  24-04-01 17:36:20[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-01 17:36:20[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 327 ms. Found 8 JPA repository interfaces.
+INFO  24-04-01 17:36:20[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-01 17:36:20[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 66 ms. Found 8 JPA repository interfaces.
+INFO  24-04-01 17:36:20[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-01 17:36:20[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 33 ms. Found 3 JPA repository interfaces.
+INFO  24-04-01 17:36:24[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleH]
+INFO  24-04-01 17:36:24[main] [Version:44] - HHH000412: Hibernate ORM core version 6.4.1.Final
+INFO  24-04-01 17:36:24[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-04-01 17:36:26[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-01 17:36:26[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-01 17:36:26[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
+WARN  24-04-01 17:36:26[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-04-01 17:36:27[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@19f497aa
+INFO  24-04-01 17:36:27[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
+WARN  24-04-01 17:36:28[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-04-01 17:36:32[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-04-01 17:36:32[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-04-01 17:36:32[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleM]
+INFO  24-04-01 17:36:33[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-04-01 17:36:33[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-01 17:36:33[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-01 17:36:33[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
+WARN  24-04-01 17:36:33[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-04-01 17:36:33[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@31b6eec8
+INFO  24-04-01 17:36:33[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
+WARN  24-04-01 17:36:33[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-04-01 17:36:34[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-04-01 17:36:34[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-04-01 17:36:34[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: postgres]
+INFO  24-04-01 17:36:34[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-04-01 17:36:34[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-01 17:36:34[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-01 17:36:34[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-01 17:36:35[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@557c0b65
+INFO  24-04-01 17:36:35[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+WARN  24-04-01 17:36:35[main] [deprecation:153] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-04-01 17:36:36[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-04-01 17:36:36[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-01 17:36:37[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-01 17:36:41[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-04-01 17:36:42[main] [GcClientApplicationTests:56] - Started GcClientApplicationTests in 24.025 seconds (process running for 28.82)
+INFO  24-04-01 17:36:43[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-01 17:36:43[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-04-01 17:36:43[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLM-hikari-pool - Shutdown initiated...
+INFO  24-04-01 17:36:43[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLM-hikari-pool - Shutdown completed.
+INFO  24-04-01 17:36:43[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-04-01 17:36:43[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLH-hikari-pool - Shutdown initiated...
+INFO  24-04-01 17:36:43[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLH-hikari-pool - Shutdown completed.
+INFO  24-04-01 17:36:43[SpringApplicationShutdownHook] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-04-01 17:36:43[SpringApplicationShutdownHook] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-04-01 17:48:38[main] [AnnotationConfigContextLoaderUtils:83] - Could not detect default configuration classes for test class [gc.apiClient.GcClientApplicationTests]: GcClientApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+INFO  24-04-01 17:48:38[main] [SpringBootTestContextBootstrapper:234] - Found @SpringBootConfiguration gc.apiClient.GcClientApplication for test class gc.apiClient.GcClientApplicationTests
+WARN  24-04-01 17:48:40[main] [DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer:78] - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/org/json/json/20210307/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+INFO  24-04-01 17:48:40[main] [GcClientApplicationTests:50] - Starting GcClientApplicationTests using Java 21.0.1 with PID 21876 (started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+INFO  24-04-01 17:48:40[main] [GcClientApplicationTests:654] - No active profile set, falling back to 1 default profile: "default"
+INFO  24-04-01 17:48:42[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-01 17:48:43[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 441 ms. Found 8 JPA repository interfaces.
+INFO  24-04-01 17:48:43[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-01 17:48:43[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 81 ms. Found 8 JPA repository interfaces.
+INFO  24-04-01 17:48:43[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-01 17:48:43[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 31 ms. Found 3 JPA repository interfaces.
+INFO  24-04-01 17:48:45[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleH]
+INFO  24-04-01 17:48:45[main] [Version:44] - HHH000412: Hibernate ORM core version 6.4.1.Final
+INFO  24-04-01 17:48:45[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-04-01 17:48:46[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-01 17:48:46[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-01 17:48:46[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
+WARN  24-04-01 17:48:46[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-04-01 17:48:47[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@78b9155e
+INFO  24-04-01 17:48:47[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
+WARN  24-04-01 17:48:48[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-04-01 17:48:53[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-04-01 17:48:53[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-04-01 17:48:53[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleM]
+INFO  24-04-01 17:48:53[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-04-01 17:48:53[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-01 17:48:53[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-01 17:48:53[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
+WARN  24-04-01 17:48:53[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-04-01 17:48:53[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@1dfd3635
+INFO  24-04-01 17:48:53[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
+WARN  24-04-01 17:48:53[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-04-01 17:48:55[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-04-01 17:48:55[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-04-01 17:48:55[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: postgres]
+INFO  24-04-01 17:48:55[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-04-01 17:48:55[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-01 17:48:55[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-01 17:48:55[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-01 17:48:56[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@564e0a6c
+INFO  24-04-01 17:48:56[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+WARN  24-04-01 17:48:56[main] [deprecation:153] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-04-01 17:48:57[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-04-01 17:48:57[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-01 17:48:58[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-01 17:49:03[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-04-01 17:49:04[main] [GcClientApplicationTests:56] - Started GcClientApplicationTests in 25.583 seconds (process running for 29.585)
+INFO  24-04-01 17:49:04[boundedElastic-1] [ControllerUCRM:154] -  
+INFO  24-04-01 17:49:04[boundedElastic-1] [ControllerUCRM:155] - ====== Class : ControllerUCRM - Method : ReceiveMessage ======
+INFO  24-04-01 17:49:04[boundedElastic-1] [ControllerUCRM:166] - topic_id : campma
+INFO  24-04-01 17:49:04[boundedElastic-1] [ServiceWebClient:18] -  
+INFO  24-04-01 17:49:04[boundedElastic-1] [ServiceWebClient:19] - ====== ClassName : ServiceWebClient & Method : GetApiRequet ======
+INFO  24-04-01 17:49:06[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-01 17:49:06[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-04-01 17:49:06[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLM-hikari-pool - Shutdown initiated...
+INFO  24-04-01 17:49:06[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLM-hikari-pool - Shutdown completed.
+INFO  24-04-01 17:49:06[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-04-01 17:49:06[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLH-hikari-pool - Shutdown initiated...
+INFO  24-04-01 17:49:06[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLH-hikari-pool - Shutdown completed.
+INFO  24-04-01 17:49:06[SpringApplicationShutdownHook] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-04-01 17:49:06[SpringApplicationShutdownHook] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-04-01 18:05:49[main] [AnnotationConfigContextLoaderUtils:83] - Could not detect default configuration classes for test class [gc.apiClient.GcClientApplicationTests]: GcClientApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+INFO  24-04-01 18:05:49[main] [SpringBootTestContextBootstrapper:234] - Found @SpringBootConfiguration gc.apiClient.GcClientApplication for test class gc.apiClient.GcClientApplicationTests
+WARN  24-04-01 18:05:50[main] [DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer:78] - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/org/json/json/20210307/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+INFO  24-04-01 18:05:50[main] [GcClientApplicationTests:50] - Starting GcClientApplicationTests using Java 21.0.1 with PID 25780 (started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+INFO  24-04-01 18:05:50[main] [GcClientApplicationTests:654] - No active profile set, falling back to 1 default profile: "default"
+INFO  24-04-01 18:05:52[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-01 18:05:52[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 300 ms. Found 8 JPA repository interfaces.
+INFO  24-04-01 18:05:52[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-01 18:05:52[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 109 ms. Found 8 JPA repository interfaces.
+INFO  24-04-01 18:05:52[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-01 18:05:52[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 51 ms. Found 3 JPA repository interfaces.
+INFO  24-04-01 18:05:56[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleH]
+INFO  24-04-01 18:05:56[main] [Version:44] - HHH000412: Hibernate ORM core version 6.4.1.Final
+INFO  24-04-01 18:05:56[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-04-01 18:05:57[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-01 18:05:57[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-01 18:05:57[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
+WARN  24-04-01 18:05:57[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-04-01 18:05:59[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@1be3f8f8
+INFO  24-04-01 18:05:59[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
+WARN  24-04-01 18:06:00[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-04-01 18:06:05[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-04-01 18:06:05[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-04-01 18:06:05[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleM]
+INFO  24-04-01 18:06:05[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-04-01 18:06:05[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-01 18:06:05[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-01 18:06:05[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
+WARN  24-04-01 18:06:05[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-04-01 18:06:06[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@7a0eb939
+INFO  24-04-01 18:06:06[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
+WARN  24-04-01 18:06:06[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-04-01 18:06:07[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-04-01 18:06:07[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-04-01 18:06:07[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: postgres]
+INFO  24-04-01 18:06:07[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-04-01 18:06:07[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-01 18:06:07[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-01 18:06:07[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-01 18:06:08[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@647468a7
+INFO  24-04-01 18:06:08[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+WARN  24-04-01 18:06:08[main] [deprecation:153] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-04-01 18:06:08[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-04-01 18:06:08[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-01 18:06:09[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-01 18:06:14[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-04-01 18:06:15[main] [GcClientApplicationTests:56] - Started GcClientApplicationTests in 25.426 seconds (process running for 28.923)
+INFO  24-04-01 18:06:15[boundedElastic-1] [ControllerUCRM:154] -  
+INFO  24-04-01 18:06:15[boundedElastic-1] [ControllerUCRM:155] - ====== Class : ControllerUCRM - Method : ReceiveMessage ======
+INFO  24-04-01 18:06:15[boundedElastic-1] [ControllerUCRM:167] - topic_id : campma
+INFO  24-04-01 18:06:15[boundedElastic-1] [ServiceWebClient:18] -  
+INFO  24-04-01 18:06:15[boundedElastic-1] [ServiceWebClient:19] - ====== ClassName : ServiceWebClient & Method : GetApiRequet ======
+INFO  24-04-01 18:06:17[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-01 18:06:17[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-04-01 18:06:17[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLM-hikari-pool - Shutdown initiated...
+INFO  24-04-01 18:06:17[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLM-hikari-pool - Shutdown completed.
+INFO  24-04-01 18:06:17[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-04-01 18:06:17[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLH-hikari-pool - Shutdown initiated...
+INFO  24-04-01 18:06:17[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLH-hikari-pool - Shutdown completed.
+INFO  24-04-01 18:06:17[SpringApplicationShutdownHook] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-04-01 18:06:17[SpringApplicationShutdownHook] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.

@@ -78,9 +78,9 @@ public class ControllerUCRM extends ServiceJson {
 	@Scheduled(fixedRate = 60000)
 	public void scheduledMethod() {
 		
-		Mono.fromCallable(() -> ReceiveMessage("campma"))
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
+//		Mono.fromCallable(() -> ReceiveMessage("campma"))
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
 		
 //		Mono.fromCallable(() -> Msg360Datacall())
 //        .subscribeOn(Schedulers.boundedElastic())
@@ -250,17 +250,17 @@ public class ControllerUCRM extends ServiceJson {
 		return Mono.empty();
 	}
 
-	@PostMapping("/gcapi/updateOrDelCampma")
+	@PostMapping("/updateOrDelCampma")
 	public Mono<Void> UpdateOrDelCampMa(@RequestBody String msg) {
 
 		log.info("Class : ControllerUCRM - Method : UpdateOrDelCampMa");
 		String row_result = ExtractCampMaUpdateOrDel(msg); // cpid::coid::cpna::divisionid::action 캠페인아이디::캠페인명::디비전아이디
 		String division = row_result.split("::")[3];
 		String action = row_result.split("::")[4];
-		int coid = Integer.parseInt(row_result.split("::")[1]);
-		row_result = row_result + "::" + coid;
 
 		Entity_CampMa enCampMa = serviceDb.createCampMaMsg(row_result, action);
+		String cpid = row_result.split("::")[0];
+		String cpna = row_result.split("::")[2];
 
 		Map<String, String> properties = customProperties.getDivision();
 		String divisionName = properties.getOrDefault(division, "couldn't find division");
@@ -289,7 +289,22 @@ public class ControllerUCRM extends ServiceJson {
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
 			}
-
+			
+			//테이블에 Update, Delete logic 추가.
+			log.info(action);			 
+			if(action.equals("update")) {
+			
+				log.info("cpid of target record for updating : {}",cpid);	
+				log.info("target record : {}",enCampMa.toString());
+				log.info("new value of Campaign name : {}",cpna);
+				
+				serviceDb.UpdateCampMa(cpid,cpna);
+				
+			}else {
+				log.info("cpid of target record for deleting : {}",cpid);
+				serviceDb.DelCampMaById(cpid);
+			}
+			
 			break;
 
 		default:

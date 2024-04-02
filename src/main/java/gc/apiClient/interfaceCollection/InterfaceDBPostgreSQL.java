@@ -34,5 +34,11 @@ public interface InterfaceDBPostgreSQL {
 	List<Entity_ContactLt> findContactLtByCpid(String cpid);
 	int getRecordCount();
 	
+	//update 
+	public void UpdateCampMa(String cpid, String cpna);
+	
+	//delete
+	public void DelCampMaById(String cpid);
+	
 	
 }

@@ -29,6 +29,8 @@ import gc.apiClient.interfaceCollection.InterfaceDBPostgreSQL;
 import gc.apiClient.repository.postgresql.Repository_CampMa;
 import gc.apiClient.repository.postgresql.Repository_CampRt;
 import gc.apiClient.repository.postgresql.Repository_ContactLt;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -238,14 +240,14 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			cpna = parts[3]; // 캠페인 명
 			break;
 			
-		case "update": //cpid::cpna::divisionid::action::coid
+		case "update": //cpid::coid::cpna::divisionid::action
 			log.info("action type : {}", crudtype);
 			cpid = "";
 			coid = 0;
 			cpna = parts[2]; // 캠페인 명
 			break;
 			
-		default: //cpid::cpna::divisionid::action::coid
+		default: //cpid::coid::cpna::divisionid::action
 			log.info("action type : {}", crudtype);
 			cpid = parts[0];// 캠페인 아이디
 			coid = Integer.parseInt(parts[1]); // 센터구분 코드
@@ -267,7 +269,8 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	@Override
 	public Entity_CampMaJson createCampMaJson(Entity_CampMa enCampMa, String datachgcd) { // cpid::cpna::division::coid
 
-		log.info("===== createCampMaJson =====");
+		log.info(" ");
+		log.info("====== ClassName : ServicePostgre & Method : createCampMaJson ======");
 		Entity_CampMaJson enCampMaJson = new Entity_CampMaJson();
 		LocalDateTime now = LocalDateTime.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSSSSS");
@@ -316,7 +319,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			enCampMaJson.setTopcDataIsueDtm(topcDataIsueDtm);
 			break;
 		}
-		
+		log.info("====== End createCampMaJson ======");
 		return enCampMaJson;
 
 	}
@@ -489,53 +492,35 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		} catch (IncorrectResultSizeDataAccessException ex) {
 			log.error("Error retrieving contact by cske: {}", cske, ex);
 
-			// 예외처리 커스터마이징 부분.
-//	        String tableName = "your_table_name";
-//	        String fieldName = "your_field_name";
-//
-//	        throw new MyCustomDataIntegrityException("Data integrity violation while inserting contact", ex, tableName, fieldName);
 			return null;
 		}
 	}
 
-	// 예외처리 커스터 마이징 부분.
-	@SuppressWarnings("serial")
-	public class MyCustomDataIntegrityException extends RuntimeException {
 
-		public MyCustomDataIntegrityException(String message, Throwable cause) {
-			super(message, cause);
-		}
-
-//	    private String tableName;
-//	    private String fieldName;
-//
-//	    public MyCustomDataIntegrityException(String message, Throwable cause, String tableName, String fieldName) {
-//	        super(message, cause);
-//	        this.tableName = tableName;
-//	        this.fieldName = fieldName;
-//	    }
-//
-//	    public String getTableName() {
-//	        return tableName;
-//	    }
-//
-//	    public String getFieldName() {
-//	        return fieldName;
-//	    }
-	}
-
-	@SuppressWarnings("serial")
-	public class MyCustomDataAccessException extends RuntimeException {
-		public MyCustomDataAccessException(String message, Throwable cause) {
-			super(message, cause);
-		}
-	}
-
-	
 	@Override
 	public int getRecordCount() {
 		log.info("Campma 테이블 레코드 수 : {}",repositoryCampMa.countBy());
 		return repositoryCampMa.countBy();
 	}
+
+	@Override
+	public void DelCampMaById(String cpid) {
+		repositoryCampMa.deleteById(cpid);
+	}
+
+	@Override
+	@Transactional
+    public void UpdateCampMa(String cpid, String cpna) {
+        Optional<Entity_CampMa> optionalEntity = repositoryCampMa.findById(cpid);
+        
+        if (optionalEntity.isPresent()) {
+            Entity_CampMa entity = optionalEntity.get();
+            entity.setCpna(cpna);
+            repositoryCampMa.save(entity);
+        } else {
+            throw new EntityNotFoundException("Entity not found with CPID: " + cpid);
+        }
+    }
+	
 
 }

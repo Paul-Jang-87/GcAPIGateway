@@ -23,13 +23,18 @@ import gc.apiClient.entity.oracleM.Entity_MWaDataCallOptional;
 import gc.apiClient.entity.oracleM.Entity_MWaDataCallTrace;
 import gc.apiClient.entity.oracleM.Entity_MWaMTracecode;
 import gc.apiClient.interfaceCollection.InterfaceMsgObjOrcl;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 
 	@Override
 	public <T> String DataCallMsg(T t, String crudtype) {
 
+		log.info(" ");
+		log.info("====== ClassName : ServiceMsgObjOrcl & Method : DataCallMsg ======");
+		
 		JSONObject obj = new JSONObject();
 
 		LocalDateTime now = LocalDateTime.now();
@@ -47,6 +52,9 @@ public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 			obj.put("callSeq", en.getNew_call_seq());
 			obj.put("icId", en.getNew_icid());
 			obj.put("siteCd", en.getNew_site_code());
+			
+			log.info("Home obj toString : {}",obj.toString());
+			
 		} else if (t instanceof Entity_MDataCall) {
 			Entity_MDataCall en = (Entity_MDataCall) t;
 			obj.put("entDate", en.getNew_entered_time());
@@ -54,8 +62,10 @@ public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 			obj.put("callSeq", en.getNew_call_seq());
 			obj.put("icId", en.getNew_icid());
 			obj.put("siteCd", en.getNew_site_code());
+			log.info("Mobile obj toString : {}",obj.toString());
 		}
 
+		log.info("====== End DataCallMsg ======");
 		return obj.toString();
 	}
 

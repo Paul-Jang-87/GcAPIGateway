@@ -10,9 +10,8 @@ public interface InterfaceJson  {//defult로 해놓으면 InterfaceJson을 다�
 		  return "";
 	  }
 	  
-	  default String ExtractValCrm34(String stringMsg) {
-		  return "";
-	  }
+	  String ExtractValCallBot(String stringMsg,int i);
+	  String ExtractValUcrm(String stringMsg);
 	  
 	  default String ExtractVal56(String stringMsg) {
 		  return "a";

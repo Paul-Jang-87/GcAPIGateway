@@ -136,9 +136,10 @@ public class ServiceJson implements InterfaceJson {
 	
 
 	@Override
-	public String ExtractValCrm34(String stringMsg) {// IF-CRM_003,IF-CRM_004에서 사용하기 위한 추출함수.
+	public String ExtractValCallBot(String stringMsg, int i) {// IF-CRM_003,IF-CRM_004에서 사용하기 위한 추출함수.
 
-		log.info("====== ExtractValCrm34 ======");
+		log.info(" ");
+		log.info("====== ClassName : ServiceJson & Method : ExtractValCallBot ======");
 		
 		String jsonResponse = stringMsg;
 
@@ -148,15 +149,48 @@ public class ServiceJson implements InterfaceJson {
 
 		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
-			result = jsonNode.path("cpid").asText();
-			result = result + "::" + jsonNode.path("cpsq").toString();
-			result = result + "::" + jsonNode.path("cske").asText();
-			result = result + "::" + jsonNode.path("csna").asText();
-			result = result + "::" + jsonNode.path("flag").asText();
-			result = result + "::" + jsonNode.path("tkda").asText();
-			result = result + "::" + jsonNode.path("tno1").asText();
-			result = result + "::" + jsonNode.path("tno2").asText();
-			result = result + "::" + jsonNode.path("tno3").asText();
+			result = jsonNode.path("cmpnItemDto").path(i).path("cmpnId").asText();
+			log.info("rs1 : {}",result);
+			result = result + "::" + jsonNode.path("cmpnItemDto").path(i).path("cmpnSeq").asText();
+			result = result + "::" + jsonNode.path("cmpnItemDto").path(i).path("custNo").asText();
+			result = result + "::" + jsonNode.path("cmpnItemDto").path(i).path("custNum").asText();
+			result = result + "::" + jsonNode.path("cmpnItemDto").path(i).path("token").asText();
+			result = result + "::" + jsonNode.path("cmpnItemDto").path(i).path("flag").asText();
+
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+		log.info("result : {}",result);
+		return result;
+	}
+	
+	
+	@Override
+	public String ExtractValUcrm(String stringMsg) {
+		
+		log.info(" ");
+		log.info("====== ClassName : ServiceJson & Method : ExtractValUcrm ======");
+		
+		String jsonResponse = stringMsg;
+
+		ObjectMapper objectMapper = new ObjectMapper();
+		JsonNode jsonNode = null;
+		String result = "";
+
+		try {
+			jsonNode = objectMapper.readTree(jsonResponse);
+			result = jsonNode.path("citCmpnId").asText();
+			result = result + "::" + jsonNode.path("citCmpnSno").asText();
+			result = result + "::" + jsonNode.path("hldrCustId").asText();
+			result = result + "::" + jsonNode.path("custNm").asText();
+			result = result + "::" + jsonNode.path("tlno").asText();//tno1
+			result = result + "::" + jsonNode.path("cablTlno").asText();//tno2
+			result = result + "::" + jsonNode.path("custTlno").asText();//tno3
+			result = result + "::" + jsonNode.path("trdtCntn").asText();//tkda
+			result = result + "::" + jsonNode.path("workDivsCd").asText();//flag
 
 		} catch (JsonMappingException e) {
 			e.printStackTrace();
@@ -183,7 +217,7 @@ public class ServiceJson implements InterfaceJson {
 
 		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
-			result = jsonNode.path("id").asText();
+			result = jsonNode.path("detail").path("eventBody").path("id").asText();
 			result += "::" + jsonNode.path("detail").path("eventBody").path("contactList").path("id").asText();
 			result += "::" + jsonNode.path("detail").path("eventBody").path("division").path("id").asText();
 
@@ -213,21 +247,19 @@ public class ServiceJson implements InterfaceJson {
 
 		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
-
 			result = jsonNode.path(i).path("id").asText();
-
 			result = result + "::" + jsonNode.path(i).path("contactListId").asText();
-
-			result = result + "::" + jsonNode.path(i).path("callRecords").path("전화번호").path("lastAttempt").asText();
-			
-			result = result + "::" + jsonNode.path(i).path("callRecords").path("전화번호").path("lastResult").asText();
+			result = result + "::" + jsonNode.path(i).path("data").path("CPID").asText();
+			result = result + "::" + jsonNode.path(i).path("data").path("CPSQ").asText();
+			result = result + "::" + jsonNode.path(i).path("callRecords").path("Mobile_Phone").path("lastResult").asText();
+			result = result + "::" + jsonNode.path(i).path("data").path("TKDA").asText();
+			result = result + "::" + jsonNode.path(i).path("dateCreated").asText();
 
 		} catch (JsonMappingException e) {
 			e.printStackTrace();
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		
 		log.info("추출 이후 결과 값 rs: {}",result);
 		log.info("====== End ExtractContacts56 ======");
 
@@ -264,22 +296,34 @@ public class ServiceJson implements InterfaceJson {
 	@Override
 	public String ExtractContactLtId(String stringMsg) {
 		
+		log.info(" ");
+		log.info("====== ClassName : ServiceJson & Method : ExtractContactLtId ======");
 		String jsonResponse = stringMsg;
 
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode jsonNode = null;
 		String result = "";
+		String que = " ";
 
 		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
 			result = jsonNode.path("contactList").path("id").asText();
+			if(jsonNode.path("queue").path("id").asText().equals("")) {
+				log.info("큐 없음.");
+			}else{
+				log.info("큐 있음.");
+				que = jsonNode.path("queue").path("id").asText();
+			}
+			result = result+"::"+que;
 
 		} catch (JsonMappingException e) {
 			e.printStackTrace();
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-
+		
+		log.info("result of ExtractContactLtId : {}",result);
+		log.info("====== End ExtractContactLtId ======");
 		return result;
 	}
 
@@ -310,7 +354,5 @@ public class ServiceJson implements InterfaceJson {
 		return result;
 
 	}
-
-	
 	
 }

@@ -18,7 +18,7 @@ public class MessageToProducer {
 		
 		WebClient webClient = WebClient.builder().baseUrl("http://localhost:8081").build();
 
-	    String endpointUrl = towhere; //ex)"/gcapi/post/firsttopic" 
+	    String endpointUrl = towhere;  
 	    
 	    webClient.post()
 	            .uri(endpointUrl)
@@ -30,7 +30,6 @@ public class MessageToProducer {
 	                return Mono.empty();
 	            })
 	            .subscribe(responseBody -> {
-	                // Handle the response body here
 	                log.info("Response received: {}", responseBody);
 	            }); 
 	    

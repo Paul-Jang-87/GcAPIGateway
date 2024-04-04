@@ -2,6 +2,7 @@ package gc.apiClient.service;
 
 import java.util.List;
 
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import gc.apiClient.interfaceCollection.InterfaceWebClient;
@@ -96,19 +97,24 @@ public class ServiceWebClient implements InterfaceWebClient {
 		return result;
 	}
 
-	@Override // api/v2/outbound/contactlists/{contactListId}/contacts
-	public String PostContactLtApiRequet(String endpoint, String contactListId, String msg) {// path parameter
+	@Override // api/v2/outbound/contactlists/{contactListId}/contacts/bulk
+	public String PostContactLtApiRequet(String endpoint, String contactListId, List<String> msg) {// path parameter
 																								// 'contactListId','contactId'
-		log.info("===== PostContactLtApiRequet =====");
-		
+		log.info(" ");
+		log.info("====== ClassName : ServiceWebClient & Method : PostContactLtApiRequet ======");
 		String result = "";
+		
+		log.info("msg : {}",msg.toString());
 
 		WebClientApp webClient = new WebClientApp(endpoint, "POST");
-		result = webClient.makeApiRequest34(contactListId, msg);
+		result = webClient.makeApiRequest34(contactListId, msg.toString());
 
 		log.info("PostContactLtApiRequet 요청 후 결과 값 : {}",result);
+		log.info("====== End PostContactLtApiRequet ======");
 		return result;
 	}
+	
+	
 
 	
 	
@@ -130,5 +136,22 @@ public class ServiceWebClient implements InterfaceWebClient {
 		log.info("====== End PostContactLtApiBulk ======");
 		return result;
 	}
+
+	@Override
+	public Void PostContactLtClearReq(String endpoint,String contactListId) {
+		
+		log.info(" ");
+		log.info("====== ClassName : ServiceWebClient & Method : PostContactLtClearReq ======");
+		
+		log.info("Endpoint : /api/v2/outbound/contactlists/{contactListId}/clear");
+		log.info("contactListId : {}",contactListId);
+		WebClientApp webClient = new WebClientApp(endpoint, "POST");
+		webClient.makeApiRequest(contactListId);
+
+		log.info("====== End PostContactLtClearReq ======");
+		
+		return null;
+	}
+
 
 }

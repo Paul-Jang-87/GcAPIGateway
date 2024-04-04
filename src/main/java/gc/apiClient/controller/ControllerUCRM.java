@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Map;
 import reactor.core.scheduler.Schedulers;
 
-
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import gc.apiClient.BusinessLogic;
@@ -66,8 +70,7 @@ public class ControllerUCRM extends ServiceJson {
 	private static List<Entity_ToApim> apimEntitylt = new ArrayList<Entity_ToApim>();
 
 	public ControllerUCRM(InterfaceDBPostgreSQL serviceDb, InterfaceDBOracle serviceOracle,
-			InterfaceWebClient serviceWeb, CustomProperties customProperties,
-			InterfaceMsgObjOrcl serviceMsgObjOrcl) {
+			InterfaceWebClient serviceWeb, CustomProperties customProperties, InterfaceMsgObjOrcl serviceMsgObjOrcl) {
 		this.serviceDb = serviceDb;
 		this.serviceOracle = serviceOracle;
 		this.serviceWeb = serviceWeb;
@@ -77,11 +80,9 @@ public class ControllerUCRM extends ServiceJson {
 
 	@Scheduled(fixedRate = 60000)
 	public void scheduledMethod() {
-		
-//		Mono.fromCallable(() -> ReceiveMessage("campma"))
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-		
+
+		Mono.fromCallable(() -> ReceiveMessage("campma")).subscribeOn(Schedulers.boundedElastic()).subscribe();
+
 //		Mono.fromCallable(() -> Msg360Datacall())
 //        .subscribeOn(Schedulers.boundedElastic())
 //        .subscribe();
@@ -145,7 +146,7 @@ public class ControllerUCRM extends ServiceJson {
 //		Mono.fromCallable(() -> Msg360WaMTrCode())
 //        .subscribeOn(Schedulers.boundedElastic())
 //        .subscribe();
-		
+
 	}
 
 	@GetMapping("/gcapi/get/{topic}")
@@ -155,13 +156,13 @@ public class ControllerUCRM extends ServiceJson {
 		log.info("====== Class : ControllerUCRM - Method : ReceiveMessage ======");
 		String row_result = "";
 		String result = "";
-		String cpid = "";
 		String topic_id = tranId;
+		String cpid = "";
 		String division = "";
 		String business = "";
 		String endpoint = "/gcapi/post/" + topic_id;
 		ObjectMapper objectMapper = null;
-		int size = 0; 
+		int size = 0;
 		int numberOfRecords = 0;
 
 		log.info("topic_id : {}", topic_id);
@@ -171,47 +172,47 @@ public class ControllerUCRM extends ServiceJson {
 		case "campma":
 
 			result = serviceWeb.GetApiRequet("campaignId");
-
-			size = CampaignListSize(result); //G.C에서 불러온 캠페인 갯수.
-			numberOfRecords = serviceDb.getRecordCount(); // 현재 레코드 갯수. 		
-
+			size = CampaignListSize(result); // G.C에서 불러온 캠페인 갯수.
+			numberOfRecords = serviceDb.getRecordCount(); // 현재 레코드 갯수.
+			
 			if (size == numberOfRecords) {// campma 테이블에 이미 있는 캠페인이라면 pass.
 
 			} else {
-
-				int reps = size - numberOfRecords; 
-				log.info("{}번 반복",reps);
-				while (reps --> 0 ) {
-					log.info("{}번째 인덱스 ",reps);
-					row_result = ExtractValCrm12(result,reps); // cpid::coid::cpna::division -> 캠페인아이디::테넌트아이디::캠페인명::디비전
+				
+				int reps = size - numberOfRecords;
+				log.info("{}번 반복", reps);
+				while (reps-- > 0) {
+					log.info("{}번째 인덱스 ", reps);
+					row_result = ExtractValCrm12(result, reps); // cpid::coid::cpna::division ->
+																// 캠페인아이디::테넌트아이디::캠페인명::디비전
+					
 					division = row_result.split("::")[3];
-					
+
 					Map<String, String> businessLogic = BusinessLogic.SelectedBusiness(division);
-					
+
 					business = businessLogic.get("business");
 					topic_id = businessLogic.get("topic_id");
-					
+
 					Entity_CampMa enCampMa = serviceDb.createCampMaMsg(row_result, "insert");
-					
-					
+
 					switch (business) {
 					case "UCRM":
 					case "Callbot":
-						
+
 						objectMapper = new ObjectMapper();
 						Entity_CampMaJson enCampMaJson = serviceDb.createCampMaJson(enCampMa, "insert");
 						try {
-							
+
 							String jsonString = objectMapper.writeValueAsString(enCampMaJson);
 							log.info("jsonString : {}", jsonString);
 							MessageToProducer producer = new MessageToProducer();
 							endpoint = "/gcapi/post/" + topic_id;
 							producer.sendMsgToProducer(endpoint, jsonString);
-							
+
 						} catch (JsonProcessingException e) {
 							e.printStackTrace();
 						}
-						
+
 						// db인서트
 						try {
 							serviceDb.InsertCampMa(enCampMa);
@@ -220,27 +221,27 @@ public class ControllerUCRM extends ServiceJson {
 						} catch (DataAccessException ex) {
 							log.error("DataAccessException 발생 : {}", ex.getMessage());
 						}
-						
+
 						break;
-						
+
 					default:
-						
+
 						objectMapper = new ObjectMapper();
-						
+
 						try {
 							String jsonString = objectMapper.writeValueAsString(enCampMa);
-							
+
 							// localhost:8084/dspRslt
 							// 192.168.219.134:8084/dspRslt
 							MessageToApim apim = new MessageToApim();
 							endpoint = "/cmpnMstrRegist";
-							apim.sendMsgToApim(endpoint, jsonString);
+//							apim.sendMsgToApim(endpoint, jsonString);
 							log.info("CAMPMA 로직, APIM으로 보냄. : {}", jsonString);
-							
+
 						} catch (JsonProcessingException e) {
 							e.printStackTrace();
 						}
-						
+
 						break;
 					}
 				}
@@ -289,22 +290,21 @@ public class ControllerUCRM extends ServiceJson {
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
 			}
-			
-			//테이블에 Update, Delete logic 추가.
-			log.info(action);			 
-			if(action.equals("update")) {
-			
-				log.info("cpid of target record for updating : {}",cpid);	
-				log.info("target record : {}",enCampMa.toString());
-				log.info("new value of Campaign name : {}",cpna);
-				
-				serviceDb.UpdateCampMa(cpid,cpna);
-				
-			}else {
-				log.info("cpid of target record for deleting : {}",cpid);
+
+			// 테이블에 Update, Delete logic 추가.
+			log.info(action);
+			if (action.equals("update")) {
+
+				log.info("cpid of target record for updating : {}", cpid);
+				log.info("new value of Campaign name : {}", cpna);
+
+				serviceDb.UpdateCampMa(cpid, cpna);
+
+			} else {
+				log.info("cpid of target record for deleting : {}", cpid);
 				serviceDb.DelCampMaById(cpid);
 			}
-			
+
 			break;
 
 		default:
@@ -318,7 +318,7 @@ public class ControllerUCRM extends ServiceJson {
 				// 192.168.219.134:8084/dspRslt
 				MessageToApim apim = new MessageToApim();
 				endpoint = "/cmpnMstrRegist";
-				apim.sendMsgToApim(endpoint, jsonString);
+//				apim.sendMsgToApim(endpoint, jsonString);
 				log.info("CAMPMA UPDATE로직,  APIM으로 보냄. : {}", jsonString);
 
 			} catch (JsonProcessingException e) {
@@ -330,6 +330,103 @@ public class ControllerUCRM extends ServiceJson {
 
 		return Mono.empty();
 	}
+
+	@PostMapping("/contactlt/{topic}")
+		public Mono<ResponseEntity<String>> MsgFromCallbot(@PathVariable("topic") String tranId, @RequestBody String msg) {
+		
+		log.info(" ");
+		log.info("====== Class : ControllerUCRM - Method : MsgFromCallbot ======");
+		
+		String jsonResponse = msg;
+
+		ObjectMapper objectMapper = new ObjectMapper();
+		JsonNode jsonNode = null;
+		int casenum = 0;
+
+		try {
+			jsonNode = objectMapper.readTree(jsonResponse);
+			casenum = jsonNode.path("cmpnItemDto").size();
+
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		
+		int cntofmsg = casenum;
+		log.info("case count : {}", cntofmsg);
+		
+		String row_result = "";
+		String result = "";
+		String cpid = "";
+		String topic_id = tranId;
+		String res = "";
+		String queid = "";
+		String contactLtId = "";
+		List<String> arr = new ArrayList<String>();
+
+		log.info("topic_id : {}", topic_id);
+
+		switch (topic_id) {
+
+		case "callbothome":// IF-CRM_003
+		case "callbotmobile":// IF-CRM_004
+			
+			for(int i = 0 ; i<cntofmsg; i++) {
+				
+				log.info("받아온 리스트 안의 {}번째 메시지",i);
+				
+				row_result = ExtractValCallBot(msg,i); // 뽑아온다.cpid::cpsq::cske::csna::tkda::flag
+				
+				Entity_ContactLt enContactLt = serviceDb.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
+				// Entity_ContactLt 객체에 매핑시킨다.
+				cpid = enContactLt.getId().getCpid();// 캠페인 아이디를 가져온다.
+
+				result = serviceWeb.GetCampaignsApiRequet("campaigns", cpid);// 캠페인 아이디로
+//																				// "/api/v2/outbound/campaigns/{campaignId}"호출
+//																				// 후 결과 가져온다.
+				
+				res = ExtractContactLtId(result); // 가져온 결과에서 contactlistid만 추출.
+				contactLtId = res.split("::")[0];
+//				// "api/v2/outbound/contactlists/{contactListId}/contacts"로 request body값 보내기 위한
+//				// 객체
+//				// 객체 안의 속성들(키)은 변동 될 수 있음.
+				row_result = row_result+"::"+res; // 뽑아온다.cpid::cpsq::cske::csna::tkda::flag::contactLtId
+				String contactltMapper = serviceDb.createContactLtGC(row_result);
+
+					arr.add(contactltMapper);
+					log.info(arr.toString());
+
+				// db인서트
+				try {
+					serviceDb.InsertContactLt(enContactLt);
+
+				} catch (DataIntegrityViolationException ex) {
+					log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+				} catch (DataAccessException ex) {
+					log.error("DataAccessException 발생 : {}", ex.getMessage());
+				}
+			}
+			
+			serviceWeb.PostContactLtClearReq("contactltclear", contactLtId);
+			serviceWeb.PostContactLtApiRequet("contact", contactLtId, arr);
+
+			return Mono.just(ResponseEntity.ok().build());
+			
+		default:
+			break;
+		}
+
+		log.info("====== End MsgFromCallbot ======");
+		return Mono.just(ResponseEntity.ok().build());
+		
+	}
+	
+	
+	
+	
+	
+	
 	
 
 	@PostMapping("/gcapi/post/{topic}")
@@ -350,40 +447,30 @@ public class ControllerUCRM extends ServiceJson {
 
 		switch (topic_id) {
 
-		case "thirdtopic":// IF-CRM_003
-		case "forthtopic":// IF-CRM_004
+		case "ucrm":// IF-CRM_003
+		case "callbot":// IF-CRM_004
 
-//			{
-//			"cpid":"97e6b32d-c266-4d33-92b4-01ddf33898cd",
-//			"cpsq":892012,209481
-//			"cske":"83b85d7ff68cb7f0b7b3c59212abefff",  or   "0b241f9bef1df80679bfba58582c8505",
-//			"tno1":"tno1",
-//			"tno2":"tno2",
-//			"tno3":"tno3",
-//			"csna":"카리나",
-//			"tkda":"C,111,custid", or  "A||gg||dfe||feq||ere||666",
-//			"flag":"HO2"
-//			}
+			if (topic_id.equals("callbot")) {
+//				row_result = ExtractValCallBot(msg); // 뽑아온다.cpid::cpsq::cske::csna::tkda::flag
+			} else {
+				row_result = ExtractValUcrm(msg);
+			}
 
-			// 간단한 테스트를 하기 위한 샘플 json 데이터. msg로 위 데이터가 들어 온 것으로 가정.
-
-			row_result = ExtractValCrm34(msg); // ContactLt 테이블에 들어갈 값들만
-			// 뽑아온다.cpid::cpsq::cske::csna::flag::tkda::tno1::tno2::tno3
 			Entity_ContactLt enContactLt = serviceDb.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
 			// Entity_ContactLt 객체에 매핑시킨다.
 			cpid = enContactLt.getId().getCpid();// 캠페인 아이디를 가져온다.
 
 			result = serviceWeb.GetCampaignsApiRequet("campaigns", cpid);// 캠페인 아이디로
-																			// "/api/v2/outbound/campaigns/{campaignId}"호출
-																			// 후 결과 가져온다.
-
-			String contactLtId = ExtractContactLtId(result); // 가져온 결과에서 contactlistid만 추출.
-			log.info("contactLtId : {}", contactLtId);
-
-			// "api/v2/outbound/contactlists/{contactListId}/contacts"로 request body값 보내기 위한
-			// 객체
-			// 객체 안의 속성들(키)은 변동 될 수 있음.
-			Entity_ContactltMapper contactltMapper = serviceDb.createContactLtGC(row_result);
+//																			// "/api/v2/outbound/campaigns/{campaignId}"호출
+//																			// 후 결과 가져온다.
+//
+			String res = ExtractContactLtId(result); // 가져온 결과에서 contactlistid만 추출.
+			String contactLtId = res.split("::")[0];
+//			// "api/v2/outbound/contactlists/{contactListId}/contacts"로 request body값 보내기 위한
+//			// 객체
+//			// 객체 안의 속성들(키)은 변동 될 수 있음.
+			row_result = row_result + "::" + res;
+			String contactltMapper = serviceDb.createContactLtGC(row_result);
 
 			objectMapper = new ObjectMapper();
 
@@ -396,7 +483,8 @@ public class ControllerUCRM extends ServiceJson {
 				// 두번째 인자 : path parameter
 				// 세번째 인자 : request body.
 
-				serviceWeb.PostContactLtApiRequet("contact", contactLtId, jsonString);
+				serviceWeb.PostContactLtClearReq("contactltclear", contactLtId);
+//				serviceWeb.PostContactLtApiRequet("contact", contactLtId, jsonString);
 
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
@@ -425,7 +513,7 @@ public class ControllerUCRM extends ServiceJson {
 			cpid = parts[0];
 			contactLtId = parts[1];
 			division = parts[2];
-			
+
 			log.info("cpid : {}", cpid);
 			log.info("contactLtId : {}", contactLtId);
 			log.info("Division Info : {}", division);
@@ -443,8 +531,7 @@ public class ControllerUCRM extends ServiceJson {
 			// 담는다.
 			List<String> values = new ArrayList<String>();
 			for (int i = 0; i < enContactList.size(); i++) {
-//				values.add(enContactList.get(i).getCske());
-				values.add("0b241f9bef1df80679bfba58582c8505");
+				values.add(enContactList.get(i).getCske());
 			}
 
 			// contactLtId를 키로 하여 제네시스의 api를 호출한다. 호출할 때는 values리스트 담겨져 있던 cske(고객키)들 각각에 맞는
@@ -455,7 +542,6 @@ public class ControllerUCRM extends ServiceJson {
 			// 캠페인이 어느 비즈니스 로직인지 판단하기 위해서 일단 목록 중 하나만 꺼내서 확인해 보도록한다.
 			// 왜냐면 나머지는 똑같을테니.
 			String contactsresult = ExtractContacts56(result, 0);// JsonString 결과값과 조회하고 싶은 인덱스(첫번째)를 인자로 넣는다.
-			contactsresult = contactsresult + "::" + cpid;// contactid(고객키)::contactListId::didt::dirt::cpid
 			Entity_CampRt entityCmRt = serviceDb.createCampRtMsg(contactsresult);// contactsresult값으로 entity하나를 만든다.
 			Character tkda = entityCmRt.getTkda().charAt(0);// 그리고 비즈니스 로직을 구분하게 해줄 수 있는 토큰데이터를 구해온다.
 
@@ -471,7 +557,6 @@ public class ControllerUCRM extends ServiceJson {
 				for (int i = 0; i < enContactList.size(); i++) {
 
 					contactsresult = ExtractContacts56(result, i);
-					contactsresult = contactsresult + "::" + cpid; // contactid(고객키)::contactListId::didt::dirt::cpid
 					entityCmRt = serviceDb.createCampRtMsg(contactsresult);// db 인서트 하기 위한 entity.
 
 					dirt = entityCmRt.getDirt();// 응답코드
@@ -535,10 +620,11 @@ public class ControllerUCRM extends ServiceJson {
 					// 192.168.219.134:8084/dspRslt
 					MessageToApim apim = new MessageToApim();
 					endpoint = "/dspRslt";
-					apim.sendMsgToApim(endpoint, jsonString);
+//					apim.sendMsgToApim(endpoint, jsonString);
+					apim.sendMsgToApim(endpoint, apimEntitylt);
 					log.info("CAMPRT 로직, APIM으로 보냄. : {} ", jsonString);
 
-				} catch (JsonProcessingException e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				break;
@@ -553,8 +639,9 @@ public class ControllerUCRM extends ServiceJson {
 		return Mono.empty();
 	}
 
+	@GetMapping("/360view")
 	public Mono<Void> Msg360Datacall() {
-		
+
 		String topic_id = "from_clcc_hmcepcalldt_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 		log.info("the number of records : {}", numberOfRecords);
@@ -565,19 +652,17 @@ public class ControllerUCRM extends ServiceJson {
 				// 2. crud 구분해서 메시지 키를 정한다.
 				// 3. 프로듀서로 메시지 재가공해서 보낸다.
 			List<Entity_DataCall> entitylist = serviceOracle.getAll(Entity_DataCall.class);
-
+			log.info("entitylist size : {}", entitylist.size());
 			for (int i = 0; i < entitylist.size(); i++) {
 
 				String crudtype = entitylist.get(i).getCmd();
-
-				MessageTo360View.SendMsgTo360View(topic_id, serviceMsgObjOrcl.DataCallMsg(entitylist.get(i), crudtype) );
+				log.info("crudtype : {}", crudtype);
+				MessageTo360View.SendMsgTo360View(topic_id, serviceMsgObjOrcl.DataCallMsg(entitylist.get(i), crudtype));
 			}
 		}
 		return Mono.empty();
 	}
 
-	
-	
 	public Mono<Void> Msg360MDatacall() {
 
 		String topic_id = "from_clcc_mblcepcalldt_message";
@@ -595,14 +680,13 @@ public class ControllerUCRM extends ServiceJson {
 
 				String crudtype = entitylist.get(i).getCmd();
 
-				MessageTo360View.SendMsgTo360View(topic_id, serviceMsgObjOrcl.DataCallMsg(entitylist.get(i), crudtype) );
+				MessageTo360View.SendMsgTo360View(topic_id, serviceMsgObjOrcl.DataCallMsg(entitylist.get(i), crudtype));
 			}
 		}
 		return Mono.empty();
-		
+
 	}
-	
-	
+
 	public Mono<Void> Msg360DataCallCustomer() {
 		String topic_id = "from_clcc_hmcepcalldtcust_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
@@ -619,15 +703,13 @@ public class ControllerUCRM extends ServiceJson {
 
 				String crudtype = entitylist.get(i).getCmd();
 
-				
-				MessageTo360View.SendMsgTo360View(topic_id, 
+				MessageTo360View.SendMsgTo360View(topic_id,
 						serviceMsgObjOrcl.DataCallCustomerMsg(entitylist.get(i), crudtype));
 			}
 		}
 		return Mono.empty();
 	}
-	
-	
+
 	public Mono<Void> Msg360MDataCallCustomer() {
 		String topic_id = "from_clcc_mblcepcalldtcust_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
@@ -649,7 +731,7 @@ public class ControllerUCRM extends ServiceJson {
 		}
 		return Mono.empty();
 	}
-	
+
 	public Mono<Void> Msg360DataCallService() {
 		String topic_id = "from_clcc_hmcepcallsvccd_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
@@ -672,8 +754,7 @@ public class ControllerUCRM extends ServiceJson {
 		}
 		return Mono.empty();
 	}
-	
-	
+
 	public Mono<Void> Msg360MDataCallService() {
 		String topic_id = "from_clcc_mblcepcallsvccd_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
@@ -695,8 +776,7 @@ public class ControllerUCRM extends ServiceJson {
 		}
 		return Mono.empty();
 	}
-	
-	
+
 	public Mono<Void> Msg360MstrsSvcCd() {
 		String topic_id = "from_clcc_hmcepcallmstrsvccd_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
@@ -712,15 +792,14 @@ public class ControllerUCRM extends ServiceJson {
 			for (int i = 0; i < entitylist.size(); i++) {
 
 				String crudtype = entitylist.get(i).getCmd();
-				
+
 				MessageTo360View.SendMsgTo360View(topic_id,
 						serviceMsgObjOrcl.MstrSvcCdMsg(entitylist.get(i), crudtype));
 			}
 		}
 		return Mono.empty();
 	}
-	
-	
+
 	public Mono<Void> Msg360MMstrsSvcCd() {
 		String topic_id = "from_clcc_mblcepcallmstrsvccd_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
@@ -737,14 +816,13 @@ public class ControllerUCRM extends ServiceJson {
 
 				String crudtype = entitylist.get(i).getCmd();
 
-				MessageTo360View.SendMsgTo360View(topic_id, 
+				MessageTo360View.SendMsgTo360View(topic_id,
 						serviceMsgObjOrcl.MstrSvcCdMsg(entitylist.get(i), crudtype));
 			}
 		}
 		return Mono.empty();
 	}
-	
-	
+
 	public Mono<Void> Msg360WaDataCall() {
 		String topic_id = "from_clcc_hmcepwacalldt_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
@@ -760,15 +838,14 @@ public class ControllerUCRM extends ServiceJson {
 			for (int i = 0; i < entitylist.size(); i++) {
 
 				String crudtype = entitylist.get(i).getCmd();
-				
-				MessageTo360View.SendMsgTo360View(topic_id, 
+
+				MessageTo360View.SendMsgTo360View(topic_id,
 						serviceMsgObjOrcl.WaDataCallMsg(entitylist.get(i), crudtype));
 			}
 		}
 		return Mono.empty();
 	}
-	
-	
+
 	public Mono<Void> Msg360MWaDataCall() {
 		String topic_id = "from_clcc_mblcepwacalldt_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
@@ -784,15 +861,14 @@ public class ControllerUCRM extends ServiceJson {
 			for (int i = 0; i < entitylist.size(); i++) {
 
 				String crudtype = entitylist.get(i).getCmd();
-				
+
 				MessageTo360View.SendMsgTo360View(topic_id,
 						serviceMsgObjOrcl.WaDataCallMsg(entitylist.get(i), crudtype));
 			}
 		}
 		return Mono.empty();
 	}
-	
-	
+
 	public Mono<Void> Msg360WaDataCallOptional() {
 		String topic_id = "from_clcc_hmcepwacallopt_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
@@ -808,15 +884,14 @@ public class ControllerUCRM extends ServiceJson {
 			for (int i = 0; i < entitylist.size(); i++) {
 
 				String crudtype = entitylist.get(i).getCmd();
-				
+
 				MessageTo360View.SendMsgTo360View(topic_id,
 						serviceMsgObjOrcl.WaDataCallOptionalMsg(entitylist.get(i), crudtype));
 			}
 		}
 		return Mono.empty();
 	}
-	
-	
+
 	public Mono<Void> Msg360MWaDataCallOptional() {
 		String topic_id = "from_clcc_mblcepwacallopt_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
@@ -832,15 +907,14 @@ public class ControllerUCRM extends ServiceJson {
 			for (int i = 0; i < entitylist.size(); i++) {
 
 				String crudtype = entitylist.get(i).getCmd();
-				
-				MessageTo360View.SendMsgTo360View(topic_id, 
+
+				MessageTo360View.SendMsgTo360View(topic_id,
 						serviceMsgObjOrcl.WaDataCallOptionalMsg(entitylist.get(i), crudtype));
 			}
 		}
 		return Mono.empty();
 	}
-	
-	
+
 	public Mono<Void> Msg360WaDataCallTrace() {
 		String topic_id = "from_clcc_hmcepwacalltr_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
@@ -856,15 +930,14 @@ public class ControllerUCRM extends ServiceJson {
 			for (int i = 0; i < entitylist.size(); i++) {
 
 				String crudtype = entitylist.get(i).getCmd();
-				
-				MessageTo360View.SendMsgTo360View(topic_id, 
+
+				MessageTo360View.SendMsgTo360View(topic_id,
 						serviceMsgObjOrcl.WaDataCallTraceMsg(entitylist.get(i), crudtype));
 			}
 		}
 		return Mono.empty();
 	}
-	
-	
+
 	public Mono<Void> Msg360MWaDataCallTrace() {
 		String topic_id = "from_clcc_mblcepwacalltr_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
@@ -880,15 +953,14 @@ public class ControllerUCRM extends ServiceJson {
 			for (int i = 0; i < entitylist.size(); i++) {
 
 				String crudtype = entitylist.get(i).getCmd();
-				
-				MessageTo360View.SendMsgTo360View(topic_id, 
+
+				MessageTo360View.SendMsgTo360View(topic_id,
 						serviceMsgObjOrcl.WaDataCallTraceMsg(entitylist.get(i), crudtype));
 			}
 		}
 		return Mono.empty();
 	}
-	
-	
+
 	public Mono<Void> Msg360WaMTrCode() {
 		String topic_id = "from_clcc_hmcepwatrcd_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
@@ -904,15 +976,14 @@ public class ControllerUCRM extends ServiceJson {
 			for (int i = 0; i < entitylist.size(); i++) {
 
 				String crudtype = entitylist.get(i).getCmd();
-				
-				MessageTo360View.SendMsgTo360View(topic_id, 
+
+				MessageTo360View.SendMsgTo360View(topic_id,
 						serviceMsgObjOrcl.WaMTraceCdMsg(entitylist.get(i), crudtype));
 			}
 		}
 		return Mono.empty();
 	}
-	
-	
+
 	public Mono<Void> Msg360MWaMTrCode() {
 		String topic_id = "from_clcc_mblcepwatrcd_message";
 		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
@@ -928,7 +999,7 @@ public class ControllerUCRM extends ServiceJson {
 			for (int i = 0; i < entitylist.size(); i++) {
 
 				String crudtype = entitylist.get(i).getCmd();
-				
+
 				MessageTo360View.SendMsgTo360View(topic_id,
 						serviceMsgObjOrcl.WaMTraceCdMsg(entitylist.get(i), crudtype));
 			}
@@ -936,5 +1007,9 @@ public class ControllerUCRM extends ServiceJson {
 		return Mono.empty();
 	}
 
+	@GetMapping("/gethc")
+	public String gealthCheck() throws Exception {
+		return "TEST RESPONSE";
+	}
 
 }

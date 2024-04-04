@@ -3,10 +3,11 @@ package gc.apiClient.interfaceCollection;
 
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import gc.apiClient.entity.Entity_CampMaJson;
 import gc.apiClient.entity.Entity_CampRtJson;
-import gc.apiClient.entity.Entity_ContactltMapper;
-import gc.apiClient.entity.oracleH.Entity_WaDataCallOptional;
 import gc.apiClient.entity.postgresql.Entity_CampMa;
 import gc.apiClient.entity.postgresql.Entity_CampRt;
 import gc.apiClient.entity.postgresql.Entity_ContactLt;
@@ -19,7 +20,7 @@ public interface InterfaceDBPostgreSQL {
 	Entity_CampMaJson createCampMaJson(Entity_CampMa enCampMa, String datachgcd);
 	Entity_CampMa createCampMaMsg(String cpid, String crudtype);
 	Entity_ContactLt createContactLtMsg(String msg);
-	Entity_ContactltMapper createContactLtGC(String msg);
+	String createContactLtGC(String msg);
 	
 	//insert
 	Entity_CampRt InsertCampRt(Entity_CampRt entityCampRt);

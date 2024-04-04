@@ -2,6 +2,8 @@ package gc.apiClient.webclient;
 
 import java.util.List;
 
+import org.apache.tomcat.util.http.parser.MediaType;
+import org.json.JSONObject;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -43,6 +45,8 @@ public class WebClientApp {
 		
 		getAccessToken();
 		this.webClient = WebClient.builder().baseUrl(API_BASE_URL)
+				.defaultHeader("Accept", "application/json")
+				.defaultHeader("Content-Type", "application/json")
 				.defaultHeader("Authorization", "Bearer " + accessToken).build();
 	}
 

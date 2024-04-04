@@ -8,7 +8,7 @@ public class Entity_CampMaJson {
 	private String topcDataIsueDtm;
  	private String dataChgCd;
  	private String dataDelYn;
- 	private String centerCd;
+ 	private String tenantId;
  	private String cmpnId;
  	private String cmpnNm;
 

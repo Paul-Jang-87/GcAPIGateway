@@ -10,7 +10,8 @@ public class MessageTo360View {
 
 	public static void SendMsgTo360View(String towhere, String massage) {
 		
-		log.info("===== SendMsgTo360View =====");
+		log.info(" ");
+		log.info("====== ClassName : MessageTo360View & Method : SendMsgTo360View ======");
 
 		String jsonString = massage;
 		
@@ -30,7 +31,7 @@ public class MessageTo360View {
 					return Mono.empty();
 				}).block(); // Wait for the result
 
-		log.info("===== End SendMsgTo360View =====");
+		log.info("====== End SendMsgTo360View ======");
 
 	}
 

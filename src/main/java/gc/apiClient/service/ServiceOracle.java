@@ -39,6 +39,7 @@ import gc.apiClient.repository.oracleM.Repository_MWaDataCall;
 import gc.apiClient.repository.oracleM.Repository_MWaDataCallOptional;
 import gc.apiClient.repository.oracleM.Repository_MWaDataCallTrace;
 import gc.apiClient.repository.oracleM.Repository_MWaMTraceCode;
+import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -177,7 +178,9 @@ public class ServiceOracle implements InterfaceDBOracle {
 	
 	@Override
     public <T> List<T> getAll(Class<T> clazz) {
+		log.info("들어옴. ");
         if (clazz.isAssignableFrom(Entity_DataCall.class)) {
+        	log.info("datacall");
             return (List<T>) repositoryDataCall.findAll();
         }else if (clazz.isAssignableFrom(Entity_MDataCall.class)) {
             return (List<T>) repositoryMDataCall.findAll();

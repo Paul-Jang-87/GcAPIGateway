@@ -81,7 +81,9 @@ public class ControllerUCRM extends ServiceJson {
 	@Scheduled(fixedRate = 60000)
 	public void scheduledMethod() {
 
-		Mono.fromCallable(() -> ReceiveMessage("campma")).subscribeOn(Schedulers.boundedElastic()).subscribe();
+		Mono.fromCallable(() -> ReceiveMessage("campma"))
+		.subscribeOn(Schedulers.boundedElastic())
+		.subscribe();
 
 //		Mono.fromCallable(() -> Msg360Datacall())
 //        .subscribeOn(Schedulers.boundedElastic())
@@ -332,7 +334,7 @@ public class ControllerUCRM extends ServiceJson {
 	}
 
 	@PostMapping("/contactlt/{topic}")
-		public Mono<ResponseEntity<String>> MsgFromCallbot(@PathVariable("topic") String tranId, @RequestBody String msg) {
+		public Mono<Void> MsgFromCallbot(@PathVariable("topic") String tranId, @RequestBody String msg) {
 		
 		log.info(" ");
 		log.info("====== Class : ControllerUCRM - Method : MsgFromCallbot ======");
@@ -372,26 +374,32 @@ public class ControllerUCRM extends ServiceJson {
 		case "callbothome":// IF-CRM_003
 		case "callbotmobile":// IF-CRM_004
 			
+			row_result = ExtractValCallBot(msg,0); // 뽑아온다.cpid::cpsq::cske::csna::tkda::flag
+			
+			Entity_ContactLt enContactLt = serviceDb.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
+			// Entity_ContactLt 객체에 매핑시킨다.
+			cpid = enContactLt.getId().getCpid();// 캠페인 아이디를 가져온다.
+
+			result = serviceWeb.GetCampaignsApiRequet("campaigns", cpid);// 캠페인 아이디로
+//																			// "/api/v2/outbound/campaigns/{campaignId}"호출
+//																			// 후 결과 가져온다.
+			res = ExtractContactLtId(result);
+			contactLtId = res.split("::")[0];
+			
+			
+			
 			for(int i = 0 ; i<cntofmsg; i++) {
 				
+				log.info("res{} : {}",i,res);
 				log.info("받아온 리스트 안의 {}번째 메시지",i);
 				
 				row_result = ExtractValCallBot(msg,i); // 뽑아온다.cpid::cpsq::cske::csna::tkda::flag
 				
-				Entity_ContactLt enContactLt = serviceDb.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
+				enContactLt = serviceDb.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
 				// Entity_ContactLt 객체에 매핑시킨다.
-				cpid = enContactLt.getId().getCpid();// 캠페인 아이디를 가져온다.
-
-				result = serviceWeb.GetCampaignsApiRequet("campaigns", cpid);// 캠페인 아이디로
-//																				// "/api/v2/outbound/campaigns/{campaignId}"호출
-//																				// 후 결과 가져온다.
-				
-				res = ExtractContactLtId(result); // 가져온 결과에서 contactlistid만 추출.
-				contactLtId = res.split("::")[0];
-//				// "api/v2/outbound/contactlists/{contactListId}/contacts"로 request body값 보내기 위한
-//				// 객체
-//				// 객체 안의 속성들(키)은 변동 될 수 있음.
+				log.info("row_result1 : {}",row_result);
 				row_result = row_result+"::"+res; // 뽑아온다.cpid::cpsq::cske::csna::tkda::flag::contactLtId
+				log.info("row_result2 : {}",row_result);
 				String contactltMapper = serviceDb.createContactLtGC(row_result);
 
 					arr.add(contactltMapper);
@@ -411,22 +419,16 @@ public class ControllerUCRM extends ServiceJson {
 			serviceWeb.PostContactLtClearReq("contactltclear", contactLtId);
 			serviceWeb.PostContactLtApiRequet("contact", contactLtId, arr);
 
-			return Mono.just(ResponseEntity.ok().build());
+			return Mono.empty();
 			
 		default:
 			break;
 		}
 
 		log.info("====== End MsgFromCallbot ======");
-		return Mono.just(ResponseEntity.ok().build());
+		return Mono.empty();
 		
 	}
-	
-	
-	
-	
-	
-	
 	
 
 	@PostMapping("/gcapi/post/{topic}")
@@ -564,7 +566,7 @@ public class ControllerUCRM extends ServiceJson {
 					if ((business.equals("UCRM")) && (dirt == 1)) {// URM이면서 정상일 때.
 
 					} else {
-						Entity_CampRtJson toproducer = serviceDb.createCampRtJson(entityCmRt);// producer로 보내기 위한
+						Entity_CampRtJson toproducer = serviceDb.createCampRtJson(entityCmRt,business);// producer로 보내기 위한
 						// entity.
 						objectMapper = new ObjectMapper();
 

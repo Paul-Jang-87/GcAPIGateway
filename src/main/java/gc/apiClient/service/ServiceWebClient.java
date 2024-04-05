@@ -104,7 +104,9 @@ public class ServiceWebClient implements InterfaceWebClient {
 		log.info("====== ClassName : ServiceWebClient & Method : PostContactLtApiRequet ======");
 		String result = "";
 		
-		log.info("msg : {}",msg.toString());
+		log.info("PostContactLtApiRequet message before send to G.C : {}",msg.toString());
+		int byteSize = msg.toString().getBytes().length;
+	    log.info("Bytes size of PostContactLtApiRequet message: {}", byteSize);
 
 		WebClientApp webClient = new WebClientApp(endpoint, "POST");
 		result = webClient.makeApiRequest34(contactListId, msg.toString());

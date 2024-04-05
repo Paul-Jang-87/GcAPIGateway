@@ -54,3 +54,91 @@ ERROR 24-04-04 15:41:36[reactor-http-nio-2] [WebClientApp:129] - Error making AP
 ERROR 24-04-04 15:43:43[http-nio-8083-exec-2] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
 ERROR 24-04-04 15:43:44[http-nio-8083-exec-2] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
 ERROR 24-04-04 15:43:44[http-nio-8083-exec-2] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 17:21:25[http-nio-8083-exec-2] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 17:21:25[http-nio-8083-exec-2] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 17:21:26[http-nio-8083-exec-2] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 17:21:26[reactor-http-nio-2] [WebClientApp:130] - Error making API request: 415 Unsupported Media Type from POST https://api.apne2.pure.cloud/api/v2/outbound/contactlists/88742765-bf28-423e-8d59-02aa40905743/contacts
+ERROR 24-04-04 17:27:44[http-nio-8083-exec-2] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 17:27:45[http-nio-8083-exec-2] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 17:27:45[http-nio-8083-exec-2] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 17:27:46[reactor-http-nio-2] [WebClientApp:130] - Error making API request: 415 Unsupported Media Type from POST https://api.apne2.pure.cloud/api/v2/outbound/contactlists/88742765-bf28-423e-8d59-02aa40905743/contacts
+ERROR 24-04-04 17:28:32[http-nio-8083-exec-3] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 17:28:32[http-nio-8083-exec-3] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 17:28:32[http-nio-8083-exec-3] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 17:28:33[reactor-http-nio-2] [WebClientApp:130] - Error making API request: 415 Unsupported Media Type from POST https://api.apne2.pure.cloud/api/v2/outbound/contactlists/88742765-bf28-423e-8d59-02aa40905743/contacts
+ERROR 24-04-04 17:30:28[http-nio-8083-exec-2] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 17:30:29[http-nio-8083-exec-2] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 17:30:29[http-nio-8083-exec-2] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 17:31:22[http-nio-8083-exec-3] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 17:31:22[http-nio-8083-exec-3] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 17:31:22[http-nio-8083-exec-3] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 17:39:56[http-nio-8083-exec-4] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 17:39:56[http-nio-8083-exec-4] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 17:39:57[http-nio-8083-exec-4] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 17:44:34[http-nio-8083-exec-1] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 17:44:34[http-nio-8083-exec-1] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 17:44:34[http-nio-8083-exec-1] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 18:37:17[reactor-http-nio-2] [WebClientApp:117] - Error making API request: 401 Unauthorized from GET https://api.apne2.pure.cloud/api/v2/outbound/campaigns
+ERROR 24-04-04 18:37:17[boundedElastic-1] [Operators:324] - Operator called default onErrorDropped
+reactor.core.Exceptions$ErrorCallbackNotImplemented: java.lang.IllegalArgumentException: argument "content" is null
+Caused by: java.lang.IllegalArgumentException: argument "content" is null
+	at com.fasterxml.jackson.databind.ObjectMapper._assertNotNull(ObjectMapper.java:4980)
+	at com.fasterxml.jackson.databind.ObjectMapper.readTree(ObjectMapper.java:3217)
+	at gc.apiClient.service.ServiceJson.CampaignListSize(ServiceJson.java:90)
+	at gc.apiClient.controller.ControllerUCRM.ReceiveMessage(ControllerUCRM.java:175)
+	at gc.apiClient.controller.ControllerUCRM.lambda$scheduledMethod$0(ControllerUCRM.java:84)
+	at reactor.core.publisher.MonoCallable.call(MonoCallable.java:72)
+	at reactor.core.publisher.FluxSubscribeOnCallable$CallableSubscribeOnSubscription.run(FluxSubscribeOnCallable.java:228)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:68)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:28)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+ERROR 24-04-04 18:40:48[http-nio-8083-exec-2] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 18:40:48[http-nio-8083-exec-2] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 18:40:48[http-nio-8083-exec-2] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 18:42:15[http-nio-8083-exec-6] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 18:42:16[http-nio-8083-exec-6] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 18:42:16[http-nio-8083-exec-6] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 18:44:54[http-nio-8083-exec-1] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 18:44:54[http-nio-8083-exec-1] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 18:44:54[http-nio-8083-exec-1] [ControllerUCRM:405] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 19:00:30[http-nio-8083-exec-2] [ControllerUCRM:408] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 19:00:30[http-nio-8083-exec-2] [ControllerUCRM:408] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 19:00:30[http-nio-8083-exec-2] [ControllerUCRM:408] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 19:00:31[reactor-http-nio-2] [WebClientApp:120] - Error making API request: 405 Method Not Allowed from POST https://api.apne2.pure.cloud/api/v2/outbound/contactlists/clear
+ERROR 24-04-04 19:00:31[reactor-http-nio-2] [WebClientApp:135] - Error making API request: 405 Method Not Allowed from POST https://api.apne2.pure.cloud/api/v2/outbound/contactlists/contacts
+ERROR 24-04-04 19:01:27[http-nio-8083-exec-3] [ControllerUCRM:408] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 19:01:27[http-nio-8083-exec-3] [ControllerUCRM:408] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 19:01:27[http-nio-8083-exec-3] [ControllerUCRM:408] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 19:01:28[reactor-http-nio-2] [WebClientApp:120] - Error making API request: 405 Method Not Allowed from POST https://api.apne2.pure.cloud/api/v2/outbound/contactlists/clear
+ERROR 24-04-04 19:01:28[reactor-http-nio-2] [WebClientApp:135] - Error making API request: 405 Method Not Allowed from POST https://api.apne2.pure.cloud/api/v2/outbound/contactlists/contacts
+ERROR 24-04-04 19:09:03[http-nio-8083-exec-2] [ControllerUCRM:410] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 19:09:03[http-nio-8083-exec-2] [ControllerUCRM:410] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 19:09:03[http-nio-8083-exec-2] [ControllerUCRM:410] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 19:09:03[reactor-http-nio-2] [WebClientApp:120] - Error making API request: 405 Method Not Allowed from POST https://api.apne2.pure.cloud/api/v2/outbound/contactlists/clear
+ERROR 24-04-04 19:09:03[reactor-http-nio-2] [WebClientApp:135] - Error making API request: 405 Method Not Allowed from POST https://api.apne2.pure.cloud/api/v2/outbound/contactlists/contacts
+ERROR 24-04-04 19:15:20[http-nio-8083-exec-1] [ControllerUCRM:411] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 19:15:20[http-nio-8083-exec-1] [ControllerUCRM:411] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 19:15:20[http-nio-8083-exec-1] [ControllerUCRM:411] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-04 20:58:25[http-nio-8083-exec-2] [ServicePostgre:494] - records can't be found with 143578dd-3bda-4480-99bf-f1e43b30df19
+ERROR 24-04-04 21:02:00[http-nio-8083-exec-2] [ServicePostgre:494] - records can't be found with 143578dd-3bda-4480-99bf-f1e43b30df19
+ERROR 24-04-04 21:08:15[main] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8083 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8083 or configure this application to listen on another port.
+
+ERROR 24-04-04 21:27:23[http-nio-8083-exec-1] [ServicePostgre:494] - records can't be found with 143578dd-3bda-4480-99bf-f1e43b30df19
+ERROR 24-04-04 21:31:31[http-nio-8083-exec-4] [ServicePostgre:494] - records can't be found with 143578dd-3bda-4480-99bf-f1e43b30df19
+ERROR 24-04-04 21:38:50[reactor-http-nio-4] [MessageToApim:32] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8084

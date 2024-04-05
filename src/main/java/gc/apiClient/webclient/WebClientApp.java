@@ -26,7 +26,7 @@ public class WebClientApp {
 	private static String API_BASE_URL = "";
 	private static String API_END_POINT = "";
 	private static String HTTP_METHOD = "";
-	private String accessToken = "";
+	private static String accessToken = "";
 	
 	private WebClient webClient;
 
@@ -38,12 +38,17 @@ public class WebClientApp {
 //      webClientConfig.getClientIdPwd();
         
 		CLIENT_ID = WebClientConfig.getClientId();
+		log.info("Client Id : {}",CLIENT_ID);
 		CLIENT_SECRET = WebClientConfig.getClientSecret();
+		log.info("Client secret : {}",CLIENT_SECRET);
 		API_BASE_URL = WebClientConfig.getBaseUrl();
 		API_END_POINT = WebClientConfig.getApiEndpoint(apiName);
 		HTTP_METHOD = httpMethod;
-		
-		getAccessToken();
+		if (accessToken.equals("")) {
+			getAccessToken();
+		}else {
+			log.info("토큰 있음 : {}",accessToken);
+		}
 		this.webClient = WebClient.builder().baseUrl(API_BASE_URL)
 				.defaultHeader("Accept", "application/json")
 				.defaultHeader("Content-Type", "application/json")
@@ -62,6 +67,7 @@ public class WebClientApp {
 		try {
 			ApiResponse<AuthResponse> authResponse = apiClient.authorizeClientCredentials(CLIENT_ID, CLIENT_SECRET);
 			accessToken = authResponse.getBody().getAccess_token();
+			log.info("accessToken : {}",accessToken);
 		} catch (Exception e) {
 			log.error("Error is occured during getting AccessToken: {}",e.getMessage());
 			e.printStackTrace();

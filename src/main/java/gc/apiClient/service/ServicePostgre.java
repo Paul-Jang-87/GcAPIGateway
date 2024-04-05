@@ -171,10 +171,10 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
-	public Entity_CampRtJson createCampRtJson(Entity_CampRt enCampRt) {// contactid(고객키)::contactListId::didt::dirt::cpid
+	public Entity_CampRtJson createCampRtJson(Entity_CampRt enCampRt,String business) {// contactid(고객키)::contactListId::didt::dirt::cpid
 
 		Entity_CampRtJson enCampRtJson = new Entity_CampRtJson();
-
+		
 		LocalDateTime now = LocalDateTime.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSSSSS");
 		String topcDataIsueDtm = now.format(formatter);
@@ -182,6 +182,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		int hubId = enCampRt.getHubid();
 		int dirt = enCampRt.getDirt();
 		int dict = enCampRt.getDict();
+		int cpSeq = enCampRt.getCamp_seq();
 		String coid = "";
 		String campid = enCampRt.getCpid();
 		String didt = "";
@@ -203,14 +204,24 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		coid = Integer.toString(enCampMa.getCoid());
 		MappingCenter mappingData = new MappingCenter();
 		coid = mappingData.getCentercodeById(coid);
-
-		enCampRtJson.setCenterCd(coid);
-		enCampRtJson.setIbmHubId(hubId);
-		enCampRtJson.setLastAttempt(didt);
-		enCampRtJson.setLastResult(dirt);
-		enCampRtJson.setTopcDataIsueDtm(topcDataIsueDtm);
-		enCampRtJson.setTotAttempt(dict);
-
+		
+		if(business.equals("CALLBOT")) {
+			
+			enCampRtJson.setTopcDataIsueDtm(topcDataIsueDtm);
+			enCampRtJson.setCpid(campid);
+			enCampRtJson.setCamp_seq(cpSeq);
+			enCampRtJson.setLastAttempt(didt);
+			enCampRtJson.setLastResult(dirt);
+			enCampRtJson.setTotAttempt(dict);
+		}else {
+			enCampRtJson.setTopcDataIsueDtm(topcDataIsueDtm);
+			enCampRtJson.setIbmHubId(hubId);
+			enCampRtJson.setCenterCd(coid);
+			enCampRtJson.setLastAttempt(didt);
+			enCampRtJson.setLastResult(dirt);
+			enCampRtJson.setTotAttempt(dict);
+			
+		}
 		return enCampRtJson;
 	}
 

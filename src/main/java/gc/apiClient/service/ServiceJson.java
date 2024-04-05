@@ -59,8 +59,8 @@ public class ServiceJson implements InterfaceJson {
 		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
 			result = jsonNode.path("entities").path(i).path("id").asText();
-			String coid = jsonNode.path("entities").path(i).path("contactList").path("name").asText().split("-")[0];
-			String cpnm = jsonNode.path("entities").path(i).path("contactList").path("name").asText().split("-")[1];
+			String coid = jsonNode.path("entities").path(i).path("callerName").asText();
+			String cpnm = jsonNode.path("entities").path(i).path("contactList").path("name").asText();
 			result = result + "::" + coid;
 			result = result + "::" + cpnm;
 			result = result + "::" + jsonNode.path("entities").path(i).path("division").path("name").asText();
@@ -116,18 +116,16 @@ public class ServiceJson implements InterfaceJson {
 		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
 			result = jsonNode.path("detail").path("eventBody").path("id").asText();
-			String coid = jsonNode.path("detail").path("eventBody").path("name").asText().split("-")[0];
-			String cpnm = jsonNode.path("detail").path("eventBody").path("name").asText().split("-")[1];
+			String coid = jsonNode.path("detail").path("eventBody").path("callerName").asText();
+			String cpnm = jsonNode.path("detail").path("eventBody").path("name").asText();
 			result = result + "::" + coid;
 			result = result + "::" + cpnm;
 			result = result + "::" + jsonNode.path("detail").path("eventBody").path("division").path("id").asText();
 			result = result + "::" + jsonNode.path("detail").path("metadata").path("action").asText();
 
-		} catch (JsonMappingException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
+		} 
 		
 		log.info("result : {}",result);
 		log.info("====== END ExtractCampMaUpdateOrDel ======");

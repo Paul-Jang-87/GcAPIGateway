@@ -339,22 +339,26 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		ContactLtId id = new ContactLtId();
 		String ContactLvalues[] = msg.split("::");
 
-		log.info("msg : {}", msg);
+		log.info("delivered msg from ExtractValCallBot : {}", msg);
 		// 임시로 데이터 적재
-		id.setCpid(ContactLvalues[0]);
-		id.setCpsq(Integer.parseInt(ContactLvalues[1]));
-		enContactLt.setId(id);
-		enContactLt.setCske(ContactLvalues[2]);// "customerkey"
-		enContactLt.setCsna(ContactLvalues[3]);// "카리나"
-		enContactLt.setFlag(ContactLvalues[5]);// "HO2"
-		enContactLt.setTkda(ContactLvalues[4]);// "custid,111"
+		try {
+			id.setCpid(ContactLvalues[0]);
+			id.setCpsq(Integer.parseInt(ContactLvalues[1]));
+			enContactLt.setId(id);
+			enContactLt.setCske(ContactLvalues[2]);// "customerkey"
+			enContactLt.setCsna(ContactLvalues[3]);// "카리나"
+			enContactLt.setFlag(ContactLvalues[5]);// "HO2"
+			enContactLt.setTkda(ContactLvalues[4]);// "custid,111"
 
-		log.info("cpid : {}", ContactLvalues[0]);
-		log.info("cpsq : {}", Integer.parseInt(ContactLvalues[1]));
-		log.info("cske : {}", ContactLvalues[2]);
-		log.info("csna : {}", ContactLvalues[3]);
-		log.info("flag : {}", ContactLvalues[5]);
-		log.info("tkda : {}", ContactLvalues[4]);
+			log.info("cpid : {}", ContactLvalues[0]);
+			log.info("cpsq : {}", Integer.parseInt(ContactLvalues[1]));
+			log.info("cske : {}", ContactLvalues[2]);
+			log.info("csna : {}", ContactLvalues[3]);
+			log.info("flag : {}", ContactLvalues[5]);
+			log.info("tkda : {}", ContactLvalues[4]);
+		} catch (Exception e) {
+			log.info("Error Messge : {}", e.getMessage());
+		}
 
 		return enContactLt;
 	}
@@ -364,44 +368,48 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		//뽑아온다(콜봇).cpid::cpsq::cske::csna::tkda::flag::contactltId::queid
 		log.info(" ");
 		log.info("===== ClassName : ServicePostgre & Method : createContactLtGC =====");
-		log.info("msg : {}",msg);
 		
 			String values[] = msg.split("::");
 			
 			JSONObject data = new JSONObject();
 			JSONObject mainObj = new JSONObject();
-			data.put("CPID", values[0]);
-			data.put("CPSQ", values[1]);
-			data.put("CSKE", values[2]);
-			data.put("CSNA", values[3]);
-			data.put("TKDA", values[4]);
-			data.put("TNO1", "");
-			data.put("TNO2", "");
-			data.put("TNO3", "");
-			data.put("TNO4", "");
-			data.put("TNO5", "");
-			data.put("TLNO", "");
-			data.put("TMZO", "Asia/Seoul (+09:00)");
-			data.put("QUEUEID", values[7]);
-			data.put("TRYCNT", "0");
-			
-			mainObj.put("data", data);
-			mainObj.put("id", values[2]);
-			mainObj.put("contactListId", values[6]);
-			log.info("CPID :{}", values[0]);
-			log.info("CPSQ :{}", values[1]);
-			log.info("CSKE :{}", values[2]);
-			log.info("CSNA :{}", values[3]);
-			log.info("TKDA :{}", values[4]);
-			log.info("TNO1 :{}", "");
-			log.info("TNO2 :{}", "");
-			log.info("TNO3 :{}", "");
-			log.info("TNO4 :{}", "");
-			log.info("TNO5 :{}", "");
-			log.info("TLNO :{}", "");
-			log.info("QUEUEID :{}", values[7]);
-			log.info("trycnt :{}", "0");
-			log.info("TMZO :{}", "Asia/Seoul (+09:00)");
+			try {
+				data.put("CPID", values[0]);
+				data.put("CPSQ", values[1]);
+				data.put("CSKE", values[2]);
+				data.put("CSNA", values[3]);
+				data.put("TKDA", values[4]);
+				data.put("TNO1", "");
+				data.put("TNO2", "");
+				data.put("TNO3", "");
+				data.put("TNO4", "");
+				data.put("TNO5", "");
+				data.put("TLNO", "");
+				data.put("TMZO", "Asia/Seoul (+09:00)");
+				data.put("QUEUEID", values[7]);
+				data.put("TRYCNT", "0");
+				
+				mainObj.put("data", data);
+				mainObj.put("id", values[2]);
+				mainObj.put("contactListId", values[6]);
+				log.info("CPID :{}", values[0]);
+				log.info("CPSQ :{}", values[1]);
+				log.info("CSKE :{}", values[2]);
+				log.info("CSNA :{}", values[3]);
+				log.info("TKDA :{}", values[4]);
+				log.info("TNO1 :{}", "");
+				log.info("TNO2 :{}", "");
+				log.info("TNO3 :{}", "");
+				log.info("TNO4 :{}", "");
+				log.info("TNO5 :{}", "");
+				log.info("TLNO :{}", "");
+				log.info("QUEUEID :{}", values[7]);
+				log.info("TRYCNT :{}", "0");
+				log.info("TMZO :{}", "Asia/Seoul (+09:00)");
+				
+			} catch (Exception e) {
+				log.info("Error Message :{}", e.getMessage());
+			}
 			
 			return mainObj.toString();
 	}

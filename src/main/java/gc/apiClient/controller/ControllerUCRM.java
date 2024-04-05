@@ -334,10 +334,10 @@ public class ControllerUCRM extends ServiceJson {
 	}
 
 	@PostMapping("/contactlt/{topic}")
-		public Mono<Void> MsgFromCallbot(@PathVariable("topic") String tranId, @RequestBody String msg) {
+		public Mono<Void> CallbotMsgFrmCnsumer(@PathVariable("topic") String tranId, @RequestBody String msg) {
 		
 		log.info(" ");
-		log.info("====== Class : ControllerUCRM - Method : MsgFromCallbot ======");
+		log.info("====== Class : ControllerUCRM - Method : CallbotMsgFrmCnsumer ======");
 		
 		String jsonResponse = msg;
 
@@ -397,13 +397,10 @@ public class ControllerUCRM extends ServiceJson {
 				
 				enContactLt = serviceDb.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
 				// Entity_ContactLt 객체에 매핑시킨다.
-				log.info("row_result1 : {}",row_result);
 				row_result = row_result+"::"+res; // 뽑아온다.cpid::cpsq::cske::csna::tkda::flag::contactLtId
-				log.info("row_result2 : {}",row_result);
 				String contactltMapper = serviceDb.createContactLtGC(row_result);
 
 					arr.add(contactltMapper);
-					log.info(arr.toString());
 
 				// db인서트
 				try {
@@ -425,7 +422,7 @@ public class ControllerUCRM extends ServiceJson {
 			break;
 		}
 
-		log.info("====== End MsgFromCallbot ======");
+		log.info("====== End CallbotMsgFrmCnsumer ======");
 		return Mono.empty();
 		
 	}

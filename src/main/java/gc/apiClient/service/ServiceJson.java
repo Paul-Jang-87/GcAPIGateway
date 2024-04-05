@@ -148,20 +148,18 @@ public class ServiceJson implements InterfaceJson {
 		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
 			result = jsonNode.path("cmpnItemDto").path(i).path("cmpnId").asText();
-			log.info("rs1 : {}",result);
 			result = result + "::" + jsonNode.path("cmpnItemDto").path(i).path("cmpnSeq").asText();
 			result = result + "::" + jsonNode.path("cmpnItemDto").path(i).path("custNo").asText();
 			result = result + "::" + jsonNode.path("cmpnItemDto").path(i).path("custNum").asText();
 			result = result + "::" + jsonNode.path("cmpnItemDto").path(i).path("token").asText();
 			result = result + "::" + jsonNode.path("cmpnItemDto").path(i).path("flag").asText();
 
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			log.info("Error Message : {}",e.getMessage());
 		}
 
 		log.info("result : {}",result);
+		log.info("====== End ExtractValCallBot ======");
 		return result;
 	}
 	
@@ -307,18 +305,14 @@ public class ServiceJson implements InterfaceJson {
 			jsonNode = objectMapper.readTree(jsonResponse);
 			result = jsonNode.path("contactList").path("id").asText();
 			if(jsonNode.path("queue").path("id").asText().equals("")) {
-				log.info("큐 없음.");
 			}else{
-				log.info("큐 있음.");
 				que = jsonNode.path("queue").path("id").asText();
 			}
 			result = result+"::"+que;
 
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
+		} catch (Exception e) {
+			log.info("Error Message : {}",e.getMessage());
+		} 
 		
 		log.info("result of ExtractContactLtId : {}",result);
 		log.info("====== End ExtractContactLtId ======");

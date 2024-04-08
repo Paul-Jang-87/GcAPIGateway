@@ -81,9 +81,7 @@ public class ControllerUCRM extends ServiceJson {
 	@Scheduled(fixedRate = 60000)
 	public void scheduledMethod() {
 
-		Mono.fromCallable(() -> ReceiveMessage("campma"))
-		.subscribeOn(Schedulers.boundedElastic())
-		.subscribe();
+//		Mono.fromCallable(() -> ReceiveMessage("campma")).subscribeOn(Schedulers.boundedElastic()).subscribe();
 
 //		Mono.fromCallable(() -> Msg360Datacall())
 //        .subscribeOn(Schedulers.boundedElastic())
@@ -176,18 +174,18 @@ public class ControllerUCRM extends ServiceJson {
 			result = serviceWeb.GetApiRequet("campaignId");
 			size = CampaignListSize(result); // G.C에서 불러온 캠페인 갯수.
 			numberOfRecords = serviceDb.getRecordCount(); // 현재 레코드 갯수.
-			
+
 			if (size == numberOfRecords) {// campma 테이블에 이미 있는 캠페인이라면 pass.
 
 			} else {
-				
+
 				int reps = size - numberOfRecords;
 				log.info("{}번 반복", reps);
 				while (reps-- > 0) {
 					log.info("{}번째 인덱스 ", reps);
 					row_result = ExtractValCrm12(result, reps); // cpid::coid::cpna::division ->
 																// 캠페인아이디::테넌트아이디::캠페인명::디비전
-					
+
 					division = row_result.split("::")[3];
 
 					Map<String, String> businessLogic = BusinessLogic.SelectedBusiness(division);
@@ -334,11 +332,11 @@ public class ControllerUCRM extends ServiceJson {
 	}
 
 	@PostMapping("/contactlt/{topic}")
-		public Mono<Void> CallbotMsgFrmCnsumer(@PathVariable("topic") String tranId, @RequestBody String msg) {
-		
+	public Mono<ResponseEntity<String>> CallbotMsgFrmCnsumer(@PathVariable("topic") String tranId, @RequestBody String msg) {
+
 		log.info(" ");
 		log.info("====== Class : ControllerUCRM - Method : CallbotMsgFrmCnsumer ======");
-		
+
 		String jsonResponse = msg;
 
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -354,16 +352,15 @@ public class ControllerUCRM extends ServiceJson {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		
+
 		int cntofmsg = casenum;
 		log.info("case count : {}", cntofmsg);
-		
+
 		String row_result = "";
 		String result = "";
 		String cpid = "";
 		String topic_id = tranId;
 		String res = "";
-		String queid = "";
 		String contactLtId = "";
 		List<String> arr = new ArrayList<String>();
 
@@ -373,9 +370,9 @@ public class ControllerUCRM extends ServiceJson {
 
 		case "callbothome":// IF-CRM_003
 		case "callbotmobile":// IF-CRM_004
-			
-			row_result = ExtractValCallBot(msg,0); // 뽑아온다.cpid::cpsq::cske::csna::tkda::flag
-			
+
+			row_result = ExtractValCallBot(msg, 0); // 뽑아온다.cpid::cpsq::cske::csna::tkda::flag
+
 			Entity_ContactLt enContactLt = serviceDb.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
 			// Entity_ContactLt 객체에 매핑시킨다.
 			cpid = enContactLt.getId().getCpid();// 캠페인 아이디를 가져온다.
@@ -385,22 +382,20 @@ public class ControllerUCRM extends ServiceJson {
 //																			// 후 결과 가져온다.
 			res = ExtractContactLtId(result);
 			contactLtId = res.split("::")[0];
-			
-			
-			
-			for(int i = 0 ; i<cntofmsg; i++) {
-				
-				log.info("res{} : {}",i,res);
-				log.info("받아온 리스트 안의 {}번째 메시지",i);
-				
-				row_result = ExtractValCallBot(msg,i); // 뽑아온다.cpid::cpsq::cske::csna::tkda::flag
-				
+
+			for (int i = 0; i < cntofmsg; i++) {
+
+				log.info("res{} : {}", i, res);
+				log.info("받아온 리스트 안의 {}번째 메시지", i);
+
+				row_result = ExtractValCallBot(msg, i); // 뽑아온다.cpid::cpsq::cske::csna::tkda::flag
+
 				enContactLt = serviceDb.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
 				// Entity_ContactLt 객체에 매핑시킨다.
-				row_result = row_result+"::"+res; // 뽑아온다.cpid::cpsq::cske::csna::tkda::flag::contactLtId
+				row_result = row_result + "::" + res; // 뽑아온다.cpid::cpsq::cske::csna::tkda::flag::contactLtId
 				String contactltMapper = serviceDb.createContactLtGC(row_result);
 
-					arr.add(contactltMapper);
+				arr.add(contactltMapper);
 
 				// db인서트
 				try {
@@ -412,21 +407,110 @@ public class ControllerUCRM extends ServiceJson {
 					log.error("DataAccessException 발생 : {}", ex.getMessage());
 				}
 			}
-			
+
+			serviceWeb.PostContactLtClearReq("contactltclear", contactLtId);
+			serviceWeb.PostContactLtApiRequet("contact", contactLtId, arr);
+
+			log.info("====== End CallbotMsgFrmCnsumer ======");
+			return Mono.just(ResponseEntity.ok("Successfully processed the message."));
+
+		default:
+			log.info("====== End CallbotMsgFrmCnsumer ======");
+			return Mono.just(ResponseEntity.badRequest().body("Invalid topic_id provided."));
+		}
+	}
+
+	
+	@PostMapping("/contactltucrm/{topic}")
+	public Mono<Void> UcrmMsgFrmCnsmer(@PathVariable("topic") String tranId, @RequestBody String msg) {
+
+		log.info(" ");
+		log.info("====== Class : ControllerUCRM - Method : UcrmMsgFrmCnsmer ======");
+
+		String jsonResponse = msg;
+
+		ObjectMapper objectMapper = new ObjectMapper();
+		JsonNode jsonNode = null;
+		int casenum = 0;
+
+		try {
+			jsonNode = objectMapper.readTree(jsonResponse);
+			casenum = jsonNode.path("cmpnItemDto").size();
+
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+
+		int cntofmsg = casenum;
+		log.info("case count : {}", cntofmsg);
+
+		String row_result = "";
+		String result = "";
+		String cpid = "";
+		String topic_id = tranId;
+		String res = "";
+		String contactLtId = "";
+		List<String> arr = new ArrayList<String>();
+
+		log.info("topic_id : {}", topic_id);
+
+		switch (topic_id) {
+
+		case "ucrmhome":// IF-CRM_003
+		case "ucrmmobile":// IF-CRM_004
+
+			row_result = ExtractValCallBot(msg, 0); // 뽑아온다.cpid::cpsq::cske::csna::tkda::flag
+
+			Entity_ContactLt enContactLt = serviceDb.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
+			// Entity_ContactLt 객체에 매핑시킨다.
+			cpid = enContactLt.getId().getCpid();// 캠페인 아이디를 가져온다.
+
+			result = serviceWeb.GetCampaignsApiRequet("campaigns", cpid);// 캠페인 아이디로
+//																		// "/api/v2/outbound/campaigns/{campaignId}"호출
+//																		// 후 결과 가져온다.
+			res = ExtractContactLtId(result);
+			contactLtId = res.split("::")[0];
+
+			for (int i = 0; i < cntofmsg; i++) {
+
+				log.info("res{} : {}", i, res);
+				log.info("받아온 리스트 안의 {}번째 메시지", i);
+
+				row_result = ExtractValCallBot(msg, i); // 뽑아온다.cpid::cpsq::cske::csna::tkda::flag
+
+				enContactLt = serviceDb.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
+				// Entity_ContactLt 객체에 매핑시킨다.
+				row_result = row_result + "::" + res; // 뽑아온다.cpid::cpsq::cske::csna::tkda::flag::contactLtId
+				String contactltMapper = serviceDb.createContactLtGC(row_result);
+
+				arr.add(contactltMapper);
+
+				// db인서트
+				try {
+					serviceDb.InsertContactLt(enContactLt);
+
+				} catch (DataIntegrityViolationException ex) {
+					log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+				} catch (DataAccessException ex) {
+					log.error("DataAccessException 발생 : {}", ex.getMessage());
+				}
+			}
+
 			serviceWeb.PostContactLtClearReq("contactltclear", contactLtId);
 			serviceWeb.PostContactLtApiRequet("contact", contactLtId, arr);
 
 			return Mono.empty();
-			
+
 		default:
 			break;
 		}
 
-		log.info("====== End CallbotMsgFrmCnsumer ======");
+		log.info("====== End UcrmMsgFrmCnsmer ======");
 		return Mono.empty();
-		
+
 	}
-	
 
 	@PostMapping("/gcapi/post/{topic}")
 	public Mono<Void> receiveMessage(@PathVariable("topic") String tranId, @RequestBody String msg) {
@@ -563,7 +647,8 @@ public class ControllerUCRM extends ServiceJson {
 					if ((business.equals("UCRM")) && (dirt == 1)) {// URM이면서 정상일 때.
 
 					} else {
-						Entity_CampRtJson toproducer = serviceDb.createCampRtJson(entityCmRt,business);// producer로 보내기 위한
+						Entity_CampRtJson toproducer = serviceDb.createCampRtJson(entityCmRt, business);// producer로 보내기
+																										// 위한
 						// entity.
 						objectMapper = new ObjectMapper();
 
@@ -1004,11 +1089,6 @@ public class ControllerUCRM extends ServiceJson {
 			}
 		}
 		return Mono.empty();
-	}
-
-	@GetMapping("/gethc")
-	public String gealthCheck() throws Exception {
-		return "TEST RESPONSE";
 	}
 
 }

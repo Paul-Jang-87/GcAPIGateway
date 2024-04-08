@@ -19,6 +19,7 @@ public class MessageToProducer {
 		WebClient webClient = WebClient.builder().baseUrl("http://localhost:8081").build();
 
 	    String endpointUrl = towhere;  
+	    String result = "";
 	    
 	    webClient.post()
 	            .uri(endpointUrl)
@@ -31,6 +32,7 @@ public class MessageToProducer {
 	            })
 	            .subscribe(responseBody -> {
 	                log.info("Response received: {}", responseBody);
+	                
 	            }); 
 	    
 		log.info("====== End sendMsgToProducer ======");

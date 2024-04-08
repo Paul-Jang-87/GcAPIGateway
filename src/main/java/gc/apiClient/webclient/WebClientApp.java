@@ -2,6 +2,9 @@ package gc.apiClient.webclient;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.reactive.function.client.ClientResponse;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 import org.apache.tomcat.util.http.parser.MediaType;
 import org.json.JSONObject;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -125,14 +128,15 @@ public class WebClientApp {
 	
 	
 	public String makeApiRequest34(String contactListId, String msg) {
-
 	    ApiRequestHandler apiRequestHandler = new ApiRequestHandler();
-	    UriComponents api1 = apiRequestHandler.buildApiRequest(API_END_POINT,contactListId);
+	    UriComponents api1 = apiRequestHandler.buildApiRequest(API_END_POINT, contactListId);
 
 	    return webClient.post().uri(api1.toUriString()).body(BodyInserters.fromValue(msg)).retrieve()
 				.bodyToMono(String.class)
 	            .onErrorResume(error -> {
-	            	log.error("Error making API request: {}",error.getMessage());
+	                log.error("Error making API request: {}",error.getMessage());
+	                log.info("Error making API request: {}",error.getMessage());
+	                log.info("Error making API request: {}",error.toString());
 	                return Mono.empty();
 	            })
 	            .block(); // Wait for the result

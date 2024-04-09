@@ -25,7 +25,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import gc.apiClient.BusinessLogic;
 import gc.apiClient.customproperties.CustomProperties;
 import gc.apiClient.entity.Entity_CampMaJson;
-import gc.apiClient.entity.Entity_CampRtJson;
 import gc.apiClient.entity.Entity_ContactltMapper;
 import gc.apiClient.entity.Entity_ToApim;
 import gc.apiClient.entity.oracleH.Entity_DataCall;
@@ -255,7 +254,7 @@ public class ControllerUCRM extends ServiceJson {
 	public Mono<Void> UpdateOrDelCampMa(@RequestBody String msg) {
 
 		log.info("Class : ControllerUCRM - Method : UpdateOrDelCampMa");
-		String row_result = ExtractCampMaUpdateOrDel(msg); // cpid::coid::cpna::divisionid::action 캠페인아이디::캠페인명::디비전아이디
+		String row_result = ExtractCampMaUpdateOrDel(msg); // cpid::coid::cpna::divisionid::action 
 		String division = row_result.split("::")[3];
 		String action = row_result.split("::")[4];
 
@@ -331,8 +330,8 @@ public class ControllerUCRM extends ServiceJson {
 		return Mono.empty();
 	}
 
-	@PostMapping("/contactlt/{topic}")
-	public Mono<ResponseEntity<String>> CallbotMsgFrmCnsumer(@PathVariable("topic") String tranId, @RequestBody String msg) {
+	@PostMapping("/contactlt/{topic}") //Mono<ResponseEntity<String>>
+	public String CallbotMsgFrmCnsumer(@PathVariable("topic") String tranId, @RequestBody String msg) {
 
 		log.info(" ");
 		log.info("====== Class : ControllerUCRM - Method : CallbotMsgFrmCnsumer ======");
@@ -371,7 +370,7 @@ public class ControllerUCRM extends ServiceJson {
 		case "callbothome":// IF-CRM_003
 		case "callbotmobile":// IF-CRM_004
 
-			row_result = ExtractValCallBot(msg, 0); // 뽑아온다.cpid::cpsq::cske::csna::tkda::flag
+			row_result = ExtractValCallBot(msg, 0); // 뽑아온다.cpid::cpsq::cske::csno::tkda::flag
 
 			Entity_ContactLt enContactLt = serviceDb.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
 			// Entity_ContactLt 객체에 매핑시킨다.
@@ -388,7 +387,7 @@ public class ControllerUCRM extends ServiceJson {
 				log.info("res{} : {}", i, res);
 				log.info("받아온 리스트 안의 {}번째 메시지", i);
 
-				row_result = ExtractValCallBot(msg, i); // 뽑아온다.cpid::cpsq::cske::csna::tkda::flag
+				row_result = ExtractValCallBot(msg, i); // 뽑아온다.cpid::cpsq::cske::csno::tkda::flag
 
 				enContactLt = serviceDb.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
 				// Entity_ContactLt 객체에 매핑시킨다.
@@ -412,11 +411,14 @@ public class ControllerUCRM extends ServiceJson {
 			serviceWeb.PostContactLtApiRequet("contact", contactLtId, arr);
 
 			log.info("====== End CallbotMsgFrmCnsumer ======");
-			return Mono.just(ResponseEntity.ok("Successfully processed the message."));
+			
+			return "Successfully processed the message.";
+//			return Mono.just(ResponseEntity.ok("Successfully processed the message."));
 
 		default:
 			log.info("====== End CallbotMsgFrmCnsumer ======");
-			return Mono.just(ResponseEntity.badRequest().body("Invalid topic_id provided."));
+			return "Invalid topic_id provided.";
+//			return Mono.just(ResponseEntity.badRequest().body("Invalid topic_id provided."));
 		}
 	}
 
@@ -616,6 +618,9 @@ public class ControllerUCRM extends ServiceJson {
 			for (int i = 0; i < enContactList.size(); i++) {
 				values.add(enContactList.get(i).getCske());
 			}
+			
+			log.info("고객키들 (cske) : {} ", values.toString());
+			log.info("enContactList size : {}", enContactList);
 
 			// contactLtId를 키로 하여 제네시스의 api를 호출한다. 호출할 때는 values리스트 담겨져 있던 cske(고객키)들 각각에 맞는
 			// 결과 값들을
@@ -640,6 +645,11 @@ public class ControllerUCRM extends ServiceJson {
 				for (int i = 0; i < enContactList.size(); i++) {
 
 					contactsresult = ExtractContacts56(result, i);
+					if(contactsresult.equals("")) {
+						log.info("No value, skip to next");
+						continue;
+					}
+					
 					entityCmRt = serviceDb.createCampRtMsg(contactsresult);// db 인서트 하기 위한 entity.
 
 					dirt = entityCmRt.getDirt();// 응답코드
@@ -647,20 +657,20 @@ public class ControllerUCRM extends ServiceJson {
 					if ((business.equals("UCRM")) && (dirt == 1)) {// URM이면서 정상일 때.
 
 					} else {
-						Entity_CampRtJson toproducer = serviceDb.createCampRtJson(entityCmRt, business);// producer로 보내기
+						JSONObject toproducer = serviceDb.createCampRtJson(entityCmRt, business);// producer로 보내기
 																										// 위한
 						// entity.
 						objectMapper = new ObjectMapper();
 
 						try {
-							String jsonString = objectMapper.writeValueAsString(toproducer);
+							String jsonString = toproducer.toString();
 							log.info("JsonString Data : {}번째 {}", i, jsonString);
 
 							MessageToProducer producer = new MessageToProducer();
 							endpoint = "/gcapi/post/" + topic_id;
 							producer.sendMsgToProducer(endpoint, jsonString);
 
-						} catch (JsonProcessingException e) {
+						} catch (Exception e) {
 							e.printStackTrace();
 						}
 					}
@@ -726,23 +736,34 @@ public class ControllerUCRM extends ServiceJson {
 	@GetMapping("/360view")
 	public Mono<Void> Msg360Datacall() {
 
-		String topic_id = "from_clcc_hmcepcalldt_message";
-		int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-		log.info("the number of records : {}", numberOfRecords);
-
-		if (numberOfRecords < 1) {
-
-		} else {// 1. 쉐도우 테이블에 레코드가 1개 이상 있다면 있는 레코드들을 다 긁어 온다.
+		try {
+			
+			String topic_id = "from_clcc_hmcepcalldt_message";
+			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
+			log.info("the number of records : {}", numberOfRecords);
+			
+			if (numberOfRecords < 1) {
+				
+			} else {// 1. 쉐도우 테이블에 레코드가 1개 이상 있다면 있는 레코드들을 다 긁어 온다.
 				// 2. crud 구분해서 메시지 키를 정한다.
 				// 3. 프로듀서로 메시지 재가공해서 보낸다.
-			List<Entity_DataCall> entitylist = serviceOracle.getAll(Entity_DataCall.class);
-			log.info("entitylist size : {}", entitylist.size());
-			for (int i = 0; i < entitylist.size(); i++) {
-
-				String crudtype = entitylist.get(i).getCmd();
-				log.info("crudtype : {}", crudtype);
-				MessageTo360View.SendMsgTo360View(topic_id, serviceMsgObjOrcl.DataCallMsg(entitylist.get(i), crudtype));
+				List<Entity_DataCall> entitylist = serviceOracle.getAll(Entity_DataCall.class);
+				
+				log.info("entitylist : {}", entitylist.toString()  );
+				
+				log.info("entitylist size : {}", entitylist.size());
+				for (int i = 0; i < entitylist.size(); i++) {
+					
+					String crudtype = entitylist.get(i).getCmd();
+					log.info("crudtype : {}", crudtype);
+					MessageTo360View.SendMsgTo360View(topic_id, serviceMsgObjOrcl.DataCallMsg(entitylist.get(i), crudtype));
+				}
 			}
+			
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			e.printStackTrace();
+			
 		}
 		return Mono.empty();
 	}

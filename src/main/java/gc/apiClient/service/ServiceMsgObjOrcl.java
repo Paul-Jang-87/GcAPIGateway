@@ -27,46 +27,56 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
-public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
+public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl  {
 
 	@Override
-	public <T> String DataCallMsg(T t, String crudtype) {
+	public <T> String DataCallMsg(T t, String crudtype){
 
 		log.info(" ");
 		log.info("====== ClassName : ServiceMsgObjOrcl & Method : DataCallMsg ======");
 		
 		JSONObject obj = new JSONObject();
-
-		LocalDateTime now = LocalDateTime.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSSSSS");
-		String topcDataIsueDtm = now.format(formatter);
-
-		obj.put("topcDataIsueDtm", topcDataIsueDtm);
-		obj.put("dataChgCd", crudtype);
-
-		// Check the type of t and cast it accordingly
-		if (t instanceof Entity_DataCall) {
-			Entity_DataCall en = (Entity_DataCall) t;
-			obj.put("entDate", en.getNew_entered_time());
-			obj.put("entTime", en.getNew_entered_date());
-			obj.put("callSeq", en.getNew_call_seq());
-			obj.put("icId", en.getNew_icid());
-			obj.put("siteCd", en.getNew_site_code());
+		try {
 			
-			log.info("Home obj toString : {}",obj.toString());
+
+			LocalDateTime now = LocalDateTime.now();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSSSSS");
+			String topcDataIsueDtm = now.format(formatter);
+
+			obj.put("topcDataIsueDtm", topcDataIsueDtm);
+			obj.put("dataChgCd", crudtype);
+
+			// Check the type of t and cast it accordingly
+			if (t instanceof Entity_DataCall) {
+				Entity_DataCall en = (Entity_DataCall) t;
+				obj.put("entDate", en.getNew_entered_time());
+				obj.put("entTime", en.getNew_entered_date());
+				obj.put("callSeq", en.getNew_call_seq());
+				obj.put("icId", en.getNew_icid());
+				obj.put("siteCd", en.getNew_site_code());
+				
+				log.info("Home obj toString : {}",obj.toString());
+				
+			} else if (t instanceof Entity_MDataCall) {
+				Entity_MDataCall en = (Entity_MDataCall) t;
+				obj.put("entDate", en.getNew_entered_time());
+				obj.put("entTime", en.getNew_entered_date());
+				obj.put("callSeq", en.getNew_call_seq());
+				obj.put("icId", en.getNew_icid());
+				obj.put("siteCd", en.getNew_site_code());
+				log.info("Mobile obj toString : {}",obj.toString());
+			}
+
+			log.info("====== End DataCallMsg ======");
 			
-		} else if (t instanceof Entity_MDataCall) {
-			Entity_MDataCall en = (Entity_MDataCall) t;
-			obj.put("entDate", en.getNew_entered_time());
-			obj.put("entTime", en.getNew_entered_date());
-			obj.put("callSeq", en.getNew_call_seq());
-			obj.put("icId", en.getNew_icid());
-			obj.put("siteCd", en.getNew_site_code());
-			log.info("Mobile obj toString : {}",obj.toString());
+		} catch (Exception e) {
+			
+			log.error(e.getMessage());
+			e.printStackTrace();	
 		}
-
-		log.info("====== End DataCallMsg ======");
 		return obj.toString();
+		
+		
 	}
 
 	

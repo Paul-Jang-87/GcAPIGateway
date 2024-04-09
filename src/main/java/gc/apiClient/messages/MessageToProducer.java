@@ -19,21 +19,23 @@ public class MessageToProducer {
 		WebClient webClient = WebClient.builder().baseUrl("http://localhost:8081").build();
 
 	    String endpointUrl = towhere;  
-	    String result = "";
 	    
 	    webClient.post()
 	            .uri(endpointUrl)
 	            .body(BodyInserters.fromValue(jsonString))
 	            .retrieve()
 	            .bodyToMono(String.class)
-	            .onErrorResume(error -> {
-	                log.error("Error making API request: {}",error.getMessage()) ;
-	                return Mono.empty();
+	            .doOnError(error -> {
+	                log.error("Error making API request: {}", error.getMessage());
+	                error.printStackTrace();
 	            })
 	            .subscribe(responseBody -> {
 	                log.info("Response received: {}", responseBody);
-	                
-	            }); 
+	            }, error -> {
+	                log.error("Error in handling response: {}", error.getMessage());
+	            }, () -> {
+	                log.info("Request completed successfully.");
+	            });
 	    
 		log.info("====== End sendMsgToProducer ======");
 	}

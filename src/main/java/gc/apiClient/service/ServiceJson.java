@@ -104,24 +104,27 @@ public class ServiceJson implements InterfaceJson {
 	
 	@Override
 	public String ExtractCampMaUpdateOrDel(String stringMsg) {// IF-CRM_001,IF-CRM_002에서 사용하기 위한 추출함수.
-		
+		// cpid::coid::cpna::divisionid::action
 		String jsonResponse = stringMsg;
 
 		log.info(" ");
 		log.info("====== ClassName : ServiceJson & Method : ExtractCampMaUpdateOrDel ======");
+		
+		log.info("Incoming Msg : {}",stringMsg);
+		
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode jsonNode = null;
 		String result = "";
-
+		
 		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
-			result = jsonNode.path("detail").path("eventBody").path("id").asText();
-			String coid = jsonNode.path("detail").path("eventBody").path("callerName").asText();
-			String cpnm = jsonNode.path("detail").path("eventBody").path("name").asText();
+			result = jsonNode.path("campaign_id").asText();
+			String coid = jsonNode.path("callerName").asText();
+			String cpnm = jsonNode.path("campaign_name").asText();
 			result = result + "::" + coid;
 			result = result + "::" + cpnm;
-			result = result + "::" + jsonNode.path("detail").path("eventBody").path("division").path("id").asText();
-			result = result + "::" + jsonNode.path("detail").path("metadata").path("action").asText();
+			result = result + "::" + jsonNode.path("division").asText();
+			result = result + "::" + jsonNode.path("action").asText();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -138,6 +141,7 @@ public class ServiceJson implements InterfaceJson {
 
 		log.info(" ");
 		log.info("====== ClassName : ServiceJson & Method : ExtractValCallBot ======");
+		
 		
 		String jsonResponse = stringMsg;
 
@@ -212,17 +216,18 @@ public class ServiceJson implements InterfaceJson {
 		String result = "";
 
 		try {
+			
 			jsonNode = objectMapper.readTree(jsonResponse);
-			result = jsonNode.path("detail").path("eventBody").path("id").asText();
-			result += "::" + jsonNode.path("detail").path("eventBody").path("contactList").path("id").asText();
-			result += "::" + jsonNode.path("detail").path("eventBody").path("division").path("id").asText();
+			result = jsonNode.path("campaign_id").asText();
+			result += "::" + jsonNode.path("contactList_id").asText();
+			result += "::" + jsonNode.path("division").asText();
 
 		} catch (JsonMappingException e) {
 			e.printStackTrace();
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		log.info("result : {}", result); // campaignid, contactlistid, division 추출
+		log.info("result : {}", result); 
 		log.info("====== End ExtractVal56 ======");
 
 		return result;
@@ -256,6 +261,11 @@ public class ServiceJson implements InterfaceJson {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
+		
+		if(result.equals("::::::::::::")) {
+			result = "";
+		}
+		
 		log.info("추출 이후 결과 값 rs: {}",result);
 		log.info("====== End ExtractContacts56 ======");
 

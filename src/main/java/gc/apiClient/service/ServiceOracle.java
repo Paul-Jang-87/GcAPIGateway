@@ -178,42 +178,48 @@ public class ServiceOracle implements InterfaceDBOracle {
 	
 	@Override
     public <T> List<T> getAll(Class<T> clazz) {
-		log.info("들어옴. ");
-        if (clazz.isAssignableFrom(Entity_DataCall.class)) {
-        	log.info("datacall");
-            return (List<T>) repositoryDataCall.findAll();
-        }else if (clazz.isAssignableFrom(Entity_MDataCall.class)) {
-            return (List<T>) repositoryMDataCall.findAll();
-        }else if (clazz.isAssignableFrom(Entity_DataCallCustomer.class)) {
-            return (List<T>) repositoryDataCallCustomer.findAll();
-        }else if (clazz.isAssignableFrom(Entity_MDataCallCustomer.class)) {
-            return (List<T>) repositoryMDataCallCustomer.findAll();
-        }else if (clazz.isAssignableFrom(Entity_DataCallService.class)) {
-            return (List<T>) repositoryDataCallService.findAll();
-        }else if (clazz.isAssignableFrom(Entity_MDataCallService.class)) {
-            return (List<T>) repositoryMDataCallService.findAll();
-        }else if (clazz.isAssignableFrom(Entity_MasterServiceCode.class)) {
-            return (List<T>) repositoryMasterServiceCode.findAll();
-        }else if (clazz.isAssignableFrom(Entity_MMasterServiceCode.class)) {
-            return (List<T>) repositoryMMasterServiceCode.findAll();
-        }else if (clazz.isAssignableFrom(Entity_WaDataCall.class)) {
-            return (List<T>) repositoryWaDataCall.findAll();
-        }else if (clazz.isAssignableFrom(Entity_MWaDataCall.class)) {
-            return (List<T>) repositoryMWaDataCall.findAll();
-        }else if (clazz.isAssignableFrom(Entity_WaDataCallOptional.class)) {
-            return (List<T>) repositoryWaDataCallOptional.findAll();
-        }else if (clazz.isAssignableFrom(Entity_MWaDataCallOptional.class)) {
-            return (List<T>) repositoryMWaDataCallOptional.findAll();
-        }else if (clazz.isAssignableFrom(Entity_WaDataCallTrace.class)) {
-            return (List<T>) repositoryWaDataCallTrace.findAll();
-        }else if (clazz.isAssignableFrom(Entity_MWaDataCallTrace.class)) {
-            return (List<T>) repositoryMWaDataCallTrace.findAll();
-        }else if (clazz.isAssignableFrom(Entity_WaMTracecode.class)) {
-            return (List<T>) repositoryWaMTraceCode.findAll();
-        }else if (clazz.isAssignableFrom(Entity_MWaMTracecode.class)) {
-            return (List<T>) repositoryMWaMTraceCode.findAll();
-        }
-        
+		
+		try {
+			
+			log.info("들어옴. ");
+	        if (clazz.isAssignableFrom(Entity_DataCall.class)) {
+	        	log.info("datacall");
+	            return (List<T>) repositoryDataCall.findAll();
+	        }else if (clazz.isAssignableFrom(Entity_MDataCall.class)) {
+	            return (List<T>) repositoryMDataCall.findAll();
+	        }else if (clazz.isAssignableFrom(Entity_DataCallCustomer.class)) {
+	            return (List<T>) repositoryDataCallCustomer.findAll();
+	        }else if (clazz.isAssignableFrom(Entity_MDataCallCustomer.class)) {
+	            return (List<T>) repositoryMDataCallCustomer.findAll();
+	        }else if (clazz.isAssignableFrom(Entity_DataCallService.class)) {
+	            return (List<T>) repositoryDataCallService.findAll();
+	        }else if (clazz.isAssignableFrom(Entity_MDataCallService.class)) {
+	            return (List<T>) repositoryMDataCallService.findAll();
+	        }else if (clazz.isAssignableFrom(Entity_MasterServiceCode.class)) {
+	            return (List<T>) repositoryMasterServiceCode.findAll();
+	        }else if (clazz.isAssignableFrom(Entity_MMasterServiceCode.class)) {
+	            return (List<T>) repositoryMMasterServiceCode.findAll();
+	        }else if (clazz.isAssignableFrom(Entity_WaDataCall.class)) {
+	            return (List<T>) repositoryWaDataCall.findAll();
+	        }else if (clazz.isAssignableFrom(Entity_MWaDataCall.class)) {
+	            return (List<T>) repositoryMWaDataCall.findAll();
+	        }else if (clazz.isAssignableFrom(Entity_WaDataCallOptional.class)) {
+	            return (List<T>) repositoryWaDataCallOptional.findAll();
+	        }else if (clazz.isAssignableFrom(Entity_MWaDataCallOptional.class)) {
+	            return (List<T>) repositoryMWaDataCallOptional.findAll();
+	        }else if (clazz.isAssignableFrom(Entity_WaDataCallTrace.class)) {
+	            return (List<T>) repositoryWaDataCallTrace.findAll();
+	        }else if (clazz.isAssignableFrom(Entity_MWaDataCallTrace.class)) {
+	            return (List<T>) repositoryMWaDataCallTrace.findAll();
+	        }else if (clazz.isAssignableFrom(Entity_WaMTracecode.class)) {
+	            return (List<T>) repositoryWaMTraceCode.findAll();
+	        }else if (clazz.isAssignableFrom(Entity_MWaMTracecode.class)) {
+	            return (List<T>) repositoryMWaMTraceCode.findAll();
+	        }
+			
+		} catch (Exception e) {
+			log.error(e.getMessage() );
+			e.printStackTrace();		}
         
         return null; 
     }

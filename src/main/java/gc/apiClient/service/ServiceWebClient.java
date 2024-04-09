@@ -24,7 +24,6 @@ public class ServiceWebClient implements InterfaceWebClient {
 		WebClientApp webClient = new WebClientApp(endpoint, "GET");
 		result = webClient.makeApiRequest("sortBy", "dateCreated", "sortOrder", "descending");
 
-		log.info("GetApiRequet 요청 후 결과 값 : {}", result);
 		log.info("====== End GetApiRequet ======");
 		return result;
 	}
@@ -57,8 +56,6 @@ public class ServiceWebClient implements InterfaceWebClient {
 		WebClientApp webClient = new WebClientApp(endpoint, "GET");
 		result = webClient.makeApiRequest(campaignId);
 
-		log.info("GetStatusApiRequet 요청 후 결과 값 rs : {}", result);
-
 		log.info("===== End GetStatusApiRequet =====");
 		return result;
 	}
@@ -74,8 +71,6 @@ public class ServiceWebClient implements InterfaceWebClient {
 		WebClientApp webClient = new WebClientApp(endpoint, "GET");
 		result = webClient.makeApiRequest(campaignId);
 
-		log.info("GetStatusApiRequet 요청 후 결과 값 : {}", result);
-
 		log.info("====== End GetCampaignsApiRequet ======");
 		return result;
 	}
@@ -90,8 +85,6 @@ public class ServiceWebClient implements InterfaceWebClient {
 
 		WebClientApp webClient = new WebClientApp(endpoint, "GET");
 		result = webClient.makeApiRequest(contactListId, contactId);
-
-		System.out.println("GetContactLtApiRequet 요청 후 결과 값 : " + result);
 
 		return result;
 	}
@@ -111,14 +104,20 @@ public class ServiceWebClient implements InterfaceWebClient {
 		int cnt = 3;
 		int retryCount = 1;
 		while (result == null && retryCount < cnt) {
-			log.info("PostContactLtApiRequet 요청 후 결과 값 : {}, 시도횟수 : {}", result, retryCount);
+			
+			log.info("시도횟수 : {}", retryCount);
 			log.info("Retrying...");
 			retryCount++;
 			result = webClient.makeApiRequest34(contactListId, msg.toString());
+			log.error("결과 : {}", result);
 		}
 
 		if (result == null) {
 			log.error("최종시도 결과 : {}", result);
+		}
+		
+		if ( result != null) {
+			result = "성공";
 		}
 		
 		log.info("PostContactLtApiRequet 요청 후 결과 값 : {}, 시도횟수 : {}", result, retryCount);

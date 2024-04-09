@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.reactive.function.client.ClientResponse;
+import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 import org.apache.tomcat.util.http.parser.MediaType;
 import org.json.JSONObject;
@@ -52,7 +53,15 @@ public class WebClientApp {
 		}else {
 			log.info("토큰 있음 : {}",accessToken);
 		}
-		this.webClient = WebClient.builder().baseUrl(API_BASE_URL)
+		
+		int bufferSize = 1024 * 1024; 
+
+		ExchangeStrategies exchangeStrategies = ExchangeStrategies.builder()
+		    .codecs(clientCodecConfigurer -> {
+		        clientCodecConfigurer.defaultCodecs().maxInMemorySize(bufferSize);
+		    }).build();
+		
+		this.webClient = WebClient.builder().exchangeStrategies(exchangeStrategies).baseUrl(API_BASE_URL)
 				.defaultHeader("Accept", "application/json")
 				.defaultHeader("Content-Type", "application/json")
 				.defaultHeader("Authorization", "Bearer " + accessToken).build();
@@ -131,15 +140,25 @@ public class WebClientApp {
 	    ApiRequestHandler apiRequestHandler = new ApiRequestHandler();
 	    UriComponents api1 = apiRequestHandler.buildApiRequest(API_END_POINT, contactListId);
 
-	    return webClient.post().uri(api1.toUriString()).body(BodyInserters.fromValue(msg)).retrieve()
-				.bodyToMono(String.class)
-	            .onErrorResume(error -> {
-	                log.error("Error making API request: {}",error.getMessage());
-	                log.info("Error making API request: {}",error.getMessage());
-	                log.info("Error making API request: {}",error.toString());
-	                return Mono.empty();
-	            })
-	            .block(); // Wait for the result
+	    return webClient.post().uri(api1.toUriString()).body(BodyInserters.fromValue(msg))
+	    		.exchangeToMono(response -> {
+                    // Check if the response status code is 200 OK.
+                    if (response.statusCode().is2xxSuccessful()) {
+                    	  log.error("raw response : {}", response );
+                    	  log.error("response body1 : {}", response.bodyToMono(String.class) );
+                    	  log.error("response body2 : {}", response.bodyToMono(String.class).toString() );
+                    	  log.error("response body(toString) : {}", response.toString() );
+                        return response.bodyToMono(String.class);
+                    } else if (response.statusCode().is4xxClientError()) {
+                    	log.error("raw error response : {}", response );
+                    	log.error("error response body1 : {}", response.bodyToMono(String.class) );
+                    	log.error("error response body2 : {}", response.bodyToMono(String.class).toString() );
+                  	  	log.error("error response body(toString) : {}", response.toString() );
+                        return response.createException().flatMap(Mono::error);
+                    } else {
+                        return Mono.empty();
+                    }
+                }).block();
 	}
 	
 	

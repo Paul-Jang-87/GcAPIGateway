@@ -25,7 +25,6 @@ import gc.apiClient.datamapping.MappingCenter;
 import gc.apiClient.embeddable.CampRt;
 import gc.apiClient.embeddable.ContactLtId;
 import gc.apiClient.entity.Entity_CampMaJson;
-import gc.apiClient.entity.Entity_CampRtJson;
 import gc.apiClient.entity.Entity_ContactltMapper;
 import gc.apiClient.entity.postgresql.Entity_CampMa;
 import gc.apiClient.entity.postgresql.Entity_CampRt;
@@ -171,9 +170,8 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
-	public Entity_CampRtJson createCampRtJson(Entity_CampRt enCampRt,String business) {// contactid(고객키)::contactListId::didt::dirt::cpid
+	public JSONObject createCampRtJson(Entity_CampRt enCampRt,String business) {// contactid(고객키)::contactListId::didt::dirt::cpid
 
-		Entity_CampRtJson enCampRtJson = new Entity_CampRtJson();
 		
 		LocalDateTime now = LocalDateTime.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSSSSS");
@@ -205,24 +203,29 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		MappingCenter mappingData = new MappingCenter();
 		coid = mappingData.getCentercodeById(coid);
 		
+		JSONObject obj = new JSONObject();
+		
 		if(business.equals("CALLBOT")) {
 			
-			enCampRtJson.setTopcDataIsueDtm(topcDataIsueDtm);
-			enCampRtJson.setCpid(campid);
-			enCampRtJson.setCamp_seq(cpSeq);
-			enCampRtJson.setLastAttempt(didt);
-			enCampRtJson.setLastResult(dirt);
-			enCampRtJson.setTotAttempt(dict);
+			obj.put("topcDataIsueDtm", topcDataIsueDtm);
+			obj.put("cpId", campid);
+			obj.put("cpSeq", cpSeq);
+			obj.put("lastAttempt", didt); 
+			obj.put("attmpNo", dict);
+			obj.put("lastResult", dirt);
+		
 		}else {
-			enCampRtJson.setTopcDataIsueDtm(topcDataIsueDtm);
-			enCampRtJson.setIbmHubId(hubId);
-			enCampRtJson.setCenterCd(coid);
-			enCampRtJson.setLastAttempt(didt);
-			enCampRtJson.setLastResult(dirt);
-			enCampRtJson.setTotAttempt(dict);
+			
+			obj.put("topcDataIsueDtm", topcDataIsueDtm);
+			obj.put("ibmHubId", hubId);
+			obj.put("centerCd", coid);
+			obj.put("lastAttempt", didt);
+			obj.put("totAttempt", dict);
+			obj.put("lastResult", dirt);
+			
 			
 		}
-		return enCampRtJson;
+		return obj;
 	}
 
 	@Override
@@ -242,7 +245,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			log.info("action type : {}", crudtype);
 			cpid = parts[0];// 캠페인 아이디
 			coid = Integer.parseInt(parts[1]); // 센터구분 코드
-			cpna = parts[3]; // 캠페인 명
+			cpna = parts[2]; // 캠페인 명
 			break;
 
 		case "update": // cpid::coid::cpna::divisionid::action
@@ -330,7 +333,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
-	public Entity_ContactLt createContactLtMsg(String msg) {// (콜봇에서 뽑아온거)cpid::cpsq::cske::csna::tkda::flag
+	public Entity_ContactLt createContactLtMsg(String msg) {// (콜봇에서 뽑아온거)cpid::cpsq::cske::csno::tkda::flag
 
 		log.info(" ");
 		log.info("====== ClassName : ServicePostgre & Method : createContactLtMsg ======");
@@ -346,14 +349,12 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			id.setCpsq(Integer.parseInt(ContactLvalues[1]));
 			enContactLt.setId(id);
 			enContactLt.setCske(ContactLvalues[2]);// "customerkey"
-			enContactLt.setCsna(ContactLvalues[3]);// "카리나"
 			enContactLt.setFlag(ContactLvalues[5]);// "HO2"
 			enContactLt.setTkda(ContactLvalues[4]);// "custid,111"
 
 			log.info("cpid : {}", ContactLvalues[0]);
 			log.info("cpsq : {}", Integer.parseInt(ContactLvalues[1]));
 			log.info("cske : {}", ContactLvalues[2]);
-			log.info("csna : {}", ContactLvalues[3]);
 			log.info("flag : {}", ContactLvalues[5]);
 			log.info("tkda : {}", ContactLvalues[4]);
 		} catch (Exception e) {
@@ -365,7 +366,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 	@Override
 	public String createContactLtGC(String msg) {
-		//뽑아온다(콜봇).cpid::cpsq::cske::csna::tkda::flag::contactltId::queid
+		//뽑아온다(콜봇).cpid::cpsq::cske::csno::tkda::flag::contactltId::queid
 		log.info(" ");
 		log.info("===== ClassName : ServicePostgre & Method : createContactLtGC =====");
 		
@@ -377,9 +378,9 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 				data.put("CPID", values[0]);
 				data.put("CPSQ", values[1]);
 				data.put("CSKE", values[2]);
-				data.put("CSNA", values[3]);
+				data.put("CSNA", "");
 				data.put("TKDA", values[4]);
-				data.put("TNO1", "");
+				data.put("TNO1", values[3]);
 				data.put("TNO2", "");
 				data.put("TNO3", "");
 				data.put("TNO4", "");
@@ -395,9 +396,9 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 				log.info("CPID :{}", values[0]);
 				log.info("CPSQ :{}", values[1]);
 				log.info("CSKE :{}", values[2]);
-				log.info("CSNA :{}", values[3]);
+				log.info("CSNA :{}", "");
 				log.info("TKDA :{}", values[4]);
-				log.info("TNO1 :{}", "");
+				log.info("TNO1 :{}", values[3]);
 				log.info("TNO2 :{}", "");
 				log.info("TNO3 :{}", "");
 				log.info("TNO4 :{}", "");

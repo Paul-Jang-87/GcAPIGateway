@@ -18,7 +18,10 @@ public class MessageTo360View {
 		log.info("JsonString Data : {}", jsonString);
 
 
-		WebClient webClient = WebClient.builder().baseUrl("http://localhost:8081").build();
+		WebClient webClient = WebClient.builder()
+				.baseUrl("http://localhost:8081")
+				.defaultHeader("Accept", "application/json")
+				.defaultHeader("Content-Type", "application/json").build();
 
 //		String endpointUrl = "/360view/" + "firsttopic";
 		String endpointUrl = "/360view/" + towhere;
@@ -26,10 +29,17 @@ public class MessageTo360View {
 		log.info("Endpoint : {}", endpointUrl);
 
 		webClient.post().uri(endpointUrl).body(BodyInserters.fromValue(jsonString)).retrieve().bodyToMono(String.class)
-				.onErrorResume(error -> {
-					log.error("Error making API request: {}", error.getMessage());
-					return Mono.empty();
-				}).block(); // Wait for the result
+		.doOnError(error -> {
+            log.error("Error making API request: {}", error.getMessage());
+            error.printStackTrace();
+        })
+        .subscribe(responseBody -> {
+            log.info("Response received: {}", responseBody);
+        }, error -> {
+            log.error("Error in handling response: {}", error.getMessage());
+        }, () -> {
+            log.info("Request completed successfully.");
+        });
 
 		log.info("====== End SendMsgTo360View ======");
 

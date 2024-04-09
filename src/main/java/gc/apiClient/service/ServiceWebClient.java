@@ -31,14 +31,17 @@ public class ServiceWebClient implements InterfaceWebClient {
 	@Override
 	public String GetDivisionName(String endpoint, String divisionid) {// path parameter 'divisionid'
 
-		log.info("===== GetDivisionName =====");
+		log.info(" ");
+		log.info("====== ClassName : ServiceWebClient & Method : GetDivisionName ======");
 
 		String result = "";
 
 		WebClientApp webClient = new WebClientApp(endpoint, "GET");
 		result = webClient.makeApiRequest(divisionid);
 
+
 		log.info("GetDivisionName 요청 후 결과 값 : {}", result);
+		log.info("====== End GetDivisionName ======");
 
 		return result;
 	}
@@ -56,7 +59,8 @@ public class ServiceWebClient implements InterfaceWebClient {
 		WebClientApp webClient = new WebClientApp(endpoint, "GET");
 		result = webClient.makeApiRequest(campaignId);
 
-		log.info("===== End GetStatusApiRequet =====");
+		
+		log.info("====== End GetStatusApiRequet ======");
 		return result;
 	}
 
@@ -71,6 +75,7 @@ public class ServiceWebClient implements InterfaceWebClient {
 		WebClientApp webClient = new WebClientApp(endpoint, "GET");
 		result = webClient.makeApiRequest(campaignId);
 
+		log.info("GetCampaignsApiRequet 요청 후 결과 값 : {}", result);
 		log.info("====== End GetCampaignsApiRequet ======");
 		return result;
 	}
@@ -79,13 +84,15 @@ public class ServiceWebClient implements InterfaceWebClient {
 	public String GetContactLtApiRequet(String endpoint, String contactListId, String contactId) {// path parameter
 																									// 'contactListId','contactId'
 
-		log.info("===== GetContactLtApiRequet =====");
+		log.info(" ");
+		log.info("====== ClassName : ServiceWebClient & Method : GetContactLtApiRequet ======");
 
 		String result = "";
 
 		WebClientApp webClient = new WebClientApp(endpoint, "GET");
 		result = webClient.makeApiRequest(contactListId, contactId);
 
+		log.info("====== End GetContactLtApiRequet ======");
 		return result;
 	}
 
@@ -105,19 +112,19 @@ public class ServiceWebClient implements InterfaceWebClient {
 		int retryCount = 1;
 		while (result == null && retryCount < cnt) {
 			
-			log.info("시도횟수 : {}", retryCount);
+			log.info("Retrying count : {}", retryCount);
 			log.info("Retrying...");
 			retryCount++;
 			result = webClient.makeApiRequest34(contactListId, msg.toString());
-			log.error("결과 : {}", result);
+			log.error("Retried result : {}", result);
 		}
 
 		if (result == null) {
-			log.error("최종시도 결과 : {}", result);
+			log.error("Final result : {}", result);
 		}
 		
 		if ( result != null) {
-			result = "성공";
+			result = "Succeded";
 		}
 		
 		log.info("PostContactLtApiRequet 요청 후 결과 값 : {}, 시도횟수 : {}", result, retryCount);
@@ -125,6 +132,7 @@ public class ServiceWebClient implements InterfaceWebClient {
 		log.info("====== End PostContactLtApiRequet ======");
 		return result;
 	}
+	
 
 	@Override // "/api/v2/outbound/contactlists/{contactListId}/contacts/bulk"
 	public String PostContactLtApiBulk(String endpoint, String contactListId, List<String> cskes) {// path parameter

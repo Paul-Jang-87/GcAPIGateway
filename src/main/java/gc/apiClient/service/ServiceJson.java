@@ -54,7 +54,7 @@ public class ServiceJson implements InterfaceJson {
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode jsonNode = null;
 		String result = "";
-		log.info("메세지 : {}",jsonResponse);
+		log.info("Incoming Message : {}",jsonResponse);
 
 		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
@@ -141,7 +141,7 @@ public class ServiceJson implements InterfaceJson {
 
 		log.info(" ");
 		log.info("====== ClassName : ServiceJson & Method : ExtractValCallBot ======");
-		
+		// (콜봇에서 뽑아온거)cpid::cpsq::cske::csno::tkda::flag
 		
 		String jsonResponse = stringMsg;
 
@@ -179,24 +179,29 @@ public class ServiceJson implements InterfaceJson {
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode jsonNode = null;
 		String result = "";
+		// (콜봇에서 뽑아온거)cpid::cpsq::cske::csno::tkda::flag
 
 		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
 			result = jsonNode.path("citCmpnId").asText();
 			result = result + "::" + jsonNode.path("citCmpnSno").asText();
 			result = result + "::" + jsonNode.path("hldrCustId").asText();
-			result = result + "::" + jsonNode.path("custNm").asText();
-			result = result + "::" + jsonNode.path("tlno").asText();//tno1
-			result = result + "::" + jsonNode.path("cablTlno").asText();//tno2
-			result = result + "::" + jsonNode.path("custTlno").asText();//tno3
+			result = result + "::" + jsonNode.path("tlno").asText();
 			result = result + "::" + jsonNode.path("trdtCntn").asText();//tkda
 			result = result + "::" + jsonNode.path("workDivsCd").asText();//flag
+			result = result + "::" + jsonNode.path("topcDataIsueSno").asText();
+			result = result + "::" + jsonNode.path("topcDataIsueDtm").asText();
+			result = result + "::" + jsonNode.path("subssDataChgCd").asText();
+			result = result + "::" + jsonNode.path("subssDataDelYn").asText();
+			result = result + "::" + jsonNode.path("custNm").asText();
+			result = result + "::" + jsonNode.path("cablTlno").asText();//tno2
+			result = result + "::" + jsonNode.path("custTlno").asText();//tno3
 
-		} catch (JsonMappingException e) {
+		} catch (Exception e) {
+		
+			log.info("Error Message : {}", e.getMessage());
 			e.printStackTrace();
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
+		} 
 
 		log.info("result : {}",result);
 		return result;

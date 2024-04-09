@@ -364,6 +364,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		return enContactLt;
 	}
 
+	
 	@Override
 	public String createContactLtGC(String msg) {
 		//뽑아온다(콜봇).cpid::cpsq::cske::csno::tkda::flag::contactltId::queid

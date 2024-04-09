@@ -80,7 +80,7 @@ public class ControllerUCRM extends ServiceJson {
 	@Scheduled(fixedRate = 60000)
 	public void scheduledMethod() {
 
-//		Mono.fromCallable(() -> ReceiveMessage("campma")).subscribeOn(Schedulers.boundedElastic()).subscribe();
+		Mono.fromCallable(() -> ReceiveMessage("campma")).subscribeOn(Schedulers.boundedElastic()).subscribe();
 
 //		Mono.fromCallable(() -> Msg360Datacall())
 //        .subscribeOn(Schedulers.boundedElastic())
@@ -329,9 +329,10 @@ public class ControllerUCRM extends ServiceJson {
 
 		return Mono.empty();
 	}
+	
 
-	@PostMapping("/contactlt/{topic}") //Mono<ResponseEntity<String>>
-	public String CallbotMsgFrmCnsumer(@PathVariable("topic") String tranId, @RequestBody String msg) {
+	@PostMapping("/contactlt/{topic}") 
+	public Mono<ResponseEntity<String>> CallbotMsgFrmCnsumer(@PathVariable("topic") String tranId, @RequestBody String msg) {
 
 		log.info(" ");
 		log.info("====== Class : ControllerUCRM - Method : CallbotMsgFrmCnsumer ======");
@@ -412,48 +413,33 @@ public class ControllerUCRM extends ServiceJson {
 
 			log.info("====== End CallbotMsgFrmCnsumer ======");
 			
-			return "Successfully processed the message.";
-//			return Mono.just(ResponseEntity.ok("Successfully processed the message."));
+			return Mono.just(ResponseEntity.ok("Successfully processed the message."));
 
 		default:
 			log.info("====== End CallbotMsgFrmCnsumer ======");
-			return "Invalid topic_id provided.";
-//			return Mono.just(ResponseEntity.badRequest().body("Invalid topic_id provided."));
+			return Mono.just(ResponseEntity.badRequest().body("Invalid topic_id provided."));
 		}
 	}
+	
+	
+	@PostMapping("/saveucrmdata")
+	public Mono<ResponseEntity<String>> SaveUcrmData(@RequestBody String msg) {
+		
+		
+		return Mono.just(ResponseEntity.ok("Successfully processed the message."));
+	}
+	
 
 	
 	@PostMapping("/contactltucrm/{topic}")
-	public Mono<Void> UcrmMsgFrmCnsmer(@PathVariable("topic") String tranId, @RequestBody String msg) {
+	public Mono<ResponseEntity<String>> UcrmMsgFrmCnsmer(@PathVariable("topic") String tranId, @RequestBody String msg) {
 
 		log.info(" ");
 		log.info("====== Class : ControllerUCRM - Method : UcrmMsgFrmCnsmer ======");
-
-		String jsonResponse = msg;
-
-		ObjectMapper objectMapper = new ObjectMapper();
-		JsonNode jsonNode = null;
-		int casenum = 0;
-
-		try {
-			jsonNode = objectMapper.readTree(jsonResponse);
-			casenum = jsonNode.path("cmpnItemDto").size();
-
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-
-		int cntofmsg = casenum;
-		log.info("case count : {}", cntofmsg);
-
 		String row_result = "";
 		String result = "";
 		String cpid = "";
 		String topic_id = tranId;
-		String res = "";
-		String contactLtId = "";
 		List<String> arr = new ArrayList<String>();
 
 		log.info("topic_id : {}", topic_id);
@@ -463,57 +449,56 @@ public class ControllerUCRM extends ServiceJson {
 		case "ucrmhome":// IF-CRM_003
 		case "ucrmmobile":// IF-CRM_004
 
-			row_result = ExtractValCallBot(msg, 0); // 뽑아온다.cpid::cpsq::cske::csna::tkda::flag
+			row_result = ExtractValUcrm(msg);
 
 			Entity_ContactLt enContactLt = serviceDb.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
 			// Entity_ContactLt 객체에 매핑시킨다.
 			cpid = enContactLt.getId().getCpid();// 캠페인 아이디를 가져온다.
 
 			result = serviceWeb.GetCampaignsApiRequet("campaigns", cpid);// 캠페인 아이디로
-//																		// "/api/v2/outbound/campaigns/{campaignId}"호출
-//																		// 후 결과 가져온다.
-			res = ExtractContactLtId(result);
-			contactLtId = res.split("::")[0];
+//																			// "/api/v2/outbound/campaigns/{campaignId}"호출
+//																			// 후 결과 가져온다.
+			
+			
+			
+			String res = ExtractContactLtId(result); // 가져온 결과에서 contactlistid,queueid만 추출.
+			String contactLtId = res.split("::")[0];
+//			// "api/v2/outbound/contactlists/{contactListId}/contacts"로 request body값 보내기 위한
+//			// 객체
+//			// 객체 안의 속성들(키)은 변동 될 수 있음.
+			
+			row_result = row_result + "::" + res;
+			String contactltMapper = serviceDb.createContactLtGC(row_result);
+			
+			arr.add(contactltMapper);
 
-			for (int i = 0; i < cntofmsg; i++) {
+			// db인서트
+			try {
+				serviceDb.InsertContactLt(enContactLt);
 
-				log.info("res{} : {}", i, res);
-				log.info("받아온 리스트 안의 {}번째 메시지", i);
-
-				row_result = ExtractValCallBot(msg, i); // 뽑아온다.cpid::cpsq::cske::csna::tkda::flag
-
-				enContactLt = serviceDb.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
-				// Entity_ContactLt 객체에 매핑시킨다.
-				row_result = row_result + "::" + res; // 뽑아온다.cpid::cpsq::cske::csna::tkda::flag::contactLtId
-				String contactltMapper = serviceDb.createContactLtGC(row_result);
-
-				arr.add(contactltMapper);
-
-				// db인서트
-				try {
-					serviceDb.InsertContactLt(enContactLt);
-
-				} catch (DataIntegrityViolationException ex) {
-					log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
-				} catch (DataAccessException ex) {
-					log.error("DataAccessException 발생 : {}", ex.getMessage());
-				}
+			} catch (DataIntegrityViolationException ex) {
+				log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+			} catch (DataAccessException ex) {
+				log.error("DataAccessException 발생 : {}", ex.getMessage());
 			}
 
-			serviceWeb.PostContactLtClearReq("contactltclear", contactLtId);
-			serviceWeb.PostContactLtApiRequet("contact", contactLtId, arr);
 
-			return Mono.empty();
+			try {
+				serviceWeb.PostContactLtClearReq("contactltclear", contactLtId);
+				serviceWeb.PostContactLtApiRequet("contact", contactLtId, arr);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			return Mono.just(ResponseEntity.ok("Successfully processed the message."));
 
 		default:
-			break;
+			log.info("====== End UcrmMsgFrmCnsmer ======");
+			return Mono.just(ResponseEntity.badRequest().body("Invalid topic_id provided."));
 		}
-
-		log.info("====== End UcrmMsgFrmCnsmer ======");
-		return Mono.empty();
-
 	}
 
+	
 	@PostMapping("/gcapi/post/{topic}")
 	public Mono<Void> receiveMessage(@PathVariable("topic") String tranId, @RequestBody String msg) {
 

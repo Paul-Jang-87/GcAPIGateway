@@ -11,13 +11,13 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "IPIVRADM_MOBILE.DATA_CALL_W")
+@Table(name = "DATA_CALL_W")
 public class Entity_MDataCall {
 	
 	@Id
 	@NotNull
 	@Column(name = "ORDERID")
-	private int orderid;
+	private Integer orderid;
 	
 	@NotNull
 	@Column(name = "CMD")
@@ -30,13 +30,13 @@ public class Entity_MDataCall {
 	private String old_entered_date;
 	
 	@Column(name = "OLD_CALL_SEQ")
-	private int old_call_seq;
+	private Integer old_call_seq;
 	
 	@Column(name = "OLD_ICID")
 	private String old_icid;
 	
 	@Column(name = "OLD_SITE_CODE")
-	private int old_site_code;
+	private Integer old_site_code;
 	
 	@Column(name = "NEW_ENTERED_TIME")
 	private String new_entered_time;
@@ -45,13 +45,13 @@ public class Entity_MDataCall {
 	private String new_entered_date;
 	
 	@Column(name = "NEW_CALL_SEQ")
-	private int new_call_seq;
+	private Integer new_call_seq;
 	
 	@Column(name = "NEW_ICID")
 	private String new_icid;
 	
 	@Column(name = "NEW_SITE_CODE")
-	private int new_site_code;
+	private Integer new_site_code;
 	
 	public Entity_MDataCall(){
 		

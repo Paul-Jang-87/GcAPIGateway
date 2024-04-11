@@ -49,8 +49,8 @@ public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl  {
 			// Check the type of t and cast it accordingly
 			if (t instanceof Entity_DataCall) {
 				Entity_DataCall en = (Entity_DataCall) t;
-				obj.put("entDate", en.getNew_entered_time());
-				obj.put("entTime", en.getNew_entered_date());
+				obj.put("entTime", en.getNew_entered_time());
+				obj.put("entDate", en.getNew_entered_date());
 				obj.put("callSeq", en.getNew_call_seq());
 				obj.put("icId", en.getNew_icid());
 				obj.put("siteCd", en.getNew_site_code());
@@ -59,8 +59,8 @@ public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl  {
 				
 			} else if (t instanceof Entity_MDataCall) {
 				Entity_MDataCall en = (Entity_MDataCall) t;
-				obj.put("entDate", en.getNew_entered_time());
-				obj.put("entTime", en.getNew_entered_date());
+				obj.put("entTime", en.getNew_entered_time());
+				obj.put("entDate", en.getNew_entered_date());
 				obj.put("callSeq", en.getNew_call_seq());
 				obj.put("icId", en.getNew_icid());
 				obj.put("siteCd", en.getNew_site_code());

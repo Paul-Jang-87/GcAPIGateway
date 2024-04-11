@@ -1,10 +1,13 @@
 package gc.apiClient.service;
 
+import org.json.JSONObject;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import gc.apiClient.entity.postgresql.Entity_Ucrm;
 import gc.apiClient.interfaceCollection.InterfaceJson;
 import lombok.extern.slf4j.Slf4j;
 
@@ -54,7 +57,6 @@ public class ServiceJson implements InterfaceJson {
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode jsonNode = null;
 		String result = "";
-		log.info("Incoming Message : {}",jsonResponse);
 
 		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
@@ -174,28 +176,29 @@ public class ServiceJson implements InterfaceJson {
 		log.info(" ");
 		log.info("====== ClassName : ServiceJson & Method : ExtractValUcrm ======");
 		
-		String jsonResponse = stringMsg;
-
-		ObjectMapper objectMapper = new ObjectMapper();
-		JsonNode jsonNode = null;
+		log.info("Incoming msg : {}", stringMsg);
+		
+        JSONObject jsonObject = new JSONObject(stringMsg);
+        String payload = jsonObject.getString("payload");
+        JSONObject payloadObject = new JSONObject(payload);
+        
 		String result = "";
 		// (콜봇에서 뽑아온거)cpid::cpsq::cske::csno::tkda::flag
 
 		try {
-			jsonNode = objectMapper.readTree(jsonResponse);
-			result = jsonNode.path("citCmpnId").asText();
-			result = result + "::" + jsonNode.path("citCmpnSno").asText();
-			result = result + "::" + jsonNode.path("hldrCustId").asText();
-			result = result + "::" + jsonNode.path("tlno").asText();
-			result = result + "::" + jsonNode.path("trdtCntn").asText();//tkda
-			result = result + "::" + jsonNode.path("workDivsCd").asText();//flag
-			result = result + "::" + jsonNode.path("topcDataIsueSno").asText();
-			result = result + "::" + jsonNode.path("topcDataIsueDtm").asText();
-			result = result + "::" + jsonNode.path("subssDataChgCd").asText();
-			result = result + "::" + jsonNode.path("subssDataDelYn").asText();
-			result = result + "::" + jsonNode.path("custNm").asText();
-			result = result + "::" + jsonNode.path("cablTlno").asText();//tno2
-			result = result + "::" + jsonNode.path("custTlno").asText();//tno3
+			result = payloadObject.getString("ctiCmpnId");
+			result = result + "::" + payloadObject.getString("ctiCmpnSno");
+			result = result + "::" + payloadObject.getString("hldrCustId");
+			result = result + "::" + payloadObject.getString("tlno");
+			result = result + "::" + payloadObject.getString("trdtCntn");
+			result = result + "::" + payloadObject.getString("workDivsCd");
+			result = result + "::" + payloadObject.getString("topcDataIsueSno");
+			result = result + "::" + payloadObject.getString("topcDataIsueDtm");
+			result = result + "::" + payloadObject.getString("subssDataChgCd");
+			result = result + "::" + payloadObject.getString("subssDataDelYn");
+			result = result + "::" + payloadObject.getString("custNm");
+			result = result + "::" + payloadObject.getString("cablTlno");
+			result = result + "::" + payloadObject.getString("custTlno");
 
 		} catch (Exception e) {
 		
@@ -204,6 +207,37 @@ public class ServiceJson implements InterfaceJson {
 		} 
 
 		log.info("result : {}",result);
+		return result;
+	}
+	
+	
+	@Override
+	public String ExtractRawUcrm(Entity_Ucrm enUcrm) {//cpid::cpsq::cske::csno::tkda::flag::contactltId::queid
+		
+		log.info(" ");
+		log.info("====== ClassName : ServiceJson & Method : ExtractRawUcrm ======");
+		
+		log.info("record info : {}",enUcrm.toString() );
+		
+		String cpid = enUcrm.getId().getCpid();
+		String cpsq = enUcrm.getId().getCpsq();
+		
+		String result = "";
+		result = cpid;
+		log.info("cpid : {}",cpid );
+		result = result + "::" + cpsq;
+		log.info("cpid : {}",cpsq );
+		result = result + "::" + enUcrm.getHldrCustId();
+		log.info("cske : {}",enUcrm.getHldrCustId() );
+		result = result + "::" + enUcrm.getTlno();
+		log.info("csno : {}",enUcrm.getTlno() );
+		result = result + "::" + enUcrm.getTrdtCntn();
+		log.info("tkda : {}",enUcrm.getTrdtCntn() );
+		result = result + "::" + enUcrm.getWorkDivsCd();
+		log.info("flag : {}",enUcrm.getWorkDivsCd() );
+		
+		log.info("result : {}",result );
+		log.info("====== End ExtractRawUcrm ======");
 		return result;
 	}
 
@@ -361,5 +395,7 @@ public class ServiceJson implements InterfaceJson {
 		return result;
 
 	}
+
+	
 	
 }

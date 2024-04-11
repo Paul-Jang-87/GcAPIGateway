@@ -10,20 +10,20 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "IPIVRADM_MOBILE.WA_M_TRACECODE_W")
+@Table(name = "WA_M_TRACECODE_W")
 public class Entity_MWaMTracecode {
 	
 	@Id
 	@NotNull
 	@Column(name = "ORDERID")
-	private int orderid;
+	private Integer orderid;
 	
 	@NotNull
 	@Column(name = "CMD")
 	private String cmd;
 	
 	@Column(name = "OLD_SITE_CODE")
-	private int old_site_code;
+	private Integer old_site_code;
 	
 	@Column(name = "OLD_TRACECODE")
     private String old_tracecode;
@@ -32,10 +32,10 @@ public class Entity_MWaMTracecode {
     private String old_tracecode_name;
 	
 	@Column(name = "OLD_TRACECODE_TYPE")
-    private int old_tracecode_type;
+    private Integer old_tracecode_type;
 	
 	@Column(name = "NEW_SITE_CODE")
-	private int new_site_code;
+	private Integer new_site_code;
 	
 	@Column(name = "NEW_TRACECODE")
     private String new_tracecode;
@@ -44,7 +44,7 @@ public class Entity_MWaMTracecode {
     private String new_tracecode_name;
 	
 	@Column(name = "NEW_TRACECODE_TYPE")
-    private int new_tracecode_type;
+    private Integer new_tracecode_type;
 	
 	public Entity_MWaMTracecode(){
 		

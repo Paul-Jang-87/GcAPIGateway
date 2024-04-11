@@ -10,13 +10,13 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "IPIVRADM.DATA_CALL_SERVICE_W")
+@Table(name = "DATA_CALL_SERVICE_W")
 public class Entity_DataCallService {
 	
 	@Id
 	@NotNull
 	@Column(name = "ORDERID")
-	private int orderid;
+	private Integer orderid;
 	
 	@NotNull
 	@Column(name = "CMD")
@@ -26,25 +26,25 @@ public class Entity_DataCallService {
 	private String old_entered_date;
 	
 	@Column(name = "OLD_CALL_SEQ")
-	private int old_call_seq;
+	private Integer old_call_seq;
 	
 	@Column(name = "OLD_ICID")
 	private String old_icid;
 	
 	@Column(name = "OLD_SITE_CODE")
-	private int old_site_code;
+	private Integer old_site_code;
 	
 	@Column(name = "NEW_ENTERED_DATE")
 	private String new_entered_date;
 	
 	@Column(name = "NEW_CALL_SEQ")
-	private int new_call_seq;
+	private Integer new_call_seq;
 	
 	@Column(name = "NEW_ICID")
 	private String new_icid;
 	
 	@Column(name = "NEW_SITE_CODE")
-	private int new_site_code;
+	private Integer new_site_code;
 	
 	@Column(name = "OLD_SERVICE_CODE01")
 	private String old_service_code01;
@@ -166,31 +166,31 @@ public class Entity_DataCallService {
 	@Column(name = "OLD_SERVICE_CODE40")
 	private String old_service_code40;
 	
-	@Column(name = "NEW_SERVICE_CODE1")
+	@Column(name = "NEW_SERVICE_CODE01")
 	private String NEW_service_code1;
 	
-	@Column(name = "NEW_SERVICE_CODE2")
+	@Column(name = "NEW_SERVICE_CODE02")
 	private String new_service_code2;
 	
-	@Column(name = "NEW_SERVICE_CODE3")
+	@Column(name = "NEW_SERVICE_CODE03")
 	private String new_service_code3;
 	
-	@Column(name = "NEW_SERVICE_CODE4")
+	@Column(name = "NEW_SERVICE_CODE04")
 	private String new_service_code4;
 	
-	@Column(name = "NEW_SERVICE_CODE5")
+	@Column(name = "NEW_SERVICE_CODE05")
 	private String new_service_code5;
 	
-	@Column(name = "NEW_SERVICE_CODE6")
+	@Column(name = "NEW_SERVICE_CODE06")
 	private String new_service_code6;
 	
-	@Column(name = "NEW_SERVICE_CODE7")
+	@Column(name = "NEW_SERVICE_CODE07")
 	private String new_service_code7;
 	
-	@Column(name = "NEW_SERVICE_CODE8")
+	@Column(name = "NEW_SERVICE_CODE08")
 	private String new_service_code8;
 	
-	@Column(name = "NEW_SERVICE_CODE9")
+	@Column(name = "NEW_SERVICE_CODE09")
 	private String new_service_code9;
 	
 	@Column(name = "NEW_SERVICE_CODE10")

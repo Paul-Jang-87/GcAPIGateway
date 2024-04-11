@@ -1,55 +1,55 @@
 package gc.apiClient.service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import gc.apiClient.customproperties.CustomProperties;
 import gc.apiClient.datamapping.MappingCenter;
 import gc.apiClient.embeddable.CampRt;
 import gc.apiClient.embeddable.ContactLtId;
+import gc.apiClient.embeddable.Ucrm;
 import gc.apiClient.entity.Entity_CampMaJson;
-import gc.apiClient.entity.Entity_ContactltMapper;
 import gc.apiClient.entity.postgresql.Entity_CampMa;
 import gc.apiClient.entity.postgresql.Entity_CampRt;
 import gc.apiClient.entity.postgresql.Entity_ContactLt;
+import gc.apiClient.entity.postgresql.Entity_Ucrm;
 import gc.apiClient.interfaceCollection.InterfaceDBPostgreSQL;
 import gc.apiClient.repository.postgresql.Repository_CampMa;
 import gc.apiClient.repository.postgresql.Repository_CampRt;
 import gc.apiClient.repository.postgresql.Repository_ContactLt;
+import gc.apiClient.repository.postgresql.Repository_Ucrm;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
-public class ServicePostgre implements InterfaceDBPostgreSQL {
+public class ServicePostgre implements InterfaceDBPostgreSQL  {
 	// 검색 **Create **Insert **Select
 	private final Repository_CampRt repositoryCampRt;
 	private final Repository_CampMa repositoryCampMa;
+	private final Repository_Ucrm repositoryUcrm;
 	private final Repository_ContactLt repositoryContactLt;
 	private final CustomProperties customProperties;
 
 	public ServicePostgre(Repository_CampRt repositoryCampRt, Repository_CampMa repositoryCampMa,
-			Repository_ContactLt repositoryContactLt, CustomProperties customProperties) {
+			Repository_ContactLt repositoryContactLt, CustomProperties customProperties,
+			Repository_Ucrm repositoryUcrm) {
 
 		this.repositoryCampRt = repositoryCampRt;
+		this.repositoryUcrm = repositoryUcrm;
 		this.repositoryCampMa = repositoryCampMa;
 		this.repositoryContactLt = repositoryContactLt;
 		this.customProperties = customProperties;
@@ -170,9 +170,8 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
-	public JSONObject createCampRtJson(Entity_CampRt enCampRt,String business) {// contactid(고객키)::contactListId::didt::dirt::cpid
+	public JSONObject createCampRtJson(Entity_CampRt enCampRt, String business) {// contactid(고객키)::contactListId::didt::dirt::cpid
 
-		
 		LocalDateTime now = LocalDateTime.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSSSSS");
 		String topcDataIsueDtm = now.format(formatter);
@@ -202,28 +201,27 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		coid = Integer.toString(enCampMa.getCoid());
 		MappingCenter mappingData = new MappingCenter();
 		coid = mappingData.getCentercodeById(coid);
-		
+
 		JSONObject obj = new JSONObject();
-		
-		if(business.equals("CALLBOT")) {
-			
+
+		if (business.equals("CALLBOT")) {
+
 			obj.put("topcDataIsueDtm", topcDataIsueDtm);
 			obj.put("cpId", campid);
 			obj.put("cpSeq", cpSeq);
-			obj.put("lastAttempt", didt); 
+			obj.put("lastAttempt", didt);
 			obj.put("attmpNo", dict);
 			obj.put("lastResult", dirt);
-		
-		}else {
-			
+
+		} else {
+
 			obj.put("topcDataIsueDtm", topcDataIsueDtm);
 			obj.put("ibmHubId", hubId);
 			obj.put("centerCd", coid);
 			obj.put("lastAttempt", didt);
 			obj.put("totAttempt", dict);
 			obj.put("lastResult", dirt);
-			
-			
+
 		}
 		return obj;
 	}
@@ -363,57 +361,139 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 		return enContactLt;
 	}
-
+	
 	
 	@Override
+	public Entity_ContactLt createContactUcrm(Entity_Ucrm entityUcrm) {
+		
+		log.info(" ");
+		log.info("====== ClassName : ServicePostgre & Method : createContactUcrm ======");
+
+		Entity_ContactLt enContactLt = new Entity_ContactLt();
+		ContactLtId id = new ContactLtId();
+		try {
+			id.setCpid(entityUcrm.getId().getCpid());
+			id.setCpsq(Integer.parseInt(entityUcrm.getId().getCpsq()));
+			enContactLt.setId(id);
+			enContactLt.setCske(entityUcrm.getHldrCustId());
+			enContactLt.setFlag(entityUcrm.getWorkDivsCd());
+			enContactLt.setTkda(entityUcrm.getTrdtCntn());
+
+			log.info("cpid : {}", entityUcrm.getId().getCpid());
+			log.info("cpsq : {}", Integer.parseInt(entityUcrm.getId().getCpsq()));
+			log.info("cske : {}", entityUcrm.getHldrCustId());
+			log.info("flag : {}", entityUcrm.getWorkDivsCd());
+			log.info("tkda : {}", entityUcrm.getTrdtCntn());
+		} catch (Exception e) {
+			log.info("Error Messge : {}", e.getMessage());
+		}
+
+		return enContactLt;
+	}
+	
+
+	@Override
+	public Entity_Ucrm createUcrm(String msg) {
+
+		log.info(" ");
+		log.info("====== ClassName : ServicePostgre & Method : createUcrm ======");
+		log.info("Incoming data : {}",msg);
+
+		Entity_Ucrm enUcrm = new Entity_Ucrm();
+		Ucrm id = new Ucrm();
+		JSONObject jsonObj = new JSONObject(msg);
+		String payload = jsonObj.getString("payload");
+		JSONObject payloadObject = new JSONObject(payload);
+
+		try {
+
+			id.setCpid(payloadObject.getString("ctiCmpnId"));
+			id.setCpsq(payloadObject.getString("ctiCmpnSno"));
+			enUcrm.setId(id);
+			enUcrm.setCablTlno(payloadObject.getString("cablTlno"));
+			enUcrm.setCustNm(payloadObject.getString("custNm"));
+			enUcrm.setCustTlno(payloadObject.optString("custTlno", ""));
+			enUcrm.setHldrCustId(payloadObject.getString("hldrCustId"));
+			enUcrm.setSubssDataChgCd(payloadObject.getString("subssDataChgCd"));
+			enUcrm.setSubssDataDelYn(payloadObject.getString("subssDataDelYn"));
+			enUcrm.setTlno(payloadObject.getString("tlno"));
+			enUcrm.setTopcDataIsueDtm(payloadObject.getString("topcDataIsueDtm"));
+			enUcrm.setTopcDataIsueSno(payloadObject.getString("topcDataIsueSno"));
+			enUcrm.setTrdtCntn(payloadObject.getString("trdtCntn"));
+			enUcrm.setWorkDivsCd(payloadObject.getString("workDivsCd"));
+
+			log.info("citCmpnId : {}", payloadObject.getString("ctiCmpnId"));
+			log.info("citCmpnSno : {}", payloadObject.getString("ctiCmpnSno"));
+			log.info("cablTlno : {}", enUcrm.getCablTlno());
+			log.info("custNm : {}", enUcrm.getCustNm());
+			log.info("custTlno : {}", enUcrm.getCustTlno());
+			log.info("hldrCustId : {}", enUcrm.getHldrCustId());
+			log.info("subssDataChgCd : {}", enUcrm.getSubssDataChgCd());
+			log.info("subssDataDelYn : {}", enUcrm.getSubssDataDelYn());
+			log.info("tlno : {}", enUcrm.getTlno());
+			log.info("topcDataIsueDtm : {}", enUcrm.getTopcDataIsueDtm());
+			log.info("topcDataIsueSno : {}", enUcrm.getTopcDataIsueSno());
+			log.info("trdtCntn : {}", enUcrm.getTrdtCntn());
+			log.info("workDivsCd : {}", enUcrm.getWorkDivsCd());
+
+		} catch (Exception e) {
+			log.info("Error Messge : {}", e.getMessage());
+			e.printStackTrace();
+		}
+
+		log.info("====== End createUcrm ======");
+		return enUcrm;
+	}
+
+	@Override
 	public String createContactLtGC(String msg) {
-		//뽑아온다(콜봇).cpid::cpsq::cske::csno::tkda::flag::contactltId::queid
+		// 뽑아온다(콜봇).cpid::cpsq::cske::csno::tkda::flag::contactltId::queid
 		log.info(" ");
 		log.info("===== ClassName : ServicePostgre & Method : createContactLtGC =====");
-		
-			String values[] = msg.split("::");
-			
-			JSONObject data = new JSONObject();
-			JSONObject mainObj = new JSONObject();
-			try {
-				data.put("CPID", values[0]);
-				data.put("CPSQ", values[1]);
-				data.put("CSKE", values[2]);
-				data.put("CSNA", "");
-				data.put("TKDA", values[4]);
-				data.put("TNO1", values[3]);
-				data.put("TNO2", "");
-				data.put("TNO3", "");
-				data.put("TNO4", "");
-				data.put("TNO5", "");
-				data.put("TLNO", "");
-				data.put("TMZO", "Asia/Seoul (+09:00)");
-				data.put("QUEUEID", values[7]);
-				data.put("TRYCNT", "0");
-				
-				mainObj.put("data", data);
-				mainObj.put("id", values[2]);
-				mainObj.put("contactListId", values[6]);
-				log.info("CPID :{}", values[0]);
-				log.info("CPSQ :{}", values[1]);
-				log.info("CSKE :{}", values[2]);
-				log.info("CSNA :{}", "");
-				log.info("TKDA :{}", values[4]);
-				log.info("TNO1 :{}", values[3]);
-				log.info("TNO2 :{}", "");
-				log.info("TNO3 :{}", "");
-				log.info("TNO4 :{}", "");
-				log.info("TNO5 :{}", "");
-				log.info("TLNO :{}", "");
-				log.info("QUEUEID :{}", values[7]);
-				log.info("TRYCNT :{}", "0");
-				log.info("TMZO :{}", "Asia/Seoul (+09:00)");
-				
-			} catch (Exception e) {
-				log.info("Error Message :{}", e.getMessage());
-			}
-			
-			return mainObj.toString();
+
+		String values[] = msg.split("::");
+
+		JSONObject data = new JSONObject();
+		JSONObject mainObj = new JSONObject();
+		try {
+			data.put("CPID", values[0]);
+			data.put("CPSQ", values[1]);
+			data.put("CSKE", values[2]);
+			data.put("CSNA", "");
+			data.put("TKDA", values[4]);
+			data.put("TNO1", values[3]);
+			data.put("TNO2", "");
+			data.put("TNO3", "");
+			data.put("TNO4", "");
+			data.put("TNO5", "");
+			data.put("TLNO", "");
+			data.put("TMZO", "Asia/Seoul (+09:00)");
+			data.put("QUEUEID", values[7]);
+			data.put("TRYCNT", "0");
+
+			mainObj.put("data", data);
+			mainObj.put("id", values[2]);
+			mainObj.put("contactListId", values[6]);
+			log.info("CPID :{}", values[0]);
+			log.info("CPSQ :{}", values[1]);
+			log.info("CSKE :{}", values[2]);
+			log.info("CSNA :{}", "");
+			log.info("TKDA :{}", values[4]);
+			log.info("TNO1 :{}", values[3]);
+			log.info("TNO2 :{}", "");
+			log.info("TNO3 :{}", "");
+			log.info("TNO4 :{}", "");
+			log.info("TNO5 :{}", "");
+			log.info("TLNO :{}", "");
+			log.info("QUEUEID :{}", values[7]);
+			log.info("TRYCNT :{}", "0");
+			log.info("TMZO :{}", "Asia/Seoul (+09:00)");
+
+		} catch (Exception e) {
+			log.info("Error Message :{}", e.getMessage());
+		}
+
+		return mainObj.toString();
 	}
 
 	// **Insert
@@ -440,6 +520,18 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		}
 
 		return repositoryCampMa.save(entityCampMa);
+	}
+
+	@Override
+	public Entity_Ucrm InsertUcrm(Entity_Ucrm entityUcrm) {
+
+		Optional<Entity_Ucrm> existingEntity = repositoryUcrm.findById(entityUcrm.getId());
+
+		if (existingEntity.isPresent()) {
+			throw new DataIntegrityViolationException("Record with the given composite key already exists.");
+		}
+
+		return repositoryUcrm.save(entityUcrm);
 	}
 
 	@Override
@@ -526,6 +618,11 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
+	public List<Entity_Ucrm> getAll() {
+		return repositoryUcrm.findAll();
+	}
+
+	@Override
 	public void DelCampMaById(String cpid) {
 		repositoryCampMa.deleteById(cpid);
 	}
@@ -543,5 +640,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			throw new EntityNotFoundException("Entity not found with CPID: " + cpid);
 		}
 	}
+
+	
 
 }

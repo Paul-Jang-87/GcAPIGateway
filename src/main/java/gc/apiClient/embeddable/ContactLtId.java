@@ -19,7 +19,7 @@ public class ContactLtId implements Serializable {
 
 	@NotNull
     @Column(name = "CPSQ")
-    private int cpsq;
+    private int cpsq=0;
 	
 	public ContactLtId(){
 		

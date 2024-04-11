@@ -6,36 +6,13 @@ import org.json.JSONObject;
 
 public interface InterfaceWebClient {
 
-	String GetApiRequet(String endpoint);
-	Void PostContactLtClearReq(String endpoint,String contactListId);
-
-	default String GetStatusApiRequet(String endpoint, String campaignId) {/// api/v2/outbound/campaigns/{campaignId}/stats를
-																			/// 위한 함수.
-		return "b";
-	}
-
-	default String GetDivisionName(String endpoint, String divisionid) {/// api/v2/outbound/campaigns/{campaignId}/stats를
-		return "b";
-	}
-
-	default String GetCampaignsApiRequet(String endpoint, String campaignId) {// "/api/v2/outbound/campaigns/{campaignId}"
-		return "b";
-	}
-
-	// "/api/v2/outbound/contactlists/{contactListId}/contacts/{contactId}"
-	default String GetContactLtApiRequet(String endpoint, String contactListId, String contactId) {/// api/v2/outbound/campaigns/{campaignId}/stats를
-																									/// 위한 함수.
-		return "b";
-	}
-
-	// "api/v2/outbound/contactlists/{contactListId}/contacts"
-	default String PostContactLtApiRequet(String endpoint, String contactListId, List<String> msg) {
-		return "b";
-	}
-
-	// "/api/v2/outbound/contactlists/{contactListId}/contacts/bulk"
-	default String PostContactLtApiBulk(String endpoint, String contactListId, List<String> cskes) {
-		return "b";
-	}
+	String GetApiRequet(String endpoint)throws Exception;
+	Void PostContactLtClearReq(String endpoint,String contactListId)throws Exception;
+	String GetStatusApiRequet(String endpoint, String campaignId) throws Exception;
+	String GetDivisionName(String endpoint, String divisionid) throws Exception;
+	String GetCampaignsApiRequet(String endpoint, String campaignId) throws Exception;
+	String GetContactLtApiRequet(String endpoint, String contactListId, String contactId) throws Exception;
+	String PostContactLtApiRequet(String endpoint, String contactListId, List<String> msg) throws Exception;
+	String PostContactLtApiBulk(String endpoint, String contactListId, List<String> cskes) throws Exception;
 
 }

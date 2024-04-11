@@ -11,13 +11,13 @@ import org.jetbrains.annotations.NotNull;
 
 @Data
 @Entity
-@Table(name = "IPIVRADM.MASTER_SERVICE_CODE_W")
+@Table(name = "MASTER_SERVICE_CODE_W")
 public class Entity_MasterServiceCode {
 	
 	@Id
 	@NotNull
 	@Column(name = "ORDERID")
-	private int orderid;
+	private Integer orderid;
 	
 	@NotNull
 	@Column(name = "CMD")
@@ -27,25 +27,25 @@ public class Entity_MasterServiceCode {
  	private String old_service_name;
 	
 	@Column(name = "OLD_SITE_CODE")
-	private int old_site_code;
+	private Integer old_site_code;
 	
 	@Column(name = "OLD_SERVICE_CODE")
  	private String old_service_code;
 	
 	@Column(name = "OLD_SERVICE_CODE_TYPE")
- 	private int old_service_code_type;
+ 	private Integer old_service_code_type;
 	
 	@Column(name = "NEW_SERVICE_NAME")
  	private String new_service_name;
 	
 	@Column(name = "NEW_SITE_CODE")
-	private int new_site_code;
+	private Integer new_site_code;
 	
 	@Column(name = "NEW_SERVICE_CODE")
  	private String new_service_code;
 	
 	@Column(name = "NEW_SERVICE_CODE_TYPE")
- 	private int new_service_code_type;
+ 	private Integer new_service_code_type;
 	
 	public Entity_MasterServiceCode(){
 		

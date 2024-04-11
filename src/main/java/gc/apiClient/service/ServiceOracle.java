@@ -133,98 +133,153 @@ public class ServiceOracle implements InterfaceDBOracle {
 
 	@Override
 	public int getRecordCount(String topic_id) {
-		
+
 		switch (topic_id) {
-		
+
 		case "from_clcc_hmcepcalldt_message": {
 			return repositoryDataCall.countBy();
-		}case "from_clcc_mblcepcalldt_message": {
+		}
+		case "from_clcc_mblcepcalldt_message": {
 			return repositoryMDataCall.countBy();
-		}case "from_clcc_hmcepcalldtcust_message": {
+		}
+		case "from_clcc_hmcepcalldtcust_message": {
 			return repositoryDataCallCustomer.countBy();
-		}case "from_clcc_mblcepcalldtcust_message": {
+		}
+		case "from_clcc_mblcepcalldtcust_message": {
 			return repositoryMDataCallCustomer.countBy();
-		}case "from_clcc_hmcepcallsvccd_message": {
+		}
+		case "from_clcc_hmcepcallsvccd_message": {
 			return repositoryDataCallService.countBy();
-		}case "from_clcc_mblcepcallsvccd_message": {
+		}
+		case "from_clcc_mblcepcallsvccd_message": {
 			return repositoryMDataCallService.countBy();
-		}case "from_clcc_hmcepcallmstrsvccd_message": {
+		}
+		case "from_clcc_hmcepcallmstrsvccd_message": {
 			return repositoryMasterServiceCode.countBy();
-		}case "from_clcc_mblcepcallmstrsvccd_message": {
+		}
+		case "from_clcc_mblcepcallmstrsvccd_message": {
 			return repositoryMMasterServiceCode.countBy();
-		}case "from_clcc_hmcepwacalldt_message": {
+		}
+		case "from_clcc_hmcepwacalldt_message": {
 			return repositoryWaDataCall.countBy();
-		}case "from_clcc_mblcepwacalldt_message": {
+		}
+		case "from_clcc_mblcepwacalldt_message": {
 			return repositoryMWaDataCall.countBy();
-		}case "from_clcc_hmcepwacallopt_message": {
+		}
+		case "from_clcc_hmcepwacallopt_message": {
 			return repositoryWaDataCallOptional.countBy();
-		}case "from_clcc_mblcepwacallopt_message": {
+		}
+		case "from_clcc_mblcepwacallopt_message": {
 			return repositoryMWaDataCallOptional.countBy();
-		}case "from_clcc_hmcepwacalltr_message": {
+		}
+		case "from_clcc_hmcepwacalltr_message": {
 			return repositoryWaDataCallTrace.countBy();
-		}case "from_clcc_mblcepwacalltr_message": {
+		}
+		case "from_clcc_mblcepwacalltr_message": {
 			return repositoryMWaDataCallTrace.countBy();
-		}case "from_clcc_hmcepwatrcd_message": {
+		}
+		case "from_clcc_hmcepwatrcd_message": {
 			return repositoryWaMTraceCode.countBy();
-		}case "from_clcc_mblcepwatrcd_message": {
+		}
+		case "from_clcc_mblcepwatrcd_message": {
 			return repositoryMWaMTraceCode.countBy();
 		}
-		
+
 		default:
 			return 0;
 		}
 	}
 
-	
 	@Override
-    public <T> List<T> getAll(Class<T> clazz) {
-		
+	public <T> List<T> getAll(Class<T> clazz) {
+
 		try {
-			
-			log.info("들어옴. ");
-	        if (clazz.isAssignableFrom(Entity_DataCall.class)) {
-	        	log.info("datacall");
-	            return (List<T>) repositoryDataCall.findAll();
-	        }else if (clazz.isAssignableFrom(Entity_MDataCall.class)) {
-	            return (List<T>) repositoryMDataCall.findAll();
-	        }else if (clazz.isAssignableFrom(Entity_DataCallCustomer.class)) {
-	            return (List<T>) repositoryDataCallCustomer.findAll();
-	        }else if (clazz.isAssignableFrom(Entity_MDataCallCustomer.class)) {
-	            return (List<T>) repositoryMDataCallCustomer.findAll();
-	        }else if (clazz.isAssignableFrom(Entity_DataCallService.class)) {
-	            return (List<T>) repositoryDataCallService.findAll();
-	        }else if (clazz.isAssignableFrom(Entity_MDataCallService.class)) {
-	            return (List<T>) repositoryMDataCallService.findAll();
-	        }else if (clazz.isAssignableFrom(Entity_MasterServiceCode.class)) {
-	            return (List<T>) repositoryMasterServiceCode.findAll();
-	        }else if (clazz.isAssignableFrom(Entity_MMasterServiceCode.class)) {
-	            return (List<T>) repositoryMMasterServiceCode.findAll();
-	        }else if (clazz.isAssignableFrom(Entity_WaDataCall.class)) {
-	            return (List<T>) repositoryWaDataCall.findAll();
-	        }else if (clazz.isAssignableFrom(Entity_MWaDataCall.class)) {
-	            return (List<T>) repositoryMWaDataCall.findAll();
-	        }else if (clazz.isAssignableFrom(Entity_WaDataCallOptional.class)) {
-	            return (List<T>) repositoryWaDataCallOptional.findAll();
-	        }else if (clazz.isAssignableFrom(Entity_MWaDataCallOptional.class)) {
-	            return (List<T>) repositoryMWaDataCallOptional.findAll();
-	        }else if (clazz.isAssignableFrom(Entity_WaDataCallTrace.class)) {
-	            return (List<T>) repositoryWaDataCallTrace.findAll();
-	        }else if (clazz.isAssignableFrom(Entity_MWaDataCallTrace.class)) {
-	            return (List<T>) repositoryMWaDataCallTrace.findAll();
-	        }else if (clazz.isAssignableFrom(Entity_WaMTracecode.class)) {
-	            return (List<T>) repositoryWaMTraceCode.findAll();
-	        }else if (clazz.isAssignableFrom(Entity_MWaMTracecode.class)) {
-	            return (List<T>) repositoryMWaMTraceCode.findAll();
-	        }
-			
+
+			if (clazz.isAssignableFrom(Entity_DataCall.class)) {
+				return (List<T>) repositoryDataCall.findAll();
+			} else if (clazz.isAssignableFrom(Entity_MDataCall.class)) {
+				return (List<T>) repositoryMDataCall.findAll();
+			} else if (clazz.isAssignableFrom(Entity_DataCallCustomer.class)) {
+				return (List<T>) repositoryDataCallCustomer.findAll();
+			} else if (clazz.isAssignableFrom(Entity_MDataCallCustomer.class)) {
+				return (List<T>) repositoryMDataCallCustomer.findAll();
+			} else if (clazz.isAssignableFrom(Entity_DataCallService.class)) {
+				return (List<T>) repositoryDataCallService.findAll();
+			} else if (clazz.isAssignableFrom(Entity_MDataCallService.class)) {
+				return (List<T>) repositoryMDataCallService.findAll();
+			} else if (clazz.isAssignableFrom(Entity_MasterServiceCode.class)) {
+				return (List<T>) repositoryMasterServiceCode.findAll();
+			} else if (clazz.isAssignableFrom(Entity_MMasterServiceCode.class)) {
+				return (List<T>) repositoryMMasterServiceCode.findAll();
+			} else if (clazz.isAssignableFrom(Entity_WaDataCall.class)) {
+				return (List<T>) repositoryWaDataCall.findAll();
+			} else if (clazz.isAssignableFrom(Entity_MWaDataCall.class)) {
+				return (List<T>) repositoryMWaDataCall.findAll();
+			} else if (clazz.isAssignableFrom(Entity_WaDataCallOptional.class)) {
+				return (List<T>) repositoryWaDataCallOptional.findAll();
+			} else if (clazz.isAssignableFrom(Entity_MWaDataCallOptional.class)) {
+				return (List<T>) repositoryMWaDataCallOptional.findAll();
+			} else if (clazz.isAssignableFrom(Entity_WaDataCallTrace.class)) {
+				return (List<T>) repositoryWaDataCallTrace.findAll();
+			} else if (clazz.isAssignableFrom(Entity_MWaDataCallTrace.class)) {
+				return (List<T>) repositoryMWaDataCallTrace.findAll();
+			} else if (clazz.isAssignableFrom(Entity_WaMTracecode.class)) {
+				return (List<T>) repositoryWaMTraceCode.findAll();
+			} else if (clazz.isAssignableFrom(Entity_MWaMTracecode.class)) {
+				return (List<T>) repositoryMWaMTraceCode.findAll();
+			}
+
 		} catch (Exception e) {
-			log.error(e.getMessage() );
-			e.printStackTrace();		}
-        
-        return null; 
-    }
-	
-	
-	
+			log.error(e.getMessage());
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	@Override
+	public <T> void deleteAll(Class<T> clazz, int orderid) {
+
+		try {
+
+			if (Entity_DataCall.class.equals(clazz)) {
+				repositoryDataCall.deleteById(orderid);
+			} else if (Entity_MDataCall.class.equals(clazz)) {
+				repositoryMDataCall.deleteById(orderid);
+			} else if (Entity_DataCallCustomer.class.equals(clazz)) {
+				repositoryDataCallCustomer.deleteById(orderid);
+			} else if (Entity_MDataCallCustomer.class.equals(clazz)) {
+				repositoryMDataCallCustomer.deleteById(orderid);
+			} else if (Entity_DataCallService.class.equals(clazz)) {
+				repositoryDataCallService.deleteById(orderid);
+			} else if (Entity_MDataCallService.class.equals(clazz)) {
+				repositoryMDataCallService.deleteById(orderid);
+			} else if (Entity_MasterServiceCode.class.equals(clazz)) {
+				repositoryMasterServiceCode.deleteById(orderid);
+			} else if (Entity_MMasterServiceCode.class.equals(clazz)) {
+				repositoryMMasterServiceCode.deleteById(orderid);
+			} else if (Entity_WaDataCall.class.equals(clazz)) {
+				repositoryWaDataCall.deleteById(orderid);
+			} else if (Entity_MWaDataCall.class.equals(clazz)) {
+				repositoryMWaDataCall.deleteById(orderid);
+			} else if (Entity_WaDataCallOptional.class.equals(clazz)) {
+				repositoryWaDataCallOptional.deleteById(orderid);
+			} else if (Entity_MWaDataCallOptional.class.equals(clazz)) {
+				repositoryMWaDataCallOptional.deleteById(orderid);
+			} else if (Entity_WaDataCallTrace.class.equals(clazz)) {
+				repositoryWaDataCallTrace.deleteById(orderid);
+			} else if (Entity_MWaDataCallTrace.class.equals(clazz)) {
+				repositoryMWaDataCallTrace.deleteById(orderid);
+			} else if (Entity_WaMTracecode.class.equals(clazz)) {
+				repositoryWaMTraceCode.deleteById(orderid);
+			} else if (Entity_MWaMTracecode.class.equals(clazz)) {
+				repositoryMWaMTraceCode.deleteById(orderid);
+			}
+
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			e.printStackTrace();
+		}
+	}
 
 }

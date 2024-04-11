@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
-import org.apache.tomcat.util.http.parser.MediaType;
+import org.springframework.http.MediaType;
 import org.json.JSONObject;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.reactive.function.BodyInserters;
@@ -48,6 +48,7 @@ public class WebClientApp {
 		API_BASE_URL = WebClientConfig.getBaseUrl();
 		API_END_POINT = WebClientConfig.getApiEndpoint(apiName);
 		HTTP_METHOD = httpMethod;
+		
 		if (accessToken.equals("")) {
 			getAccessToken();
 		}else {
@@ -69,21 +70,23 @@ public class WebClientApp {
 
 	// OAuth access token 유효기간 86400초 (24시간)
 	// 24시간 마다 token 다시 받아오게끔 스케쥴링
-	@Scheduled(fixedDelay=86400*1000)
-	private void getAccessToken() {
-		// Replace the region with your desired one
-		String region = "ap_northeast_2";
+//	@Scheduled(fixedDelay=86400*1000) 
+	@Scheduled(fixedDelayString = "30000")
+	private synchronized void getAccessToken() {
+	    String region = "ap_northeast_2"; // Consider making this configurable
 
-		ApiClient apiClient = ApiClient.Builder.standard().withBasePath(PureCloudRegionHosts.valueOf(region)).build();
+	    ApiClient apiClient = ApiClient.Builder.standard().withBasePath(PureCloudRegionHosts.valueOf(region)).build();
 
-		try {
-			ApiResponse<AuthResponse> authResponse = apiClient.authorizeClientCredentials(CLIENT_ID, CLIENT_SECRET);
-			accessToken = authResponse.getBody().getAccess_token();
-			log.info("accessToken : {}",accessToken);
-		} catch (Exception e) {
-			log.error("Error is occured during getting AccessToken: {}",e.getMessage());
-			e.printStackTrace();
-		}
+	    try {
+	        ApiResponse<AuthResponse> authResponse = apiClient.authorizeClientCredentials(CLIENT_ID, CLIENT_SECRET);
+	        String newAccessToken = authResponse.getBody().getAccess_token();
+	        synchronized (this) {
+	            accessToken = newAccessToken;
+	        }
+	        log.info("Access token refreshed successfully.");
+	    } catch (Exception e) {
+	        log.error("Error occurred during access token refresh: {}", e.getMessage(), e);
+	    }
 	}
 
 	public Mono<String> makeApiRequestAsync() {
@@ -144,17 +147,15 @@ public class WebClientApp {
 	    		.exchangeToMono(response -> {
                     // Check if the response status code is 200 OK.
                     if (response.statusCode().is2xxSuccessful()) {
+                    	
                     	  log.error("raw response : {}", response );
-                    	  log.error("response body1 : {}", response.bodyToMono(String.class) );
-                    	  log.error("response body2 : {}", response.bodyToMono(String.class).toString() );
-                    	  log.error("response body(toString) : {}", response.toString() );
                         return response.bodyToMono(String.class);
+                        
                     } else if (response.statusCode().is4xxClientError()) {
+                    	
                     	log.error("raw error response : {}", response );
-                    	log.error("error response body1 : {}", response.bodyToMono(String.class) );
-                    	log.error("error response body2 : {}", response.bodyToMono(String.class).toString() );
-                  	  	log.error("error response body(toString) : {}", response.toString() );
                         return response.createException().flatMap(Mono::error);
+                        
                     } else {
                         return Mono.empty();
                     }

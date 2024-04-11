@@ -12,20 +12,20 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "IPIVRADM.WA_DATA_CALL_W")
+@Table(name = "WA_DATA_CALL_W")
 public class Entity_WaDataCall {
 	
 	@Id
 	@NotNull
 	@Column(name = "ORDERID")
-	private int orderid;
+	private Integer orderid;
 	
 	@NotNull
 	@Column(name = "CMD")
 	private String cmd;
 	
 	@Column(name = "OLD_WCSEQ")
- 	private int old_wcseq;
+ 	private Integer old_wcseq;
 	
 	@Column(name = "OLD_ICID")
 	private String old_icid;
@@ -34,7 +34,7 @@ public class Entity_WaDataCall {
 	private Date old_entered_date;
 	
 	@Column(name = "NEW_WCSEQ")
- 	private int new_wcseq;
+ 	private Integer new_wcseq;
 	
 	@Column(name = "NEW_ICID")
 	private String new_icid;

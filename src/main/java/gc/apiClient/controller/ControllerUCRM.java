@@ -57,6 +57,7 @@ import gc.apiClient.messages.MessageToApim;
 import gc.apiClient.messages.MessageToProducer;
 import gc.apiClient.service.ServiceJson;
 import gc.apiClient.service.ServicePostgre;
+import gc.apiClient.webclient.WebClientApp;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
@@ -80,6 +81,13 @@ public class ControllerUCRM extends ServiceJson {
 		this.serviceMsgObjOrcl = serviceMsgObjOrcl;
 	}
 
+	@Scheduled(fixedRate = 86400*1000)
+	public void RefreshToken() {
+		WebClientApp webClient = new WebClientApp();
+		webClient.getAccessToken();
+	}
+	
+	
 	@Scheduled(fixedRate = 60000)
 	public void scheduledMethod() {
 

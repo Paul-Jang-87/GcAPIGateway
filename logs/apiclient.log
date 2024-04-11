@@ -453,3 +453,570 @@ INFO  24-04-11 11:36:02[SpringApplicationShutdownHook] [HikariDataSource:350] - 
 INFO  24-04-11 11:36:02[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLH-hikari-pool - Shutdown completed.
 INFO  24-04-11 11:36:02[SpringApplicationShutdownHook] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
 INFO  24-04-11 11:36:02[SpringApplicationShutdownHook] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-04-11 13:23:41[main] [AnnotationConfigContextLoaderUtils:83] - Could not detect default configuration classes for test class [gc.apiClient.GcClientApplicationTests]: GcClientApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+INFO  24-04-11 13:23:41[main] [SpringBootTestContextBootstrapper:234] - Found @SpringBootConfiguration gc.apiClient.GcClientApplication for test class gc.apiClient.GcClientApplicationTests
+WARN  24-04-11 13:23:42[main] [DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer:78] - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/org/json/json/20210307/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+INFO  24-04-11 13:23:42[main] [GcClientApplicationTests:50] - Starting GcClientApplicationTests using Java 21.0.1 with PID 9208 (started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+INFO  24-04-11 13:23:42[main] [GcClientApplicationTests:654] - No active profile set, falling back to 1 default profile: "default"
+INFO  24-04-11 13:23:43[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-11 13:23:44[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 301 ms. Found 8 JPA repository interfaces.
+INFO  24-04-11 13:23:44[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-11 13:23:44[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 50 ms. Found 8 JPA repository interfaces.
+INFO  24-04-11 13:23:44[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-11 13:23:44[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 27 ms. Found 4 JPA repository interfaces.
+INFO  24-04-11 13:23:46[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleH]
+INFO  24-04-11 13:23:46[main] [Version:44] - HHH000412: Hibernate ORM core version 6.4.1.Final
+INFO  24-04-11 13:23:46[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-04-11 13:23:47[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-11 13:23:47[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-11 13:23:47[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
+WARN  24-04-11 13:23:47[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-04-11 13:23:47[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@5bb99d1d
+INFO  24-04-11 13:23:47[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
+WARN  24-04-11 13:23:48[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-04-11 13:23:51[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-04-11 13:23:51[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-04-11 13:23:51[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleM]
+INFO  24-04-11 13:23:51[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-04-11 13:23:51[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-11 13:23:51[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-11 13:23:51[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
+WARN  24-04-11 13:23:51[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-04-11 13:23:51[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@31b6eec8
+INFO  24-04-11 13:23:51[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
+WARN  24-04-11 13:23:51[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-04-11 13:23:52[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-04-11 13:23:52[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-04-11 13:23:52[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: postgres]
+INFO  24-04-11 13:23:52[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-04-11 13:23:52[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-11 13:23:52[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-11 13:23:52[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-11 13:23:53[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@50e7d8ba
+INFO  24-04-11 13:23:53[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+WARN  24-04-11 13:23:53[main] [deprecation:153] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-04-11 13:23:53[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-04-11 13:23:53[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-11 13:23:54[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-11 13:23:58[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-04-11 13:24:00[main] [GcClientApplicationTests:56] - Started GcClientApplicationTests in 17.882 seconds (process running for 20.997)
+INFO  24-04-11 13:24:00[boundedElastic-1] [ControllerUCRM:157] -  
+INFO  24-04-11 13:24:00[boundedElastic-1] [ControllerUCRM:158] - ====== Class : ControllerUCRM - Method : ReceiveMessage ======
+INFO  24-04-11 13:24:00[boundedElastic-1] [ControllerUCRM:170] - topic_id : campma
+INFO  24-04-11 13:24:00[boundedElastic-1] [ServiceWebClient:19] -  
+INFO  24-04-11 13:24:00[boundedElastic-1] [ServiceWebClient:20] - ====== ClassName : ServiceWebClient & Method : GetApiRequet ======
+INFO  24-04-11 13:24:00[boundedElastic-1] [WebClientApp:45] - Client Id : 8ed02ed8-2e38-41ee-b70d-ab09e43b3ff1
+INFO  24-04-11 13:24:00[boundedElastic-1] [WebClientApp:47] - Client secret : HRwIs7Tn4DHJH_ODIGusDPOEM9Z7cYsFyxG_jb4f5iY
+INFO  24-04-11 13:24:01[boundedElastic-1] [WebClientApp:86] - Access token refreshed successfully.
+INFO  24-04-11 13:24:01[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-11 13:24:01[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-04-11 13:24:01[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLM-hikari-pool - Shutdown initiated...
+INFO  24-04-11 13:24:01[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLM-hikari-pool - Shutdown completed.
+INFO  24-04-11 13:24:01[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-04-11 13:24:01[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLH-hikari-pool - Shutdown initiated...
+INFO  24-04-11 13:24:01[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLH-hikari-pool - Shutdown completed.
+INFO  24-04-11 13:24:01[SpringApplicationShutdownHook] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-04-11 13:24:01[SpringApplicationShutdownHook] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-04-11 13:51:45[main] [AnnotationConfigContextLoaderUtils:83] - Could not detect default configuration classes for test class [gc.apiClient.GcClientApplicationTests]: GcClientApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+INFO  24-04-11 13:51:46[main] [SpringBootTestContextBootstrapper:234] - Found @SpringBootConfiguration gc.apiClient.GcClientApplication for test class gc.apiClient.GcClientApplicationTests
+WARN  24-04-11 13:51:46[main] [DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer:78] - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/org/json/json/20210307/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+INFO  24-04-11 13:51:46[main] [GcClientApplicationTests:50] - Starting GcClientApplicationTests using Java 21.0.1 with PID 31116 (started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+INFO  24-04-11 13:51:46[main] [GcClientApplicationTests:654] - No active profile set, falling back to 1 default profile: "default"
+INFO  24-04-11 13:51:48[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-11 13:51:48[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 282 ms. Found 8 JPA repository interfaces.
+INFO  24-04-11 13:51:48[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-11 13:51:48[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 57 ms. Found 8 JPA repository interfaces.
+INFO  24-04-11 13:51:48[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-11 13:51:48[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 31 ms. Found 4 JPA repository interfaces.
+INFO  24-04-11 13:51:50[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleH]
+INFO  24-04-11 13:51:50[main] [Version:44] - HHH000412: Hibernate ORM core version 6.4.1.Final
+INFO  24-04-11 13:51:50[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-04-11 13:51:51[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-11 13:51:51[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-11 13:51:51[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
+WARN  24-04-11 13:51:51[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-04-11 13:51:52[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@2a16d4dc
+INFO  24-04-11 13:51:52[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
+WARN  24-04-11 13:51:52[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-04-11 13:51:54[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-04-11 13:51:54[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-04-11 13:51:54[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleM]
+INFO  24-04-11 13:51:54[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-04-11 13:51:55[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-11 13:51:55[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-11 13:51:55[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
+WARN  24-04-11 13:51:55[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-04-11 13:51:55[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@3070f59f
+INFO  24-04-11 13:51:55[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
+WARN  24-04-11 13:51:55[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-04-11 13:51:55[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-04-11 13:51:55[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-04-11 13:51:55[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: postgres]
+INFO  24-04-11 13:51:55[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-04-11 13:51:55[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-11 13:51:55[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-11 13:51:55[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-11 13:51:56[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@79690a0a
+INFO  24-04-11 13:51:56[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+WARN  24-04-11 13:51:56[main] [deprecation:153] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-04-11 13:51:56[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-04-11 13:51:56[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-11 13:51:57[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-11 13:52:00[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-04-11 13:52:00[main] [GcClientApplicationTests:56] - Started GcClientApplicationTests in 14.468 seconds (process running for 18.264)
+INFO  24-04-11 13:52:00[boundedElastic-1] [ControllerUCRM:165] -  
+INFO  24-04-11 13:52:00[boundedElastic-1] [ControllerUCRM:166] - ====== Class : ControllerUCRM - Method : ReceiveMessage ======
+INFO  24-04-11 13:52:00[boundedElastic-1] [ControllerUCRM:178] - topic_id : campma
+INFO  24-04-11 13:52:00[boundedElastic-1] [ServiceWebClient:19] -  
+INFO  24-04-11 13:52:00[boundedElastic-1] [ServiceWebClient:20] - ====== ClassName : ServiceWebClient & Method : GetApiRequet ======
+INFO  24-04-11 13:52:00[boundedElastic-1] [WebClientApp:45] - Client Id : 8ed02ed8-2e38-41ee-b70d-ab09e43b3ff1
+INFO  24-04-11 13:52:00[boundedElastic-1] [WebClientApp:47] - Client secret : HRwIs7Tn4DHJH_ODIGusDPOEM9Z7cYsFyxG_jb4f5iY
+INFO  24-04-11 13:52:02[boundedElastic-1] [WebClientApp:89] - Access token refreshed successfully.
+INFO  24-04-11 13:52:02[test-task-scheduling1] [WebClientApp:89] - Access token refreshed successfully.
+INFO  24-04-11 13:52:03[boundedElastic-1] [ServiceWebClient:27] - ====== End GetApiRequet ======
+INFO  24-04-11 13:52:03[boundedElastic-1] [ServiceJson:85] -  
+INFO  24-04-11 13:52:03[boundedElastic-1] [ServiceJson:86] - ====== ClassName : ServiceJson & Method : CampaignListSize ======
+INFO  24-04-11 13:52:03[boundedElastic-1] [ServiceJson:101] - 캠페인 리스트 사이즈 : 26
+INFO  24-04-11 13:52:03[boundedElastic-1] [ServiceJson:102] - ====== END CampaignListSize ======
+INFO  24-04-11 13:52:04[boundedElastic-1] [ServicePostgre:616] - Campma 테이블 레코드 수 : 19
+INFO  24-04-11 13:52:04[boundedElastic-1] [ControllerUCRM:195] - 7번 반복
+INFO  24-04-11 13:52:04[boundedElastic-1] [ControllerUCRM:197] - 6번째 인덱스 
+INFO  24-04-11 13:52:04[boundedElastic-1] [ServiceJson:55] -  
+INFO  24-04-11 13:52:04[boundedElastic-1] [ServiceJson:56] - ====== ClassName : ServiceJson & Method : ExtractValCrm12 ======
+INFO  24-04-11 13:52:04[boundedElastic-1] [ServiceJson:75] - result : 2db1a014-7b7b-44f9-b4cc-4fe138c0a54e::25::25-callbot_home_kafka::콜봇홈
+INFO  24-04-11 13:52:04[boundedElastic-1] [ServiceJson:76] - ====== END ExtractValCrm12 ======
+INFO  24-04-11 13:52:04[boundedElastic-1] [BusinessLogic:15] -  
+INFO  24-04-11 13:52:04[boundedElastic-1] [BusinessLogic:16] - ====== Class : BusinessLogic - Method : SelectedBusiness ======
+INFO  24-04-11 13:52:04[boundedElastic-1] [BusinessLogic:17] - division : 콜봇홈
+INFO  24-04-11 13:52:04[boundedElastic-1] [BusinessLogic:72] - business : Callbot
+INFO  24-04-11 13:52:04[boundedElastic-1] [BusinessLogic:73] - topic_id : from_clcc_hmaiccmpnma_message
+INFO  24-04-11 13:52:04[boundedElastic-1] [BusinessLogic:75] - ===== END SelectedBusiness =====
+INFO  24-04-11 13:52:04[boundedElastic-1] [ServicePostgre:232] -  
+INFO  24-04-11 13:52:04[boundedElastic-1] [ServicePostgre:233] - ====== ClassName : ServicePostgre & Method : createCampMaMsg ======
+INFO  24-04-11 13:52:04[boundedElastic-1] [ServicePostgre:243] - action type : insert
+INFO  24-04-11 13:52:04[boundedElastic-1] [ServicePostgre:268] - cpid : 2db1a014-7b7b-44f9-b4cc-4fe138c0a54e
+INFO  24-04-11 13:52:04[boundedElastic-1] [ServicePostgre:269] - coid : 25
+INFO  24-04-11 13:52:04[boundedElastic-1] [ServicePostgre:270] - cpna : 25-callbot_home_kafka
+INFO  24-04-11 13:52:04[boundedElastic-1] [ServicePostgre:278] -  
+INFO  24-04-11 13:52:04[boundedElastic-1] [ServicePostgre:279] - ====== ClassName : ServicePostgre & Method : createCampMaJson ======
+INFO  24-04-11 13:52:04[boundedElastic-1] [ServicePostgre:328] - ====== End createCampMaJson ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [ControllerUCRM:229] - jsonString : {"topcDataIsueDtm":"2024/04/11 13:52:04.705562","dataChgCd":"insert","dataDelYn":"N","tenantId":"25","cmpnId":"2db1a014-7b7b-44f9-b4cc-4fe138c0a54e","cmpnNm":"25-callbot_home_kafka"}
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:14] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:15] - ====== ClassName : MessageToProducer & Method : sendMsgToProducer ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:16] - Producer로 보낼 EndPoint : /gcapi/post/from_clcc_hmaiccmpnma_message
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:17] - Producer로 보낼 Message : {"topcDataIsueDtm":"2024/04/11 13:52:04.705562","dataChgCd":"insert","dataDelYn":"N","tenantId":"25","cmpnId":"2db1a014-7b7b-44f9-b4cc-4fe138c0a54e","cmpnNm":"25-callbot_home_kafka"}
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:40] - ====== End sendMsgToProducer ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [ControllerUCRM:197] - 5번째 인덱스 
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServiceJson:55] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServiceJson:56] - ====== ClassName : ServiceJson & Method : ExtractValCrm12 ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServiceJson:75] - result : 75378bec-2541-44c1-9c1e-5b017742259d::25::21-카프카_콜봇모바일_1045::콜봇홈
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServiceJson:76] - ====== END ExtractValCrm12 ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:15] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:16] - ====== Class : BusinessLogic - Method : SelectedBusiness ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:17] - division : 콜봇홈
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:72] - business : Callbot
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:73] - topic_id : from_clcc_hmaiccmpnma_message
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:75] - ===== END SelectedBusiness =====
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:232] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:233] - ====== ClassName : ServicePostgre & Method : createCampMaMsg ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:243] - action type : insert
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:268] - cpid : 75378bec-2541-44c1-9c1e-5b017742259d
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:269] - coid : 25
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:270] - cpna : 21-카프카_콜봇모바일_1045
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:278] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:279] - ====== ClassName : ServicePostgre & Method : createCampMaJson ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:328] - ====== End createCampMaJson ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [ControllerUCRM:229] - jsonString : {"topcDataIsueDtm":"2024/04/11 13:52:05.289002","dataChgCd":"insert","dataDelYn":"N","tenantId":"25","cmpnId":"75378bec-2541-44c1-9c1e-5b017742259d","cmpnNm":"21-카프카_콜봇모바일_1045"}
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:14] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:15] - ====== ClassName : MessageToProducer & Method : sendMsgToProducer ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:16] - Producer로 보낼 EndPoint : /gcapi/post/from_clcc_hmaiccmpnma_message
+ERROR 24-04-11 13:52:05[reactor-http-nio-3] [MessageToProducer:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:17] - Producer로 보낼 Message : {"topcDataIsueDtm":"2024/04/11 13:52:05.289002","dataChgCd":"insert","dataDelYn":"N","tenantId":"25","cmpnId":"75378bec-2541-44c1-9c1e-5b017742259d","cmpnNm":"21-카프카_콜봇모바일_1045"}
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:40] - ====== End sendMsgToProducer ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [ControllerUCRM:197] - 4번째 인덱스 
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServiceJson:55] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServiceJson:56] - ====== ClassName : ServiceJson & Method : ExtractValCrm12 ======
+ERROR 24-04-11 13:52:05[reactor-http-nio-4] [MessageToProducer:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServiceJson:75] - result : 22abb781-edeb-42d3-9f42-55e7f9fa5c71::25::21-카프카_콜봇모바일_1045::콜봇홈
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServiceJson:76] - ====== END ExtractValCrm12 ======
+ERROR 24-04-11 13:52:05[reactor-http-nio-3] [MessageToProducer:35] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:15] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:16] - ====== Class : BusinessLogic - Method : SelectedBusiness ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:17] - division : 콜봇홈
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:72] - business : Callbot
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:73] - topic_id : from_clcc_hmaiccmpnma_message
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:75] - ===== END SelectedBusiness =====
+ERROR 24-04-11 13:52:05[reactor-http-nio-4] [MessageToProducer:35] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:232] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:233] - ====== ClassName : ServicePostgre & Method : createCampMaMsg ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:243] - action type : insert
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:268] - cpid : 22abb781-edeb-42d3-9f42-55e7f9fa5c71
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:269] - coid : 25
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:270] - cpna : 21-카프카_콜봇모바일_1045
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:278] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:279] - ====== ClassName : ServicePostgre & Method : createCampMaJson ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:328] - ====== End createCampMaJson ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [ControllerUCRM:229] - jsonString : {"topcDataIsueDtm":"2024/04/11 13:52:05.338872","dataChgCd":"insert","dataDelYn":"N","tenantId":"25","cmpnId":"22abb781-edeb-42d3-9f42-55e7f9fa5c71","cmpnNm":"21-카프카_콜봇모바일_1045"}
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:14] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:15] - ====== ClassName : MessageToProducer & Method : sendMsgToProducer ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:16] - Producer로 보낼 EndPoint : /gcapi/post/from_clcc_hmaiccmpnma_message
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:17] - Producer로 보낼 Message : {"topcDataIsueDtm":"2024/04/11 13:52:05.338872","dataChgCd":"insert","dataDelYn":"N","tenantId":"25","cmpnId":"22abb781-edeb-42d3-9f42-55e7f9fa5c71","cmpnNm":"21-카프카_콜봇모바일_1045"}
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:40] - ====== End sendMsgToProducer ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [ControllerUCRM:197] - 3번째 인덱스 
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServiceJson:55] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServiceJson:56] - ====== ClassName : ServiceJson & Method : ExtractValCrm12 ======
+ERROR 24-04-11 13:52:05[reactor-http-nio-5] [MessageToProducer:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServiceJson:75] - result : 3024faa8-2d6c-4846-bcb9-34eeed9144e9::25::25-callbot_home_kafka::콜봇홈
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServiceJson:76] - ====== END ExtractValCrm12 ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:15] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:16] - ====== Class : BusinessLogic - Method : SelectedBusiness ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:17] - division : 콜봇홈
+ERROR 24-04-11 13:52:05[reactor-http-nio-5] [MessageToProducer:35] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:72] - business : Callbot
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:73] - topic_id : from_clcc_hmaiccmpnma_message
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:75] - ===== END SelectedBusiness =====
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:232] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:233] - ====== ClassName : ServicePostgre & Method : createCampMaMsg ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:243] - action type : insert
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:268] - cpid : 3024faa8-2d6c-4846-bcb9-34eeed9144e9
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:269] - coid : 25
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:270] - cpna : 25-callbot_home_kafka
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:278] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:279] - ====== ClassName : ServicePostgre & Method : createCampMaJson ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:328] - ====== End createCampMaJson ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [ControllerUCRM:229] - jsonString : {"topcDataIsueDtm":"2024/04/11 13:52:05.385743","dataChgCd":"insert","dataDelYn":"N","tenantId":"25","cmpnId":"3024faa8-2d6c-4846-bcb9-34eeed9144e9","cmpnNm":"25-callbot_home_kafka"}
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:14] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:15] - ====== ClassName : MessageToProducer & Method : sendMsgToProducer ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:16] - Producer로 보낼 EndPoint : /gcapi/post/from_clcc_hmaiccmpnma_message
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:17] - Producer로 보낼 Message : {"topcDataIsueDtm":"2024/04/11 13:52:05.385743","dataChgCd":"insert","dataDelYn":"N","tenantId":"25","cmpnId":"3024faa8-2d6c-4846-bcb9-34eeed9144e9","cmpnNm":"25-callbot_home_kafka"}
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:40] - ====== End sendMsgToProducer ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [ControllerUCRM:197] - 2번째 인덱스 
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServiceJson:55] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServiceJson:56] - ====== ClassName : ServiceJson & Method : ExtractValCrm12 ======
+ERROR 24-04-11 13:52:05[reactor-http-nio-6] [MessageToProducer:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-11 13:52:05[reactor-http-nio-6] [MessageToProducer:35] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServiceJson:75] - result : 867f1f01-a57a-444e-b971-959208323738::25::Kafka_HOME_TEST01::콜봇홈
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServiceJson:76] - ====== END ExtractValCrm12 ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:15] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:16] - ====== Class : BusinessLogic - Method : SelectedBusiness ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:17] - division : 콜봇홈
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:72] - business : Callbot
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:73] - topic_id : from_clcc_hmaiccmpnma_message
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:75] - ===== END SelectedBusiness =====
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:232] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:233] - ====== ClassName : ServicePostgre & Method : createCampMaMsg ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:243] - action type : insert
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:268] - cpid : 867f1f01-a57a-444e-b971-959208323738
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:269] - coid : 25
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:270] - cpna : Kafka_HOME_TEST01
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:278] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:279] - ====== ClassName : ServicePostgre & Method : createCampMaJson ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:328] - ====== End createCampMaJson ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [ControllerUCRM:229] - jsonString : {"topcDataIsueDtm":"2024/04/11 13:52:05.434613","dataChgCd":"insert","dataDelYn":"N","tenantId":"25","cmpnId":"867f1f01-a57a-444e-b971-959208323738","cmpnNm":"Kafka_HOME_TEST01"}
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:14] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:15] - ====== ClassName : MessageToProducer & Method : sendMsgToProducer ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:16] - Producer로 보낼 EndPoint : /gcapi/post/from_clcc_hmaiccmpnma_message
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:17] - Producer로 보낼 Message : {"topcDataIsueDtm":"2024/04/11 13:52:05.434613","dataChgCd":"insert","dataDelYn":"N","tenantId":"25","cmpnId":"867f1f01-a57a-444e-b971-959208323738","cmpnNm":"Kafka_HOME_TEST01"}
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:40] - ====== End sendMsgToProducer ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [ControllerUCRM:197] - 1번째 인덱스 
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServiceJson:55] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServiceJson:56] - ====== ClassName : ServiceJson & Method : ExtractValCrm12 ======
+ERROR 24-04-11 13:52:05[reactor-http-nio-7] [MessageToProducer:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-11 13:52:05[reactor-http-nio-7] [MessageToProducer:35] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServiceJson:75] - result : 368be09c-80eb-4864-87fb-b30b066501bc::59::25-callbot_home_kafka::콜봇모바일
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServiceJson:76] - ====== END ExtractValCrm12 ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:15] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:16] - ====== Class : BusinessLogic - Method : SelectedBusiness ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:17] - division : 콜봇모바일
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:72] - business : Callbot
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:73] - topic_id : from_clcc_mblaiccmpnma_message
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:75] - ===== END SelectedBusiness =====
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:232] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:233] - ====== ClassName : ServicePostgre & Method : createCampMaMsg ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:243] - action type : insert
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:268] - cpid : 368be09c-80eb-4864-87fb-b30b066501bc
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:269] - coid : 59
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:270] - cpna : 25-callbot_home_kafka
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:278] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:279] - ====== ClassName : ServicePostgre & Method : createCampMaJson ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:328] - ====== End createCampMaJson ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [ControllerUCRM:229] - jsonString : {"topcDataIsueDtm":"2024/04/11 13:52:05.494452","dataChgCd":"insert","dataDelYn":"N","tenantId":"59","cmpnId":"368be09c-80eb-4864-87fb-b30b066501bc","cmpnNm":"25-callbot_home_kafka"}
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:14] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:15] - ====== ClassName : MessageToProducer & Method : sendMsgToProducer ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:16] - Producer로 보낼 EndPoint : /gcapi/post/from_clcc_mblaiccmpnma_message
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:17] - Producer로 보낼 Message : {"topcDataIsueDtm":"2024/04/11 13:52:05.494452","dataChgCd":"insert","dataDelYn":"N","tenantId":"59","cmpnId":"368be09c-80eb-4864-87fb-b30b066501bc","cmpnNm":"25-callbot_home_kafka"}
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:40] - ====== End sendMsgToProducer ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [ControllerUCRM:197] - 0번째 인덱스 
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServiceJson:55] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServiceJson:56] - ====== ClassName : ServiceJson & Method : ExtractValCrm12 ======
+ERROR 24-04-11 13:52:05[reactor-http-nio-8] [MessageToProducer:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-11 13:52:05[reactor-http-nio-8] [MessageToProducer:35] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServiceJson:75] - result : d6913d03-51ba-4311-a785-da10e5e03339::59::21-카프카_콜봇모바일_1045::콜봇모바일
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServiceJson:76] - ====== END ExtractValCrm12 ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:15] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:16] - ====== Class : BusinessLogic - Method : SelectedBusiness ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:17] - division : 콜봇모바일
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:72] - business : Callbot
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:73] - topic_id : from_clcc_mblaiccmpnma_message
+INFO  24-04-11 13:52:05[boundedElastic-1] [BusinessLogic:75] - ===== END SelectedBusiness =====
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:232] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:233] - ====== ClassName : ServicePostgre & Method : createCampMaMsg ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:243] - action type : insert
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:268] - cpid : d6913d03-51ba-4311-a785-da10e5e03339
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:269] - coid : 59
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:270] - cpna : 21-카프카_콜봇모바일_1045
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:278] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:279] - ====== ClassName : ServicePostgre & Method : createCampMaJson ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [ServicePostgre:328] - ====== End createCampMaJson ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [ControllerUCRM:229] - jsonString : {"topcDataIsueDtm":"2024/04/11 13:52:05.536341","dataChgCd":"insert","dataDelYn":"N","tenantId":"59","cmpnId":"d6913d03-51ba-4311-a785-da10e5e03339","cmpnNm":"21-카프카_콜봇모바일_1045"}
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:14] -  
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:15] - ====== ClassName : MessageToProducer & Method : sendMsgToProducer ======
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:16] - Producer로 보낼 EndPoint : /gcapi/post/from_clcc_mblaiccmpnma_message
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:17] - Producer로 보낼 Message : {"topcDataIsueDtm":"2024/04/11 13:52:05.536341","dataChgCd":"insert","dataDelYn":"N","tenantId":"59","cmpnId":"d6913d03-51ba-4311-a785-da10e5e03339","cmpnNm":"21-카프카_콜봇모바일_1045"}
+INFO  24-04-11 13:52:05[boundedElastic-1] [MessageToProducer:40] - ====== End sendMsgToProducer ======
+ERROR 24-04-11 13:52:05[reactor-http-nio-1] [MessageToProducer:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-11 13:52:05[reactor-http-nio-1] [MessageToProducer:35] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+INFO  24-04-11 13:52:14[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-11 13:52:14[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-04-11 13:52:14[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLM-hikari-pool - Shutdown initiated...
+INFO  24-04-11 13:52:14[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLM-hikari-pool - Shutdown completed.
+INFO  24-04-11 13:52:14[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-04-11 13:52:14[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLH-hikari-pool - Shutdown initiated...
+INFO  24-04-11 13:52:14[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLH-hikari-pool - Shutdown completed.
+INFO  24-04-11 13:52:14[SpringApplicationShutdownHook] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-04-11 13:52:14[SpringApplicationShutdownHook] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-04-11 14:07:15[main] [AnnotationConfigContextLoaderUtils:83] - Could not detect default configuration classes for test class [gc.apiClient.GcClientApplicationTests]: GcClientApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+INFO  24-04-11 14:07:16[main] [SpringBootTestContextBootstrapper:234] - Found @SpringBootConfiguration gc.apiClient.GcClientApplication for test class gc.apiClient.GcClientApplicationTests
+WARN  24-04-11 14:07:16[main] [DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer:78] - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/org/json/json/20210307/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+INFO  24-04-11 14:07:17[main] [GcClientApplicationTests:50] - Starting GcClientApplicationTests using Java 21.0.1 with PID 23976 (started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+INFO  24-04-11 14:07:17[main] [GcClientApplicationTests:654] - No active profile set, falling back to 1 default profile: "default"
+INFO  24-04-11 14:07:19[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-11 14:07:19[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 281 ms. Found 8 JPA repository interfaces.
+INFO  24-04-11 14:07:19[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-11 14:07:19[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 54 ms. Found 8 JPA repository interfaces.
+INFO  24-04-11 14:07:19[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-11 14:07:19[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 31 ms. Found 4 JPA repository interfaces.
+INFO  24-04-11 14:07:21[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleH]
+INFO  24-04-11 14:07:21[main] [Version:44] - HHH000412: Hibernate ORM core version 6.4.1.Final
+INFO  24-04-11 14:07:21[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-04-11 14:07:22[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-11 14:07:22[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-11 14:07:22[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
+WARN  24-04-11 14:07:22[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-04-11 14:07:22[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@5bb99d1d
+INFO  24-04-11 14:07:22[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
+WARN  24-04-11 14:07:23[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-04-11 14:07:26[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-04-11 14:07:26[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-04-11 14:07:26[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleM]
+INFO  24-04-11 14:07:26[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-04-11 14:07:26[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-11 14:07:26[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-11 14:07:26[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
+WARN  24-04-11 14:07:26[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-04-11 14:07:26[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@31b6eec8
+INFO  24-04-11 14:07:26[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
+WARN  24-04-11 14:07:26[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-04-11 14:07:27[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-04-11 14:07:27[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-04-11 14:07:27[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: postgres]
+INFO  24-04-11 14:07:27[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-04-11 14:07:27[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-11 14:07:27[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-11 14:07:27[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-11 14:07:28[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@50e7d8ba
+INFO  24-04-11 14:07:28[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+WARN  24-04-11 14:07:28[main] [deprecation:153] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-04-11 14:07:29[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-04-11 14:07:29[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-11 14:07:30[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-11 14:07:32[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-04-11 14:07:33[main] [GcClientApplicationTests:56] - Started GcClientApplicationTests in 17.431 seconds (process running for 20.733)
+INFO  24-04-11 14:07:33[boundedElastic-1] [ControllerUCRM:165] -  
+INFO  24-04-11 14:07:33[boundedElastic-1] [ControllerUCRM:166] - ====== Class : ControllerUCRM - Method : ReceiveMessage ======
+INFO  24-04-11 14:07:33[boundedElastic-1] [ControllerUCRM:178] - topic_id : campma
+INFO  24-04-11 14:07:33[boundedElastic-1] [ServiceWebClient:19] -  
+INFO  24-04-11 14:07:33[boundedElastic-1] [ServiceWebClient:20] - ====== ClassName : ServiceWebClient & Method : GetApiRequet ======
+INFO  24-04-11 14:07:33[boundedElastic-1] [WebClientApp:45] - Client Id : 8ed02ed8-2e38-41ee-b70d-ab09e43b3ff1
+INFO  24-04-11 14:07:33[boundedElastic-1] [WebClientApp:47] - Client secret : HRwIs7Tn4DHJH_ODIGusDPOEM9Z7cYsFyxG_jb4f5iY
+INFO  24-04-11 14:07:34[test-task-scheduling1] [WebClientApp:89] - Access token refreshed successfully.
+INFO  24-04-11 14:07:34[boundedElastic-1] [WebClientApp:89] - Access token refreshed successfully.
+INFO  24-04-11 14:07:35[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-11 14:07:35[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-04-11 14:07:35[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLM-hikari-pool - Shutdown initiated...
+INFO  24-04-11 14:07:35[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLM-hikari-pool - Shutdown completed.
+INFO  24-04-11 14:07:35[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-04-11 14:07:35[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLH-hikari-pool - Shutdown initiated...
+INFO  24-04-11 14:07:35[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLH-hikari-pool - Shutdown completed.
+INFO  24-04-11 14:07:35[SpringApplicationShutdownHook] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-04-11 14:07:35[SpringApplicationShutdownHook] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-04-11 15:28:43[main] [AnnotationConfigContextLoaderUtils:83] - Could not detect default configuration classes for test class [gc.apiClient.GcClientApplicationTests]: GcClientApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+INFO  24-04-11 15:28:43[main] [SpringBootTestContextBootstrapper:234] - Found @SpringBootConfiguration gc.apiClient.GcClientApplication for test class gc.apiClient.GcClientApplicationTests
+WARN  24-04-11 15:28:44[main] [DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer:78] - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/org/json/json/20210307/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+INFO  24-04-11 15:28:44[main] [GcClientApplicationTests:50] - Starting GcClientApplicationTests using Java 21.0.1 with PID 22820 (started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+INFO  24-04-11 15:28:44[main] [GcClientApplicationTests:654] - No active profile set, falling back to 1 default profile: "default"
+INFO  24-04-11 15:28:45[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-11 15:28:46[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 344 ms. Found 8 JPA repository interfaces.
+INFO  24-04-11 15:28:46[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-11 15:28:46[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 53 ms. Found 8 JPA repository interfaces.
+INFO  24-04-11 15:28:46[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-11 15:28:46[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 37 ms. Found 4 JPA repository interfaces.
+INFO  24-04-11 15:28:48[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleH]
+INFO  24-04-11 15:28:48[main] [Version:44] - HHH000412: Hibernate ORM core version 6.4.1.Final
+INFO  24-04-11 15:28:48[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-04-11 15:28:48[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-11 15:28:48[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-11 15:28:48[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
+WARN  24-04-11 15:28:48[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-04-11 15:28:50[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@43445fc6
+INFO  24-04-11 15:28:50[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
+WARN  24-04-11 15:28:51[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-04-11 15:28:56[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-04-11 15:28:56[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-04-11 15:28:56[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleM]
+INFO  24-04-11 15:28:56[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-04-11 15:28:56[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-11 15:28:56[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-11 15:28:56[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
+WARN  24-04-11 15:28:56[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-04-11 15:28:56[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@31b6eec8
+INFO  24-04-11 15:28:56[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
+WARN  24-04-11 15:28:56[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-04-11 15:28:58[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-04-11 15:28:58[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-04-11 15:28:58[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: postgres]
+INFO  24-04-11 15:28:58[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-04-11 15:28:58[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-11 15:28:58[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-11 15:28:58[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-11 15:28:59[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@50e7d8ba
+INFO  24-04-11 15:28:59[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+WARN  24-04-11 15:28:59[main] [deprecation:153] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-04-11 15:28:59[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-04-11 15:28:59[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-11 15:29:01[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-11 15:29:04[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-04-11 15:29:05[main] [GcClientApplicationTests:56] - Started GcClientApplicationTests in 21.957 seconds (process running for 26.608)
+INFO  24-04-11 15:29:05[boundedElastic-1] [ControllerUCRM:165] -  
+INFO  24-04-11 15:29:05[boundedElastic-1] [ControllerUCRM:166] - ====== Class : ControllerUCRM - Method : ReceiveMessage ======
+INFO  24-04-11 15:29:05[boundedElastic-1] [ControllerUCRM:178] - topic_id : campma
+INFO  24-04-11 15:29:05[boundedElastic-1] [ServiceWebClient:19] -  
+INFO  24-04-11 15:29:05[boundedElastic-1] [ServiceWebClient:20] - ====== ClassName : ServiceWebClient & Method : GetApiRequet ======
+INFO  24-04-11 15:29:05[boundedElastic-1] [WebClientApp:45] - Client Id : 8ed02ed8-2e38-41ee-b70d-ab09e43b3ff1
+INFO  24-04-11 15:29:05[boundedElastic-1] [WebClientApp:47] - Client secret : HRwIs7Tn4DHJH_ODIGusDPOEM9Z7cYsFyxG_jb4f5iY
+INFO  24-04-11 15:29:07[boundedElastic-1] [WebClientApp:89] - Access token refreshed successfully.
+INFO  24-04-11 15:29:07[test-task-scheduling1] [WebClientApp:89] - Access token refreshed successfully.
+INFO  24-04-11 15:29:07[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-11 15:29:07[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-04-11 15:29:07[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLM-hikari-pool - Shutdown initiated...
+INFO  24-04-11 15:29:07[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLM-hikari-pool - Shutdown completed.
+INFO  24-04-11 15:29:07[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-04-11 15:29:07[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLH-hikari-pool - Shutdown initiated...
+INFO  24-04-11 15:29:07[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLH-hikari-pool - Shutdown completed.
+INFO  24-04-11 15:29:07[SpringApplicationShutdownHook] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-04-11 15:29:07[SpringApplicationShutdownHook] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-04-11 15:37:08[main] [AnnotationConfigContextLoaderUtils:83] - Could not detect default configuration classes for test class [gc.apiClient.GcClientApplicationTests]: GcClientApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+INFO  24-04-11 15:37:08[main] [SpringBootTestContextBootstrapper:234] - Found @SpringBootConfiguration gc.apiClient.GcClientApplication for test class gc.apiClient.GcClientApplicationTests
+WARN  24-04-11 15:37:10[main] [DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer:78] - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/org/json/json/20210307/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+INFO  24-04-11 15:37:10[main] [GcClientApplicationTests:50] - Starting GcClientApplicationTests using Java 21.0.1 with PID 1992 (started by 인포전스 in D:\GitWorkSpace\gcClient\gcClient)
+INFO  24-04-11 15:37:10[main] [GcClientApplicationTests:654] - No active profile set, falling back to 1 default profile: "default"
+INFO  24-04-11 15:37:12[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-11 15:37:13[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 405 ms. Found 8 JPA repository interfaces.
+INFO  24-04-11 15:37:13[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-11 15:37:13[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 69 ms. Found 8 JPA repository interfaces.
+INFO  24-04-11 15:37:13[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-11 15:37:13[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 39 ms. Found 4 JPA repository interfaces.
+INFO  24-04-11 15:37:16[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleH]
+INFO  24-04-11 15:37:16[main] [Version:44] - HHH000412: Hibernate ORM core version 6.4.1.Final
+INFO  24-04-11 15:37:16[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-04-11 15:37:17[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-11 15:37:17[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-11 15:37:17[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
+WARN  24-04-11 15:37:17[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-04-11 15:37:18[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@431babe6
+INFO  24-04-11 15:37:18[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
+WARN  24-04-11 15:37:18[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-04-11 15:37:23[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-04-11 15:37:23[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-04-11 15:37:23[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: oracleM]
+INFO  24-04-11 15:37:23[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-04-11 15:37:23[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-11 15:37:23[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-11 15:37:23[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
+WARN  24-04-11 15:37:23[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-04-11 15:37:23[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@329a27ae
+INFO  24-04-11 15:37:23[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
+WARN  24-04-11 15:37:23[main] [deprecation:153] - HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-04-11 15:37:24[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-04-11 15:37:24[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-04-11 15:37:24[main] [LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: postgres]
+INFO  24-04-11 15:37:24[main] [RegionFactoryInitiator:50] - HHH000026: Second-level cache disabled
+INFO  24-04-11 15:37:24[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-11 15:37:24[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-11 15:37:24[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-11 15:37:26[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@4548bfc7
+INFO  24-04-11 15:37:26[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+WARN  24-04-11 15:37:26[main] [deprecation:153] - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+INFO  24-04-11 15:37:26[main] [JtaPlatformInitiator:58] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+INFO  24-04-11 15:37:26[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-11 15:37:28[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-11 15:37:32[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-04-11 15:37:33[main] [GcClientApplicationTests:56] - Started GcClientApplicationTests in 24.082 seconds (process running for 29.541)
+INFO  24-04-11 15:37:33[boundedElastic-1] [ControllerUCRM:165] -  
+INFO  24-04-11 15:37:33[boundedElastic-1] [ControllerUCRM:166] - ====== Class : ControllerUCRM - Method : ReceiveMessage ======
+INFO  24-04-11 15:37:33[boundedElastic-1] [ControllerUCRM:178] - topic_id : campma
+INFO  24-04-11 15:37:33[boundedElastic-1] [ServiceWebClient:19] -  
+INFO  24-04-11 15:37:33[boundedElastic-1] [ServiceWebClient:20] - ====== ClassName : ServiceWebClient & Method : GetApiRequet ======
+INFO  24-04-11 15:37:33[boundedElastic-1] [WebClientApp:45] - Client Id : 8ed02ed8-2e38-41ee-b70d-ab09e43b3ff1
+INFO  24-04-11 15:37:33[boundedElastic-1] [WebClientApp:47] - Client secret : HRwIs7Tn4DHJH_ODIGusDPOEM9Z7cYsFyxG_jb4f5iY
+INFO  24-04-11 15:37:35[boundedElastic-1] [WebClientApp:89] - Access token refreshed successfully.
+INFO  24-04-11 15:37:35[test-task-scheduling2] [WebClientApp:89] - Access token refreshed successfully.
+INFO  24-04-11 15:37:35[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-11 15:37:35[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-04-11 15:37:35[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLM-hikari-pool - Shutdown initiated...
+INFO  24-04-11 15:37:35[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLM-hikari-pool - Shutdown completed.
+INFO  24-04-11 15:37:35[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-04-11 15:37:35[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLH-hikari-pool - Shutdown initiated...
+INFO  24-04-11 15:37:36[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLH-hikari-pool - Shutdown completed.
+INFO  24-04-11 15:37:36[SpringApplicationShutdownHook] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-04-11 15:37:36[SpringApplicationShutdownHook] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.

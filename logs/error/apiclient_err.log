@@ -16,3 +16,17 @@ Caused by: java.lang.IllegalArgumentException: argument "content" is null
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
+ERROR 24-04-11 13:52:05[reactor-http-nio-3] [MessageToProducer:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-11 13:52:05[reactor-http-nio-4] [MessageToProducer:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-11 13:52:05[reactor-http-nio-3] [MessageToProducer:35] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-11 13:52:05[reactor-http-nio-4] [MessageToProducer:35] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-11 13:52:05[reactor-http-nio-5] [MessageToProducer:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-11 13:52:05[reactor-http-nio-5] [MessageToProducer:35] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-11 13:52:05[reactor-http-nio-6] [MessageToProducer:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-11 13:52:05[reactor-http-nio-6] [MessageToProducer:35] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-11 13:52:05[reactor-http-nio-7] [MessageToProducer:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-11 13:52:05[reactor-http-nio-7] [MessageToProducer:35] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-11 13:52:05[reactor-http-nio-8] [MessageToProducer:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-11 13:52:05[reactor-http-nio-8] [MessageToProducer:35] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-11 13:52:05[reactor-http-nio-1] [MessageToProducer:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-11 13:52:05[reactor-http-nio-1] [MessageToProducer:35] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081

@@ -67,12 +67,15 @@ public class WebClientApp {
 				.defaultHeader("Content-Type", "application/json")
 				.defaultHeader("Authorization", "Bearer " + accessToken).build();
 	}
+	
+	public WebClientApp () {
+		
+	}
 
 	// OAuth access token 유효기간 86400초 (24시간)
 	// 24시간 마다 token 다시 받아오게끔 스케쥴링
 //	@Scheduled(fixedDelay=86400*1000) 
-	@Scheduled(fixedDelayString = "30000")
-	private synchronized void getAccessToken() {
+	public synchronized void getAccessToken() {
 	    String region = "ap_northeast_2"; // Consider making this configurable
 
 	    ApiClient apiClient = ApiClient.Builder.standard().withBasePath(PureCloudRegionHosts.valueOf(region)).build();

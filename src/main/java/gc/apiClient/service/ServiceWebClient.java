@@ -100,7 +100,9 @@ public class ServiceWebClient implements InterfaceWebClient {
 	public String PostContactLtApiRequet(String endpoint, String contactListId, List<String> msg) {// path parameter
 																									// 'contactListId','contactId'
 
+		log.info(" ");
 		log.info("====== ClassName : ServiceWebClient & Method : PostContactLtApiRequet ======");
+		log.info("Incoming message : {}",msg.toString());
 		
 		String result = "";
 		WebClientApp webClient = new WebClientApp(endpoint, "POST");
@@ -116,10 +118,10 @@ public class ServiceWebClient implements InterfaceWebClient {
 			log.info("Retrying...");
 			retryCount++;
 			result = webClient.makeApiRequest34(contactListId, msg.toString());
-			log.error("Retried result : {}", result);
+			log.error("Result after retrying : {}", result);
 		}
 
-		if (result == null) {
+		if (result == null && retryCount >= cnt ) {
 			log.error("Final result : {}", result);
 		}
 		
@@ -132,6 +134,7 @@ public class ServiceWebClient implements InterfaceWebClient {
 		log.info("====== End PostContactLtApiRequet ======");
 		return result;
 	}
+	
 	
 
 	@Override // "/api/v2/outbound/contactlists/{contactListId}/contacts/bulk"

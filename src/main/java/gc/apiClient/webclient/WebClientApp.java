@@ -31,154 +31,154 @@ public class WebClientApp {
 	private static String API_END_POINT = "";
 	private static String HTTP_METHOD = "";
 	private static String accessToken = "";
-	
+
 	private WebClient webClient;
 
 	public WebClientApp(String apiName, String httpMethod) {// WebClinet 생성자, 기본적인 초기 설정들.
-										 // WebClient를 사용하기 위한 기본 설정들과 매개변수로 온 api를 사용하기 위한 기본 설정들.
-		
-		//암호화된 id, 비밀번호 db에서 가져오는 작업.  
+		// WebClient를 사용하기 위한 기본 설정들과 매개변수로 온 api를 사용하기 위한 기본 설정들.
+
+		// 암호화된 id, 비밀번호 db에서 가져오는 작업.
 //		WebClientConfig webClientConfig = new WebClientConfig(servicedb);
 //      webClientConfig.getClientIdPwd();
-        
+
 		CLIENT_ID = WebClientConfig.getClientId();
-		log.info("Client Id : {}",CLIENT_ID);
+		log.info("Client Id : {}", CLIENT_ID);
 		CLIENT_SECRET = WebClientConfig.getClientSecret();
-		log.info("Client secret : {}",CLIENT_SECRET);
+		log.info("Client secret : {}", CLIENT_SECRET);
 		API_BASE_URL = WebClientConfig.getBaseUrl();
 		API_END_POINT = WebClientConfig.getApiEndpoint(apiName);
 		HTTP_METHOD = httpMethod;
-		
+
 		if (accessToken.equals("")) {
 			getAccessToken();
-		}else {
-			log.info("토큰 있음 : {}",accessToken);
+		} else {
+			log.info("토큰 있음 : {}", accessToken);
 		}
-		
-		int bufferSize = 1024 * 1024; 
 
-		ExchangeStrategies exchangeStrategies = ExchangeStrategies.builder()
-		    .codecs(clientCodecConfigurer -> {
-		        clientCodecConfigurer.defaultCodecs().maxInMemorySize(bufferSize);
-		    }).build();
-		
+		int bufferSize = 1024 * 1024;
+
+		ExchangeStrategies exchangeStrategies = ExchangeStrategies.builder().codecs(clientCodecConfigurer -> {
+			clientCodecConfigurer.defaultCodecs().maxInMemorySize(bufferSize);
+		}).build();
+
 		this.webClient = WebClient.builder().exchangeStrategies(exchangeStrategies).baseUrl(API_BASE_URL)
-				.defaultHeader("Accept", "application/json")
-				.defaultHeader("Content-Type", "application/json")
+				.defaultHeader("Accept", "application/json").defaultHeader("Content-Type", "application/json")
 				.defaultHeader("Authorization", "Bearer " + accessToken).build();
 	}
-	
-	public WebClientApp () {
-		
+
+	public WebClientApp() {
+
 	}
 
 	// OAuth access token 유효기간 86400초 (24시간)
 	// 24시간 마다 token 다시 받아오게끔 스케쥴링
 //	@Scheduled(fixedDelay=86400*1000) 
 	public synchronized void getAccessToken() {
-	    String region = "ap_northeast_2"; // Consider making this configurable
+		String region = "ap_northeast_2"; // Consider making this configurable
 
-	    ApiClient apiClient = ApiClient.Builder.standard().withBasePath(PureCloudRegionHosts.valueOf(region)).build();
+		ApiClient apiClient = ApiClient.Builder.standard().withBasePath(PureCloudRegionHosts.valueOf(region)).build();
 
-	    try {
-	        ApiResponse<AuthResponse> authResponse = apiClient.authorizeClientCredentials(CLIENT_ID, CLIENT_SECRET);
-	        String newAccessToken = authResponse.getBody().getAccess_token();
-	        synchronized (this) {
-	            accessToken = newAccessToken;
-	        }
-	        log.info("Access token refreshed successfully.");
-	    } catch (Exception e) {
-	        log.error("Error occurred during access token refresh: {}", e.getMessage(), e);
-	    }
+		try {
+			ApiResponse<AuthResponse> authResponse = apiClient.authorizeClientCredentials(CLIENT_ID, CLIENT_SECRET);
+			String newAccessToken = authResponse.getBody().getAccess_token();
+			synchronized (this) {
+				accessToken = newAccessToken;
+			}
+			log.info("Access token refreshed successfully.");
+		} catch (Exception e) {
+			log.error("Error occurred during access token refresh: {}", e.getMessage(), e);
+		}
 	}
 
 	public Mono<String> makeApiRequestAsync() {
-		
+
 		RequestHeadersUriSpec<?> requestSpec = null;
-		
-		if(HTTP_METHOD.equals("GET")) {//http method설정. 
+
+		if (HTTP_METHOD.equals("GET")) {// http method설정.
 			requestSpec = webClient.get();
-		}else {
+		} else {
 			requestSpec = webClient.post();
 		}
-		
-		ApiRequestHandler apiRequestHandler = new ApiRequestHandler();
-		UriComponents api1 = apiRequestHandler.buildApiRequest(API_END_POINT,"87dde849-5710-4470-8a00-5e94c679e703");//첫번째 인자는 api endpoint이기 때문데 무조건 필요.
-																													 //두번째 인자부터는 path parameter or query parameter. 
-																													 //두번째 인자는 있어도 되고 없어도 됨. 
 
-	    return requestSpec
-				.uri(api1.toUriString())
-				.retrieve()
-				.bodyToMono(String.class)
-				.onErrorResume(error -> {
-			log.error("Error making API request: {}",error.getMessage());
+		ApiRequestHandler apiRequestHandler = new ApiRequestHandler();
+		UriComponents api1 = apiRequestHandler.buildApiRequest(API_END_POINT, "87dde849-5710-4470-8a00-5e94c679e703");// 첫번째
+																														// 인자는
+																														// api
+																														// endpoint이기
+																														// 때문데
+																														// 무조건
+																														// 필요.
+																														// 두번째
+																														// 인자부터는
+																														// path
+																														// parameter
+																														// or
+																														// query
+																														// parameter.
+																														// 두번째
+																														// 인자는
+																														// 있어도
+																														// 되고
+																														// 없어도
+																														// 됨.
+
+		return requestSpec.uri(api1.toUriString()).retrieve().bodyToMono(String.class).onErrorResume(error -> {
+			log.error("Error making API request: {}", error.getMessage());
 			return Mono.empty();
 		});
 	}
-	
-	
+
 	public String makeApiRequest(Object... param) {
-	    RequestHeadersUriSpec<?> requestSpec = null;
+		RequestHeadersUriSpec<?> requestSpec = null;
 
-	    if (HTTP_METHOD.equals("GET")) {
-	        requestSpec = webClient.get();
-	    } else {
-	        requestSpec = webClient.post();
-	    }
+		if (HTTP_METHOD.equals("GET")) {
+			requestSpec = webClient.get();
+		} else {
+			requestSpec = webClient.post();
+		}
 
-	    ApiRequestHandler apiRequestHandler = new ApiRequestHandler();
-	    UriComponents api1 = apiRequestHandler.buildApiRequest(API_END_POINT,param);
+		ApiRequestHandler apiRequestHandler = new ApiRequestHandler();
+		UriComponents api1 = apiRequestHandler.buildApiRequest(API_END_POINT, param);
 
-	    return requestSpec
-	            .uri(api1.toUriString())
-	            .retrieve()
-	            .bodyToMono(String.class)
-	            .onErrorResume(error -> {
-	                log.error("Error making API request: {}",error.getMessage()) ;
-	                return Mono.empty();
-	            })
-	            .block(); // Wait for the result
+		return requestSpec.uri(api1.toUriString()).retrieve().bodyToMono(String.class).onErrorResume(error -> {
+			log.error("Error making API request: {}", error.getMessage());
+			return Mono.empty();
+		}).block(); // Wait for the result
 	}
-	
-	
+
 	public String makeApiRequest34(String contactListId, String msg) {
-	    ApiRequestHandler apiRequestHandler = new ApiRequestHandler();
-	    UriComponents api1 = apiRequestHandler.buildApiRequest(API_END_POINT, contactListId);
+		ApiRequestHandler apiRequestHandler = new ApiRequestHandler();
+		UriComponents api1 = apiRequestHandler.buildApiRequest(API_END_POINT, contactListId);
 
-	    return webClient.post().uri(api1.toUriString()).body(BodyInserters.fromValue(msg))
-	    		.exchangeToMono(response -> {
-                    // Check if the response status code is 200 OK.
-                    if (response.statusCode().is2xxSuccessful()) {
-                    	
-                    	  log.error("raw response : {}", response );
-                        return response.bodyToMono(String.class);
-                        
-                    } else if (response.statusCode().is4xxClientError()) {
-                    	
-                    	log.error("raw error response : {}", response );
-                        return response.createException().flatMap(Mono::error);
-                        
-                    } else {
-                        return Mono.empty();
-                    }
-                }).block();
+		return webClient.post().uri(api1.toUriString()).body(BodyInserters.fromValue(msg)).exchangeToMono(response -> {
+			// Check if the response status code is 200 OK.
+			if (response.statusCode().is2xxSuccessful()) {
+
+				response.bodyToMono(String.class).doOnNext(body -> log.info("Response body: {}", body));
+
+				return response.bodyToMono(String.class);
+
+			} else if (response.statusCode().is4xxClientError()) {
+
+				response.bodyToMono(String.class).doOnNext(body -> log.info("Response body: {}", body));
+				return response.createException().flatMap(Mono::error);
+
+			} else {
+				return Mono.empty();
+			}
+		}).block();
 	}
-	
-	
+
 	public String makeApiRequest56(String contactListId, List<String> cskes) {
 
-	    ApiRequestHandler apiRequestHandler = new ApiRequestHandler();
-	    UriComponents api1 = apiRequestHandler.buildApiRequest(API_END_POINT,contactListId);
+		ApiRequestHandler apiRequestHandler = new ApiRequestHandler();
+		UriComponents api1 = apiRequestHandler.buildApiRequest(API_END_POINT, contactListId);
 
-	    return webClient.post().uri(api1.toUriString()).body(BodyInserters.fromValue(cskes)).retrieve()
-				.bodyToMono(String.class)
-	            .onErrorResume(error -> {
-	                log.error("Error making API request: {}",error.getMessage());
-	                return Mono.empty();
-	            })
-	            .block(); // Wait for the result
+		return webClient.post().uri(api1.toUriString()).body(BodyInserters.fromValue(cskes)).retrieve()
+				.bodyToMono(String.class).onErrorResume(error -> {
+					log.error("Error making API request: {}", error.getMessage());
+					return Mono.empty();
+				}).block(); // Wait for the result
 	}
-	
 
 }

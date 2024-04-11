@@ -22,6 +22,7 @@ public interface InterfaceDBPostgreSQL {
 	Entity_ContactLt createContactUcrm(Entity_Ucrm entityUcrm) throws Exception;
 	Entity_Ucrm createUcrm(String msg) throws Exception;
 	String createContactLtGC(String msg) throws Exception;
+	JSONObject createMaMsgApim(Entity_CampMa enCampMa,String datachgcd) throws Exception;
 	
 	//insert
 	Entity_CampRt InsertCampRt(Entity_CampRt entityCampRt) throws Exception;

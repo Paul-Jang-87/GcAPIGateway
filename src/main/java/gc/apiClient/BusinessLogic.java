@@ -21,7 +21,6 @@ public class BusinessLogic {
 		String business = "";
 
 		switch (division) {
-		case "Home":
 		case "홈":
 
 			business = "UCRM";
@@ -31,7 +30,6 @@ public class BusinessLogic {
 
 			break;
 
-		case "Mobile":
 		case "모바일":
 
 			business = "UCRM";
@@ -41,8 +39,7 @@ public class BusinessLogic {
 
 			break;
 
-		case "CallbotHome": //
-		case "콜봇홈": //
+		case "콜봇홈": 
 
 			business = "Callbot";
 			topic_id = "from_clcc_hmaiccmpnma_message";
@@ -51,8 +48,7 @@ public class BusinessLogic {
 
 			break;
 
-		case "CallbotMobile"://
-		case "콜봇모바일"://
+		case "콜봇모바일":
 
 			business = "Callbot";
 			topic_id = "from_clcc_mblaiccmpnma_message"; 

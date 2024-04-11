@@ -14,7 +14,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.stereotype.Service;
 
-
 import gc.apiClient.customproperties.CustomProperties;
 import gc.apiClient.datamapping.MappingCenter;
 import gc.apiClient.embeddable.CampRt;
@@ -36,7 +35,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
-public class ServicePostgre implements InterfaceDBPostgreSQL  {
+public class ServicePostgre implements InterfaceDBPostgreSQL {
 	// 검색 **Create **Insert **Select
 	private final Repository_CampRt repositoryCampRt;
 	private final Repository_CampMa repositoryCampMa;
@@ -325,9 +324,59 @@ public class ServicePostgre implements InterfaceDBPostgreSQL  {
 			enCampMaJson.setTopcDataIsueDtm(topcDataIsueDtm);
 			break;
 		}
+		
 		log.info("====== End createCampMaJson ======");
 		return enCampMaJson;
 
+	}
+
+	@Override
+	public JSONObject createMaMsgApim(Entity_CampMa enCampMa, String datachgcd) throws Exception {
+
+		log.info(" ");
+		log.info("====== ClassName : ServicePostgre & Method : createMaMsgApim ======");
+
+		JSONObject obj = new JSONObject();
+		String coid = "";
+		MappingCenter mappingData = new MappingCenter();
+
+		switch (datachgcd) {
+
+		case "insert":
+
+			coid = mappingData.getCentercodeById(Integer.toString(enCampMa.getCoid()));
+
+			obj.put("cpid", enCampMa.getCpid());
+			obj.put("gubun", coid);
+			obj.put("cpna", enCampMa.getCpna());
+			obj.put("cmd", datachgcd);
+
+			break;
+
+		case "update":
+
+			coid = mappingData.getCentercodeById(Integer.toString(enCampMa.getCoid()));
+
+			obj.put("cpid", enCampMa.getCpid());
+			obj.put("gubun", coid);
+			obj.put("cpna", enCampMa.getCpna());
+			obj.put("cmd", datachgcd);
+
+			break;
+
+		default:
+
+			coid = mappingData.getCentercodeById(Integer.toString(enCampMa.getCoid()));
+
+			obj.put("cpid", enCampMa.getCpid());
+			obj.put("gubun", coid);
+			obj.put("cpna", enCampMa.getCpna());
+			obj.put("cmd", datachgcd);
+			
+			break;
+		}
+		log.info("====== End createMaMsgApim ======");
+		return obj;
 	}
 
 	@Override
@@ -361,11 +410,10 @@ public class ServicePostgre implements InterfaceDBPostgreSQL  {
 
 		return enContactLt;
 	}
-	
-	
+
 	@Override
 	public Entity_ContactLt createContactUcrm(Entity_Ucrm entityUcrm) {
-		
+
 		log.info(" ");
 		log.info("====== ClassName : ServicePostgre & Method : createContactUcrm ======");
 
@@ -388,16 +436,16 @@ public class ServicePostgre implements InterfaceDBPostgreSQL  {
 			log.info("Error Messge : {}", e.getMessage());
 		}
 
+		log.info("====== End createContactUcrm ======");
 		return enContactLt;
 	}
-	
 
 	@Override
 	public Entity_Ucrm createUcrm(String msg) {
 
 		log.info(" ");
 		log.info("====== ClassName : ServicePostgre & Method : createUcrm ======");
-		log.info("Incoming data : {}",msg);
+		log.info("Incoming data : {}", msg);
 
 		Entity_Ucrm enUcrm = new Entity_Ucrm();
 		Ucrm id = new Ucrm();
@@ -640,7 +688,5 @@ public class ServicePostgre implements InterfaceDBPostgreSQL  {
 			throw new EntityNotFoundException("Entity not found with CPID: " + cpid);
 		}
 	}
-
-	
 
 }

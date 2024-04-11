@@ -167,7 +167,6 @@ public class ControllerUCRM extends ServiceJson {
 		String row_result = "";
 		String result = "";
 		String topic_id = tranId;
-		String cpid = "";
 		String division = "";
 		String business = "";
 		String endpoint = "/gcapi/post/" + topic_id;
@@ -238,22 +237,25 @@ public class ControllerUCRM extends ServiceJson {
 							break;
 
 						default:
-
-							objectMapper = new ObjectMapper();
-
+							
 							try {
-								String jsonString = objectMapper.writeValueAsString(enCampMa);
+								serviceDb.InsertCampMa(enCampMa);
+							} catch (DataIntegrityViolationException ex) {
+								log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+								continue;
+							} catch (DataAccessException ex) {
+								log.error("DataAccessException 발생 : {}", ex.getMessage());
+								continue;
+							}
 
+							String jsonString = serviceDb.createMaMsgApim(enCampMa, "insert").toString();
+							log.info("jsonString : {}", jsonString);
 								// localhost:8084/dspRslt
 								// 192.168.219.134:8084/dspRslt
-								MessageToApim apim = new MessageToApim();
-								endpoint = "/cmpnMstrRegist";
-//							apim.sendMsgToApim(endpoint, jsonString);
-								log.info("CAMPMA 로직, APIM으로 보냄. : {}", jsonString);
-
-							} catch (JsonProcessingException e) {
-								e.printStackTrace();
-							}
+							MessageToApim apim = new MessageToApim();
+							endpoint = "/cmpnMstrRegist";
+							apim.sendMsgToApim(endpoint, jsonString);
+							log.info("CAMPMA 로직, APIM으로 보냄. : {}", jsonString);
 
 							break;
 						}
@@ -313,13 +315,13 @@ public class ControllerUCRM extends ServiceJson {
 				log.info(action);
 				if (action.equals("update")) {
 
-					log.info("cpid of target record for updating : {}", cpid);
-					log.info("new value of Campaign name : {}", cpna);
+					log.info("Cpid of target record for updating : {}", cpid);
+					log.info("New value of Campaign name : {}", cpna);
 
 					serviceDb.UpdateCampMa(cpid, cpna);
 
 				} else {
-					log.info("cpid of target record for deleting : {}", cpid);
+					log.info("Cpid of target record for deleting : {}", cpid);
 					serviceDb.DelCampMaById(cpid);
 				}
 
@@ -327,22 +329,28 @@ public class ControllerUCRM extends ServiceJson {
 
 			default:
 
-				objectMapper = new ObjectMapper();
-
-				try {
-					String jsonString = objectMapper.writeValueAsString(enCampMa);
-
+					String jsonString = serviceDb.createMaMsgApim(enCampMa, action).toString();
+					log.info("jsonString : {}", jsonString);
 					// localhost:8084/dspRslt
 					// 192.168.219.134:8084/dspRslt
 					MessageToApim apim = new MessageToApim();
 					endpoint = "/cmpnMstrRegist";
-//					apim.sendMsgToApim(endpoint, jsonString);
+					apim.sendMsgToApim(endpoint, jsonString);
 					log.info("CAMPMA UPDATE로직,  APIM으로 보냄. : {}", jsonString);
+					
+					// 테이블에 Update, Delete logic 추가.
+					log.info(action);
+					if (action.equals("update")) {
 
-				} catch (JsonProcessingException e) {
-					e.printStackTrace();
-				}
+						log.info("Cpid of target record for updating : {}", cpid);
+						log.info("New value of Campaign name : {}", cpna);
 
+						serviceDb.UpdateCampMa(cpid, cpna);
+
+					} else {
+						log.info("Cpid of target record for deleting : {}", cpid);
+						serviceDb.DelCampMaById(cpid);
+					}
 				break;
 			}
 		} catch (Exception e) {
@@ -477,8 +485,8 @@ public class ControllerUCRM extends ServiceJson {
 		return Mono.just(ResponseEntity.ok("Successfully processed the message."));
 	}
 
-	@PostMapping("/testucrm")
-	public Mono<ResponseEntity<String>> testUcrmMsgFrmCnsmer(@RequestBody String msg) {
+	@GetMapping("/testucrm")
+	public Mono<ResponseEntity<String>> testUcrmMsgFrmCnsmer() {
 
 		try {
 			log.info(" ");
@@ -490,13 +498,12 @@ public class ControllerUCRM extends ServiceJson {
 			log.info("number of records : {}", reps);
 			log.info("{}만큼 반복,", reps);
 
-			List<String> arr = new ArrayList<String>();
-
 			Map<String, String> mapcontactltId = new HashMap<String, String>();
 			Map<String, String> mapquetId = new HashMap<String, String>();
 
 			for (int i = 0; i < reps; i++) {
 
+				List<String> arr = new ArrayList<String>();
 				Entity_ContactLt enContactLt = serviceDb.createContactUcrm(entitylist.get(i));
 				log.info("{}번째 레코드 : {},", i, entitylist.get(i).toString());
 
@@ -508,8 +515,8 @@ public class ControllerUCRM extends ServiceJson {
 				log.info("contactLtId : {}", contactLtId);
 				log.info("queid : {}", queid);
 
-				if (contactLtId.equals("") || contactLtId == null) {// cpid를 조회 했는데 그것에 대응하는 contactltId가 없다면,
-					log.info("nomatch contactId");
+				if ( contactLtId == null || contactLtId.equals("") ) {// cpid를 조회 했는데 그것에 대응하는 contactltId가 없다면,
+					log.info("Nomatch contactId");
 					String result = serviceWeb.GetCampaignsApiRequet("campaigns", cpid);
 					String res = ExtractContactLtId(result); // 가져온 결과에서 contactlistid,queueid만 추출.
 					contactLtId = res.split("::")[0];
@@ -520,6 +527,8 @@ public class ControllerUCRM extends ServiceJson {
 
 					mapcontactltId.put(cpid, contactLtId);
 					mapquetId.put(cpid, res.split("::")[1]);
+				}else {
+					log.info("Matched contactId");
 				}
 
 				String row_result = ExtractRawUcrm(entitylist.get(i));
@@ -547,6 +556,8 @@ public class ControllerUCRM extends ServiceJson {
 				}
 
 			}
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("Error Message : {}", e.getMessage());
@@ -828,8 +839,7 @@ public class ControllerUCRM extends ServiceJson {
 						// 192.168.219.134:8084/dspRslt
 						MessageToApim apim = new MessageToApim();
 						endpoint = "/dspRslt";
-//						apim.sendMsgToApim(endpoint, jsonString);
-						apim.sendMsgToApim(endpoint, apimEntitylt);
+						apim.sendMsgToApim(endpoint, jsonString);
 						log.info("CAMPRT 로직, APIM으로 보냄. : {} ", jsonString);
 
 					} catch (Exception e) {

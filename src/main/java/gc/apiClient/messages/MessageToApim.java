@@ -12,16 +12,19 @@ import reactor.core.publisher.Mono;
 @Slf4j
 public class MessageToApim {
 	
-	public void sendMsgToApim (String towhere, List<Entity_ToApim> entity) {
+	public void sendMsgToApim (String towhere, String entity) {
 		
 		log.info("====== ClassName : 'MessageToApim' & Method : 'ToApim' ======");
 		
-		WebClient webClient = WebClient.builder().baseUrl("http://localhost:8084").build();
+		WebClient webClient = WebClient.builder()
+				.baseUrl("http://localhost:8084")
+				.defaultHeader("Accept", "application/json")
+				.defaultHeader("Content-Type", "application/json").build();
 
 	    String endpointUrl = towhere;
 
 	    log.info("ToApim Endpoint : {}",endpointUrl);
-	    log.info("Message for Apim: {}",entity.toString());
+	    log.info("Message for Apim: {}",entity);
 	    
 	    webClient.post()
 	            .uri(endpointUrl)

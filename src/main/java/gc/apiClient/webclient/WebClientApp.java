@@ -102,25 +102,6 @@ public class WebClientApp {
 
 		ApiRequestHandler apiRequestHandler = new ApiRequestHandler();
 		UriComponents api1 = apiRequestHandler.buildApiRequest(API_END_POINT, "87dde849-5710-4470-8a00-5e94c679e703");// 첫번째
-																														// 인자는
-																														// api
-																														// endpoint이기
-																														// 때문데
-																														// 무조건
-																														// 필요.
-																														// 두번째
-																														// 인자부터는
-																														// path
-																														// parameter
-																														// or
-																														// query
-																														// parameter.
-																														// 두번째
-																														// 인자는
-																														// 있어도
-																														// 되고
-																														// 없어도
-																														// 됨.
 
 		return requestSpec.uri(api1.toUriString()).retrieve().bodyToMono(String.class).onErrorResume(error -> {
 			log.error("Error making API request: {}", error.getMessage());
@@ -150,23 +131,12 @@ public class WebClientApp {
 		ApiRequestHandler apiRequestHandler = new ApiRequestHandler();
 		UriComponents api1 = apiRequestHandler.buildApiRequest(API_END_POINT, contactListId);
 
-		return webClient.post().uri(api1.toUriString()).body(BodyInserters.fromValue(msg)).exchangeToMono(response -> {
-			// Check if the response status code is 200 OK.
-			if (response.statusCode().is2xxSuccessful()) {
-
-				response.bodyToMono(String.class).doOnNext(body -> log.info("Response body: {}", body));
-
-				return response.bodyToMono(String.class);
-
-			} else if (response.statusCode().is4xxClientError()) {
-
-				response.bodyToMono(String.class).doOnNext(body -> log.info("Response body: {}", body));
-				return response.createException().flatMap(Mono::error);
-
-			} else {
-				return Mono.empty();
-			}
-		}).block();
+		return webClient.post().uri(api1.toUriString()).body(BodyInserters.fromValue(msg)).retrieve()
+                .onStatus(status -> status.is4xxClientError() || status.is5xxServerError(),
+                        response -> response.bodyToMono(String.class).flatMap(errorBody -> {
+                            return Mono.error(new RuntimeException("Error: " + errorBody));
+                        }))
+              .bodyToMono(String.class).block();
 	}
 
 	public String makeApiRequest56(String contactListId, List<String> cskes) {

@@ -1,32 +1,117 @@
-ERROR 24-04-11 09:33:52[reactor-http-nio-2] [WebClientApp:133] - Error making API request: Connection prematurely closed BEFORE response
-ERROR 24-04-11 09:33:52[boundedElastic-1] [Operators:324] - Operator called default onErrorDropped
-reactor.core.Exceptions$ErrorCallbackNotImplemented: java.lang.IllegalArgumentException: argument "content" is null
-Caused by: java.lang.IllegalArgumentException: argument "content" is null
-	at com.fasterxml.jackson.databind.ObjectMapper._assertNotNull(ObjectMapper.java:4980)
-	at com.fasterxml.jackson.databind.ObjectMapper.readTree(ObjectMapper.java:3217)
-	at gc.apiClient.service.ServiceJson.CampaignListSize(ServiceJson.java:93)
-	at gc.apiClient.controller.ControllerUCRM.ReceiveMessage(ControllerUCRM.java:177)
-	at gc.apiClient.controller.ControllerUCRM.lambda$scheduledMethod$0(ControllerUCRM.java:86)
-	at reactor.core.publisher.MonoCallable.call(MonoCallable.java:72)
-	at reactor.core.publisher.FluxSubscribeOnCallable$CallableSubscribeOnSubscription.run(FluxSubscribeOnCallable.java:228)
-	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:68)
-	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:28)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+ERROR 24-04-12 09:46:25[reactor-http-nio-2] [WebClientApp:144] - Error making API request: Connection prematurely closed BEFORE response
+ERROR 24-04-12 09:46:25[boundedElastic-1] [ControllerUCRM:266] - Error Messge : argument "content" is null
+ERROR 24-04-12 10:05:19[reactor-http-nio-3] [MessageToApim:35] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8084
+ERROR 24-04-12 10:05:19[reactor-http-nio-4] [MessageToApim:35] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8084
+ERROR 24-04-12 10:05:19[reactor-http-nio-5] [MessageToApim:35] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8084
+ERROR 24-04-12 10:05:19[reactor-http-nio-6] [MessageToApim:35] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8084
+ERROR 24-04-12 10:05:19[reactor-http-nio-7] [MessageToApim:35] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8084
+ERROR 24-04-12 10:05:19[reactor-http-nio-8] [MessageToApim:35] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8084
+ERROR 24-04-12 10:05:19[reactor-http-nio-1] [MessageToApim:35] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8084
+ERROR 24-04-12 10:05:19[reactor-http-nio-2] [MessageToApim:35] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8084
+ERROR 24-04-12 10:05:19[reactor-http-nio-3] [MessageToApim:35] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8084
+ERROR 24-04-12 10:05:19[reactor-http-nio-4] [MessageToApim:35] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8084
+ERROR 24-04-12 10:05:19[reactor-http-nio-5] [MessageToApim:35] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8084
+ERROR 24-04-12 10:05:19[reactor-http-nio-6] [MessageToApim:35] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8084
+ERROR 24-04-12 10:05:19[reactor-http-nio-7] [MessageToApim:35] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8084
+ERROR 24-04-12 10:05:19[reactor-http-nio-8] [MessageToApim:35] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8084
+ERROR 24-04-12 10:05:46[http-nio-8083-exec-2] [ControllerUCRM:554] - Error Message
+ERROR 24-04-12 10:05:47[http-nio-8083-exec-2] [ControllerUCRM:554] - Error Message
+ERROR 24-04-12 10:30:24[test-task-scheduling1] [WebClientApp:89] - Error occurred during access token refresh: error
+com.mypurecloud.sdk.v2.ApiException: error
+	at com.mypurecloud.sdk.v2.ApiClient.interpretConnectorResponse(ApiClient.java:763)
+	at com.mypurecloud.sdk.v2.ApiClient.getAPIResponse(ApiClient.java:815)
+	at com.mypurecloud.sdk.v2.ApiClient.authorizeClientCredentials(ApiClient.java:307)
+	at gc.apiClient.webclient.WebClientApp.getAccessToken(WebClientApp.java:82)
+	at gc.apiClient.controller.ControllerUCRM.RefreshToken(ControllerUCRM.java:87)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)
+	at io.micrometer.observation.Observation.observe(Observation.java:499)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
-ERROR 24-04-11 13:52:05[reactor-http-nio-3] [MessageToProducer:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-04-11 13:52:05[reactor-http-nio-4] [MessageToProducer:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-04-11 13:52:05[reactor-http-nio-3] [MessageToProducer:35] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-04-11 13:52:05[reactor-http-nio-4] [MessageToProducer:35] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-04-11 13:52:05[reactor-http-nio-5] [MessageToProducer:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-04-11 13:52:05[reactor-http-nio-5] [MessageToProducer:35] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-04-11 13:52:05[reactor-http-nio-6] [MessageToProducer:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-04-11 13:52:05[reactor-http-nio-6] [MessageToProducer:35] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-04-11 13:52:05[reactor-http-nio-7] [MessageToProducer:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-04-11 13:52:05[reactor-http-nio-7] [MessageToProducer:35] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-04-11 13:52:05[reactor-http-nio-8] [MessageToProducer:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-04-11 13:52:05[reactor-http-nio-8] [MessageToProducer:35] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-04-11 13:52:05[reactor-http-nio-1] [MessageToProducer:29] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-04-11 13:52:05[reactor-http-nio-1] [MessageToProducer:35] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-12 10:31:08[http-nio-8083-exec-2] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:31:09[http-nio-8083-exec-2] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:31:09[http-nio-8083-exec-2] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:31:09[http-nio-8083-exec-2] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:31:10[http-nio-8083-exec-2] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:31:10[http-nio-8083-exec-2] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:31:11[http-nio-8083-exec-2] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:31:11[http-nio-8083-exec-2] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:31:12[http-nio-8083-exec-2] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:31:12[http-nio-8083-exec-2] [ControllerUCRM:554] - Error Message
+ERROR 24-04-12 10:31:12[http-nio-8083-exec-2] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:31:13[http-nio-8083-exec-2] [ControllerUCRM:554] - Error Message
+ERROR 24-04-12 10:38:35[test-task-scheduling2] [WebClientApp:89] - Error occurred during access token refresh: error
+com.mypurecloud.sdk.v2.ApiException: error
+	at com.mypurecloud.sdk.v2.ApiClient.interpretConnectorResponse(ApiClient.java:763)
+	at com.mypurecloud.sdk.v2.ApiClient.getAPIResponse(ApiClient.java:815)
+	at com.mypurecloud.sdk.v2.ApiClient.authorizeClientCredentials(ApiClient.java:307)
+	at gc.apiClient.webclient.WebClientApp.getAccessToken(WebClientApp.java:82)
+	at gc.apiClient.controller.ControllerUCRM.RefreshToken(ControllerUCRM.java:87)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)
+	at io.micrometer.observation.Observation.observe(Observation.java:499)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+ERROR 24-04-12 10:38:47[http-nio-8083-exec-1] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:38:47[http-nio-8083-exec-1] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:38:48[http-nio-8083-exec-1] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:38:48[http-nio-8083-exec-1] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:38:48[http-nio-8083-exec-1] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:38:49[http-nio-8083-exec-1] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:38:49[http-nio-8083-exec-1] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:38:50[http-nio-8083-exec-1] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:42:59[http-nio-8083-exec-5] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:42:59[http-nio-8083-exec-5] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:42:59[http-nio-8083-exec-5] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:43:00[http-nio-8083-exec-5] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:43:00[http-nio-8083-exec-5] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:43:01[http-nio-8083-exec-5] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:43:01[http-nio-8083-exec-5] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:43:02[http-nio-8083-exec-5] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:47:31[http-nio-8083-exec-8] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:47:31[http-nio-8083-exec-8] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:47:31[http-nio-8083-exec-8] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:47:31[http-nio-8083-exec-8] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:47:32[http-nio-8083-exec-8] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:47:32[http-nio-8083-exec-8] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:47:33[http-nio-8083-exec-8] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:47:34[http-nio-8083-exec-8] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 10:47:34[reactor-http-nio-4] [WebClientApp:144] - Error making API request: 404 Not Found from GET https://api.apne2.pure.cloud/api/v2/outbound/campaigns/89fe5559-e986-47a7-a7a9-f043777b12bf
+ERROR 24-04-12 10:47:34[http-nio-8083-exec-8] [ControllerUCRM:563] - Error Message : Index 1 out of bounds for length 1
+ERROR 24-04-12 11:01:42[http-nio-8083-exec-10] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 11:01:42[http-nio-8083-exec-10] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 11:01:42[http-nio-8083-exec-10] [ControllerUCRM:554] - Error Message
+ERROR 24-04-12 11:01:42[http-nio-8083-exec-10] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 11:01:43[http-nio-8083-exec-10] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 11:01:43[http-nio-8083-exec-10] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 11:01:44[http-nio-8083-exec-10] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 11:01:44[http-nio-8083-exec-10] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 11:01:45[http-nio-8083-exec-10] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 11:01:46[http-nio-8083-exec-10] [ControllerUCRM:554] - Error Message
+ERROR 24-04-12 11:01:46[http-nio-8083-exec-10] [ControllerUCRM:554] - Error Message
+ERROR 24-04-12 11:30:38[http-nio-8083-exec-3] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 11:30:39[http-nio-8083-exec-3] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 11:30:39[http-nio-8083-exec-3] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 11:30:39[http-nio-8083-exec-3] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 11:30:40[http-nio-8083-exec-3] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 11:30:40[http-nio-8083-exec-3] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 11:30:41[http-nio-8083-exec-3] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 11:30:42[http-nio-8083-exec-3] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 11:30:42[http-nio-8083-exec-3] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 11:30:43[http-nio-8083-exec-3] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.

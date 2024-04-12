@@ -92,10 +92,14 @@ public class ControllerUCRM extends ServiceJson {
 
 		Mono.fromCallable(() -> ReceiveMessage("campma")).subscribeOn(Schedulers.boundedElastic()).subscribe();
 
+		Mono.fromCallable(() -> UcrmMsgFrmCnsmer())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
 //		Mono.fromCallable(() -> Msg360Datacall())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
+//		.subscribeOn(Schedulers.boundedElastic())
+//		.subscribe();
+		
 //		Mono.fromCallable(() -> Msg360DataCallCustomer())
 //        .subscribeOn(Schedulers.boundedElastic())
 //        .subscribe();
@@ -470,6 +474,7 @@ public class ControllerUCRM extends ServiceJson {
 
 			try {
 				serviceDb.InsertUcrm(enUcrm);
+				log.info("Saved Message : {}",msg);
 			} catch (DataIntegrityViolationException ex) {
 				log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
 			} catch (DataAccessException ex) {
@@ -481,11 +486,12 @@ public class ControllerUCRM extends ServiceJson {
 			log.error("Error Message : {}", e.getMessage());
 		}
 
+		log.info("====== End SaveUcrmData ======");
 		return Mono.just(ResponseEntity.ok("Successfully processed the message."));
 	}
-
+	
 	@GetMapping("/testucrm")
-	public Mono<ResponseEntity<String>> testUcrmMsgFrmCnsmer() {
+	public Mono<ResponseEntity<String>> UcrmMsgFrmCnsmer() {
 
 		try {
 			log.info(" ");
@@ -493,8 +499,8 @@ public class ControllerUCRM extends ServiceJson {
 
 			List<Entity_Ucrm> entitylist = serviceDb.getAll();
 			
-			if(entitylist == null) {
-				
+			if(entitylist.size() == 0) {
+				log.info("All records from DB : Nothing");
 			}else {
 				log.info("All records from DB : {}", entitylist.toString());
 				int reps = entitylist.size(); // 반복 횟수 저장.
@@ -567,8 +573,10 @@ public class ControllerUCRM extends ServiceJson {
 
 				for (Map.Entry<String, List<String>> entry : contactlists.entrySet()) {
 
+					log.info("Now the size of Arraylist '{}': {}", entry.getKey(), entry.getValue().size());
+					log.info("contactLtId : '{}' , data : '{}'", entry.getKey(), entry.getValue());
 					serviceWeb.PostContactLtClearReq("contactltclear", contactLtId);
-					serviceWeb.PostContactLtApiRequet("contact", contactLtId, entry.getValue());
+					serviceWeb.PostContactLtApiRequet("contact", entry.getKey(), entry.getValue());
 				}
 				
 			}
@@ -583,76 +591,6 @@ public class ControllerUCRM extends ServiceJson {
 		return Mono.just(ResponseEntity.ok("Successfully processed the message."));
 	}
 
-	@PostMapping("/contactltucrm/{topic}")
-	public Mono<ResponseEntity<String>> UcrmMsgFrmCnsmer(@PathVariable("topic") String tranId,
-			@RequestBody String msg) {
-
-		log.info(" ");
-		log.info("====== Class : ControllerUCRM - Method : UcrmMsgFrmCnsmer ======");
-		String row_result = "";
-		String result = "";
-		String cpid = "";
-		String topic_id = tranId;
-		List<String> arr = new ArrayList<String>();
-
-		log.info("topic_id : {}", topic_id);
-
-		switch (topic_id) {
-
-		case "ucrmhome":// IF-CRM_003
-		case "ucrmmobile":// IF-CRM_004
-
-			try {
-				row_result = ExtractValUcrm(msg);
-
-				Entity_ContactLt enContactLt = serviceDb.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
-				// Entity_ContactLt 객체에 매핑시킨다.
-				cpid = enContactLt.getId().getCpid();// 캠페인 아이디를 가져온다.
-
-				result = serviceWeb.GetCampaignsApiRequet("campaigns", cpid);// 캠페인 아이디로
-//																				// "/api/v2/outbound/campaigns/{campaignId}"호출
-//																				// 후 결과 가져온다.
-
-				String res = ExtractContactLtId(result); // 가져온 결과에서 contactlistid,queueid만 추출.
-				String contactLtId = res.split("::")[0];
-//				// "api/v2/outbound/contactlists/{contactListId}/contacts"로 request body값 보내기 위한
-//				// 객체
-//				// 객체 안의 속성들(키)은 변동 될 수 있음.
-
-				row_result = row_result + "::" + res;
-				String contactltMapper = serviceDb.createContactLtGC(row_result);
-
-				arr.add(contactltMapper);
-
-				// db인서트
-				try {
-					serviceDb.InsertContactLt(enContactLt);
-
-				} catch (DataIntegrityViolationException ex) {
-					log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
-				} catch (DataAccessException ex) {
-					log.error("DataAccessException 발생 : {}", ex.getMessage());
-				}
-
-				try {
-					serviceWeb.PostContactLtClearReq("contactltclear", contactLtId);
-					serviceWeb.PostContactLtApiRequet("contact", contactLtId, arr);
-				} catch (Exception e) {
-					log.error("Error Message", e.getMessage());
-					e.printStackTrace();
-				}
-
-				return Mono.just(ResponseEntity.ok("Successfully processed the message."));
-			} catch (Exception e) {
-				e.printStackTrace();
-				log.error("Error Message : {}", e.getMessage());
-			}
-
-		default:
-			log.info("====== End UcrmMsgFrmCnsmer ======");
-			return Mono.just(ResponseEntity.badRequest().body("Invalid topic_id provided."));
-		}
-	}
 
 	@PostMapping("/gcapi/post/{topic}")
 	public Mono<ResponseEntity<String>> receiveMessage(@PathVariable("topic") String tranId, @RequestBody String msg) {

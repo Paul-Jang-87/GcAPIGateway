@@ -44,6 +44,7 @@ public interface InterfaceDBPostgreSQL {
 	
 	//delete
 	public void DelCampMaById(String cpid)throws Exception;
+	public void DelUcrmLtById(String topcDataIsueSno)throws Exception;
 	
 	
 }

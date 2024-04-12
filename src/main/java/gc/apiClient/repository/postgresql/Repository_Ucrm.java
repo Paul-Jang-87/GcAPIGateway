@@ -19,5 +19,7 @@ public interface Repository_Ucrm extends CrudRepository<Entity_Ucrm,  Ucrm> {
 
     Optional<Entity_Ucrm> findById(Ucrm id);
     List<Entity_Ucrm> findAll();
-
+    
+    @Query("DELETE FROM Entity_Ucrm c WHERE c.topcDataIsueSno = :issueNo")
+    void deleteByTopcDataIsueSno(@Param("issueNo") String topcDataIsueSno);
 }

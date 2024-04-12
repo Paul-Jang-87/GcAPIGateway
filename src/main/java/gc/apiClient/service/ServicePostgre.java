@@ -675,6 +675,11 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	public void DelCampMaById(String cpid) {
 		repositoryCampMa.deleteById(cpid);
 	}
+	
+	@Override
+	public void DelUcrmLtById(String topcDataIsueSno) {
+		repositoryUcrm.deleteByTopcDataIsueSno(topcDataIsueSno);
+	}
 
 	@Override
 	@Transactional
@@ -689,5 +694,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			throw new EntityNotFoundException("Entity not found with CPID: " + cpid);
 		}
 	}
+
+	
 
 }

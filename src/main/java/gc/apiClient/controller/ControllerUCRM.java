@@ -90,7 +90,7 @@ public class ControllerUCRM extends ServiceJson {
 	@Scheduled(fixedRate = 60000)
 	public void scheduledMethod() {
 
-//		Mono.fromCallable(() -> ReceiveMessage("campma")).subscribeOn(Schedulers.boundedElastic()).subscribe();
+		Mono.fromCallable(() -> ReceiveMessage("campma")).subscribeOn(Schedulers.boundedElastic()).subscribe();
 
 //		Mono.fromCallable(() -> Msg360Datacall())
 //        .subscribeOn(Schedulers.boundedElastic())
@@ -492,79 +492,88 @@ public class ControllerUCRM extends ServiceJson {
 			log.info("====== Class : ControllerUCRM - Method : testUcrmMsgFrmCnsmer ======");
 
 			List<Entity_Ucrm> entitylist = serviceDb.getAll();
-			log.info("All records from DB : {}", entitylist.toString());
-			int reps = entitylist.size(); // 반복 횟수 저장.
-			log.info("number of records : {}", reps);
-			log.info("{}만큼 반복,", reps);
+			
+			if(entitylist == null) {
+				
+			}else {
+				log.info("All records from DB : {}", entitylist.toString());
+				int reps = entitylist.size(); // 반복 횟수 저장.
+				log.info("number of records : {}", reps);
+				log.info("{}만큼 반복,", reps);
 
-			Map<String, String> mapcontactltId = new HashMap<String, String>();
-			Map<String, String> mapquetId = new HashMap<String, String>();
-			Map<String, List<String>> contactlists = new HashMap();
-			String contactLtId = "";
+				Map<String, String> mapcontactltId = new HashMap<String, String>();
+				Map<String, String> mapquetId = new HashMap<String, String>();
+				Map<String, List<String>> contactlists = new HashMap();
+				String contactLtId = "";
 
-			for (int i = 0; i < reps; i++) {
+				for (int i = 0; i < reps; i++) {
 
-				Entity_ContactLt enContactLt = serviceDb.createContactUcrm(entitylist.get(i));
-				log.info("{}번째 레코드 : {},", i, entitylist.get(i).toString());
+					Entity_ContactLt enContactLt = serviceDb.createContactUcrm(entitylist.get(i));
+					log.info("{}번째 레코드 : {},", i, entitylist.get(i).toString());
 
-				String cpid = entitylist.get(i).getId().getCpid(); // 첫번째 레코드부터 cpid를 가지고 온다.
-				log.info("cpid : {}", cpid);
+					String cpid = entitylist.get(i).getId().getCpid(); // 첫번째 레코드부터 cpid를 가지고 온다.
+					log.info("cpid : {}", cpid);
 
-				contactLtId = mapcontactltId.get(cpid);
-				String queid = mapquetId.get(cpid);
-				log.info("contactLtId : {}", contactLtId);
-				log.info("queid : {}", queid);
-
-				if (contactLtId == null || contactLtId.equals("")) {// cpid를 조회 했는데 그것에 대응하는 contactltId가 없다면,
-					log.info("Nomatch contactId");
-					String result = serviceWeb.GetCampaignsApiRequet("campaigns", cpid);
-					String res = ExtractContactLtId(result); // 가져온 결과에서 contactlistid,queueid만 추출.
-					contactLtId = res.split("::")[0];
-					queid = res.split("::")[1];
-
+					contactLtId = mapcontactltId.get(cpid);
+					String queid = mapquetId.get(cpid);
 					log.info("contactLtId : {}", contactLtId);
 					log.info("queid : {}", queid);
 
-					mapcontactltId.put(cpid, contactLtId);
-					mapquetId.put(cpid, res.split("::")[1]);
-				} else {
-					log.info("Matched contactId");
+					if (contactLtId == null || contactLtId.equals("")) {// cpid를 조회 했는데 그것에 대응하는 contactltId가 없다면,
+						log.info("Nomatch contactId");
+						String result = serviceWeb.GetCampaignsApiRequet("campaigns", cpid);
+						String res = ExtractContactLtId(result); // 가져온 결과에서 contactlistid,queueid만 추출.
+						contactLtId = res.split("::")[0];
+						queid = res.split("::")[1];
+
+						log.info("contactLtId : {}", contactLtId);
+						log.info("queid : {}", queid);
+
+						mapcontactltId.put(cpid, contactLtId);
+						mapquetId.put(cpid, res.split("::")[1]);
+					} else {
+						log.info("Matched contactId");
+					}
+
+					String row_result = ExtractRawUcrm(entitylist.get(i));
+					row_result = row_result + "::" + contactLtId + "::" + queid;
+					String contactltMapper = serviceDb.createContactLtGC(row_result);
+
+					if (!contactlists.containsKey(contactLtId)) {
+						contactlists.put(contactLtId, new ArrayList<>());
+					}
+					contactlists.get(contactLtId).add(contactltMapper);
+					log.info("Add value into Arraylist named '{}'", contactLtId);
+					log.info("Now the size of Arraylist '{}': {}", contactLtId, contactlists.get(contactLtId).size());
+
+					// db인서트
+					try {
+						serviceDb.InsertContactLt(enContactLt);
+
+					} catch (DataIntegrityViolationException ex) {
+						log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+					} catch (DataAccessException ex) {
+						log.error("DataAccessException 발생 : {}", ex.getMessage());
+					}
+
+					try {
+					} catch (Exception e) {
+						log.error("Error Message", e.getMessage());
+						e.printStackTrace();
+					}
+					
+					serviceDb.DelUcrmLtById(entitylist.get(i).getTopcDataIsueSno());
 				}
 
-				String row_result = ExtractRawUcrm(entitylist.get(i));
-				row_result = row_result + "::" + contactLtId + "::" + queid;
-				String contactltMapper = serviceDb.createContactLtGC(row_result);
+				for (Map.Entry<String, List<String>> entry : contactlists.entrySet()) {
 
-				if (!contactlists.containsKey(contactLtId)) {
-					contactlists.put(contactLtId, new ArrayList<>());
+					serviceWeb.PostContactLtClearReq("contactltclear", contactLtId);
+					serviceWeb.PostContactLtApiRequet("contact", contactLtId, entry.getValue());
 				}
-				contactlists.get(contactLtId).add(contactltMapper);
-				log.info("Add value into Arraylist named '{}'",contactLtId);
-				log.info("Now the size of Arraylist '{}': {}", contactLtId,contactlists.get(contactLtId).size());
 				
-				// db인서트
-				try {
-					serviceDb.InsertContactLt(enContactLt);
-
-				} catch (DataIntegrityViolationException ex) {
-					log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
-				} catch (DataAccessException ex) {
-					log.error("DataAccessException 발생 : {}", ex.getMessage());
-				}
-
-				try {
-				} catch (Exception e) {
-					log.error("Error Message", e.getMessage());
-					e.printStackTrace();
-				}
-
 			}
-
-			for (Map.Entry<String, List<String>> entry : contactlists.entrySet()) {
-
-				serviceWeb.PostContactLtClearReq("contactltclear", contactLtId);
-				serviceWeb.PostContactLtApiRequet("contact", contactLtId, entry.getValue());
-			}
+			
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();

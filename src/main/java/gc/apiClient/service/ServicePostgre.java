@@ -497,7 +497,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	public String createContactLtGC(String msg) {
 		// 뽑아온다(콜봇).cpid::cpsq::cske::csno::tkda::flag::contactltId::queid
 		log.info(" ");
-		log.info("===== ClassName : ServicePostgre & Method : createContactLtGC =====");
+		log.info("====== ClassName : ServicePostgre & Method : createContactLtGC ======");
 
 		String values[] = msg.split("::");
 
@@ -541,6 +541,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			log.info("Error Message :{}", e.getMessage());
 		}
 
+		log.info("====== End createContactLtGC ======");
 		return mainObj.toString();
 	}
 

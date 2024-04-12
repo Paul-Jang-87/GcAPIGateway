@@ -115,3 +115,93 @@ ERROR 24-04-12 11:30:41[http-nio-8083-exec-3] [ControllerUCRM:545] - DataIntegri
 ERROR 24-04-12 11:30:42[http-nio-8083-exec-3] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
 ERROR 24-04-12 11:30:42[http-nio-8083-exec-3] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
 ERROR 24-04-12 11:30:43[http-nio-8083-exec-3] [ControllerUCRM:545] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:01:49[test-task-scheduling1] [WebClientApp:89] - Error occurred during access token refresh: error
+com.mypurecloud.sdk.v2.ApiException: error
+	at com.mypurecloud.sdk.v2.ApiClient.interpretConnectorResponse(ApiClient.java:763)
+	at com.mypurecloud.sdk.v2.ApiClient.getAPIResponse(ApiClient.java:815)
+	at com.mypurecloud.sdk.v2.ApiClient.authorizeClientCredentials(ApiClient.java:307)
+	at gc.apiClient.webclient.WebClientApp.getAccessToken(WebClientApp.java:82)
+	at gc.apiClient.controller.ControllerUCRM.RefreshToken(ControllerUCRM.java:87)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)
+	at io.micrometer.observation.Observation.observe(Observation.java:499)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+ERROR 24-04-12 13:01:59[http-nio-8083-exec-2] [ControllerUCRM:548] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:01:59[http-nio-8083-exec-2] [ControllerUCRM:548] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:01:59[http-nio-8083-exec-2] [ControllerUCRM:548] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:01:59[http-nio-8083-exec-2] [ControllerUCRM:548] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:01:59[http-nio-8083-exec-2] [ControllerUCRM:548] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:01:59[http-nio-8083-exec-2] [ControllerUCRM:548] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:01:59[http-nio-8083-exec-2] [ControllerUCRM:548] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:01:59[http-nio-8083-exec-2] [ControllerUCRM:548] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:01:59[http-nio-8083-exec-2] [ControllerUCRM:548] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:01:59[http-nio-8083-exec-2] [ControllerUCRM:548] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:11:43[test-task-scheduling1] [WebClientApp:89] - Error occurred during access token refresh: error
+com.mypurecloud.sdk.v2.ApiException: error
+	at com.mypurecloud.sdk.v2.ApiClient.interpretConnectorResponse(ApiClient.java:763)
+	at com.mypurecloud.sdk.v2.ApiClient.getAPIResponse(ApiClient.java:815)
+	at com.mypurecloud.sdk.v2.ApiClient.authorizeClientCredentials(ApiClient.java:307)
+	at gc.apiClient.webclient.WebClientApp.getAccessToken(WebClientApp.java:82)
+	at gc.apiClient.controller.ControllerUCRM.RefreshToken(ControllerUCRM.java:87)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)
+	at io.micrometer.observation.Observation.observe(Observation.java:499)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+ERROR 24-04-12 13:11:52[http-nio-8083-exec-2] [ControllerUCRM:549] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:11:52[http-nio-8083-exec-2] [ControllerUCRM:549] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:11:52[http-nio-8083-exec-2] [ControllerUCRM:549] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:11:52[http-nio-8083-exec-2] [ControllerUCRM:549] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:11:52[http-nio-8083-exec-2] [ControllerUCRM:549] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:11:52[http-nio-8083-exec-2] [ControllerUCRM:549] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:11:52[http-nio-8083-exec-2] [ControllerUCRM:549] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:11:52[http-nio-8083-exec-2] [ControllerUCRM:549] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:11:53[http-nio-8083-exec-2] [ControllerUCRM:549] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:11:53[http-nio-8083-exec-2] [ControllerUCRM:549] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:17:13[test-task-scheduling2] [WebClientApp:89] - Error occurred during access token refresh: error
+com.mypurecloud.sdk.v2.ApiException: error
+	at com.mypurecloud.sdk.v2.ApiClient.interpretConnectorResponse(ApiClient.java:763)
+	at com.mypurecloud.sdk.v2.ApiClient.getAPIResponse(ApiClient.java:815)
+	at com.mypurecloud.sdk.v2.ApiClient.authorizeClientCredentials(ApiClient.java:307)
+	at gc.apiClient.webclient.WebClientApp.getAccessToken(WebClientApp.java:82)
+	at gc.apiClient.controller.ControllerUCRM.RefreshToken(ControllerUCRM.java:87)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)
+	at io.micrometer.observation.Observation.observe(Observation.java:499)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+ERROR 24-04-12 13:17:32[http-nio-8083-exec-1] [ControllerUCRM:550] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:17:32[http-nio-8083-exec-1] [ControllerUCRM:550] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:17:32[http-nio-8083-exec-1] [ControllerUCRM:550] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:17:32[http-nio-8083-exec-1] [ControllerUCRM:550] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:17:33[http-nio-8083-exec-1] [ControllerUCRM:550] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:17:33[http-nio-8083-exec-1] [ControllerUCRM:550] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:17:33[http-nio-8083-exec-1] [ControllerUCRM:550] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:17:33[http-nio-8083-exec-1] [ControllerUCRM:550] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:17:33[http-nio-8083-exec-1] [ControllerUCRM:550] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
+ERROR 24-04-12 13:17:33[http-nio-8083-exec-1] [ControllerUCRM:550] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.

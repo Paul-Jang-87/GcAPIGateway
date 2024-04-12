@@ -81,13 +81,12 @@ public class ControllerUCRM extends ServiceJson {
 		this.serviceMsgObjOrcl = serviceMsgObjOrcl;
 	}
 
-	@Scheduled(fixedRate = 86400*1000)
+	@Scheduled(fixedRate = 86400 * 1000)
 	public void RefreshToken() {
 		WebClientApp webClient = new WebClientApp();
 		webClient.getAccessToken();
 	}
-	
-	
+
 	@Scheduled(fixedRate = 60000)
 	public void scheduledMethod() {
 
@@ -237,7 +236,7 @@ public class ControllerUCRM extends ServiceJson {
 							break;
 
 						default:
-							
+
 							try {
 								serviceDb.InsertCampMa(enCampMa);
 							} catch (DataIntegrityViolationException ex) {
@@ -250,8 +249,8 @@ public class ControllerUCRM extends ServiceJson {
 
 							String jsonString = serviceDb.createMaMsgApim(enCampMa, "insert").toString();
 							log.info("jsonString : {}", jsonString);
-								// localhost:8084/dspRslt
-								// 192.168.219.134:8084/dspRslt
+							// localhost:8084/dspRslt
+							// 192.168.219.134:8084/dspRslt
 							MessageToApim apim = new MessageToApim();
 							endpoint = "/cmpnMstrRegist";
 							apim.sendMsgToApim(endpoint, jsonString);
@@ -329,28 +328,28 @@ public class ControllerUCRM extends ServiceJson {
 
 			default:
 
-					String jsonString = serviceDb.createMaMsgApim(enCampMa, action).toString();
-					log.info("jsonString : {}", jsonString);
-					// localhost:8084/dspRslt
-					// 192.168.219.134:8084/dspRslt
-					MessageToApim apim = new MessageToApim();
-					endpoint = "/cmpnMstrRegist";
-					apim.sendMsgToApim(endpoint, jsonString);
-					log.info("CAMPMA UPDATE로직,  APIM으로 보냄. : {}", jsonString);
-					
-					// 테이블에 Update, Delete logic 추가.
-					log.info(action);
-					if (action.equals("update")) {
+				String jsonString = serviceDb.createMaMsgApim(enCampMa, action).toString();
+				log.info("jsonString : {}", jsonString);
+				// localhost:8084/dspRslt
+				// 192.168.219.134:8084/dspRslt
+				MessageToApim apim = new MessageToApim();
+				endpoint = "/cmpnMstrRegist";
+				apim.sendMsgToApim(endpoint, jsonString);
+				log.info("CAMPMA UPDATE로직,  APIM으로 보냄. : {}", jsonString);
 
-						log.info("Cpid of target record for updating : {}", cpid);
-						log.info("New value of Campaign name : {}", cpna);
+				// 테이블에 Update, Delete logic 추가.
+				log.info(action);
+				if (action.equals("update")) {
 
-						serviceDb.UpdateCampMa(cpid, cpna);
+					log.info("Cpid of target record for updating : {}", cpid);
+					log.info("New value of Campaign name : {}", cpna);
 
-					} else {
-						log.info("Cpid of target record for deleting : {}", cpid);
-						serviceDb.DelCampMaById(cpid);
-					}
+					serviceDb.UpdateCampMa(cpid, cpna);
+
+				} else {
+					log.info("Cpid of target record for deleting : {}", cpid);
+					serviceDb.DelCampMaById(cpid);
+				}
 				break;
 			}
 		} catch (Exception e) {
@@ -500,22 +499,23 @@ public class ControllerUCRM extends ServiceJson {
 
 			Map<String, String> mapcontactltId = new HashMap<String, String>();
 			Map<String, String> mapquetId = new HashMap<String, String>();
+			Map<String, List<String>> contactlists = new HashMap();
+			String contactLtId = "";
 
 			for (int i = 0; i < reps; i++) {
 
-				List<String> arr = new ArrayList<String>();
 				Entity_ContactLt enContactLt = serviceDb.createContactUcrm(entitylist.get(i));
 				log.info("{}번째 레코드 : {},", i, entitylist.get(i).toString());
 
 				String cpid = entitylist.get(i).getId().getCpid(); // 첫번째 레코드부터 cpid를 가지고 온다.
 				log.info("cpid : {}", cpid);
 
-				String contactLtId = mapcontactltId.get(cpid);
+				contactLtId = mapcontactltId.get(cpid);
 				String queid = mapquetId.get(cpid);
 				log.info("contactLtId : {}", contactLtId);
 				log.info("queid : {}", queid);
 
-				if ( contactLtId == null || contactLtId.equals("") ) {// cpid를 조회 했는데 그것에 대응하는 contactltId가 없다면,
+				if (contactLtId == null || contactLtId.equals("")) {// cpid를 조회 했는데 그것에 대응하는 contactltId가 없다면,
 					log.info("Nomatch contactId");
 					String result = serviceWeb.GetCampaignsApiRequet("campaigns", cpid);
 					String res = ExtractContactLtId(result); // 가져온 결과에서 contactlistid,queueid만 추출.
@@ -527,7 +527,7 @@ public class ControllerUCRM extends ServiceJson {
 
 					mapcontactltId.put(cpid, contactLtId);
 					mapquetId.put(cpid, res.split("::")[1]);
-				}else {
+				} else {
 					log.info("Matched contactId");
 				}
 
@@ -535,8 +535,13 @@ public class ControllerUCRM extends ServiceJson {
 				row_result = row_result + "::" + contactLtId + "::" + queid;
 				String contactltMapper = serviceDb.createContactLtGC(row_result);
 
-				arr.add(contactltMapper);
-
+				if (!contactlists.containsKey(contactLtId)) {
+					contactlists.put(contactLtId, new ArrayList<>());
+				}
+				contactlists.get(contactLtId).add(contactltMapper);
+				log.info("Add value into Arraylist named '{}'",contactLtId);
+				log.info("Now the size of Arraylist '{}': {}", contactLtId,contactlists.get(contactLtId).size());
+				
 				// db인서트
 				try {
 					serviceDb.InsertContactLt(enContactLt);
@@ -548,16 +553,19 @@ public class ControllerUCRM extends ServiceJson {
 				}
 
 				try {
-					serviceWeb.PostContactLtClearReq("contactltclear", contactLtId);
-					serviceWeb.PostContactLtApiRequet("contact", contactLtId, arr);
 				} catch (Exception e) {
 					log.error("Error Message", e.getMessage());
 					e.printStackTrace();
 				}
 
 			}
-			
-			
+
+			for (Map.Entry<String, List<String>> entry : contactlists.entrySet()) {
+
+				serviceWeb.PostContactLtClearReq("contactltclear", contactLtId);
+				serviceWeb.PostContactLtApiRequet("contact", contactLtId, entry.getValue());
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("Error Message : {}", e.getMessage());
@@ -972,7 +980,7 @@ public class ControllerUCRM extends ServiceJson {
 	public Mono<ResponseEntity<String>> Msg360MDataCallCustomer() {
 
 		try {
-			
+
 			String topic_id = "from_clcc_mblcepcalldtcust_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 			log.info("the number of records : {}", numberOfRecords);
@@ -998,7 +1006,7 @@ public class ControllerUCRM extends ServiceJson {
 			e.printStackTrace();
 			log.error("Error Message : {}", e.getMessage());
 		}
-		
+
 		return Mono.just(ResponseEntity.ok("'Msg360MDataCallCustomer' got message successfully."));
 	}
 
@@ -1256,7 +1264,7 @@ public class ControllerUCRM extends ServiceJson {
 	public Mono<ResponseEntity<String>> Msg360WaDataCallTrace() {
 
 		try {
-			
+
 			String topic_id = "from_clcc_hmcepwacalltr_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 			log.info("the number of records : {}", numberOfRecords);

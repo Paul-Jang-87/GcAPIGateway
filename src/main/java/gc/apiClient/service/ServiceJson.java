@@ -214,30 +214,30 @@ public class ServiceJson implements InterfaceJson {
 	@Override
 	public String ExtractRawUcrm(Entity_Ucrm enUcrm) {//cpid::cpsq::cske::csno::tkda::flag::contactltId::queid
 		
-		log.info(" ");
-		log.info("====== ClassName : ServiceJson & Method : ExtractRawUcrm ======");
+//		log.info(" ");
+//		log.info("====== ClassName : ServiceJson & Method : ExtractRawUcrm ======");
 		
-		log.info("record info : {}",enUcrm.toString() );
+//		log.info("record info : {}",enUcrm.toString() );
 		
 		String cpid = enUcrm.getId().getCpid();
 		String cpsq = enUcrm.getId().getCpsq();
 		
 		String result = "";
 		result = cpid;
-		log.info("cpid : {}",cpid );
+//		log.info("cpid : {}",cpid );
 		result = result + "::" + cpsq;
-		log.info("cpid : {}",cpsq );
+//		log.info("cpid : {}",cpsq );
 		result = result + "::" + enUcrm.getHldrCustId();
-		log.info("cske : {}",enUcrm.getHldrCustId() );
+//		log.info("cske : {}",enUcrm.getHldrCustId() );
 		result = result + "::" + enUcrm.getTlno();
-		log.info("csno : {}",enUcrm.getTlno() );
+//		log.info("csno : {}",enUcrm.getTlno() );
 		result = result + "::" + enUcrm.getTrdtCntn();
-		log.info("tkda : {}",enUcrm.getTrdtCntn() );
+//		log.info("tkda : {}",enUcrm.getTrdtCntn() );
 		result = result + "::" + enUcrm.getWorkDivsCd();
-		log.info("flag : {}",enUcrm.getWorkDivsCd() );
+//		log.info("flag : {}",enUcrm.getWorkDivsCd() );
 		
-		log.info("result : {}",result );
-		log.info("====== End ExtractRawUcrm ======");
+//		log.info("result : {}",result );
+//		log.info("====== End ExtractRawUcrm ======");
 		return result;
 	}
 
@@ -341,8 +341,8 @@ public class ServiceJson implements InterfaceJson {
 	@Override
 	public String ExtractContactLtId(String stringMsg) {
 		
-		log.info(" ");
-		log.info("====== ClassName : ServiceJson & Method : ExtractContactLtId ======");
+//		log.info(" ");
+//		log.info("====== ClassName : ServiceJson & Method : ExtractContactLtId ======");
 		String jsonResponse = stringMsg;
 
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -363,8 +363,8 @@ public class ServiceJson implements InterfaceJson {
 			log.info("Error Message : {}",e.getMessage());
 		} 
 		
-		log.info("result of ExtractContactLtId : {}",result);
-		log.info("====== End ExtractContactLtId ======");
+//		log.info("result of ExtractContactLtId : {}",result);
+//		log.info("====== End ExtractContactLtId ======");
 		return result;
 	}
 

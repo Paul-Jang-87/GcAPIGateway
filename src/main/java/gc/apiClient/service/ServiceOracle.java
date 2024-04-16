@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.mypurecloud.sdk.v2.model.CriteriaQuery;
+
 import gc.apiClient.entity.oracleH.Entity_DataCall;
 import gc.apiClient.entity.oracleH.Entity_DataCallCustomer;
 import gc.apiClient.entity.oracleH.Entity_DataCallService;
@@ -39,7 +41,10 @@ import gc.apiClient.repository.oracleM.Repository_MWaDataCall;
 import gc.apiClient.repository.oracleM.Repository_MWaDataCallOptional;
 import gc.apiClient.repository.oracleM.Repository_MWaDataCallTrace;
 import gc.apiClient.repository.oracleM.Repository_MWaMTraceCode;
-import lombok.extern.java.Log;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.Root;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -104,6 +109,9 @@ public class ServiceOracle implements InterfaceDBOracle {
 //
 //        return repositoryWaDataCallOptional.save(entityWaDataCallOptional);
 //	}
+
+	@PersistenceContext
+	private EntityManager entityManager;
 
 	@Override
 	public Entity_WaDataCallOptional findWaDataCallOptional(int wcseq) {
@@ -195,7 +203,7 @@ public class ServiceOracle implements InterfaceDBOracle {
 
 		try {
 
-			if (clazz.isAssignableFrom(Entity_DataCall.class)) {
+			if (Entity_DataCall.class.equals(clazz)) {
 				return (List<T>) repositoryDataCall.findAll();
 			} else if (clazz.isAssignableFrom(Entity_MDataCall.class)) {
 				return (List<T>) repositoryMDataCall.findAll();
@@ -236,6 +244,15 @@ public class ServiceOracle implements InterfaceDBOracle {
 
 		return null;
 	}
+
+//	@Override
+//	public <T> List<T> getAll(Class<T> clazz) {
+//		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+//		jakarta.persistence.criteria.CriteriaQuery<T> cq = cb.createQuery(clazz);
+//		Root<T> root = cq.from(clazz);
+//		cq.select(root);
+//		return entityManager.createQuery(cq).getResultList();
+//	}
 
 	@Override
 	public <T> void deleteAll(Class<T> clazz, int orderid) {

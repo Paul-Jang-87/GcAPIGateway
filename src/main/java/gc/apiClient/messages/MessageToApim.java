@@ -1,11 +1,7 @@
 package gc.apiClient.messages;
 
-import java.util.List;
-
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
-
-import gc.apiClient.entity.Entity_ToApim;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 

@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import reactor.core.scheduler.Schedulers;
+import org.springframework.data.domain.Page;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -26,7 +26,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import gc.apiClient.BusinessLogic;
 import gc.apiClient.customproperties.CustomProperties;
 import gc.apiClient.entity.Entity_CampMaJson;
-import gc.apiClient.entity.Entity_ContactltMapper;
+import gc.apiClient.entity.Entity_CampMaJsonUcrm;
 import gc.apiClient.entity.Entity_ToApim;
 import gc.apiClient.entity.oracleH.Entity_DataCall;
 import gc.apiClient.entity.oracleH.Entity_DataCallCustomer;
@@ -56,7 +56,6 @@ import gc.apiClient.messages.MessageTo360View;
 import gc.apiClient.messages.MessageToApim;
 import gc.apiClient.messages.MessageToProducer;
 import gc.apiClient.service.ServiceJson;
-import gc.apiClient.service.ServicePostgre;
 import gc.apiClient.webclient.WebClientApp;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
@@ -87,19 +86,22 @@ public class ControllerUCRM extends ServiceJson {
 		webClient.getAccessToken();
 	}
 
+	@Scheduled(fixedRate = 5000)
+	public void UcrmContactlt() {
+		Mono.fromCallable(() -> UcrmMsgFrmCnsmer())
+		.subscribeOn(Schedulers.boundedElastic())
+		.subscribe();
+	}
+
 	@Scheduled(fixedRate = 60000)
 	public void scheduledMethod() {
 
 		Mono.fromCallable(() -> ReceiveMessage("campma")).subscribeOn(Schedulers.boundedElastic()).subscribe();
 
-		Mono.fromCallable(() -> UcrmMsgFrmCnsmer())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
 //		Mono.fromCallable(() -> Msg360Datacall())
 //		.subscribeOn(Schedulers.boundedElastic())
 //		.subscribe();
-		
+
 //		Mono.fromCallable(() -> Msg360DataCallCustomer())
 //        .subscribeOn(Schedulers.boundedElastic())
 //        .subscribe();
@@ -211,6 +213,32 @@ public class ControllerUCRM extends ServiceJson {
 
 						switch (business) {
 						case "UCRM":
+							objectMapper = new ObjectMapper();
+							Entity_CampMaJsonUcrm enCampMaJson1 = serviceDb.createCampMaUcrm(enCampMa, "insert");
+							try {
+
+								try {
+									serviceDb.InsertCampMa(enCampMa);
+								} catch (DataIntegrityViolationException ex) {
+									log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+									continue;
+								} catch (DataAccessException ex) {
+									log.error("DataAccessException 발생 : {}", ex.getMessage());
+									continue;
+								}
+
+								String jsonString = objectMapper.writeValueAsString(enCampMaJson1);
+								log.info("jsonString : {}", jsonString);
+								MessageToProducer producer = new MessageToProducer();
+								endpoint = "/gcapi/post/" + topic_id;
+								producer.sendMsgToProducer(endpoint, jsonString);
+
+							} catch (JsonProcessingException e) {
+								e.printStackTrace();
+							}
+
+							break;
+
 						case "Callbot":
 
 							objectMapper = new ObjectMapper();
@@ -298,6 +326,34 @@ public class ControllerUCRM extends ServiceJson {
 
 			switch (business) {
 			case "UCRM":
+
+				if (action.equals("update")) {
+
+					objectMapper = new ObjectMapper();
+					Entity_CampMaJson enCampMaJson = serviceDb.createCampMaJson(enCampMa, action);
+					try {
+
+						String jsonString = objectMapper.writeValueAsString(enCampMaJson);
+						log.info("jsonString : {}", jsonString);
+						MessageToProducer producer = new MessageToProducer();
+						endpoint = "/gcapi/post/" + topic_id;
+						producer.sendMsgToProducer(endpoint, jsonString);
+
+					} catch (JsonProcessingException e) {
+						e.printStackTrace();
+					}
+
+					log.info("Cpid of target record for updating : {}", cpid);
+					log.info("New value of Campaign name : {}", cpna);
+
+					serviceDb.UpdateCampMa(cpid, cpna);
+
+				} else {
+					log.info("Cpid of target record for deleting : {}", cpid);
+					serviceDb.DelCampMaById(cpid);
+				}
+
+				break;
 			case "Callbot":
 
 				objectMapper = new ObjectMapper();
@@ -474,7 +530,7 @@ public class ControllerUCRM extends ServiceJson {
 
 			try {
 				serviceDb.InsertUcrm(enUcrm);
-				log.info("Saved Message : {}",msg);
+//				log.info("Saved Message : {}",msg);
 			} catch (DataIntegrityViolationException ex) {
 				log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
 			} catch (DataAccessException ex) {
@@ -489,41 +545,37 @@ public class ControllerUCRM extends ServiceJson {
 		log.info("====== End SaveUcrmData ======");
 		return Mono.just(ResponseEntity.ok("Successfully processed the message."));
 	}
+
 	
-	@GetMapping("/testucrm")
 	public Mono<ResponseEntity<String>> UcrmMsgFrmCnsmer() {
 
 		try {
 			log.info(" ");
-			log.info("====== Class : ControllerUCRM - Method : testUcrmMsgFrmCnsmer ======");
+			log.info("====== Class : ControllerUCRM - Method : UcrmMsgFrmCnsmer ======");
 
-			List<Entity_Ucrm> entitylist = serviceDb.getAll();
-			
-			if(entitylist.size() == 0) {
+			Page<Entity_Ucrm> entitylist = serviceDb.getAll();
+
+			if (entitylist.isEmpty()) {
 				log.info("All records from DB : Nothing");
-			}else {
+			} else {
 				log.info("All records from DB : {}", entitylist.toString());
-				int reps = entitylist.size(); // 반복 횟수 저장.
+				int reps = entitylist.getNumberOfElements();
 				log.info("number of records : {}", reps);
 				log.info("{}만큼 반복,", reps);
 
 				Map<String, String> mapcontactltId = new HashMap<String, String>();
 				Map<String, String> mapquetId = new HashMap<String, String>();
-				Map<String, List<String>> contactlists = new HashMap();
+				Map<String, List<String>> contactlists = new HashMap<String, List<String>>();
 				String contactLtId = "";
 
 				for (int i = 0; i < reps; i++) {
 
-					Entity_ContactLt enContactLt = serviceDb.createContactUcrm(entitylist.get(i));
-					log.info("{}번째 레코드 : {},", i, entitylist.get(i).toString());
+					Entity_ContactLt enContactLt = serviceDb.createContactUcrm(entitylist.getContent().get(i));
 
-					String cpid = entitylist.get(i).getId().getCpid(); // 첫번째 레코드부터 cpid를 가지고 온다.
-					log.info("cpid : {}", cpid);
+					String cpid = entitylist.getContent().get(i).getId().getCpid(); // 첫번째 레코드부터 cpid를 가지고 온다.
 
 					contactLtId = mapcontactltId.get(cpid);
 					String queid = mapquetId.get(cpid);
-					log.info("contactLtId : {}", contactLtId);
-					log.info("queid : {}", queid);
 
 					if (contactLtId == null || contactLtId.equals("")) {// cpid를 조회 했는데 그것에 대응하는 contactltId가 없다면,
 						log.info("Nomatch contactId");
@@ -532,16 +584,13 @@ public class ControllerUCRM extends ServiceJson {
 						contactLtId = res.split("::")[0];
 						queid = res.split("::")[1];
 
-						log.info("contactLtId : {}", contactLtId);
-						log.info("queid : {}", queid);
-
 						mapcontactltId.put(cpid, contactLtId);
 						mapquetId.put(cpid, res.split("::")[1]);
 					} else {
 						log.info("Matched contactId");
 					}
 
-					String row_result = ExtractRawUcrm(entitylist.get(i));
+					String row_result = ExtractRawUcrm(entitylist.getContent().get(i));
 					row_result = row_result + "::" + contactLtId + "::" + queid;
 					String contactltMapper = serviceDb.createContactLtGC(row_result);
 
@@ -549,8 +598,8 @@ public class ControllerUCRM extends ServiceJson {
 						contactlists.put(contactLtId, new ArrayList<>());
 					}
 					contactlists.get(contactLtId).add(contactltMapper);
+
 					log.info("Add value into Arraylist named '{}'", contactLtId);
-					log.info("Now the size of Arraylist '{}': {}", contactLtId, contactlists.get(contactLtId).size());
 
 					// db인서트
 					try {
@@ -567,21 +616,19 @@ public class ControllerUCRM extends ServiceJson {
 						log.error("Error Message", e.getMessage());
 						e.printStackTrace();
 					}
-					
-					serviceDb.DelUcrmLtById(entitylist.get(i).getTopcDataIsueSno());
+
+					serviceDb.DelUcrmLtById(entitylist.getContent().get(i).getTopcDataIsueSno());
+
 				}
 
 				for (Map.Entry<String, List<String>> entry : contactlists.entrySet()) {
 
 					log.info("Now the size of Arraylist '{}': {}", entry.getKey(), entry.getValue().size());
-					log.info("contactLtId : '{}' , data : '{}'", entry.getKey(), entry.getValue());
 					serviceWeb.PostContactLtClearReq("contactltclear", contactLtId);
 					serviceWeb.PostContactLtApiRequet("contact", entry.getKey(), entry.getValue());
 				}
-				
+
 			}
-			
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -590,7 +637,6 @@ public class ControllerUCRM extends ServiceJson {
 
 		return Mono.just(ResponseEntity.ok("Successfully processed the message."));
 	}
-
 
 	@PostMapping("/gcapi/post/{topic}")
 	public Mono<ResponseEntity<String>> receiveMessage(@PathVariable("topic") String tranId, @RequestBody String msg) {
@@ -698,9 +744,6 @@ public class ControllerUCRM extends ServiceJson {
 				for (int i = 0; i < enContactList.size(); i++) {
 					values.add(enContactList.get(i).getCske());
 				}
-
-				log.info("고객키들 (cske) : {} ", values.toString());
-				log.info("enContactList size : {}", enContactList);
 
 				// contactLtId를 키로 하여 제네시스의 api를 호출한다. 호출할 때는 values리스트 담겨져 있던 cske(고객키)들 각각에 맞는
 				// 결과 값들을
@@ -1333,6 +1376,11 @@ public class ControllerUCRM extends ServiceJson {
 		}
 
 		return Mono.just(ResponseEntity.ok("'Msg360MWaMTrCode' got message successfully."));
+	}
+
+	@GetMapping("/gethc")
+	public String gealthCheck() throws Exception {
+		return "TEST RESPONSE";
 	}
 
 }

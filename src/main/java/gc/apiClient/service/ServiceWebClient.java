@@ -2,7 +2,6 @@ package gc.apiClient.service;
 
 import java.util.List;
 
-import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import gc.apiClient.interfaceCollection.InterfaceWebClient;

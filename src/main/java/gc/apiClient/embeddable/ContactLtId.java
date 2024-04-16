@@ -1,7 +1,6 @@
 package gc.apiClient.embeddable;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -12,6 +11,7 @@ import lombok.Data;
 @Data
 @Embeddable
 public class ContactLtId implements Serializable {
+    private static final long serialVersionUID = 1L;
 
 	@NotNull
 	@Column(name = "CPID")

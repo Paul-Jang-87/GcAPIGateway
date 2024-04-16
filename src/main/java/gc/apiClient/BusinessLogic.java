@@ -93,7 +93,7 @@ public class BusinessLogic {
 		} else if( (tkda=='C')&&(divisionName.equals("Mobile")) ){
 			
 			business = "UCRM";
-			topic_id = "from_clcc_hmucrmcmpnrs_message"; 
+			topic_id = "from_clcc_mblucrmcmpnrs_message"; 
 			businesslogic.put("business", business);
 			businesslogic.put("topic_id", topic_id);
 			

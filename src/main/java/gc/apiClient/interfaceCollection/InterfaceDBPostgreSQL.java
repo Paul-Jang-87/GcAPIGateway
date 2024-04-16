@@ -6,10 +6,12 @@ import java.util.List;
 import org.json.JSONObject;
 
 import gc.apiClient.entity.Entity_CampMaJson;
+import gc.apiClient.entity.Entity_CampMaJsonUcrm;
 import gc.apiClient.entity.postgresql.Entity_CampMa;
 import gc.apiClient.entity.postgresql.Entity_CampRt;
 import gc.apiClient.entity.postgresql.Entity_ContactLt;
 import gc.apiClient.entity.postgresql.Entity_Ucrm;
+import org.springframework.data.domain.Page;
 
 public interface InterfaceDBPostgreSQL {
 
@@ -17,6 +19,7 @@ public interface InterfaceDBPostgreSQL {
 	Entity_CampRt createCampRtMsg(String cpid) throws Exception;
 	JSONObject createCampRtJson(Entity_CampRt enCampRt,String business) throws Exception;
 	Entity_CampMaJson createCampMaJson(Entity_CampMa enCampMa, String datachgcd) throws Exception;
+	Entity_CampMaJsonUcrm createCampMaUcrm(Entity_CampMa enCampMa, String datachgcd) throws Exception;
 	Entity_CampMa createCampMaMsg(String cpid, String crudtype) throws Exception;
 	Entity_ContactLt createContactLtMsg(String msg) throws Exception;
 	Entity_ContactLt createContactUcrm(Entity_Ucrm entityUcrm) throws Exception;
@@ -36,7 +39,7 @@ public interface InterfaceDBPostgreSQL {
 	Integer findCampRtMaxRlsq() throws Exception;
 	Entity_ContactLt findContactLtByCske(String cske)throws Exception;
 	List<Entity_ContactLt> findContactLtByCpid(String cpid)throws Exception;
-	List<Entity_Ucrm> getAll()throws Exception;
+	Page<Entity_Ucrm> getAll() throws Exception; 
 	int getRecordCount()throws Exception;
 	
 	//update 

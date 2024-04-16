@@ -2,8 +2,6 @@ package gc.apiClient.interfaceCollection;
 
 import java.util.List;
 
-import org.json.JSONObject;
-
 public interface InterfaceWebClient {
 
 	String GetApiRequet(String endpoint)throws Exception;

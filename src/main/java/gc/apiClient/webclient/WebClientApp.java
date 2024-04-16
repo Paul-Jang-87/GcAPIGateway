@@ -2,13 +2,7 @@ package gc.apiClient.webclient;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.ExchangeStrategies;
-import org.springframework.web.reactive.function.client.WebClientResponseException;
-import org.springframework.http.MediaType;
-import org.json.JSONObject;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClient.RequestHeadersUriSpec;
@@ -121,10 +115,12 @@ public class WebClientApp {
 		ApiRequestHandler apiRequestHandler = new ApiRequestHandler();
 		UriComponents api1 = apiRequestHandler.buildApiRequest(API_END_POINT, param);
 
-		return requestSpec.uri(api1.toUriString()).retrieve().bodyToMono(String.class).onErrorResume(error -> {
-			log.error("Error making API request: {}", error.getMessage());
-			return Mono.empty();
-		}).block(); // Wait for the result
+		return requestSpec.uri(api1.toUriString()).retrieve()
+				.onStatus(status -> status.is4xxClientError() || status.is5xxServerError(),
+						response -> response.bodyToMono(String.class).flatMap(errorBody -> {
+							return Mono.error(new RuntimeException("Error: " + errorBody));
+						}))
+				.bodyToMono(String.class).block();
 	}
 
 	public String makeApiRequest34(String contactListId, String msg) {
@@ -132,11 +128,11 @@ public class WebClientApp {
 		UriComponents api1 = apiRequestHandler.buildApiRequest(API_END_POINT, contactListId);
 
 		return webClient.post().uri(api1.toUriString()).body(BodyInserters.fromValue(msg)).retrieve()
-                .onStatus(status -> status.is4xxClientError() || status.is5xxServerError(),
-                        response -> response.bodyToMono(String.class).flatMap(errorBody -> {
-                            return Mono.error(new RuntimeException("Error: " + errorBody));
-                        }))
-              .bodyToMono(String.class).block();
+				.onStatus(status -> status.is4xxClientError() || status.is5xxServerError(),
+						response -> response.bodyToMono(String.class).flatMap(errorBody -> {
+							return Mono.error(new RuntimeException("Error: " + errorBody));
+						}))
+				.bodyToMono(String.class).block();
 	}
 
 	public String makeApiRequest56(String contactListId, List<String> cskes) {
@@ -145,10 +141,11 @@ public class WebClientApp {
 		UriComponents api1 = apiRequestHandler.buildApiRequest(API_END_POINT, contactListId);
 
 		return webClient.post().uri(api1.toUriString()).body(BodyInserters.fromValue(cskes)).retrieve()
-				.bodyToMono(String.class).onErrorResume(error -> {
-					log.error("Error making API request: {}", error.getMessage());
-					return Mono.empty();
-				}).block(); // Wait for the result
+				.onStatus(status -> status.is4xxClientError() || status.is5xxServerError(),
+						response -> response.bodyToMono(String.class).flatMap(errorBody -> {
+							return Mono.error(new RuntimeException("Error: " + errorBody));
+						}))
+				.bodyToMono(String.class).block();
 	}
 
 }

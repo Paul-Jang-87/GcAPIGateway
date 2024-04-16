@@ -11,7 +11,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "DATA_CALL_W")
+//@Table(name = "DATA_CALL_W")
+@Table(name = "IPIVRADM.DATA_CALL_W")
 public class Entity_DataCall {
 	
 	@Id

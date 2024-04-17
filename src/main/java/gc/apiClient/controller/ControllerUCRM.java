@@ -1,9 +1,15 @@
 package gc.apiClient.controller;
 
+//import java.text.SimpleDateFormat;
+//import java.time.LocalDateTime;
+//import java.time.format.DateTimeFormatter;
+//import java.util.Date;
+//import java.util.Random;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import reactor.core.scheduler.Schedulers;
 import org.springframework.data.domain.Page;
 
@@ -57,6 +63,8 @@ import gc.apiClient.messages.MessageToApim;
 import gc.apiClient.messages.MessageToProducer;
 import gc.apiClient.service.ServiceJson;
 import gc.apiClient.webclient.WebClientApp;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
@@ -88,9 +96,7 @@ public class ControllerUCRM extends ServiceJson {
 
 	@Scheduled(fixedRate = 5000)
 	public void UcrmContactlt() {
-		Mono.fromCallable(() -> UcrmMsgFrmCnsmer())
-		.subscribeOn(Schedulers.boundedElastic())
-		.subscribe();
+		Mono.fromCallable(() -> UcrmMsgFrmCnsmer()).subscribeOn(Schedulers.boundedElastic()).subscribe();
 	}
 
 	@Scheduled(fixedRate = 60000)
@@ -98,69 +104,69 @@ public class ControllerUCRM extends ServiceJson {
 
 		Mono.fromCallable(() -> ReceiveMessage("campma")).subscribeOn(Schedulers.boundedElastic()).subscribe();
 
-//		Mono.fromCallable(() -> Msg360Datacall())
-//		.subscribeOn(Schedulers.boundedElastic())
-//		.subscribe();
+		Mono.fromCallable(() -> Msg360Datacall())
+		.subscribeOn(Schedulers.boundedElastic())
+		.subscribe();
 
-//		Mono.fromCallable(() -> Msg360DataCallCustomer())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
-//		Mono.fromCallable(() -> Msg360DataCallService())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
-//		Mono.fromCallable(() -> Msg360MDatacall())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
-//		Mono.fromCallable(() -> Msg360MDataCallCustomer())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
-//		Mono.fromCallable(() -> Msg360MDataCallService())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
-//		Mono.fromCallable(() -> Msg360MMstrsSvcCd())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
-//		Mono.fromCallable(() -> Msg360MstrsSvcCd())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
-//		Mono.fromCallable(() -> Msg360MWaDataCall())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
-//		Mono.fromCallable(() -> Msg360MWaDataCallOptional())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
-//		Mono.fromCallable(() -> Msg360MWaDataCallTrace())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
-//		Mono.fromCallable(() -> Msg360MWaMTrCode())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
-//		Mono.fromCallable(() -> Msg360WaDataCall())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
-//		Mono.fromCallable(() -> Msg360WaDataCallOptional())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
-//		Mono.fromCallable(() -> Msg360WaDataCallTrace())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
-//		Mono.fromCallable(() -> Msg360WaMTrCode())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
+		Mono.fromCallable(() -> Msg360DataCallCustomer())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360DataCallService())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360MDatacall())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360MDataCallCustomer())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360MDataCallService())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360MMstrsSvcCd())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360MstrsSvcCd())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360MWaDataCall())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360MWaDataCallOptional())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360MWaDataCallTrace())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360MWaMTrCode())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360WaDataCall())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360WaDataCallOptional())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360WaDataCallTrace())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360WaMTrCode())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
 
 	}
 
@@ -169,6 +175,7 @@ public class ControllerUCRM extends ServiceJson {
 
 		log.info(" ");
 		log.info("====== Class : ControllerUCRM - Method : ReceiveMessage ======");
+
 		String row_result = "";
 		String result = "";
 		String topic_id = tranId;
@@ -209,12 +216,12 @@ public class ControllerUCRM extends ServiceJson {
 						business = businessLogic.get("business");
 						topic_id = businessLogic.get("topic_id");
 
-						Entity_CampMa enCampMa = serviceDb.createCampMaMsg(row_result, "insert");
+						Entity_CampMa enCampMa = serviceDb.CreateEnCampMa(row_result);
 
 						switch (business) {
 						case "UCRM":
 							objectMapper = new ObjectMapper();
-							Entity_CampMaJsonUcrm enCampMaJson1 = serviceDb.createCampMaUcrm(enCampMa, "insert");
+							Entity_CampMaJsonUcrm enCampMaJson1 = serviceDb.JsonCampMaUcrm(enCampMa, "insert");
 							try {
 
 								try {
@@ -242,7 +249,7 @@ public class ControllerUCRM extends ServiceJson {
 						case "Callbot":
 
 							objectMapper = new ObjectMapper();
-							Entity_CampMaJson enCampMaJson = serviceDb.createCampMaJson(enCampMa, "insert");
+							Entity_CampMaJson enCampMaJson = serviceDb.JsonCampMaCallbot(enCampMa, "insert");
 							try {
 
 								try {
@@ -302,15 +309,24 @@ public class ControllerUCRM extends ServiceJson {
 	}
 
 	@PostMapping("/updateOrDelCampma")
-	public Mono<Void> UpdateOrDelCampMa(@RequestBody String msg) {
+	public Mono<Void> UpdateOrDelCampMa(@RequestBody String msg, HttpServletRequest request) throws Exception {
+
+		String row_result = "";
+		Entity_CampMa enCampMa = null;
 
 		try {
-			log.info("Class : ControllerUCRM - Method : UpdateOrDelCampMa");
-			String row_result = ExtractCampMaUpdateOrDel(msg); // cpid::coid::cpna::divisionid::action
+			log.info(" ");
+			log.info("====== Class : ControllerUCRM - Method : UpdateOrDelCampMa ======");
+
+			String ipAddress = request.getRemoteAddr();
+			int port = request.getRemotePort();
+			log.info("Request received from IP address and Port => {}:{}", ipAddress, port);
+
+			row_result = ExtractCampMaUpdateOrDel(msg); // cpid::coid::cpna::divisionid::action
 			String division = row_result.split("::")[3];
 			String action = row_result.split("::")[4];
 
-			Entity_CampMa enCampMa = serviceDb.createCampMaMsg(row_result, action);
+			enCampMa = serviceDb.CreateEnCampMa(row_result);
 			String cpid = row_result.split("::")[0];
 			String cpna = row_result.split("::")[2];
 
@@ -330,10 +346,10 @@ public class ControllerUCRM extends ServiceJson {
 				if (action.equals("update")) {
 
 					objectMapper = new ObjectMapper();
-					Entity_CampMaJson enCampMaJson = serviceDb.createCampMaJson(enCampMa, action);
+					Entity_CampMaJsonUcrm enCampMaJson1 = serviceDb.JsonCampMaUcrm(enCampMa, action);
 					try {
 
-						String jsonString = objectMapper.writeValueAsString(enCampMaJson);
+						String jsonString = objectMapper.writeValueAsString(enCampMaJson1);
 						log.info("jsonString : {}", jsonString);
 						MessageToProducer producer = new MessageToProducer();
 						endpoint = "/gcapi/post/" + topic_id;
@@ -347,7 +363,6 @@ public class ControllerUCRM extends ServiceJson {
 					log.info("New value of Campaign name : {}", cpna);
 
 					serviceDb.UpdateCampMa(cpid, cpna);
-
 				} else {
 					log.info("Cpid of target record for deleting : {}", cpid);
 					serviceDb.DelCampMaById(cpid);
@@ -357,7 +372,9 @@ public class ControllerUCRM extends ServiceJson {
 			case "Callbot":
 
 				objectMapper = new ObjectMapper();
-				Entity_CampMaJson enCampMaJson = serviceDb.createCampMaJson(enCampMa, action);
+				
+				Entity_CampMaJson enCampMaJson = serviceDb.JsonCampMaCallbot(enCampMa, action);
+				
 				try {
 
 					String jsonString = objectMapper.writeValueAsString(enCampMaJson);
@@ -412,6 +429,11 @@ public class ControllerUCRM extends ServiceJson {
 				}
 				break;
 			}
+		} catch (EntityNotFoundException ex) {
+			log.error("EntityNotFoundException occurred: {} ", ex.getMessage());
+			enCampMa = serviceDb.CreateEnCampMa(row_result);
+			serviceDb.InsertCampMa(enCampMa);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("Error Messge : {}", e.getMessage());
@@ -500,7 +522,7 @@ public class ControllerUCRM extends ServiceJson {
 					}
 				}
 
-				serviceWeb.PostContactLtClearReq("contactltclear", contactLtId);
+//				serviceWeb.PostContactLtClearReq("contactltclear", contactLtId);
 				serviceWeb.PostContactLtApiRequet("contact", contactLtId, arr);
 
 				log.info("====== End CallbotMsgFrmCnsumer ======");
@@ -546,7 +568,6 @@ public class ControllerUCRM extends ServiceJson {
 		return Mono.just(ResponseEntity.ok("Successfully processed the message."));
 	}
 
-	
 	public Mono<ResponseEntity<String>> UcrmMsgFrmCnsmer() {
 
 		try {
@@ -624,7 +645,7 @@ public class ControllerUCRM extends ServiceJson {
 				for (Map.Entry<String, List<String>> entry : contactlists.entrySet()) {
 
 					log.info("Now the size of Arraylist '{}': {}", entry.getKey(), entry.getValue().size());
-					serviceWeb.PostContactLtClearReq("contactltclear", contactLtId);
+//					serviceWeb.PostContactLtClearReq("contactltclear", contactLtId);
 					serviceWeb.PostContactLtApiRequet("contact", entry.getKey(), entry.getValue());
 				}
 
@@ -639,13 +660,18 @@ public class ControllerUCRM extends ServiceJson {
 	}
 
 	@PostMapping("/gcapi/post/{topic}")
-	public Mono<ResponseEntity<String>> receiveMessage(@PathVariable("topic") String tranId, @RequestBody String msg) {
+	public Mono<ResponseEntity<String>> receiveMessage(@PathVariable("topic") String tranId, @RequestBody String msg,
+			HttpServletRequest request) {
 
 		try {
 
 			log.info(" ");
 			log.info("====== Class : ControllerUCRM - Method : receiveMessage ======");
-			String row_result = "";
+
+			String ipAddress = request.getRemoteAddr();
+			int port = request.getRemotePort();
+			log.info("Request received from IP address and Port => {}:{}", ipAddress, port);
+
 			String result = "";
 			String cpid = "";
 			String topic_id = tranId;
@@ -658,61 +684,6 @@ public class ControllerUCRM extends ServiceJson {
 
 			switch (topic_id) {
 
-			case "ucrm":
-			case "callbot":
-
-				if (topic_id.equals("callbot")) {
-//					row_result = ExtractValCallBot(msg); // 뽑아온다.cpid::cpsq::cske::csna::tkda::flag
-				} else {
-					row_result = ExtractValUcrm(msg);
-				}
-
-				Entity_ContactLt enContactLt = serviceDb.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
-				// Entity_ContactLt 객체에 매핑시킨다.
-				cpid = enContactLt.getId().getCpid();// 캠페인 아이디를 가져온다.
-
-				result = serviceWeb.GetCampaignsApiRequet("campaigns", cpid);// 캠페인 아이디로
-//																				// "/api/v2/outbound/campaigns/{campaignId}"호출
-//																				// 후 결과 가져온다.
-				//
-				String res = ExtractContactLtId(result); // 가져온 결과에서 contactlistid만 추출.
-				String contactLtId = res.split("::")[0];
-//				// "api/v2/outbound/contactlists/{contactListId}/contacts"로 request body값 보내기 위한
-//				// 객체
-//				// 객체 안의 속성들(키)은 변동 될 수 있음.
-				row_result = row_result + "::" + res;
-				String contactltMapper = serviceDb.createContactLtGC(row_result);
-
-				objectMapper = new ObjectMapper();
-
-				try {
-					String jsonString = objectMapper.writeValueAsString(contactltMapper); // 매핑한 객체를 jsonString으로 변환.
-					log.info("JsonString Data : {}", jsonString);
-
-					// "api/v2/outbound/contactlists/{contactListId}/contacts"로 보냄.
-					// 첫번째 인자 : 어떤 api를 호출 할 건지 지정.
-					// 두번째 인자 : path parameter
-					// 세번째 인자 : request body.
-
-					serviceWeb.PostContactLtClearReq("contactltclear", contactLtId);
-//					serviceWeb.PostContactLtApiRequet("contact", contactLtId, jsonString);
-
-				} catch (JsonProcessingException e) {
-					e.printStackTrace();
-				}
-
-				// db인서트
-				try {
-					serviceDb.InsertContactLt(enContactLt);
-
-				} catch (DataIntegrityViolationException ex) {
-					log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
-				} catch (DataAccessException ex) {
-					log.error("DataAccessException 발생 : {}", ex.getMessage());
-				}
-
-				return Mono.empty();
-
 			case "camprtMsg":// "from_clcc_campnrs_h_message" , "from_clcc_campnrs_m_message"
 
 				result = ExtractVal56(msg);// request body로 들어온 json에서 필요 데이터 추출
@@ -722,7 +693,7 @@ public class ControllerUCRM extends ServiceJson {
 
 				int dirt = 0;
 				cpid = parts[0];
-				contactLtId = parts[1];
+				String contactLtId = parts[1];
 				division = parts[2];
 
 				log.info("cpid : {}", cpid);
@@ -737,18 +708,132 @@ public class ControllerUCRM extends ServiceJson {
 				// contactlt테이블에서 cpid가 같은 모든 레코드들을 엔티티 오브젝트로 리스트 형태로 가지고 온다.
 				List<Entity_ContactLt> enContactList = new ArrayList<Entity_ContactLt>();
 				enContactList = serviceDb.findContactLtByCpid(cpid);
-
+				log.info("Total number of All Entities : {}", enContactList.size());
 				// 가지고 온 모든 엔티티들의 숫자만큼 for문들 돌면서 레코드들 각각의 cske(고객키)들을 가지고 온다. 그리고 values리스트에
 				// 담는다.
+
 				List<String> values = new ArrayList<String>();
-				for (int i = 0; i < enContactList.size(); i++) {
-					values.add(enContactList.get(i).getCske());
+				for (int k = 0; k < enContactList.size(); k++) {
+					values.add(enContactList.get(k).getCske());
+
+					if (values.size() >= 50) {
+						result = serviceWeb.PostContactLtApiBulk("contactList", contactLtId, values);
+
+						if (result.equals("[]")) {
+							log.info("No result, skip to next");
+							continue;
+						}
+						// 캠페인이 어느 비즈니스 로직인지 판단하기 위해서 일단 목록 중 하나만 꺼내서 확인해 보도록한다.
+						// 왜냐면 나머지는 똑같을테니.
+						String contactsresult = ExtractContacts56(result, 0);// JsonString 결과값과 조회하고 싶은 인덱스(첫번째)를 인자로
+																				// 넣는다.
+						Entity_CampRt entityCmRt = serviceDb.createCampRtMsg(contactsresult);// contactsresult값으로
+																								// entity하나를 만든다.
+						Character tkda = entityCmRt.getTkda().charAt(0);// 그리고 비즈니스 로직을 구분하게 해줄 수 있는 토큰데이터를 구해온다.
+
+						// 토큰데이터와 디비젼네임을 인자로 넘겨서 어떤 비지니스 로직인지, 토픽은 어떤 것으로 해야하는지를 결과 값으로 반환 받는다.
+						Map<String, String> businessLogic = BusinessLogic.SelectedBusiness(tkda, divisionName);
+						business = businessLogic.get("business");
+						topic_id = businessLogic.get("topic_id");
+
+						switch (business) {
+						case "UCRM": // UCRM일 경우.
+						case "CALLBOT": // 콜봇일 경우.
+
+							for (int i = 0; i < enContactList.size(); i++) {
+
+								contactsresult = ExtractContacts56(result, i);
+								if (contactsresult.equals("")) {
+									log.info("No value, skip to next");
+									continue;
+								}
+
+								entityCmRt = serviceDb.createCampRtMsg(contactsresult);// db 인서트 하기 위한 entity.
+
+								dirt = entityCmRt.getDirt();// 응답코드
+
+								if ((business.equals("UCRM")) && (dirt == 1)) {// URM이면서 정상일 때.
+
+								} else {
+									JSONObject toproducer = serviceDb.createCampRtJson(entityCmRt, business);// producer로
+																												// 보내기
+																												// 위한
+									// entity.
+									objectMapper = new ObjectMapper();
+
+									try {
+										String jsonString = toproducer.toString();
+										log.info("JsonString Data : {}번째 {}", i, jsonString);
+
+										MessageToProducer producer = new MessageToProducer();
+										endpoint = "/gcapi/post/" + topic_id;
+										producer.sendMsgToProducer(endpoint, jsonString);
+
+									} catch (Exception e) {
+										e.printStackTrace();
+									}
+								}
+
+								// db인서트
+								try {
+									serviceDb.InsertCampRt(entityCmRt);
+								} catch (DataIntegrityViolationException ex) {
+									log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+								} catch (DataAccessException ex) {
+									log.error("DataAccessException 발생 : {}", ex.getMessage());
+								}
+							}
+
+							break;
+
+						default:
+
+							for (int i = 0; i < enContactList.size(); i++) {
+
+								contactsresult = ExtractContacts56(result, i);
+								contactsresult = contactsresult + "::" + cpid;// contactid(고객키)::contactListId::didt::dirt::cpid
+								entityCmRt = serviceDb.createCampRtMsg(contactsresult);// db 인서트 하기 위한 entity.
+
+								dirt = entityCmRt.getDirt();// 응답코드
+								String tokendata = entityCmRt.getTkda();// 토큰데이터
+
+								Entity_ToApim enToApim = new Entity_ToApim();
+								enToApim.setDirt(dirt);
+								enToApim.setTkda(tokendata);
+
+								apimEntitylt.add(enToApim);
+							}
+
+							objectMapper = new ObjectMapper();
+
+							try {
+								String jsonString = objectMapper.writeValueAsString(apimEntitylt);
+
+								// localhost:8084/dspRslt
+								// 192.168.219.134:8084/dspRslt
+								MessageToApim apim = new MessageToApim();
+								endpoint = "/dspRslt";
+								apim.sendMsgToApim(endpoint, jsonString);
+								log.info("CAMPRT 로직, APIM으로 보냄. : {} ", jsonString);
+
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+							break;
+						}
+						values.clear();
+					}
 				}
 
 				// contactLtId를 키로 하여 제네시스의 api를 호출한다. 호출할 때는 values리스트 담겨져 있던 cske(고객키)들 각각에 맞는
 				// 결과 값들을
 				// jsonString문자열로 한꺼번에 받는다.
 				result = serviceWeb.PostContactLtApiBulk("contactList", contactLtId, values);
+
+				if (result.equals("[]")) {
+					log.info("No result, So break");
+					break;
+				}
 
 				// 캠페인이 어느 비즈니스 로직인지 판단하기 위해서 일단 목록 중 하나만 꺼내서 확인해 보도록한다.
 				// 왜냐면 나머지는 똑같을테니.
@@ -1382,5 +1467,49 @@ public class ControllerUCRM extends ServiceJson {
 	public String gealthCheck() throws Exception {
 		return "TEST RESPONSE";
 	}
+
+//	@GetMapping("/testucrmrt/{topic}/{number}")
+//	public Mono<Void> testucrmrt(@PathVariable("topic") String topic_id, @PathVariable("number") String msg, HttpServletRequest request) {
+//		String ipAddress = request.getRemoteAddr();
+//		int port = request.getRemotePort();
+//		log.info("Request received from IP address: {}", ipAddress);
+//		log.info("Request received from IP port: {}", port);
+//
+//		JSONObject obj = new JSONObject();
+//
+//		LocalDateTime now = LocalDateTime.now();
+//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSSSSS");
+//		String topcDataIsueDtm = now.format(formatter);
+//
+//		Date parsedDate = new Date();
+//
+//		// Formatting the parsed date to the desired format
+//		SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+//		String formattedDateString = outputFormat.format(parsedDate);
+//
+//		Random random = new Random();
+//		random.setSeed(System.currentTimeMillis());
+//		int n = Integer.parseInt(msg);
+//		MessageToProducer producer = new MessageToProducer();
+//		String endpoint = "/gcapi/post/" + topic_id;
+//
+//		for (int i = 1; i <= n; i++) {
+//
+//			obj.put("topcDataIsueDtm", topcDataIsueDtm);
+//			obj.put("ibmHubId", Integer.toString(random.nextInt(100000)));
+//
+//			int asciiValue = random.nextInt(26) + 65;
+//			String capitalLetterAsString = String.valueOf((char) asciiValue);
+//
+//			obj.put("centerCd", capitalLetterAsString + Integer.toString(random.nextInt(10)));
+//			obj.put("lastAttempt", formattedDateString);
+//			obj.put("totAttempt", Integer.toString(random.nextInt(10)));
+//			obj.put("lastResult", Integer.toString(random.nextInt(10)));
+//			String jsonString = obj.toString();
+//			producer.sendMsgToProducer(endpoint, jsonString);
+//		}
+//
+//		return Mono.empty();
+//	}
 
 }

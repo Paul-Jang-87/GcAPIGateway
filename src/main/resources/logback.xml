@@ -130,6 +130,7 @@
 		<appender-ref ref="FILE" />
 		<appender-ref ref="Error" />
 	</logger>
+	
 
 	 <!-- Loggers -->
     <logger name="org.apache.catalina" level="INFO" additivity="false">
@@ -141,6 +142,7 @@
         <appender-ref ref="CATALINA"/>
     </root>
 
+	<logger name="org.hibernate" level="ERROR"/>
 	<!-- log4jdbc 옵션 설정 -->
 	<logger name="jdbc" level="OFF" />
 	<!-- 커넥션 open close 이벤트를 로그로 남긴다. -->

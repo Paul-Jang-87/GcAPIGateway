@@ -6,8 +6,6 @@ import java.util.Optional;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.mypurecloud.sdk.v2.model.CriteriaQuery;
-
 import gc.apiClient.entity.oracleH.Entity_DataCall;
 import gc.apiClient.entity.oracleH.Entity_DataCallCustomer;
 import gc.apiClient.entity.oracleH.Entity_DataCallService;
@@ -97,21 +95,14 @@ public class ServiceOracle implements InterfaceDBOracle {
 		this.repositoryWaMTraceCode = repositoryWaMTraceCode;
 	}
 
-	// insert하는 부분은 필요없음.
-//	@Override
-//	public Entity_WaDataCallOptional InsertWaDataCallOptional(Entity_WaDataCallOptional entityWaDataCallOptional) {
-//		
-//		Optional<Entity_WaDataCallOptional> existingEntity = repositoryWaDataCallOptional.findById(entityWaDataCallOptional.getWcseq());
-//
-//        if (existingEntity.isPresent()) {
-//            throw new DataIntegrityViolationException("Record with 'wcseq' already exists.");
-//        }
-//
-//        return repositoryWaDataCallOptional.save(entityWaDataCallOptional);
-//	}
+	@PersistenceContext(unitName = "oracleH")
+	private EntityManager entityManagerOracleH;
 
-	@PersistenceContext
-	private EntityManager entityManager;
+	@PersistenceContext(unitName = "oracleM")
+	private EntityManager entityManagerOracleM;
+
+	@PersistenceContext(unitName = "postgres")
+	private EntityManager entityManagerPostgres;
 
 	@Override
 	public Entity_WaDataCallOptional findWaDataCallOptional(int wcseq) {
@@ -201,41 +192,50 @@ public class ServiceOracle implements InterfaceDBOracle {
 	@Override
 	public <T> List<T> getAll(Class<T> clazz) {
 
+		EntityManager entityManagerToUse = null;
+		
 		try {
 
 			if (Entity_DataCall.class.equals(clazz)) {
-				return (List<T>) repositoryDataCall.findAll();
+				entityManagerToUse = entityManagerOracleH;
 			} else if (clazz.isAssignableFrom(Entity_MDataCall.class)) {
-				return (List<T>) repositoryMDataCall.findAll();
+				entityManagerToUse = entityManagerOracleM;
 			} else if (clazz.isAssignableFrom(Entity_DataCallCustomer.class)) {
-				return (List<T>) repositoryDataCallCustomer.findAll();
+				entityManagerToUse = entityManagerOracleH;
 			} else if (clazz.isAssignableFrom(Entity_MDataCallCustomer.class)) {
-				return (List<T>) repositoryMDataCallCustomer.findAll();
+				entityManagerToUse = entityManagerOracleM;
 			} else if (clazz.isAssignableFrom(Entity_DataCallService.class)) {
-				return (List<T>) repositoryDataCallService.findAll();
+				entityManagerToUse = entityManagerOracleH;
 			} else if (clazz.isAssignableFrom(Entity_MDataCallService.class)) {
-				return (List<T>) repositoryMDataCallService.findAll();
+				entityManagerToUse = entityManagerOracleM;
 			} else if (clazz.isAssignableFrom(Entity_MasterServiceCode.class)) {
-				return (List<T>) repositoryMasterServiceCode.findAll();
+				entityManagerToUse = entityManagerOracleH;
 			} else if (clazz.isAssignableFrom(Entity_MMasterServiceCode.class)) {
-				return (List<T>) repositoryMMasterServiceCode.findAll();
+				entityManagerToUse = entityManagerOracleM;
 			} else if (clazz.isAssignableFrom(Entity_WaDataCall.class)) {
-				return (List<T>) repositoryWaDataCall.findAll();
+				entityManagerToUse = entityManagerOracleH;
 			} else if (clazz.isAssignableFrom(Entity_MWaDataCall.class)) {
-				return (List<T>) repositoryMWaDataCall.findAll();
+				entityManagerToUse = entityManagerOracleM;
 			} else if (clazz.isAssignableFrom(Entity_WaDataCallOptional.class)) {
-				return (List<T>) repositoryWaDataCallOptional.findAll();
+				entityManagerToUse = entityManagerOracleH;
 			} else if (clazz.isAssignableFrom(Entity_MWaDataCallOptional.class)) {
-				return (List<T>) repositoryMWaDataCallOptional.findAll();
+				entityManagerToUse = entityManagerOracleM;
 			} else if (clazz.isAssignableFrom(Entity_WaDataCallTrace.class)) {
-				return (List<T>) repositoryWaDataCallTrace.findAll();
+				entityManagerToUse = entityManagerOracleH;
 			} else if (clazz.isAssignableFrom(Entity_MWaDataCallTrace.class)) {
-				return (List<T>) repositoryMWaDataCallTrace.findAll();
+				entityManagerToUse = entityManagerOracleM;
 			} else if (clazz.isAssignableFrom(Entity_WaMTracecode.class)) {
-				return (List<T>) repositoryWaMTraceCode.findAll();
+				entityManagerToUse = entityManagerOracleH;
 			} else if (clazz.isAssignableFrom(Entity_MWaMTracecode.class)) {
-				return (List<T>) repositoryMWaMTraceCode.findAll();
+				entityManagerToUse = entityManagerOracleM;
 			}
+
+			CriteriaBuilder cb = entityManagerToUse.getCriteriaBuilder();
+			jakarta.persistence.criteria.CriteriaQuery<T> cq = cb.createQuery(clazz);
+			Root<T> root = cq.from(clazz);
+			cq.select(root);
+			
+			return entityManagerToUse.createQuery(cq).getResultList();
 
 		} catch (Exception e) {
 			log.error(e.getMessage());
@@ -245,14 +245,6 @@ public class ServiceOracle implements InterfaceDBOracle {
 		return null;
 	}
 
-//	@Override
-//	public <T> List<T> getAll(Class<T> clazz) {
-//		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-//		jakarta.persistence.criteria.CriteriaQuery<T> cq = cb.createQuery(clazz);
-//		Root<T> root = cq.from(clazz);
-//		cq.select(root);
-//		return entityManager.createQuery(cq).getResultList();
-//	}
 
 	@Override
 	public <T> void deleteAll(Class<T> clazz, int orderid) {

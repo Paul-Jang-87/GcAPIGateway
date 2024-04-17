@@ -22,6 +22,7 @@ public class BusinessLogic {
 
 		switch (division) {
 		case "홈":
+		case "Home":
 
 			business = "UCRM";
 			topic_id = "from_clcc_hmucrmcmpnma_message"; 
@@ -31,6 +32,7 @@ public class BusinessLogic {
 			break;
 
 		case "모바일":
+		case "Mobile":
 
 			business = "UCRM";
 			topic_id = "from_clcc_mblucrmcmpnma_message";
@@ -40,6 +42,7 @@ public class BusinessLogic {
 			break;
 
 		case "콜봇홈": 
+		case "CallbotHome": 
 
 			business = "Callbot";
 			topic_id = "from_clcc_hmaiccmpnma_message";
@@ -49,6 +52,7 @@ public class BusinessLogic {
 			break;
 
 		case "콜봇모바일":
+		case "CallbotMobile":
 
 			business = "Callbot";
 			topic_id = "from_clcc_mblaiccmpnma_message"; 

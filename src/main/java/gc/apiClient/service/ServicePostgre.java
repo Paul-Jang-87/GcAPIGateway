@@ -8,6 +8,8 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
+import java.util.TimeZone;
+
 import org.springframework.data.domain.Page;
 
 import org.json.JSONObject;
@@ -111,6 +113,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 			// Formatting the parsed date to the desired format
 			SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			outputFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 			String formattedDateString = outputFormat.format(parsedDate);
 			Date formattedDate = outputFormat.parse(formattedDateString);
 			didt = formattedDate;
@@ -187,6 +190,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		String didt = "";
 
 		SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		outputFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 		String formattedDateString = outputFormat.format(enCampRt.getDidt());
 		didt = formattedDateString;
 
@@ -203,6 +207,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		coid = Integer.toString(enCampMa.getCoid());
 		MappingCenter mappingData = new MappingCenter();
 		coid = mappingData.getCentercodeById(coid);
+		coid = coid != null ? coid : "EX";
 
 		JSONObject obj = new JSONObject();
 
@@ -229,10 +234,10 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
-	public Entity_CampMa createCampMaMsg(String msg, String crudtype) { // cpid::coid::cpna::division
+	public Entity_CampMa CreateEnCampMa(String msg) { // cpid::coid::cpna::division
 
 		log.info(" ");
-		log.info("====== ClassName : ServicePostgre & Method : createCampMaMsg ======");
+		log.info("====== ClassName : ServicePostgre & Method : CreateEnCampMa ======");
 
 		Entity_CampMa enCampMa = new Entity_CampMa();
 		String parts[] = msg.split("::");
@@ -240,28 +245,9 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		int coid = 0;
 		String cpna = "";
 
-		switch (crudtype) {// cpid::cpna::division::coid
-		case "insert":
-			log.info("action type : {}", crudtype);
-			cpid = parts[0];// 캠페인 아이디
-			coid = Integer.parseInt(parts[1]); // 센터구분 코드
-			cpna = parts[2]; // 캠페인 명
-			break;
-
-		case "update": // cpid::coid::cpna::divisionid::action
-			log.info("action type : {}", crudtype);
-			cpid = "";
-			coid = 0;
-			cpna = parts[2]; // 캠페인 명
-			break;
-
-		default: // cpid::coid::cpna::divisionid::action
-			log.info("action type : {}", crudtype);
-			cpid = parts[0];// 캠페인 아이디
-			coid = Integer.parseInt(parts[1]); // 센터구분 코드
-			cpna = "";
-			break;
-		}
+		cpid = parts[0];// 캠페인 아이디
+		coid = Integer.parseInt(parts[1]); // 센터구분 코드
+		cpna = parts[2]; // 캠페인 명
 
 		enCampMa.setCpid(cpid);
 		enCampMa.setCoid(coid);
@@ -271,15 +257,15 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		log.info("coid : {}", coid);
 		log.info("cpna : {}", cpna);
 
+		log.info("====== End CreateEnCampMa ======");
 		return enCampMa;
 	}
-	
-	
+
 	@Override
-	public Entity_CampMaJsonUcrm createCampMaUcrm(Entity_CampMa enCampMa, String datachgcd) throws Exception {
-		
+	public Entity_CampMaJsonUcrm JsonCampMaUcrm(Entity_CampMa enCampMa, String datachgcd) throws Exception {
+
 		log.info(" ");
-		log.info("====== ClassName : ServicePostgre & Method : createCampMaUcrm ======");
+		log.info("====== ClassName : ServicePostgre & Method : JsonCampMaUcrm ======");
 		Entity_CampMaJsonUcrm enCampMaJson = new Entity_CampMaJsonUcrm();
 		LocalDateTime now = LocalDateTime.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSSSSS");
@@ -291,7 +277,8 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 		case "insert":
 
-			coid = mappingData.getCentercodeById(Integer.toString(enCampMa.getCoid()));			
+			coid = mappingData.getCentercodeById(Integer.toString(enCampMa.getCoid()));
+			coid = coid != null ? coid : "EX";
 			enCampMaJson.setCenterCd(coid);
 			enCampMaJson.setCmpnId(enCampMa.getCpid());
 			enCampMaJson.setCmpnNm(enCampMa.getCpna());
@@ -320,7 +307,8 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 		default:
 
-			coid = mappingData.getCentercodeById(Integer.toString(enCampMa.getCoid()));		
+			coid = mappingData.getCentercodeById(Integer.toString(enCampMa.getCoid()));
+			coid = coid != null ? coid : "EX";
 			enCampMaJson.setCenterCd(coid);
 			enCampMaJson.setCmpnId(enCampMa.getCpid());
 			enCampMaJson.setCmpnNm("");
@@ -332,17 +320,16 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			enCampMaJson.setTopcDataIsueDtm(topcDataIsueDtm);
 			break;
 		}
-		
-		log.info("====== End createCampMaUcrm ======");
+
+		log.info("====== End JsonCampMaUcrm ======");
 		return enCampMaJson;
 	}
-	
 
 	@Override
-	public Entity_CampMaJson createCampMaJson(Entity_CampMa enCampMa, String datachgcd) { // cpid::cpna::division::coid
+	public Entity_CampMaJson JsonCampMaCallbot(Entity_CampMa enCampMa, String datachgcd) { // cpid::cpna::division::coid
 
 		log.info(" ");
-		log.info("====== ClassName : ServicePostgre & Method : createCampMaJson ======");
+		log.info("====== ClassName : ServicePostgre & Method : JsonCampMaCallbot ======");
 		Entity_CampMaJson enCampMaJson = new Entity_CampMaJson();
 		LocalDateTime now = LocalDateTime.now();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSSSSS");
@@ -351,23 +338,10 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		switch (datachgcd) {
 
 		case "insert":
+		case "update":
 
 			enCampMaJson.setTenantId(Integer.toString(enCampMa.getCoid()));
 			enCampMaJson.setCmpnId(enCampMa.getCpid());
-			enCampMaJson.setCmpnNm(enCampMa.getCpna());
-
-			topcDataIsueDtm = now.format(formatter);
-
-			enCampMaJson.setDataChgCd(datachgcd);
-			enCampMaJson.setDataDelYn("N");
-			enCampMaJson.setTopcDataIsueDtm(topcDataIsueDtm);
-
-			break;
-
-		case "update":
-
-			enCampMaJson.setTenantId("");
-			enCampMaJson.setCmpnId("");
 			enCampMaJson.setCmpnNm(enCampMa.getCpna());
 
 			topcDataIsueDtm = now.format(formatter);
@@ -391,8 +365,8 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			enCampMaJson.setTopcDataIsueDtm(topcDataIsueDtm);
 			break;
 		}
-		
-		log.info("====== End createCampMaJson ======");
+
+		log.info("====== End JsonCampMaCallbot ======");
 		return enCampMaJson;
 
 	}
@@ -412,7 +386,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		case "insert":
 
 			coid = mappingData.getCentercodeById(Integer.toString(enCampMa.getCoid()));
-
+			coid = coid != null ? coid : "EX";
 			obj.put("cpid", enCampMa.getCpid());
 			obj.put("gubun", coid);
 			obj.put("cpna", enCampMa.getCpna());
@@ -423,7 +397,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		case "update":
 
 			coid = mappingData.getCentercodeById(Integer.toString(enCampMa.getCoid()));
-
+			coid = coid != null ? coid : "EX";
 			obj.put("cpid", enCampMa.getCpid());
 			obj.put("gubun", coid);
 			obj.put("cpna", enCampMa.getCpna());
@@ -434,12 +408,12 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		default:
 
 			coid = mappingData.getCentercodeById(Integer.toString(enCampMa.getCoid()));
-
+			coid = coid != null ? coid : "EX";
 			obj.put("cpid", enCampMa.getCpid());
 			obj.put("gubun", coid);
 			obj.put("cpna", enCampMa.getCpna());
 			obj.put("cmd", datachgcd);
-			
+
 			break;
 		}
 		log.info("====== End createMaMsgApim ======");
@@ -519,13 +493,12 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		JSONObject jsonObj = new JSONObject(msg);
 		String payload = jsonObj.getString("payload");
 		JSONObject payloadObject = new JSONObject(payload);
-		
 
 		try {
-			String ctiCmpnId = payloadObject.optString("ctiCmpnId","");
-			String ctiCmpnSno = payloadObject.optString("ctiCmpnSno","");
-			String cablTlno = payloadObject.optString("cablTlno","");
-			String custNm = payloadObject.optString("custNm","");
+			String ctiCmpnId = payloadObject.optString("ctiCmpnId", "");
+			String ctiCmpnSno = payloadObject.optString("ctiCmpnSno", "");
+			String cablTlno = payloadObject.optString("cablTlno", "");
+			String custNm = payloadObject.optString("custNm", "");
 			String custTlno = payloadObject.optString("custTlno", "");
 
 			id.setCpid(ctiCmpnId);
@@ -534,14 +507,14 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			enUcrm.setCablTlno(cablTlno);
 			enUcrm.setCustNm(custNm);
 			enUcrm.setCustTlno(custTlno);
-			enUcrm.setHldrCustId(payloadObject.optString("hldrCustId",""));
-			enUcrm.setSubssDataChgCd(payloadObject.optString("subssDataChgCd",""));
-			enUcrm.setSubssDataDelYn(payloadObject.optString("subssDataDelYn",""));
-			enUcrm.setTlno(payloadObject.optString("tlno",""));
-			enUcrm.setTopcDataIsueDtm(payloadObject.optString("topcDataIsueDtm",""));
-			enUcrm.setTopcDataIsueSno(payloadObject.optString("topcDataIsueSno",""));
-			enUcrm.setTrdtCntn(payloadObject.optString("trdtCntn",""));
-			enUcrm.setWorkDivsCd(payloadObject.optString("workDivsCd",""));
+			enUcrm.setHldrCustId(payloadObject.optString("hldrCustId", ""));
+			enUcrm.setSubssDataChgCd(payloadObject.optString("subssDataChgCd", ""));
+			enUcrm.setSubssDataDelYn(payloadObject.optString("subssDataDelYn", ""));
+			enUcrm.setTlno(payloadObject.optString("tlno", ""));
+			enUcrm.setTopcDataIsueDtm(payloadObject.optString("topcDataIsueDtm", ""));
+			enUcrm.setTopcDataIsueSno(payloadObject.optString("topcDataIsueSno", ""));
+			enUcrm.setTrdtCntn(payloadObject.optString("trdtCntn", ""));
+			enUcrm.setWorkDivsCd(payloadObject.optString("workDivsCd", ""));
 
 //			log.info("citCmpnId : {}", payloadObject.getString("ctiCmpnId"));
 //			log.info("citCmpnSno : {}", payloadObject.getString("ctiCmpnSno"));
@@ -748,7 +721,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	public void DelCampMaById(String cpid) {
 		repositoryCampMa.deleteById(cpid);
 	}
-	
+
 	@Override
 	public void DelUcrmLtById(String topcDataIsueSno) {
 		repositoryUcrm.deleteByTopcDataIsueSno(topcDataIsueSno);
@@ -767,6 +740,5 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			throw new EntityNotFoundException("No Entity has been found with CPID: " + cpid);
 		}
 	}
-
 
 }

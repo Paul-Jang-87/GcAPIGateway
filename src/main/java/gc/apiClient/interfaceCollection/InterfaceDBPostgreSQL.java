@@ -18,9 +18,9 @@ public interface InterfaceDBPostgreSQL {
 	//table 별 매핑
 	Entity_CampRt createCampRtMsg(String cpid) throws Exception;
 	JSONObject createCampRtJson(Entity_CampRt enCampRt,String business) throws Exception;
-	Entity_CampMaJson createCampMaJson(Entity_CampMa enCampMa, String datachgcd) throws Exception;
-	Entity_CampMaJsonUcrm createCampMaUcrm(Entity_CampMa enCampMa, String datachgcd) throws Exception;
-	Entity_CampMa createCampMaMsg(String cpid, String crudtype) throws Exception;
+	Entity_CampMaJson JsonCampMaCallbot(Entity_CampMa enCampMa, String datachgcd) throws Exception;
+	Entity_CampMaJsonUcrm JsonCampMaUcrm(Entity_CampMa enCampMa, String datachgcd) throws Exception;
+	Entity_CampMa CreateEnCampMa(String cpid) throws Exception;
 	Entity_ContactLt createContactLtMsg(String msg) throws Exception;
 	Entity_ContactLt createContactUcrm(Entity_Ucrm entityUcrm) throws Exception;
 	Entity_Ucrm createUcrm(String msg) throws Exception;

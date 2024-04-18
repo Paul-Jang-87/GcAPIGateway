@@ -11,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 @Data
 @Entity
 @Table(name = "WA_DATA_CALL_OPTIONAL_W")
+//@Table(name = "IPIVRADM.WA_DATA_CALL_OPTIONAL_W")
 public class Entity_WaDataCallOptional {
 	
 	
@@ -33,7 +34,7 @@ public class Entity_WaDataCallOptional {
  	private Integer new_wcseq;
 	
 	@Column(name = "NEW_DATA02")
-	private String new_data02;
+	private String new_data02 = "";
 	
 	public Entity_WaDataCallOptional(){
 		

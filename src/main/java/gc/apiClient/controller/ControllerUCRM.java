@@ -332,7 +332,7 @@ public class ControllerUCRM extends ServiceJson {
 
 			Map<String, String> properties = customProperties.getDivision();
 			String divisionName = properties.getOrDefault(division, "couldn't find division");
-
+			
 			Map<String, String> businessLogic = BusinessLogic.SelectedBusiness(divisionName);
 
 			String endpoint = "";
@@ -714,13 +714,17 @@ public class ControllerUCRM extends ServiceJson {
 
 				List<String> values = new ArrayList<String>();
 				for (int k = 0; k < enContactList.size(); k++) {
-					values.add(enContactList.get(k).getCske());
+					values.add(Integer.toString(enContactList.get(k).getId().getCpsq()));
 
 					if (values.size() >= 50) {
+						
+						
+						
 						result = serviceWeb.PostContactLtApiBulk("contactList", contactLtId, values);
 
 						if (result.equals("[]")) {
 							log.info("No result, skip to next");
+							values.clear();
 							continue;
 						}
 						// 캠페인이 어느 비즈니스 로직인지 판단하기 위해서 일단 목록 중 하나만 꺼내서 확인해 보도록한다.
@@ -767,7 +771,7 @@ public class ControllerUCRM extends ServiceJson {
 
 										MessageToProducer producer = new MessageToProducer();
 										endpoint = "/gcapi/post/" + topic_id;
-										producer.sendMsgToProducer(endpoint, jsonString);
+//										producer.sendMsgToProducer(endpoint, jsonString);
 
 									} catch (Exception e) {
 										e.printStackTrace();
@@ -783,9 +787,8 @@ public class ControllerUCRM extends ServiceJson {
 									log.error("DataAccessException 발생 : {}", ex.getMessage());
 								}
 							}
-
-							break;
-
+							values.clear();
+							continue;
 						default:
 
 							for (int i = 0; i < enContactList.size(); i++) {
@@ -813,15 +816,15 @@ public class ControllerUCRM extends ServiceJson {
 								// 192.168.219.134:8084/dspRslt
 								MessageToApim apim = new MessageToApim();
 								endpoint = "/dspRslt";
-								apim.sendMsgToApim(endpoint, jsonString);
+//								apim.sendMsgToApim(endpoint, jsonString);
 								log.info("CAMPRT 로직, APIM으로 보냄. : {} ", jsonString);
 
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
-							break;
+							values.clear();
+							continue;
 						}
-						values.clear();
 					}
 				}
 
@@ -832,6 +835,7 @@ public class ControllerUCRM extends ServiceJson {
 
 				if (result.equals("[]")) {
 					log.info("No result, So break");
+					values.clear();
 					break;
 				}
 
@@ -876,7 +880,7 @@ public class ControllerUCRM extends ServiceJson {
 
 								MessageToProducer producer = new MessageToProducer();
 								endpoint = "/gcapi/post/" + topic_id;
-								producer.sendMsgToProducer(endpoint, jsonString);
+//								producer.sendMsgToProducer(endpoint, jsonString);
 
 							} catch (Exception e) {
 								e.printStackTrace();
@@ -922,7 +926,7 @@ public class ControllerUCRM extends ServiceJson {
 						// 192.168.219.134:8084/dspRslt
 						MessageToApim apim = new MessageToApim();
 						endpoint = "/dspRslt";
-						apim.sendMsgToApim(endpoint, jsonString);
+//						apim.sendMsgToApim(endpoint, jsonString);
 						log.info("CAMPRT 로직, APIM으로 보냄. : {} ", jsonString);
 
 					} catch (Exception e) {
@@ -942,6 +946,7 @@ public class ControllerUCRM extends ServiceJson {
 			log.error("Error Message : {} ", e.getMessage());
 
 		}
+		
 
 		return Mono.just(ResponseEntity.ok("'receiveMessage' got message successfully."));
 	}
@@ -953,7 +958,7 @@ public class ControllerUCRM extends ServiceJson {
 
 			String topic_id = "from_clcc_hmcepcalldt_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("the number of records : {}", numberOfRecords);
+			log.info("(DataCall) the number of records : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -961,9 +966,6 @@ public class ControllerUCRM extends ServiceJson {
 				// 2. crud 구분해서 메시지 키를 정한다.
 				// 3. 프로듀서로 메시지 재가공해서 보낸다.
 				List<Entity_DataCall> entitylist = serviceOracle.getAll(Entity_DataCall.class);
-
-				log.info("entitylist : {}", entitylist.toString());
-				log.info("entitylist size : {}", entitylist.size());
 
 				for (int i = 0; i < entitylist.size(); i++) {
 
@@ -990,7 +992,7 @@ public class ControllerUCRM extends ServiceJson {
 		try {
 			String topic_id = "from_clcc_mblcepcalldt_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("the number of records : {}", numberOfRecords);
+			log.info("(MDataCall) the number of records : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -1024,7 +1026,7 @@ public class ControllerUCRM extends ServiceJson {
 		try {
 			String topic_id = "from_clcc_hmcepcalldtcust_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("the number of records : {}", numberOfRecords);
+			log.info("(DataCallCustomer) the number of records : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -1058,7 +1060,7 @@ public class ControllerUCRM extends ServiceJson {
 
 			String topic_id = "from_clcc_mblcepcalldtcust_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("the number of records : {}", numberOfRecords);
+			log.info("(MDataCallCustomer) the number of records : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -1091,7 +1093,7 @@ public class ControllerUCRM extends ServiceJson {
 		try {
 			String topic_id = "from_clcc_hmcepcallsvccd_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("the number of records : {}", numberOfRecords);
+			log.info("(DataCallService) the number of records : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -1123,7 +1125,7 @@ public class ControllerUCRM extends ServiceJson {
 		try {
 			String topic_id = "from_clcc_mblcepcallsvccd_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("the number of records : {}", numberOfRecords);
+			log.info("(MDataCallService) the number of records : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -1154,7 +1156,7 @@ public class ControllerUCRM extends ServiceJson {
 		try {
 			String topic_id = "from_clcc_hmcepcallmstrsvccd_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("the number of records : {}", numberOfRecords);
+			log.info("(MasterServiceCode) the number of records : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -1186,7 +1188,7 @@ public class ControllerUCRM extends ServiceJson {
 		try {
 			String topic_id = "from_clcc_mblcepcallmstrsvccd_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("the number of records : {}", numberOfRecords);
+			log.info("(MMasterServiceCode) the number of records : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -1217,7 +1219,7 @@ public class ControllerUCRM extends ServiceJson {
 		try {
 			String topic_id = "from_clcc_hmcepwacalldt_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("the number of records : {}", numberOfRecords);
+			log.info("(WaDataCall) the number of records : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -1248,7 +1250,7 @@ public class ControllerUCRM extends ServiceJson {
 		try {
 			String topic_id = "from_clcc_mblcepwacalldt_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("the number of records : {}", numberOfRecords);
+			log.info("(MWaDataCall) the number of records : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -1279,7 +1281,7 @@ public class ControllerUCRM extends ServiceJson {
 		try {
 			String topic_id = "from_clcc_hmcepwacallopt_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("the number of records : {}", numberOfRecords);
+			log.info("(WaDataCallOptional) the number of records : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -1294,6 +1296,7 @@ public class ControllerUCRM extends ServiceJson {
 					int orderid = entitylist.get(i).getOrderid();
 					MessageTo360View.SendMsgTo360View(topic_id,
 							serviceMsgObjOrcl.WaDataCallOptionalMsg(entitylist.get(i), crudtype));
+					
 					serviceOracle.deleteAll(Entity_WaDataCallOptional.class, orderid);
 				}
 			}
@@ -1310,7 +1313,7 @@ public class ControllerUCRM extends ServiceJson {
 		try {
 			String topic_id = "from_clcc_mblcepwacallopt_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("the number of records : {}", numberOfRecords);
+			log.info("(MWaDataCallOptional) the number of records : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -1342,7 +1345,7 @@ public class ControllerUCRM extends ServiceJson {
 
 			String topic_id = "from_clcc_hmcepwacalltr_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("the number of records : {}", numberOfRecords);
+			log.info("(WaDataCallTrace) the number of records : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -1375,7 +1378,7 @@ public class ControllerUCRM extends ServiceJson {
 		try {
 			String topic_id = "from_clcc_mblcepwacalltr_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("the number of records : {}", numberOfRecords);
+			log.info("(MWaDataCallTrace) the number of records : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -1406,7 +1409,7 @@ public class ControllerUCRM extends ServiceJson {
 		try {
 			String topic_id = "from_clcc_hmcepwatrcd_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("the number of records : {}", numberOfRecords);
+			log.info("(WaMTracecode) the number of records : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -1437,7 +1440,7 @@ public class ControllerUCRM extends ServiceJson {
 		try {
 			String topic_id = "from_clcc_mblcepwatrcd_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("the number of records : {}", numberOfRecords);
+			log.info("(MWaMTracecode) the number of records : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 

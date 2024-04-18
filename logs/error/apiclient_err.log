@@ -1,667 +1,228 @@
-ERROR 24-04-17 09:59:33[reactor-http-nio-3] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-04-17 09:59:33[reactor-http-nio-3] [MessageToProducer:34] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-04-17 10:03:49[boundedElastic-6] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:00:28[reactor-http-nio-3] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-18 10:00:28[reactor-http-nio-4] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-18 10:00:28[reactor-http-nio-4] [MessageToProducer:34] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-18 10:00:28[reactor-http-nio-3] [MessageToProducer:34] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-18 10:00:28[reactor-http-nio-5] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-18 10:00:28[reactor-http-nio-5] [MessageToProducer:34] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-18 10:00:28[reactor-http-nio-6] [MessageToApim:31] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8084
+ERROR 24-04-18 10:00:28[reactor-http-nio-7] [MessageToApim:31] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8084
+ERROR 24-04-18 10:00:28[reactor-http-nio-8] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-18 10:00:28[reactor-http-nio-8] [MessageToProducer:34] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-18 10:00:59[http-nio-8083-exec-2] [ServicePostgre:692] - records can't be found with 51db18f1-481b-4826-a887-62566d9a3c0d
+ERROR 24-04-18 10:00:59[http-nio-8083-exec-2] [ControllerUCRM:941] - Error Message : Cannot invoke "java.util.List.size()" because "enContactList" is null 
+ERROR 24-04-18 10:15:28[boundedElastic-9] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:03:49[boundedElastic-5] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:28[boundedElastic-17] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:03:49[boundedElastic-14] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:28[boundedElastic-8] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:03:49[boundedElastic-17] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:28[boundedElastic-2] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:03:49[boundedElastic-16] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:28[boundedElastic-18] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:03:49[boundedElastic-12] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:28[boundedElastic-10] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:03:49[boundedElastic-7] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:28[boundedElastic-7] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:03:49[boundedElastic-11] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:28[boundedElastic-13] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:03:49[boundedElastic-15] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:28[boundedElastic-3] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:03:49[boundedElastic-8] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:28[boundedElastic-11] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:03:49[boundedElastic-13] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:03:49[boundedElastic-5] [ControllerUCRM:1115] - Error Message : JDBC exception executing SQL [select count(edcs1_0.ORDERID) from DATA_CALL_SERVICE_W edcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:03:49[boundedElastic-9] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:03:49[boundedElastic-8] [ControllerUCRM:1147] - Error Message : JDBC exception executing SQL [select count(emcs1_0.ORDERID) from DATA_CALL_SERVICE_W emcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:03:49[boundedElastic-12] [ControllerUCRM:1334] - Error Message : JDBC exception executing SQL [select count(emdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W emdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:03:49[boundedElastic-10] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:03:49[boundedElastic-11] [ControllerUCRM:1272] - Error Message : JDBC exception executing SQL [select count(emdc1_0.ORDERID) from WA_DATA_CALL_W emdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:03:49[boundedElastic-18] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:03:49[boundedElastic-18] [ControllerUCRM:1430] - Error Message : JDBC exception executing SQL [select count(ewm1_0.ORDERID) from WA_M_TRACECODE_W ewm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:03:49[boundedElastic-6] [ControllerUCRM:1016] - Error Message : JDBC exception executing SQL [select count(emc1_0.ORDERID) from DATA_CALL_W emc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:03:49[boundedElastic-3] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:03:49[boundedElastic-17] [ControllerUCRM:1367] - Error Message : JDBC exception executing SQL [select count(ewdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W ewdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:03:49[boundedElastic-16] [ControllerUCRM:1303] - Error Message : JDBC exception executing SQL [select count(ewdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W ewdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:03:49[boundedElastic-7] [ControllerUCRM:1083] - Error Message : JDBC exception executing SQL [select count(emcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W emcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:03:49[boundedElastic-14] [ControllerUCRM:1461] - Error Message : JDBC exception executing SQL [select count(emm1_0.ORDERID) from WA_M_TRACECODE_W emm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:03:49[boundedElastic-3] [ControllerUCRM:1049] - Error Message : JDBC exception executing SQL [select count(edcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W edcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:03:49[boundedElastic-10] [ControllerUCRM:1178] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:03:49[boundedElastic-15] [ControllerUCRM:1241] - Error Message : JDBC exception executing SQL [select count(ewdc1_0.ORDERID) from WA_DATA_CALL_W ewdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:03:49[boundedElastic-13] [ControllerUCRM:1399] - Error Message : JDBC exception executing SQL [select count(emdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W emdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:03:49[boundedElastic-9] [ControllerUCRM:1210] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:03:51[reactor-http-nio-5] [MessageTo360View:32] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-04-17 10:03:51[reactor-http-nio-5] [MessageTo360View:38] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-04-17 10:03:51[reactor-http-nio-3] [MessageTo360View:32] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-04-17 10:03:51[reactor-http-nio-3] [MessageTo360View:38] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-04-17 10:15:23[boundedElastic-16] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:15:23[boundedElastic-13] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:15:23[boundedElastic-3] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:15:23[boundedElastic-11] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:15:23[boundedElastic-12] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:15:23[boundedElastic-7] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:15:23[boundedElastic-17] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:15:23[boundedElastic-18] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:15:23[boundedElastic-8] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:15:23[boundedElastic-4] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:15:23[boundedElastic-6] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:15:23[boundedElastic-14] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:15:23[boundedElastic-5] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:15:23[boundedElastic-9] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:15:23[boundedElastic-10] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:15:23[boundedElastic-2] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:15:23[boundedElastic-2] [ControllerUCRM:981] - JDBC exception executing SQL [select count(edc1_0.ORDERID) from DATA_CALL_W edc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:15:23[boundedElastic-12] [ControllerUCRM:1399] - Error Message : JDBC exception executing SQL [select count(emdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W emdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:15:23[boundedElastic-7] [ControllerUCRM:1147] - Error Message : JDBC exception executing SQL [select count(emcs1_0.ORDERID) from DATA_CALL_SERVICE_W emcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:15:23[boundedElastic-16] [ControllerUCRM:1303] - Error Message : JDBC exception executing SQL [select count(ewdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W ewdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:15:23[boundedElastic-3] [ControllerUCRM:1049] - Error Message : JDBC exception executing SQL [select count(edcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W edcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:15:23[boundedElastic-11] [ControllerUCRM:1334] - Error Message : JDBC exception executing SQL [select count(emdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W emdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:15:23[boundedElastic-8] [ControllerUCRM:1210] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:15:23[boundedElastic-5] [ControllerUCRM:1016] - Error Message : JDBC exception executing SQL [select count(emc1_0.ORDERID) from DATA_CALL_W emc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:15:23[boundedElastic-14] [ControllerUCRM:1241] - Error Message : JDBC exception executing SQL [select count(ewdc1_0.ORDERID) from WA_DATA_CALL_W ewdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:15:23[boundedElastic-6] [ControllerUCRM:1083] - Error Message : JDBC exception executing SQL [select count(emcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W emcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:15:23[boundedElastic-17] [ControllerUCRM:1367] - Error Message : JDBC exception executing SQL [select count(ewdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W ewdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:15:23[boundedElastic-10] [ControllerUCRM:1272] - Error Message : JDBC exception executing SQL [select count(emdc1_0.ORDERID) from WA_DATA_CALL_W emdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:15:23[boundedElastic-9] [ControllerUCRM:1178] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:15:23[boundedElastic-4] [ControllerUCRM:1115] - Error Message : JDBC exception executing SQL [select count(edcs1_0.ORDERID) from DATA_CALL_SERVICE_W edcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:15:23[boundedElastic-18] [ControllerUCRM:1430] - Error Message : JDBC exception executing SQL [select count(ewm1_0.ORDERID) from WA_M_TRACECODE_W ewm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:15:23[boundedElastic-13] [ControllerUCRM:1461] - Error Message : JDBC exception executing SQL [select count(emm1_0.ORDERID) from WA_M_TRACECODE_W emm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:16:22[boundedElastic-17] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:16:22[boundedElastic-2] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:16:22[boundedElastic-2] [ControllerUCRM:1115] - Error Message : JDBC exception executing SQL [select count(edcs1_0.ORDERID) from DATA_CALL_SERVICE_W edcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:16:22[boundedElastic-13] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:16:22[boundedElastic-13] [ControllerUCRM:981] - JDBC exception executing SQL [select count(edc1_0.ORDERID) from DATA_CALL_W edc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:16:22[boundedElastic-17] [ControllerUCRM:1210] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:16:22[boundedElastic-6] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:16:22[boundedElastic-4] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:16:22[boundedElastic-8] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:16:22[boundedElastic-6] [ControllerUCRM:1178] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:16:22[boundedElastic-18] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:16:22[boundedElastic-4] [ControllerUCRM:1016] - Error Message : JDBC exception executing SQL [select count(emc1_0.ORDERID) from DATA_CALL_W emc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:16:22[boundedElastic-18] [ControllerUCRM:1049] - Error Message : JDBC exception executing SQL [select count(edcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W edcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:16:22[boundedElastic-11] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:16:22[boundedElastic-3] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:16:22[boundedElastic-8] [ControllerUCRM:1334] - Error Message : JDBC exception executing SQL [select count(emdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W emdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:16:22[boundedElastic-16] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:16:22[boundedElastic-7] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:16:22[boundedElastic-11] [ControllerUCRM:1399] - Error Message : JDBC exception executing SQL [select count(emdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W emdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:16:22[boundedElastic-12] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:16:22[boundedElastic-15] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:16:22[boundedElastic-3] [ControllerUCRM:1461] - Error Message : JDBC exception executing SQL [select count(emm1_0.ORDERID) from WA_M_TRACECODE_W emm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:16:22[boundedElastic-16] [ControllerUCRM:1241] - Error Message : JDBC exception executing SQL [select count(ewdc1_0.ORDERID) from WA_DATA_CALL_W ewdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:16:22[boundedElastic-9] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:16:22[boundedElastic-7] [ControllerUCRM:1303] - Error Message : JDBC exception executing SQL [select count(ewdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W ewdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:16:22[boundedElastic-14] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:16:22[boundedElastic-15] [ControllerUCRM:1430] - Error Message : JDBC exception executing SQL [select count(ewm1_0.ORDERID) from WA_M_TRACECODE_W ewm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:16:22[boundedElastic-12] [ControllerUCRM:1367] - Error Message : JDBC exception executing SQL [select count(ewdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W ewdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:16:22[boundedElastic-9] [ControllerUCRM:1083] - Error Message : JDBC exception executing SQL [select count(emcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W emcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:16:22[boundedElastic-14] [ControllerUCRM:1272] - Error Message : JDBC exception executing SQL [select count(emdc1_0.ORDERID) from WA_DATA_CALL_W emdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:16:22[boundedElastic-10] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:16:22[boundedElastic-10] [ControllerUCRM:1147] - Error Message : JDBC exception executing SQL [select count(emcs1_0.ORDERID) from DATA_CALL_SERVICE_W emcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:17:22[boundedElastic-10] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:17:22[boundedElastic-10] [ControllerUCRM:981] - JDBC exception executing SQL [select count(edc1_0.ORDERID) from DATA_CALL_W edc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:17:22[boundedElastic-7] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:17:22[boundedElastic-12] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:17:22[boundedElastic-6] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:17:22[boundedElastic-16] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:17:22[boundedElastic-11] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:17:22[boundedElastic-4] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:17:22[boundedElastic-17] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:17:22[boundedElastic-2] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:17:22[boundedElastic-18] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:17:22[boundedElastic-13] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:17:22[boundedElastic-14] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:17:22[boundedElastic-15] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:17:22[boundedElastic-9] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:17:22[boundedElastic-3] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:17:22[boundedElastic-8] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:17:22[boundedElastic-7] [ControllerUCRM:1083] - Error Message : JDBC exception executing SQL [select count(emcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W emcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:17:22[boundedElastic-12] [ControllerUCRM:1115] - Error Message : JDBC exception executing SQL [select count(edcs1_0.ORDERID) from DATA_CALL_SERVICE_W edcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:17:22[boundedElastic-16] [ControllerUCRM:1147] - Error Message : JDBC exception executing SQL [select count(emcs1_0.ORDERID) from DATA_CALL_SERVICE_W emcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:17:22[boundedElastic-6] [ControllerUCRM:1461] - Error Message : JDBC exception executing SQL [select count(emm1_0.ORDERID) from WA_M_TRACECODE_W emm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:17:22[boundedElastic-11] [ControllerUCRM:1178] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:17:22[boundedElastic-4] [ControllerUCRM:1399] - Error Message : JDBC exception executing SQL [select count(emdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W emdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:17:22[boundedElastic-18] [ControllerUCRM:1334] - Error Message : JDBC exception executing SQL [select count(emdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W emdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:17:22[boundedElastic-2] [ControllerUCRM:1430] - Error Message : JDBC exception executing SQL [select count(ewm1_0.ORDERID) from WA_M_TRACECODE_W ewm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:17:22[boundedElastic-15] [ControllerUCRM:1016] - Error Message : JDBC exception executing SQL [select count(emc1_0.ORDERID) from DATA_CALL_W emc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:17:22[boundedElastic-17] [ControllerUCRM:1367] - Error Message : JDBC exception executing SQL [select count(ewdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W ewdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:17:22[boundedElastic-13] [ControllerUCRM:1303] - Error Message : JDBC exception executing SQL [select count(ewdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W ewdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:28[boundedElastic-2] [ControllerUCRM:976] - JDBC exception executing SQL [select count(edc1_0.ORDERID) from DATA_CALL_W edc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:17:22[boundedElastic-14] [ControllerUCRM:1049] - Error Message : JDBC exception executing SQL [select count(edcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W edcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:17:22[boundedElastic-9] [ControllerUCRM:1241] - Error Message : JDBC exception executing SQL [select count(ewdc1_0.ORDERID) from WA_DATA_CALL_W ewdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:17:22[boundedElastic-3] [ControllerUCRM:1210] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:17:22[boundedElastic-8] [ControllerUCRM:1272] - Error Message : JDBC exception executing SQL [select count(emdc1_0.ORDERID) from WA_DATA_CALL_W emdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:18:22[boundedElastic-15] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:18:22[boundedElastic-15] [ControllerUCRM:1147] - Error Message : JDBC exception executing SQL [select count(emcs1_0.ORDERID) from DATA_CALL_SERVICE_W emcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:18:22[boundedElastic-3] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:18:22[boundedElastic-11] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:18:22[boundedElastic-12] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:18:22[boundedElastic-13] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:18:22[boundedElastic-2] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:18:22[boundedElastic-7] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:18:22[boundedElastic-6] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:18:22[boundedElastic-4] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:18:22[boundedElastic-8] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:18:22[boundedElastic-17] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:18:22[boundedElastic-16] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:18:22[boundedElastic-10] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:18:22[boundedElastic-18] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:18:22[boundedElastic-9] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:18:22[boundedElastic-14] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:18:22[boundedElastic-8] [ControllerUCRM:981] - JDBC exception executing SQL [select count(edc1_0.ORDERID) from DATA_CALL_W edc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:18:22[boundedElastic-3] [ControllerUCRM:1115] - Error Message : JDBC exception executing SQL [select count(edcs1_0.ORDERID) from DATA_CALL_SERVICE_W edcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:18:22[boundedElastic-12] [ControllerUCRM:1303] - Error Message : JDBC exception executing SQL [select count(ewdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W ewdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:18:22[boundedElastic-7] [ControllerUCRM:1367] - Error Message : JDBC exception executing SQL [select count(ewdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W ewdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:18:22[boundedElastic-6] [ControllerUCRM:1461] - Error Message : JDBC exception executing SQL [select count(emm1_0.ORDERID) from WA_M_TRACECODE_W emm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:18:22[boundedElastic-2] [ControllerUCRM:1210] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:18:22[boundedElastic-11] [ControllerUCRM:1334] - Error Message : JDBC exception executing SQL [select count(emdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W emdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:18:22[boundedElastic-4] [ControllerUCRM:1272] - Error Message : JDBC exception executing SQL [select count(emdc1_0.ORDERID) from WA_DATA_CALL_W emdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:18:22[boundedElastic-17] [ControllerUCRM:1083] - Error Message : JDBC exception executing SQL [select count(emcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W emcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:18:22[boundedElastic-16] [ControllerUCRM:1241] - Error Message : JDBC exception executing SQL [select count(ewdc1_0.ORDERID) from WA_DATA_CALL_W ewdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:18:22[boundedElastic-10] [ControllerUCRM:1430] - Error Message : JDBC exception executing SQL [select count(ewm1_0.ORDERID) from WA_M_TRACECODE_W ewm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:18:22[boundedElastic-18] [ControllerUCRM:1178] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:18:22[boundedElastic-9] [ControllerUCRM:1049] - Error Message : JDBC exception executing SQL [select count(edcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W edcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:18:22[boundedElastic-14] [ControllerUCRM:1016] - Error Message : JDBC exception executing SQL [select count(emc1_0.ORDERID) from DATA_CALL_W emc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:18:22[boundedElastic-13] [ControllerUCRM:1399] - Error Message : JDBC exception executing SQL [select count(emdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W emdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:18:22[boundedElastic-1] [ControllerUCRM:305] - Error Messge : Connection prematurely closed BEFORE response
-ERROR 24-04-17 10:20:36[boundedElastic-11] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:20:36[boundedElastic-4] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:20:36[boundedElastic-10] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:20:36[boundedElastic-14] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:20:36[boundedElastic-8] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:20:36[boundedElastic-9] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:28[boundedElastic-6] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:20:36[boundedElastic-17] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:28[boundedElastic-12] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:20:36[boundedElastic-16] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:28[boundedElastic-16] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:20:36[boundedElastic-18] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:28[boundedElastic-15] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:20:36[boundedElastic-6] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:28[boundedElastic-5] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:20:36[boundedElastic-7] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:28[boundedElastic-14] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:20:36[boundedElastic-15] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:20:36[boundedElastic-3] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:20:36[boundedElastic-12] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:20:36[boundedElastic-13] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:20:36[boundedElastic-5] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 10:20:36[boundedElastic-3] [ControllerUCRM:981] - JDBC exception executing SQL [select count(edc1_0.ORDERID) from DATA_CALL_W edc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:28[boundedElastic-7] [ControllerUCRM:1078] - Error Message : JDBC exception executing SQL [select count(emcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W emcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:20:36[boundedElastic-12] [ControllerUCRM:1334] - Error Message : JDBC exception executing SQL [select count(emdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W emdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:28[boundedElastic-3] [ControllerUCRM:1044] - Error Message : JDBC exception executing SQL [select count(edcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W edcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:20:36[boundedElastic-13] [ControllerUCRM:1399] - Error Message : JDBC exception executing SQL [select count(emdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W emdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:28[boundedElastic-18] [ControllerUCRM:1425] - Error Message : JDBC exception executing SQL [select count(ewm1_0.ORDERID) from WA_M_TRACECODE_W ewm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:20:36[boundedElastic-11] [ControllerUCRM:1272] - Error Message : JDBC exception executing SQL [select count(emdc1_0.ORDERID) from WA_DATA_CALL_W emdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:28[boundedElastic-14] [ControllerUCRM:1456] - Error Message : JDBC exception executing SQL [select count(emm1_0.ORDERID) from WA_M_TRACECODE_W emm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:20:36[boundedElastic-17] [ControllerUCRM:1367] - Error Message : JDBC exception executing SQL [select count(ewdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W ewdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:28[boundedElastic-5] [ControllerUCRM:1110] - Error Message : JDBC exception executing SQL [select count(edcs1_0.ORDERID) from DATA_CALL_SERVICE_W edcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:20:36[boundedElastic-10] [ControllerUCRM:1178] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:28[boundedElastic-12] [ControllerUCRM:1329] - Error Message : JDBC exception executing SQL [select count(emdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W emdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:20:36[boundedElastic-15] [ControllerUCRM:1241] - Error Message : JDBC exception executing SQL [select count(ewdc1_0.ORDERID) from WA_DATA_CALL_W ewdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:28[boundedElastic-15] [ControllerUCRM:1236] - Error Message : JDBC exception executing SQL [select count(ewdc1_0.ORDERID) from WA_DATA_CALL_W ewdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:20:36[boundedElastic-9] [ControllerUCRM:1210] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:28[boundedElastic-6] [ControllerUCRM:1011] - Error Message : JDBC exception executing SQL [select count(emc1_0.ORDERID) from DATA_CALL_W emc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:20:36[boundedElastic-6] [ControllerUCRM:1016] - Error Message : JDBC exception executing SQL [select count(emc1_0.ORDERID) from DATA_CALL_W emc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:29[boundedElastic-10] [ControllerUCRM:1173] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:20:36[boundedElastic-16] [ControllerUCRM:1303] - Error Message : JDBC exception executing SQL [select count(ewdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W ewdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:29[boundedElastic-16] [ControllerUCRM:1298] - Error Message : JDBC exception executing SQL [select count(ewdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W ewdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:20:36[boundedElastic-4] [ControllerUCRM:1049] - Error Message : JDBC exception executing SQL [select count(edcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W edcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:29[boundedElastic-11] [ControllerUCRM:1267] - Error Message : JDBC exception executing SQL [select count(emdc1_0.ORDERID) from WA_DATA_CALL_W emdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:20:36[boundedElastic-7] [ControllerUCRM:1083] - Error Message : JDBC exception executing SQL [select count(emcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W emcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:29[boundedElastic-8] [ControllerUCRM:1142] - Error Message : JDBC exception executing SQL [select count(emcs1_0.ORDERID) from DATA_CALL_SERVICE_W emcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:20:36[boundedElastic-18] [ControllerUCRM:1430] - Error Message : JDBC exception executing SQL [select count(ewm1_0.ORDERID) from WA_M_TRACECODE_W ewm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:29[boundedElastic-9] [ControllerUCRM:1205] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:20:36[boundedElastic-8] [ControllerUCRM:1147] - Error Message : JDBC exception executing SQL [select count(emcs1_0.ORDERID) from DATA_CALL_SERVICE_W emcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:29[boundedElastic-17] [ControllerUCRM:1362] - Error Message : JDBC exception executing SQL [select count(ewdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W ewdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:20:36[boundedElastic-14] [ControllerUCRM:1461] - Error Message : JDBC exception executing SQL [select count(emm1_0.ORDERID) from WA_M_TRACECODE_W emm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:15:29[boundedElastic-13] [ControllerUCRM:1394] - Error Message : JDBC exception executing SQL [select count(emdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W emdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:20:36[boundedElastic-5] [ControllerUCRM:1115] - Error Message : JDBC exception executing SQL [select count(edcs1_0.ORDERID) from DATA_CALL_SERVICE_W edcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:24:25[boundedElastic-7] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-10] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:24:25[boundedElastic-6] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-8] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:24:25[boundedElastic-11] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-13] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:24:25[boundedElastic-10] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-4] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:24:25[boundedElastic-18] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-14] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:24:25[boundedElastic-17] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-12] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:24:25[boundedElastic-14] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-18] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:24:25[boundedElastic-13] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-6] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:24:25[boundedElastic-4] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-15] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:24:25[boundedElastic-15] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-5] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:24:25[boundedElastic-9] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-9] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:24:25[boundedElastic-16] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-17] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:24:25[boundedElastic-3] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-7] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:24:25[boundedElastic-3] [ControllerUCRM:981] - JDBC exception executing SQL [select count(edc1_0.ORDERID) from DATA_CALL_W edc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:24:25[boundedElastic-5] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-3] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:24:25[boundedElastic-11] [ControllerUCRM:1272] - Error Message : JDBC exception executing SQL [select count(emdc1_0.ORDERID) from WA_DATA_CALL_W emdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:24:25[boundedElastic-8] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-11] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:24:25[boundedElastic-12] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-16] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 10:24:25[boundedElastic-5] [ControllerUCRM:1115] - Error Message : JDBC exception executing SQL [select count(edcs1_0.ORDERID) from DATA_CALL_SERVICE_W edcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:24:25[boundedElastic-10] [ControllerUCRM:1178] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:24:25[boundedElastic-7] [ControllerUCRM:1083] - Error Message : JDBC exception executing SQL [select count(emcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W emcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-3] [ControllerUCRM:978] - JDBC exception executing SQL [select count(edc1_0.ORDERID) from DATA_CALL_W edc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:24:25[boundedElastic-15] [ControllerUCRM:1241] - Error Message : JDBC exception executing SQL [select count(ewdc1_0.ORDERID) from WA_DATA_CALL_W ewdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-5] [ControllerUCRM:1112] - Error Message : JDBC exception executing SQL [select count(edcs1_0.ORDERID) from DATA_CALL_SERVICE_W edcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:24:25[boundedElastic-6] [ControllerUCRM:1016] - Error Message : JDBC exception executing SQL [select count(emc1_0.ORDERID) from DATA_CALL_W emc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-18] [ControllerUCRM:1427] - Error Message : JDBC exception executing SQL [select count(ewm1_0.ORDERID) from WA_M_TRACECODE_W ewm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:24:25[boundedElastic-17] [ControllerUCRM:1367] - Error Message : JDBC exception executing SQL [select count(ewdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W ewdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-15] [ControllerUCRM:1238] - Error Message : JDBC exception executing SQL [select count(ewdc1_0.ORDERID) from WA_DATA_CALL_W ewdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:24:25[boundedElastic-9] [ControllerUCRM:1210] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-6] [ControllerUCRM:1013] - Error Message : JDBC exception executing SQL [select count(emc1_0.ORDERID) from DATA_CALL_W emc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:24:25[boundedElastic-16] [ControllerUCRM:1303] - Error Message : JDBC exception executing SQL [select count(ewdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W ewdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-4] [ControllerUCRM:1046] - Error Message : JDBC exception executing SQL [select count(edcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W edcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:24:25[boundedElastic-8] [ControllerUCRM:1147] - Error Message : JDBC exception executing SQL [select count(emcs1_0.ORDERID) from DATA_CALL_SERVICE_W emcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-14] [ControllerUCRM:1458] - Error Message : JDBC exception executing SQL [select count(emm1_0.ORDERID) from WA_M_TRACECODE_W emm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:24:25[boundedElastic-12] [ControllerUCRM:1334] - Error Message : JDBC exception executing SQL [select count(emdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W emdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-10] [ControllerUCRM:1175] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:24:25[boundedElastic-4] [ControllerUCRM:1049] - Error Message : JDBC exception executing SQL [select count(edcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W edcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-11] [ControllerUCRM:1269] - Error Message : JDBC exception executing SQL [select count(emdc1_0.ORDERID) from WA_DATA_CALL_W emdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:24:25[boundedElastic-13] [ControllerUCRM:1399] - Error Message : JDBC exception executing SQL [select count(emdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W emdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:24:25[boundedElastic-14] [ControllerUCRM:1461] - Error Message : JDBC exception executing SQL [select count(emm1_0.ORDERID) from WA_M_TRACECODE_W emm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 10:24:25[boundedElastic-18] [ControllerUCRM:1430] - Error Message : JDBC exception executing SQL [select count(ewm1_0.ORDERID) from WA_M_TRACECODE_W ewm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:05:57[test-task-scheduling3] [WebClientApp:83] - Error occurred during access token refresh: error
-com.mypurecloud.sdk.v2.ApiException: error
-	at com.mypurecloud.sdk.v2.ApiClient.interpretConnectorResponse(ApiClient.java:763)
-	at com.mypurecloud.sdk.v2.ApiClient.getAPIResponse(ApiClient.java:815)
-	at com.mypurecloud.sdk.v2.ApiClient.authorizeClientCredentials(ApiClient.java:307)
-	at gc.apiClient.webclient.WebClientApp.getAccessToken(WebClientApp.java:76)
-	at gc.apiClient.controller.ControllerUCRM.RefreshToken(ControllerUCRM.java:94)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)
-	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)
-	at io.micrometer.observation.Observation.observe(Observation.java:499)
-	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)
-	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
-	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-ERROR 24-04-17 11:09:27[http-nio-8083-exec-6] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 11:09:27[http-nio-8083-exec-6] [ControllerUCRM:1015] - Error Message : JDBC exception executing SQL [select count(emc1_0.ORDERID) from DATA_CALL_W emc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-7] [ControllerUCRM:1080] - Error Message : JDBC exception executing SQL [select count(emcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W emcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:13:46[boundedElastic-16] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 11:13:46[boundedElastic-13] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 11:13:46[boundedElastic-16] [ControllerUCRM:1366] - Error Message : JDBC exception executing SQL [select count(ewdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W ewdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-13] [ControllerUCRM:1396] - Error Message : JDBC exception executing SQL [select count(emdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W emdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:13:46[boundedElastic-13] [ControllerUCRM:1460] - Error Message : JDBC exception executing SQL [select count(emm1_0.ORDERID) from WA_M_TRACECODE_W emm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-8] [ControllerUCRM:1144] - Error Message : JDBC exception executing SQL [select count(emcs1_0.ORDERID) from DATA_CALL_SERVICE_W emcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:13:46[boundedElastic-17] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 11:13:46[boundedElastic-15] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 11:13:46[boundedElastic-5] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 11:13:46[boundedElastic-17] [ControllerUCRM:1429] - Error Message : JDBC exception executing SQL [select count(ewm1_0.ORDERID) from WA_M_TRACECODE_W ewm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-9] [ControllerUCRM:1207] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:13:46[boundedElastic-2] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 11:13:46[boundedElastic-7] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 11:13:46[boundedElastic-9] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 11:13:46[boundedElastic-12] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 11:13:46[boundedElastic-14] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 11:13:46[boundedElastic-3] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 11:13:46[boundedElastic-4] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 11:13:46[boundedElastic-10] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 11:13:46[boundedElastic-2] [ControllerUCRM:980] - JDBC exception executing SQL [select count(edc1_0.ORDERID) from DATA_CALL_W edc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-16] [ControllerUCRM:1300] - Error Message : JDBC exception executing SQL [select count(ewdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W ewdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:13:46[boundedElastic-15] [ControllerUCRM:1302] - Error Message : JDBC exception executing SQL [select count(ewdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W ewdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-17] [ControllerUCRM:1364] - Error Message : JDBC exception executing SQL [select count(ewdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W ewdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:13:46[boundedElastic-6] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 11:13:46[boundedElastic-4] [ControllerUCRM:1114] - Error Message : JDBC exception executing SQL [select count(edcs1_0.ORDERID) from DATA_CALL_SERVICE_W edcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 10:23:25[boundedElastic-12] [ControllerUCRM:1331] - Error Message : JDBC exception executing SQL [select count(emdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W emdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:13:46[boundedElastic-11] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 11:23:39[http-nio-8083-exec-2] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 11:13:46[boundedElastic-8] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 11:13:46[boundedElastic-6] [ControllerUCRM:1082] - Error Message : JDBC exception executing SQL [select count(emcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W emcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:13:46[boundedElastic-3] [ControllerUCRM:1048] - Error Message : JDBC exception executing SQL [select count(edcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W edcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:13:46[boundedElastic-14] [ControllerUCRM:1240] - Error Message : JDBC exception executing SQL [select count(ewdc1_0.ORDERID) from WA_DATA_CALL_W ewdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:13:46[boundedElastic-9] [ControllerUCRM:1177] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:13:46[boundedElastic-7] [ControllerUCRM:1146] - Error Message : JDBC exception executing SQL [select count(emcs1_0.ORDERID) from DATA_CALL_SERVICE_W emcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:13:46[boundedElastic-5] [ControllerUCRM:1015] - Error Message : JDBC exception executing SQL [select count(emc1_0.ORDERID) from DATA_CALL_W emc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:13:46[boundedElastic-12] [ControllerUCRM:1398] - Error Message : JDBC exception executing SQL [select count(emdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W emdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 11:23:39[http-nio-8083-exec-2] [ControllerUCRM:1301] - Error Message : JDBC exception executing SQL [select count(ewdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W ewdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:13:46[boundedElastic-8] [ControllerUCRM:1209] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:13:46[boundedElastic-11] [ControllerUCRM:1333] - Error Message : JDBC exception executing SQL [select count(emdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W emdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:13:46[boundedElastic-10] [ControllerUCRM:1271] - Error Message : JDBC exception executing SQL [select count(emdc1_0.ORDERID) from WA_DATA_CALL_W emdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:22:23[boundedElastic-5] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 11:25:10[reactor-http-nio-4] [MessageTo360View:31] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-18 11:25:10[reactor-http-nio-3] [MessageTo360View:31] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-18 11:25:10[reactor-http-nio-4] [MessageTo360View:37] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-18 11:25:10[reactor-http-nio-3] [MessageTo360View:37] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-18 11:27:27[reactor-http-nio-5] [MessageTo360View:31] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-18 11:27:27[reactor-http-nio-5] [MessageTo360View:37] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-18 11:27:27[reactor-http-nio-6] [MessageTo360View:31] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-18 11:27:27[reactor-http-nio-6] [MessageTo360View:37] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-18 11:33:41[reactor-http-nio-4] [MessageTo360View:31] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-18 11:33:41[reactor-http-nio-3] [MessageTo360View:31] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-18 11:33:41[reactor-http-nio-4] [MessageTo360View:37] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-18 11:33:41[reactor-http-nio-3] [MessageTo360View:37] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-18 11:40:33[reactor-http-nio-3] [MessageTo360View:31] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-18 11:40:33[reactor-http-nio-4] [MessageTo360View:31] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-18 11:40:33[reactor-http-nio-3] [MessageTo360View:37] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-18 11:40:33[reactor-http-nio-4] [MessageTo360View:37] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-18 11:45:04[reactor-http-nio-3] [MessageTo360View:31] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-18 11:45:04[reactor-http-nio-4] [MessageTo360View:31] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-18 11:45:04[reactor-http-nio-3] [MessageTo360View:37] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-18 11:45:04[reactor-http-nio-4] [MessageTo360View:37] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-18 13:08:08[boundedElastic-17] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 11:22:23[boundedElastic-10] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-13] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 11:22:23[boundedElastic-9] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-15] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 11:22:23[boundedElastic-4] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-5] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 11:22:23[boundedElastic-3] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-14] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 11:22:23[boundedElastic-12] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-12] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 11:22:23[boundedElastic-14] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-7] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 11:22:23[boundedElastic-8] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-4] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 11:22:23[boundedElastic-17] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-3] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 11:22:23[boundedElastic-13] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-10] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 11:22:23[boundedElastic-16] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 11:22:23[boundedElastic-3] [ControllerUCRM:980] - JDBC exception executing SQL [select count(edc1_0.ORDERID) from DATA_CALL_W edc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:22:23[boundedElastic-4] [ControllerUCRM:1048] - Error Message : JDBC exception executing SQL [select count(edcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W edcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:22:23[boundedElastic-5] [ControllerUCRM:1114] - Error Message : JDBC exception executing SQL [select count(edcs1_0.ORDERID) from DATA_CALL_SERVICE_W edcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:22:23[boundedElastic-13] [ControllerUCRM:1398] - Error Message : JDBC exception executing SQL [select count(emdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W emdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:22:23[boundedElastic-15] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-11] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 11:22:23[boundedElastic-6] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-18] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 11:22:23[boundedElastic-11] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-8] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 11:22:23[boundedElastic-18] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-16] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 11:22:23[boundedElastic-8] [ControllerUCRM:1146] - Error Message : JDBC exception executing SQL [select count(emcs1_0.ORDERID) from DATA_CALL_SERVICE_W emcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:22:23[boundedElastic-7] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-6] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 11:22:23[boundedElastic-9] [ControllerUCRM:1209] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:22:23[boundedElastic-14] [ControllerUCRM:1460] - Error Message : JDBC exception executing SQL [select count(emm1_0.ORDERID) from WA_M_TRACECODE_W emm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:22:23[boundedElastic-10] [ControllerUCRM:1177] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:22:23[boundedElastic-7] [ControllerUCRM:1082] - Error Message : JDBC exception executing SQL [select count(emcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W emcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:22:23[boundedElastic-18] [ControllerUCRM:1429] - Error Message : JDBC exception executing SQL [select count(ewm1_0.ORDERID) from WA_M_TRACECODE_W ewm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:22:23[boundedElastic-11] [ControllerUCRM:1271] - Error Message : JDBC exception executing SQL [select count(emdc1_0.ORDERID) from WA_DATA_CALL_W emdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-3] [ControllerUCRM:978] - JDBC exception executing SQL [select count(edc1_0.ORDERID) from DATA_CALL_W edc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:22:23[boundedElastic-6] [ControllerUCRM:1015] - Error Message : JDBC exception executing SQL [select count(emc1_0.ORDERID) from DATA_CALL_W emc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-11] [ControllerUCRM:1269] - Error Message : JDBC exception executing SQL [select count(emdc1_0.ORDERID) from WA_DATA_CALL_W emdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:22:23[boundedElastic-15] [ControllerUCRM:1240] - Error Message : JDBC exception executing SQL [select count(ewdc1_0.ORDERID) from WA_DATA_CALL_W ewdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-8] [ControllerUCRM:1144] - Error Message : JDBC exception executing SQL [select count(emcs1_0.ORDERID) from DATA_CALL_SERVICE_W emcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:22:23[boundedElastic-12] [ControllerUCRM:1333] - Error Message : JDBC exception executing SQL [select count(emdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W emdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-18] [ControllerUCRM:1428] - Error Message : JDBC exception executing SQL [select count(ewm1_0.ORDERID) from WA_M_TRACECODE_W ewm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:22:23[boundedElastic-16] [ControllerUCRM:1302] - Error Message : JDBC exception executing SQL [select count(ewdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W ewdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-10] [ControllerUCRM:1175] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 11:22:23[boundedElastic-17] [ControllerUCRM:1366] - Error Message : JDBC exception executing SQL [select count(ewdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W ewdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-6] [ControllerUCRM:1013] - Error Message : JDBC exception executing SQL [select count(emc1_0.ORDERID) from DATA_CALL_W emc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 12:30:46[boundedElastic-4] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 12:30:46[boundedElastic-8] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 12:30:46[boundedElastic-5] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 12:30:46[boundedElastic-6] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 12:30:46[boundedElastic-3] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 12:30:46[boundedElastic-7] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 12:30:46[boundedElastic-12] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 12:30:46[boundedElastic-11] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 12:30:46[boundedElastic-15] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 12:30:46[boundedElastic-16] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 12:30:46[boundedElastic-9] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 12:30:46[boundedElastic-13] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 12:30:46[boundedElastic-7] [ControllerUCRM:1082] - Error Message : JDBC exception executing SQL [select count(emcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W emcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-4] [ControllerUCRM:1046] - Error Message : JDBC exception executing SQL [select count(edcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W edcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 12:30:46[boundedElastic-9] [ControllerUCRM:1209] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-13] [ControllerUCRM:1397] - Error Message : JDBC exception executing SQL [select count(emdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W emdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 12:30:46[boundedElastic-18] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 12:30:46[boundedElastic-17] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 12:30:46[boundedElastic-10] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-
-ERROR 24-04-17 12:30:46[boundedElastic-12] [ControllerUCRM:1333] - Error Message : JDBC exception executing SQL [select count(emdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W emdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-17] [ControllerUCRM:1365] - Error Message : JDBC exception executing SQL [select count(ewdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W ewdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 12:30:46[boundedElastic-14] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-9] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-ERROR 24-04-17 12:30:46[boundedElastic-8] [ControllerUCRM:1146] - Error Message : JDBC exception executing SQL [select count(emcs1_0.ORDERID) from DATA_CALL_SERVICE_W emcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 12:30:46[boundedElastic-4] [ControllerUCRM:1048] - Error Message : JDBC exception executing SQL [select count(edcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W edcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 12:30:46[boundedElastic-16] [ControllerUCRM:1302] - Error Message : JDBC exception executing SQL [select count(ewdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W ewdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 12:30:46[boundedElastic-5] [ControllerUCRM:1114] - Error Message : JDBC exception executing SQL [select count(edcs1_0.ORDERID) from DATA_CALL_SERVICE_W edcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 12:30:46[boundedElastic-14] [ControllerUCRM:1460] - Error Message : JDBC exception executing SQL [select count(emm1_0.ORDERID) from WA_M_TRACECODE_W emm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 12:30:46[boundedElastic-6] [ControllerUCRM:1015] - Error Message : JDBC exception executing SQL [select count(emc1_0.ORDERID) from DATA_CALL_W emc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
-] [n/a]; SQL [n/a]
-ERROR 24-04-17 12:30:46[boundedElastic-17] [ControllerUCRM:1366] - Error Message : JDBC exception executing SQL [select count(ewdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W ewdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-5] [ControllerUCRM:1112] - Error Message : JDBC exception executing SQL [select count(edcs1_0.ORDERID) from DATA_CALL_SERVICE_W edcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 12:30:47[boundedElastic-10] [ControllerUCRM:1177] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-7] [ControllerUCRM:1080] - Error Message : JDBC exception executing SQL [select count(emcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W emcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 12:30:47[boundedElastic-18] [ControllerUCRM:1429] - Error Message : JDBC exception executing SQL [select count(ewm1_0.ORDERID) from WA_M_TRACECODE_W ewm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-14] [ControllerUCRM:1459] - Error Message : JDBC exception executing SQL [select count(emm1_0.ORDERID) from WA_M_TRACECODE_W emm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 12:30:47[boundedElastic-13] [ControllerUCRM:1398] - Error Message : JDBC exception executing SQL [select count(emdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W emdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-12] [ControllerUCRM:1332] - Error Message : JDBC exception executing SQL [select count(emdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W emdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 12:30:47[boundedElastic-3] [ControllerUCRM:980] - JDBC exception executing SQL [select count(edc1_0.ORDERID) from DATA_CALL_W edc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-16] [ControllerUCRM:1301] - Error Message : JDBC exception executing SQL [select count(ewdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W ewdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 12:30:47[boundedElastic-11] [ControllerUCRM:1271] - Error Message : JDBC exception executing SQL [select count(emdc1_0.ORDERID) from WA_DATA_CALL_W emdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-9] [ControllerUCRM:1207] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]
-ERROR 24-04-17 12:30:47[boundedElastic-15] [ControllerUCRM:1240] - Error Message : JDBC exception executing SQL [select count(ewdc1_0.ORDERID) from WA_DATA_CALL_W ewdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+ERROR 24-04-18 13:08:08[boundedElastic-15] [ControllerUCRM:1238] - Error Message : JDBC exception executing SQL [select count(ewdc1_0.ORDERID) from WA_DATA_CALL_W ewdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 ] [n/a]; SQL [n/a]

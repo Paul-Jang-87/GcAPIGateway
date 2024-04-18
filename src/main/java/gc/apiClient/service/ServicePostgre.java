@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.TimeZone;
 
@@ -123,7 +121,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 		log.info("dirt(맵핑 전) : {}", parts[4]);
 		Map<String, String> properties = customProperties.getProperties();
-		dirt = Integer.parseInt(properties.getOrDefault(parts[4], "6"));
+		dirt = Integer.parseInt(properties.getOrDefault(parts[4], "1"));
 		log.info("dirt(맵핑 후) : {}", dirt);
 
 		ServiceWebClient crmapi1 = new ServiceWebClient();
@@ -177,9 +175,9 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	@Override
 	public JSONObject createCampRtJson(Entity_CampRt enCampRt, String business) {// contactid(고객키)::contactListId::didt::dirt::cpid
 
-		LocalDateTime now = LocalDateTime.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSSSSS");
-		String topcDataIsueDtm = now.format(formatter);
+		Date now = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSSSSS");
+		String topcDataIsueDtm = formatter.format(now);
 
 		int hubId = enCampRt.getHubid();
 		int dirt = enCampRt.getDirt();
@@ -267,8 +265,9 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		log.info(" ");
 		log.info("====== ClassName : ServicePostgre & Method : JsonCampMaUcrm ======");
 		Entity_CampMaJsonUcrm enCampMaJson = new Entity_CampMaJsonUcrm();
-		LocalDateTime now = LocalDateTime.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSSSSS");
+		
+		Date now = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSSSSS");
 		String topcDataIsueDtm = "";
 		String coid = "";
 		MappingCenter mappingData = new MappingCenter();
@@ -283,7 +282,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			enCampMaJson.setCmpnId(enCampMa.getCpid());
 			enCampMaJson.setCmpnNm(enCampMa.getCpna());
 
-			topcDataIsueDtm = now.format(formatter);
+			topcDataIsueDtm = formatter.format(now);
 
 			enCampMaJson.setDataChgCd(datachgcd);
 			enCampMaJson.setDataDelYn("N");
@@ -297,7 +296,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			enCampMaJson.setCmpnId("");
 			enCampMaJson.setCmpnNm(enCampMa.getCpna());
 
-			topcDataIsueDtm = now.format(formatter);
+			topcDataIsueDtm = formatter.format(now);
 
 			enCampMaJson.setDataChgCd(datachgcd);
 			enCampMaJson.setDataDelYn("N");
@@ -313,7 +312,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			enCampMaJson.setCmpnId(enCampMa.getCpid());
 			enCampMaJson.setCmpnNm("");
 
-			topcDataIsueDtm = now.format(formatter);
+			topcDataIsueDtm = formatter.format(now);
 
 			enCampMaJson.setDataChgCd(datachgcd);
 			enCampMaJson.setDataDelYn("Y");
@@ -331,8 +330,10 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		log.info(" ");
 		log.info("====== ClassName : ServicePostgre & Method : JsonCampMaCallbot ======");
 		Entity_CampMaJson enCampMaJson = new Entity_CampMaJson();
-		LocalDateTime now = LocalDateTime.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSSSSS");
+		
+		
+		Date now = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSSSSS");
 		String topcDataIsueDtm = "";
 
 		switch (datachgcd) {
@@ -344,7 +345,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			enCampMaJson.setCmpnId(enCampMa.getCpid());
 			enCampMaJson.setCmpnNm(enCampMa.getCpna());
 
-			topcDataIsueDtm = now.format(formatter);
+			topcDataIsueDtm = formatter.format(now);
 
 			enCampMaJson.setDataChgCd(datachgcd);
 			enCampMaJson.setDataDelYn("N");
@@ -358,7 +359,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			enCampMaJson.setCmpnId(enCampMa.getCpid());
 			enCampMaJson.setCmpnNm("");
 
-			topcDataIsueDtm = now.format(formatter);
+			topcDataIsueDtm = formatter.format(now);
 
 			enCampMaJson.setDataChgCd(datachgcd);
 			enCampMaJson.setDataDelYn("Y");
@@ -566,7 +567,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			data.put("TRYCNT", "0");
 
 			mainObj.put("data", data);
-			mainObj.put("id", values[2]);
+			mainObj.put("id", values[1]);
 			mainObj.put("contactListId", values[6]);
 //			log.info("CPID :{}", values[0]);
 //			log.info("CPSQ :{}", values[1]);

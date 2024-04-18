@@ -22,7 +22,6 @@ public class MessageTo360View {
 				.defaultHeader("Accept", "application/json")
 				.defaultHeader("Content-Type", "application/json").build();
 
-//		String endpointUrl = "/360view/" + "firsttopic";
 		String endpointUrl = "/360view/" + towhere;
 
 		log.info("Endpoint : {}", endpointUrl);

@@ -62,7 +62,7 @@ public class ServiceJson implements InterfaceJson {
 			jsonNode = objectMapper.readTree(jsonResponse);
 			result = jsonNode.path("entities").path(i).path("id").asText();
 			String coid = jsonNode.path("entities").path(i).path("callerName").asText();
-			String cpnm = jsonNode.path("entities").path(i).path("contactList").path("name").asText();
+			String cpnm = jsonNode.path("entities").path(i).path("name").asText();
 			result = result + "::" + coid;
 			result = result + "::" + cpnm;
 			result = result + "::" + jsonNode.path("entities").path(i).path("division").path("name").asText();
@@ -291,9 +291,10 @@ public class ServiceJson implements InterfaceJson {
 			result = result + "::" + jsonNode.path(i).path("contactListId").asText();
 			result = result + "::" + jsonNode.path(i).path("data").path("CPID").asText();
 			result = result + "::" + jsonNode.path(i).path("data").path("CPSQ").asText();
-			result = result + "::" + jsonNode.path(i).path("callRecords").path("Mobile_Phone").path("lastResult").asText();
+			result = result + "::" + jsonNode.path(i).path("callRecords").path("TNO1").path("lastResult").asText();
 			result = result + "::" + jsonNode.path(i).path("data").path("TKDA").asText();
-			result = result + "::" + jsonNode.path(i).path("dateCreated").asText();
+			result = result + "::" + jsonNode.path(i).path("callRecords").path("TNO1").path("lastAttempt").asText();
+			
 
 		} catch (JsonMappingException e) {
 			e.printStackTrace();

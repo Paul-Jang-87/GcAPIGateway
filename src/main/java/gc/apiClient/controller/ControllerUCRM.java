@@ -90,8 +90,7 @@ public class ControllerUCRM extends ServiceJson {
 
 	@Scheduled(fixedRate = 86400 * 1000)
 	public void RefreshToken() {
-		WebClientApp webClient = new WebClientApp();
-		webClient.getAccessToken();
+		WebClientApp.EmptyTockenlt();
 	}
 
 	@Scheduled(fixedRate = 5000)
@@ -104,69 +103,69 @@ public class ControllerUCRM extends ServiceJson {
 
 		Mono.fromCallable(() -> ReceiveMessage("campma")).subscribeOn(Schedulers.boundedElastic()).subscribe();
 
-		Mono.fromCallable(() -> Msg360Datacall())
-		.subscribeOn(Schedulers.boundedElastic())
-		.subscribe();
-
-		Mono.fromCallable(() -> Msg360DataCallCustomer())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360DataCallService())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360MDatacall())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360MDataCallCustomer())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360MDataCallService())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360MMstrsSvcCd())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360MstrsSvcCd())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360MWaDataCall())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360MWaDataCallOptional())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360MWaDataCallTrace())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360MWaMTrCode())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360WaDataCall())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360WaDataCallOptional())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360WaDataCallTrace())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
-		
-		Mono.fromCallable(() -> Msg360WaMTrCode())
-        .subscribeOn(Schedulers.boundedElastic())
-        .subscribe();
+//		Mono.fromCallable(() -> Msg360Datacall())
+//		.subscribeOn(Schedulers.boundedElastic())
+//		.subscribe();
+//
+//		Mono.fromCallable(() -> Msg360DataCallCustomer())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360DataCallService())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360MDatacall())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360MDataCallCustomer())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360MDataCallService())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360MMstrsSvcCd())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360MstrsSvcCd())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360MWaDataCall())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360MWaDataCallOptional())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360MWaDataCallTrace())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360MWaMTrCode())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360WaDataCall())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360WaDataCallOptional())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360WaDataCallTrace())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
+//		
+//		Mono.fromCallable(() -> Msg360WaMTrCode())
+//        .subscribeOn(Schedulers.boundedElastic())
+//        .subscribe();
 
 	}
 
@@ -332,7 +331,7 @@ public class ControllerUCRM extends ServiceJson {
 
 			Map<String, String> properties = customProperties.getDivision();
 			String divisionName = properties.getOrDefault(division, "couldn't find division");
-			
+
 			Map<String, String> businessLogic = BusinessLogic.SelectedBusiness(divisionName);
 
 			String endpoint = "";
@@ -372,9 +371,9 @@ public class ControllerUCRM extends ServiceJson {
 			case "Callbot":
 
 				objectMapper = new ObjectMapper();
-				
+
 				Entity_CampMaJson enCampMaJson = serviceDb.JsonCampMaCallbot(enCampMa, action);
-				
+
 				try {
 
 					String jsonString = objectMapper.writeValueAsString(enCampMaJson);
@@ -678,7 +677,6 @@ public class ControllerUCRM extends ServiceJson {
 			String division = "";
 			String business = "";
 			String endpoint = "/gcapi/post/" + topic_id;
-			ObjectMapper objectMapper = null;
 
 			log.info("topic_id : {}", topic_id);
 
@@ -717,223 +715,13 @@ public class ControllerUCRM extends ServiceJson {
 					values.add(Integer.toString(enContactList.get(k).getId().getCpsq()));
 
 					if (values.size() >= 50) {
-						
-						
-						
-						result = serviceWeb.PostContactLtApiBulk("contactList", contactLtId, values);
 
-						if (result.equals("[]")) {
-							log.info("No result, skip to next");
-							values.clear();
-							continue;
-						}
-						// 캠페인이 어느 비즈니스 로직인지 판단하기 위해서 일단 목록 중 하나만 꺼내서 확인해 보도록한다.
-						// 왜냐면 나머지는 똑같을테니.
-						String contactsresult = ExtractContacts56(result, 0);// JsonString 결과값과 조회하고 싶은 인덱스(첫번째)를 인자로
-																				// 넣는다.
-						Entity_CampRt entityCmRt = serviceDb.createCampRtMsg(contactsresult);// contactsresult값으로
-																								// entity하나를 만든다.
-						Character tkda = entityCmRt.getTkda().charAt(0);// 그리고 비즈니스 로직을 구분하게 해줄 수 있는 토큰데이터를 구해온다.
+						Roop(result, contactLtId, values, divisionName, business, topic_id, dirt, endpoint, cpid);
 
-						// 토큰데이터와 디비젼네임을 인자로 넘겨서 어떤 비지니스 로직인지, 토픽은 어떤 것으로 해야하는지를 결과 값으로 반환 받는다.
-						Map<String, String> businessLogic = BusinessLogic.SelectedBusiness(tkda, divisionName);
-						business = businessLogic.get("business");
-						topic_id = businessLogic.get("topic_id");
-
-						switch (business) {
-						case "UCRM": // UCRM일 경우.
-						case "CALLBOT": // 콜봇일 경우.
-
-							for (int i = 0; i < enContactList.size(); i++) {
-
-								contactsresult = ExtractContacts56(result, i);
-								if (contactsresult.equals("")) {
-									log.info("No value, skip to next");
-									continue;
-								}
-
-								entityCmRt = serviceDb.createCampRtMsg(contactsresult);// db 인서트 하기 위한 entity.
-
-								dirt = entityCmRt.getDirt();// 응답코드
-
-								if ((business.equals("UCRM")) && (dirt == 1)) {// URM이면서 정상일 때.
-
-								} else {
-									JSONObject toproducer = serviceDb.createCampRtJson(entityCmRt, business);// producer로
-																												// 보내기
-																												// 위한
-									// entity.
-									objectMapper = new ObjectMapper();
-
-									try {
-										String jsonString = toproducer.toString();
-										log.info("JsonString Data : {}번째 {}", i, jsonString);
-
-										MessageToProducer producer = new MessageToProducer();
-										endpoint = "/gcapi/post/" + topic_id;
-//										producer.sendMsgToProducer(endpoint, jsonString);
-
-									} catch (Exception e) {
-										e.printStackTrace();
-									}
-								}
-
-								// db인서트
-								try {
-									serviceDb.InsertCampRt(entityCmRt);
-								} catch (DataIntegrityViolationException ex) {
-									log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
-								} catch (DataAccessException ex) {
-									log.error("DataAccessException 발생 : {}", ex.getMessage());
-								}
-							}
-							values.clear();
-							continue;
-						default:
-
-							for (int i = 0; i < enContactList.size(); i++) {
-
-								contactsresult = ExtractContacts56(result, i);
-								contactsresult = contactsresult + "::" + cpid;// contactid(고객키)::contactListId::didt::dirt::cpid
-								entityCmRt = serviceDb.createCampRtMsg(contactsresult);// db 인서트 하기 위한 entity.
-
-								dirt = entityCmRt.getDirt();// 응답코드
-								String tokendata = entityCmRt.getTkda();// 토큰데이터
-
-								Entity_ToApim enToApim = new Entity_ToApim();
-								enToApim.setDirt(dirt);
-								enToApim.setTkda(tokendata);
-
-								apimEntitylt.add(enToApim);
-							}
-
-							objectMapper = new ObjectMapper();
-
-							try {
-								String jsonString = objectMapper.writeValueAsString(apimEntitylt);
-
-								// localhost:8084/dspRslt
-								// 192.168.219.134:8084/dspRslt
-								MessageToApim apim = new MessageToApim();
-								endpoint = "/dspRslt";
-//								apim.sendMsgToApim(endpoint, jsonString);
-								log.info("CAMPRT 로직, APIM으로 보냄. : {} ", jsonString);
-
-							} catch (Exception e) {
-								e.printStackTrace();
-							}
-							values.clear();
-							continue;
-						}
 					}
 				}
 
-				// contactLtId를 키로 하여 제네시스의 api를 호출한다. 호출할 때는 values리스트 담겨져 있던 cske(고객키)들 각각에 맞는
-				// 결과 값들을
-				// jsonString문자열로 한꺼번에 받는다.
-				result = serviceWeb.PostContactLtApiBulk("contactList", contactLtId, values);
-
-				if (result.equals("[]")) {
-					log.info("No result, So break");
-					values.clear();
-					break;
-				}
-
-				// 캠페인이 어느 비즈니스 로직인지 판단하기 위해서 일단 목록 중 하나만 꺼내서 확인해 보도록한다.
-				// 왜냐면 나머지는 똑같을테니.
-				String contactsresult = ExtractContacts56(result, 0);// JsonString 결과값과 조회하고 싶은 인덱스(첫번째)를 인자로 넣는다.
-				Entity_CampRt entityCmRt = serviceDb.createCampRtMsg(contactsresult);// contactsresult값으로 entity하나를 만든다.
-				Character tkda = entityCmRt.getTkda().charAt(0);// 그리고 비즈니스 로직을 구분하게 해줄 수 있는 토큰데이터를 구해온다.
-
-				// 토큰데이터와 디비젼네임을 인자로 넘겨서 어떤 비지니스 로직인지, 토픽은 어떤 것으로 해야하는지를 결과 값으로 반환 받는다.
-				Map<String, String> businessLogic = BusinessLogic.SelectedBusiness(tkda, divisionName);
-				business = businessLogic.get("business");
-				topic_id = businessLogic.get("topic_id");
-
-				switch (business) {
-				case "UCRM": // UCRM일 경우.
-				case "CALLBOT": // 콜봇일 경우.
-
-					for (int i = 0; i < enContactList.size(); i++) {
-
-						contactsresult = ExtractContacts56(result, i);
-						if (contactsresult.equals("")) {
-							log.info("No value, skip to next");
-							continue;
-						}
-
-						entityCmRt = serviceDb.createCampRtMsg(contactsresult);// db 인서트 하기 위한 entity.
-
-						dirt = entityCmRt.getDirt();// 응답코드
-
-						if ((business.equals("UCRM")) && (dirt == 1)) {// URM이면서 정상일 때.
-
-						} else {
-							JSONObject toproducer = serviceDb.createCampRtJson(entityCmRt, business);// producer로 보내기
-																										// 위한
-							// entity.
-							objectMapper = new ObjectMapper();
-
-							try {
-								String jsonString = toproducer.toString();
-								log.info("JsonString Data : {}번째 {}", i, jsonString);
-
-								MessageToProducer producer = new MessageToProducer();
-								endpoint = "/gcapi/post/" + topic_id;
-//								producer.sendMsgToProducer(endpoint, jsonString);
-
-							} catch (Exception e) {
-								e.printStackTrace();
-							}
-						}
-
-						// db인서트
-						try {
-							serviceDb.InsertCampRt(entityCmRt);
-						} catch (DataIntegrityViolationException ex) {
-							log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
-						} catch (DataAccessException ex) {
-							log.error("DataAccessException 발생 : {}", ex.getMessage());
-						}
-					}
-
-					break;
-
-				default:
-
-					for (int i = 0; i < enContactList.size(); i++) {
-
-						contactsresult = ExtractContacts56(result, i);
-						contactsresult = contactsresult + "::" + cpid;// contactid(고객키)::contactListId::didt::dirt::cpid
-						entityCmRt = serviceDb.createCampRtMsg(contactsresult);// db 인서트 하기 위한 entity.
-
-						dirt = entityCmRt.getDirt();// 응답코드
-						String tokendata = entityCmRt.getTkda();// 토큰데이터
-
-						Entity_ToApim enToApim = new Entity_ToApim();
-						enToApim.setDirt(dirt);
-						enToApim.setTkda(tokendata);
-
-						apimEntitylt.add(enToApim);
-					}
-
-					objectMapper = new ObjectMapper();
-
-					try {
-						String jsonString = objectMapper.writeValueAsString(apimEntitylt);
-
-						// localhost:8084/dspRslt
-						// 192.168.219.134:8084/dspRslt
-						MessageToApim apim = new MessageToApim();
-						endpoint = "/dspRslt";
-//						apim.sendMsgToApim(endpoint, jsonString);
-						log.info("CAMPRT 로직, APIM으로 보냄. : {} ", jsonString);
-
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					break;
-				}
+				Roop(result, contactLtId, values, divisionName, business, topic_id, dirt, endpoint, cpid);
 
 				return Mono.empty();
 
@@ -946,7 +734,6 @@ public class ControllerUCRM extends ServiceJson {
 			log.error("Error Message : {} ", e.getMessage());
 
 		}
-		
 
 		return Mono.just(ResponseEntity.ok("'receiveMessage' got message successfully."));
 	}
@@ -1296,7 +1083,7 @@ public class ControllerUCRM extends ServiceJson {
 					int orderid = entitylist.get(i).getOrderid();
 					MessageTo360View.SendMsgTo360View(topic_id,
 							serviceMsgObjOrcl.WaDataCallOptionalMsg(entitylist.get(i), crudtype));
-					
+
 					serviceOracle.deleteAll(Entity_WaDataCallOptional.class, orderid);
 				}
 			}
@@ -1514,5 +1301,121 @@ public class ControllerUCRM extends ServiceJson {
 //
 //		return Mono.empty();
 //	}
+
+	public Mono<Void> Roop(String result, String contactLtId, List<String> values, String divisionName, String business,
+			String topic_id, int dirt, String endpoint, String cpid
+
+	) throws Exception {
+
+		ObjectMapper objectMapper = null;
+		result = serviceWeb.PostContactLtApiBulk("contactList", contactLtId, values);
+
+		if (result.equals("[]")) {
+			log.info("No result, skip to next");
+			values.clear();
+			return Mono.empty();
+		}
+
+		// 캠페인이 어느 비즈니스 로직인지 판단하기 위해서 일단 목록 중 하나만 꺼내서 확인해 보도록한다.
+		// 왜냐면 나머지는 똑같을테니.
+		String contactsresult = ExtractContacts56(result, 0);// JsonString 결과값과 조회하고 싶은 인덱스(첫번째)를 인자로
+																// 넣는다.
+		Entity_CampRt entityCmRt = serviceDb.createCampRtMsg(contactsresult);// contactsresult값으로
+																				// entity하나를 만든다.
+		Character tkda = entityCmRt.getTkda().charAt(0);// 그리고 비즈니스 로직을 구분하게 해줄 수 있는 토큰데이터를 구해온다.
+
+		// 토큰데이터와 디비젼네임을 인자로 넘겨서 어떤 비지니스 로직인지, 토픽은 어떤 것으로 해야하는지를 결과 값으로 반환 받는다.
+		Map<String, String> businessLogic = BusinessLogic.SelectedBusiness(tkda, divisionName);
+		business = businessLogic.get("business");
+		topic_id = businessLogic.get("topic_id");
+
+		switch (business) {
+		case "UCRM": // UCRM일 경우.
+		case "CALLBOT": // 콜봇일 경우.
+
+			for (int i = 0; i < values.size(); i++) {
+
+				contactsresult = ExtractContacts56(result, i);
+				if (contactsresult.equals("")) {
+					log.info("No value, skip to next");
+					continue;
+				}
+
+				entityCmRt = serviceDb.createCampRtMsg(contactsresult);// db 인서트 하기 위한 entity.
+
+				dirt = entityCmRt.getDirt();// 응답코드
+
+				if ((business.equals("UCRM")) && (dirt == 1)) {// URM이면서 정상일 때.
+
+				} else {
+					JSONObject toproducer = serviceDb.createCampRtJson(entityCmRt, business);// producer로
+																								// 보내기
+																								// 위한
+					// entity.
+					objectMapper = new ObjectMapper();
+
+					try {
+						String jsonString = toproducer.toString();
+						log.info("JsonString Data : {}번째 {}", i, jsonString);
+
+						MessageToProducer producer = new MessageToProducer();
+						endpoint = "/gcapi/post/" + topic_id;
+						producer.sendMsgToProducer(endpoint, jsonString);
+
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+
+				// db인서트
+				try {
+					serviceDb.InsertCampRt(entityCmRt);
+				} catch (DataIntegrityViolationException ex) {
+					log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+				} catch (DataAccessException ex) {
+					log.error("DataAccessException 발생 : {}", ex.getMessage());
+				}
+			}
+			values.clear();
+			return Mono.empty();
+
+		default:
+
+			for (int i = 0; i < values.size(); i++) {
+
+				contactsresult = ExtractContacts56(result, i);
+				contactsresult = contactsresult + "::" + cpid;// contactid(고객키)::contactListId::didt::dirt::cpid
+				entityCmRt = serviceDb.createCampRtMsg(contactsresult);// db 인서트 하기 위한 entity.
+
+				dirt = entityCmRt.getDirt();// 응답코드
+				String tokendata = entityCmRt.getTkda();// 토큰데이터
+
+				Entity_ToApim enToApim = new Entity_ToApim();
+				enToApim.setDirt(dirt);
+				enToApim.setTkda(tokendata);
+
+				apimEntitylt.add(enToApim);
+			}
+
+			objectMapper = new ObjectMapper();
+
+			try {
+				String jsonString = objectMapper.writeValueAsString(apimEntitylt);
+
+				// localhost:8084/dspRslt
+				// 192.168.219.134:8084/dspRslt
+				MessageToApim apim = new MessageToApim();
+				endpoint = "/dspRslt";
+				apim.sendMsgToApim(endpoint, jsonString);
+				log.info("CAMPRT 로직, APIM으로 보냄. : {} ", jsonString);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			values.clear();
+			return Mono.empty();
+		}
+
+	}
 
 }

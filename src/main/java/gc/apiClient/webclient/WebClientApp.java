@@ -13,6 +13,7 @@ import com.mypurecloud.sdk.v2.ApiResponse;
 import com.mypurecloud.sdk.v2.PureCloudRegionHosts;
 import com.mypurecloud.sdk.v2.extensions.AuthResponse;
 
+import gc.apiClient.customproperties.CustomProperties;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
@@ -25,6 +26,8 @@ public class WebClientApp {
 	private static String API_END_POINT = "";
 	private static String HTTP_METHOD = "";
 	private static String accessToken = "";
+	private static int index = 0;
+	private static String[] tokenlist = new String[15] ;
 
 	private WebClient webClient;
 
@@ -34,7 +37,6 @@ public class WebClientApp {
 		// 암호화된 id, 비밀번호 db에서 가져오는 작업.
 //		WebClientConfig webClientConfig = new WebClientConfig(servicedb);
 //      webClientConfig.getClientIdPwd();
-
 		CLIENT_ID = WebClientConfig.getClientId();
 		log.info("Client Id : {}", CLIENT_ID);
 		CLIENT_SECRET = WebClientConfig.getClientSecret();
@@ -43,18 +45,31 @@ public class WebClientApp {
 		API_END_POINT = WebClientConfig.getApiEndpoint(apiName);
 		HTTP_METHOD = httpMethod;
 
-		if (accessToken.equals("")) {
-			getAccessToken();
+		if (tokenlist[index] == null||tokenlist[index].equals("")) {
+			log.info("토큰 없음");
+			log.info("현재 인덱스 : {}", index);
+			getAccessToken(index);
+			index++;
+			if (index % 15 == 0) {
+				index = 0;
+			}
+			log.info("발급 후 현재 인덱스 : {}", index);
 		} else {
-			log.info("토큰 있음 : {}", accessToken);
+			log.info("토큰 있음 : {}", tokenlist[index]);
+			log.info("현재 인덱스 : {}", index);
+			accessToken = tokenlist[index];
+			index++;
+			if (index % 15 == 0) {
+				index = 0;
+			}
 		}
-
+		
 		int bufferSize = 1024 * 1024;
-
 		ExchangeStrategies exchangeStrategies = ExchangeStrategies.builder().codecs(clientCodecConfigurer -> {
 			clientCodecConfigurer.defaultCodecs().maxInMemorySize(bufferSize);
 		}).build();
 
+		log.info("발급 받은 토큰 : {}", accessToken);
 		this.webClient = WebClient.builder().exchangeStrategies(exchangeStrategies).baseUrl(API_BASE_URL)
 				.defaultHeader("Accept", "application/json").defaultHeader("Content-Type", "application/json")
 				.defaultHeader("Authorization", "Bearer " + accessToken).build();
@@ -64,10 +79,8 @@ public class WebClientApp {
 
 	}
 
-	// OAuth access token 유효기간 86400초 (24시간)
-	// 24시간 마다 token 다시 받아오게끔 스케쥴링
-//	@Scheduled(fixedDelay=86400*1000) 
-	public synchronized void getAccessToken() {
+	
+	public synchronized void getAccessToken(int index) {
 		String region = "ap_northeast_2"; // Consider making this configurable
 
 		ApiClient apiClient = ApiClient.Builder.standard().withBasePath(PureCloudRegionHosts.valueOf(region)).build();
@@ -77,11 +90,13 @@ public class WebClientApp {
 			String newAccessToken = authResponse.getBody().getAccess_token();
 			synchronized (this) {
 				accessToken = newAccessToken;
+				tokenlist[index] = newAccessToken;
 			}
 			log.info("Access token refreshed successfully.");
 		} catch (Exception e) {
 			log.error("Error occurred during access token refresh: {}", e.getMessage(), e);
 		}
+
 	}
 
 	public Mono<String> makeApiRequestAsync() {
@@ -146,6 +161,15 @@ public class WebClientApp {
 							return Mono.error(new RuntimeException("Error: " + errorBody));
 						}))
 				.bodyToMono(String.class).block();
+	}
+	
+	
+	public static void EmptyTockenlt() {
+		
+		for(int i = 0; i<15; i++) {
+			tokenlist[i] = "";
+		}
+		index = 0;
 	}
 
 }

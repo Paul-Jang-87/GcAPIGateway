@@ -7,6 +7,8 @@ public interface InterfaceJson  {//defult로 해놓으면 InterfaceJson을 다�
 	
 	  String ExtractVal(String stringMsg) throws Exception;
 	  String ExtractValCrm12(String stringMsg, int size) throws Exception;
+	  String ExtrSaveRtData(String stringMsg) throws Exception;
+	  String ExtrDivisionNm(String stringMsg) throws Exception;
 	  
 	  String ExtractValCallBot(String stringMsg,int i)throws Exception;
 	  String ExtractValUcrm(String stringMsg)throws Exception;

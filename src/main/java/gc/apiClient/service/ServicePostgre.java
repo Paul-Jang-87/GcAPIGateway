@@ -18,20 +18,29 @@ import org.springframework.stereotype.Service;
 
 import gc.apiClient.customproperties.CustomProperties;
 import gc.apiClient.datamapping.MappingCenter;
+import gc.apiClient.embeddable.ApimCampRt;
+import gc.apiClient.embeddable.CallBotCampRt;
 import gc.apiClient.embeddable.CampRt;
 import gc.apiClient.embeddable.ContactLtId;
 import gc.apiClient.embeddable.Ucrm;
+import gc.apiClient.embeddable.UcrmCampRt;
 import gc.apiClient.entity.Entity_CampMaJson;
 import gc.apiClient.entity.Entity_CampMaJsonUcrm;
+import gc.apiClient.entity.postgresql.Entity_ApimRt;
+import gc.apiClient.entity.postgresql.Entity_CallbotRt;
 import gc.apiClient.entity.postgresql.Entity_CampMa;
 import gc.apiClient.entity.postgresql.Entity_CampRt;
 import gc.apiClient.entity.postgresql.Entity_ContactLt;
 import gc.apiClient.entity.postgresql.Entity_Ucrm;
+import gc.apiClient.entity.postgresql.Entity_UcrmRt;
 import gc.apiClient.interfaceCollection.InterfaceDBPostgreSQL;
+import gc.apiClient.repository.postgresql.Repository_ApimRt;
+import gc.apiClient.repository.postgresql.Repository_CallbotRt;
 import gc.apiClient.repository.postgresql.Repository_CampMa;
 import gc.apiClient.repository.postgresql.Repository_CampRt;
 import gc.apiClient.repository.postgresql.Repository_ContactLt;
 import gc.apiClient.repository.postgresql.Repository_Ucrm;
+import gc.apiClient.repository.postgresql.Repository_UcrmRt;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
@@ -43,18 +52,27 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	private final Repository_CampRt repositoryCampRt;
 	private final Repository_CampMa repositoryCampMa;
 	private final Repository_Ucrm repositoryUcrm;
+	private final Repository_CallbotRt repositoryCallbotRt;
+	private final Repository_UcrmRt repositoryUcrmRt;
+	private final Repository_ApimRt repositoryApimRt;
 	private final Repository_ContactLt repositoryContactLt;
 	private final CustomProperties customProperties;
 
 	public ServicePostgre(Repository_CampRt repositoryCampRt, Repository_CampMa repositoryCampMa,
 			Repository_ContactLt repositoryContactLt, CustomProperties customProperties,
-			Repository_Ucrm repositoryUcrm) {
+			Repository_Ucrm repositoryUcrm,
+			Repository_CallbotRt repositoryCallbotRt,
+			Repository_UcrmRt repositoryUcrmRt,
+			Repository_ApimRt repositoryApimRt) {
 
 		this.repositoryCampRt = repositoryCampRt;
 		this.repositoryUcrm = repositoryUcrm;
 		this.repositoryCampMa = repositoryCampMa;
 		this.repositoryContactLt = repositoryContactLt;
 		this.customProperties = customProperties;
+		this.repositoryCallbotRt = repositoryCallbotRt;
+		this.repositoryUcrmRt = repositoryUcrmRt;
+		this.repositoryApimRt = repositoryApimRt;
 	}
 
 	// **Create
@@ -187,7 +205,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		String campid = enCampRt.getCpid();
 		String didt = "";
 
-		SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSS");
 		outputFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 		String formattedDateString = outputFormat.format(enCampRt.getDidt());
 		didt = formattedDateString;
@@ -717,11 +735,45 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	public Page<Entity_Ucrm> getAll() {
 		return repositoryUcrm.findAll(PageRequest.of(0, 1000));
 	}
+	
+	
+	@Override
+	public Page<Entity_UcrmRt> getAllUcrmRt() throws Exception {
+		return repositoryUcrmRt.findAll(PageRequest.of(0, 1000));
+	}
+
+	@Override
+	public Page<Entity_CallbotRt> getAllCallBotRt() throws Exception {
+		return repositoryCallbotRt.findAll(PageRequest.of(0, 1000));
+	}
+
+	@Override
+	public Page<Entity_ApimRt> getAllApimRt() throws Exception {
+		return repositoryApimRt.findAll(PageRequest.of(0, 1000));
+	}
 
 	@Override
 	public void DelCampMaById(String cpid) {
 		repositoryCampMa.deleteById(cpid);
 	}
+	
+	
+	@Override
+	public void DelCallBotRtById(CallBotCampRt id){
+		repositoryCallbotRt.deleteById(id);
+	}
+	
+	
+	@Override
+	public void DelUcrmRtById(UcrmCampRt id) throws Exception {
+		repositoryUcrmRt.deleteById(id);
+	}
+
+	@Override
+	public void DelApimRtById(ApimCampRt id) throws Exception {
+		repositoryApimRt.deleteById(id);
+	}
+	
 
 	@Override
 	public void DelUcrmLtById(String topcDataIsueSno) {
@@ -741,5 +793,97 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			throw new EntityNotFoundException("No Entity has been found with CPID: " + cpid);
 		}
 	}
+
+	@Override
+	public Entity_CallbotRt InsertCallbotRt(Entity_CallbotRt enCallbotRt) throws Exception {
+		
+		
+		Optional<Entity_CallbotRt> existingEntity = repositoryCallbotRt.findById(enCallbotRt.getId());
+
+		if (existingEntity.isPresent()) {
+			throw new DataIntegrityViolationException("Record with the given composite key already exists.");
+		}
+
+		return repositoryCallbotRt.save(enCallbotRt);
+	}
+
+	@Override
+	public Entity_UcrmRt InsertUcrmRt(Entity_UcrmRt enUcrmRt) throws Exception {
+		Optional<Entity_UcrmRt> existingEntity = repositoryUcrmRt.findById(enUcrmRt.getId());
+
+		if (existingEntity.isPresent()) {
+			throw new DataIntegrityViolationException("Record with the given composite key already exists.");
+		}
+
+		return repositoryUcrmRt.save(enUcrmRt);
+	}
+
+	@Override
+	public Entity_ApimRt InsertApimRt(Entity_ApimRt enApimRt) throws Exception {
+		Optional<Entity_ApimRt> existingEntity = repositoryApimRt.findById(enApimRt.getId());
+
+		if (existingEntity.isPresent()) {
+			throw new DataIntegrityViolationException("Record with the given composite key already exists.");
+		}
+
+		return repositoryApimRt.save(enApimRt);
+	}
+
+	@Override
+	public Entity_UcrmRt createUcrmRt(String msg) throws Exception {
+		
+		String cpid = msg.split("::")[0];
+		String cpsq = msg.split("::")[1];
+		String divisionid = msg.split("::")[2];
+		
+		Entity_UcrmRt enUcrmRt = new Entity_UcrmRt();
+		UcrmCampRt ucrmCampRt = new UcrmCampRt() ;
+		ucrmCampRt.setCpid(cpid);
+		ucrmCampRt.setCpsq(cpsq);
+		enUcrmRt.setId(ucrmCampRt);		
+		enUcrmRt.setDivisionid(divisionid);
+		
+		return enUcrmRt;
+	}
+
+	@Override
+	public Entity_CallbotRt createCallbotRt(String msg) throws Exception {
+		
+		String cpid = msg.split("::")[0];
+		String cpsq = msg.split("::")[1];
+		String divisionid = msg.split("::")[2];
+		
+		Entity_CallbotRt enCallbotRt = new Entity_CallbotRt();
+		CallBotCampRt callbotCampRt = new CallBotCampRt() ;
+		callbotCampRt.setCpid(cpid);
+		callbotCampRt.setCpsq(cpsq);
+		enCallbotRt.setId(callbotCampRt);
+		enCallbotRt.setDivisionid(divisionid);
+		
+		return enCallbotRt;
+	}
+
+	@Override
+	public Entity_ApimRt createApimRt(String msg) throws Exception {
+		
+		String cpid = msg.split("::")[0];
+		String cpsq = msg.split("::")[1];
+		String divisionid = msg.split("::")[2];
+		
+		Entity_ApimRt apimRt = new Entity_ApimRt();
+		ApimCampRt apimCampRt = new ApimCampRt() ;
+		apimCampRt.setCpid(cpid);
+		apimCampRt.setCpsq(cpsq);
+		apimRt.setId(apimCampRt);	
+		apimRt.setDivisionid(divisionid);
+		
+		return apimRt;
+	}
+
+	
+
+	
+
+	
 
 }

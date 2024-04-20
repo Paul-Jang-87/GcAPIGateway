@@ -3,6 +3,7 @@ package gc.apiClient.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +48,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
+@Profile("oracleH")
 public class ServiceOracle implements InterfaceDBOracle {
 	// 검색 **Create **Insert **Select
 	private final Repository_DataCall repositoryDataCall;

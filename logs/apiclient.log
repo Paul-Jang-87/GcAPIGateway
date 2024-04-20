@@ -224,3 +224,832 @@ INFO  24-04-19 17:41:18[RMI TCP Connection(5)-127.0.0.1] [HikariDataSource:350] 
 INFO  24-04-19 17:41:18[RMI TCP Connection(5)-127.0.0.1] [HikariDataSource:352] - InfogncORCLH-hikari-pool - Shutdown completed.
 INFO  24-04-19 17:41:18[RMI TCP Connection(5)-127.0.0.1] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
 INFO  24-04-19 17:41:18[RMI TCP Connection(5)-127.0.0.1] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-04-20 17:27:19[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 12992 (C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes started by wjdfu in C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway)
+INFO  24-04-20 17:27:19[main] [GcClientApplication:654] - No active profile set, falling back to 1 default profile: "default"
+INFO  24-04-20 17:27:22[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-20 17:27:23[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 494 ms. Found 8 JPA repository interfaces.
+INFO  24-04-20 17:27:23[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-20 17:27:23[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 164 ms. Found 8 JPA repository interfaces.
+INFO  24-04-20 17:27:23[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-20 17:27:23[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 99 ms. Found 7 JPA repository interfaces.
+INFO  24-04-20 17:27:26[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-04-20 17:27:26[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-04-20 17:27:27[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 7026 ms
+INFO  24-04-20 17:27:29[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-20 17:27:29[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-20 17:27:29[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
+WARN  24-04-20 17:27:29[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+ERROR 24-04-20 17:28:11[main] [HikariPool:594] - InfogncORCLH-hikari-pool - Exception during pool initialization.
+java.sql.SQLRecoverableException: IO 오류: The Network Adapter could not establish the connection (CONNECTION_ID=lwh1SNpGTIapOejW9q/Q+A==)
+	at oracle.jdbc.driver.T4CConnection.handleLogonNetException(T4CConnection.java:892)
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:697)
+	at oracle.jdbc.driver.PhysicalConnection.connect(PhysicalConnection.java:1047)
+	at oracle.jdbc.driver.T4CDriverExtension.getConnection(T4CDriverExtension.java:89)
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:732)
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:648)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:428)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:61)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:276)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:107)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:129)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215)
+	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:223)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:191)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:170)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1432)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1503)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at gc.apiClient.GcClientApplication.main(GcClientApplication.java:16)
+Caused by: oracle.net.ns.NetException: The Network Adapter could not establish the connection (CONNECTION_ID=lwh1SNpGTIapOejW9q/Q+A==)
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:715)
+	at oracle.net.resolver.AddrResolution.resolveAndExecute(AddrResolution.java:584)
+	at oracle.net.ns.NSProtocol.establishConnection(NSProtocol.java:964)
+	at oracle.net.ns.NSProtocol.connect(NSProtocol.java:350)
+	at oracle.jdbc.driver.T4CConnection.connect(T4CConnection.java:2441)
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:656)
+	... 50 common frames omitted
+Caused by: java.io.IOException: Socket read timed out, socket connect lapse 20009 ms. 192.168.219.108 1521  20000 (1/1) true
+	at oracle.net.nt.TcpNTAdapter.establishSocket(TcpNTAdapter.java:403)
+	at oracle.net.nt.TcpNTAdapter.doLocalDNSLookupConnect(TcpNTAdapter.java:307)
+	at oracle.net.nt.TcpNTAdapter.connect(TcpNTAdapter.java:269)
+	at oracle.net.nt.ConnOption.connect(ConnOption.java:230)
+	at oracle.net.nt.ConnStrategy.executeConnOption(ConnStrategy.java:1014)
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:673)
+	... 55 common frames omitted
+Caused by: oracle.net.nt.TimeoutInterruptHandler$IOReadTimeoutException: Socket read timed out
+	at oracle.net.nt.TimeoutSocketChannel.handleInterrupt(TimeoutSocketChannel.java:543)
+	at oracle.net.nt.TimeoutSocketChannel.connect(TimeoutSocketChannel.java:196)
+	at oracle.net.nt.TimeoutSocketChannel.<init>(TimeoutSocketChannel.java:157)
+	at oracle.net.nt.TcpNTAdapter.establishSocket(TcpNTAdapter.java:384)
+	... 60 common frames omitted
+INFO  24-04-20 17:28:13[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-04-20 17:28:13[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-20 17:28:13[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-20 17:28:13[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
+WARN  24-04-20 17:28:13[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+ERROR 24-04-20 17:28:54[main] [HikariPool:594] - InfogncORCLM-hikari-pool - Exception during pool initialization.
+java.sql.SQLRecoverableException: IO 오류: The Network Adapter could not establish the connection (CONNECTION_ID=7lcFDi5KRYOFPdDJs71VSQ==)
+	at oracle.jdbc.driver.T4CConnection.handleLogonNetException(T4CConnection.java:892)
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:697)
+	at oracle.jdbc.driver.PhysicalConnection.connect(PhysicalConnection.java:1047)
+	at oracle.jdbc.driver.T4CDriverExtension.getConnection(T4CDriverExtension.java:89)
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:732)
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:648)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:359)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:201)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:470)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:100)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:428)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:61)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:276)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:107)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:129)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215)
+	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:223)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:191)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:170)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1432)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1503)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at gc.apiClient.GcClientApplication.main(GcClientApplication.java:16)
+Caused by: oracle.net.ns.NetException: The Network Adapter could not establish the connection (CONNECTION_ID=7lcFDi5KRYOFPdDJs71VSQ==)
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:715)
+	at oracle.net.resolver.AddrResolution.resolveAndExecute(AddrResolution.java:584)
+	at oracle.net.ns.NSProtocol.establishConnection(NSProtocol.java:964)
+	at oracle.net.ns.NSProtocol.connect(NSProtocol.java:350)
+	at oracle.jdbc.driver.T4CConnection.connect(T4CConnection.java:2441)
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:656)
+	... 50 common frames omitted
+Caused by: java.io.IOException: Socket read timed out, socket connect lapse 20010 ms. 192.168.219.108 1521  20000 (1/1) true
+	at oracle.net.nt.TcpNTAdapter.establishSocket(TcpNTAdapter.java:403)
+	at oracle.net.nt.TcpNTAdapter.doLocalDNSLookupConnect(TcpNTAdapter.java:307)
+	at oracle.net.nt.TcpNTAdapter.connect(TcpNTAdapter.java:269)
+	at oracle.net.nt.ConnOption.connect(ConnOption.java:230)
+	at oracle.net.nt.ConnStrategy.executeConnOption(ConnStrategy.java:1014)
+	at oracle.net.nt.ConnStrategy.execute(ConnStrategy.java:673)
+	... 55 common frames omitted
+Caused by: oracle.net.nt.TimeoutInterruptHandler$IOReadTimeoutException: Socket read timed out
+	at oracle.net.nt.TimeoutSocketChannel.handleInterrupt(TimeoutSocketChannel.java:543)
+	at oracle.net.nt.TimeoutSocketChannel.connect(TimeoutSocketChannel.java:196)
+	at oracle.net.nt.TimeoutSocketChannel.<init>(TimeoutSocketChannel.java:157)
+	at oracle.net.nt.TcpNTAdapter.establishSocket(TcpNTAdapter.java:384)
+	... 60 common frames omitted
+INFO  24-04-20 17:28:55[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-04-20 17:28:55[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-20 17:28:55[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-20 17:28:55[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-20 17:28:56[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@21845b36
+INFO  24-04-20 17:28:56[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-04-20 17:28:57[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-20 17:28:59[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-20 17:29:02[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+WARN  24-04-20 17:29:02[main] [AnnotationConfigServletWebServerApplicationContext:632] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'controllerCenter' method 
+gc.apiClient.controller.ControllerCenter#Msg360WaDataCallOptional()
+to {GET [/360view11]}: There is already 'controller360view' bean method
+gc.apiClient.controller.Controller360view#Msg360WaDataCallOptional() mapped.
+INFO  24-04-20 17:29:02[main] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-20 17:29:02[main] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-04-20 17:29:02[main] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-04-20 17:29:02[main] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-04-20 17:29:02[main] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-04-20 17:29:02[main] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 24-04-20 17:29:02[main] [SpringApplication:851] - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'controllerCenter' method 
+gc.apiClient.controller.ControllerCenter#Msg360WaDataCallOptional()
+to {GET [/360view11]}: There is already 'controller360view' bean method
+gc.apiClient.controller.Controller360view#Msg360WaDataCallOptional() mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1773)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at gc.apiClient.GcClientApplication.main(GcClientApplication.java:16)
+Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'controllerCenter' method 
+gc.apiClient.controller.ControllerCenter#Msg360WaDataCallOptional()
+to {GET [/360view11]}: There is already 'controller360view' bean method
+gc.apiClient.controller.Controller360view#Msg360WaDataCallOptional() mapped.
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:671)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:633)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:331)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:486)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:79)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lambda$detectHandlerMethods$2(AbstractHandlerMethodMapping.java:298)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:986)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:296)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.processCandidateBean(AbstractHandlerMethodMapping.java:265)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:224)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:212)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:233)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769)
+	... 16 common frames omitted
+INFO  24-04-20 17:50:53[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 5580 (C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes started by wjdfu in C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway)
+INFO  24-04-20 17:50:53[main] [GcClientApplication:660] - The following 1 profile is active: "postgres"
+INFO  24-04-20 17:50:55[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-20 17:50:56[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 450 ms. Found 7 JPA repository interfaces.
+INFO  24-04-20 17:50:58[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-04-20 17:50:58[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-04-20 17:50:58[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 5512 ms
+INFO  24-04-20 17:51:00[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-20 17:51:01[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-20 17:51:01[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-20 17:51:01[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@51172948
+INFO  24-04-20 17:51:01[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-04-20 17:51:03[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-20 17:51:04[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-20 17:51:05[main] [AnnotationConfigServletWebServerApplicationContext:632] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'controller360view' defined in file [C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes\gc\apiClient\controller\Controller360view.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'serviceOracle' defined in file [C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes\gc\apiClient\service\ServiceOracle.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'gc.apiClient.repository.oracleH.Repository_DataCall' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+INFO  24-04-20 17:51:05[main] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-20 17:51:05[main] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-04-20 17:51:05[main] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-04-20 17:51:05[main] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 24-04-20 17:51:05[main] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in gc.apiClient.service.ServiceOracle required a bean of type 'gc.apiClient.repository.oracleH.Repository_DataCall' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'gc.apiClient.repository.oracleH.Repository_DataCall' in your configuration.
+
+INFO  24-04-20 17:57:10[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 13172 (C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes started by wjdfu in C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway)
+INFO  24-04-20 17:57:10[main] [GcClientApplication:660] - The following 1 profile is active: "postgres"
+INFO  24-04-20 17:57:11[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-20 17:57:12[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 305 ms. Found 7 JPA repository interfaces.
+INFO  24-04-20 17:57:14[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-04-20 17:57:14[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-04-20 17:57:14[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 4764 ms
+INFO  24-04-20 17:57:16[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-20 17:57:17[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-20 17:57:17[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-20 17:57:17[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@2ae5580
+INFO  24-04-20 17:57:17[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-04-20 17:57:20[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-20 17:57:21[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-20 17:57:22[main] [AnnotationConfigServletWebServerApplicationContext:632] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'controller360view' defined in file [C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes\gc\apiClient\controller\Controller360view.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'serviceOracle' defined in file [C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes\gc\apiClient\service\ServiceOracle.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'gc.apiClient.repository.oracleH.Repository_DataCall' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+INFO  24-04-20 17:57:22[main] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-20 17:57:22[main] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-04-20 17:57:22[main] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-04-20 17:57:22[main] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 24-04-20 17:57:22[main] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in gc.apiClient.service.ServiceOracle required a bean of type 'gc.apiClient.repository.oracleH.Repository_DataCall' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'gc.apiClient.repository.oracleH.Repository_DataCall' in your configuration.
+
+INFO  24-04-20 17:58:45[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 13996 (C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes started by wjdfu in C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway)
+INFO  24-04-20 17:58:45[main] [GcClientApplication:660] - The following 1 profile is active: "postgres"
+INFO  24-04-20 17:58:47[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-20 17:58:48[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 564 ms. Found 7 JPA repository interfaces.
+INFO  24-04-20 17:58:51[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-04-20 17:58:51[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-04-20 17:58:51[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 6190 ms
+INFO  24-04-20 17:58:53[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-20 17:58:54[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-20 17:58:54[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-20 17:58:55[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@4203529f
+INFO  24-04-20 17:58:55[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-04-20 17:58:58[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-20 17:58:59[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-20 17:59:01[main] [AnnotationConfigServletWebServerApplicationContext:632] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'controller360view' defined in file [C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes\gc\apiClient\controller\Controller360view.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'serviceOracle' defined in file [C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes\gc\apiClient\service\ServiceOracle.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'gc.apiClient.repository.oracleH.Repository_DataCall' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+INFO  24-04-20 17:59:01[main] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-20 17:59:01[main] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-04-20 17:59:01[main] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-04-20 17:59:01[main] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 24-04-20 17:59:01[main] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in gc.apiClient.service.ServiceOracle required a bean of type 'gc.apiClient.repository.oracleH.Repository_DataCall' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'gc.apiClient.repository.oracleH.Repository_DataCall' in your configuration.
+
+INFO  24-04-20 17:59:39[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 18220 (C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes started by wjdfu in C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway)
+INFO  24-04-20 17:59:39[main] [GcClientApplication:660] - The following 1 profile is active: "postgres"
+INFO  24-04-20 17:59:41[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-20 17:59:41[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 350 ms. Found 7 JPA repository interfaces.
+INFO  24-04-20 17:59:44[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-04-20 17:59:44[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-04-20 17:59:44[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 4513 ms
+INFO  24-04-20 17:59:46[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-20 17:59:46[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-20 17:59:46[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-20 17:59:47[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@69ac5752
+INFO  24-04-20 17:59:47[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-04-20 17:59:49[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-20 17:59:50[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-20 17:59:51[main] [AnnotationConfigServletWebServerApplicationContext:632] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'controller360view' defined in file [C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes\gc\apiClient\controller\Controller360view.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'serviceOracle' defined in file [C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes\gc\apiClient\service\ServiceOracle.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'gc.apiClient.repository.oracleH.Repository_DataCall' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+INFO  24-04-20 17:59:51[main] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-20 17:59:51[main] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-04-20 17:59:51[main] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-04-20 17:59:51[main] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 24-04-20 17:59:51[main] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in gc.apiClient.service.ServiceOracle required a bean of type 'gc.apiClient.repository.oracleH.Repository_DataCall' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'gc.apiClient.repository.oracleH.Repository_DataCall' in your configuration.
+
+INFO  24-04-20 18:01:31[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 27708 (C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes started by wjdfu in C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway)
+INFO  24-04-20 18:01:31[main] [GcClientApplication:660] - The following 1 profile is active: "postgres"
+INFO  24-04-20 18:01:32[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-20 18:01:33[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 433 ms. Found 7 JPA repository interfaces.
+INFO  24-04-20 18:01:35[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-04-20 18:01:35[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-04-20 18:01:36[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 4896 ms
+INFO  24-04-20 18:01:38[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-20 18:01:38[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-20 18:01:38[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-20 18:01:38[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@470f0637
+INFO  24-04-20 18:01:38[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-04-20 18:01:41[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-20 18:01:41[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-20 18:01:42[main] [AnnotationConfigServletWebServerApplicationContext:632] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'controller360view' defined in file [C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes\gc\apiClient\controller\Controller360view.class]: Unsatisfied dependency expressed through constructor parameter 1: No qualifying bean of type 'gc.apiClient.interfaceCollection.InterfaceDBOracle' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+INFO  24-04-20 18:01:42[main] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-20 18:01:42[main] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-04-20 18:01:42[main] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-04-20 18:01:42[main] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 24-04-20 18:01:42[main] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 1 of constructor in gc.apiClient.controller.Controller360view required a bean of type 'gc.apiClient.interfaceCollection.InterfaceDBOracle' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'gc.apiClient.interfaceCollection.InterfaceDBOracle' in your configuration.
+
+INFO  24-04-20 18:09:28[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 16656 (C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes started by wjdfu in C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway)
+INFO  24-04-20 18:09:28[main] [GcClientApplication:660] - The following 1 profile is active: "postgres"
+INFO  24-04-20 18:09:30[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-20 18:09:30[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 387 ms. Found 7 JPA repository interfaces.
+INFO  24-04-20 18:09:33[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-04-20 18:09:33[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-04-20 18:09:33[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 5476 ms
+INFO  24-04-20 18:09:35[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-20 18:09:35[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-20 18:09:35[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-20 18:09:37[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@361f1647
+INFO  24-04-20 18:09:37[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-04-20 18:09:39[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-20 18:09:40[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-20 18:09:42[main] [AnnotationConfigServletWebServerApplicationContext:632] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'controllerCallBot' defined in file [C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes\gc\apiClient\controller\ControllerCallBot.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'serviceOracle' defined in file [C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes\gc\apiClient\service\ServiceOracle.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'gc.apiClient.repository.oracleH.Repository_DataCall' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+INFO  24-04-20 18:09:42[main] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-20 18:09:42[main] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-04-20 18:09:42[main] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-04-20 18:09:42[main] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 24-04-20 18:09:42[main] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in gc.apiClient.service.ServiceOracle required a bean of type 'gc.apiClient.repository.oracleH.Repository_DataCall' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'gc.apiClient.repository.oracleH.Repository_DataCall' in your configuration.
+
+INFO  24-04-20 18:11:06[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 18556 (C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes started by wjdfu in C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway)
+INFO  24-04-20 18:11:06[main] [GcClientApplication:660] - The following 1 profile is active: "postgres"
+INFO  24-04-20 18:11:07[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-20 18:11:08[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 293 ms. Found 7 JPA repository interfaces.
+INFO  24-04-20 18:11:10[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-04-20 18:11:10[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-04-20 18:11:10[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 3875 ms
+INFO  24-04-20 18:11:11[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-20 18:11:12[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-20 18:11:12[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-20 18:11:12[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@39ac8c0c
+INFO  24-04-20 18:11:12[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-04-20 18:11:14[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-20 18:11:15[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-20 18:11:16[main] [AnnotationConfigServletWebServerApplicationContext:632] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'controllerCallBot' defined in file [C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes\gc\apiClient\controller\ControllerCallBot.class]: Unsatisfied dependency expressed through constructor parameter 1: No qualifying bean of type 'gc.apiClient.interfaceCollection.InterfaceDBOracle' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+INFO  24-04-20 18:11:16[main] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-20 18:11:16[main] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-04-20 18:11:16[main] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-04-20 18:11:16[main] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 24-04-20 18:11:17[main] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 1 of constructor in gc.apiClient.controller.ControllerCallBot required a bean of type 'gc.apiClient.interfaceCollection.InterfaceDBOracle' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'gc.apiClient.interfaceCollection.InterfaceDBOracle' in your configuration.
+
+INFO  24-04-20 18:16:18[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 13624 (C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes started by wjdfu in C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway)
+INFO  24-04-20 18:16:18[main] [GcClientApplication:660] - The following 1 profile is active: "postgres"
+INFO  24-04-20 18:16:19[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-20 18:16:20[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 418 ms. Found 7 JPA repository interfaces.
+INFO  24-04-20 18:16:22[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-04-20 18:16:22[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-04-20 18:16:22[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 4379 ms
+INFO  24-04-20 18:16:24[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-20 18:16:24[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-20 18:16:24[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-20 18:16:25[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@2697c156
+INFO  24-04-20 18:16:25[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-04-20 18:16:27[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-20 18:16:28[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-20 18:16:29[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+WARN  24-04-20 18:16:30[main] [AnnotationConfigServletWebServerApplicationContext:632] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'controllerCenter' method 
+gc.apiClient.controller.ControllerCenter#CallbotMsgFrmCnsumer(String, String)
+to {POST [/contactlt/{topic}]}: There is already 'controllerCallBot' bean method
+gc.apiClient.controller.ControllerCallBot#CallbotMsgFrmCnsumer(String, String) mapped.
+INFO  24-04-20 18:16:30[main] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-20 18:16:30[main] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-04-20 18:16:30[main] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-04-20 18:16:30[main] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 24-04-20 18:16:30[main] [SpringApplication:851] - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'controllerCenter' method 
+gc.apiClient.controller.ControllerCenter#CallbotMsgFrmCnsumer(String, String)
+to {POST [/contactlt/{topic}]}: There is already 'controllerCallBot' bean method
+gc.apiClient.controller.ControllerCallBot#CallbotMsgFrmCnsumer(String, String) mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1773)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at gc.apiClient.GcClientApplication.main(GcClientApplication.java:16)
+Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'controllerCenter' method 
+gc.apiClient.controller.ControllerCenter#CallbotMsgFrmCnsumer(String, String)
+to {POST [/contactlt/{topic}]}: There is already 'controllerCallBot' bean method
+gc.apiClient.controller.ControllerCallBot#CallbotMsgFrmCnsumer(String, String) mapped.
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:671)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:633)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:331)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:486)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:79)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lambda$detectHandlerMethods$2(AbstractHandlerMethodMapping.java:298)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:986)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:296)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.processCandidateBean(AbstractHandlerMethodMapping.java:265)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:224)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:212)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:233)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769)
+	... 16 common frames omitted
+INFO  24-04-20 18:22:13[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 13168 (C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes started by wjdfu in C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway)
+INFO  24-04-20 18:22:13[main] [GcClientApplication:660] - The following 1 profile is active: "postgres"
+INFO  24-04-20 18:22:15[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-20 18:22:15[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 347 ms. Found 7 JPA repository interfaces.
+INFO  24-04-20 18:22:17[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-04-20 18:22:17[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-04-20 18:22:18[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 4293 ms
+INFO  24-04-20 18:22:19[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-20 18:22:19[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-20 18:22:19[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-20 18:22:20[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@129c760d
+INFO  24-04-20 18:22:20[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-04-20 18:22:22[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-20 18:22:23[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-20 18:22:25[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+WARN  24-04-20 18:22:25[main] [AnnotationConfigServletWebServerApplicationContext:632] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'controllerUCRM' method 
+gc.apiClient.controller.ControllerUCRM#SaveUcrmData(String)
+to {POST [/saveucrmdata]}: There is already 'controllerCallBot' bean method
+gc.apiClient.controller.ControllerCallBot#SaveUcrmData(String) mapped.
+INFO  24-04-20 18:22:25[main] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-20 18:22:25[main] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-04-20 18:22:25[main] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-04-20 18:22:25[main] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 24-04-20 18:22:25[main] [SpringApplication:851] - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Ambiguous mapping. Cannot map 'controllerUCRM' method 
+gc.apiClient.controller.ControllerUCRM#SaveUcrmData(String)
+to {POST [/saveucrmdata]}: There is already 'controllerCallBot' bean method
+gc.apiClient.controller.ControllerCallBot#SaveUcrmData(String) mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1773)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at gc.apiClient.GcClientApplication.main(GcClientApplication.java:16)
+Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'controllerUCRM' method 
+gc.apiClient.controller.ControllerUCRM#SaveUcrmData(String)
+to {POST [/saveucrmdata]}: There is already 'controllerCallBot' bean method
+gc.apiClient.controller.ControllerCallBot#SaveUcrmData(String) mapped.
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:671)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:633)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:331)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:486)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:79)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lambda$detectHandlerMethods$2(AbstractHandlerMethodMapping.java:298)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:986)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:296)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.processCandidateBean(AbstractHandlerMethodMapping.java:265)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:224)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:212)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:233)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1820)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1769)
+	... 16 common frames omitted
+INFO  24-04-20 18:23:20[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 13988 (C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes started by wjdfu in C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway)
+INFO  24-04-20 18:23:20[main] [GcClientApplication:660] - The following 1 profile is active: "postgres"
+INFO  24-04-20 18:23:21[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-20 18:23:22[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 266 ms. Found 7 JPA repository interfaces.
+INFO  24-04-20 18:23:24[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-04-20 18:23:24[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-04-20 18:23:24[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 3925 ms
+INFO  24-04-20 18:23:25[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-20 18:23:25[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-20 18:23:25[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-20 18:23:26[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@6fd97fd1
+INFO  24-04-20 18:23:26[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-04-20 18:23:28[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-20 18:23:29[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-20 18:23:30[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-04-20 18:23:31[main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8083"]
+INFO  24-04-20 18:23:31[main] [TomcatWebServer:241] - Tomcat started on port 8083 (http) with context path ''
+INFO  24-04-20 18:23:32[main] [GcClientApplication:56] - Started GcClientApplication in 12.37 seconds (process running for 13.774)
+INFO  24-04-20 18:27:26[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 25364 (C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes started by wjdfu in C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway)
+INFO  24-04-20 18:27:26[main] [GcClientApplication:660] - The following 1 profile is active: "postgres"
+INFO  24-04-20 18:27:28[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-20 18:27:28[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 340 ms. Found 7 JPA repository interfaces.
+INFO  24-04-20 18:27:30[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-04-20 18:27:30[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-04-20 18:27:31[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 4604 ms
+INFO  24-04-20 18:27:32[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-20 18:27:32[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-20 18:27:32[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-20 18:27:33[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@18be3205
+INFO  24-04-20 18:27:33[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-04-20 18:27:35[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-20 18:27:36[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-20 18:27:37[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-04-20 18:27:38[main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8083"]
+INFO  24-04-20 18:27:38[main] [TomcatWebServer:241] - Tomcat started on port 8083 (http) with context path ''
+INFO  24-04-20 18:27:38[main] [GcClientApplication:56] - Started GcClientApplication in 13.251 seconds (process running for 14.597)
+INFO  24-04-20 18:27:45[http-nio-8083-exec-2] [Http11Processor:175] - Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+java.lang.IllegalArgumentException: Invalid character found in method name [0x160x030x010x000xf70x010x000x000xf30x030x03Y0xaa0x0a0x9ei0x900x990x970xd80xd50xd6O`0x900xe10xeb70xaf0x14I0x0f8H0xb40xa30xd00xc9_0x9c0xd00xc20x82 ]. HTTP method names must be tokens
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:407)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:264)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+INFO  24-04-20 18:28:01[http-nio-8083-exec-4] [DispatcherServlet:532] - Initializing Servlet 'dispatcherServlet'
+INFO  24-04-20 18:28:01[http-nio-8083-exec-4] [DispatcherServlet:554] - Completed initialization in 2 ms
+INFO  24-04-20 18:28:01[http-nio-8083-exec-4] [ControllerCenter:357] -  
+INFO  24-04-20 18:28:01[http-nio-8083-exec-4] [ControllerCenter:358] - ====== Class : ControllerUCRM - Method : SaveRtData ======
+INFO  24-04-20 18:28:01[http-nio-8083-exec-4] [ServiceJson:396] -  
+INFO  24-04-20 18:28:01[http-nio-8083-exec-4] [ServiceJson:397] - ====== ClassName : ServiceJson & Method : ExtrSaveRtData ======
+INFO  24-04-20 18:28:01[http-nio-8083-exec-4] [ServiceJson:410] - result : 1234125::1::d4fe276d-86b9-4269-a8b3-5e8a6355e237
+INFO  24-04-20 18:28:01[http-nio-8083-exec-4] [ServiceJson:412] - ====== End ExtrSaveRtData ======
+INFO  24-04-20 18:28:01[http-nio-8083-exec-4] [ControllerCenter:367] - DivisionName : CallbotHome
+INFO  24-04-20 18:28:01[http-nio-8083-exec-4] [ControllerCenter:396] - ====== End SaveRtData ======
+INFO  24-04-20 18:40:47[http-nio-8083-exec-7] [ControllerCenter:357] -  
+INFO  24-04-20 18:40:47[http-nio-8083-exec-7] [ControllerCenter:358] - ====== Class : ControllerUCRM - Method : SaveRtData ======
+INFO  24-04-20 18:40:47[http-nio-8083-exec-7] [ServiceJson:396] -  
+INFO  24-04-20 18:40:47[http-nio-8083-exec-7] [ServiceJson:397] - ====== ClassName : ServiceJson & Method : ExtrSaveRtData ======
+INFO  24-04-20 18:40:47[http-nio-8083-exec-7] [ServiceJson:410] - result : 1234125::1::c5eafd0e-d7e7-4b19-aeb0-a1f6a4efd6c7
+INFO  24-04-20 18:40:47[http-nio-8083-exec-7] [ServiceJson:412] - ====== End ExtrSaveRtData ======
+INFO  24-04-20 18:40:47[http-nio-8083-exec-7] [ControllerCenter:367] - DivisionName : Mobile
+INFO  24-04-20 18:40:47[http-nio-8083-exec-7] [ControllerCenter:396] - ====== End SaveRtData ======
+INFO  24-04-20 18:41:56[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 1380 (C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes started by wjdfu in C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway)
+INFO  24-04-20 18:41:56[main] [GcClientApplication:660] - The following 1 profile is active: "postgres"
+INFO  24-04-20 18:41:58[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-20 18:41:58[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 269 ms. Found 7 JPA repository interfaces.
+INFO  24-04-20 18:42:00[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-04-20 18:42:00[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-04-20 18:42:00[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 3777 ms
+INFO  24-04-20 18:42:02[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-20 18:42:02[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-20 18:42:02[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-20 18:42:03[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@22bfd4b
+INFO  24-04-20 18:42:03[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-04-20 18:42:05[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-20 18:42:05[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-20 18:42:07[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-04-20 18:42:08[main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8083"]
+INFO  24-04-20 18:42:08[main] [TomcatWebServer:241] - Tomcat started on port 8083 (http) with context path ''
+INFO  24-04-20 18:42:08[main] [GcClientApplication:56] - Started GcClientApplication in 12.48 seconds (process running for 13.934)
+INFO  24-04-20 18:43:59[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 25540 (C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes started by wjdfu in C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway)
+INFO  24-04-20 18:43:59[main] [GcClientApplication:660] - The following 1 profile is active: "postgres"
+INFO  24-04-20 18:44:01[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-20 18:44:01[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 237 ms. Found 7 JPA repository interfaces.
+INFO  24-04-20 18:44:03[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-04-20 18:44:03[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-04-20 18:44:03[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 3909 ms
+INFO  24-04-20 18:44:05[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-20 18:44:05[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-20 18:44:05[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-20 18:44:05[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@4a2dbcfc
+INFO  24-04-20 18:44:05[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-04-20 18:44:07[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-20 18:44:08[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-20 18:44:09[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-04-20 18:44:10[main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8083"]
+INFO  24-04-20 18:44:10[main] [TomcatWebServer:241] - Tomcat started on port 8083 (http) with context path ''
+INFO  24-04-20 18:44:10[main] [GcClientApplication:56] - Started GcClientApplication in 11.487 seconds (process running for 12.726)
+INFO  24-04-20 18:44:43[http-nio-8083-exec-1] [DispatcherServlet:532] - Initializing Servlet 'dispatcherServlet'
+INFO  24-04-20 18:44:43[http-nio-8083-exec-1] [DispatcherServlet:554] - Completed initialization in 6 ms
+INFO  24-04-20 18:44:43[http-nio-8083-exec-1] [ControllerCenter:357] -  
+INFO  24-04-20 18:44:43[http-nio-8083-exec-1] [ControllerCenter:358] - ====== Class : ControllerCenter - Method : SaveRtData ======
+INFO  24-04-20 18:44:43[http-nio-8083-exec-1] [ServiceJson:396] -  
+INFO  24-04-20 18:44:43[http-nio-8083-exec-1] [ServiceJson:397] - ====== ClassName : ServiceJson & Method : ExtrSaveRtData ======
+INFO  24-04-20 18:44:43[http-nio-8083-exec-1] [ServiceJson:410] - result : 1234125::1::c5eafd0e-d7e7-4b19-aeb0-a1f6a4efd6c7
+INFO  24-04-20 18:44:43[http-nio-8083-exec-1] [ServiceJson:412] - ====== End ExtrSaveRtData ======
+INFO  24-04-20 18:44:43[http-nio-8083-exec-1] [ControllerCenter:367] - DivisionName : Mobile
+ERROR 24-04-20 18:44:43[http-nio-8083-exec-1] [ControllerCenter:393] - Error Message : Record with the given composite key already exists.
+INFO  24-04-20 18:44:43[http-nio-8083-exec-1] [ControllerCenter:396] - ====== End SaveRtData ======
+INFO  24-04-20 18:44:50[http-nio-8083-exec-3] [ControllerCenter:357] -  
+INFO  24-04-20 18:44:50[http-nio-8083-exec-3] [ControllerCenter:358] - ====== Class : ControllerCenter - Method : SaveRtData ======
+INFO  24-04-20 18:44:50[http-nio-8083-exec-3] [ServiceJson:396] -  
+INFO  24-04-20 18:44:50[http-nio-8083-exec-3] [ServiceJson:397] - ====== ClassName : ServiceJson & Method : ExtrSaveRtData ======
+INFO  24-04-20 18:44:50[http-nio-8083-exec-3] [ServiceJson:410] - result : 1234125::2::c5eafd0e-d7e7-4b19-aeb0-a1f6a4efd6c7
+INFO  24-04-20 18:44:50[http-nio-8083-exec-3] [ServiceJson:412] - ====== End ExtrSaveRtData ======
+INFO  24-04-20 18:44:50[http-nio-8083-exec-3] [ControllerCenter:367] - DivisionName : Mobile
+INFO  24-04-20 18:44:50[http-nio-8083-exec-3] [ControllerCenter:396] - ====== End SaveRtData ======
+INFO  24-04-20 18:46:16[http-nio-8083-exec-6] [ControllerCenter:357] -  
+INFO  24-04-20 18:46:16[http-nio-8083-exec-6] [ControllerCenter:358] - ====== Class : ControllerCenter - Method : SaveRtData ======
+INFO  24-04-20 18:46:16[http-nio-8083-exec-6] [ServiceJson:396] -  
+INFO  24-04-20 18:46:16[http-nio-8083-exec-6] [ServiceJson:397] - ====== ClassName : ServiceJson & Method : ExtrSaveRtData ======
+INFO  24-04-20 18:46:16[http-nio-8083-exec-6] [ServiceJson:410] - result : 1234125::2::00642642-b8f5-4c29-8a7b-fbb08af6a0e7
+INFO  24-04-20 18:46:16[http-nio-8083-exec-6] [ServiceJson:412] - ====== End ExtrSaveRtData ======
+INFO  24-04-20 18:46:16[http-nio-8083-exec-6] [ControllerCenter:367] - DivisionName : Home
+ERROR 24-04-20 18:46:16[http-nio-8083-exec-6] [ControllerCenter:393] - Error Message : Record with the given composite key already exists.
+INFO  24-04-20 18:46:16[http-nio-8083-exec-6] [ControllerCenter:396] - ====== End SaveRtData ======
+INFO  24-04-20 18:46:42[http-nio-8083-exec-7] [ControllerCenter:357] -  
+INFO  24-04-20 18:46:42[http-nio-8083-exec-7] [ControllerCenter:358] - ====== Class : ControllerCenter - Method : SaveRtData ======
+INFO  24-04-20 18:46:42[http-nio-8083-exec-7] [ServiceJson:396] -  
+INFO  24-04-20 18:46:42[http-nio-8083-exec-7] [ServiceJson:397] - ====== ClassName : ServiceJson & Method : ExtrSaveRtData ======
+INFO  24-04-20 18:46:42[http-nio-8083-exec-7] [ServiceJson:410] - result : 1234125::3::00642642-b8f5-4c29-8a7b-fbb08af6a0e7
+INFO  24-04-20 18:46:42[http-nio-8083-exec-7] [ServiceJson:412] - ====== End ExtrSaveRtData ======
+INFO  24-04-20 18:46:42[http-nio-8083-exec-7] [ControllerCenter:367] - DivisionName : Home
+INFO  24-04-20 18:46:42[http-nio-8083-exec-7] [ControllerCenter:396] - ====== End SaveRtData ======
+INFO  24-04-20 18:52:01[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 10840 (C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes started by wjdfu in C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway)
+INFO  24-04-20 18:52:01[main] [GcClientApplication:660] - The following 1 profile is active: "postgres"
+INFO  24-04-20 18:52:03[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-20 18:52:03[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 369 ms. Found 7 JPA repository interfaces.
+INFO  24-04-20 18:52:06[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-04-20 18:52:06[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-04-20 18:52:06[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 5250 ms
+INFO  24-04-20 18:52:09[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-20 18:52:09[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-20 18:52:09[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-20 18:52:09[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@1700d089
+INFO  24-04-20 18:52:09[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-04-20 18:52:12[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-20 18:52:12[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-20 18:52:14[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-04-20 18:52:15[main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8083"]
+INFO  24-04-20 18:52:15[main] [TomcatWebServer:241] - Tomcat started on port 8083 (http) with context path ''
+INFO  24-04-20 18:52:15[main] [GcClientApplication:56] - Started GcClientApplication in 14.724 seconds (process running for 15.959)
+INFO  24-04-20 18:53:42[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 13872 (C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes started by wjdfu in C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway)
+INFO  24-04-20 18:53:42[main] [GcClientApplication:660] - The following 1 profile is active: "postgres"
+INFO  24-04-20 18:53:43[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-20 18:53:44[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 350 ms. Found 7 JPA repository interfaces.
+INFO  24-04-20 18:53:46[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-04-20 18:53:46[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-04-20 18:53:46[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 4342 ms
+INFO  24-04-20 18:53:48[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-20 18:53:48[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-20 18:53:48[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-20 18:53:48[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@77e6053
+INFO  24-04-20 18:53:48[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-04-20 18:53:50[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-20 18:53:51[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-20 18:53:52[main] [AnnotationConfigServletWebServerApplicationContext:632] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'serviceOracle' defined in file [C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes\gc\apiClient\service\ServiceOracle.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'gc.apiClient.repository.oracleH.Repository_DataCall' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+INFO  24-04-20 18:53:52[main] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-20 18:53:52[main] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-04-20 18:53:52[main] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-04-20 18:53:52[main] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 24-04-20 18:53:52[main] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in gc.apiClient.service.ServiceOracle required a bean of type 'gc.apiClient.repository.oracleH.Repository_DataCall' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'gc.apiClient.repository.oracleH.Repository_DataCall' in your configuration.
+
+INFO  24-04-20 18:54:32[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 25164 (C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway\target\classes started by wjdfu in C:\GitWorkSpace\KafkaProject\gcapi\GcAPIGateway)
+INFO  24-04-20 18:54:32[main] [GcClientApplication:660] - The following 1 profile is active: "postgres"
+INFO  24-04-20 18:54:34[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-20 18:54:34[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 277 ms. Found 7 JPA repository interfaces.
+INFO  24-04-20 18:54:36[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-04-20 18:54:36[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-04-20 18:54:36[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 3793 ms
+INFO  24-04-20 18:54:38[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-20 18:54:38[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-20 18:54:38[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-20 18:54:38[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@25765a49
+INFO  24-04-20 18:54:38[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-04-20 18:54:40[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-20 18:54:41[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-20 18:54:42[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-04-20 18:54:43[main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8083"]
+INFO  24-04-20 18:54:43[main] [TomcatWebServer:241] - Tomcat started on port 8083 (http) with context path ''
+INFO  24-04-20 18:54:43[main] [GcClientApplication:56] - Started GcClientApplication in 11.608 seconds (process running for 12.805)

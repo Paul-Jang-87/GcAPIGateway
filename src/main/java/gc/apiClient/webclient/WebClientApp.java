@@ -13,7 +13,6 @@ import com.mypurecloud.sdk.v2.ApiResponse;
 import com.mypurecloud.sdk.v2.PureCloudRegionHosts;
 import com.mypurecloud.sdk.v2.extensions.AuthResponse;
 
-import gc.apiClient.customproperties.CustomProperties;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 

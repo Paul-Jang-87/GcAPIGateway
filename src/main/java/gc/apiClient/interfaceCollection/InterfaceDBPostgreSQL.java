@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 import gc.apiClient.embeddable.ApimCampRt;
 import gc.apiClient.embeddable.CallBotCampRt;
+import gc.apiClient.embeddable.ContactLtId;
 import gc.apiClient.embeddable.UcrmCampRt;
 import gc.apiClient.entity.Entity_CampMaJson;
 import gc.apiClient.entity.Entity_CampMaJsonUcrm;
@@ -63,6 +64,7 @@ public interface InterfaceDBPostgreSQL {
 	
 	//delete
 	public void DelCampMaById(String cpid)throws Exception;
+	public void DelContactltById(ContactLtId id)throws Exception;
 	public void DelCallBotRtById(CallBotCampRt id)throws Exception;
 	public void DelUcrmRtById(UcrmCampRt id)throws Exception;
 	public void DelApimRtById(ApimCampRt id)throws Exception;

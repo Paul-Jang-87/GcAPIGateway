@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.scheduler.Schedulers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -58,7 +59,7 @@ public class ControllerUCRM extends ServiceJson {
 
 	@Scheduled(fixedRate = 5000)
 	public void UcrmContactlt() {
-//		Mono.fromCallable(() -> UcrmMsgFrmCnsmer()).subscribeOn(Schedulers.boundedElastic()).subscribe();
+		Mono.fromCallable(() -> UcrmMsgFrmCnsmer()).subscribeOn(Schedulers.boundedElastic()).subscribe();
 	}
 
 
@@ -73,7 +74,7 @@ public class ControllerUCRM extends ServiceJson {
 
 			try {
 				serviceDb.InsertUcrm(enUcrm);
-//				log.info("Saved Message : {}",msg);
+				log.info("Saved Message : {}",msg);
 			} catch (DataIntegrityViolationException ex) {
 				log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
 			} catch (DataAccessException ex) {
@@ -150,6 +151,10 @@ public class ControllerUCRM extends ServiceJson {
 
 					} catch (DataIntegrityViolationException ex) {
 						log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+						if(enContactLt.getFlag().equals("D")) {
+							log.error("flag is 'D', delete record");
+							serviceDb.DelContactltById(enContactLt.getId());
+						}
 					} catch (DataAccessException ex) {
 						log.error("DataAccessException 발생 : {}", ex.getMessage());
 					}
@@ -167,7 +172,6 @@ public class ControllerUCRM extends ServiceJson {
 				for (Map.Entry<String, List<String>> entry : contactlists.entrySet()) {
 
 					log.info("Now the size of Arraylist '{}': {}", entry.getKey(), entry.getValue().size());
-//					serviceWeb.PostContactLtClearReq("contactltclear", contactLtId);
 					serviceWeb.PostContactLtApiRequet("contact", entry.getKey(), entry.getValue());
 				}
 

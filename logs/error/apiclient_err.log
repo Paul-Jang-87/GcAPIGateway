@@ -757,3 +757,65 @@ Action:
 
 Consider defining a bean of type 'gc.apiClient.repository.oracleH.Repository_DataCall' in your configuration.
 
+ERROR 24-04-22 09:31:22[reactor-http-nio-3] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-22 09:31:22[reactor-http-nio-3] [MessageToProducer:34] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-22 09:51:44[main] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
+
+Reason: Failed to determine a suitable driver class
+
+
+Action:
+
+Consider the following:
+	If you want an embedded database (H2, HSQL or Derby), please put it on the classpath.
+	If you have database settings to be loaded from a particular profile you may need to activate it (no profiles are currently active).
+
+ERROR 24-04-22 09:55:08[main] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
+
+Reason: Failed to determine a suitable driver class
+
+
+Action:
+
+Consider the following:
+	If you want an embedded database (H2, HSQL or Derby), please put it on the classpath.
+	If you have database settings to be loaded from a particular profile you may need to activate it (no profiles are currently active).
+
+ERROR 24-04-22 09:57:42[main] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
+
+Reason: Failed to determine a suitable driver class
+
+
+Action:
+
+Consider the following:
+	If you want an embedded database (H2, HSQL or Derby), please put it on the classpath.
+	If you have database settings to be loaded from a particular profile you may need to activate it (no profiles are currently active).
+
+ERROR 24-04-22 10:03:52[boundedElastic-1] [ControllerCenter:211] - Error Messge : Failed to resolve 'api.apne2.pure.cloud' [A(1)] after 2 queries 
+ERROR 24-04-22 11:22:56[reactor-http-nio-3] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-22 11:22:56[reactor-http-nio-3] [MessageToProducer:34] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081

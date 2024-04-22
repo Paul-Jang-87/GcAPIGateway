@@ -779,6 +779,12 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	public void DelUcrmLtById(String topcDataIsueSno) {
 		repositoryUcrm.deleteByTopcDataIsueSno(topcDataIsueSno);
 	}
+	
+	
+	@Override
+	public void DelContactltById(ContactLtId id) throws Exception {
+		repositoryContactLt.deleteById(id);
+	}
 
 	@Override
 	@Transactional
@@ -879,6 +885,8 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		
 		return apimRt;
 	}
+
+	
 
 	
 

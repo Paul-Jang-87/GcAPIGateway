@@ -16,7 +16,7 @@ public class Entity_UcrmRt {
 	@EmbeddedId
     private UcrmCampRt id;
 	
-	@Column(name = "DIVISIONID")
+	@Column(name = "DIVISION_ID")
  	private String divisionid;
 	
 	public Entity_UcrmRt(){

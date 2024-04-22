@@ -1053,3 +1053,1023 @@ WARN  24-04-20 18:54:42[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - s
 INFO  24-04-20 18:54:43[main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8083"]
 INFO  24-04-20 18:54:43[main] [TomcatWebServer:241] - Tomcat started on port 8083 (http) with context path ''
 INFO  24-04-20 18:54:43[main] [GcClientApplication:56] - Started GcClientApplication in 11.608 seconds (process running for 12.805)
+INFO  24-04-22 09:01:11[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 12968 (D:\GitWorkSpace\GcAPIGateway\target\classes started by 인포전스 in D:\GitWorkSpace\GcAPIGateway)
+INFO  24-04-22 09:01:11[main] [GcClientApplication:660] - The following 1 profile is active: "postgres"
+INFO  24-04-22 09:01:15[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-22 09:01:15[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 660 ms. Found 7 JPA repository interfaces.
+INFO  24-04-22 09:01:19[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-04-22 09:01:19[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-04-22 09:01:19[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 8236 ms
+INFO  24-04-22 09:01:21[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-22 09:01:22[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-22 09:01:22[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-22 09:01:23[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@7112fa5
+INFO  24-04-22 09:01:23[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-04-22 09:01:28[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-22 09:01:29[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-22 09:01:32[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-04-22 09:01:33[main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8083"]
+INFO  24-04-22 09:01:33[main] [TomcatWebServer:241] - Tomcat started on port 8083 (http) with context path ''
+INFO  24-04-22 09:01:34[main] [GcClientApplication:56] - Started GcClientApplication in 24.685 seconds (process running for 30.729)
+INFO  24-04-22 09:02:02[RMI TCP Connection(4)-127.0.0.1] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin:159] - Application shutdown requested.
+INFO  24-04-22 09:02:02[RMI TCP Connection(4)-127.0.0.1] [Http11NioProtocol:173] - Stopping ProtocolHandler ["http-nio-8083"]
+INFO  24-04-22 09:02:03[RMI TCP Connection(4)-127.0.0.1] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-22 09:02:03[RMI TCP Connection(4)-127.0.0.1] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-04-22 09:02:03[RMI TCP Connection(4)-127.0.0.1] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-04-22 09:27:40[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 20324 (D:\GitWorkSpace\GcAPIGateway\target\classes started by 인포전스 in D:\GitWorkSpace\GcAPIGateway)
+INFO  24-04-22 09:27:40[main] [GcClientApplication:660] - The following 1 profile is active: "postgres"
+INFO  24-04-22 09:27:42[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-22 09:27:43[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 687 ms. Found 7 JPA repository interfaces.
+INFO  24-04-22 09:27:46[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-04-22 09:27:46[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-04-22 09:27:47[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 6313 ms
+INFO  24-04-22 09:27:49[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-22 09:27:49[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-22 09:27:49[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-22 09:27:50[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@1ecec098
+INFO  24-04-22 09:27:50[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-04-22 09:27:54[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-22 09:27:55[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-22 09:27:57[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-04-22 09:27:58[main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8083"]
+INFO  24-04-22 09:27:58[main] [TomcatWebServer:241] - Tomcat started on port 8083 (http) with context path ''
+INFO  24-04-22 09:27:58[main] [GcClientApplication:56] - Started GcClientApplication in 19.504 seconds (process running for 23.92)
+INFO  24-04-22 09:29:02[http-nio-8083-exec-2] [DispatcherServlet:532] - Initializing Servlet 'dispatcherServlet'
+INFO  24-04-22 09:29:02[http-nio-8083-exec-2] [DispatcherServlet:554] - Completed initialization in 7 ms
+INFO  24-04-22 09:29:02[http-nio-8083-exec-2] [ControllerCenter:357] -  
+INFO  24-04-22 09:29:02[http-nio-8083-exec-2] [ControllerCenter:358] - ====== Class : ControllerCenter - Method : SaveRtData ======
+INFO  24-04-22 09:29:02[http-nio-8083-exec-2] [ServiceJson:396] -  
+INFO  24-04-22 09:29:02[http-nio-8083-exec-2] [ServiceJson:397] - ====== ClassName : ServiceJson & Method : ExtrSaveRtData ======
+INFO  24-04-22 09:29:02[http-nio-8083-exec-2] [ServiceJson:410] - result : c5443b8e-cfbb-4e0e-8651-73971aafca07::1::d4fe276d-86b9-4269-a8b3-5e8a6355e237
+INFO  24-04-22 09:29:02[http-nio-8083-exec-2] [ServiceJson:412] - ====== End ExtrSaveRtData ======
+INFO  24-04-22 09:29:02[http-nio-8083-exec-2] [ControllerCenter:367] - DivisionName : CallbotHome
+INFO  24-04-22 09:29:03[http-nio-8083-exec-2] [ControllerCenter:396] - ====== End SaveRtData ======
+INFO  24-04-22 09:31:14[http-nio-8083-exec-4] [ControllerCallBot:162] -  
+INFO  24-04-22 09:31:14[http-nio-8083-exec-4] [ControllerCallBot:163] - ====== Class : ControllerCallBot - Method : SendCallBotRt ======
+INFO  24-04-22 09:31:14[http-nio-8083-exec-4] [ControllerCallBot:170] - All records from DB : Page 1 of 1 containing gc.apiClient.entity.postgresql.Entity_CallbotRt instances
+INFO  24-04-22 09:31:14[http-nio-8083-exec-4] [ControllerCallBot:172] - number of records : 1
+INFO  24-04-22 09:31:14[http-nio-8083-exec-4] [ControllerCallBot:173] - 1만큼 반복,
+INFO  24-04-22 09:31:14[http-nio-8083-exec-4] [ControllerCallBot:193] - Nomatch contactId
+INFO  24-04-22 09:31:14[http-nio-8083-exec-4] [ServiceWebClient:69] -  
+INFO  24-04-22 09:31:14[http-nio-8083-exec-4] [ServiceWebClient:70] - ====== ClassName : ServiceWebClient & Method : GetCampaignsApiRequet ======
+INFO  24-04-22 09:31:14[http-nio-8083-exec-4] [WebClientApp:40] - Client Id : 8ed02ed8-2e38-41ee-b70d-ab09e43b3ff1
+INFO  24-04-22 09:31:14[http-nio-8083-exec-4] [WebClientApp:42] - Client secret : HRwIs7Tn4DHJH_ODIGusDPOEM9Z7cYsFyxG_jb4f5iY
+INFO  24-04-22 09:31:14[http-nio-8083-exec-4] [WebClientApp:48] - 토큰 없음
+INFO  24-04-22 09:31:14[http-nio-8083-exec-4] [WebClientApp:49] - 현재 인덱스 : 0
+INFO  24-04-22 09:31:17[http-nio-8083-exec-4] [WebClientApp:94] - Access token refreshed successfully.
+INFO  24-04-22 09:31:17[http-nio-8083-exec-4] [WebClientApp:55] - 발급 후 현재 인덱스 : 1
+INFO  24-04-22 09:31:17[http-nio-8083-exec-4] [WebClientApp:71] - 발급 받은 토큰 : 2J71MnJ-ATyQY9y6PMFInuOnCuhAQNtWyo7Yt1tN7UaP4U5tN5cw1UtdIikYbgKxnOQD6Is0Oe4VIU1xbUFeJg
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServiceWebClient:77] - GetCampaignsApiRequet 요청 후 결과 값 : {"id":"c5443b8e-cfbb-4e0e-8651-73971aafca07","name":"콜봇-OB-모바일-TEST01","dateCreated":"2024-04-18T00:24:07.384Z","dateModified":"2024-04-19T01:15:22.908Z","version":18,"contactList":{"id":"d25a46f9-efb7-42a6-b736-adaa854c5ea7","name":"콜봇-OB-모바일-TEST01","selfUri":"/api/v2/outbound/contactlists/d25a46f9-efb7-42a6-b736-adaa854c5ea7"},"dialingMode":"agentless","site":{"id":"139054d6-9b1e-494e-b7ee-09e4c9de32f4","name":"lguplus-dev","selfUri":"/api/v2/telephony/providers/edges/sites/139054d6-9b1e-494e-b7ee-09e4c9de32f4"},"campaignStatus":"complete","phoneColumns":[{"columnName":"TNO1","type":"휴대폰"}],"abandonRate":5.0,"dncLists":[],"callAnalysisResponseSet":{"id":"bd295b18-d53b-4361-b346-5066a53e30c3","name":"[dj] callbot_response","selfUri":"/api/v2/outbound/callanalysisresponsesets/bd295b18-d53b-4361-b346-5066a53e30c3"},"callerName":"59","callerAddress":"+827082806800","outboundLineCount":1,"ruleSets":[],"skipPreviewDisabled":false,"previewTimeOutSeconds":0,"singleNumberPreview":false,"alwaysRunning":false,"noAnswerTimeout":30,"priority":5,"contactListFilters":[],"division":{"id":"577c467d-6e18-42ce-963c-fe6511ffa0a8","name":"콜봇모바일","selfUri":"/api/v2/authorization/divisions/577c467d-6e18-42ce-963c-fe6511ffa0a8"},"dynamicContactQueueingSettings":{"sort":false},"callbackAutoAnswer":false,"dynamicLineBalancingSettings":{"enabled":false},"selfUri":"/api/v2/outbound/campaigns/c5443b8e-cfbb-4e0e-8651-73971aafca07"}
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServiceWebClient:78] - ====== End GetCampaignsApiRequet ======
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ControllerCallBot:214] - Add value into Arraylist named 'd25a46f9-efb7-42a6-b736-adaa854c5ea7'
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServiceWebClient:142] -  
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServiceWebClient:143] - ====== ClassName : ServiceWebClient & Method : PostContactLtApiBulk ======
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServiceWebClient:146] - Endpoint : contactList => /api/v2/outbound/contactlists/{contactListId}/contacts/bulk
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServiceWebClient:147] - contactListId : d25a46f9-efb7-42a6-b736-adaa854c5ea7
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServiceWebClient:148] - cskes : [1]
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [WebClientApp:40] - Client Id : 8ed02ed8-2e38-41ee-b70d-ab09e43b3ff1
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [WebClientApp:42] - Client secret : HRwIs7Tn4DHJH_ODIGusDPOEM9Z7cYsFyxG_jb4f5iY
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [WebClientApp:48] - 토큰 없음
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [WebClientApp:49] - 현재 인덱스 : 1
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [WebClientApp:94] - Access token refreshed successfully.
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [WebClientApp:55] - 발급 후 현재 인덱스 : 2
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [WebClientApp:71] - 발급 받은 토큰 : NgrK88pxeHUgctTzrZKIp0xq1-Zf04Z7hOReMaHovJwFZSKku0TYauRScsYm0goDHAe79bI5xcGp3wpjzI80gA
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServiceWebClient:153] - PostContactLtApiBulk 요청 후 결과 값 result : [{"id":"1","contactListId":"d25a46f9-efb7-42a6-b736-adaa854c5ea7","data":{"CPID":"c5443b8e-cfbb-4e0e-8651-73971aafca07","CPSQ":"1","CSKE":"1011968033","TKDA":"AIC||1011968033||500016022449||c5443b8e-cfbb-4e0e-8651-73971aafca07||9b2b82f4-1fde-4df8-adce-58afc4f5a975||1||","TNO1":"01089339833","TNO2":"","TNO3":"","TNO4":"","TNO5":"","TLNO":"","TMZO":"Asia/Seoul (+09:00)","QUEUEID":"","TRYCNT":"0","CSNA":""},"callRecords":{"TNO1":{"lastAttempt":"2024-04-18T07:51:00.860Z","lastResult":"95f715fc-6119-43d5-afa2-f794669fabf2"}},"callable":true,"phoneNumberStatus":{"TNO1":{"callable":true}},"contactableStatus":{"Email":{"contactable":true}},"dateCreated":"2024-04-18T00:36:33.759Z","selfUri":"/api/v2/outbound/contactlists/d25a46f9-efb7-42a6-b736-adaa854c5ea7/contacts/1"}]
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServiceWebClient:154] - ====== End PostContactLtApiBulk ======
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServiceJson:273] -  
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServiceJson:274] - ====== ClassName : ServiceJson & Method : ExtractContacts56 ======
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServiceJson:275] - 들어온 0번째 결과 값 result : [{"id":"1","contactListId":"d25a46f9-efb7-42a6-b736-adaa854c5ea7","data":{"CPID":"c5443b8e-cfbb-4e0e-8651-73971aafca07","CPSQ":"1","CSKE":"1011968033","TKDA":"AIC||1011968033||500016022449||c5443b8e-cfbb-4e0e-8651-73971aafca07||9b2b82f4-1fde-4df8-adce-58afc4f5a975||1||","TNO1":"01089339833","TNO2":"","TNO3":"","TNO4":"","TNO5":"","TLNO":"","TMZO":"Asia/Seoul (+09:00)","QUEUEID":"","TRYCNT":"0","CSNA":""},"callRecords":{"TNO1":{"lastAttempt":"2024-04-18T07:51:00.860Z","lastResult":"95f715fc-6119-43d5-afa2-f794669fabf2"}},"callable":true,"phoneNumberStatus":{"TNO1":{"callable":true}},"contactableStatus":{"Email":{"contactable":true}},"dateCreated":"2024-04-18T00:36:33.759Z","selfUri":"/api/v2/outbound/contactlists/d25a46f9-efb7-42a6-b736-adaa854c5ea7/contacts/1"}]
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServiceJson:302] - 추출 이후 결과 값 rs: 1::d25a46f9-efb7-42a6-b736-adaa854c5ea7::c5443b8e-cfbb-4e0e-8651-73971aafca07::1::95f715fc-6119-43d5-afa2-f794669fabf2::AIC||1011968033||500016022449||c5443b8e-cfbb-4e0e-8651-73971aafca07||9b2b82f4-1fde-4df8-adce-58afc4f5a975||1||::2024-04-18T07:51:00.860Z
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServiceJson:303] - ====== End ExtractContacts56 ======
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServicePostgre:84] -  
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServicePostgre:85] - ====== Class : ServicePostgre & Method : createCampRtMsg ======
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServicePostgre:87] - (cpid붙여서)들어온 rs : 1::d25a46f9-efb7-42a6-b736-adaa854c5ea7::c5443b8e-cfbb-4e0e-8651-73971aafca07::1::95f715fc-6119-43d5-afa2-f794669fabf2::AIC||1011968033||500016022449||c5443b8e-cfbb-4e0e-8651-73971aafca07||9b2b82f4-1fde-4df8-adce-58afc4f5a975||1||::2024-04-18T07:51:00.860Z
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServicePostgre:104] - ------ 들어온 rs를 분배해여 필요한 변수들 초기화 ------
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServicePostgre:105] - rlsq: 0
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServicePostgre:106] - coid: 0
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServicePostgre:107] - cpsq: 1
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServicePostgre:108] - hubid: 0
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServicePostgre:109] - dirt: 0
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServicePostgre:110] - dict: 0
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServicePostgre:111] - campid: c5443b8e-cfbb-4e0e-8651-73971aafca07
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServicePostgre:112] - contactLtId: d25a46f9-efb7-42a6-b736-adaa854c5ea7
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServicePostgre:113] - contactId: 1
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServicePostgre:114] - tkda: AIC||1011968033||500016022449||c5443b8e-cfbb-4e0e-8651-73971aafca07||9b2b82f4-1fde-4df8-adce-58afc4f5a975||1||
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServicePostgre:115] - didt: 2024-04-18T07:51:00.860Z
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServicePostgre:116] - ------ 들어온 rs를 분배해여 필요한 변수들 초기화 끝------
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServicePostgre:127] - didt(포맷 변경 전) : 2024-04-18T07:51:00.860Z
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServicePostgre:136] - didt(포맷 변경 후) : Thu Apr 18 16:51:00 KST 2024
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServicePostgre:140] - dirt(맵핑 전) : 95f715fc-6119-43d5-afa2-f794669fabf2
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServicePostgre:143] - dirt(맵핑 후) : 1
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServiceWebClient:51] -  
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServiceWebClient:52] - ====== ClassName : ServiceWebClient & Method : GetStatusApiRequet ======
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServiceWebClient:53] - Endpoint : campaign_stats => /api/v2/outbound/campaigns/{campaignId}/stats
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServiceWebClient:54] - campaignId : c5443b8e-cfbb-4e0e-8651-73971aafca07
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [WebClientApp:40] - Client Id : 8ed02ed8-2e38-41ee-b70d-ab09e43b3ff1
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [WebClientApp:42] - Client secret : HRwIs7Tn4DHJH_ODIGusDPOEM9Z7cYsFyxG_jb4f5iY
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [WebClientApp:48] - 토큰 없음
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [WebClientApp:49] - 현재 인덱스 : 2
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [WebClientApp:94] - Access token refreshed successfully.
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [WebClientApp:55] - 발급 후 현재 인덱스 : 3
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [WebClientApp:71] - 발급 받은 토큰 : BCz_UF0z2Wl_1DLCEYmJVxXn0RF6WbXAAMxO8Yxz9VKWoMA8hIkq0lh6evGPOCSpXlLF4KCMjVapHPiJpYHhgg
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServiceWebClient:62] - ====== End GetStatusApiRequet ======
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServiceJson:311] -  
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServiceJson:312] - ====== ClassName : ServiceJson & Method : ExtractDict ======
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServiceJson:313] - GetStatusApiRequet 요청 후 ExtractDict로 들어온 rs : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":0.0,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServiceJson:330] - rs에서 추출 한 결과 result(dict) : 0
+INFO  24-04-22 09:31:21[http-nio-8083-exec-4] [ServiceJson:331] - ====== End ExtractDict ======
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:154] - campid(c5443b8e-cfbb-4e0e-8651-73971aafca07)로 조회한 레코드의 coid : 59
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:157] - camprt테이블에서 현재 가장 큰 rlsq 값 : 7
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:159] - 가져온 rlsq의 값에 +1 : 8
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:174] - ------ return 하기 전 변수들의 최종 값 확인 ------
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:175] - rlsq: 8
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:176] - coid: 59
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:177] - campid: c5443b8e-cfbb-4e0e-8651-73971aafca07
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:178] - cpsq: 1
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:179] - contactLtId: d25a46f9-efb7-42a6-b736-adaa854c5ea7
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:180] - contactId: 1
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:181] - tkda: AIC||1011968033||500016022449||c5443b8e-cfbb-4e0e-8651-73971aafca07||9b2b82f4-1fde-4df8-adce-58afc4f5a975||1||
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:182] - hubid: 0
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:183] - didt: Thu Apr 18 16:51:00 KST 2024
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:184] - dirt: 1
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:185] - dict: 0
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:186] - ------ return 하기 전 변수들의 최종 값 확인 ------
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:188] - ===== End createCampRtMsg =====
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [BusinessLogic:81] -  
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [BusinessLogic:82] - ====== Class : BusinessLogic - Method : SelectedBusiness ======
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [BusinessLogic:83] - tkda : A
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [BusinessLogic:84] - divisionName : CallbotHome
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [BusinessLogic:127] - business : CALLBOT
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [BusinessLogic:128] - topic_id : from_clcc_hmaiccmpnrs_message
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [BusinessLogic:130] - ===== END SelectedBusiness =====
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServiceJson:273] -  
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServiceJson:274] - ====== ClassName : ServiceJson & Method : ExtractContacts56 ======
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServiceJson:275] - 들어온 0번째 결과 값 result : [{"id":"1","contactListId":"d25a46f9-efb7-42a6-b736-adaa854c5ea7","data":{"CPID":"c5443b8e-cfbb-4e0e-8651-73971aafca07","CPSQ":"1","CSKE":"1011968033","TKDA":"AIC||1011968033||500016022449||c5443b8e-cfbb-4e0e-8651-73971aafca07||9b2b82f4-1fde-4df8-adce-58afc4f5a975||1||","TNO1":"01089339833","TNO2":"","TNO3":"","TNO4":"","TNO5":"","TLNO":"","TMZO":"Asia/Seoul (+09:00)","QUEUEID":"","TRYCNT":"0","CSNA":""},"callRecords":{"TNO1":{"lastAttempt":"2024-04-18T07:51:00.860Z","lastResult":"95f715fc-6119-43d5-afa2-f794669fabf2"}},"callable":true,"phoneNumberStatus":{"TNO1":{"callable":true}},"contactableStatus":{"Email":{"contactable":true}},"dateCreated":"2024-04-18T00:36:33.759Z","selfUri":"/api/v2/outbound/contactlists/d25a46f9-efb7-42a6-b736-adaa854c5ea7/contacts/1"}]
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServiceJson:302] - 추출 이후 결과 값 rs: 1::d25a46f9-efb7-42a6-b736-adaa854c5ea7::c5443b8e-cfbb-4e0e-8651-73971aafca07::1::95f715fc-6119-43d5-afa2-f794669fabf2::AIC||1011968033||500016022449||c5443b8e-cfbb-4e0e-8651-73971aafca07||9b2b82f4-1fde-4df8-adce-58afc4f5a975||1||::2024-04-18T07:51:00.860Z
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServiceJson:303] - ====== End ExtractContacts56 ======
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:84] -  
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:85] - ====== Class : ServicePostgre & Method : createCampRtMsg ======
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:87] - (cpid붙여서)들어온 rs : 1::d25a46f9-efb7-42a6-b736-adaa854c5ea7::c5443b8e-cfbb-4e0e-8651-73971aafca07::1::95f715fc-6119-43d5-afa2-f794669fabf2::AIC||1011968033||500016022449||c5443b8e-cfbb-4e0e-8651-73971aafca07||9b2b82f4-1fde-4df8-adce-58afc4f5a975||1||::2024-04-18T07:51:00.860Z
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:104] - ------ 들어온 rs를 분배해여 필요한 변수들 초기화 ------
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:105] - rlsq: 0
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:106] - coid: 0
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:107] - cpsq: 1
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:108] - hubid: 0
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:109] - dirt: 0
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:110] - dict: 0
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:111] - campid: c5443b8e-cfbb-4e0e-8651-73971aafca07
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:112] - contactLtId: d25a46f9-efb7-42a6-b736-adaa854c5ea7
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:113] - contactId: 1
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:114] - tkda: AIC||1011968033||500016022449||c5443b8e-cfbb-4e0e-8651-73971aafca07||9b2b82f4-1fde-4df8-adce-58afc4f5a975||1||
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:115] - didt: 2024-04-18T07:51:00.860Z
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:116] - ------ 들어온 rs를 분배해여 필요한 변수들 초기화 끝------
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:127] - didt(포맷 변경 전) : 2024-04-18T07:51:00.860Z
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:136] - didt(포맷 변경 후) : Thu Apr 18 16:51:00 KST 2024
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:140] - dirt(맵핑 전) : 95f715fc-6119-43d5-afa2-f794669fabf2
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:143] - dirt(맵핑 후) : 1
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServiceWebClient:51] -  
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServiceWebClient:52] - ====== ClassName : ServiceWebClient & Method : GetStatusApiRequet ======
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServiceWebClient:53] - Endpoint : campaign_stats => /api/v2/outbound/campaigns/{campaignId}/stats
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServiceWebClient:54] - campaignId : c5443b8e-cfbb-4e0e-8651-73971aafca07
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [WebClientApp:40] - Client Id : 8ed02ed8-2e38-41ee-b70d-ab09e43b3ff1
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [WebClientApp:42] - Client secret : HRwIs7Tn4DHJH_ODIGusDPOEM9Z7cYsFyxG_jb4f5iY
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [WebClientApp:48] - 토큰 없음
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [WebClientApp:49] - 현재 인덱스 : 3
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [WebClientApp:94] - Access token refreshed successfully.
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [WebClientApp:55] - 발급 후 현재 인덱스 : 4
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [WebClientApp:71] - 발급 받은 토큰 : ono3ethIDOQ5yfr-M-y1KupZ8JiddtOxhXcNel7N9gTqOfCO0ei97uKWoK-CpX5XtELibyttld9lEbLFl8BBuw
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServiceWebClient:62] - ====== End GetStatusApiRequet ======
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServiceJson:311] -  
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServiceJson:312] - ====== ClassName : ServiceJson & Method : ExtractDict ======
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServiceJson:313] - GetStatusApiRequet 요청 후 ExtractDict로 들어온 rs : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":0.0,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServiceJson:330] - rs에서 추출 한 결과 result(dict) : 0
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServiceJson:331] - ====== End ExtractDict ======
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:154] - campid(c5443b8e-cfbb-4e0e-8651-73971aafca07)로 조회한 레코드의 coid : 59
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:157] - camprt테이블에서 현재 가장 큰 rlsq 값 : 7
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:159] - 가져온 rlsq의 값에 +1 : 8
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:174] - ------ return 하기 전 변수들의 최종 값 확인 ------
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:175] - rlsq: 8
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:176] - coid: 59
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:177] - campid: c5443b8e-cfbb-4e0e-8651-73971aafca07
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:178] - cpsq: 1
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:179] - contactLtId: d25a46f9-efb7-42a6-b736-adaa854c5ea7
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:180] - contactId: 1
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:181] - tkda: AIC||1011968033||500016022449||c5443b8e-cfbb-4e0e-8651-73971aafca07||9b2b82f4-1fde-4df8-adce-58afc4f5a975||1||
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:182] - hubid: 0
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:183] - didt: Thu Apr 18 16:51:00 KST 2024
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:184] - dirt: 1
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:185] - dict: 0
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:186] - ------ return 하기 전 변수들의 최종 값 확인 ------
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServicePostgre:188] - ===== End createCampRtMsg =====
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServiceWebClient:51] -  
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServiceWebClient:52] - ====== ClassName : ServiceWebClient & Method : GetStatusApiRequet ======
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServiceWebClient:53] - Endpoint : campaign_stats => /api/v2/outbound/campaigns/{campaignId}/stats
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServiceWebClient:54] - campaignId : c5443b8e-cfbb-4e0e-8651-73971aafca07
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [WebClientApp:40] - Client Id : 8ed02ed8-2e38-41ee-b70d-ab09e43b3ff1
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [WebClientApp:42] - Client secret : HRwIs7Tn4DHJH_ODIGusDPOEM9Z7cYsFyxG_jb4f5iY
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [WebClientApp:48] - 토큰 없음
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [WebClientApp:49] - 현재 인덱스 : 4
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [WebClientApp:94] - Access token refreshed successfully.
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [WebClientApp:55] - 발급 후 현재 인덱스 : 5
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [WebClientApp:71] - 발급 받은 토큰 : e0G3Q47vWEN0rl8a9M5v2WpWQlfp4wynwVeuAg7wY_9HMbqbT0PHw1x8mdHp98NyMW9gODqPY98MFDX6IcZVSg
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServiceWebClient:62] - ====== End GetStatusApiRequet ======
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServiceJson:311] -  
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServiceJson:312] - ====== ClassName : ServiceJson & Method : ExtractDict ======
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServiceJson:313] - GetStatusApiRequet 요청 후 ExtractDict로 들어온 rs : {"contactRate":{"attempts":0,"connects":0,"connectRatio":0.0},"idleAgents":0,"effectiveIdleAgents":0.0,"adjustedCallsPerAgent":0.0,"outstandingCalls":0,"scheduledCalls":0,"timeZoneRescheduledCalls":0}
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServiceJson:330] - rs에서 추출 한 결과 result(dict) : 0
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ServiceJson:331] - ====== End ExtractDict ======
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [ControllerCallBot:296] - JsonString Data : 0번째 {"attmpNo":0,"cpSeq":1,"lastResult":1,"cpId":"c5443b8e-cfbb-4e0e-8651-73971aafca07","lastAttempt":"2024/04/18 07:51:00.000","topcDataIsueDtm":"2024/04/22 09:31:22.000555"}
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [MessageToProducer:13] -  
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [MessageToProducer:14] - ====== ClassName : MessageToProducer & Method : sendMsgToProducer ======
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [MessageToProducer:15] - Producer로 보낼 EndPoint : /gcapi/post/from_clcc_hmaiccmpnrs_message
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [MessageToProducer:16] - Producer로 보낼 Message : {"attmpNo":0,"cpSeq":1,"lastResult":1,"cpId":"c5443b8e-cfbb-4e0e-8651-73971aafca07","lastAttempt":"2024/04/18 07:51:00.000","topcDataIsueDtm":"2024/04/22 09:31:22.000555"}
+INFO  24-04-22 09:31:22[http-nio-8083-exec-4] [MessageToProducer:39] - ====== End sendMsgToProducer ======
+ERROR 24-04-22 09:31:22[reactor-http-nio-3] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-22 09:31:22[reactor-http-nio-3] [MessageToProducer:34] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+INFO  24-04-22 09:31:23[http-nio-8083-exec-4] [ControllerCallBot:240] - ====== End SendCallBotRt ======
+INFO  24-04-22 09:37:25[RMI TCP Connection(14)-127.0.0.1] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin:159] - Application shutdown requested.
+INFO  24-04-22 09:37:25[RMI TCP Connection(14)-127.0.0.1] [Http11NioProtocol:173] - Stopping ProtocolHandler ["http-nio-8083"]
+INFO  24-04-22 09:37:27[RMI TCP Connection(14)-127.0.0.1] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-22 09:37:27[RMI TCP Connection(14)-127.0.0.1] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-04-22 09:37:27[RMI TCP Connection(14)-127.0.0.1] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-04-22 09:40:35[main] [AnnotationConfigContextLoaderUtils:83] - Could not detect default configuration classes for test class [gc.apiClient.GcClientApplicationTests]: GcClientApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+INFO  24-04-22 09:40:36[main] [SpringBootTestContextBootstrapper:234] - Found @SpringBootConfiguration gc.apiClient.GcClientApplication for test class gc.apiClient.GcClientApplicationTests
+WARN  24-04-22 09:40:38[main] [DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer:78] - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/org/json/json/20210307/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+INFO  24-04-22 09:40:38[main] [GcClientApplicationTests:50] - Starting GcClientApplicationTests using Java 21.0.1 with PID 28252 (started by 인포전스 in D:\GitWorkSpace\GcAPIGateway)
+INFO  24-04-22 09:40:38[main] [GcClientApplicationTests:660] - The following 1 profile is active: "postgres"
+INFO  24-04-22 09:40:41[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-22 09:40:41[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 421 ms. Found 7 JPA repository interfaces.
+INFO  24-04-22 09:40:45[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-22 09:40:45[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-22 09:40:45[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-22 09:40:46[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@54387873
+INFO  24-04-22 09:40:46[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-04-22 09:40:49[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-22 09:40:50[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-22 09:40:51[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-04-22 09:40:52[main] [GcClientApplicationTests:56] - Started GcClientApplicationTests in 15.534 seconds (process running for 21.9)
+INFO  24-04-22 09:40:57[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-22 09:40:57[SpringApplicationShutdownHook] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-04-22 09:40:57[SpringApplicationShutdownHook] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-04-22 09:51:36[main] [AnnotationConfigContextLoaderUtils:83] - Could not detect default configuration classes for test class [gc.apiClient.GcClientApplicationTests]: GcClientApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+INFO  24-04-22 09:51:37[main] [SpringBootTestContextBootstrapper:234] - Found @SpringBootConfiguration gc.apiClient.GcClientApplication for test class gc.apiClient.GcClientApplicationTests
+WARN  24-04-22 09:51:38[main] [DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer:78] - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/org/json/json/20210307/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+INFO  24-04-22 09:51:38[main] [GcClientApplicationTests:50] - Starting GcClientApplicationTests using Java 21.0.1 with PID 20296 (started by 인포전스 in D:\GitWorkSpace\GcAPIGateway)
+INFO  24-04-22 09:51:38[main] [GcClientApplicationTests:654] - No active profile set, falling back to 1 default profile: "default"
+INFO  24-04-22 09:51:41[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-22 09:51:42[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 515 ms. Found 23 JPA repository interfaces.
+WARN  24-04-22 09:51:44[main] [GenericWebApplicationContext:632] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourceScriptDatabaseInitializer' parameter 0: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception with message: Failed to determine a suitable driver class
+INFO  24-04-22 09:51:44[main] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 24-04-22 09:51:44[main] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
+
+Reason: Failed to determine a suitable driver class
+
+
+Action:
+
+Consider the following:
+	If you want an embedded database (H2, HSQL or Derby), please put it on the classpath.
+	If you have database settings to be loaded from a particular profile you may need to activate it (no profiles are currently active).
+
+WARN  24-04-22 09:51:44[main] [TestContextManager:272] - Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener] to prepare test instance [gc.apiClient.GcClientApplicationTests@32ea16b7]
+java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@21f7e537 testClass = gc.apiClient.GcClientApplicationTests, locations = [], classes = [gc.apiClient.GcClientApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = ["org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true"], contextCustomizers = [org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@1d0d6318, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@758a34ce, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7c541c15, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@c1bd0be, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@4044fb95, org.springframework.boot.test.context.SpringBootTestAnnotation@52136dd2], resourceBasePath = "src/main/webapp", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:180)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130)
+	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:191)
+	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:130)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:163)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$10(ClassBasedTestDescriptor.java:378)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:383)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$11(ClassBasedTestDescriptor.java:378)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:377)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:290)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:289)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:279)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:278)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:106)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:105)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:69)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:90)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:184)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:148)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:122)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourceScriptDatabaseInitializer' parameter 0: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception with message: Failed to determine a suitable driver class
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:798)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:542)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1334)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1164)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:561)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$3(SpringBootContextLoader.java:137)
+	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58)
+	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46)
+	at org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1454)
+	at org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:552)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:137)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:108)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:225)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:152)
+	... 73 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception with message: Failed to determine a suitable driver class
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:651)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:639)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1334)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1164)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:561)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:907)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:785)
+	... 99 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception with message: Failed to determine a suitable driver class
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:177)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:647)
+	... 113 common frames omitted
+Caused by: org.springframework.boot.autoconfigure.jdbc.DataSourceProperties$DataSourceBeanCreationException: Failed to determine a suitable driver class
+	at org.springframework.boot.autoconfigure.jdbc.DataSourceProperties.determineDriverClassName(DataSourceProperties.java:186)
+	at org.springframework.boot.autoconfigure.jdbc.PropertiesJdbcConnectionDetails.getDriverClassName(PropertiesJdbcConnectionDetails.java:49)
+	at org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration.createDataSource(DataSourceConfiguration.java:55)
+	at org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Hikari.dataSource(DataSourceConfiguration.java:117)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140)
+	... 114 common frames omitted
+INFO  24-04-22 09:55:01[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 9752 (D:\GitWorkSpace\GcAPIGateway\target\classes started by 인포전스 in D:\GitWorkSpace\GcAPIGateway)
+INFO  24-04-22 09:55:01[main] [GcClientApplication:654] - No active profile set, falling back to 1 default profile: "default"
+INFO  24-04-22 09:55:04[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-22 09:55:05[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 805 ms. Found 23 JPA repository interfaces.
+INFO  24-04-22 09:55:07[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-04-22 09:55:07[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-04-22 09:55:08[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 6209 ms
+WARN  24-04-22 09:55:08[main] [AnnotationConfigServletWebServerApplicationContext:632] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourceScriptDatabaseInitializer' parameter 0: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception with message: Failed to determine a suitable driver class
+INFO  24-04-22 09:55:08[main] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 24-04-22 09:55:08[main] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
+
+Reason: Failed to determine a suitable driver class
+
+
+Action:
+
+Consider the following:
+	If you want an embedded database (H2, HSQL or Derby), please put it on the classpath.
+	If you have database settings to be loaded from a particular profile you may need to activate it (no profiles are currently active).
+
+INFO  24-04-22 09:57:38[main] [AnnotationConfigContextLoaderUtils:83] - Could not detect default configuration classes for test class [gc.apiClient.GcClientApplicationTests]: GcClientApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+INFO  24-04-22 09:57:39[main] [SpringBootTestContextBootstrapper:234] - Found @SpringBootConfiguration gc.apiClient.GcClientApplication for test class gc.apiClient.GcClientApplicationTests
+WARN  24-04-22 09:57:39[main] [DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer:78] - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/org/json/json/20210307/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+INFO  24-04-22 09:57:39[main] [GcClientApplicationTests:50] - Starting GcClientApplicationTests using Java 21.0.1 with PID 13820 (started by 인포전스 in D:\GitWorkSpace\GcAPIGateway)
+INFO  24-04-22 09:57:39[main] [GcClientApplicationTests:654] - No active profile set, falling back to 1 default profile: "default"
+INFO  24-04-22 09:57:41[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-22 09:57:41[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 363 ms. Found 23 JPA repository interfaces.
+WARN  24-04-22 09:57:42[main] [GenericWebApplicationContext:632] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourceScriptDatabaseInitializer' parameter 0: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception with message: Failed to determine a suitable driver class
+INFO  24-04-22 09:57:42[main] [ConditionEvaluationReportLogger:82] - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+ERROR 24-04-22 09:57:42[main] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
+
+Reason: Failed to determine a suitable driver class
+
+
+Action:
+
+Consider the following:
+	If you want an embedded database (H2, HSQL or Derby), please put it on the classpath.
+	If you have database settings to be loaded from a particular profile you may need to activate it (no profiles are currently active).
+
+WARN  24-04-22 09:57:42[main] [TestContextManager:272] - Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener] to prepare test instance [gc.apiClient.GcClientApplicationTests@31aab981]
+java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@46394f65 testClass = gc.apiClient.GcClientApplicationTests, locations = [], classes = [gc.apiClient.GcClientApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = ["org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true"], contextCustomizers = [org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@1d0d6318, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@758a34ce, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7c541c15, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@c1bd0be, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@4044fb95, org.springframework.boot.test.context.SpringBootTestAnnotation@52136dd2], resourceBasePath = "src/main/webapp", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:180)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130)
+	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:191)
+	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:130)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:163)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$10(ClassBasedTestDescriptor.java:378)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:383)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$11(ClassBasedTestDescriptor.java:378)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:377)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:290)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:289)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:279)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:278)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:106)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:105)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:69)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:90)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:184)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:148)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:122)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataSourceScriptDatabaseInitializer' defined in class path resource [org/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class]: Unsatisfied dependency expressed through method 'dataSourceScriptDatabaseInitializer' parameter 0: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception with message: Failed to determine a suitable driver class
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:798)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:542)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1334)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1164)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:561)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1231)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:949)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$3(SpringBootContextLoader.java:137)
+	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58)
+	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46)
+	at org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1454)
+	at org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:552)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:137)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:108)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:225)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:152)
+	... 73 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataSource' defined in class path resource [org/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class]: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception with message: Failed to determine a suitable driver class
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:651)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:639)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1334)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1164)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:561)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:907)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:785)
+	... 99 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.zaxxer.hikari.HikariDataSource]: Factory method 'dataSource' threw exception with message: Failed to determine a suitable driver class
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:177)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:647)
+	... 113 common frames omitted
+Caused by: org.springframework.boot.autoconfigure.jdbc.DataSourceProperties$DataSourceBeanCreationException: Failed to determine a suitable driver class
+	at org.springframework.boot.autoconfigure.jdbc.DataSourceProperties.determineDriverClassName(DataSourceProperties.java:186)
+	at org.springframework.boot.autoconfigure.jdbc.PropertiesJdbcConnectionDetails.getDriverClassName(PropertiesJdbcConnectionDetails.java:49)
+	at org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration.createDataSource(DataSourceConfiguration.java:55)
+	at org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Hikari.dataSource(DataSourceConfiguration.java:117)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140)
+	... 114 common frames omitted
+INFO  24-04-22 10:03:22[main] [AnnotationConfigContextLoaderUtils:83] - Could not detect default configuration classes for test class [gc.apiClient.GcClientApplicationTests]: GcClientApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+INFO  24-04-22 10:03:22[main] [SpringBootTestContextBootstrapper:234] - Found @SpringBootConfiguration gc.apiClient.GcClientApplication for test class gc.apiClient.GcClientApplicationTests
+WARN  24-04-22 10:03:24[main] [DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer:78] - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/org/json/json/20210307/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+INFO  24-04-22 10:03:25[main] [GcClientApplicationTests:50] - Starting GcClientApplicationTests using Java 21.0.1 with PID 26460 (started by 인포전스 in D:\GitWorkSpace\GcAPIGateway)
+INFO  24-04-22 10:03:25[main] [GcClientApplicationTests:660] - The following 3 profiles are active: "postgres", "oracleH", "oracleM"
+INFO  24-04-22 10:03:27[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-22 10:03:27[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 387 ms. Found 8 JPA repository interfaces.
+INFO  24-04-22 10:03:27[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-22 10:03:27[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 71 ms. Found 8 JPA repository interfaces.
+INFO  24-04-22 10:03:27[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-22 10:03:27[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 77 ms. Found 7 JPA repository interfaces.
+INFO  24-04-22 10:03:33[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-22 10:03:33[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-22 10:03:33[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
+WARN  24-04-22 10:03:33[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-04-22 10:03:35[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@78e043e4
+INFO  24-04-22 10:03:35[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
+INFO  24-04-22 10:03:40[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-04-22 10:03:41[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-22 10:03:41[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-22 10:03:41[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
+WARN  24-04-22 10:03:41[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-04-22 10:03:41[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@1b6e32ee
+INFO  24-04-22 10:03:41[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
+INFO  24-04-22 10:03:42[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-04-22 10:03:42[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-22 10:03:42[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-22 10:03:42[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-22 10:03:43[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@6edd8d56
+INFO  24-04-22 10:03:43[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-04-22 10:03:44[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-22 10:03:45[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-22 10:03:48[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-04-22 10:03:49[main] [GcClientApplicationTests:56] - Started GcClientApplicationTests in 26.578 seconds (process running for 31.266)
+INFO  24-04-22 10:03:49[boundedElastic-1] [ControllerCenter:83] -  
+INFO  24-04-22 10:03:49[boundedElastic-2] [ControllerUCRM:97] -  
+INFO  24-04-22 10:03:49[boundedElastic-1] [ControllerCenter:84] - ====== Class : ControllerCenter - Method : ReceiveMessage ======
+INFO  24-04-22 10:03:49[boundedElastic-2] [ControllerUCRM:98] - ====== Class : ControllerUCRM - Method : UcrmMsgFrmCnsmer ======
+INFO  24-04-22 10:03:49[boundedElastic-1] [ControllerCenter:96] - topic_id : campma
+INFO  24-04-22 10:03:49[boundedElastic-1] [ServiceWebClient:18] -  
+INFO  24-04-22 10:03:49[boundedElastic-1] [ServiceWebClient:19] - ====== ClassName : ServiceWebClient & Method : GetApiRequet ======
+INFO  24-04-22 10:03:49[boundedElastic-1] [WebClientApp:40] - Client Id : 8ed02ed8-2e38-41ee-b70d-ab09e43b3ff1
+INFO  24-04-22 10:03:49[boundedElastic-1] [WebClientApp:42] - Client secret : HRwIs7Tn4DHJH_ODIGusDPOEM9Z7cYsFyxG_jb4f5iY
+INFO  24-04-22 10:03:49[boundedElastic-1] [WebClientApp:48] - 토큰 없음
+INFO  24-04-22 10:03:49[boundedElastic-1] [WebClientApp:49] - 현재 인덱스 : 0
+INFO  24-04-22 10:03:50[boundedElastic-2] [ControllerUCRM:103] - All records from DB : Nothing
+INFO  24-04-22 10:03:50[boundedElastic-1] [WebClientApp:94] - Access token refreshed successfully.
+INFO  24-04-22 10:03:50[boundedElastic-1] [WebClientApp:55] - 발급 후 현재 인덱스 : 1
+INFO  24-04-22 10:03:51[boundedElastic-1] [WebClientApp:71] - 발급 받은 토큰 : fmdFbSy2AqRXYismfSQ6UUvvYsND1QM5ctbP5fSxLqIY8D7nt5UGj0nZRPsYUg8sRsSGXs0wITUQWHMVKpqwkQ
+ERROR 24-04-22 10:03:52[boundedElastic-1] [ControllerCenter:211] - Error Messge : Failed to resolve 'api.apne2.pure.cloud' [A(1)] after 2 queries 
+INFO  24-04-22 10:03:54[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-22 10:03:54[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-04-22 10:03:54[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLM-hikari-pool - Shutdown initiated...
+INFO  24-04-22 10:03:54[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLM-hikari-pool - Shutdown completed.
+INFO  24-04-22 10:03:54[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-04-22 10:03:54[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLH-hikari-pool - Shutdown initiated...
+INFO  24-04-22 10:03:54[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLH-hikari-pool - Shutdown completed.
+INFO  24-04-22 10:03:54[SpringApplicationShutdownHook] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-04-22 10:03:54[SpringApplicationShutdownHook] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-04-22 10:57:07[main] [AnnotationConfigContextLoaderUtils:83] - Could not detect default configuration classes for test class [gc.apiClient.GcClientApplicationTests]: GcClientApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+INFO  24-04-22 10:57:07[main] [SpringBootTestContextBootstrapper:234] - Found @SpringBootConfiguration gc.apiClient.GcClientApplication for test class gc.apiClient.GcClientApplicationTests
+WARN  24-04-22 10:57:08[main] [DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer:78] - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/org/json/json/20210307/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+INFO  24-04-22 10:57:08[main] [GcClientApplicationTests:50] - Starting GcClientApplicationTests using Java 21.0.1 with PID 2528 (started by 인포전스 in D:\GitWorkSpace\GcAPIGateway)
+INFO  24-04-22 10:57:08[main] [GcClientApplicationTests:660] - The following 3 profiles are active: "postgres", "oracleH", "oracleM"
+INFO  24-04-22 10:57:09[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-22 10:57:09[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 261 ms. Found 8 JPA repository interfaces.
+INFO  24-04-22 10:57:09[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-22 10:57:10[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 53 ms. Found 8 JPA repository interfaces.
+INFO  24-04-22 10:57:10[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-22 10:57:10[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 45 ms. Found 7 JPA repository interfaces.
+INFO  24-04-22 10:57:12[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-22 10:57:12[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-22 10:57:12[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
+WARN  24-04-22 10:57:12[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-04-22 10:57:13[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@4cd5fc46
+INFO  24-04-22 10:57:13[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
+INFO  24-04-22 10:57:17[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-04-22 10:57:17[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-22 10:57:17[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-22 10:57:17[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
+WARN  24-04-22 10:57:17[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-04-22 10:57:18[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@5b9ca528
+INFO  24-04-22 10:57:18[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
+INFO  24-04-22 10:57:19[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-04-22 10:57:19[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-22 10:57:19[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-22 10:57:19[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-22 10:57:19[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@a422390
+INFO  24-04-22 10:57:19[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-04-22 10:57:20[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-22 10:57:21[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-22 10:57:23[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-04-22 10:57:24[main] [GcClientApplicationTests:56] - Started GcClientApplicationTests in 16.977 seconds (process running for 19.991)
+INFO  24-04-22 10:57:24[boundedElastic-1] [ControllerCenter:83] -  
+INFO  24-04-22 10:57:24[boundedElastic-1] [ControllerCenter:84] - ====== Class : ControllerCenter - Method : ReceiveMessage ======
+INFO  24-04-22 10:57:24[boundedElastic-1] [ControllerCenter:96] - topic_id : campma
+INFO  24-04-22 10:57:24[boundedElastic-1] [ServiceWebClient:18] -  
+INFO  24-04-22 10:57:24[boundedElastic-1] [ServiceWebClient:19] - ====== ClassName : ServiceWebClient & Method : GetApiRequet ======
+INFO  24-04-22 10:57:24[boundedElastic-1] [WebClientApp:40] - Client Id : 8ed02ed8-2e38-41ee-b70d-ab09e43b3ff1
+INFO  24-04-22 10:57:24[boundedElastic-1] [WebClientApp:42] - Client secret : HRwIs7Tn4DHJH_ODIGusDPOEM9Z7cYsFyxG_jb4f5iY
+INFO  24-04-22 10:57:24[boundedElastic-1] [WebClientApp:48] - 토큰 없음
+INFO  24-04-22 10:57:24[boundedElastic-1] [WebClientApp:49] - 현재 인덱스 : 0
+INFO  24-04-22 10:57:24[boundedElastic-2] [ControllerUCRM:97] -  
+INFO  24-04-22 10:57:24[boundedElastic-2] [ControllerUCRM:98] - ====== Class : ControllerUCRM - Method : UcrmMsgFrmCnsmer ======
+INFO  24-04-22 10:57:25[boundedElastic-2] [ControllerUCRM:103] - All records from DB : Nothing
+INFO  24-04-22 10:57:26[boundedElastic-1] [WebClientApp:94] - Access token refreshed successfully.
+INFO  24-04-22 10:57:26[boundedElastic-1] [WebClientApp:55] - 발급 후 현재 인덱스 : 1
+INFO  24-04-22 10:57:26[boundedElastic-1] [WebClientApp:71] - 발급 받은 토큰 : 5DXkwRgx6nIUp6jp--R0ipRQSnI0LKkGCGEDSvtEZd0qMEsw2QjOf6Qi4h8A8hzk0d0iDiO8-3UVVgaL-fxAbg
+INFO  24-04-22 10:57:26[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-22 10:57:26[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-04-22 10:57:26[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLM-hikari-pool - Shutdown initiated...
+INFO  24-04-22 10:57:26[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLM-hikari-pool - Shutdown completed.
+INFO  24-04-22 10:57:26[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-04-22 10:57:26[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLH-hikari-pool - Shutdown initiated...
+INFO  24-04-22 10:57:26[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLH-hikari-pool - Shutdown completed.
+INFO  24-04-22 10:57:26[SpringApplicationShutdownHook] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-04-22 10:57:26[SpringApplicationShutdownHook] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-04-22 11:22:31[main] [AnnotationConfigContextLoaderUtils:83] - Could not detect default configuration classes for test class [gc.apiClient.GcClientApplicationTests]: GcClientApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+INFO  24-04-22 11:22:32[main] [SpringBootTestContextBootstrapper:234] - Found @SpringBootConfiguration gc.apiClient.GcClientApplication for test class gc.apiClient.GcClientApplicationTests
+WARN  24-04-22 11:22:33[main] [DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer:78] - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/org/json/json/20210307/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+INFO  24-04-22 11:22:33[main] [GcClientApplicationTests:50] - Starting GcClientApplicationTests using Java 21.0.1 with PID 24700 (started by 인포전스 in D:\GitWorkSpace\GcAPIGateway)
+INFO  24-04-22 11:22:33[main] [GcClientApplicationTests:660] - The following 3 profiles are active: "postgres", "oracleH", "oracleM"
+INFO  24-04-22 11:22:35[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-22 11:22:35[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 274 ms. Found 8 JPA repository interfaces.
+INFO  24-04-22 11:22:35[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-22 11:22:35[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 56 ms. Found 8 JPA repository interfaces.
+INFO  24-04-22 11:22:35[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-22 11:22:35[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 52 ms. Found 7 JPA repository interfaces.
+INFO  24-04-22 11:22:40[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-22 11:22:40[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-22 11:22:40[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
+WARN  24-04-22 11:22:40[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-04-22 11:22:42[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@738a39cc
+INFO  24-04-22 11:22:42[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
+INFO  24-04-22 11:22:46[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-04-22 11:22:46[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-22 11:22:46[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-22 11:22:46[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
+WARN  24-04-22 11:22:46[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-04-22 11:22:46[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@3941bdd7
+INFO  24-04-22 11:22:46[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
+INFO  24-04-22 11:22:47[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-04-22 11:22:47[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-22 11:22:47[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-22 11:22:47[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-22 11:22:48[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@40ff56f7
+INFO  24-04-22 11:22:48[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-04-22 11:22:48[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-22 11:22:49[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-22 11:22:51[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-04-22 11:22:52[main] [GcClientApplicationTests:56] - Started GcClientApplicationTests in 20.249 seconds (process running for 24.923)
+INFO  24-04-22 11:22:53[boundedElastic-1] [ControllerUCRM:97] -  
+INFO  24-04-22 11:22:53[boundedElastic-1] [ControllerUCRM:98] - ====== Class : ControllerUCRM - Method : UcrmMsgFrmCnsmer ======
+INFO  24-04-22 11:22:53[boundedElastic-2] [ControllerCenter:83] -  
+INFO  24-04-22 11:22:53[boundedElastic-2] [ControllerCenter:84] - ====== Class : ControllerCenter - Method : ReceiveMessage ======
+INFO  24-04-22 11:22:53[boundedElastic-2] [ControllerCenter:96] - topic_id : campma
+INFO  24-04-22 11:22:53[boundedElastic-2] [ServiceWebClient:18] -  
+INFO  24-04-22 11:22:53[boundedElastic-2] [ServiceWebClient:19] - ====== ClassName : ServiceWebClient & Method : GetApiRequet ======
+INFO  24-04-22 11:22:53[boundedElastic-2] [WebClientApp:40] - Client Id : 8ed02ed8-2e38-41ee-b70d-ab09e43b3ff1
+INFO  24-04-22 11:22:53[boundedElastic-2] [WebClientApp:42] - Client secret : HRwIs7Tn4DHJH_ODIGusDPOEM9Z7cYsFyxG_jb4f5iY
+INFO  24-04-22 11:22:53[boundedElastic-2] [WebClientApp:48] - 토큰 없음
+INFO  24-04-22 11:22:53[boundedElastic-2] [WebClientApp:49] - 현재 인덱스 : 0
+INFO  24-04-22 11:22:53[boundedElastic-1] [ControllerUCRM:103] - All records from DB : Nothing
+INFO  24-04-22 11:22:54[boundedElastic-2] [WebClientApp:94] - Access token refreshed successfully.
+INFO  24-04-22 11:22:54[boundedElastic-2] [WebClientApp:55] - 발급 후 현재 인덱스 : 1
+INFO  24-04-22 11:22:54[boundedElastic-2] [WebClientApp:71] - 발급 받은 토큰 : GgSRahFSUZxrRKoXgnr7LWc806CDJPTkhZ26XSKvUZ7_dJXQQNfBs17jDXMWuafjmKnMKVIkF7yBmif8XitZ2A
+INFO  24-04-22 11:22:55[boundedElastic-2] [ServiceWebClient:26] - ====== End GetApiRequet ======
+INFO  24-04-22 11:22:55[boundedElastic-2] [ServiceJson:84] -  
+INFO  24-04-22 11:22:55[boundedElastic-2] [ServiceJson:85] - ====== ClassName : ServiceJson & Method : CampaignListSize ======
+INFO  24-04-22 11:22:55[boundedElastic-2] [ServiceJson:100] - 캠페인 리스트 사이즈 : 60
+INFO  24-04-22 11:22:55[boundedElastic-2] [ServiceJson:101] - ====== END CampaignListSize ======
+INFO  24-04-22 11:22:56[boundedElastic-2] [ServicePostgre:730] - Campma 테이블 레코드 수 : 59
+INFO  24-04-22 11:22:56[boundedElastic-2] [ControllerCenter:113] - 1번 반복
+INFO  24-04-22 11:22:56[boundedElastic-2] [ControllerCenter:115] - 0번째 인덱스 
+INFO  24-04-22 11:22:56[boundedElastic-2] [ServiceJson:55] -  
+INFO  24-04-22 11:22:56[boundedElastic-2] [ServiceJson:56] - ====== ClassName : ServiceJson & Method : ExtractValCrm12 ======
+INFO  24-04-22 11:22:56[boundedElastic-2] [ServiceJson:75] - result : b4645cb6-3176-4faf-8d93-d555e03b51fd::21::[ys]kafka_rt_test::Home
+INFO  24-04-22 11:22:56[boundedElastic-2] [ServiceJson:76] - ====== END ExtractValCrm12 ======
+INFO  24-04-22 11:22:56[boundedElastic-2] [BusinessLogic:15] -  
+INFO  24-04-22 11:22:56[boundedElastic-2] [BusinessLogic:16] - ====== Class : BusinessLogic - Method : SelectedBusiness ======
+INFO  24-04-22 11:22:56[boundedElastic-2] [BusinessLogic:17] - division : Home
+INFO  24-04-22 11:22:56[boundedElastic-2] [BusinessLogic:72] - business : UCRM
+INFO  24-04-22 11:22:56[boundedElastic-2] [BusinessLogic:73] - topic_id : from_clcc_hmucrmcmpnma_message
+INFO  24-04-22 11:22:56[boundedElastic-2] [BusinessLogic:75] - ===== END SelectedBusiness =====
+INFO  24-04-22 11:22:56[boundedElastic-2] [ServicePostgre:255] -  
+INFO  24-04-22 11:22:56[boundedElastic-2] [ServicePostgre:256] - ====== ClassName : ServicePostgre & Method : CreateEnCampMa ======
+INFO  24-04-22 11:22:56[boundedElastic-2] [ServicePostgre:272] - cpid : b4645cb6-3176-4faf-8d93-d555e03b51fd
+INFO  24-04-22 11:22:56[boundedElastic-2] [ServicePostgre:273] - coid : 21
+INFO  24-04-22 11:22:56[boundedElastic-2] [ServicePostgre:274] - cpna : [ys]kafka_rt_test
+INFO  24-04-22 11:22:56[boundedElastic-2] [ServicePostgre:276] - ====== End CreateEnCampMa ======
+INFO  24-04-22 11:22:56[boundedElastic-2] [ServicePostgre:283] -  
+INFO  24-04-22 11:22:56[boundedElastic-2] [ServicePostgre:284] - ====== ClassName : ServicePostgre & Method : JsonCampMaUcrm ======
+INFO  24-04-22 11:22:56[boundedElastic-2] [ServicePostgre:341] - ====== End JsonCampMaUcrm ======
+INFO  24-04-22 11:22:56[boundedElastic-2] [ControllerCenter:145] - jsonString : {"topcDataIsueDtm":"2024/04/22 11:22:56.000299","dataChgCd":"insert","dataDelYn":"N","centerCd":"H1","cmpnId":"b4645cb6-3176-4faf-8d93-d555e03b51fd","cmpnNm":"[ys]kafka_rt_test"}
+INFO  24-04-22 11:22:56[boundedElastic-2] [MessageToProducer:13] -  
+INFO  24-04-22 11:22:56[boundedElastic-2] [MessageToProducer:14] - ====== ClassName : MessageToProducer & Method : sendMsgToProducer ======
+INFO  24-04-22 11:22:56[boundedElastic-2] [MessageToProducer:15] - Producer로 보낼 EndPoint : /gcapi/post/from_clcc_hmucrmcmpnma_message
+INFO  24-04-22 11:22:56[boundedElastic-2] [MessageToProducer:16] - Producer로 보낼 Message : {"topcDataIsueDtm":"2024/04/22 11:22:56.000299","dataChgCd":"insert","dataDelYn":"N","centerCd":"H1","cmpnId":"b4645cb6-3176-4faf-8d93-d555e03b51fd","cmpnNm":"[ys]kafka_rt_test"}
+INFO  24-04-22 11:22:56[boundedElastic-2] [MessageToProducer:39] - ====== End sendMsgToProducer ======
+ERROR 24-04-22 11:22:56[reactor-http-nio-3] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-22 11:22:56[reactor-http-nio-3] [MessageToProducer:34] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+INFO  24-04-22 11:22:57[boundedElastic-2] [ControllerUCRM:97] -  
+INFO  24-04-22 11:22:57[boundedElastic-2] [ControllerUCRM:98] - ====== Class : ControllerUCRM - Method : UcrmMsgFrmCnsmer ======
+INFO  24-04-22 11:22:57[boundedElastic-2] [ControllerUCRM:103] - All records from DB : Nothing
+INFO  24-04-22 11:23:02[boundedElastic-2] [ControllerUCRM:97] -  
+INFO  24-04-22 11:23:02[boundedElastic-2] [ControllerUCRM:98] - ====== Class : ControllerUCRM - Method : UcrmMsgFrmCnsmer ======
+INFO  24-04-22 11:23:02[boundedElastic-2] [ControllerUCRM:103] - All records from DB : Nothing
+INFO  24-04-22 11:23:07[boundedElastic-2] [ControllerUCRM:97] -  
+INFO  24-04-22 11:23:07[boundedElastic-2] [ControllerUCRM:98] - ====== Class : ControllerUCRM - Method : UcrmMsgFrmCnsmer ======
+INFO  24-04-22 11:23:07[boundedElastic-2] [ControllerUCRM:103] - All records from DB : Nothing
+INFO  24-04-22 11:23:12[boundedElastic-2] [ControllerUCRM:97] -  
+INFO  24-04-22 11:23:12[boundedElastic-2] [ControllerUCRM:98] - ====== Class : ControllerUCRM - Method : UcrmMsgFrmCnsmer ======
+INFO  24-04-22 11:23:12[boundedElastic-2] [ControllerUCRM:103] - All records from DB : Nothing
+INFO  24-04-22 11:23:16[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-22 11:23:16[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-04-22 11:23:16[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLM-hikari-pool - Shutdown initiated...
+INFO  24-04-22 11:23:16[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLM-hikari-pool - Shutdown completed.
+INFO  24-04-22 11:23:16[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-04-22 11:23:16[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLH-hikari-pool - Shutdown initiated...
+INFO  24-04-22 11:23:16[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLH-hikari-pool - Shutdown completed.
+INFO  24-04-22 11:23:16[SpringApplicationShutdownHook] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-04-22 11:23:16[SpringApplicationShutdownHook] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-04-22 13:48:44[main] [AnnotationConfigContextLoaderUtils:83] - Could not detect default configuration classes for test class [gc.apiClient.GcClientApplicationTests]: GcClientApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+INFO  24-04-22 13:48:44[main] [SpringBootTestContextBootstrapper:234] - Found @SpringBootConfiguration gc.apiClient.GcClientApplication for test class gc.apiClient.GcClientApplicationTests
+WARN  24-04-22 13:48:45[main] [DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer:78] - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/org/json/json/20210307/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+INFO  24-04-22 13:48:45[main] [GcClientApplicationTests:50] - Starting GcClientApplicationTests using Java 21.0.1 with PID 276 (started by 인포전스 in D:\GitWorkSpace\GcAPIGateway)
+INFO  24-04-22 13:48:45[main] [GcClientApplicationTests:660] - The following 3 profiles are active: "postgres", "oracleH", "oracleM"
+INFO  24-04-22 13:48:46[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-22 13:48:47[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 298 ms. Found 8 JPA repository interfaces.
+INFO  24-04-22 13:48:47[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-22 13:48:47[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 54 ms. Found 8 JPA repository interfaces.
+INFO  24-04-22 13:48:47[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-22 13:48:47[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 50 ms. Found 7 JPA repository interfaces.
+INFO  24-04-22 13:48:50[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-22 13:48:50[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-22 13:48:50[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
+WARN  24-04-22 13:48:50[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-04-22 13:48:51[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@d13379e
+INFO  24-04-22 13:48:51[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
+INFO  24-04-22 13:48:53[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-04-22 13:48:53[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-22 13:48:53[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-22 13:48:53[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
+WARN  24-04-22 13:48:53[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-04-22 13:48:54[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@2c1b10f2
+INFO  24-04-22 13:48:54[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
+INFO  24-04-22 13:48:55[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-04-22 13:48:55[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-22 13:48:55[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-22 13:48:55[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-22 13:48:56[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@c34fd2
+INFO  24-04-22 13:48:56[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-04-22 13:48:56[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-22 13:48:58[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-22 13:49:01[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-04-22 13:49:02[main] [GcClientApplicationTests:56] - Started GcClientApplicationTests in 17.514 seconds (process running for 20.902)
+INFO  24-04-22 13:49:02[boundedElastic-1] [ControllerCenter:83] -  
+INFO  24-04-22 13:49:02[boundedElastic-1] [ControllerCenter:84] - ====== Class : ControllerCenter - Method : ReceiveMessage ======
+INFO  24-04-22 13:49:02[boundedElastic-1] [ControllerCenter:96] - topic_id : campma
+INFO  24-04-22 13:49:02[boundedElastic-1] [ServiceWebClient:18] -  
+INFO  24-04-22 13:49:02[boundedElastic-1] [ServiceWebClient:19] - ====== ClassName : ServiceWebClient & Method : GetApiRequet ======
+INFO  24-04-22 13:49:02[boundedElastic-1] [WebClientApp:40] - Client Id : 8ed02ed8-2e38-41ee-b70d-ab09e43b3ff1
+INFO  24-04-22 13:49:02[boundedElastic-1] [WebClientApp:42] - Client secret : HRwIs7Tn4DHJH_ODIGusDPOEM9Z7cYsFyxG_jb4f5iY
+INFO  24-04-22 13:49:02[boundedElastic-1] [WebClientApp:48] - 토큰 없음
+INFO  24-04-22 13:49:02[boundedElastic-2] [ControllerUCRM:97] -  
+INFO  24-04-22 13:49:02[boundedElastic-1] [WebClientApp:49] - 현재 인덱스 : 0
+INFO  24-04-22 13:49:02[boundedElastic-2] [ControllerUCRM:98] - ====== Class : ControllerUCRM - Method : UcrmMsgFrmCnsmer ======
+INFO  24-04-22 13:49:02[boundedElastic-2] [ControllerUCRM:103] - All records from DB : Nothing
+INFO  24-04-22 13:49:03[boundedElastic-1] [WebClientApp:94] - Access token refreshed successfully.
+INFO  24-04-22 13:49:03[boundedElastic-1] [WebClientApp:55] - 발급 후 현재 인덱스 : 1
+INFO  24-04-22 13:49:03[boundedElastic-1] [WebClientApp:71] - 발급 받은 토큰 : n1pLbWK566d3StA0FbdcYQFKCXTlXdyfEi7_t_oWxkfXFLVfVs7deh2HH0QKPB5Kk0Vyf__-W5akDCoMO64gYg
+INFO  24-04-22 13:49:04[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-22 13:49:04[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-04-22 13:49:04[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLM-hikari-pool - Shutdown initiated...
+INFO  24-04-22 13:49:04[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLM-hikari-pool - Shutdown completed.
+INFO  24-04-22 13:49:04[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-04-22 13:49:04[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLH-hikari-pool - Shutdown initiated...
+INFO  24-04-22 13:49:04[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLH-hikari-pool - Shutdown completed.
+INFO  24-04-22 13:49:04[SpringApplicationShutdownHook] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-04-22 13:49:04[SpringApplicationShutdownHook] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-04-22 14:43:03[main] [AnnotationConfigContextLoaderUtils:83] - Could not detect default configuration classes for test class [gc.apiClient.GcClientApplicationTests]: GcClientApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+INFO  24-04-22 14:43:04[main] [SpringBootTestContextBootstrapper:234] - Found @SpringBootConfiguration gc.apiClient.GcClientApplication for test class gc.apiClient.GcClientApplicationTests
+WARN  24-04-22 14:43:06[main] [DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer:78] - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/org/json/json/20210307/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+INFO  24-04-22 14:43:06[main] [GcClientApplicationTests:50] - Starting GcClientApplicationTests using Java 21.0.1 with PID 22308 (started by 인포전스 in D:\GitWorkSpace\GcAPIGateway)
+INFO  24-04-22 14:43:06[main] [GcClientApplicationTests:660] - The following 3 profiles are active: "postgres", "oracleH", "oracleM"
+INFO  24-04-22 14:43:08[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-22 14:43:08[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 315 ms. Found 8 JPA repository interfaces.
+INFO  24-04-22 14:43:08[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-22 14:43:08[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 58 ms. Found 8 JPA repository interfaces.
+INFO  24-04-22 14:43:08[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-04-22 14:43:08[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 57 ms. Found 7 JPA repository interfaces.
+INFO  24-04-22 14:43:12[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-22 14:43:12[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-22 14:43:12[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
+WARN  24-04-22 14:43:12[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-04-22 14:43:13[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@4cd5fc46
+INFO  24-04-22 14:43:13[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
+INFO  24-04-22 14:43:19[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-04-22 14:43:19[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-22 14:43:19[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-22 14:43:19[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
+WARN  24-04-22 14:43:19[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-04-22 14:43:19[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@5b9ca528
+INFO  24-04-22 14:43:19[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
+INFO  24-04-22 14:43:20[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-04-22 14:43:20[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-04-22 14:43:20[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-04-22 14:43:20[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-04-22 14:43:21[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@a422390
+INFO  24-04-22 14:43:21[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-04-22 14:43:22[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-22 14:43:24[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-04-22 14:43:27[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-04-22 14:43:28[main] [GcClientApplicationTests:56] - Started GcClientApplicationTests in 23.853 seconds (process running for 30.535)
+INFO  24-04-22 14:43:28[boundedElastic-1] [ControllerUCRM:97] -  
+INFO  24-04-22 14:43:28[boundedElastic-2] [ControllerCenter:83] -  
+INFO  24-04-22 14:43:28[boundedElastic-1] [ControllerUCRM:98] - ====== Class : ControllerUCRM - Method : UcrmMsgFrmCnsmer ======
+INFO  24-04-22 14:43:28[boundedElastic-2] [ControllerCenter:84] - ====== Class : ControllerCenter - Method : ReceiveMessage ======
+INFO  24-04-22 14:43:28[boundedElastic-2] [ControllerCenter:96] - topic_id : campma
+INFO  24-04-22 14:43:28[boundedElastic-2] [ServiceWebClient:18] -  
+INFO  24-04-22 14:43:28[boundedElastic-2] [ServiceWebClient:19] - ====== ClassName : ServiceWebClient & Method : GetApiRequet ======
+INFO  24-04-22 14:43:28[boundedElastic-2] [WebClientApp:40] - Client Id : 8ed02ed8-2e38-41ee-b70d-ab09e43b3ff1
+INFO  24-04-22 14:43:28[boundedElastic-2] [WebClientApp:42] - Client secret : HRwIs7Tn4DHJH_ODIGusDPOEM9Z7cYsFyxG_jb4f5iY
+INFO  24-04-22 14:43:28[boundedElastic-2] [WebClientApp:48] - 토큰 없음
+INFO  24-04-22 14:43:28[boundedElastic-2] [WebClientApp:49] - 현재 인덱스 : 0
+INFO  24-04-22 14:43:29[boundedElastic-1] [ControllerUCRM:103] - All records from DB : Nothing
+INFO  24-04-22 14:43:30[boundedElastic-2] [WebClientApp:94] - Access token refreshed successfully.
+INFO  24-04-22 14:43:30[boundedElastic-2] [WebClientApp:55] - 발급 후 현재 인덱스 : 1
+INFO  24-04-22 14:43:30[boundedElastic-2] [WebClientApp:71] - 발급 받은 토큰 : fHtXWnjzE_x7ukl2Fm3foKqocnocj2YEt2IfSUhttZSzU8muVcBY2UNU2ip1SbPxcivpV0M-s9WiVrxow1aCaw
+INFO  24-04-22 14:43:30[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-04-22 14:43:30[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-04-22 14:43:30[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLM-hikari-pool - Shutdown initiated...
+INFO  24-04-22 14:43:30[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLM-hikari-pool - Shutdown completed.
+INFO  24-04-22 14:43:30[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-04-22 14:43:30[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLH-hikari-pool - Shutdown initiated...
+INFO  24-04-22 14:43:30[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLH-hikari-pool - Shutdown completed.
+INFO  24-04-22 14:43:30[SpringApplicationShutdownHook] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-04-22 14:43:30[SpringApplicationShutdownHook] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.

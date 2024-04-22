@@ -15,7 +15,7 @@ public class Entity_ApimRt {
 	@EmbeddedId
     private ApimCampRt id;
 	
-	@Column(name = "DIVISIONID")
+	@Column(name = "DIVISION_ID")
  	private String divisionid;
 	
 	public Entity_ApimRt(){

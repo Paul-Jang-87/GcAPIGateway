@@ -16,7 +16,7 @@ public class Entity_CallbotRt {
 	@EmbeddedId
     private CallBotCampRt id;
 	
-	@Column(name = "DIVISIONID")
+	@Column(name = "DIVISION_ID")
  	private String divisionid;
 	
 	public Entity_CallbotRt(){

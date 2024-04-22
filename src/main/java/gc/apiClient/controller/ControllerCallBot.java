@@ -11,7 +11,6 @@ import org.json.JSONObject;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +28,6 @@ import gc.apiClient.entity.Entity_ToApim;
 import gc.apiClient.entity.postgresql.Entity_CallbotRt;
 import gc.apiClient.entity.postgresql.Entity_CampRt;
 import gc.apiClient.entity.postgresql.Entity_ContactLt;
-import gc.apiClient.entity.postgresql.Entity_Ucrm;
 import gc.apiClient.interfaceCollection.InterfaceDBPostgreSQL;
 import gc.apiClient.interfaceCollection.InterfaceWebClient;
 import gc.apiClient.messages.MessageToApim;
@@ -130,6 +128,11 @@ public class ControllerCallBot extends ServiceJson {
 
 					} catch (DataIntegrityViolationException ex) {
 						log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+						if(enContactLt.getFlag().equals("D")) {
+							log.error("flag is 'D', delete record");
+							serviceDb.DelContactltById(enContactLt.getId());
+						}
+						
 					} catch (DataAccessException ex) {
 						log.error("DataAccessException 발생 : {}", ex.getMessage());
 					}
@@ -209,9 +212,9 @@ public class ControllerCallBot extends ServiceJson {
 						contactlists.put(contactLtId, new ArrayList<>());
 					}
 					contactlists.get(contactLtId).add(cqsq);
-					serviceDb.DelCallBotRtById(enCallbotRt.getId());
+//					serviceDb.DelCallBotRtById(enCallbotRt.getId());
 					
-					log.info("Add value into Arraylist named '{}'", contactLtId);
+					log.info("Add value into contactListId named '{}'", contactLtId);
 
 					for (Map.Entry<String, List<String>> entry : contactlists.entrySet()) {
 

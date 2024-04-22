@@ -395,7 +395,7 @@ public class ServiceJson implements InterfaceJson {
 
 		log.info(" ");
 		log.info("====== ClassName : ServiceJson & Method : ExtrSaveRtData ======");
-
+		log.info("incoming msg : {} : ",stringMsg);
 		String jsonResponse = stringMsg;
 
 		ObjectMapper objectMapper = new ObjectMapper();

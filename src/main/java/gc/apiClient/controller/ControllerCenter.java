@@ -73,8 +73,7 @@ public class ControllerCenter extends ServiceJson {
 	@Scheduled(fixedRate = 60000)
 	public void scheduledMethod() {
 
-//		Mono.fromCallable(() -> ReceiveMessage("campma")).subscribeOn(Schedulers.boundedElastic()).subscribe();
-
+		Mono.fromCallable(() -> ReceiveMessage("campma")).subscribeOn(Schedulers.boundedElastic()).subscribe();
 
 	}
 
@@ -217,7 +216,7 @@ public class ControllerCenter extends ServiceJson {
 	}
 
 	@PostMapping("/updateOrDelCampma")
-	public Mono<Void> UpdateOrDelCampMa(@RequestBody String msg, HttpServletRequest request) throws Exception {
+	public  Mono<ResponseEntity<String>> UpdateOrDelCampMa(@RequestBody String msg, HttpServletRequest request) throws Exception {
 
 		String row_result = "";
 		Entity_CampMa enCampMa = null;
@@ -271,12 +270,14 @@ public class ControllerCenter extends ServiceJson {
 					log.info("New value of Campaign name : {}", cpna);
 
 					serviceDb.UpdateCampMa(cpid, cpna);
+					return Mono.just(ResponseEntity.ok().body(String.format("UCRM, A record with cpid : '%s' has been updated successfully", cpid)));
+					
 				} else {
 					log.info("Cpid of target record for deleting : {}", cpid);
 					serviceDb.DelCampMaById(cpid);
+					return Mono.just(ResponseEntity.ok().body(String.format("UCRM, A record with cpid : '%s' has been deleted successfully", cpid)));
 				}
-
-				break;
+				
 			case "Callbot":
 
 				objectMapper = new ObjectMapper();
@@ -303,13 +304,13 @@ public class ControllerCenter extends ServiceJson {
 					log.info("New value of Campaign name : {}", cpna);
 
 					serviceDb.UpdateCampMa(cpid, cpna);
+					return Mono.just(ResponseEntity.ok().body(String.format("Callbot, A record with cpid : '%s' has been updated successfully", cpid)));
 
 				} else {
 					log.info("Cpid of target record for deleting : {}", cpid);
 					serviceDb.DelCampMaById(cpid);
+					return Mono.just(ResponseEntity.ok().body(String.format("Callbot, A record with cpid : '%s' has been deleted successfully", cpid)));
 				}
-
-				break;
 
 			default:
 
@@ -330,24 +331,23 @@ public class ControllerCenter extends ServiceJson {
 					log.info("New value of Campaign name : {}", cpna);
 
 					serviceDb.UpdateCampMa(cpid, cpna);
-
+					return Mono.just(ResponseEntity.ok().body(String.format("Apim, A record with cpid : '%s' has been updated successfully", cpid)));
 				} else {
 					log.info("Cpid of target record for deleting : {}", cpid);
 					serviceDb.DelCampMaById(cpid);
 				}
-				break;
+				return Mono.just(ResponseEntity.ok().body(String.format("Apim, A record with cpid : '%s' has been deleted successfully", cpid)));
 			}
 		} catch (EntityNotFoundException ex) {
 			log.error("EntityNotFoundException occurred: {} ", ex.getMessage());
 			enCampMa = serviceDb.CreateEnCampMa(row_result);
 			serviceDb.InsertCampMa(enCampMa);
-
+			return Mono.just(ResponseEntity.ok("There is no record which matched with request cpid. so it just has been inserted."));
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("Error Messge : {}", e.getMessage());
+			return Mono.just(ResponseEntity.ok().body(String.format("You've got an error : {}", e.getMessage())));
 		}
-
-		return Mono.empty();
 	}
 
 
@@ -372,29 +372,29 @@ public class ControllerCenter extends ServiceJson {
 
 				Entity_UcrmRt enUcrmrt = serviceDb.createUcrmRt(result);
 				serviceDb.InsertUcrmRt(enUcrmrt);
-
-				break;
+				log.info("====== End SaveRtData ======");
+				return Mono.just(ResponseEntity.ok("Ucrm data has been inserted successfully"));
 
 			case "CallbotHome":
 			case "CallbotMobile":
 
 				Entity_CallbotRt enCallBotRt = serviceDb.createCallbotRt(result);
 				serviceDb.InsertCallbotRt(enCallBotRt);
-
-				break;
+				log.info("====== End SaveRtData ======");
+				return Mono.just(ResponseEntity.ok("Callbot data has been inserted successfully"));
 			default:
 				Entity_ApimRt enApimRt = serviceDb.createApimRt(result);
 				serviceDb.InsertApimRt(enApimRt);
-				break;
+				log.info("====== End SaveRtData ======");
+				return Mono.just(ResponseEntity.ok("Apim data has been inserted successfully"));
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			log.error("Error Message : {}", e.getMessage());
+			log.info("====== End SaveRtData ======");
+			return Mono.just(ResponseEntity.ok().body(String.format("You've got an error : {}", e.getMessage())));
 		}
 
-		log.info("====== End SaveRtData ======");
-		return Mono.just(ResponseEntity.ok("Successfully processed the message."));
 	}
 
 

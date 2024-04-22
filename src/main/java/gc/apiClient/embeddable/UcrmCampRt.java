@@ -13,12 +13,12 @@ import lombok.Data;
 public class UcrmCampRt implements Serializable {
     private static final long serialVersionUID = 1L;
 
-	@NotNull
-	@Column(name = "CPID")
+    @NotNull
+	@Column(name = "CAMP_ID")
 	private String cpid;
 	
 	@NotNull
-	@Column(name = "CPSQ")
+	@Column(name = "CAMP_SEQ")
     private String cpsq;
 	
 	public UcrmCampRt(){

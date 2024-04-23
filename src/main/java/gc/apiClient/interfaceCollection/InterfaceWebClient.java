@@ -11,6 +11,7 @@ public interface InterfaceWebClient {
 	String GetCampaignsApiRequet(String endpoint, String campaignId) throws Exception;
 	String GetContactLtApiRequet(String endpoint, String contactListId, String contactId) throws Exception;
 	String PostContactLtApiRequet(String endpoint, String contactListId, List<String> msg) throws Exception;
+	String DelContacts(String endpoint, String contactListId, List<String> msg) throws Exception;
 	String PostContactLtApiBulk(String endpoint, String contactListId, List<String> cskes) throws Exception;
 
 }

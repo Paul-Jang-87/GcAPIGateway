@@ -72,8 +72,9 @@ public class ControllerCenter extends ServiceJson {
 
 	@Scheduled(fixedRate = 60000)
 	public void scheduledMethod() {
-
+		
 		Mono.fromCallable(() -> ReceiveMessage("campma")).subscribeOn(Schedulers.boundedElastic()).subscribe();
+		Mono.fromCallable(() -> SendApimRt()).subscribeOn(Schedulers.boundedElastic()).subscribe();
 
 	}
 

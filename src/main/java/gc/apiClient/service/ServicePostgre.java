@@ -113,7 +113,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		log.info("contactId: {}", contactId);
 		log.info("tkda: {}", tkda);
 		log.info("didt: {}", parts[6]);
-		log.info("------ 들어온 rs를 분배해여 필요한 변수들 초기화 끝------");
+		log.info("------ 들어온 rs를 분배해여 필요한 변수들 초기화 끝 ------");
 
 		if (tkda.charAt(0) == 'C') {
 			hubId = Integer.parseInt(tkda.split(",")[1]);
@@ -205,7 +205,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		String campid = enCampRt.getCpid();
 		String didt = "";
 
-		SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSS");
+		SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		outputFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 		String formattedDateString = outputFormat.format(enCampRt.getDidt());
 		didt = formattedDateString;
@@ -228,6 +228,11 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		JSONObject obj = new JSONObject();
 
 		if (business.equals("CALLBOT")) {
+			
+			outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSS");
+			outputFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+			formattedDateString = outputFormat.format(enCampRt.getDidt());
+			didt = formattedDateString;
 
 			obj.put("topcDataIsueDtm", topcDataIsueDtm);
 			obj.put("cpId", campid);

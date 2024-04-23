@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.scheduler.Schedulers;
 
 import gc.apiClient.customproperties.CustomProperties;
 import gc.apiClient.entity.oracleH.Entity_DataCall;
@@ -53,69 +54,69 @@ public class Controller360view extends ServiceJson {
 	public void scheduledMethod() {
 
 
-//		Mono.fromCallable(() -> Msg360Datacall())
-//		.subscribeOn(Schedulers.boundedElastic())
-//		.subscribe();
-//
-//		Mono.fromCallable(() -> Msg360DataCallCustomer())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
-//		Mono.fromCallable(() -> Msg360DataCallService())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
-//		Mono.fromCallable(() -> Msg360MDatacall())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
-//		Mono.fromCallable(() -> Msg360MDataCallCustomer())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
-//		Mono.fromCallable(() -> Msg360MDataCallService())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
-//		Mono.fromCallable(() -> Msg360MMstrsSvcCd())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
-//		Mono.fromCallable(() -> Msg360MstrsSvcCd())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
-//		Mono.fromCallable(() -> Msg360MWaDataCall())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
-//		Mono.fromCallable(() -> Msg360MWaDataCallOptional())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
-//		Mono.fromCallable(() -> Msg360MWaDataCallTrace())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
-//		Mono.fromCallable(() -> Msg360MWaMTrCode())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
-//		Mono.fromCallable(() -> Msg360WaDataCall())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
-//		Mono.fromCallable(() -> Msg360WaDataCallOptional())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
-//		Mono.fromCallable(() -> Msg360WaDataCallTrace())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
-//		
-//		Mono.fromCallable(() -> Msg360WaMTrCode())
-//        .subscribeOn(Schedulers.boundedElastic())
-//        .subscribe();
+		Mono.fromCallable(() -> Msg360Datacall())
+		.subscribeOn(Schedulers.boundedElastic())
+		.subscribe();
+
+		Mono.fromCallable(() -> Msg360DataCallCustomer())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360DataCallService())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360MDatacall())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360MDataCallCustomer())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360MDataCallService())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360MMstrsSvcCd())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360MstrsSvcCd())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360MWaDataCall())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360MWaDataCallOptional())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360MWaDataCallTrace())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360MWaMTrCode())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360WaDataCall())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360WaDataCallOptional())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360WaDataCallTrace())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
+		
+		Mono.fromCallable(() -> Msg360WaMTrCode())
+        .subscribeOn(Schedulers.boundedElastic())
+        .subscribe();
 
 	}
 

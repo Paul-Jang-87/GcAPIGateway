@@ -26,7 +26,7 @@ public class WebClientApp {
 	private static String HTTP_METHOD = "";
 	private static String accessToken = "";
 	private static int index = 0;
-	private static String[] tokenlist = new String[15] ;
+	private static String[] tokenlist = new String[15];
 
 	private WebClient webClient;
 
@@ -44,7 +44,7 @@ public class WebClientApp {
 		API_END_POINT = WebClientConfig.getApiEndpoint(apiName);
 		HTTP_METHOD = httpMethod;
 
-		if (tokenlist[index] == null||tokenlist[index].equals("")) {
+		if (tokenlist[index] == null || tokenlist[index].equals("")) {
 			log.info("토큰 없음");
 			log.info("현재 인덱스 : {}", index);
 			getAccessToken(index);
@@ -62,7 +62,7 @@ public class WebClientApp {
 				index = 0;
 			}
 		}
-		
+
 		int bufferSize = 1024 * 1024;
 		ExchangeStrategies exchangeStrategies = ExchangeStrategies.builder().codecs(clientCodecConfigurer -> {
 			clientCodecConfigurer.defaultCodecs().maxInMemorySize(bufferSize);
@@ -78,7 +78,6 @@ public class WebClientApp {
 
 	}
 
-	
 	public synchronized void getAccessToken(int index) {
 		String region = "ap_northeast_2"; // Consider making this configurable
 
@@ -98,32 +97,58 @@ public class WebClientApp {
 
 	}
 
-	public Mono<String> makeApiRequestAsync() {
-
+//	public Mono<String> makeApiRequestAsync() {
+//
+//		RequestHeadersUriSpec<?> requestSpec = null;
+//
+//		if (HTTP_METHOD.equals("GET")) {// http method설정.
+//			requestSpec = webClient.get();
+//		} else {
+//			requestSpec = webClient.post();
+//		}
+//
+//		ApiRequestHandler apiRequestHandler = new ApiRequestHandler();
+//		UriComponents api1 = apiRequestHandler.buildApiRequest(API_END_POINT, "87dde849-5710-4470-8a00-5e94c679e703");// 첫번째
+//
+//		return requestSpec.uri(api1.toUriString()).retrieve().bodyToMono(String.class).onErrorResume(error -> {
+//			log.error("Error making API request: {}", error.getMessage());
+//			return Mono.empty();
+//		});
+//	}
+	
+	public String ApionlyfordelContacts(Object... param) {
 		RequestHeadersUriSpec<?> requestSpec = null;
 
-		if (HTTP_METHOD.equals("GET")) {// http method설정.
+		if (HTTP_METHOD.equals("GET")) {
 			requestSpec = webClient.get();
-		} else {
+		} else if (HTTP_METHOD.equals("POST")) {
 			requestSpec = webClient.post();
+		} else {
+			requestSpec = webClient.delete();
 		}
 
 		ApiRequestHandler apiRequestHandler = new ApiRequestHandler();
-		UriComponents api1 = apiRequestHandler.buildApiRequest(API_END_POINT, "87dde849-5710-4470-8a00-5e94c679e703");// 첫번째
+		UriComponents api1 = apiRequestHandler.buildApiRequest1(API_END_POINT, param);
 
-		return requestSpec.uri(api1.toUriString()).retrieve().bodyToMono(String.class).onErrorResume(error -> {
-			log.error("Error making API request: {}", error.getMessage());
-			return Mono.empty();
-		});
+		return requestSpec.uri(api1.toUriString()).retrieve()
+				.onStatus(status -> status.is4xxClientError() || status.is5xxServerError(),
+						response -> response.bodyToMono(String.class).flatMap(errorBody -> {
+							return Mono.error(new RuntimeException("Error: " + errorBody));
+						}))
+				.bodyToMono(String.class).block();
 	}
+	
+	
 
 	public String makeApiRequest(Object... param) {
 		RequestHeadersUriSpec<?> requestSpec = null;
 
 		if (HTTP_METHOD.equals("GET")) {
 			requestSpec = webClient.get();
-		} else {
+		} else if (HTTP_METHOD.equals("POST")) {
 			requestSpec = webClient.post();
+		} else {
+			requestSpec = webClient.delete();
 		}
 
 		ApiRequestHandler apiRequestHandler = new ApiRequestHandler();
@@ -161,11 +186,10 @@ public class WebClientApp {
 						}))
 				.bodyToMono(String.class).block();
 	}
-	
-	
+
 	public static void EmptyTockenlt() {
-		
-		for(int i = 0; i<15; i++) {
+
+		for (int i = 0; i < 15; i++) {
 			tokenlist[i] = "";
 		}
 		index = 0;

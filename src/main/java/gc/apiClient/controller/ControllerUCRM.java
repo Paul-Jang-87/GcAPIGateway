@@ -56,6 +56,12 @@ public class ControllerUCRM extends ServiceJson {
 		this.customProperties = customProperties;
 	}
 
+	@Scheduled(fixedRate = 60000)
+	public void scheduledMethod() {
+		
+		Mono.fromCallable(() -> SendUcrmRt()).subscribeOn(Schedulers.boundedElastic()).subscribe();
+
+	}
 
 	@Scheduled(fixedRate = 5000)
 	public void UcrmContactlt() {
@@ -110,6 +116,7 @@ public class ControllerUCRM extends ServiceJson {
 				Map<String, String> mapcontactltId = new HashMap<String, String>();
 				Map<String, String> mapquetId = new HashMap<String, String>();
 				Map<String, List<String>> contactlists = new HashMap<String, List<String>>();
+				Map<String, List<String>> delcontactlists = new HashMap<String, List<String>>();
 				String contactLtId = "";
 
 				for (int i = 0; i < reps; i++) {
@@ -153,6 +160,12 @@ public class ControllerUCRM extends ServiceJson {
 						log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
 						if(enContactLt.getFlag().equals("D")) {
 							log.error("flag is 'D', delete record");
+							
+							if (!delcontactlists.containsKey(contactLtId)) {
+								delcontactlists.put(contactLtId, new ArrayList<>());
+							}
+							delcontactlists.get(contactLtId).add(row_result.split("::")[1]);
+							
 							serviceDb.DelContactltById(enContactLt.getId());
 						}
 					} catch (DataAccessException ex) {
@@ -173,6 +186,12 @@ public class ControllerUCRM extends ServiceJson {
 
 					log.info("Now the size of Arraylist '{}': {}", entry.getKey(), entry.getValue().size());
 					serviceWeb.PostContactLtApiRequet("contact", entry.getKey(), entry.getValue());
+				}
+				
+				for (Map.Entry<String, List<String>> entry : delcontactlists.entrySet()) {
+
+					log.info("Now the size of Arraylist '{}': {}", entry.getKey(), entry.getValue().size());
+					serviceWeb.DelContacts("delcontacts", entry.getKey(), entry.getValue());
 				}
 
 			}

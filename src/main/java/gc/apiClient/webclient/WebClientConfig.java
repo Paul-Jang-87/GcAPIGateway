@@ -60,10 +60,12 @@ public class WebClientConfig {// api들의 정보들 수록.
 		case "contactltclear":
 			API_END_POINT = "/api/v2/outbound/contactlists/{contactListId}/clear";
 			break;
+		case "delcontacts":
+			API_END_POINT = "/api/v2/outbound/contactlists/{contactListId}/contacts";
+			break;
 		default:
 			API_END_POINT = "Invalid api";
 			break;
-
 		}
 		return API_END_POINT;
 	}

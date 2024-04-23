@@ -38,7 +38,6 @@ public class ServiceWebClient implements InterfaceWebClient {
 		WebClientApp webClient = new WebClientApp(endpoint, "GET");
 		result = webClient.makeApiRequest(divisionid);
 
-
 		log.info("GetDivisionName 요청 후 결과 값 : {}", result);
 		log.info("====== End GetDivisionName ======");
 
@@ -58,7 +57,6 @@ public class ServiceWebClient implements InterfaceWebClient {
 		WebClientApp webClient = new WebClientApp(endpoint, "GET");
 		result = webClient.makeApiRequest(campaignId);
 
-		
 		log.info("====== End GetStatusApiRequet ======");
 		return result;
 	}
@@ -101,8 +99,8 @@ public class ServiceWebClient implements InterfaceWebClient {
 
 		log.info(" ");
 		log.info("====== ClassName : ServiceWebClient & Method : PostContactLtApiRequet ======");
-		log.info("Incoming message : {}",msg.toString());
-		
+		log.info("Incoming message : {}", msg.toString());
+
 		String result = "";
 		WebClientApp webClient = new WebClientApp(endpoint, "POST");
 		result = webClient.makeApiRequest34(contactListId, msg.toString());
@@ -112,7 +110,7 @@ public class ServiceWebClient implements InterfaceWebClient {
 		int cnt = 3;
 		int retryCount = 1;
 		while (result == null && retryCount < cnt) {
-			
+
 			log.info("Retrying count : {}", retryCount);
 			log.info("Retrying...");
 			retryCount++;
@@ -120,21 +118,19 @@ public class ServiceWebClient implements InterfaceWebClient {
 			log.error("Result after retrying : {}", result);
 		}
 
-		if (result == null && retryCount >= cnt ) {
+		if (result == null && retryCount >= cnt) {
 			log.error("Final result : {}", result);
 		}
-		
-		if ( result != null) {
+
+		if (result != null) {
 			result = "Succeded";
 		}
-		
+
 		log.info("PostContactLtApiRequet 요청 후 결과 값 : {}, 시도횟수 : {}", result, retryCount);
 		log.info("Bytes size of PostContactLtApiRequet message: {}", byteSize);
 		log.info("====== End PostContactLtApiRequet ======");
 		return result;
 	}
-	
-	
 
 	@Override // "/api/v2/outbound/contactlists/{contactListId}/contacts/bulk"
 	public String PostContactLtApiBulk(String endpoint, String contactListId, List<String> cskes) {// path parameter
@@ -169,6 +165,27 @@ public class ServiceWebClient implements InterfaceWebClient {
 		log.info("====== End PostContactLtClearReq ======");
 
 		return null;
+	}
+
+	@Override
+	public String DelContacts(String endpoint, String contactListId, List<String> msg) throws Exception {
+		log.info(" ");
+		log.info("====== ClassName : ServiceWebClient & Method : DelContacts ======");
+		log.info("Incoming message : {}", msg.toString());
+
+		String result = "";
+		WebClientApp webClient = new WebClientApp(endpoint, "DELETE");
+
+		String rst = msg.toString();
+		rst = rst.substring(1, rst.length() - 1);
+		result = webClient.ApionlyfordelContacts(contactListId, rst);
+
+		if (result == null)log.error("{} has been deleted well.", rst); 
+		else log.error("An error has occurred : {}", result);
+		
+
+		log.info("====== End DelContacts ======");
+		return result;
 	}
 
 }

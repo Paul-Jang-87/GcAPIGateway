@@ -178,7 +178,7 @@ public class ServiceWebClient implements InterfaceWebClient {
 
 		String rst = msg.toString();
 		rst = rst.substring(1, rst.length() - 1);
-		result = webClient.ApionlyfordelContacts(contactListId, rst);
+		result = webClient.ApionlyfordelContacts(contactListId, rst); 
 
 		if (result == null)log.error("{} has been deleted well.", rst); 
 		else log.error("An error has occurred : {}", result);

@@ -26,22 +26,21 @@ public class WebClientApp {
 	private static int index = 0;
 	private static String[] tokenlist = new String[15];
 
-	private WebClient webClient;
-
-	public WebClientApp() {// WebClinet 생성자, 기본적인 초기 설정들.
-		// WebClient를 사용하기 위한 기본 설정들과 매개변수로 온 api를 사용하기 위한 기본 설정들.
-
-		// 암호화된 id, 비밀번호 db에서 가져오는 작업.
-//		WebClientConfig webClientConfig = new WebClientConfig(servicedb);
-//      webClientConfig.getClientIdPwd();
+	private static WebClient webClient;
+	
+	public WebClientApp() {
+		
 		CLIENT_ID = WebClientConfig.getClientId();
 		log.info("Client Id : {}", CLIENT_ID);
 		CLIENT_SECRET = WebClientConfig.getClientSecret();
 		log.info("Client secret : {}", CLIENT_SECRET);
 		API_BASE_URL = WebClientConfig.getBaseUrl();
-//		API_END_POINT = WebClientConfig.getApiEndpoint(apiName);
-//		HTTP_METHOD = httpMethod;
+		checkToken();
+		
+    }
 
+	public static synchronized void checkToken() {
+		
 		if (tokenlist[index] == null || tokenlist[index].equals("")) {
 			log.info("토큰 없음");
 			log.info("현재 인덱스 : {}", index);
@@ -60,7 +59,7 @@ public class WebClientApp {
 				index = 0;
 			}
 		}
-
+		
 		int bufferSize = 1024 * 1024;
 		ExchangeStrategies exchangeStrategies = ExchangeStrategies.builder().codecs(clientCodecConfigurer -> {
 			clientCodecConfigurer.defaultCodecs().maxInMemorySize(bufferSize);
@@ -68,12 +67,12 @@ public class WebClientApp {
 
 		log.info("발급 받은 토큰 : {}", accessToken);
 		
-		this.webClient = WebClient.builder().exchangeStrategies(exchangeStrategies).baseUrl(API_BASE_URL)
+		webClient = WebClient.builder().exchangeStrategies(exchangeStrategies).baseUrl(API_BASE_URL)
 				.defaultHeader("Accept", "application/json").defaultHeader("Content-Type", "application/json")
 				.defaultHeader("Authorization", "Bearer " + accessToken).build();
 	}
 
-	public synchronized void getAccessToken(int index) {
+	public static synchronized void getAccessToken(int index) {
 		String region = "ap_northeast_2"; // Consider making this configurable
 
 		ApiClient apiClient = ApiClient.Builder.standard().withBasePath(PureCloudRegionHosts.valueOf(region)).build();
@@ -81,10 +80,10 @@ public class WebClientApp {
 		try {
 			ApiResponse<AuthResponse> authResponse = apiClient.authorizeClientCredentials(CLIENT_ID, CLIENT_SECRET);
 			String newAccessToken = authResponse.getBody().getAccess_token();
-			synchronized (this) {
-				accessToken = newAccessToken;
-				tokenlist[index] = newAccessToken;
-			}
+			accessToken = newAccessToken;
+			tokenlist[index] = newAccessToken;
+//			synchronized (this) {
+//			}
 			log.info("Access token has been refreshed successfully.");
 		} catch (Exception e) {
 			log.error("Error occurred during access token refresh: {}", e.getMessage());

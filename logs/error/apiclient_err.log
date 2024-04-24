@@ -33,3 +33,98 @@ ERROR 24-04-24 11:00:24[reactor-http-nio-10] [MessageToProducer:28] - Error maki
 ERROR 24-04-24 11:00:24[reactor-http-nio-10] [MessageToProducer:34] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
 ERROR 24-04-24 11:01:24[boundedElastic-2] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"e7e20452-ecbd-4ca7-8a2c-28fe26f98a40","details":[],"errors":[]}
 ERROR 24-04-24 11:02:24[boundedElastic-1] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"4f7f3817-af89-4fc1-b07a-3af7bfe5cd29","details":[],"errors":[]}
+ERROR 24-04-24 11:36:53[boundedElastic-1] [Operators:324] - Operator called default onErrorDropped
+reactor.core.Exceptions$ErrorCallbackNotImplemented: java.lang.Error: Unresolved compilation problem: 
+	The constructor WebClientApp() is not visible
+
+Caused by: java.lang.Error: Unresolved compilation problem: 
+	The constructor WebClientApp() is not visible
+
+	at gc.apiClient.service.ServiceWebClient.GetApiRequet(ServiceWebClient.java:23)
+	at gc.apiClient.controller.ControllerCenter.ReceiveMessage(ControllerCenter.java:105)
+	at gc.apiClient.controller.ControllerCenter.lambda$0(ControllerCenter.java:76)
+	at reactor.core.publisher.MonoCallable.call(MonoCallable.java:72)
+	at reactor.core.publisher.FluxSubscribeOnCallable$CallableSubscribeOnSubscription.run(FluxSubscribeOnCallable.java:228)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:68)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:28)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+ERROR 24-04-24 11:36:53[boundedElastic-2] [Operators:324] - Operator called default onErrorDropped
+reactor.core.Exceptions$ErrorCallbackNotImplemented: java.lang.Error: Unresolved compilation problem: 
+	The constructor WebClientApp() is not visible
+
+Caused by: java.lang.Error: Unresolved compilation problem: 
+	The constructor WebClientApp() is not visible
+
+	at gc.apiClient.service.ServiceWebClient.GetCampaignsApiRequet(ServiceWebClient.java:56)
+	at gc.apiClient.controller.ControllerCallBot.SendCallBotRt(ControllerCallBot.java:202)
+	at gc.apiClient.controller.ControllerCallBot.lambda$scheduledMethod$0(ControllerCallBot.java:60)
+	at reactor.core.publisher.MonoCallable.call(MonoCallable.java:72)
+	at reactor.core.publisher.FluxSubscribeOnCallable$CallableSubscribeOnSubscription.run(FluxSubscribeOnCallable.java:228)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:68)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:28)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+ERROR 24-04-24 11:37:53[boundedElastic-2] [Operators:324] - Operator called default onErrorDropped
+reactor.core.Exceptions$ErrorCallbackNotImplemented: java.lang.Error: Unresolved compilation problem: 
+	The constructor WebClientApp() is not visible
+
+Caused by: java.lang.Error: Unresolved compilation problem: 
+	The constructor WebClientApp() is not visible
+
+	at gc.apiClient.service.ServiceWebClient.GetApiRequet(ServiceWebClient.java:23)
+	at gc.apiClient.controller.ControllerCenter.ReceiveMessage(ControllerCenter.java:105)
+	at gc.apiClient.controller.ControllerCenter.lambda$0(ControllerCenter.java:76)
+	at reactor.core.publisher.MonoCallable.call(MonoCallable.java:72)
+	at reactor.core.publisher.FluxSubscribeOnCallable$CallableSubscribeOnSubscription.run(FluxSubscribeOnCallable.java:228)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:68)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:28)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+ERROR 24-04-24 11:37:53[boundedElastic-1] [Operators:324] - Operator called default onErrorDropped
+reactor.core.Exceptions$ErrorCallbackNotImplemented: java.lang.Error: Unresolved compilation problem: 
+	The constructor WebClientApp() is not visible
+
+Caused by: java.lang.Error: Unresolved compilation problem: 
+	The constructor WebClientApp() is not visible
+
+	at gc.apiClient.service.ServiceWebClient.GetCampaignsApiRequet(ServiceWebClient.java:56)
+	at gc.apiClient.controller.ControllerCallBot.SendCallBotRt(ControllerCallBot.java:202)
+	at gc.apiClient.controller.ControllerCallBot.lambda$scheduledMethod$0(ControllerCallBot.java:60)
+	at reactor.core.publisher.MonoCallable.call(MonoCallable.java:72)
+	at reactor.core.publisher.FluxSubscribeOnCallable$CallableSubscribeOnSubscription.run(FluxSubscribeOnCallable.java:228)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:68)
+	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:28)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+ERROR 24-04-24 11:40:27[boundedElastic-1] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"cd63155c-cdb1-4257-9e8c-a7d0e9041001","details":[],"errors":[]}
+ERROR 24-04-24 11:41:23[boundedElastic-1] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"02d39db6-81ef-46e0-aca6-1ecdecd2715d","details":[],"errors":[]}
+ERROR 24-04-24 11:42:23[boundedElastic-2] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"d755f0a2-dc55-497c-b504-97bbaa9bab2e","details":[],"errors":[]}
+ERROR 24-04-24 11:49:15[boundedElastic-1] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"6240cef3-c2fe-46aa-954e-0703d7bb57eb","details":[],"errors":[]}
+ERROR 24-04-24 11:52:55[boundedElastic-1] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"0be9c5f7-9bdf-4448-a76b-b748b797394d","details":[],"errors":[]}
+ERROR 24-04-24 12:06:04[boundedElastic-2] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"d877ad33-3cf9-42e0-b750-9a76cf93b953","details":[],"errors":[]}
+ERROR 24-04-24 12:07:01[boundedElastic-1] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"6c1231e1-5dd0-406e-a041-24aa68053f4c","details":[],"errors":[]}
+ERROR 24-04-24 12:09:15[boundedElastic-1] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"9fb7414d-f4d2-45ff-b19a-56091b5673c3","details":[],"errors":[]}
+ERROR 24-04-24 12:11:43[boundedElastic-3] [ControllerCallBot:246] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"13f3975e-c20b-4ffd-942b-d8e6e6e87470","details":[],"errors":[]}
+ERROR 24-04-24 12:11:43[boundedElastic-1] [ControllerCallBot:246] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"37c973ff-7ac6-45a5-8b9a-4b8d47add0d2","details":[],"errors":[]}
+ERROR 24-04-24 12:11:45[boundedElastic-2] [ControllerCallBot:246] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"d11285dd-60b9-43c6-b4a7-c0868c919161","details":[],"errors":[]}
+ERROR 24-04-24 12:11:48[boundedElastic-2] [ControllerCallBot:246] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"a448d5a0-7908-43d7-86d4-d629d119fb80","details":[],"errors":[]}
+ERROR 24-04-24 12:11:51[boundedElastic-2] [ControllerCallBot:246] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"bef929b6-e989-4e6d-99a2-43495a840389","details":[],"errors":[]}
+ERROR 24-04-24 12:11:54[boundedElastic-2] [ControllerCallBot:246] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"08ccef21-ab94-46ee-a4c2-dc87b1c09e0f","details":[],"errors":[]}
+ERROR 24-04-24 12:11:57[boundedElastic-2] [ControllerCallBot:246] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"143cdcfb-1d65-477f-a95b-efa8d8ead523","details":[],"errors":[]}
+ERROR 24-04-24 12:12:00[boundedElastic-2] [ControllerCallBot:246] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"2941fb92-9f43-456c-9b9f-c2d1479448f5","details":[],"errors":[]}
+ERROR 24-04-24 12:12:03[boundedElastic-2] [ControllerCallBot:246] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"eb8abd60-b8a2-4fdc-ad2f-3fa6760f2727","details":[],"errors":[]}
+ERROR 24-04-24 12:12:06[boundedElastic-2] [ControllerCallBot:246] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"0501612f-6e8c-4123-a4a4-d8ba48af7fa1","details":[],"errors":[]}
+ERROR 24-04-24 12:12:09[boundedElastic-4] [ControllerCallBot:246] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"1d999027-7744-4c55-823b-62ae6aa3288b","details":[],"errors":[]}

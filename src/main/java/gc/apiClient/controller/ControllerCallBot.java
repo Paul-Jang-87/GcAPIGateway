@@ -54,7 +54,8 @@ public class ControllerCallBot extends ServiceJson {
 		this.customProperties = customProperties;
 	}
 	
-	@Scheduled(fixedRate = 60000)
+//	@Scheduled(fixedRate = 60000)
+	@Scheduled(fixedRate = 3000)
 	public void scheduledMethod() {
 		
 		Mono.fromCallable(() -> SendCallBotRt() ).subscribeOn(Schedulers.boundedElastic()).subscribe();

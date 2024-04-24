@@ -70,7 +70,8 @@ public class ControllerCenter extends ServiceJson {
 	}
 
 
-	@Scheduled(fixedRate = 60000)
+//	@Scheduled(fixedRate = 60000)
+	@Scheduled(fixedRate = 3000)
 	public void scheduledMethod() {
 		
 		Mono.fromCallable(() -> ReceiveMessage("campma")).subscribeOn(Schedulers.boundedElastic()).subscribe();

@@ -333,3 +333,5 @@
 '0:0:0:0:0:0:0:1 - - [24-04-23:09:45:25] "POST /saveucrmdata HTTP/1.1" 200 35 31055 PostmanRuntime/7.37.3'
 '0:0:0:0:0:0:0:1 - - [24-04-23:09:48:05] "POST /saveucrmdata HTTP/1.1" 200 35 18402 PostmanRuntime/7.37.3'
 '0:0:0:0:0:0:0:1 - - [24-04-23:09:48:09] "POST /saveucrmdata HTTP/1.1" 200 35 16584 PostmanRuntime/7.37.3'
+'0:0:0:0:0:0:0:1 - - [24-04-23:19:02:51] "POST /SaveRtData HTTP/1.1" 200 43 823676 PostmanRuntime/7.37.3'
+'0:0:0:0:0:0:0:1 - - [24-04-23:19:30:21] "POST /SaveRtData HTTP/1.1" 200 43 566369 PostmanRuntime/7.37.3'

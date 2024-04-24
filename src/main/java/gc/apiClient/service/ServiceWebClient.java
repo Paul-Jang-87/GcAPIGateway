@@ -20,29 +20,13 @@ public class ServiceWebClient implements InterfaceWebClient {
 
 		String result = "";
 
-		WebClientApp webClient = new WebClientApp(endpoint, "GET");
-		result = webClient.makeApiRequest("sortBy", "dateCreated", "sortOrder", "descending");
+		WebClientApp webClient = new WebClientApp();
+		result = webClient.CampMaApiReq(endpoint, "GET");
 
 		log.info("====== End GetApiRequet ======");
 		return result;
 	}
 
-	@Override
-	public String GetDivisionName(String endpoint, String divisionid) {// path parameter 'divisionid'
-
-		log.info(" ");
-		log.info("====== ClassName : ServiceWebClient & Method : GetDivisionName ======");
-
-		String result = "";
-
-		WebClientApp webClient = new WebClientApp(endpoint, "GET");
-		result = webClient.makeApiRequest(divisionid);
-
-		log.info("GetDivisionName 요청 후 결과 값 : {}", result);
-		log.info("====== End GetDivisionName ======");
-
-		return result;
-	}
 
 	@Override
 	public String GetStatusApiRequet(String endpoint, String campaignId) {
@@ -54,8 +38,8 @@ public class ServiceWebClient implements InterfaceWebClient {
 
 		String result = "";
 
-		WebClientApp webClient = new WebClientApp(endpoint, "GET");
-		result = webClient.makeApiRequest(campaignId);
+		WebClientApp webClient = new WebClientApp();
+		result = webClient.makeApiRequest(endpoint, "GET",campaignId);
 
 		log.info("====== End GetStatusApiRequet ======");
 		return result;
@@ -69,8 +53,8 @@ public class ServiceWebClient implements InterfaceWebClient {
 
 		String result = "";
 
-		WebClientApp webClient = new WebClientApp(endpoint, "GET");
-		result = webClient.makeApiRequest(campaignId);
+		WebClientApp webClient = new WebClientApp();
+		result = webClient.makeApiRequest(endpoint, "GET",campaignId);
 
 		log.info("GetCampaignsApiRequet 요청 후 결과 값 : {}", result);
 		log.info("====== End GetCampaignsApiRequet ======");
@@ -86,8 +70,8 @@ public class ServiceWebClient implements InterfaceWebClient {
 
 		String result = "";
 
-		WebClientApp webClient = new WebClientApp(endpoint, "GET");
-		result = webClient.makeApiRequest(contactListId, contactId);
+		WebClientApp webClient = new WebClientApp();
+		result = webClient.makeApiRequest(endpoint, "GET",contactListId, contactId);
 
 		log.info("====== End GetContactLtApiRequet ======");
 		return result;
@@ -102,8 +86,8 @@ public class ServiceWebClient implements InterfaceWebClient {
 		log.info("Incoming message : {}", msg.toString());
 
 		String result = "";
-		WebClientApp webClient = new WebClientApp(endpoint, "POST");
-		result = webClient.makeApiRequest34(contactListId, msg.toString());
+		WebClientApp webClient = new WebClientApp();
+		result = webClient.makeApiRequest34(endpoint,contactListId, msg.toString());
 
 		int byteSize = msg.toString().getBytes().length;
 
@@ -114,7 +98,7 @@ public class ServiceWebClient implements InterfaceWebClient {
 			log.info("Retrying count : {}", retryCount);
 			log.info("Retrying...");
 			retryCount++;
-			result = webClient.makeApiRequest34(contactListId, msg.toString());
+			result = webClient.makeApiRequest34(endpoint,contactListId, msg.toString());
 			log.error("Result after retrying : {}", result);
 		}
 
@@ -143,8 +127,8 @@ public class ServiceWebClient implements InterfaceWebClient {
 		log.info("contactListId : {}", contactListId);
 		log.info("cskes : {}", cskes.toString());
 
-		WebClientApp webClient = new WebClientApp(endpoint, "POST");
-		result = webClient.makeApiRequest56(contactListId, cskes);
+		WebClientApp webClient = new WebClientApp();
+		result = webClient.makeApiRequest56(endpoint,contactListId, cskes);
 
 		log.info("PostContactLtApiBulk 요청 후 결과 값 result : {}", result);
 		log.info("====== End PostContactLtApiBulk ======");
@@ -159,8 +143,8 @@ public class ServiceWebClient implements InterfaceWebClient {
 
 		log.info("Endpoint : /api/v2/outbound/contactlists/{contactListId}/clear");
 		log.info("contactListId : {}", contactListId);
-		WebClientApp webClient = new WebClientApp(endpoint, "POST");
-		webClient.makeApiRequest(contactListId);
+		WebClientApp webClient = new WebClientApp();
+		webClient.makeApiRequest(endpoint, "POST",contactListId);
 
 		log.info("====== End PostContactLtClearReq ======");
 
@@ -174,11 +158,11 @@ public class ServiceWebClient implements InterfaceWebClient {
 		log.info("Incoming message : {}", msg.toString());
 
 		String result = "";
-		WebClientApp webClient = new WebClientApp(endpoint, "DELETE");
+		WebClientApp webClient = new WebClientApp();
 
 		String rst = msg.toString();
 		rst = rst.substring(1, rst.length() - 1);
-		result = webClient.ApionlyfordelContacts(contactListId, rst); 
+		result = webClient.ApionlyfordelContacts(endpoint, "DELETE",contactListId, rst); 
 
 		if (result == null)log.error("{} has been deleted well.", rst); 
 		else log.error("An error has occurred : {}", result);

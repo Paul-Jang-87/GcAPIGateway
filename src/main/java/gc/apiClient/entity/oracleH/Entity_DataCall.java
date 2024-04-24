@@ -2,7 +2,6 @@ package gc.apiClient.entity.oracleH;
 
 
 import org.jetbrains.annotations.NotNull;
-import org.springframework.context.annotation.Profile;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

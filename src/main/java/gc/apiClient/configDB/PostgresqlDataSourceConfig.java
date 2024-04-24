@@ -55,7 +55,7 @@ public class PostgresqlDataSourceConfig {
 	private Map<String, Object> hibernateProperties() {// Hibernate 옵션들 설정.
 		Map<String, Object> hibernateProperties = new HashMap<>();
 		hibernateProperties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-		hibernateProperties.put("hibernate.hbm2ddl.auto", "none");
+		hibernateProperties.put("hibernate.hbm2ddl.auto", "update");
 //		hibernateProperties.put("hibernate.show_sql", true);
 //		hibernateProperties.put("hibernate.format_sql", true);
 		return hibernateProperties;

@@ -137,17 +137,12 @@ public class ControllerCallBot extends ServiceJson {
 
 					} catch (DataIntegrityViolationException ex) {
 						log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
-						if(enContactLt.getFlag().equals("D")) {
-							log.error("flag is 'D', delete record");
-							serviceDb.DelContactltById(enContactLt.getId());
-						}
 						
 					} catch (DataAccessException ex) {
 						log.error("DataAccessException 발생 : {}", ex.getMessage());
 					}
 				}
 
-//				serviceWeb.PostContactLtClearReq("contactltclear", contactLtId);
 				serviceWeb.PostContactLtApiRequet("contact", contactLtId, arr);
 
 				log.info("====== End CallbotMsgFrmCnsumer ======");
@@ -157,6 +152,7 @@ public class ControllerCallBot extends ServiceJson {
 			} catch (Exception e) {
 				e.printStackTrace();
 				log.error("Error Message : {}", e.getMessage());
+				return Mono.just(ResponseEntity.ok().body(String.format("You've got an error : {}", e.getMessage())));
 			}
 
 		default:
@@ -221,7 +217,7 @@ public class ControllerCallBot extends ServiceJson {
 						contactlists.put(contactLtId, new ArrayList<>());
 					}
 					contactlists.get(contactLtId).add(cqsq);
-//					serviceDb.DelCallBotRtById(enCallbotRt.getId());
+					serviceDb.DelCallBotRtById(enCallbotRt.getId());
 					
 					log.info("Add value into contactListId named '{}'", contactLtId);
 

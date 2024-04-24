@@ -1,27 +1,35 @@
-ERROR 24-04-23 08:55:57[test-task-scheduling3] [TaskUtils$LoggingErrorHandler:95] - Unexpected error occurred in scheduled task
-java.lang.Error: Unresolved compilation problem: 
-	The method EmptyTockenlt() is undefined for the type WebClientApp
-
-	at gc.apiClient.controller.ControllerCenter.RefreshToken(ControllerCenter.java:69)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130)
-	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124)
-	at io.micrometer.observation.Observation.observe(Observation.java:499)
-	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124)
-	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
-	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-ERROR 24-04-23 08:56:42[boundedElastic-2] [ControllerUCRM:154] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
-ERROR 24-04-23 08:56:42[boundedElastic-2] [ControllerUCRM:156] - flag is 'D', delete record
-ERROR 24-04-23 08:56:43[boundedElastic-2] [ServiceWebClient:183] - 57428876 has been deleted well.
-ERROR 24-04-23 09:45:20[boundedElastic-2] [ControllerCenter:211] - Error Messge : Error: {"message":"A Campaign with id sortby could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"sortby","entity":"Campaign"},"contextId":"12302abc-9c42-419a-98f6-70b4760d97ce","details":[],"errors":[]}
-ERROR 24-04-23 09:48:11[boundedElastic-2] [ControllerUCRM:154] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
-ERROR 24-04-23 09:48:11[boundedElastic-2] [ControllerUCRM:156] - flag is 'D', delete record
-ERROR 24-04-23 09:48:11[boundedElastic-2] [ControllerUCRM:154] - DataIntegrityViolationException 발생 : Record with the given composite key already exists.
-ERROR 24-04-23 09:48:11[boundedElastic-2] [ControllerUCRM:156] - flag is 'D', delete record
-ERROR 24-04-23 09:48:11[boundedElastic-2] [ServiceWebClient:183] - 57428880, 57428882 has been deleted well.
+ERROR 24-04-24 08:52:34[boundedElastic-1] [ControllerCenter:212] - Error Messge : Not enough variable values available to expand 'campaignId'
+ERROR 24-04-24 08:52:36[boundedElastic-2] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"346d12ae-2811-4d89-988f-f8de6d342714","details":[],"errors":[]}
+ERROR 24-04-24 08:56:33[boundedElastic-1] [ControllerCenter:212] - Error Messge : For input string: "GSNeotek"
+ERROR 24-04-24 08:57:29[boundedElastic-2] [ControllerCenter:212] - Error Messge : For input string: "GSNeotek"
+ERROR 24-04-24 08:58:29[reactor-http-nio-3] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-24 08:58:29[reactor-http-nio-3] [MessageToProducer:34] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-24 09:05:06[boundedElastic-1] [ControllerCenter:212] - Error Messge : Not enough variable values available to expand 'campaignId'
+ERROR 24-04-24 09:05:08[boundedElastic-2] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"7974787e-3283-480c-87da-167138833f0e","details":[],"errors":[]}
+ERROR 24-04-24 09:06:04[boundedElastic-1] [ControllerCenter:212] - Error Messge : Not enough variable values available to expand 'campaignId'
+ERROR 24-04-24 09:06:05[boundedElastic-2] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"78a266a7-dc82-4c33-aa97-d6613f3c0d2d","details":[],"errors":[]}
+ERROR 24-04-24 09:07:04[boundedElastic-2] [ControllerCenter:212] - Error Messge : Not enough variable values available to expand 'campaignId'
+ERROR 24-04-24 09:07:05[boundedElastic-1] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"05199225-5678-4d9e-804f-edebb8ce967d","details":[],"errors":[]}
+ERROR 24-04-24 09:08:04[boundedElastic-1] [ControllerCenter:212] - Error Messge : Not enough variable values available to expand 'campaignId'
+ERROR 24-04-24 09:08:05[boundedElastic-2] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"22ace7ba-ba5b-493d-92f8-7c33d0e75ba4","details":[],"errors":[]}
+ERROR 24-04-24 09:11:41[boundedElastic-2] [ControllerCenter:212] - Error Messge : Not enough variable values available to expand 'campaignId'
+ERROR 24-04-24 09:11:44[boundedElastic-1] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"94410d1b-b06f-472c-bdb7-d9b25d08fc4d","details":[],"errors":[]}
+ERROR 24-04-24 09:12:39[boundedElastic-1] [ControllerCenter:212] - Error Messge : Not enough variable values available to expand 'campaignId'
+ERROR 24-04-24 09:12:39[boundedElastic-2] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"96ab7003-1b63-4606-a961-4eb4266ac11d","details":[],"errors":[]}
+ERROR 24-04-24 09:18:39[boundedElastic-1] [ControllerCenter:212] - Error Messge : Not enough variable values available to expand 'campaignId'
+ERROR 24-04-24 09:18:42[boundedElastic-2] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"e131d87a-ea44-4232-8b1a-88d9cd1abda0","details":[],"errors":[]}
+ERROR 24-04-24 10:55:05[boundedElastic-2] [ControllerCenter:212] - Error Messge : Cannot invoke "org.springframework.web.reactive.function.client.WebClient.get()" because "this.webClient" is null
+ERROR 24-04-24 10:55:06[boundedElastic-1] [ControllerCallBot:245] - Error Message : Cannot invoke "org.springframework.web.reactive.function.client.WebClient.get()" because "this.webClient" is null
+ERROR 24-04-24 10:56:05[boundedElastic-1] [ControllerCenter:212] - Error Messge : Cannot invoke "org.springframework.web.reactive.function.client.WebClient.get()" because "this.webClient" is null
+ERROR 24-04-24 10:56:05[boundedElastic-2] [ControllerCallBot:245] - Error Message : Cannot invoke "org.springframework.web.reactive.function.client.WebClient.get()" because "this.webClient" is null
+ERROR 24-04-24 10:57:27[boundedElastic-2] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"2dc8ccad-e7bb-4f1e-ae17-1d45e4727f83","details":[],"errors":[]}
+ERROR 24-04-24 10:57:28[boundedElastic-1] [ControllerCenter:166] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
+ERROR 24-04-24 10:58:24[boundedElastic-1] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"3c31f3eb-a405-44d4-bf4d-4c336bc45098","details":[],"errors":[]}
+ERROR 24-04-24 10:58:24[boundedElastic-2] [ControllerCenter:166] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
+ERROR 24-04-24 10:59:24[boundedElastic-1] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"304768f6-c717-4924-82a2-f5735812ec2f","details":[],"errors":[]}
+ERROR 24-04-24 10:59:24[boundedElastic-2] [ControllerCenter:166] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
+ERROR 24-04-24 11:00:24[boundedElastic-1] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"78c0000c-f2a1-40fd-b6c9-d2f61816aeb6","details":[],"errors":[]}
+ERROR 24-04-24 11:00:24[reactor-http-nio-10] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-24 11:00:24[reactor-http-nio-10] [MessageToProducer:34] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
+ERROR 24-04-24 11:01:24[boundedElastic-2] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"e7e20452-ecbd-4ca7-8a2c-28fe26f98a40","details":[],"errors":[]}
+ERROR 24-04-24 11:02:24[boundedElastic-1] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"4f7f3817-af89-4fc1-b07a-3af7bfe5cd29","details":[],"errors":[]}

@@ -56,17 +56,17 @@ public class ControllerUCRM extends ServiceJson {
 		this.customProperties = customProperties;
 	}
 
-	@Scheduled(fixedRate = 60000)
-	public void scheduledMethod() {
-		
-		Mono.fromCallable(() -> SendUcrmRt()).subscribeOn(Schedulers.boundedElastic()).subscribe();
-
-	}
-
-	@Scheduled(fixedRate = 5000)
-	public void UcrmContactlt() {
-		Mono.fromCallable(() -> UcrmMsgFrmCnsmer()).subscribeOn(Schedulers.boundedElastic()).subscribe();
-	}
+//	@Scheduled(fixedRate = 60000)
+//	public void scheduledMethod() {
+//		
+//		Mono.fromCallable(() -> SendUcrmRt()).subscribeOn(Schedulers.boundedElastic()).subscribe();
+//
+//	}
+//
+//	@Scheduled(fixedRate = 5000)
+//	public void UcrmContactlt() {
+//		Mono.fromCallable(() -> UcrmMsgFrmCnsmer()).subscribeOn(Schedulers.boundedElastic()).subscribe();
+//	}
 
 
 	@PostMapping("/saveucrmdata")
@@ -90,6 +90,7 @@ public class ControllerUCRM extends ServiceJson {
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("Error Message : {}", e.getMessage());
+			return Mono.just(ResponseEntity.ok().body(String.format("You've got an error : {}", e.getMessage())));
 		}
 
 		log.info("====== End SaveUcrmData ======");
@@ -166,7 +167,7 @@ public class ControllerUCRM extends ServiceJson {
 							}
 							delcontactlists.get(contactLtId).add(row_result.split("::")[1]);
 							
-							serviceDb.DelContactltById(enContactLt.getId());
+							serviceDb.DelContactltById(enContactLt.getId());//contactlt테이블에서 삭제
 						}
 					} catch (DataAccessException ex) {
 						log.error("DataAccessException 발생 : {}", ex.getMessage());
@@ -178,6 +179,7 @@ public class ControllerUCRM extends ServiceJson {
 						e.printStackTrace();
 					}
 
+					//컨슈머에서 던져줘서 임시로 적재해 두는 UCRM 테이블에서 삭제 
 					serviceDb.DelUcrmLtById(entitylist.getContent().get(i).getTopcDataIsueSno());
 
 				}

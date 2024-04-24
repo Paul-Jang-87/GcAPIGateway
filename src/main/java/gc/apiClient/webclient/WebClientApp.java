@@ -18,19 +18,17 @@ import reactor.core.publisher.Mono;
 
 @Slf4j
 public class WebClientApp {
-
+	
 	private static String CLIENT_ID = "";
 	private static String CLIENT_SECRET = "";
 	private static String API_BASE_URL = "";
-	private static String API_END_POINT = "";
-	private static String HTTP_METHOD = "";
 	private static String accessToken = "";
 	private static int index = 0;
 	private static String[] tokenlist = new String[15];
 
 	private WebClient webClient;
 
-	public WebClientApp(String apiName, String httpMethod) {// WebClinet 생성자, 기본적인 초기 설정들.
+	public WebClientApp() {// WebClinet 생성자, 기본적인 초기 설정들.
 		// WebClient를 사용하기 위한 기본 설정들과 매개변수로 온 api를 사용하기 위한 기본 설정들.
 
 		// 암호화된 id, 비밀번호 db에서 가져오는 작업.
@@ -41,8 +39,8 @@ public class WebClientApp {
 		CLIENT_SECRET = WebClientConfig.getClientSecret();
 		log.info("Client secret : {}", CLIENT_SECRET);
 		API_BASE_URL = WebClientConfig.getBaseUrl();
-		API_END_POINT = WebClientConfig.getApiEndpoint(apiName);
-		HTTP_METHOD = httpMethod;
+//		API_END_POINT = WebClientConfig.getApiEndpoint(apiName);
+//		HTTP_METHOD = httpMethod;
 
 		if (tokenlist[index] == null || tokenlist[index].equals("")) {
 			log.info("토큰 없음");
@@ -69,13 +67,10 @@ public class WebClientApp {
 		}).build();
 
 		log.info("발급 받은 토큰 : {}", accessToken);
+		
 		this.webClient = WebClient.builder().exchangeStrategies(exchangeStrategies).baseUrl(API_BASE_URL)
 				.defaultHeader("Accept", "application/json").defaultHeader("Content-Type", "application/json")
 				.defaultHeader("Authorization", "Bearer " + accessToken).build();
-	}
-
-	public WebClientApp() {
-
 	}
 
 	public synchronized void getAccessToken(int index) {
@@ -90,9 +85,9 @@ public class WebClientApp {
 				accessToken = newAccessToken;
 				tokenlist[index] = newAccessToken;
 			}
-			log.info("Access token refreshed successfully.");
+			log.info("Access token has been refreshed successfully.");
 		} catch (Exception e) {
-			log.error("Error occurred during access token refresh: {}", e.getMessage(), e);
+			log.error("Error occurred during access token refresh: {}", e.getMessage());
 		}
 
 	}
@@ -116,12 +111,14 @@ public class WebClientApp {
 //		});
 //	}
 	
-	public String ApionlyfordelContacts(Object... param) {
+	public String ApionlyfordelContacts(String endpoint, String httpmethod,Object... param) {
 		RequestHeadersUriSpec<?> requestSpec = null;
+		
+		String API_END_POINT = WebClientConfig.getApiEndpoint(endpoint);
 
-		if (HTTP_METHOD.equals("GET")) {
+		if (httpmethod.equals("GET")) {
 			requestSpec = webClient.get();
-		} else if (HTTP_METHOD.equals("POST")) {
+		} else if (httpmethod.equals("POST")) {
 			requestSpec = webClient.post();
 		} else {
 			requestSpec = webClient.delete();
@@ -140,12 +137,14 @@ public class WebClientApp {
 	
 	
 
-	public String makeApiRequest(Object... param) {
+	public String makeApiRequest(String endpoint, String httpmethod, Object... param) {
 		RequestHeadersUriSpec<?> requestSpec = null;
+		
+		String API_END_POINT = WebClientConfig.getApiEndpoint(endpoint);
 
-		if (HTTP_METHOD.equals("GET")) {
+		if (httpmethod.equals("GET")) {
 			requestSpec = webClient.get();
-		} else if (HTTP_METHOD.equals("POST")) {
+		} else if (httpmethod.equals("POST")) {
 			requestSpec = webClient.post();
 		} else {
 			requestSpec = webClient.delete();
@@ -153,7 +152,32 @@ public class WebClientApp {
 
 		ApiRequestHandler apiRequestHandler = new ApiRequestHandler();
 		UriComponents api1 = apiRequestHandler.buildApiRequest(API_END_POINT, param);
+		
+		return requestSpec.uri(api1.toUriString()).retrieve()
+				.onStatus(status -> status.is4xxClientError() || status.is5xxServerError(),
+						response -> response.bodyToMono(String.class).flatMap(errorBody -> {
+							return Mono.error(new RuntimeException("Error: " + errorBody));
+						}))
+				.bodyToMono(String.class).block();
+	}
+	
+	
+	public String CampMaApiReq(String endpoint, String httpmethod) {
+		RequestHeadersUriSpec<?> requestSpec = null;
+		
+		String API_END_POINT = WebClientConfig.getApiEndpoint(endpoint);
+		
+		if (httpmethod.equals("GET")) {
+			requestSpec = webClient.get();
+		} else if (httpmethod.equals("POST")) {
+			requestSpec = webClient.post();
+		} else {
+			requestSpec = webClient.delete();
+		}
 
+		ApiRequestHandler apiRequestHandler = new ApiRequestHandler();
+		UriComponents api1 = apiRequestHandler.CampMaApiReqBuilder(API_END_POINT);
+		
 		return requestSpec.uri(api1.toUriString()).retrieve()
 				.onStatus(status -> status.is4xxClientError() || status.is5xxServerError(),
 						response -> response.bodyToMono(String.class).flatMap(errorBody -> {
@@ -162,7 +186,8 @@ public class WebClientApp {
 				.bodyToMono(String.class).block();
 	}
 
-	public String makeApiRequest34(String contactListId, String msg) {
+	public String makeApiRequest34(String endpoint ,String contactListId, String msg) {
+		String API_END_POINT = WebClientConfig.getApiEndpoint(endpoint);
 		ApiRequestHandler apiRequestHandler = new ApiRequestHandler();
 		UriComponents api1 = apiRequestHandler.buildApiRequest(API_END_POINT, contactListId);
 
@@ -174,8 +199,9 @@ public class WebClientApp {
 				.bodyToMono(String.class).block();
 	}
 
-	public String makeApiRequest56(String contactListId, List<String> cskes) {
+	public String makeApiRequest56(String endpoint,String contactListId, List<String> cskes) {
 
+		String API_END_POINT = WebClientConfig.getApiEndpoint(endpoint);
 		ApiRequestHandler apiRequestHandler = new ApiRequestHandler();
 		UriComponents api1 = apiRequestHandler.buildApiRequest(API_END_POINT, contactListId);
 

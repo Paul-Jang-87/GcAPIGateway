@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.Map;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.TimeZone;
 
@@ -59,10 +63,8 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	private final CustomProperties customProperties;
 
 	public ServicePostgre(Repository_CampRt repositoryCampRt, Repository_CampMa repositoryCampMa,
-			Repository_ContactLt repositoryContactLt, CustomProperties customProperties,
-			Repository_Ucrm repositoryUcrm,
-			Repository_CallbotRt repositoryCallbotRt,
-			Repository_UcrmRt repositoryUcrmRt,
+			Repository_ContactLt repositoryContactLt, CustomProperties customProperties, Repository_Ucrm repositoryUcrm,
+			Repository_CallbotRt repositoryCallbotRt, Repository_UcrmRt repositoryUcrmRt,
 			Repository_ApimRt repositoryApimRt) {
 
 		this.repositoryCampRt = repositoryCampRt;
@@ -92,7 +94,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		int rlsq = 0;
 		int coid = 0;
 		int cpsq = Integer.parseInt(parts[3]);
-		int hubId = 0;
+		long hubId = 0;
 		int dirt = 0;
 		int dict = 0;
 		String campid = parts[2];
@@ -116,7 +118,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		log.info("------ 들어온 rs를 분배해여 필요한 변수들 초기화 끝 ------");
 
 		if (tkda.charAt(0) == 'C') {
-			hubId = Integer.parseInt(tkda.split(",")[1]);
+			hubId = Long.parseLong(tkda.split(",")[1]);
 		} else if (tkda.charAt(0) == 'A') {
 			cpsq = Integer.parseInt(tkda.split("\\|\\|")[5]);
 		} else {
@@ -197,7 +199,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSSSSS");
 		String topcDataIsueDtm = formatter.format(now);
 
-		int hubId = enCampRt.getHubid();
+		long hubId = enCampRt.getHubid();
 		int dirt = enCampRt.getDirt();
 		int dict = enCampRt.getDict();
 		int cpSeq = enCampRt.getCamp_seq();
@@ -228,7 +230,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		JSONObject obj = new JSONObject();
 
 		if (business.equals("CALLBOT")) {
-			
+
 			outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSS");
 			outputFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 			formattedDateString = outputFormat.format(enCampRt.getDidt());
@@ -241,12 +243,20 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			obj.put("attmpNo", dict);
 			obj.put("lastResult", dirt);
 
-		} else {
+		} else {// UCRM
+			
+			String dateString = didt;
+			DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+			LocalDateTime dateTime = LocalDateTime.parse(dateString, format);
+			LocalDateTime adjustedDateTime = dateTime.plusHours(9);
+			
+			ZonedDateTime desiredTime = adjustedDateTime.atZone(ZoneId.of("UTC+09:00"));
+			String formattedTime = desiredTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
 			obj.put("topcDataIsueDtm", topcDataIsueDtm);
 			obj.put("ibmHubId", hubId);
 			obj.put("centerCd", coid);
-			obj.put("lastAttempt", didt);
+			obj.put("lastAttempt", formattedTime);
 			obj.put("totAttempt", dict);
 			obj.put("lastResult", dirt);
 
@@ -288,7 +298,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		log.info(" ");
 		log.info("====== ClassName : ServicePostgre & Method : JsonCampMaUcrm ======");
 		Entity_CampMaJsonUcrm enCampMaJson = new Entity_CampMaJsonUcrm();
-		
+
 		Date now = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSSSSS");
 		String topcDataIsueDtm = "";
@@ -298,25 +308,12 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		switch (datachgcd) {
 
 		case "insert":
+		case "update":
 
 			coid = mappingData.getCentercodeById(Integer.toString(enCampMa.getCoid()));
 			coid = coid != null ? coid : "EX";
 			enCampMaJson.setCenterCd(coid);
 			enCampMaJson.setCmpnId(enCampMa.getCpid());
-			enCampMaJson.setCmpnNm(enCampMa.getCpna());
-
-			topcDataIsueDtm = formatter.format(now);
-
-			enCampMaJson.setDataChgCd(datachgcd);
-			enCampMaJson.setDataDelYn("N");
-			enCampMaJson.setTopcDataIsueDtm(topcDataIsueDtm);
-
-			break;
-
-		case "update":
-
-			enCampMaJson.setCenterCd("");
-			enCampMaJson.setCmpnId("");
 			enCampMaJson.setCmpnNm(enCampMa.getCpna());
 
 			topcDataIsueDtm = formatter.format(now);
@@ -353,8 +350,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		log.info(" ");
 		log.info("====== ClassName : ServicePostgre & Method : JsonCampMaCallbot ======");
 		Entity_CampMaJson enCampMaJson = new Entity_CampMaJson();
-		
-		
+
 		Date now = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSSSSS");
 		String topcDataIsueDtm = "";
@@ -447,14 +443,14 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	@Override
 	public Entity_ContactLt createContactLtMsg(String msg) {// (콜봇에서 뽑아온거)cpid::cpsq::cske::csno::tkda::flag
 
-		log.info(" ");
-		log.info("====== ClassName : ServicePostgre & Method : createContactLtMsg ======");
+//		log.info(" ");
+//		log.info("====== ClassName : ServicePostgre & Method : createContactLtMsg ======");
 
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
 		ContactLtId id = new ContactLtId();
 		String ContactLvalues[] = msg.split("::");
 
-		log.info("delivered msg from ExtractValCallBot : {}", msg);
+//		log.info("delivered msg from ExtractValCallBot : {}", msg);
 		// 임시로 데이터 적재
 		try {
 			id.setCpid(ContactLvalues[0]);
@@ -464,11 +460,11 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			enContactLt.setFlag(ContactLvalues[5]);// "HO2"
 			enContactLt.setTkda(ContactLvalues[4]);// "custid,111"
 
-			log.info("cpid : {}", ContactLvalues[0]);
-			log.info("cpsq : {}", Integer.parseInt(ContactLvalues[1]));
-			log.info("cske : {}", ContactLvalues[2]);
-			log.info("flag : {}", ContactLvalues[5]);
-			log.info("tkda : {}", ContactLvalues[4]);
+//			log.info("cpid : {}", ContactLvalues[0]);
+//			log.info("cpsq : {}", Integer.parseInt(ContactLvalues[1]));
+//			log.info("cske : {}", ContactLvalues[2]);
+//			log.info("flag : {}", ContactLvalues[5]);
+//			log.info("tkda : {}", ContactLvalues[4]);
 		} catch (Exception e) {
 			log.info("Error Messge : {}", e.getMessage());
 		}
@@ -740,8 +736,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	public Page<Entity_Ucrm> getAll() {
 		return repositoryUcrm.findAll(PageRequest.of(0, 1000));
 	}
-	
-	
+
 	@Override
 	public Page<Entity_UcrmRt> getAllUcrmRt() throws Exception {
 		return repositoryUcrmRt.findAll(PageRequest.of(0, 1000));
@@ -761,14 +756,12 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	public void DelCampMaById(String cpid) {
 		repositoryCampMa.deleteById(cpid);
 	}
-	
-	
+
 	@Override
-	public void DelCallBotRtById(CallBotCampRt id){
+	public void DelCallBotRtById(CallBotCampRt id) {
 		repositoryCallbotRt.deleteById(id);
 	}
-	
-	
+
 	@Override
 	public void DelUcrmRtById(UcrmCampRt id) throws Exception {
 		repositoryUcrmRt.deleteById(id);
@@ -778,14 +771,12 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	public void DelApimRtById(ApimCampRt id) throws Exception {
 		repositoryApimRt.deleteById(id);
 	}
-	
 
 	@Override
 	public void DelUcrmLtById(String topcDataIsueSno) {
 		repositoryUcrm.deleteByTopcDataIsueSno(topcDataIsueSno);
 	}
-	
-	
+
 	@Override
 	public void DelContactltById(ContactLtId id) throws Exception {
 		repositoryContactLt.deleteById(id);
@@ -807,8 +798,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 	@Override
 	public Entity_CallbotRt InsertCallbotRt(Entity_CallbotRt enCallbotRt) throws Exception {
-		
-		
+
 		Optional<Entity_CallbotRt> existingEntity = repositoryCallbotRt.findById(enCallbotRt.getId());
 
 		if (existingEntity.isPresent()) {
@@ -842,61 +832,53 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 	@Override
 	public Entity_UcrmRt createUcrmRt(String msg) throws Exception {
-		
+
 		String cpid = msg.split("::")[0];
 		String cpsq = msg.split("::")[1];
 		String divisionid = msg.split("::")[2];
-		
+
 		Entity_UcrmRt enUcrmRt = new Entity_UcrmRt();
-		UcrmCampRt ucrmCampRt = new UcrmCampRt() ;
+		UcrmCampRt ucrmCampRt = new UcrmCampRt();
 		ucrmCampRt.setCpid(cpid);
 		ucrmCampRt.setCpsq(cpsq);
-		enUcrmRt.setId(ucrmCampRt);		
+		enUcrmRt.setId(ucrmCampRt);
 		enUcrmRt.setDivisionid(divisionid);
-		
+
 		return enUcrmRt;
 	}
 
 	@Override
 	public Entity_CallbotRt createCallbotRt(String msg) throws Exception {
-		
+
 		String cpid = msg.split("::")[0];
 		String cpsq = msg.split("::")[1];
 		String divisionid = msg.split("::")[2];
-		
+
 		Entity_CallbotRt enCallbotRt = new Entity_CallbotRt();
-		CallBotCampRt callbotCampRt = new CallBotCampRt() ;
+		CallBotCampRt callbotCampRt = new CallBotCampRt();
 		callbotCampRt.setCpid(cpid);
 		callbotCampRt.setCpsq(cpsq);
 		enCallbotRt.setId(callbotCampRt);
 		enCallbotRt.setDivisionid(divisionid);
-		
+
 		return enCallbotRt;
 	}
 
 	@Override
 	public Entity_ApimRt createApimRt(String msg) throws Exception {
-		
+
 		String cpid = msg.split("::")[0];
 		String cpsq = msg.split("::")[1];
 		String divisionid = msg.split("::")[2];
-		
+
 		Entity_ApimRt apimRt = new Entity_ApimRt();
-		ApimCampRt apimCampRt = new ApimCampRt() ;
+		ApimCampRt apimCampRt = new ApimCampRt();
 		apimCampRt.setCpid(cpid);
 		apimCampRt.setCpsq(cpsq);
-		apimRt.setId(apimCampRt);	
+		apimRt.setId(apimCampRt);
 		apimRt.setDivisionid(divisionid);
-		
+
 		return apimRt;
 	}
-
-	
-
-	
-
-	
-
-	
 
 }

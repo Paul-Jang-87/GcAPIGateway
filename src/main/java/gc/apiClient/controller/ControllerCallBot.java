@@ -54,8 +54,7 @@ public class ControllerCallBot extends ServiceJson {
 		this.customProperties = customProperties;
 	}
 	
-//	@Scheduled(fixedRate = 60000)
-	@Scheduled(fixedRate = 3000)
+	@Scheduled(fixedRate = 60000)
 	public void scheduledMethod() {
 		
 		Mono.fromCallable(() -> SendCallBotRt() ).subscribeOn(Schedulers.boundedElastic()).subscribe();
@@ -120,9 +119,6 @@ public class ControllerCallBot extends ServiceJson {
 
 				for (int i = 0; i < cntofmsg; i++) {
 
-					log.info("res{} : {}", i, res);
-					log.info("받아온 리스트 안의 {}번째 메시지", i);
-
 					row_result = ExtractValCallBot(msg, i); // 뽑아온다.cpid::cpsq::cske::csno::tkda::flag
 
 					enContactLt = serviceDb.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
@@ -137,7 +133,7 @@ public class ControllerCallBot extends ServiceJson {
 						serviceDb.InsertContactLt(enContactLt);
 
 					} catch (DataIntegrityViolationException ex) {
-						log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+//						log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
 						
 					} catch (DataAccessException ex) {
 						log.error("DataAccessException 발생 : {}", ex.getMessage());

@@ -1,130 +1,129 @@
-ERROR 24-04-24 08:52:34[boundedElastic-1] [ControllerCenter:212] - Error Messge : Not enough variable values available to expand 'campaignId'
-ERROR 24-04-24 08:52:36[boundedElastic-2] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"346d12ae-2811-4d89-988f-f8de6d342714","details":[],"errors":[]}
-ERROR 24-04-24 08:56:33[boundedElastic-1] [ControllerCenter:212] - Error Messge : For input string: "GSNeotek"
-ERROR 24-04-24 08:57:29[boundedElastic-2] [ControllerCenter:212] - Error Messge : For input string: "GSNeotek"
-ERROR 24-04-24 08:58:29[reactor-http-nio-3] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-04-24 08:58:29[reactor-http-nio-3] [MessageToProducer:34] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-04-24 09:05:06[boundedElastic-1] [ControllerCenter:212] - Error Messge : Not enough variable values available to expand 'campaignId'
-ERROR 24-04-24 09:05:08[boundedElastic-2] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"7974787e-3283-480c-87da-167138833f0e","details":[],"errors":[]}
-ERROR 24-04-24 09:06:04[boundedElastic-1] [ControllerCenter:212] - Error Messge : Not enough variable values available to expand 'campaignId'
-ERROR 24-04-24 09:06:05[boundedElastic-2] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"78a266a7-dc82-4c33-aa97-d6613f3c0d2d","details":[],"errors":[]}
-ERROR 24-04-24 09:07:04[boundedElastic-2] [ControllerCenter:212] - Error Messge : Not enough variable values available to expand 'campaignId'
-ERROR 24-04-24 09:07:05[boundedElastic-1] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"05199225-5678-4d9e-804f-edebb8ce967d","details":[],"errors":[]}
-ERROR 24-04-24 09:08:04[boundedElastic-1] [ControllerCenter:212] - Error Messge : Not enough variable values available to expand 'campaignId'
-ERROR 24-04-24 09:08:05[boundedElastic-2] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"22ace7ba-ba5b-493d-92f8-7c33d0e75ba4","details":[],"errors":[]}
-ERROR 24-04-24 09:11:41[boundedElastic-2] [ControllerCenter:212] - Error Messge : Not enough variable values available to expand 'campaignId'
-ERROR 24-04-24 09:11:44[boundedElastic-1] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"94410d1b-b06f-472c-bdb7-d9b25d08fc4d","details":[],"errors":[]}
-ERROR 24-04-24 09:12:39[boundedElastic-1] [ControllerCenter:212] - Error Messge : Not enough variable values available to expand 'campaignId'
-ERROR 24-04-24 09:12:39[boundedElastic-2] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"96ab7003-1b63-4606-a961-4eb4266ac11d","details":[],"errors":[]}
-ERROR 24-04-24 09:18:39[boundedElastic-1] [ControllerCenter:212] - Error Messge : Not enough variable values available to expand 'campaignId'
-ERROR 24-04-24 09:18:42[boundedElastic-2] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"e131d87a-ea44-4232-8b1a-88d9cd1abda0","details":[],"errors":[]}
-ERROR 24-04-24 10:55:05[boundedElastic-2] [ControllerCenter:212] - Error Messge : Cannot invoke "org.springframework.web.reactive.function.client.WebClient.get()" because "this.webClient" is null
-ERROR 24-04-24 10:55:06[boundedElastic-1] [ControllerCallBot:245] - Error Message : Cannot invoke "org.springframework.web.reactive.function.client.WebClient.get()" because "this.webClient" is null
-ERROR 24-04-24 10:56:05[boundedElastic-1] [ControllerCenter:212] - Error Messge : Cannot invoke "org.springframework.web.reactive.function.client.WebClient.get()" because "this.webClient" is null
-ERROR 24-04-24 10:56:05[boundedElastic-2] [ControllerCallBot:245] - Error Message : Cannot invoke "org.springframework.web.reactive.function.client.WebClient.get()" because "this.webClient" is null
-ERROR 24-04-24 10:57:27[boundedElastic-2] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"2dc8ccad-e7bb-4f1e-ae17-1d45e4727f83","details":[],"errors":[]}
-ERROR 24-04-24 10:57:28[boundedElastic-1] [ControllerCenter:166] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-04-24 10:58:24[boundedElastic-1] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"3c31f3eb-a405-44d4-bf4d-4c336bc45098","details":[],"errors":[]}
-ERROR 24-04-24 10:58:24[boundedElastic-2] [ControllerCenter:166] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-04-24 10:59:24[boundedElastic-1] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"304768f6-c717-4924-82a2-f5735812ec2f","details":[],"errors":[]}
-ERROR 24-04-24 10:59:24[boundedElastic-2] [ControllerCenter:166] - DataIntegrityViolationException 발생 : Record with 'cpid' already exists.
-ERROR 24-04-24 11:00:24[boundedElastic-1] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"78c0000c-f2a1-40fd-b6c9-d2f61816aeb6","details":[],"errors":[]}
-ERROR 24-04-24 11:00:24[reactor-http-nio-10] [MessageToProducer:28] - Error making API request: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-04-24 11:00:24[reactor-http-nio-10] [MessageToProducer:34] - Error in handling response: Connection refused: no further information: localhost/127.0.0.1:8081
-ERROR 24-04-24 11:01:24[boundedElastic-2] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"e7e20452-ecbd-4ca7-8a2c-28fe26f98a40","details":[],"errors":[]}
-ERROR 24-04-24 11:02:24[boundedElastic-1] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"4f7f3817-af89-4fc1-b07a-3af7bfe5cd29","details":[],"errors":[]}
-ERROR 24-04-24 11:36:53[boundedElastic-1] [Operators:324] - Operator called default onErrorDropped
-reactor.core.Exceptions$ErrorCallbackNotImplemented: java.lang.Error: Unresolved compilation problem: 
-	The constructor WebClientApp() is not visible
+ERROR 24-04-26 09:50:15[boundedElastic-8] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-Caused by: java.lang.Error: Unresolved compilation problem: 
-	The constructor WebClientApp() is not visible
+ERROR 24-04-26 09:50:15[boundedElastic-11] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-	at gc.apiClient.service.ServiceWebClient.GetApiRequet(ServiceWebClient.java:23)
-	at gc.apiClient.controller.ControllerCenter.ReceiveMessage(ControllerCenter.java:105)
-	at gc.apiClient.controller.ControllerCenter.lambda$0(ControllerCenter.java:76)
-	at reactor.core.publisher.MonoCallable.call(MonoCallable.java:72)
-	at reactor.core.publisher.FluxSubscribeOnCallable$CallableSubscribeOnSubscription.run(FluxSubscribeOnCallable.java:228)
-	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:68)
-	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:28)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-ERROR 24-04-24 11:36:53[boundedElastic-2] [Operators:324] - Operator called default onErrorDropped
-reactor.core.Exceptions$ErrorCallbackNotImplemented: java.lang.Error: Unresolved compilation problem: 
-	The constructor WebClientApp() is not visible
+ERROR 24-04-26 09:50:15[boundedElastic-18] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-Caused by: java.lang.Error: Unresolved compilation problem: 
-	The constructor WebClientApp() is not visible
+ERROR 24-04-26 09:50:15[boundedElastic-20] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-	at gc.apiClient.service.ServiceWebClient.GetCampaignsApiRequet(ServiceWebClient.java:56)
-	at gc.apiClient.controller.ControllerCallBot.SendCallBotRt(ControllerCallBot.java:202)
-	at gc.apiClient.controller.ControllerCallBot.lambda$scheduledMethod$0(ControllerCallBot.java:60)
-	at reactor.core.publisher.MonoCallable.call(MonoCallable.java:72)
-	at reactor.core.publisher.FluxSubscribeOnCallable$CallableSubscribeOnSubscription.run(FluxSubscribeOnCallable.java:228)
-	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:68)
-	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:28)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-ERROR 24-04-24 11:37:53[boundedElastic-2] [Operators:324] - Operator called default onErrorDropped
-reactor.core.Exceptions$ErrorCallbackNotImplemented: java.lang.Error: Unresolved compilation problem: 
-	The constructor WebClientApp() is not visible
+ERROR 24-04-26 09:50:15[boundedElastic-15] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-Caused by: java.lang.Error: Unresolved compilation problem: 
-	The constructor WebClientApp() is not visible
+ERROR 24-04-26 09:50:15[boundedElastic-10] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-	at gc.apiClient.service.ServiceWebClient.GetApiRequet(ServiceWebClient.java:23)
-	at gc.apiClient.controller.ControllerCenter.ReceiveMessage(ControllerCenter.java:105)
-	at gc.apiClient.controller.ControllerCenter.lambda$0(ControllerCenter.java:76)
-	at reactor.core.publisher.MonoCallable.call(MonoCallable.java:72)
-	at reactor.core.publisher.FluxSubscribeOnCallable$CallableSubscribeOnSubscription.run(FluxSubscribeOnCallable.java:228)
-	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:68)
-	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:28)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-ERROR 24-04-24 11:37:53[boundedElastic-1] [Operators:324] - Operator called default onErrorDropped
-reactor.core.Exceptions$ErrorCallbackNotImplemented: java.lang.Error: Unresolved compilation problem: 
-	The constructor WebClientApp() is not visible
+ERROR 24-04-26 09:50:15[boundedElastic-21] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-Caused by: java.lang.Error: Unresolved compilation problem: 
-	The constructor WebClientApp() is not visible
+ERROR 24-04-26 09:50:15[boundedElastic-12] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
-	at gc.apiClient.service.ServiceWebClient.GetCampaignsApiRequet(ServiceWebClient.java:56)
-	at gc.apiClient.controller.ControllerCallBot.SendCallBotRt(ControllerCallBot.java:202)
-	at gc.apiClient.controller.ControllerCallBot.lambda$scheduledMethod$0(ControllerCallBot.java:60)
-	at reactor.core.publisher.MonoCallable.call(MonoCallable.java:72)
-	at reactor.core.publisher.FluxSubscribeOnCallable$CallableSubscribeOnSubscription.run(FluxSubscribeOnCallable.java:228)
-	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:68)
-	at reactor.core.scheduler.SchedulerTask.call(SchedulerTask.java:28)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
-	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-ERROR 24-04-24 11:40:27[boundedElastic-1] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"cd63155c-cdb1-4257-9e8c-a7d0e9041001","details":[],"errors":[]}
-ERROR 24-04-24 11:41:23[boundedElastic-1] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"02d39db6-81ef-46e0-aca6-1ecdecd2715d","details":[],"errors":[]}
-ERROR 24-04-24 11:42:23[boundedElastic-2] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"d755f0a2-dc55-497c-b504-97bbaa9bab2e","details":[],"errors":[]}
-ERROR 24-04-24 11:49:15[boundedElastic-1] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"6240cef3-c2fe-46aa-954e-0703d7bb57eb","details":[],"errors":[]}
-ERROR 24-04-24 11:52:55[boundedElastic-1] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"0be9c5f7-9bdf-4448-a76b-b748b797394d","details":[],"errors":[]}
-ERROR 24-04-24 12:06:04[boundedElastic-2] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"d877ad33-3cf9-42e0-b750-9a76cf93b953","details":[],"errors":[]}
-ERROR 24-04-24 12:07:01[boundedElastic-1] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"6c1231e1-5dd0-406e-a041-24aa68053f4c","details":[],"errors":[]}
-ERROR 24-04-24 12:09:15[boundedElastic-1] [ControllerCallBot:245] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"9fb7414d-f4d2-45ff-b19a-56091b5673c3","details":[],"errors":[]}
-ERROR 24-04-24 12:11:43[boundedElastic-3] [ControllerCallBot:246] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"13f3975e-c20b-4ffd-942b-d8e6e6e87470","details":[],"errors":[]}
-ERROR 24-04-24 12:11:43[boundedElastic-1] [ControllerCallBot:246] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"37c973ff-7ac6-45a5-8b9a-4b8d47add0d2","details":[],"errors":[]}
-ERROR 24-04-24 12:11:45[boundedElastic-2] [ControllerCallBot:246] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"d11285dd-60b9-43c6-b4a7-c0868c919161","details":[],"errors":[]}
-ERROR 24-04-24 12:11:48[boundedElastic-2] [ControllerCallBot:246] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"a448d5a0-7908-43d7-86d4-d629d119fb80","details":[],"errors":[]}
-ERROR 24-04-24 12:11:51[boundedElastic-2] [ControllerCallBot:246] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"bef929b6-e989-4e6d-99a2-43495a840389","details":[],"errors":[]}
-ERROR 24-04-24 12:11:54[boundedElastic-2] [ControllerCallBot:246] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"08ccef21-ab94-46ee-a4c2-dc87b1c09e0f","details":[],"errors":[]}
-ERROR 24-04-24 12:11:57[boundedElastic-2] [ControllerCallBot:246] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"143cdcfb-1d65-477f-a95b-efa8d8ead523","details":[],"errors":[]}
-ERROR 24-04-24 12:12:00[boundedElastic-2] [ControllerCallBot:246] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"2941fb92-9f43-456c-9b9f-c2d1479448f5","details":[],"errors":[]}
-ERROR 24-04-24 12:12:03[boundedElastic-2] [ControllerCallBot:246] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"eb8abd60-b8a2-4fdc-ad2f-3fa6760f2727","details":[],"errors":[]}
-ERROR 24-04-24 12:12:06[boundedElastic-2] [ControllerCallBot:246] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"0501612f-6e8c-4123-a4a4-d8ba48af7fa1","details":[],"errors":[]}
-ERROR 24-04-24 12:12:09[boundedElastic-4] [ControllerCallBot:246] - Error Message : Error: {"message":"A Campaign with id 123 could not be found","code":"resource.not.found","status":404,"messageWithParams":"A {entity} with id {id} could not be found","messageParams":{"id":"123","entity":"Campaign"},"contextId":"1d999027-7744-4c55-823b-62ae6aa3288b","details":[],"errors":[]}
+ERROR 24-04-26 09:50:15[boundedElastic-9] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-04-26 09:50:15[boundedElastic-19] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-04-26 09:50:15[boundedElastic-16] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-04-26 09:50:15[boundedElastic-3] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-04-26 09:50:15[boundedElastic-14] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-04-26 09:50:15[boundedElastic-13] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-04-26 09:50:15[boundedElastic-6] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-04-26 09:50:15[boundedElastic-17] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-04-26 09:50:15[boundedElastic-3] [Controller360view:152] - JDBC exception executing SQL [select count(edc1_0.ORDERID) from DATA_CALL_W edc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 09:50:15[boundedElastic-9] [Controller360view:187] - Error Message : JDBC exception executing SQL [select count(emc1_0.ORDERID) from DATA_CALL_W emc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 09:50:15[boundedElastic-20] [Controller360view:539] - Error Message : JDBC exception executing SQL [select count(ewdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W ewdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 09:50:15[boundedElastic-18] [Controller360view:412] - Error Message : JDBC exception executing SQL [select count(ewdc1_0.ORDERID) from WA_DATA_CALL_W ewdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 09:50:15[boundedElastic-17] [Controller360view:633] - Error Message : JDBC exception executing SQL [select count(emm1_0.ORDERID) from WA_M_TRACECODE_W emm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 09:50:15[boundedElastic-21] [Controller360view:602] - Error Message : JDBC exception executing SQL [select count(ewm1_0.ORDERID) from WA_M_TRACECODE_W ewm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 09:50:15[boundedElastic-14] [Controller360view:443] - Error Message : JDBC exception executing SQL [select count(emdc1_0.ORDERID) from WA_DATA_CALL_W emdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 09:50:15[boundedElastic-10] [Controller360view:254] - Error Message : JDBC exception executing SQL [select count(emcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W emcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 09:50:15[boundedElastic-19] [Controller360view:475] - Error Message : JDBC exception executing SQL [select count(ewdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W ewdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 09:50:15[boundedElastic-12] [Controller360view:381] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 09:50:15[boundedElastic-16] [Controller360view:571] - Error Message : JDBC exception executing SQL [select count(emdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W emdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 09:50:15[boundedElastic-13] [Controller360view:349] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 09:50:15[boundedElastic-11] [Controller360view:318] - Error Message : JDBC exception executing SQL [select count(emcs1_0.ORDERID) from DATA_CALL_SERVICE_W emcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 09:50:15[boundedElastic-15] [Controller360view:506] - Error Message : JDBC exception executing SQL [select count(emdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W emdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 09:50:15[boundedElastic-8] [Controller360view:286] - Error Message : JDBC exception executing SQL [select count(edcs1_0.ORDERID) from DATA_CALL_SERVICE_W edcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 09:50:15[boundedElastic-6] [Controller360view:220] - Error Message : JDBC exception executing SQL [select count(edcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W edcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 09:50:19[boundedElastic-2] [ControllerCenter:212] - Error Messge : Connection prematurely closed BEFORE response
+ERROR 24-04-26 13:01:43[boundedElastic-4] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-04-26 13:01:43[boundedElastic-3] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-04-26 13:01:43[boundedElastic-13] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-04-26 13:01:43[boundedElastic-7] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-04-26 13:01:43[boundedElastic-18] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-04-26 13:01:43[boundedElastic-5] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-04-26 13:01:43[boundedElastic-11] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-04-26 13:01:43[boundedElastic-20] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-04-26 13:01:43[boundedElastic-1] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-04-26 13:01:43[boundedElastic-12] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-04-26 13:01:43[boundedElastic-2] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-04-26 13:01:43[boundedElastic-21] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-04-26 13:01:43[boundedElastic-9] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-04-26 13:01:43[boundedElastic-3] [Controller360view:286] - Error Message : JDBC exception executing SQL [select count(edcs1_0.ORDERID) from DATA_CALL_SERVICE_W edcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 13:01:43[boundedElastic-10] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-04-26 13:01:43[boundedElastic-8] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-04-26 13:01:43[boundedElastic-9] [Controller360view:443] - Error Message : JDBC exception executing SQL [select count(emdc1_0.ORDERID) from WA_DATA_CALL_W emdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 13:01:43[boundedElastic-6] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-04-26 13:01:43[boundedElastic-1] [Controller360view:152] - JDBC exception executing SQL [select count(edc1_0.ORDERID) from DATA_CALL_W edc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 13:01:43[boundedElastic-2] [Controller360view:220] - Error Message : JDBC exception executing SQL [select count(edcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W edcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 13:01:43[boundedElastic-12] [Controller360view:633] - Error Message : JDBC exception executing SQL [select count(emm1_0.ORDERID) from WA_M_TRACECODE_W emm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 13:01:43[boundedElastic-13] [Controller360view:412] - Error Message : JDBC exception executing SQL [select count(ewdc1_0.ORDERID) from WA_DATA_CALL_W ewdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 13:01:43[boundedElastic-4] [Controller360view:187] - Error Message : JDBC exception executing SQL [select count(emc1_0.ORDERID) from DATA_CALL_W emc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 13:01:43[boundedElastic-5] [Controller360view:254] - Error Message : JDBC exception executing SQL [select count(emcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W emcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 13:01:43[boundedElastic-18] [Controller360view:475] - Error Message : JDBC exception executing SQL [select count(ewdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W ewdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 13:01:43[boundedElastic-7] [Controller360view:381] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 13:01:43[boundedElastic-6] [Controller360view:318] - Error Message : JDBC exception executing SQL [select count(emcs1_0.ORDERID) from DATA_CALL_SERVICE_W emcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 13:01:43[boundedElastic-11] [Controller360view:571] - Error Message : JDBC exception executing SQL [select count(emdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W emdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 13:01:43[boundedElastic-8] [Controller360view:349] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 13:01:43[boundedElastic-10] [Controller360view:506] - Error Message : JDBC exception executing SQL [select count(emdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W emdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 13:01:43[boundedElastic-20] [Controller360view:539] - Error Message : JDBC exception executing SQL [select count(ewdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W ewdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-04-26 13:01:43[boundedElastic-21] [Controller360view:602] - Error Message : JDBC exception executing SQL [select count(ewm1_0.ORDERID) from WA_M_TRACECODE_W ewm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]

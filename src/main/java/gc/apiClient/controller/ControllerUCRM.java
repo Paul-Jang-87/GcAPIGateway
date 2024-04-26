@@ -56,17 +56,17 @@ public class ControllerUCRM extends ServiceJson {
 		this.customProperties = customProperties;
 	}
 
-//	@Scheduled(fixedRate = 60000)
-//	public void scheduledMethod() {
-//		
-//		Mono.fromCallable(() -> SendUcrmRt()).subscribeOn(Schedulers.boundedElastic()).subscribe();
-//
-//	}
-//
-//	@Scheduled(fixedRate = 5000)
-//	public void UcrmContactlt() {
-//		Mono.fromCallable(() -> UcrmMsgFrmCnsmer()).subscribeOn(Schedulers.boundedElastic()).subscribe();
-//	}
+	@Scheduled(fixedRate = 60000)
+	public void scheduledMethod() {
+		
+		Mono.fromCallable(() -> SendUcrmRt()).subscribeOn(Schedulers.boundedElastic()).subscribe();
+
+	}
+
+	@Scheduled(fixedRate = 5000)
+	public void UcrmContactlt() {
+		Mono.fromCallable(() -> UcrmMsgFrmCnsmer()).subscribeOn(Schedulers.boundedElastic()).subscribe();
+	}
 
 
 	@PostMapping("/saveucrmdata")
@@ -130,7 +130,6 @@ public class ControllerUCRM extends ServiceJson {
 					String queid = mapquetId.get(cpid);
 
 					if (contactLtId == null || contactLtId.equals("")) {// cpid를 조회 했는데 그것에 대응하는 contactltId가 없다면,
-						log.info("Nomatch contactId");
 						String result = serviceWeb.GetCampaignsApiRequet("campaigns", cpid);
 						String res = ExtractContactLtId(result); // 가져온 결과에서 contactlistid,queueid만 추출.
 						contactLtId = res.split("::")[0];
@@ -139,7 +138,6 @@ public class ControllerUCRM extends ServiceJson {
 						mapcontactltId.put(cpid, contactLtId);
 						mapquetId.put(cpid, res.split("::")[1]);
 					} else {
-						log.info("Matched contactId");
 					}
 
 					String row_result = ExtractRawUcrm(entitylist.getContent().get(i));
@@ -150,8 +148,6 @@ public class ControllerUCRM extends ServiceJson {
 						contactlists.put(contactLtId, new ArrayList<>());
 					}
 					contactlists.get(contactLtId).add(contactltMapper);
-
-					log.info("Add value into Arraylist named '{}'", contactLtId);
 
 					// db인서트
 					try {
@@ -335,7 +331,7 @@ public class ControllerUCRM extends ServiceJson {
 				int dirt = entityCmRt.getDirt();// 응답코드
 
 				if ((business.equals("UCRM")) && (dirt == 1)) {// URM이면서 정상일 때.
-
+					log.info("UCRM : dirt(responsed code) is '1'. skip sending message to kafka ");
 				} else {
 					JSONObject toproducer = serviceDb.createCampRtJson(entityCmRt, business);// producer로
 																								// 보내기

@@ -25,7 +25,7 @@ public class Entity_CampRt {
  	private String contactid;
 	
 	@Column(name = "IBM_SLTN_CNTA_HUB_ID")
-	private int hubid;
+	private long hubid;
 	
 	@Column(name = "CAMP_SEQ")
 	private int camp_seq;

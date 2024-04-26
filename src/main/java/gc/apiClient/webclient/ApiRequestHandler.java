@@ -61,7 +61,8 @@ public class ApiRequestHandler {// 모든 api를 핸들링하는 클래스
 		UriComponents uriComponents = uriComponentsBuilder.buildAndExpand();
 		uriComponentsBuilder = UriComponentsBuilder.fromUri(uriComponents.toUri());
 
-		uriComponentsBuilder.queryParam("sortBy","dateCreated","sortOrder","descending");
+		uriComponentsBuilder.queryParam("sortBy","dateCreated");
+		uriComponentsBuilder.queryParam("sortOrder","descending");
 
 		uriComponentsBuilder = UriComponentsBuilder.fromUri(uriComponents.toUri());
 

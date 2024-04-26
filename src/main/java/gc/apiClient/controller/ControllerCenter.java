@@ -70,12 +70,11 @@ public class ControllerCenter extends ServiceJson {
 	}
 
 
-//	@Scheduled(fixedRate = 60000)
-	@Scheduled(fixedRate = 3000)
+	@Scheduled(fixedRate = 60000)
 	public void scheduledMethod() {
 		
 		Mono.fromCallable(() -> ReceiveMessage("campma")).subscribeOn(Schedulers.boundedElastic()).subscribe();
-//		Mono.fromCallable(() -> SendApimRt()).subscribeOn(Schedulers.boundedElastic()).subscribe();
+		Mono.fromCallable(() -> SendApimRt()).subscribeOn(Schedulers.boundedElastic()).subscribe();
 
 	}
 
@@ -676,123 +675,7 @@ public class ControllerCenter extends ServiceJson {
 		}
 
 	}
-
-//	public Mono<Void> Roop(String result, String contactLtId, List<String> values, String divisionName, String business,
-//			String topic_id, int dirt, String endpoint, String cpid
-//
-//	) throws Exception {
-//
-//		ObjectMapper objectMapper = null;
-//		result = serviceWeb.PostContactLtApiBulk("contactList", contactLtId, values);
-//
-//		if (result.equals("[]")) {
-//			log.info("No result, skip to next");
-//			values.clear();
-//			return Mono.empty();
-//		}
-//
-//		// 캠페인이 어느 비즈니스 로직인지 판단하기 위해서 일단 목록 중 하나만 꺼내서 확인해 보도록한다.
-//		// 왜냐면 나머지는 똑같을테니.
-//		String contactsresult = ExtractContacts56(result, 0);// JsonString 결과값과 조회하고 싶은 인덱스(첫번째)를 인자로
-//																// 넣는다.
-//		Entity_CampRt entityCmRt = serviceDb.createCampRtMsg(contactsresult);// contactsresult값으로
-//																				// entity하나를 만든다.
-//		Character tkda = entityCmRt.getTkda().charAt(0);// 그리고 비즈니스 로직을 구분하게 해줄 수 있는 토큰데이터를 구해온다.
-//
-//		// 토큰데이터와 디비젼네임을 인자로 넘겨서 어떤 비지니스 로직인지, 토픽은 어떤 것으로 해야하는지를 결과 값으로 반환 받는다.
-//		Map<String, String> businessLogic = BusinessLogic.SelectedBusiness(tkda, divisionName);
-//		business = businessLogic.get("business");
-//		topic_id = businessLogic.get("topic_id");
-//
-//		switch (business) {
-//		case "UCRM": // UCRM일 경우.
-//		case "CALLBOT": // 콜봇일 경우.
-//
-//			for (int i = 0; i < values.size(); i++) {
-//
-//				contactsresult = ExtractContacts56(result, i);
-//				if (contactsresult.equals("")) {
-//					log.info("No value, skip to next");
-//					continue;
-//				}
-//
-//				entityCmRt = serviceDb.createCampRtMsg(contactsresult);// db 인서트 하기 위한 entity.
-//
-//				dirt = entityCmRt.getDirt();// 응답코드
-//
-//				if ((business.equals("UCRM")) && (dirt == 1)) {// URM이면서 정상일 때.
-//
-//				} else {
-//					JSONObject toproducer = serviceDb.createCampRtJson(entityCmRt, business);// producer로
-//																								// 보내기
-//																								// 위한
-//					// entity.
-//					objectMapper = new ObjectMapper();
-//
-//					try {
-//						String jsonString = toproducer.toString();
-//						log.info("JsonString Data : {}번째 {}", i, jsonString);
-//
-//						MessageToProducer producer = new MessageToProducer();
-//						endpoint = "/gcapi/post/" + topic_id;
-//						producer.sendMsgToProducer(endpoint, jsonString);
-//
-//					} catch (Exception e) {
-//						e.printStackTrace();
-//					}
-//				}
-//
-//				// db인서트
-//				try {
-//					serviceDb.InsertCampRt(entityCmRt);
-//				} catch (DataIntegrityViolationException ex) {
-//					log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
-//				} catch (DataAccessException ex) {
-//					log.error("DataAccessException 발생 : {}", ex.getMessage());
-//				}
-//			}
-//			values.clear();
-//			return Mono.empty();
-//
-//		default:
-//
-//			for (int i = 0; i < values.size(); i++) {
-//
-//				contactsresult = ExtractContacts56(result, i);
-//				contactsresult = contactsresult + "::" + cpid;// contactid(고객키)::contactListId::didt::dirt::cpid
-//				entityCmRt = serviceDb.createCampRtMsg(contactsresult);// db 인서트 하기 위한 entity.
-//
-//				dirt = entityCmRt.getDirt();// 응답코드
-//				String tokendata = entityCmRt.getTkda();// 토큰데이터
-//
-//				Entity_ToApim enToApim = new Entity_ToApim();
-//				enToApim.setDirt(dirt);
-//				enToApim.setTkda(tokendata);
-//
-//				apimEntitylt.add(enToApim);
-//			}
-//
-//			objectMapper = new ObjectMapper();
-//
-//			try {
-//				String jsonString = objectMapper.writeValueAsString(apimEntitylt);
-//
-//				// localhost:8084/dspRslt
-//				// 192.168.219.134:8084/dspRslt
-//				MessageToApim apim = new MessageToApim();
-//				endpoint = "/dspRslt";
-//				apim.sendMsgToApim(endpoint, jsonString);
-//				log.info("CAMPRT 로직, APIM으로 보냄. : {} ", jsonString);
-//
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//			values.clear();
-//			return Mono.empty();
-//		}
-//
-//	}
-
+	
 
 	@GetMapping("/gethc")
 	public String gealthCheck() throws Exception {

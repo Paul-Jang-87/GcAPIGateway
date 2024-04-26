@@ -21,7 +21,7 @@ public class ServiceWebClient implements InterfaceWebClient {
 		String result = "";
 
 		WebClientApp webClient = new WebClientApp();
-		result = webClient.CampMaApiReq(endpoint, "GET");
+		result = webClient.makeApiRequest(endpoint, "GET","sortBy","dateCreated","sortOrder","descending");
 
 		log.info("====== End GetApiRequet ======");
 		return result;
@@ -83,7 +83,6 @@ public class ServiceWebClient implements InterfaceWebClient {
 
 		log.info(" ");
 		log.info("====== ClassName : ServiceWebClient & Method : PostContactLtApiRequet ======");
-		log.info("Incoming message : {}", msg.toString());
 
 		String result = "";
 		WebClientApp webClient = new WebClientApp();

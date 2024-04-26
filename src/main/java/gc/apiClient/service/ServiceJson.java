@@ -138,10 +138,6 @@ public class ServiceJson implements InterfaceJson {
 	@Override
 	public String ExtractValCallBot(String stringMsg, int i) {// IF-CRM_003,IF-CRM_004에서 사용하기 위한 추출함수.
 
-		log.info(" ");
-		log.info("====== ClassName : ServiceJson & Method : ExtractValCallBot ======");
-		// (콜봇에서 뽑아온거)cpid::cpsq::cske::csno::tkda::flag
-
 		String jsonResponse = stringMsg;
 
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -161,8 +157,6 @@ public class ServiceJson implements InterfaceJson {
 			log.info("Error Message : {}", e.getMessage());
 		}
 
-		log.info("result : {}", result);
-		log.info("====== End ExtractValCallBot ======");
 		return result;
 	}
 
@@ -272,7 +266,6 @@ public class ServiceJson implements InterfaceJson {
 
 		log.info(" ");
 		log.info("====== ClassName : ServiceJson & Method : ExtractContacts56 ======");
-		log.info("들어온 {}번째 결과 값 result : {}", i, stringMsg);
 		String jsonResponse = stringMsg;
 
 		ObjectMapper objectMapper = new ObjectMapper();

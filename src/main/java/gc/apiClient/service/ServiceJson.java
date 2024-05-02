@@ -301,9 +301,6 @@ public class ServiceJson implements InterfaceJson {
 	@Override
 	public int ExtractDict(String stringMsg) {
 
-		log.info(" ");
-		log.info("====== ClassName : ServiceJson & Method : ExtractDict ======");
-		log.info("GetStatusApiRequet 요청 후 ExtractDict로 들어온 rs : {}", stringMsg);
 		String jsonResponse = stringMsg;
 
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -320,8 +317,6 @@ public class ServiceJson implements InterfaceJson {
 			e.printStackTrace();
 		}
 
-		log.info("rs에서 추출 한 결과 result(dict) : {}", result);
-		log.info("====== End ExtractDict ======");
 		return result;
 	}
 

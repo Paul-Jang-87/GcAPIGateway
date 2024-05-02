@@ -428,7 +428,7 @@ public class Controller360view extends ServiceJson {
 					// 2. crud 구분해서 메시지 키를 정한다.
 					// 3. 프로듀서로 메시지 재가공해서 보낸다.
 				List<Entity_MWaDataCall> entitylist = serviceOracle.getAll(Entity_MWaDataCall.class);
-
+				
 				for (int i = 0; i < entitylist.size(); i++) {
 
 					String crudtype = entitylist.get(i).getCmd();

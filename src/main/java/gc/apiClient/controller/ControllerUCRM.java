@@ -331,7 +331,9 @@ public class ControllerUCRM extends ServiceJson {
 				int dirt = entityCmRt.getDirt();// 응답코드
 
 				if ((business.equals("UCRM")) && (dirt == 1)) {// URM이면서 정상일 때.
+					
 					log.info("UCRM : dirt(responsed code) is '1'. skip sending message to kafka ");
+					
 				} else {
 					JSONObject toproducer = serviceDb.createCampRtJson(entityCmRt, business);// producer로
 																								// 보내기

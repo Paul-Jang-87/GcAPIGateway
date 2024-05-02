@@ -77,35 +77,5 @@ public class WebClientConfig {// api들의 정보들 수록.
 	public static String getClientSecret() {
 		return CLIENT_SECRET;
 	}
-	
-	
-    //암호화된 id, 비밀번호 db에서 가져와 복호화 하는 함수. 
-//	public void getClientIdPwd() {
-//
-//		Entity_AppConfig enttAppconfig = new Entity_AppConfig();
-//
-//		enttAppconfig = servicedb.getEntityById((long) 1);
-//
-//		String id = enttAppconfig.getGcClientId();
-//		String pwd = enttAppconfig.getGcClientSecret();
-//
-//		String decryptedId;
-//		String decryptedPassword;
-//		try {
-//			decryptedId = AESDecryption.decrypt(id);
-//			decryptedPassword = AESDecryption.decrypt(pwd);
-//
-//			System.out.println("Decrypted ID: " + decryptedId);
-//			System.out.println("Decrypted Password: " + decryptedPassword);
-//
-//			CLIENT_ID = decryptedId;
-//			CLIENT_SECRET = decryptedPassword;
-//
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//	}
 
 }

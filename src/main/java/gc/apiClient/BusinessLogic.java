@@ -104,14 +104,14 @@ public class BusinessLogic {
 		} else if( (tkda=='A')&&(divisionName.equals("CallbotHome")) ){
 			
 			business = "CALLBOT";
-			topic_id = "from_clcc_hmaiccmpnrs_message"; // 나중에 실제 토픽 명으로 교체해야함.
+			topic_id = "from_clcc_hmaiccmpnrs_message";
 			businesslogic.put("business", business);
 			businesslogic.put("topic_id", topic_id);
 			
 		}else if( (tkda=='A')&&(divisionName.equals("CallbotMobile")) ){
 			
 			business = "CALLBOT";
-			topic_id = "from_clcc_mblaiccmpnrs_message"; // 나중에 실제 토픽 명으로 교체해야함.
+			topic_id = "from_clcc_mblaiccmpnrs_message"; 
 			businesslogic.put("business", business);
 			businesslogic.put("topic_id", topic_id);
 			

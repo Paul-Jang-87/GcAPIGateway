@@ -298,7 +298,6 @@ public class ControllerCallBot extends ServiceJson {
 
 					try {
 						String jsonString = toproducer.toString();
-						log.info("JsonString Data : {}번째 {}", i, jsonString);
 
 						MessageToProducer producer = new MessageToProducer();
 						String endpoint = "/gcapi/post/" + topic_id;

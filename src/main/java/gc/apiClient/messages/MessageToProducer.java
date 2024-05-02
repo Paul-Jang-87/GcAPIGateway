@@ -13,8 +13,7 @@ public class MessageToProducer {
 		
 		log.info(" ");
 		log.info("====== ClassName : MessageToProducer & Method : sendMsgToProducer ======");
-		log.info("Producer로 보낼 EndPoint : {}",towhere);
-		log.info("Producer로 보낼 Message : {}",jsonString);
+		log.info("Producer로 보낼 EndPoint & Msg : '{}' / {}",towhere,jsonString);
 		
 		WebClient webClient = WebClient.builder().baseUrl("http://localhost:8081").build();
 
@@ -30,7 +29,7 @@ public class MessageToProducer {
 	                error.printStackTrace();
 	            })
 	            .subscribe(responseBody -> {
-	                log.info("Response received: {}", responseBody);
+	                log.info("Response received : {}", responseBody);
 	            }, error -> {
 	                log.error("Error in handling response: {}", error.getMessage());
 	            }, () -> {

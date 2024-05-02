@@ -1,10 +1,5 @@
 package gc.apiClient.controller;
 
-//import java.text.SimpleDateFormat;
-//import java.time.LocalDateTime;
-//import java.time.format.DateTimeFormatter;
-//import java.util.Date;
-//import java.util.Random;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -67,6 +62,7 @@ public class ControllerCenter extends ServiceJson {
 	@Scheduled(fixedRate = 86400 * 1000)
 	public void RefreshToken() {
 		WebClientApp.EmptyTockenlt();
+		
 	}
 
 
@@ -465,7 +461,6 @@ public class ControllerCenter extends ServiceJson {
 							Roop(entry.getKey(), entry.getValue(), divisionName);
 						}
 					}
-
 				}
 				
 				for (Map.Entry<String, List<String>> entry : contactlists.entrySet()) {
@@ -485,87 +480,6 @@ public class ControllerCenter extends ServiceJson {
 		return Mono.just(ResponseEntity.ok("Successfully processed the message."));
 	}
 	
-
-	
-//	@PostMapping("/gcapi/post/{topic}")
-//	public Mono<ResponseEntity<String>> ReturnCallResult(@PathVariable("topic") String tranId, @RequestBody String msg,
-//			HttpServletRequest request) {
-//
-//		try {
-//
-//			log.info(" ");
-//			log.info("====== Class : ControllerUCRM - Method : ReturnCallResult ======");
-//
-//			String ipAddress = request.getRemoteAddr();
-//			int port = request.getRemotePort();
-//			log.info("Request received from IP address and Port => {}:{}", ipAddress, port);
-//
-//			String result = "";
-//			String cpid = "";
-//			String topic_id = tranId;
-//			String division = "";
-//			String business = "";
-//			String endpoint = "/gcapi/post/" + topic_id;
-//
-//			log.info("topic_id : {}", topic_id);
-//
-//			switch (topic_id) {
-//
-//			case "camprtMsg":// "from_clcc_campnrs_h_message" , "from_clcc_campnrs_m_message"
-//
-//				result = ExtractVal56(msg);// request body로 들어온 json에서 필요 데이터 추출
-//				log.info("result : {}", result);
-//
-//				String parts[] = result.split("::");
-//
-//				int dirt = 0;
-//				cpid = parts[0];
-//				String contactLtId = parts[1];
-//				division = parts[2];
-//
-//				log.info("cpid : {}", cpid);
-//				log.info("contactLtId : {}", contactLtId);
-//				log.info("Division Info : {}", division);
-//
-//				// appliction.properties 파일에서 division와 매치되는 divisionName을 가지고 옴.
-//				Map<String, String> properties = customProperties.getDivision();
-//				String divisionName = properties.getOrDefault(division, "couldn't find division");
-//				log.info("DivisionName : {}", divisionName);
-//
-//				// contactlt테이블에서 cpid가 같은 모든 레코드들을 엔티티 오브젝트로 리스트 형태로 가지고 온다.
-//				List<Entity_ContactLt> enContactList = new ArrayList<Entity_ContactLt>();
-//				enContactList = serviceDb.findContactLtByCpid(cpid);
-//				log.info("Total number of All Entities : {}", enContactList.size());
-//				// 가지고 온 모든 엔티티들의 숫자만큼 for문들 돌면서 레코드들 각각의 cske(고객키)들을 가지고 온다. 그리고 values리스트에
-//				// 담는다.
-//
-//				List<String> values = new ArrayList<String>();
-//				for (int k = 0; k < enContactList.size(); k++) {
-//					values.add(Integer.toString(enContactList.get(k).getId().getCpsq()));
-//
-//					if (values.size() >= 50) {
-//
-//						Roop(result, contactLtId, values, divisionName, business, topic_id, dirt, endpoint, cpid);
-//
-//					}
-//				}
-//
-//				Roop(result, contactLtId, values, divisionName, business, topic_id, dirt, endpoint, cpid);
-//
-//				return Mono.empty();
-//
-//			default:
-//				break;
-//			}
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			log.error("Error Message : {} ", e.getMessage());
-//
-//		}
-//
-//		return Mono.just(ResponseEntity.ok("'ReturnCallResult' got message successfully."));
-//	}
 
 	public Mono<Void> Roop(String contactLtId, List<String> values, String divisionName) throws Exception {
 
@@ -678,8 +592,18 @@ public class ControllerCenter extends ServiceJson {
 	
 
 	@GetMapping("/gethc")
-	public String gealthCheck() throws Exception {
-		return "TEST RESPONSE";
+	public Mono<ResponseEntity<String>> gealthCheck() throws Exception {
+		return Mono.just(ResponseEntity.ok("TEST RESPONSE"));
+	}
+	
+	@GetMapping("/apim-gw")
+	public Mono<ResponseEntity<String>> getHealthCheckAPIM() throws Exception {
+		return Mono.just(ResponseEntity.ok("TEST RESPONSE"));
+	}
+	
+	@GetMapping("/kafka-gw")
+	public Mono<ResponseEntity<String>> getHealthCheckKafka() throws Exception {
+		return Mono.just(ResponseEntity.ok("TEST RESPONSE"));
 	}
 
 }

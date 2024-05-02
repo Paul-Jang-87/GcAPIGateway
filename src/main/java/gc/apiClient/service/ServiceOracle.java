@@ -194,58 +194,62 @@ public class ServiceOracle implements InterfaceDBOracle {
 	@Override
 	public <T> List<T> getAll(Class<T> clazz) {
 
-		EntityManager entityManagerToUse = null;
-		
-		try {
+	    EntityManager entityManagerToUse = null;
 
-			if (Entity_DataCall.class.equals(clazz)) {
-				entityManagerToUse = entityManagerOracleH;
-			} else if (clazz.isAssignableFrom(Entity_MDataCall.class)) {
-				entityManagerToUse = entityManagerOracleM;
-			} else if (clazz.isAssignableFrom(Entity_DataCallCustomer.class)) {
-				entityManagerToUse = entityManagerOracleH;
-			} else if (clazz.isAssignableFrom(Entity_MDataCallCustomer.class)) {
-				entityManagerToUse = entityManagerOracleM;
-			} else if (clazz.isAssignableFrom(Entity_DataCallService.class)) {
-				entityManagerToUse = entityManagerOracleH;
-			} else if (clazz.isAssignableFrom(Entity_MDataCallService.class)) {
-				entityManagerToUse = entityManagerOracleM;
-			} else if (clazz.isAssignableFrom(Entity_MasterServiceCode.class)) {
-				entityManagerToUse = entityManagerOracleH;
-			} else if (clazz.isAssignableFrom(Entity_MMasterServiceCode.class)) {
-				entityManagerToUse = entityManagerOracleM;
-			} else if (clazz.isAssignableFrom(Entity_WaDataCall.class)) {
-				entityManagerToUse = entityManagerOracleH;
-			} else if (clazz.isAssignableFrom(Entity_MWaDataCall.class)) {
-				entityManagerToUse = entityManagerOracleM;
-			} else if (clazz.isAssignableFrom(Entity_WaDataCallOptional.class)) {
-				entityManagerToUse = entityManagerOracleH;
-			} else if (clazz.isAssignableFrom(Entity_MWaDataCallOptional.class)) {
-				entityManagerToUse = entityManagerOracleM;
-			} else if (clazz.isAssignableFrom(Entity_WaDataCallTrace.class)) {
-				entityManagerToUse = entityManagerOracleH;
-			} else if (clazz.isAssignableFrom(Entity_MWaDataCallTrace.class)) {
-				entityManagerToUse = entityManagerOracleM;
-			} else if (clazz.isAssignableFrom(Entity_WaMTracecode.class)) {
-				entityManagerToUse = entityManagerOracleH;
-			} else if (clazz.isAssignableFrom(Entity_MWaMTracecode.class)) {
-				entityManagerToUse = entityManagerOracleM;
-			}
+	    try {
 
-			CriteriaBuilder cb = entityManagerToUse.getCriteriaBuilder();
-			jakarta.persistence.criteria.CriteriaQuery<T> cq = cb.createQuery(clazz);
-			Root<T> root = cq.from(clazz);
-			cq.select(root);
-			
-			return entityManagerToUse.createQuery(cq).getResultList();
+	        if (Entity_DataCall.class.equals(clazz)) {
+	            entityManagerToUse = entityManagerOracleH;
+	        } else if (clazz.isAssignableFrom(Entity_MDataCall.class)) {
+	            entityManagerToUse = entityManagerOracleM;
+	        } else if (clazz.isAssignableFrom(Entity_DataCallCustomer.class)) {
+	            entityManagerToUse = entityManagerOracleH;
+	        } else if (clazz.isAssignableFrom(Entity_MDataCallCustomer.class)) {
+	            entityManagerToUse = entityManagerOracleM;
+	        } else if (clazz.isAssignableFrom(Entity_DataCallService.class)) {
+	            entityManagerToUse = entityManagerOracleH;
+	        } else if (clazz.isAssignableFrom(Entity_MDataCallService.class)) {
+	            entityManagerToUse = entityManagerOracleM;
+	        } else if (clazz.isAssignableFrom(Entity_MasterServiceCode.class)) {
+	            entityManagerToUse = entityManagerOracleH;
+	        } else if (clazz.isAssignableFrom(Entity_MMasterServiceCode.class)) {
+	            entityManagerToUse = entityManagerOracleM;
+	        } else if (clazz.isAssignableFrom(Entity_WaDataCall.class)) {
+	            entityManagerToUse = entityManagerOracleH;
+	        } else if (clazz.isAssignableFrom(Entity_MWaDataCall.class)) {
+	            entityManagerToUse = entityManagerOracleM;
+	        } else if (clazz.isAssignableFrom(Entity_WaDataCallOptional.class)) {
+	            entityManagerToUse = entityManagerOracleH;
+	        } else if (clazz.isAssignableFrom(Entity_MWaDataCallOptional.class)) {
+	            entityManagerToUse = entityManagerOracleM;
+	        } else if (clazz.isAssignableFrom(Entity_WaDataCallTrace.class)) {
+	            entityManagerToUse = entityManagerOracleH;
+	        } else if (clazz.isAssignableFrom(Entity_MWaDataCallTrace.class)) {
+	            entityManagerToUse = entityManagerOracleM;
+	        } else if (clazz.isAssignableFrom(Entity_WaMTracecode.class)) {
+	            entityManagerToUse = entityManagerOracleH;
+	        } else if (clazz.isAssignableFrom(Entity_MWaMTracecode.class)) {
+	            entityManagerToUse = entityManagerOracleM;
+	        }
 
-		} catch (Exception e) {
-			log.error(e.getMessage());
-			e.printStackTrace();
-		}
+	        CriteriaBuilder cb = entityManagerToUse.getCriteriaBuilder();
+	        jakarta.persistence.criteria.CriteriaQuery<T> cq = cb.createQuery(clazz);
+	        Root<T> root = cq.from(clazz);
+	        cq.select(root);
+	        
+	        int maxResults = 1000;
+	        return entityManagerToUse.createQuery(cq)
+	                .setMaxResults(maxResults) // Limit results to 1000
+	                .getResultList();
 
-		return null;
+	    } catch (Exception e) {
+	        log.error(e.getMessage());
+	        e.printStackTrace();
+	    }
+
+	    return null;
 	}
+
 
 
 	@Override

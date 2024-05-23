@@ -38,24 +38,29 @@
 
 	<!-- Appender for Catalina log -->
 	<appender name="CATALINA"
-		class="ch.qos.logback.core.FileAppender">
+			class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${SERVER_LOG_PATH}/${CATALINA_LOG_FILE_NAME}.log</file>
-		<encoder>
-			<pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} -
-				%msg%n</pattern>
+		
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>info</level>
+		</filter>
+		<encoder
+			class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>${LOG_PATTERN}</pattern>
+
 		</encoder>
 		<rollingPolicy
 			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<!-- Daily rollover -->
-			<fileNamePattern>${SERVER_LOG_PATH}/${CATALINA_LOG_FILE_NAME}.%d{yyyy-MM-dd}_%i.log.zip
+			<fileNamePattern>${SERVER_LOG_PATH}/${CATALINA_LOG_FILE_NAME}.%d{yyyy-MM-dd}_%i.log.tar.gz
 			</fileNamePattern>
 			<timeBasedFileNamingAndTriggeringPolicy
 				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
 				<!-- 파일당 최고 용량 kb, mb, gb -->
-				<maxFileSize>20MB</maxFileSize>
+				<maxFileSize>10MB</maxFileSize>
 			</timeBasedFileNamingAndTriggeringPolicy>
 			<!-- Keep logs for 90 days -->
-			<maxHistory>90</maxHistory>
+			<maxHistory>89</maxHistory>
 		</rollingPolicy>
 	</appender>
 
@@ -64,7 +69,9 @@
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<!-- 파일경로 설정 -->
 		<file>${LOG_PATH}/${LOG_FILE_NAME}.log</file>
-		<!-- 출력패턴 설정 -->
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>info</level>
+		</filter>
 		<encoder
 			class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<pattern>${LOG_PATTERN}</pattern>
@@ -74,7 +81,7 @@
 		<rollingPolicy
 			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<!-- .gz,.zip 등을 넣으면 자동 일자별 로그파일 압축 -->
-			<fileNamePattern>${STORAGE_PATH}/${LOG_FILE_NAME}.%d{yyyy-MM-dd}_%i.log.zip
+			<fileNamePattern>${STORAGE_PATH}/${LOG_FILE_NAME}.%d{yyyy-MM-dd}_%i.log.tar.gz
 			</fileNamePattern>
 			<timeBasedFileNamingAndTriggeringPolicy
 				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
@@ -104,7 +111,7 @@
 		<rollingPolicy
 			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<!-- .gz,.zip 등을 넣으면 자동 일자별 로그파일 압축 -->
-			<fileNamePattern>${STORAGE_PATH}/${ERR_LOG_FILE_NAME}.%d{yyyy-MM-dd}_%i.log.zip
+			<fileNamePattern>${STORAGE_PATH}/${ERR_LOG_FILE_NAME}.%d{yyyy-MM-dd}_%i.log.tar.gz
 			</fileNamePattern>
 			<timeBasedFileNamingAndTriggeringPolicy
 				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
@@ -137,10 +144,6 @@
         <appender-ref ref="CATALINA"/>
     </logger>
 
-    <!-- Root logger -->
-    <root level="INFO">
-        <appender-ref ref="CATALINA"/>
-    </root>
 
 	<logger name="org.hibernate" level="ERROR"/>
 	<!-- log4jdbc 옵션 설정 -->

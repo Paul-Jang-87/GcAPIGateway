@@ -147,39 +147,16 @@ public class WebClientApp {
 		}
 
 		ApiRequestHandler apiRequestHandler = new ApiRequestHandler();
-		UriComponents api1 = apiRequestHandler.buildApiRequest(API_END_POINT, param);
+		UriComponents api = apiRequestHandler.buildApiRequest(API_END_POINT, param);
 
-		return requestSpec.uri(api1.toUriString()).retrieve()
-				.onStatus(status -> status.is4xxClientError() || status.is5xxServerError(),
+		return requestSpec.uri(api.toUriString()).retrieve()  //세팅된 api 호출. 
+				.onStatus(status -> status.is4xxClientError() || status.is5xxServerError(), //api호출 후 응답값으로 4나 5로 시작하는 에러 코드를 받았을 때. 즉, 호출했는데 비정상응답일 때.  
 						response -> response.bodyToMono(String.class).flatMap(errorBody -> {
-							return Mono.error(new RuntimeException("Error: " + errorBody));
+							return Mono.error(new RuntimeException("Error: " + errorBody));//exception 발생함으로써 에러 코드와 에러 메시지를 출력. 
 						}))
-				.bodyToMono(String.class).block();
+				.bodyToMono(String.class).block();//정상 응답일때 결과 값 리턴. 
 	}
 
-	public String CampMaApiReq(String endpoint, String httpmethod) {
-		RequestHeadersUriSpec<?> requestSpec = null;
-
-		String API_END_POINT = WebClientConfig.getApiEndpoint(endpoint);
-
-		if (httpmethod.equals("GET")) {
-			requestSpec = webClient.get();
-		} else if (httpmethod.equals("POST")) {
-			requestSpec = webClient.post();
-		} else {
-			requestSpec = webClient.delete();
-		}
-
-		ApiRequestHandler apiRequestHandler = new ApiRequestHandler();
-		UriComponents api1 = apiRequestHandler.CampMaApiReqBuilder(API_END_POINT);
-
-		return requestSpec.uri(api1.toUriString()).retrieve()
-				.onStatus(status -> status.is4xxClientError() || status.is5xxServerError(),
-						response -> response.bodyToMono(String.class).flatMap(errorBody -> {
-							return Mono.error(new RuntimeException("Error: " + errorBody));
-						}))
-				.bodyToMono(String.class).block();
-	}
 
 	public String makeApiRequest34(String endpoint, String contactListId, String msg) {
 		String API_END_POINT = WebClientConfig.getApiEndpoint(endpoint);

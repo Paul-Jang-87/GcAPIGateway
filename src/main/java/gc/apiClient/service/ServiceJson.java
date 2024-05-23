@@ -48,7 +48,7 @@ public class ServiceJson implements InterfaceJson {
 	}
 
 	@Override
-	public String ExtractValCrm12(String stringMsg, int i) {// IF-CRM_001,IF-CRM_002에서 사용하기 위한 추출함수.
+	public String ExtractValCrm12(String stringMsg, int i) {//stringMsg에서 원하는 값만 추출. 
 
 		String jsonResponse = stringMsg;
 
@@ -89,7 +89,7 @@ public class ServiceJson implements InterfaceJson {
 
 		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
-			result = Integer.parseInt(jsonNode.path("total").asText());
+			result = Integer.parseInt(jsonNode.path("total").asText()); //매개 변수로 받은 'stringMsg'에 "total"이라는 키가 있음. 그 키 값의 의미는 조회된 캠페인의 숫자.
 
 		} catch (JsonMappingException e) {
 			e.printStackTrace();
@@ -118,9 +118,9 @@ public class ServiceJson implements InterfaceJson {
 
 		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
-			result = jsonNode.path("campaign_id").asText();
+			result = jsonNode.path("cpid").asText();
 			String coid = jsonNode.path("callerName").asText();
-			String cpnm = jsonNode.path("campaign_name").asText();
+			String cpnm = jsonNode.path("cpnm").asText();
 			result = result + "::" + coid;
 			result = result + "::" + cpnm;
 			result = result + "::" + jsonNode.path("division").asText();
@@ -246,7 +246,7 @@ public class ServiceJson implements InterfaceJson {
 		try {
 
 			jsonNode = objectMapper.readTree(jsonResponse);
-			result = jsonNode.path("campaign_id").asText();
+			result = jsonNode.path("cpid").asText();
 			result += "::" + jsonNode.path("contactList_id").asText();
 			result += "::" + jsonNode.path("division").asText();
 

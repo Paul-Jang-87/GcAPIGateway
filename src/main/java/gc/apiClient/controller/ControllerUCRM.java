@@ -90,7 +90,7 @@ public class ControllerUCRM extends ServiceJson {
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("Error Message : {}", e.getMessage());
-			return Mono.just(ResponseEntity.ok().body(String.format("You've got an error : {}", e.getMessage())));
+			return Mono.just(ResponseEntity.ok().body(String.format("You've got an error : %s", e.getMessage())));
 		}
 
 		log.info("====== End SaveUcrmData ======");
@@ -109,10 +109,9 @@ public class ControllerUCRM extends ServiceJson {
 			if (entitylist.isEmpty()) {
 				log.info("All records from DB : Nothing");
 			} else {
-				log.info("All records from DB : {}", entitylist.toString());
 				int reps = entitylist.getNumberOfElements();
-				log.info("number of records : {}", reps);
-				log.info("{}만큼 반복,", reps);
+				log.info("number of records from 'UCRMLT' table : {}", reps);
+				log.info("{}만큼 반복", reps);
 
 				Map<String, String> mapcontactltId = new HashMap<String, String>();
 				Map<String, String> mapquetId = new HashMap<String, String>();
@@ -217,8 +216,8 @@ public class ControllerUCRM extends ServiceJson {
 			} else {
 				log.info("All records from DB : {}", entitylist.toString());
 				int reps = entitylist.getNumberOfElements();
-				log.info("number of records : {}", reps);
-				log.info("{}만큼 반복,", reps);
+				log.info("number of records from 'CAMPRT_UCRM_W' table: {}", reps);
+				log.info("{}만큼 반복", reps);
 
 				Map<String, String> mapcontactltId = new HashMap<String, String>();
 				Map<String, String> mapdivision = new HashMap<String, String>();
@@ -368,21 +367,28 @@ public class ControllerUCRM extends ServiceJson {
 
 		default:
 
-			for (int i = 0; i < values.size(); i++) {
-
-				int dirt = entityCmRt.getDirt();// 응답코드
-				String tokendata = entityCmRt.getTkda();// 토큰데이터
-
-				Entity_ToApim enToApim = new Entity_ToApim();
-				enToApim.setDirt(dirt);
-				enToApim.setTkda(tokendata);
-
-				apimEntitylt.add(enToApim);
-			}
-
-			objectMapper = new ObjectMapper();
-
 			try {
+
+				for (int i = 0; i < values.size(); i++) {
+
+					String contactsresult1 = ExtractContacts56(result, i);
+
+					Entity_CampRt entityCmRt2 = serviceDb.createCampRtMsg(contactsresult1);
+
+					int dirt = entityCmRt2.getDirt();// 응답코드
+					int dict = entityCmRt2.getDict();// 발신시도 횟수
+					String tokendata = entityCmRt2.getTkda();// 토큰데이터
+
+					Entity_ToApim enToApim = new Entity_ToApim();
+					enToApim.setDirt(dirt);
+					enToApim.setDict(dict);
+					enToApim.setTkda(tokendata);
+
+					apimEntitylt.add(enToApim);
+				}
+
+				objectMapper = new ObjectMapper();
+
 				String jsonString = objectMapper.writeValueAsString(apimEntitylt);
 
 				// localhost:8084/dspRslt
@@ -391,11 +397,13 @@ public class ControllerUCRM extends ServiceJson {
 				String endpoint = "/dspRslt";
 				apim.sendMsgToApim(endpoint, jsonString);
 				log.info("CAMPRT 로직, APIM으로 보냄. : {} ", jsonString);
+				apimEntitylt.clear();
+				values.clear();
 
 			} catch (Exception e) {
 				e.printStackTrace();
+				log.error("Error Message : {}", e.getMessage());
 			}
-			values.clear();
 			return Mono.empty();
 		}
 

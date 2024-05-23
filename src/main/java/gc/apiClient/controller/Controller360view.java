@@ -50,7 +50,7 @@ public class Controller360view extends ServiceJson {
 	}
 
 
-	@Scheduled(fixedRate = 60000)
+	@Scheduled(fixedRate = 60000) //1분 간격으로 아래 함수들을 자동 실행. 
 	public void scheduledMethod() {
 
 
@@ -126,8 +126,8 @@ public class Controller360view extends ServiceJson {
 
 		try {
 
-			String topic_id = "from_clcc_hmcepcalldt_message";
-			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
+			String topic_id = "from_clcc_hmcepcalldt_message"; //토픽아이디
+			int numberOfRecords = serviceOracle.getRecordCount(topic_id); // 해당 테이블에서 레코드 개수를 가지고 온다. 
 			log.info("(DataCall) the number of records : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
@@ -135,16 +135,16 @@ public class Controller360view extends ServiceJson {
 			} else {// 1. 쉐도우 테이블에 레코드가 1개 이상 있다면 있는 레코드들을 다 긁어 온다.
 				// 2. crud 구분해서 메시지 키를 정한다.
 				// 3. 프로듀서로 메시지 재가공해서 보낸다.
-				List<Entity_DataCall> entitylist = serviceOracle.getAll(Entity_DataCall.class);
+				List<Entity_DataCall> entitylist = serviceOracle.getAll(Entity_DataCall.class); //해당 테이블에서 최대 1000개의 레코드만 리스트로 가지고 온다. 
 
-				for (int i = 0; i < entitylist.size(); i++) {
+				for (int i = 0; i < entitylist.size(); i++) {//리스트에 담긴 레코드릐 개수 만큼 루프를 돌면서 로직 식행. 
 
-					String crudtype = entitylist.get(i).getCmd();
-					int orderid = entitylist.get(i).getOrderid();
+					String crudtype = entitylist.get(i).getCmd(); // 리스트의 0번째 레코드 부터, crudtype이 무엇인지 , 예) insert, updqte 등등.
+					int orderid = entitylist.get(i).getOrderid(); // 레코드 고유의 id. 레코드를 메시지 형태로 보내고 난 후 해당 레코드를 지우기 위한 키로 사용. 
 
 					MessageTo360View.SendMsgTo360View(topic_id,
-							serviceMsgObjOrcl.DataCallMsg(entitylist.get(i), crudtype));
-					serviceOracle.deleteAll(Entity_DataCall.class, orderid);
+							serviceMsgObjOrcl.DataCallMsg(entitylist.get(i), crudtype));//DataCallMsg함수의 매개변수로 레코드(Entity 형식의 객체 => 어떻게 속성이 구성되어 있는지는 'Entity_DataCall.class'참조)와, crudtype을 넘기고 String 값을 리턴 받는다. 
+					serviceOracle.deleteAll(Entity_DataCall.class, orderid); //orderid를 사용하여 레코드를 메시지 형태로 보내고 해당 레코드를 쉐도우 테이블에서 삭제. 
 				}
 			}
 
@@ -155,6 +155,8 @@ public class Controller360view extends ServiceJson {
 		}
 		return Mono.just(ResponseEntity.ok("'Msg360Datacall' got message successfully."));
 	}
+	
+	//이하 동문... 
 
 	@GetMapping("/360view2")
 	public Mono<ResponseEntity<String>> Msg360MDatacall() {

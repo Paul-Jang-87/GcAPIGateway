@@ -101,7 +101,7 @@ public class BusinessLogic {
 			businesslogic.put("business", business);
 			businesslogic.put("topic_id", topic_id);
 			
-		} else if( (tkda=='A')&&(divisionName.equals("CallbotHome")) ){
+		} else if( (tkda=='A')&&(divisionName.equals("CallbotHome")) ){ 
 			
 			business = "CALLBOT";
 			topic_id = "from_clcc_hmaiccmpnrs_message";

@@ -8,20 +8,18 @@ import jakarta.annotation.PostConstruct;
 
 
 @Component
-@PropertySource("classpath:application.properties")
+@PropertySource("classpath:application.properties") // 참조 경로, 참조하는 파일 프로젝트 내 'application.properties'파일
 public class WebClientConfig {// api들의 정보들 수록.
 
-	private static final String API_BASE_URL = "https://api.apne2.pure.cloud";
-//	private static String CLIENT_ID = "8ed02ed8-2e38-41ee-b70d-ab09e43b3ff1";
-//	private static String CLIENT_SECRET = "HRwIs7Tn4DHJH_ODIGusDPOEM9Z7cYsFyxG_jb4f5iY";
+	private static final String API_BASE_URL = "https://api.apne2.pure.cloud"; //제네시스 기본 api 주소.
 	
 	private static String CLIENT_ID = "";
 	private static String CLIENT_SECRET = "";
 	
-	@Value("${gc.client.id}")
-	private  String id;
-	@Value("${gc.client.secret}")
-	private  String pw;
+	@Value("${gc.client.id}")//'application.properties' 파일 안의 'gc.client.id'값 가져옴.
+	private  String id;//제네시스 api를 호출 하기 위해서 필요한 인증 아이디. 
+	@Value("${gc.client.secret}")//'application.properties' 파일 안의 'gc.client.secret'값 가져옴.
+	private  String pw;//제네시스 api를 호출 하기 위해서 필요한 인증 패스워드.
 	
 	@PostConstruct
     private void init() {
@@ -34,7 +32,7 @@ public class WebClientConfig {// api들의 정보들 수록.
 		return API_BASE_URL;
 	}
 
-	public static String getApiEndpoint(String apiName) {
+	public static String getApiEndpoint(String apiName) {//프로젝트 안에서 사용하는 모든 api들을 여기에 모아두었음. 
 
 		String API_END_POINT = "";
 

@@ -86,7 +86,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		log.info(" ");
 		log.info("====== Class : ServicePostgre & Method : createCampRtMsg ======");
 
-		log.info("(cpid붙여서)들어온 rs : {}", cpid);
+		log.info("들어온 rs : {}", cpid);
 		Entity_CampRt enCampRt = new Entity_CampRt();
 		CampRt id = new CampRt();
 		String parts[] = cpid.split("::");

@@ -15,7 +15,7 @@ public class ApiRequestHandler {// 모든 api를 핸들링하는 클래스
 
 		String BASE_URL = WebClientConfig.getBaseUrl();
 
-		UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromUriString(BASE_URL).path(path);
+		UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromUriString(BASE_URL).path(path);//여기서 path는 endpoint.예)'"/api/v2/outbound/contactlists/{contactListId}/contacts"'  'WebClientConfig'클래스 참조. 
 
 		// path parameter가 몇 개 필요한지 파악
 		int cnt = 0;
@@ -25,6 +25,7 @@ public class ApiRequestHandler {// 모든 api를 핸들링하는 클래스
 				cnt++;
 			}
 		}
+		
 		Object[] pathVars; // path parameter를 복사하여 저장하는 변수
 		Object[] queryParams; // query parameter를 복사하여 저장하는 변수
 		if (pathVariables.length > 0) {
@@ -40,7 +41,7 @@ public class ApiRequestHandler {// 모든 api를 핸들링하는 클래스
 			
 			if (queryParams.length > 0) {
 				for (int i = 0; i < queryParams.length; i += 2) {
-					uriComponentsBuilder.queryParam(String.valueOf(queryParams[i]), queryParams[i + 1]);// 그 다음 query
+					uriComponentsBuilder.queryParam(String.valueOf(queryParams[i]), queryParams[i + 1]);// 그 다음 query. '키,값' 짝지어서. 
 				}
 			}
 
@@ -53,21 +54,7 @@ public class ApiRequestHandler {// 모든 api를 핸들링하는 클래스
 		return uriComponentsBuilder.build();
 	}
 
-	public UriComponents CampMaApiReqBuilder(String path) {
-
-		String BASE_URL = WebClientConfig.getBaseUrl();
-		UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromUriString(BASE_URL).path(path);
-
-		UriComponents uriComponents = uriComponentsBuilder.buildAndExpand();
-		uriComponentsBuilder = UriComponentsBuilder.fromUri(uriComponents.toUri());
-
-		uriComponentsBuilder.queryParam("sortBy","dateCreated");
-		uriComponentsBuilder.queryParam("sortOrder","descending");
-
-		uriComponentsBuilder = UriComponentsBuilder.fromUri(uriComponents.toUri());
-
-		return uriComponentsBuilder.build();
-	}
+	
 
 	public UriComponents buildApiRequest1(String path, Object... pathVariables) {// uri를 api에 맞게 커스터 마이징.
 		String BASE_URL = WebClientConfig.getBaseUrl();

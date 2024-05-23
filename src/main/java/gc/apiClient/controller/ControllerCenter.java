@@ -52,23 +52,23 @@ public class ControllerCenter extends ServiceJson {
 	private final CustomProperties customProperties;
 	private static List<Entity_ToApim> apimEntitylt = new ArrayList<Entity_ToApim>();
 
-	public ControllerCenter(InterfaceDBPostgreSQL serviceDb,
-			InterfaceWebClient serviceWeb, CustomProperties customProperties) {
+	public ControllerCenter(InterfaceDBPostgreSQL serviceDb, InterfaceWebClient serviceWeb,
+			CustomProperties customProperties) {
 		this.serviceDb = serviceDb;
 		this.serviceWeb = serviceWeb;
 		this.customProperties = customProperties;
 	}
 
-	@Scheduled(fixedRate = 86400 * 1000)
+	@Scheduled(fixedRate = 86400 * 1000) // 24시간 마다 토큰 초기화.
 	public void RefreshToken() {
+
 		WebClientApp.EmptyTockenlt();
-		
+
 	}
 
-
 	@Scheduled(fixedRate = 60000)
-	public void scheduledMethod() {
-		
+	public void scheduledMethod() {// 1분 간격으로 안의 함수들 비동기적으로 실행
+
 		Mono.fromCallable(() -> ReceiveMessage("campma")).subscribeOn(Schedulers.boundedElastic()).subscribe();
 		Mono.fromCallable(() -> SendApimRt()).subscribeOn(Schedulers.boundedElastic()).subscribe();
 
@@ -90,28 +90,30 @@ public class ControllerCenter extends ServiceJson {
 		int size = 0;
 		int numberOfRecords = 0;
 
-		log.info("topic_id : {}", topic_id);
-
 		switch (topic_id) {
 
 		case "campma":
 
 			try {
 
-				result = serviceWeb.GetApiRequet("campaignId");
+				result = serviceWeb.GetApiRequet("campaignId");// 제네시스 api 호출. 'campaignId'는 'WebClientApp'클래스에 미리 정의 해둔
+																// endpoint.
 				size = CampaignListSize(result); // G.C에서 불러온 캠페인 갯수.
 				numberOfRecords = serviceDb.getRecordCount(); // 현재 레코드 갯수.
 
-				if (size == numberOfRecords) {// campma 테이블에 이미 있는 캠페인이라면 pass.
+				if (size == numberOfRecords) {// 조회된 캠페인의 개수와 현재 db에 저장된 캠페인 정보의 숫자가 동일하다. 즉, 새로 생성된 캠페인이 없다.
 
-				} else {
+				} else {// 조회된 캠페인의 개수와 현재 db에 저장된 캠페인 정보의 숫자가 다르다. 즉, api 호출로 캠페인들을 조회 해본 결과 새로 생성된
+						// 캠페인이 있다.
 
-					int reps = size - numberOfRecords;
+					int reps = size - numberOfRecords;// 몇 개의 캠페인이 새로 생성됐는지.
 					log.info("{}번 반복", reps);
-					while (reps-- > 0) {
+
+					while (reps-- > 0) {// reps가 0이 될 때까지 reps를 줄여나가면서 반복.
+
 						log.info("{}번째 인덱스 ", reps);
-						row_result = ExtractValCrm12(result, reps); // cpid::coid::cpna::division ->
-						// 캠페인아이디::테넌트아이디::캠페인명::디비전
+						row_result = ExtractValCrm12(result, reps); // 결과 값 : cpid::coid::cpna::division ->
+																	// 캠페인아이디::테넌트아이디::캠페인명::디비전
 
 						division = row_result.split("::")[3];
 
@@ -213,7 +215,8 @@ public class ControllerCenter extends ServiceJson {
 	}
 
 	@PostMapping("/updateOrDelCampma")
-	public  Mono<ResponseEntity<String>> UpdateOrDelCampMa(@RequestBody String msg, HttpServletRequest request) throws Exception {
+	public Mono<ResponseEntity<String>> UpdateOrDelCampMa(@RequestBody String msg, HttpServletRequest request)
+			throws Exception {
 
 		String row_result = "";
 		Entity_CampMa enCampMa = null;
@@ -251,7 +254,13 @@ public class ControllerCenter extends ServiceJson {
 
 					objectMapper = new ObjectMapper();
 					Entity_CampMaJsonUcrm enCampMaJson1 = serviceDb.JsonCampMaUcrm(enCampMa, action);
+
+					log.info("Cpid of target record for updating : {}", cpid);
+					log.info("New value of Campaign name : {}", cpna);
+
 					try {
+
+						serviceDb.UpdateCampMa(cpid, cpna);
 
 						String jsonString = objectMapper.writeValueAsString(enCampMaJson1);
 						log.info("jsonString : {}", jsonString);
@@ -259,40 +268,40 @@ public class ControllerCenter extends ServiceJson {
 						endpoint = "/gcapi/post/" + topic_id;
 						producer.sendMsgToProducer(endpoint, jsonString);
 
-					} catch (JsonProcessingException e) {
-						e.printStackTrace();
+					} catch (EntityNotFoundException ex) {
+
+						log.error("EntityNotFoundException occurred: {} ", ex.getMessage());
+						enCampMa = serviceDb.CreateEnCampMa(row_result);
+						serviceDb.InsertCampMa(enCampMa);
+
+						enCampMaJson1 = serviceDb.JsonCampMaUcrm(enCampMa, "insert");
+
+						String jsonString = objectMapper.writeValueAsString(enCampMaJson1);
+						log.info("jsonString : {}", jsonString);
+						MessageToProducer producer = new MessageToProducer();
+						endpoint = "/gcapi/post/" + topic_id;
+						producer.sendMsgToProducer(endpoint, jsonString);
+
+						return Mono.just(ResponseEntity.ok(
+								"There is no record which matched with request cpid. so it just has been inserted."));
 					}
 
-					log.info("Cpid of target record for updating : {}", cpid);
-					log.info("New value of Campaign name : {}", cpna);
+					return Mono.just(ResponseEntity.ok()
+							.body(String.format("UCRM, A record with cpid : %s has been updated successfully", cpid)));
 
-					serviceDb.UpdateCampMa(cpid, cpna);
-					return Mono.just(ResponseEntity.ok().body(String.format("UCRM, A record with cpid : '%s' has been updated successfully", cpid)));
-					
 				} else {
 					log.info("Cpid of target record for deleting : {}", cpid);
 					serviceDb.DelCampMaById(cpid);
-					return Mono.just(ResponseEntity.ok().body(String.format("UCRM, A record with cpid : '%s' has been deleted successfully", cpid)));
+					return Mono.just(ResponseEntity.ok()
+							.body(String.format("UCRM, A record with cpid : %s has been deleted successfully", cpid)));
 				}
-				
+
 			case "Callbot":
 
 				objectMapper = new ObjectMapper();
 
 				Entity_CampMaJson enCampMaJson = serviceDb.JsonCampMaCallbot(enCampMa, action);
 
-				try {
-
-					String jsonString = objectMapper.writeValueAsString(enCampMaJson);
-					log.info("jsonString : {}", jsonString);
-					MessageToProducer producer = new MessageToProducer();
-					endpoint = "/gcapi/post/" + topic_id;
-					producer.sendMsgToProducer(endpoint, jsonString);
-
-				} catch (JsonProcessingException e) {
-					e.printStackTrace();
-				}
-
 				// 테이블에 Update, Delete logic 추가.
 				log.info(action);
 				if (action.equals("update")) {
@@ -300,54 +309,97 @@ public class ControllerCenter extends ServiceJson {
 					log.info("Cpid of target record for updating : {}", cpid);
 					log.info("New value of Campaign name : {}", cpna);
 
-					serviceDb.UpdateCampMa(cpid, cpna);
-					return Mono.just(ResponseEntity.ok().body(String.format("Callbot, A record with cpid : '%s' has been updated successfully", cpid)));
+					try {
+
+						serviceDb.UpdateCampMa(cpid, cpna);
+
+						String jsonString = objectMapper.writeValueAsString(enCampMaJson);
+						log.info("jsonString : {}", jsonString);
+						MessageToProducer producer = new MessageToProducer();
+						endpoint = "/gcapi/post/" + topic_id;
+						producer.sendMsgToProducer(endpoint, jsonString);
+
+					} catch (EntityNotFoundException ex) {
+
+						log.error("EntityNotFoundException occurred: {} ", ex.getMessage());
+						enCampMa = serviceDb.CreateEnCampMa(row_result);
+						serviceDb.InsertCampMa(enCampMa);
+
+						enCampMaJson = serviceDb.JsonCampMaCallbot(enCampMa, "insert");
+
+						String jsonString = objectMapper.writeValueAsString(enCampMaJson);
+						log.info("jsonString : {}", jsonString);
+						MessageToProducer producer = new MessageToProducer();
+						endpoint = "/gcapi/post/" + topic_id;
+						producer.sendMsgToProducer(endpoint, jsonString);
+
+						return Mono.just(ResponseEntity.ok(
+								"There is no record which matched with request cpid. so it just has been inserted."));
+					}
+
+					return Mono.just(ResponseEntity.ok().body(
+							String.format("Callbot, A record with cpid : %s has been updated successfully", cpid)));
 
 				} else {
 					log.info("Cpid of target record for deleting : {}", cpid);
 					serviceDb.DelCampMaById(cpid);
-					return Mono.just(ResponseEntity.ok().body(String.format("Callbot, A record with cpid : '%s' has been deleted successfully", cpid)));
+					return Mono.just(ResponseEntity.ok().body(
+							String.format("Callbot, A record with cpid : %s has been deleted successfully", cpid)));
 				}
 
 			default:
 
 				String jsonString = serviceDb.createMaMsgApim(enCampMa, action).toString();
-				log.info("jsonString : {}", jsonString);
-				// localhost:8084/dspRslt
-				// 192.168.219.134:8084/dspRslt
 				MessageToApim apim = new MessageToApim();
-				endpoint = "/cmpnMstrRegist";
-				apim.sendMsgToApim(endpoint, jsonString);
-				log.info("CAMPMA UPDATE로직,  APIM으로 보냄. : {}", jsonString);
+				log.info("jsonString : {}", jsonString);
 
-				// 테이블에 Update, Delete logic 추가.
-				log.info(action);
 				if (action.equals("update")) {
 
 					log.info("Cpid of target record for updating : {}", cpid);
 					log.info("New value of Campaign name : {}", cpna);
 
-					serviceDb.UpdateCampMa(cpid, cpna);
-					return Mono.just(ResponseEntity.ok().body(String.format("Apim, A record with cpid : '%s' has been updated successfully", cpid)));
+					try {
+
+						serviceDb.UpdateCampMa(cpid, cpna);
+						endpoint = "/cmpnMstrRegist";
+						apim.sendMsgToApim(endpoint, jsonString);
+						log.info("CAMPMA UPDATE로직,  APIM으로 보냄. : {}", jsonString);
+						
+					} catch (EntityNotFoundException ex) {
+
+						log.error("EntityNotFoundException occurred: {} ", ex.getMessage());
+						enCampMa = serviceDb.CreateEnCampMa(row_result);
+						serviceDb.InsertCampMa(enCampMa);
+
+						jsonString = serviceDb.createMaMsgApim(enCampMa, "insert").toString();
+						log.info("jsonString : {}", jsonString);
+						// localhost:8084/dspRslt
+						// 192.168.219.134:8084/dspRslt
+						apim = new MessageToApim();
+						endpoint = "/cmpnMstrRegist";
+						apim.sendMsgToApim(endpoint, jsonString);
+
+						return Mono.just(ResponseEntity.ok(
+								"There is no record which matched with request cpid. so it just has been inserted."));
+					}
+
+					return Mono.just(ResponseEntity.ok()
+							.body(String.format("Apim, A record with cpid : %s has been updated successfully", cpid)));
 				} else {
 					log.info("Cpid of target record for deleting : {}", cpid);
 					serviceDb.DelCampMaById(cpid);
 				}
-				return Mono.just(ResponseEntity.ok().body(String.format("Apim, A record with cpid : '%s' has been deleted successfully", cpid)));
+				return Mono.just(ResponseEntity.ok()
+						.body(String.format("Apim, A record with cpid : %s has been deleted successfully", cpid)));
 			}
-		} catch (EntityNotFoundException ex) {
-			log.error("EntityNotFoundException occurred: {} ", ex.getMessage());
-			enCampMa = serviceDb.CreateEnCampMa(row_result);
-			serviceDb.InsertCampMa(enCampMa);
-			return Mono.just(ResponseEntity.ok("There is no record which matched with request cpid. so it just has been inserted."));
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("Error Messge : {}", e.getMessage());
-			return Mono.just(ResponseEntity.ok().body(String.format("You've got an error : {}", e.getMessage())));
+			return Mono.just(ResponseEntity.ok().body(String.format("You've got an error : %s", e.getMessage())));
 		}
 	}
 
-
+	
 	@PostMapping("/SaveRtData")
 	public Mono<ResponseEntity<String>> SaveRtData(@RequestBody String msg) {
 
@@ -389,11 +441,10 @@ public class ControllerCenter extends ServiceJson {
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.info("====== End SaveRtData ======");
-			return Mono.just(ResponseEntity.ok().body(String.format("You've got an error : {}", e.getMessage())));
+			return Mono.just(ResponseEntity.ok().body(String.format("You've got an error : %s", e.getMessage())));
 		}
 
 	}
-
 
 	@GetMapping("/sendapimrt")
 	public Mono<ResponseEntity<String>> SendApimRt() {
@@ -409,8 +460,8 @@ public class ControllerCenter extends ServiceJson {
 			} else {
 				log.info("All records from DB : {}", entitylist.toString());
 				int reps = entitylist.getNumberOfElements();
-				log.info("number of records : {}", reps);
-				log.info("{}만큼 반복,", reps);
+				log.info("number of records from 'CAMPRT_UCUBE_W' table: {}", reps);
+				log.info("{}만큼 반복", reps);
 
 				Map<String, String> mapcontactltId = new HashMap<String, String>();
 				Map<String, String> mapdivision = new HashMap<String, String>();
@@ -450,7 +501,7 @@ public class ControllerCenter extends ServiceJson {
 					}
 					contactlists.get(contactLtId).add(cqsq);
 					serviceDb.DelApimRtById(enApimRt.getId());
-					
+
 					log.info("Add value into Arraylist named '{}'", contactLtId);
 
 					for (Map.Entry<String, List<String>> entry : contactlists.entrySet()) {
@@ -462,7 +513,7 @@ public class ControllerCenter extends ServiceJson {
 						}
 					}
 				}
-				
+
 				for (Map.Entry<String, List<String>> entry : contactlists.entrySet()) {
 
 					divisionName = mapdivision.get(entry.getKey());
@@ -479,10 +530,12 @@ public class ControllerCenter extends ServiceJson {
 		log.info("====== End SendApimRt ======");
 		return Mono.just(ResponseEntity.ok("Successfully processed the message."));
 	}
-	
 
 	public Mono<Void> Roop(String contactLtId, List<String> values, String divisionName) throws Exception {
 
+		log.info(" ");
+		log.info("====== Class : ControllerCenter - Method : Roop ======");
+		log.info("number of keys : {}", values.size());
 		ObjectMapper objectMapper = null;
 		String result = serviceWeb.PostContactLtApiBulk("contactList", contactLtId, values);
 
@@ -552,26 +605,34 @@ public class ControllerCenter extends ServiceJson {
 					log.error("DataAccessException 발생 : {}", ex.getMessage());
 				}
 			}
+
 			values.clear();
 			return Mono.empty();
 
 		default:
 
-			for (int i = 0; i < values.size(); i++) {
-
-				int dirt = entityCmRt.getDirt();// 응답코드
-				String tokendata = entityCmRt.getTkda();// 토큰데이터
-
-				Entity_ToApim enToApim = new Entity_ToApim();
-				enToApim.setDirt(dirt);
-				enToApim.setTkda(tokendata);
-
-				apimEntitylt.add(enToApim);
-			}
-
-			objectMapper = new ObjectMapper();
-
 			try {
+
+				for (int i = 0; i < values.size(); i++) {
+
+					String contactsresult1 = ExtractContacts56(result, i);
+
+					Entity_CampRt entityCmRt2 = serviceDb.createCampRtMsg(contactsresult1);
+
+					int dirt = entityCmRt2.getDirt();// 응답코드
+					int dict = entityCmRt2.getDict();// 발신시도 횟수
+					String tokendata = entityCmRt2.getTkda();// 토큰데이터
+
+					Entity_ToApim enToApim = new Entity_ToApim();
+					enToApim.setDirt(dirt);
+					enToApim.setDict(dict);
+					enToApim.setTkda(tokendata);
+
+					apimEntitylt.add(enToApim);
+				}
+
+				objectMapper = new ObjectMapper();
+
 				String jsonString = objectMapper.writeValueAsString(apimEntitylt);
 
 				// localhost:8084/dspRslt
@@ -580,27 +641,47 @@ public class ControllerCenter extends ServiceJson {
 				String endpoint = "/dspRslt";
 				apim.sendMsgToApim(endpoint, jsonString);
 				log.info("CAMPRT 로직, APIM으로 보냄. : {} ", jsonString);
+				apimEntitylt.clear();
+				values.clear();
 
 			} catch (Exception e) {
 				e.printStackTrace();
+				log.error("Error Message : {}", e.getMessage());
 			}
-			values.clear();
 			return Mono.empty();
 		}
 
 	}
-	
+
+	@GetMapping("/putput/{topic}")
+	public void k(@PathVariable("topic") int tranId) {
+
+		int till = tranId;
+		Entity_CampMa enCampMa = new Entity_CampMa();
+		try {
+
+			for (int i = 0; i < till; i++) {
+				enCampMa.setCpid(Integer.toString(i));
+				enCampMa.setCoid(i);
+				enCampMa.setCpna("ggplay");
+				serviceDb.InsertCampMa(enCampMa);
+			}
+
+		} catch (Exception e) {
+
+		}
+	}
 
 	@GetMapping("/gethc")
 	public Mono<ResponseEntity<String>> gealthCheck() throws Exception {
 		return Mono.just(ResponseEntity.ok("TEST RESPONSE"));
 	}
-	
+
 	@GetMapping("/apim-gw")
 	public Mono<ResponseEntity<String>> getHealthCheckAPIM() throws Exception {
 		return Mono.just(ResponseEntity.ok("TEST RESPONSE"));
 	}
-	
+
 	@GetMapping("/kafka-gw")
 	public Mono<ResponseEntity<String>> getHealthCheckKafka() throws Exception {
 		return Mono.just(ResponseEntity.ok("TEST RESPONSE"));

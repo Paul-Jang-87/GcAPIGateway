@@ -237,9 +237,9 @@ public class ServiceOracle implements InterfaceDBOracle {
 	        Root<T> root = cq.from(clazz);
 	        cq.select(root);
 	        
-	        int maxResults = 1000;
+	        int maxResults = 1000; //해당 테이블에서 최대 1000개의 레코드만 가지고 온다. 
 	        return entityManagerToUse.createQuery(cq)
-	                .setMaxResults(maxResults) // Limit results to 1000
+	                .setMaxResults(maxResults) 
 	                .getResultList();
 
 	    } catch (Exception e) {

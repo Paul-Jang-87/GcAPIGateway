@@ -1,0 +1,617 @@
+INFO  24-05-02 11:19:58[main] [AnnotationConfigContextLoaderUtils:83] - Could not detect default configuration classes for test class [gc.apiClient.GcClientApplicationTests]: GcClientApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+INFO  24-05-02 11:19:59[main] [SpringBootTestContextBootstrapper:234] - Found @SpringBootConfiguration gc.apiClient.GcClientApplication for test class gc.apiClient.GcClientApplicationTests
+WARN  24-05-02 11:20:00[main] [DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer:78] - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/org/json/json/20210307/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+INFO  24-05-02 11:20:01[main] [GcClientApplicationTests:50] - Starting GcClientApplicationTests using Java 21.0.1 with PID 9724 (started by 인포전스 in D:\GitWorkSpace\GcAPIGateway)
+INFO  24-05-02 11:20:01[main] [GcClientApplicationTests:660] - The following 3 profiles are active: "postgres", "oracleH", "oracleM"
+INFO  24-05-02 11:20:02[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-05-02 11:20:03[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 324 ms. Found 8 JPA repository interfaces.
+INFO  24-05-02 11:20:03[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-05-02 11:20:03[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 53 ms. Found 8 JPA repository interfaces.
+INFO  24-05-02 11:20:03[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-05-02 11:20:03[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 49 ms. Found 7 JPA repository interfaces.
+INFO  24-05-02 11:20:08[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-05-02 11:20:08[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-05-02 11:20:08[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
+WARN  24-05-02 11:20:08[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-05-02 11:20:10[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@1f1fbc9f
+INFO  24-05-02 11:20:10[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
+INFO  24-05-02 11:20:16[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-05-02 11:20:16[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-05-02 11:20:16[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-05-02 11:20:16[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
+WARN  24-05-02 11:20:16[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-05-02 11:20:16[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@10545d02
+INFO  24-05-02 11:20:16[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
+INFO  24-05-02 11:20:17[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-05-02 11:20:17[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-05-02 11:20:17[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-05-02 11:20:17[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-05-02 11:20:19[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@4e6881e
+INFO  24-05-02 11:20:19[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-05-02 11:20:20[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-05-02 11:20:22[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-05-02 11:20:26[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-05-02 11:20:27[main] [GcClientApplicationTests:56] - Started GcClientApplicationTests in 27.801 seconds (process running for 33.748)
+INFO  24-05-02 11:20:28[boundedElastic-2] [ControllerCenter:80] -  
+INFO  24-05-02 11:20:28[boundedElastic-2] [ControllerCenter:81] - ====== Class : ControllerCenter - Method : ReceiveMessage ======
+INFO  24-05-02 11:20:28[boundedElastic-2] [ControllerCenter:93] - topic_id : campma
+INFO  24-05-02 11:20:28[boundedElastic-2] [ServiceWebClient:18] -  
+INFO  24-05-02 11:20:28[boundedElastic-2] [ServiceWebClient:19] - ====== ClassName : ServiceWebClient & Method : GetApiRequet ======
+INFO  24-05-02 11:20:28[boundedElastic-2] [WebClientApp:34] - Client Id : 8ed02ed8-2e38-41ee-b70d-ab09e43b3ff1
+INFO  24-05-02 11:20:28[boundedElastic-2] [WebClientApp:36] - Client secret : HRwIs7Tn4DHJH_ODIGusDPOEM9Z7cYsFyxG_jb4f5iY
+INFO  24-05-02 11:20:28[boundedElastic-2] [WebClientApp:45] - 토큰 없음
+INFO  24-05-02 11:20:28[boundedElastic-2] [WebClientApp:46] - 현재 인덱스 : 0
+INFO  24-05-02 11:20:28[boundedElastic-3] [ControllerCallBot:167] -  
+INFO  24-05-02 11:20:28[boundedElastic-3] [ControllerCallBot:168] - ====== Class : ControllerCallBot - Method : SendCallBotRt ======
+INFO  24-05-02 11:20:28[boundedElastic-1] [ControllerUCRM:210] -  
+INFO  24-05-02 11:20:28[boundedElastic-6] [ControllerCenter:402] -  
+INFO  24-05-02 11:20:28[boundedElastic-1] [ControllerUCRM:211] - ====== Class : ControllerUCRM - Method : SendUcrmRt ======
+INFO  24-05-02 11:20:28[boundedElastic-6] [ControllerCenter:403] - ====== Class : ControllerCenter - Method : SendApimRt ======
+INFO  24-05-02 11:20:28[boundedElastic-5] [ControllerUCRM:104] -  
+INFO  24-05-02 11:20:28[boundedElastic-5] [ControllerUCRM:105] - ====== Class : ControllerUCRM - Method : UcrmMsgFrmCnsmer ======
+ERROR 24-05-02 11:20:28[boundedElastic-11] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:20:28[boundedElastic-18] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:20:28[boundedElastic-13] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:20:28[boundedElastic-21] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:20:28[boundedElastic-8] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:20:28[boundedElastic-17] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:20:28[boundedElastic-14] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:20:28[boundedElastic-8] [Controller360view:286] - Error Message : JDBC exception executing SQL [select count(edcs1_0.ORDERID) from DATA_CALL_SERVICE_W edcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:20:28[boundedElastic-14] [Controller360view:443] - Error Message : JDBC exception executing SQL [select count(emdc1_0.ORDERID) from WA_DATA_CALL_W emdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+INFO  24-05-02 11:20:28[boundedElastic-6] [ControllerCenter:408] - All records from DB : Nothing
+INFO  24-05-02 11:20:28[boundedElastic-6] [ControllerCenter:479] - ====== End SendApimRt ======
+ERROR 24-05-02 11:20:28[boundedElastic-19] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:20:28[boundedElastic-10] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:20:28[boundedElastic-7] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:20:28[boundedElastic-16] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:20:28[boundedElastic-15] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:20:28[boundedElastic-9] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:20:28[boundedElastic-4] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:20:28[boundedElastic-12] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:20:28[boundedElastic-20] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:20:28[boundedElastic-4] [Controller360view:152] - JDBC exception executing SQL [select count(edc1_0.ORDERID) from DATA_CALL_W edc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+INFO  24-05-02 11:20:28[boundedElastic-1] [ControllerUCRM:216] - All records from DB : Nothing
+INFO  24-05-02 11:20:28[boundedElastic-1] [ControllerUCRM:288] - ====== End SendUcrmRt ======
+INFO  24-05-02 11:20:28[boundedElastic-5] [ControllerUCRM:110] - All records from DB : Nothing
+ERROR 24-05-02 11:20:28[boundedElastic-21] [Controller360view:602] - Error Message : JDBC exception executing SQL [select count(ewm1_0.ORDERID) from WA_M_TRACECODE_W ewm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:20:28[boundedElastic-17] [Controller360view:633] - Error Message : JDBC exception executing SQL [select count(emm1_0.ORDERID) from WA_M_TRACECODE_W emm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:20:28[boundedElastic-11] [Controller360view:318] - Error Message : JDBC exception executing SQL [select count(emcs1_0.ORDERID) from DATA_CALL_SERVICE_W emcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:20:28[boundedElastic-18] [Controller360view:412] - Error Message : JDBC exception executing SQL [select count(ewdc1_0.ORDERID) from WA_DATA_CALL_W ewdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:20:28[boundedElastic-7] [Controller360view:220] - Error Message : JDBC exception executing SQL [select count(edcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W edcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:20:28[boundedElastic-20] [Controller360view:539] - Error Message : JDBC exception executing SQL [select count(ewdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W ewdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+INFO  24-05-02 11:20:28[boundedElastic-3] [ControllerCallBot:173] - All records from DB : Nothing
+INFO  24-05-02 11:20:28[boundedElastic-3] [ControllerCallBot:245] - ====== End SendCallBotRt ======
+ERROR 24-05-02 11:20:28[boundedElastic-12] [Controller360view:381] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:20:28[boundedElastic-13] [Controller360view:349] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:20:28[boundedElastic-9] [Controller360view:187] - Error Message : JDBC exception executing SQL [select count(emc1_0.ORDERID) from DATA_CALL_W emc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:20:28[boundedElastic-19] [Controller360view:475] - Error Message : JDBC exception executing SQL [select count(ewdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W ewdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:20:28[boundedElastic-10] [Controller360view:254] - Error Message : JDBC exception executing SQL [select count(emcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W emcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:20:28[boundedElastic-15] [Controller360view:506] - Error Message : JDBC exception executing SQL [select count(emdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W emdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:20:28[boundedElastic-16] [Controller360view:571] - Error Message : JDBC exception executing SQL [select count(emdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W emdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+INFO  24-05-02 11:20:29[boundedElastic-2] [WebClientApp:86] - Access token has been refreshed successfully.
+INFO  24-05-02 11:20:29[boundedElastic-2] [WebClientApp:52] - 발급 후 현재 인덱스 : 1
+INFO  24-05-02 11:20:30[boundedElastic-2] [WebClientApp:68] - 발급 받은 토큰 : 9A-FQfPpKshEzg7tXENNzamvxTCgecfhgWOsQg58fsEVbNiLRRZmmS5FuZSJKOpT-KtB7PggsfiwN0l0YKbqkA
+INFO  24-05-02 11:20:31[boundedElastic-2] [ServiceWebClient:26] - ====== End GetApiRequet ======
+INFO  24-05-02 11:20:31[boundedElastic-2] [ServiceJson:84] -  
+INFO  24-05-02 11:20:31[boundedElastic-2] [ServiceJson:85] - ====== ClassName : ServiceJson & Method : CampaignListSize ======
+INFO  24-05-02 11:20:31[boundedElastic-2] [ServiceJson:100] - 캠페인 리스트 사이즈 : 76
+INFO  24-05-02 11:20:31[boundedElastic-2] [ServiceJson:101] - ====== END CampaignListSize ======
+INFO  24-05-02 11:20:31[boundedElastic-2] [ServicePostgre:731] - Campma 테이블 레코드 수 : 77
+INFO  24-05-02 11:20:31[boundedElastic-2] [ControllerCenter:110] - -1번 반복
+INFO  24-05-02 11:20:32[boundedElastic-2] [ControllerUCRM:104] -  
+INFO  24-05-02 11:20:32[boundedElastic-2] [ControllerUCRM:105] - ====== Class : ControllerUCRM - Method : UcrmMsgFrmCnsmer ======
+INFO  24-05-02 11:20:32[boundedElastic-2] [ControllerUCRM:110] - All records from DB : Nothing
+INFO  24-05-02 11:20:35[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-05-02 11:20:35[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-05-02 11:20:35[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLM-hikari-pool - Shutdown initiated...
+INFO  24-05-02 11:20:35[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLM-hikari-pool - Shutdown completed.
+INFO  24-05-02 11:20:35[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-05-02 11:20:35[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLH-hikari-pool - Shutdown initiated...
+INFO  24-05-02 11:20:35[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLH-hikari-pool - Shutdown completed.
+INFO  24-05-02 11:20:35[SpringApplicationShutdownHook] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-05-02 11:20:35[SpringApplicationShutdownHook] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-05-02 11:24:19[main] [AnnotationConfigContextLoaderUtils:83] - Could not detect default configuration classes for test class [gc.apiClient.GcClientApplicationTests]: GcClientApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+INFO  24-05-02 11:24:20[main] [SpringBootTestContextBootstrapper:234] - Found @SpringBootConfiguration gc.apiClient.GcClientApplication for test class gc.apiClient.GcClientApplicationTests
+WARN  24-05-02 11:24:22[main] [DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer:78] - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/org/json/json/20210307/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+INFO  24-05-02 11:24:22[main] [GcClientApplicationTests:50] - Starting GcClientApplicationTests using Java 21.0.1 with PID 13364 (started by 인포전스 in D:\GitWorkSpace\GcAPIGateway)
+INFO  24-05-02 11:24:22[main] [GcClientApplicationTests:660] - The following 3 profiles are active: "postgres", "oracleH", "oracleM"
+INFO  24-05-02 11:24:25[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-05-02 11:24:25[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 409 ms. Found 8 JPA repository interfaces.
+INFO  24-05-02 11:24:25[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-05-02 11:24:25[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 88 ms. Found 8 JPA repository interfaces.
+INFO  24-05-02 11:24:25[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-05-02 11:24:25[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 129 ms. Found 7 JPA repository interfaces.
+INFO  24-05-02 11:24:31[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-05-02 11:24:31[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-05-02 11:24:31[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
+WARN  24-05-02 11:24:31[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-05-02 11:24:32[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@714bffd5
+INFO  24-05-02 11:24:32[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
+INFO  24-05-02 11:24:37[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-05-02 11:24:37[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-05-02 11:24:37[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-05-02 11:24:37[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
+WARN  24-05-02 11:24:37[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-05-02 11:24:37[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@1a13b5c1
+INFO  24-05-02 11:24:37[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
+INFO  24-05-02 11:24:39[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-05-02 11:24:39[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-05-02 11:24:39[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-05-02 11:24:39[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-05-02 11:24:40[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@226f472
+INFO  24-05-02 11:24:40[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-05-02 11:24:41[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-05-02 11:24:42[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-05-02 11:24:47[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-05-02 11:24:49[main] [GcClientApplicationTests:56] - Started GcClientApplicationTests in 28.065 seconds (process running for 34.438)
+INFO  24-05-02 11:24:49[boundedElastic-1] [ControllerUCRM:104] -  
+INFO  24-05-02 11:24:49[boundedElastic-4] [ControllerCenter:80] -  
+INFO  24-05-02 11:24:49[boundedElastic-3] [ControllerUCRM:210] -  
+INFO  24-05-02 11:24:49[boundedElastic-1] [ControllerUCRM:105] - ====== Class : ControllerUCRM - Method : UcrmMsgFrmCnsmer ======
+INFO  24-05-02 11:24:49[boundedElastic-4] [ControllerCenter:81] - ====== Class : ControllerCenter - Method : ReceiveMessage ======
+INFO  24-05-02 11:24:49[boundedElastic-2] [ControllerCallBot:167] -  
+INFO  24-05-02 11:24:49[boundedElastic-3] [ControllerUCRM:211] - ====== Class : ControllerUCRM - Method : SendUcrmRt ======
+INFO  24-05-02 11:24:49[boundedElastic-4] [ControllerCenter:93] - topic_id : campma
+INFO  24-05-02 11:24:49[boundedElastic-2] [ControllerCallBot:168] - ====== Class : ControllerCallBot - Method : SendCallBotRt ======
+INFO  24-05-02 11:24:49[boundedElastic-4] [ServiceWebClient:18] -  
+INFO  24-05-02 11:24:49[boundedElastic-7] [ControllerCenter:402] -  
+INFO  24-05-02 11:24:49[boundedElastic-4] [ServiceWebClient:19] - ====== ClassName : ServiceWebClient & Method : GetApiRequet ======
+INFO  24-05-02 11:24:49[boundedElastic-7] [ControllerCenter:403] - ====== Class : ControllerCenter - Method : SendApimRt ======
+INFO  24-05-02 11:24:49[boundedElastic-4] [WebClientApp:34] - Client Id : 8ed02ed8-2e38-41ee-b70d-ab09e43b3ff1
+INFO  24-05-02 11:24:49[boundedElastic-4] [WebClientApp:36] - Client secret : HRwIs7Tn4DHJH_ODIGusDPOEM9Z7cYsFyxG_jb4f5iY
+INFO  24-05-02 11:24:49[boundedElastic-4] [WebClientApp:45] - 토큰 없음
+INFO  24-05-02 11:24:49[boundedElastic-4] [WebClientApp:46] - 현재 인덱스 : 0
+INFO  24-05-02 11:24:50[boundedElastic-3] [ControllerUCRM:216] - All records from DB : Nothing
+INFO  24-05-02 11:24:50[boundedElastic-7] [ControllerCenter:408] - All records from DB : Nothing
+INFO  24-05-02 11:24:50[boundedElastic-2] [ControllerCallBot:173] - All records from DB : Nothing
+INFO  24-05-02 11:24:50[boundedElastic-1] [ControllerUCRM:110] - All records from DB : Nothing
+INFO  24-05-02 11:24:50[boundedElastic-3] [ControllerUCRM:288] - ====== End SendUcrmRt ======
+INFO  24-05-02 11:24:50[boundedElastic-7] [ControllerCenter:479] - ====== End SendApimRt ======
+INFO  24-05-02 11:24:50[boundedElastic-2] [ControllerCallBot:245] - ====== End SendCallBotRt ======
+ERROR 24-05-02 11:24:50[boundedElastic-12] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:24:50[boundedElastic-16] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:24:50[boundedElastic-11] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:24:50[boundedElastic-8] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:24:50[boundedElastic-5] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:24:50[boundedElastic-15] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:24:50[boundedElastic-19] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:24:50[boundedElastic-14] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:24:50[boundedElastic-6] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:24:50[boundedElastic-20] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:24:50[boundedElastic-21] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:24:50[boundedElastic-18] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:24:50[boundedElastic-5] [Controller360view:152] - JDBC exception executing SQL [select count(edc1_0.ORDERID) from DATA_CALL_W edc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:24:50[boundedElastic-10] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:24:50[boundedElastic-17] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:24:50[boundedElastic-13] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:24:50[boundedElastic-9] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:24:50[boundedElastic-19] [Controller360view:475] - Error Message : JDBC exception executing SQL [select count(ewdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W ewdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:24:50[boundedElastic-10] [Controller360view:254] - Error Message : JDBC exception executing SQL [select count(emcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W emcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:24:50[boundedElastic-18] [Controller360view:412] - Error Message : JDBC exception executing SQL [select count(ewdc1_0.ORDERID) from WA_DATA_CALL_W ewdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:24:50[boundedElastic-6] [Controller360view:220] - Error Message : JDBC exception executing SQL [select count(edcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W edcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:24:50[boundedElastic-17] [Controller360view:633] - Error Message : JDBC exception executing SQL [select count(emm1_0.ORDERID) from WA_M_TRACECODE_W emm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:24:50[boundedElastic-13] [Controller360view:349] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:24:50[boundedElastic-12] [Controller360view:381] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:24:50[boundedElastic-14] [Controller360view:443] - Error Message : JDBC exception executing SQL [select count(emdc1_0.ORDERID) from WA_DATA_CALL_W emdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:24:50[boundedElastic-11] [Controller360view:318] - Error Message : JDBC exception executing SQL [select count(emcs1_0.ORDERID) from DATA_CALL_SERVICE_W emcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:24:50[boundedElastic-15] [Controller360view:506] - Error Message : JDBC exception executing SQL [select count(emdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W emdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:24:50[boundedElastic-16] [Controller360view:571] - Error Message : JDBC exception executing SQL [select count(emdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W emdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:24:50[boundedElastic-9] [Controller360view:187] - Error Message : JDBC exception executing SQL [select count(emc1_0.ORDERID) from DATA_CALL_W emc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:24:50[boundedElastic-8] [Controller360view:286] - Error Message : JDBC exception executing SQL [select count(edcs1_0.ORDERID) from DATA_CALL_SERVICE_W edcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:24:50[boundedElastic-21] [Controller360view:602] - Error Message : JDBC exception executing SQL [select count(ewm1_0.ORDERID) from WA_M_TRACECODE_W ewm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:24:50[boundedElastic-20] [Controller360view:539] - Error Message : JDBC exception executing SQL [select count(ewdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W ewdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+INFO  24-05-02 11:24:52[boundedElastic-4] [WebClientApp:86] - Access token has been refreshed successfully.
+INFO  24-05-02 11:24:52[boundedElastic-4] [WebClientApp:52] - 발급 후 현재 인덱스 : 1
+INFO  24-05-02 11:24:52[boundedElastic-4] [WebClientApp:68] - 발급 받은 토큰 : fo5drHoz9sWpWp6rq6hPm2RwYLiRAXxNzySMnNL7UGLAbiPMhxf-LiJ-KvZ6wPfYYp3VfJW7ijcE-PVanRMj5g
+INFO  24-05-02 11:24:54[boundedElastic-20] [ControllerUCRM:104] -  
+INFO  24-05-02 11:24:54[boundedElastic-20] [ControllerUCRM:105] - ====== Class : ControllerUCRM - Method : UcrmMsgFrmCnsmer ======
+INFO  24-05-02 11:24:54[boundedElastic-20] [ControllerUCRM:110] - All records from DB : Nothing
+INFO  24-05-02 11:24:54[boundedElastic-4] [ServiceWebClient:26] - ====== End GetApiRequet ======
+INFO  24-05-02 11:24:54[boundedElastic-4] [ServiceJson:84] -  
+INFO  24-05-02 11:24:54[boundedElastic-4] [ServiceJson:85] - ====== ClassName : ServiceJson & Method : CampaignListSize ======
+INFO  24-05-02 11:24:54[boundedElastic-4] [ServiceJson:100] - 캠페인 리스트 사이즈 : 76
+INFO  24-05-02 11:24:54[boundedElastic-4] [ServiceJson:101] - ====== END CampaignListSize ======
+INFO  24-05-02 11:24:54[boundedElastic-4] [ServicePostgre:731] - Campma 테이블 레코드 수 : 77
+INFO  24-05-02 11:24:54[boundedElastic-4] [ControllerCenter:110] - -1번 반복
+INFO  24-05-02 11:24:59[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-05-02 11:24:59[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-05-02 11:24:59[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLM-hikari-pool - Shutdown initiated...
+INFO  24-05-02 11:24:59[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLM-hikari-pool - Shutdown completed.
+INFO  24-05-02 11:24:59[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-05-02 11:24:59[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLH-hikari-pool - Shutdown initiated...
+INFO  24-05-02 11:24:59[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLH-hikari-pool - Shutdown completed.
+INFO  24-05-02 11:24:59[SpringApplicationShutdownHook] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-05-02 11:24:59[SpringApplicationShutdownHook] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-05-02 11:32:19[main] [AnnotationConfigContextLoaderUtils:83] - Could not detect default configuration classes for test class [gc.apiClient.GcClientApplicationTests]: GcClientApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+INFO  24-05-02 11:32:20[main] [SpringBootTestContextBootstrapper:234] - Found @SpringBootConfiguration gc.apiClient.GcClientApplication for test class gc.apiClient.GcClientApplicationTests
+WARN  24-05-02 11:32:22[main] [DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer:78] - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/org/json/json/20210307/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+INFO  24-05-02 11:32:22[main] [GcClientApplicationTests:50] - Starting GcClientApplicationTests using Java 21.0.1 with PID 23252 (started by 인포전스 in D:\GitWorkSpace\GcAPIGateway)
+INFO  24-05-02 11:32:22[main] [GcClientApplicationTests:660] - The following 3 profiles are active: "postgres", "oracleH", "oracleM"
+INFO  24-05-02 11:32:25[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-05-02 11:32:25[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 479 ms. Found 8 JPA repository interfaces.
+INFO  24-05-02 11:32:25[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-05-02 11:32:25[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 85 ms. Found 8 JPA repository interfaces.
+INFO  24-05-02 11:32:25[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-05-02 11:32:25[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 90 ms. Found 7 JPA repository interfaces.
+INFO  24-05-02 11:32:30[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-05-02 11:32:30[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-05-02 11:32:30[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
+WARN  24-05-02 11:32:30[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-05-02 11:32:31[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@32c0fecc
+INFO  24-05-02 11:32:31[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
+INFO  24-05-02 11:32:38[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-05-02 11:32:38[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-05-02 11:32:38[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-05-02 11:32:38[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
+WARN  24-05-02 11:32:38[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-05-02 11:32:38[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@4b718c45
+INFO  24-05-02 11:32:38[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
+INFO  24-05-02 11:32:39[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-05-02 11:32:39[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-05-02 11:32:39[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-05-02 11:32:39[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-05-02 11:32:40[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@6d58ed12
+INFO  24-05-02 11:32:40[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-05-02 11:32:40[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-05-02 11:32:41[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-05-02 11:32:46[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-05-02 11:32:47[main] [GcClientApplicationTests:56] - Started GcClientApplicationTests in 26.551 seconds (process running for 32.142)
+INFO  24-05-02 11:32:47[boundedElastic-1] [ControllerUCRM:104] -  
+INFO  24-05-02 11:32:47[boundedElastic-1] [ControllerUCRM:105] - ====== Class : ControllerUCRM - Method : UcrmMsgFrmCnsmer ======
+INFO  24-05-02 11:32:47[boundedElastic-2] [ControllerCenter:80] -  
+INFO  24-05-02 11:32:47[boundedElastic-2] [ControllerCenter:81] - ====== Class : ControllerCenter - Method : ReceiveMessage ======
+INFO  24-05-02 11:32:47[boundedElastic-2] [ControllerCenter:93] - topic_id : campma
+INFO  24-05-02 11:32:47[boundedElastic-3] [ControllerCallBot:167] -  
+INFO  24-05-02 11:32:47[boundedElastic-2] [ServiceWebClient:18] -  
+INFO  24-05-02 11:32:47[boundedElastic-4] [ControllerUCRM:210] -  
+INFO  24-05-02 11:32:47[boundedElastic-3] [ControllerCallBot:168] - ====== Class : ControllerCallBot - Method : SendCallBotRt ======
+INFO  24-05-02 11:32:47[boundedElastic-2] [ServiceWebClient:19] - ====== ClassName : ServiceWebClient & Method : GetApiRequet ======
+INFO  24-05-02 11:32:47[boundedElastic-6] [ControllerCenter:402] -  
+INFO  24-05-02 11:32:47[boundedElastic-4] [ControllerUCRM:211] - ====== Class : ControllerUCRM - Method : SendUcrmRt ======
+INFO  24-05-02 11:32:47[boundedElastic-6] [ControllerCenter:403] - ====== Class : ControllerCenter - Method : SendApimRt ======
+INFO  24-05-02 11:32:47[boundedElastic-2] [WebClientApp:34] - Client Id : 8ed02ed8-2e38-41ee-b70d-ab09e43b3ff1
+INFO  24-05-02 11:32:47[boundedElastic-2] [WebClientApp:36] - Client secret : HRwIs7Tn4DHJH_ODIGusDPOEM9Z7cYsFyxG_jb4f5iY
+INFO  24-05-02 11:32:47[boundedElastic-2] [WebClientApp:45] - 토큰 없음
+INFO  24-05-02 11:32:47[boundedElastic-2] [WebClientApp:46] - 현재 인덱스 : 0
+INFO  24-05-02 11:32:48[boundedElastic-3] [ControllerCallBot:173] - All records from DB : Nothing
+INFO  24-05-02 11:32:48[boundedElastic-1] [ControllerUCRM:110] - All records from DB : Nothing
+INFO  24-05-02 11:32:48[boundedElastic-6] [ControllerCenter:408] - All records from DB : Nothing
+INFO  24-05-02 11:32:48[boundedElastic-4] [ControllerUCRM:216] - All records from DB : Nothing
+INFO  24-05-02 11:32:48[boundedElastic-3] [ControllerCallBot:245] - ====== End SendCallBotRt ======
+INFO  24-05-02 11:32:48[boundedElastic-6] [ControllerCenter:479] - ====== End SendApimRt ======
+INFO  24-05-02 11:32:48[boundedElastic-4] [ControllerUCRM:288] - ====== End SendUcrmRt ======
+ERROR 24-05-02 11:32:48[boundedElastic-7] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:32:48[boundedElastic-16] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:32:48[boundedElastic-10] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:32:48[boundedElastic-5] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:32:48[boundedElastic-12] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:32:48[boundedElastic-17] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:32:48[boundedElastic-21] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:32:48[boundedElastic-20] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:32:48[boundedElastic-14] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:32:48[boundedElastic-8] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:32:48[boundedElastic-5] [Controller360view:152] - JDBC exception executing SQL [select count(edc1_0.ORDERID) from DATA_CALL_W edc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:32:48[boundedElastic-13] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:32:48[boundedElastic-9] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:32:48[boundedElastic-12] [Controller360view:381] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:32:48[boundedElastic-18] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:32:48[boundedElastic-15] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:32:48[boundedElastic-19] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:32:48[boundedElastic-11] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 11:32:48[boundedElastic-9] [Controller360view:187] - Error Message : JDBC exception executing SQL [select count(emc1_0.ORDERID) from DATA_CALL_W emc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:32:48[boundedElastic-10] [Controller360view:254] - Error Message : JDBC exception executing SQL [select count(emcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W emcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:32:48[boundedElastic-17] [Controller360view:633] - Error Message : JDBC exception executing SQL [select count(emm1_0.ORDERID) from WA_M_TRACECODE_W emm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:32:48[boundedElastic-13] [Controller360view:349] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:32:48[boundedElastic-20] [Controller360view:539] - Error Message : JDBC exception executing SQL [select count(ewdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W ewdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:32:48[boundedElastic-21] [Controller360view:602] - Error Message : JDBC exception executing SQL [select count(ewm1_0.ORDERID) from WA_M_TRACECODE_W ewm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:32:48[boundedElastic-16] [Controller360view:571] - Error Message : JDBC exception executing SQL [select count(emdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W emdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:32:48[boundedElastic-14] [Controller360view:443] - Error Message : JDBC exception executing SQL [select count(emdc1_0.ORDERID) from WA_DATA_CALL_W emdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:32:48[boundedElastic-7] [Controller360view:220] - Error Message : JDBC exception executing SQL [select count(edcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W edcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:32:48[boundedElastic-8] [Controller360view:286] - Error Message : JDBC exception executing SQL [select count(edcs1_0.ORDERID) from DATA_CALL_SERVICE_W edcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:32:48[boundedElastic-19] [Controller360view:475] - Error Message : JDBC exception executing SQL [select count(ewdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W ewdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:32:48[boundedElastic-11] [Controller360view:318] - Error Message : JDBC exception executing SQL [select count(emcs1_0.ORDERID) from DATA_CALL_SERVICE_W emcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:32:48[boundedElastic-15] [Controller360view:506] - Error Message : JDBC exception executing SQL [select count(emdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W emdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 11:32:48[boundedElastic-18] [Controller360view:412] - Error Message : JDBC exception executing SQL [select count(ewdc1_0.ORDERID) from WA_DATA_CALL_W ewdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+INFO  24-05-02 11:32:49[boundedElastic-2] [WebClientApp:86] - Access token has been refreshed successfully.
+INFO  24-05-02 11:32:49[boundedElastic-2] [WebClientApp:52] - 발급 후 현재 인덱스 : 1
+INFO  24-05-02 11:32:50[boundedElastic-2] [WebClientApp:68] - 발급 받은 토큰 : Egr-KrkN7wZw49NhgEY9FBia5r0oSU5gVpwRUc7WW9PF5dn4UNe4xpVrDH-9wcrGnxhL8QGqstCs3XW4BH5N3w
+INFO  24-05-02 11:32:51[boundedElastic-2] [ServiceWebClient:26] - ====== End GetApiRequet ======
+INFO  24-05-02 11:32:51[boundedElastic-2] [ServiceJson:84] -  
+INFO  24-05-02 11:32:51[boundedElastic-2] [ServiceJson:85] - ====== ClassName : ServiceJson & Method : CampaignListSize ======
+INFO  24-05-02 11:32:51[boundedElastic-2] [ServiceJson:100] - 캠페인 리스트 사이즈 : 76
+INFO  24-05-02 11:32:51[boundedElastic-2] [ServiceJson:101] - ====== END CampaignListSize ======
+INFO  24-05-02 11:32:51[boundedElastic-2] [ServicePostgre:731] - Campma 테이블 레코드 수 : 77
+INFO  24-05-02 11:32:51[boundedElastic-2] [ControllerCenter:110] - -1번 반복
+INFO  24-05-02 11:32:52[boundedElastic-2] [ControllerUCRM:104] -  
+INFO  24-05-02 11:32:52[boundedElastic-2] [ControllerUCRM:105] - ====== Class : ControllerUCRM - Method : UcrmMsgFrmCnsmer ======
+INFO  24-05-02 11:32:52[boundedElastic-2] [ControllerUCRM:110] - All records from DB : Nothing
+INFO  24-05-02 11:32:57[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-05-02 11:32:57[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-05-02 11:32:57[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLM-hikari-pool - Shutdown initiated...
+INFO  24-05-02 11:32:57[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLM-hikari-pool - Shutdown completed.
+INFO  24-05-02 11:32:57[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-05-02 11:32:57[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLH-hikari-pool - Shutdown initiated...
+INFO  24-05-02 11:32:57[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLH-hikari-pool - Shutdown completed.
+INFO  24-05-02 11:32:57[SpringApplicationShutdownHook] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-05-02 11:32:57[SpringApplicationShutdownHook] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-05-02 13:09:52[main] [AnnotationConfigContextLoaderUtils:83] - Could not detect default configuration classes for test class [gc.apiClient.GcClientApplicationTests]: GcClientApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+INFO  24-05-02 13:09:52[main] [SpringBootTestContextBootstrapper:234] - Found @SpringBootConfiguration gc.apiClient.GcClientApplication for test class gc.apiClient.GcClientApplicationTests
+WARN  24-05-02 13:09:53[main] [DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer:78] - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/org/json/json/20210307/json-20210307.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/%ec%9d%b8%ed%8f%ac%ec%a0%84%ec%8a%a4/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+INFO  24-05-02 13:09:53[main] [GcClientApplicationTests:50] - Starting GcClientApplicationTests using Java 21.0.1 with PID 19404 (started by 인포전스 in D:\GitWorkSpace\GcAPIGateway)
+INFO  24-05-02 13:09:53[main] [GcClientApplicationTests:660] - The following 3 profiles are active: "postgres", "oracleH", "oracleM"
+INFO  24-05-02 13:09:54[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-05-02 13:09:55[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 315 ms. Found 8 JPA repository interfaces.
+INFO  24-05-02 13:09:55[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-05-02 13:09:55[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 49 ms. Found 8 JPA repository interfaces.
+INFO  24-05-02 13:09:55[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-05-02 13:09:55[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 53 ms. Found 7 JPA repository interfaces.
+INFO  24-05-02 13:09:58[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-05-02 13:09:58[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-05-02 13:09:58[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
+WARN  24-05-02 13:09:58[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-05-02 13:09:58[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@4cd5fc46
+INFO  24-05-02 13:09:58[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
+INFO  24-05-02 13:10:01[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-05-02 13:10:02[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-05-02 13:10:02[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-05-02 13:10:02[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
+WARN  24-05-02 13:10:02[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-05-02 13:10:02[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@5b9ca528
+INFO  24-05-02 13:10:02[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
+INFO  24-05-02 13:10:02[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-05-02 13:10:02[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-05-02 13:10:02[main] [HikariConfig:1089] - Infognc-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-05-02 13:10:02[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-05-02 13:10:03[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@a422390
+INFO  24-05-02 13:10:03[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-05-02 13:10:03[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-05-02 13:10:04[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-05-02 13:10:07[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-05-02 13:10:07[main] [GcClientApplicationTests:56] - Started GcClientApplicationTests in 14.73 seconds (process running for 17.928)
+INFO  24-05-02 13:10:07[boundedElastic-1] [ControllerUCRM:104] -  
+INFO  24-05-02 13:10:07[boundedElastic-3] [ControllerUCRM:210] -  
+INFO  24-05-02 13:10:07[boundedElastic-1] [ControllerUCRM:105] - ====== Class : ControllerUCRM - Method : UcrmMsgFrmCnsmer ======
+INFO  24-05-02 13:10:07[boundedElastic-3] [ControllerUCRM:211] - ====== Class : ControllerUCRM - Method : SendUcrmRt ======
+INFO  24-05-02 13:10:07[boundedElastic-4] [ControllerCenter:80] -  
+INFO  24-05-02 13:10:07[boundedElastic-5] [ControllerCallBot:167] -  
+INFO  24-05-02 13:10:07[boundedElastic-7] [ControllerCenter:402] -  
+INFO  24-05-02 13:10:07[boundedElastic-4] [ControllerCenter:81] - ====== Class : ControllerCenter - Method : ReceiveMessage ======
+INFO  24-05-02 13:10:07[boundedElastic-5] [ControllerCallBot:168] - ====== Class : ControllerCallBot - Method : SendCallBotRt ======
+INFO  24-05-02 13:10:07[boundedElastic-7] [ControllerCenter:403] - ====== Class : ControllerCenter - Method : SendApimRt ======
+INFO  24-05-02 13:10:07[boundedElastic-4] [ControllerCenter:93] - topic_id : campma
+INFO  24-05-02 13:10:07[boundedElastic-4] [ServiceWebClient:18] -  
+INFO  24-05-02 13:10:07[boundedElastic-4] [ServiceWebClient:19] - ====== ClassName : ServiceWebClient & Method : GetApiRequet ======
+INFO  24-05-02 13:10:07[boundedElastic-4] [WebClientApp:34] - Client Id : 8ed02ed8-2e38-41ee-b70d-ab09e43b3ff1
+INFO  24-05-02 13:10:07[boundedElastic-4] [WebClientApp:36] - Client secret : HRwIs7Tn4DHJH_ODIGusDPOEM9Z7cYsFyxG_jb4f5iY
+INFO  24-05-02 13:10:07[boundedElastic-4] [WebClientApp:45] - 토큰 없음
+INFO  24-05-02 13:10:07[boundedElastic-4] [WebClientApp:46] - 현재 인덱스 : 0
+INFO  24-05-02 13:10:08[boundedElastic-3] [ControllerUCRM:216] - All records from DB : Nothing
+INFO  24-05-02 13:10:08[boundedElastic-7] [ControllerCenter:408] - All records from DB : Nothing
+INFO  24-05-02 13:10:08[boundedElastic-5] [ControllerCallBot:173] - All records from DB : Nothing
+INFO  24-05-02 13:10:08[boundedElastic-3] [ControllerUCRM:288] - ====== End SendUcrmRt ======
+INFO  24-05-02 13:10:08[boundedElastic-7] [ControllerCenter:479] - ====== End SendApimRt ======
+INFO  24-05-02 13:10:08[boundedElastic-5] [ControllerCallBot:245] - ====== End SendCallBotRt ======
+INFO  24-05-02 13:10:08[boundedElastic-1] [ControllerUCRM:110] - All records from DB : Nothing
+ERROR 24-05-02 13:10:08[boundedElastic-6] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 13:10:08[boundedElastic-20] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 13:10:08[boundedElastic-9] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 13:10:08[boundedElastic-13] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 13:10:08[boundedElastic-17] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 13:10:08[boundedElastic-11] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 13:10:08[boundedElastic-18] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 13:10:08[boundedElastic-16] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 13:10:08[boundedElastic-14] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 13:10:08[boundedElastic-8] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 13:10:08[boundedElastic-10] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 13:10:08[boundedElastic-21] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 13:10:08[boundedElastic-19] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 13:10:08[boundedElastic-12] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 13:10:08[boundedElastic-20] [Controller360view:539] - Error Message : JDBC exception executing SQL [select count(ewdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W ewdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 13:10:08[boundedElastic-2] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 13:10:08[boundedElastic-15] [SqlExceptionHelper:150] - ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+ERROR 24-05-02 13:10:08[boundedElastic-2] [Controller360view:152] - JDBC exception executing SQL [select count(edc1_0.ORDERID) from DATA_CALL_W edc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 13:10:08[boundedElastic-19] [Controller360view:475] - Error Message : JDBC exception executing SQL [select count(ewdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W ewdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 13:10:08[boundedElastic-14] [Controller360view:443] - Error Message : JDBC exception executing SQL [select count(emdc1_0.ORDERID) from WA_DATA_CALL_W emdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 13:10:08[boundedElastic-18] [Controller360view:412] - Error Message : JDBC exception executing SQL [select count(ewdc1_0.ORDERID) from WA_DATA_CALL_W ewdc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 13:10:08[boundedElastic-21] [Controller360view:602] - Error Message : JDBC exception executing SQL [select count(ewm1_0.ORDERID) from WA_M_TRACECODE_W ewm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 13:10:08[boundedElastic-10] [Controller360view:254] - Error Message : JDBC exception executing SQL [select count(emcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W emcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 13:10:08[boundedElastic-13] [Controller360view:349] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 13:10:08[boundedElastic-17] [Controller360view:633] - Error Message : JDBC exception executing SQL [select count(emm1_0.ORDERID) from WA_M_TRACECODE_W emm1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 13:10:08[boundedElastic-11] [Controller360view:318] - Error Message : JDBC exception executing SQL [select count(emcs1_0.ORDERID) from DATA_CALL_SERVICE_W emcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 13:10:08[boundedElastic-9] [Controller360view:187] - Error Message : JDBC exception executing SQL [select count(emc1_0.ORDERID) from DATA_CALL_W emc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 13:10:08[boundedElastic-6] [Controller360view:220] - Error Message : JDBC exception executing SQL [select count(edcc1_0.ORDERID) from DATA_CALL_CUSTOMER_W edcc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 13:10:08[boundedElastic-16] [Controller360view:571] - Error Message : JDBC exception executing SQL [select count(emdct1_0.ORDERID) from WA_DATA_CALL_TRACE_W emdct1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 13:10:08[boundedElastic-8] [Controller360view:286] - Error Message : JDBC exception executing SQL [select count(edcs1_0.ORDERID) from DATA_CALL_SERVICE_W edcs1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 13:10:08[boundedElastic-15] [Controller360view:506] - Error Message : JDBC exception executing SQL [select count(emdco1_0.ORDERID) from WA_DATA_CALL_OPTIONAL_W emdco1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+ERROR 24-05-02 13:10:08[boundedElastic-12] [Controller360view:381] - Error Message : JDBC exception executing SQL [select count(emsc1_0.ORDERID) from MASTER_SERVICE_CODE_W emsc1_0] [ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+] [n/a]; SQL [n/a]
+INFO  24-05-02 13:10:09[boundedElastic-4] [WebClientApp:86] - Access token has been refreshed successfully.
+INFO  24-05-02 13:10:09[boundedElastic-4] [WebClientApp:52] - 발급 후 현재 인덱스 : 1
+INFO  24-05-02 13:10:09[boundedElastic-4] [WebClientApp:68] - 발급 받은 토큰 : nqSQNC7N-AOgRkJT7YKKJvCSHXiDHxEZr_YbrSXONuCeC_V5GAq1ZoCLyyrsZEggkQYh1ACWFMFeWz4TAgD7MA
+INFO  24-05-02 13:10:11[boundedElastic-4] [ServiceWebClient:26] - ====== End GetApiRequet ======
+INFO  24-05-02 13:10:11[boundedElastic-4] [ServiceJson:84] -  
+INFO  24-05-02 13:10:11[boundedElastic-4] [ServiceJson:85] - ====== ClassName : ServiceJson & Method : CampaignListSize ======
+INFO  24-05-02 13:10:11[boundedElastic-4] [ServiceJson:100] - 캠페인 리스트 사이즈 : 76
+INFO  24-05-02 13:10:11[boundedElastic-4] [ServiceJson:101] - ====== END CampaignListSize ======
+INFO  24-05-02 13:10:11[boundedElastic-4] [ServicePostgre:731] - Campma 테이블 레코드 수 : 77
+INFO  24-05-02 13:10:11[boundedElastic-4] [ControllerCenter:110] - -1번 반복
+INFO  24-05-02 13:10:12[boundedElastic-4] [ControllerUCRM:104] -  
+INFO  24-05-02 13:10:12[boundedElastic-4] [ControllerUCRM:105] - ====== Class : ControllerUCRM - Method : UcrmMsgFrmCnsmer ======
+INFO  24-05-02 13:10:12[boundedElastic-4] [ControllerUCRM:110] - All records from DB : Nothing
+INFO  24-05-02 13:10:17[boundedElastic-4] [ControllerUCRM:104] -  
+INFO  24-05-02 13:10:17[boundedElastic-4] [ControllerUCRM:105] - ====== Class : ControllerUCRM - Method : UcrmMsgFrmCnsmer ======
+INFO  24-05-02 13:10:17[boundedElastic-4] [ControllerUCRM:110] - All records from DB : Nothing
+INFO  24-05-02 13:10:22[boundedElastic-4] [ControllerUCRM:104] -  
+INFO  24-05-02 13:10:22[boundedElastic-4] [ControllerUCRM:105] - ====== Class : ControllerUCRM - Method : UcrmMsgFrmCnsmer ======
+INFO  24-05-02 13:10:22[boundedElastic-4] [ControllerUCRM:110] - All records from DB : Nothing
+INFO  24-05-02 13:10:27[boundedElastic-4] [ControllerUCRM:104] -  
+INFO  24-05-02 13:10:27[boundedElastic-4] [ControllerUCRM:105] - ====== Class : ControllerUCRM - Method : UcrmMsgFrmCnsmer ======
+INFO  24-05-02 13:10:27[boundedElastic-4] [ControllerUCRM:110] - All records from DB : Nothing
+INFO  24-05-02 13:10:30[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-05-02 13:10:30[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-05-02 13:10:30[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLM-hikari-pool - Shutdown initiated...
+INFO  24-05-02 13:10:30[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLM-hikari-pool - Shutdown completed.
+INFO  24-05-02 13:10:30[SpringApplicationShutdownHook] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-05-02 13:10:30[SpringApplicationShutdownHook] [HikariDataSource:350] - InfogncORCLH-hikari-pool - Shutdown initiated...
+INFO  24-05-02 13:10:30[SpringApplicationShutdownHook] [HikariDataSource:352] - InfogncORCLH-hikari-pool - Shutdown completed.
+INFO  24-05-02 13:10:30[SpringApplicationShutdownHook] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-05-02 13:10:30[SpringApplicationShutdownHook] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.

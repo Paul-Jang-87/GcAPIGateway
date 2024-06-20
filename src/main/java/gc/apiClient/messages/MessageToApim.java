@@ -20,7 +20,7 @@ public class MessageToApim {
 	    String endpointUrl = towhere;
 
 	    log.info("ToApim Endpoint : {}",endpointUrl);
-	    log.info("Message for Apim: {}",entity);
+	    log.info("Apim으로 보낼 메시지: {}",entity);
 	    
 	    webClient.post()
 	            .uri(endpointUrl)

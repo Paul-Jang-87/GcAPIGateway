@@ -3,14 +3,11 @@ package gc.apiClient.interfaceCollection;
 
 import java.util.List;
 
-import org.json.JSONObject;
 
 import gc.apiClient.embeddable.ApimCampRt;
 import gc.apiClient.embeddable.CallBotCampRt;
 import gc.apiClient.embeddable.ContactLtId;
 import gc.apiClient.embeddable.UcrmCampRt;
-import gc.apiClient.entity.Entity_CampMaJson;
-import gc.apiClient.entity.Entity_CampMaJsonUcrm;
 import gc.apiClient.entity.postgresql.Entity_ApimRt;
 import gc.apiClient.entity.postgresql.Entity_CallbotRt;
 import gc.apiClient.entity.postgresql.Entity_CampMa;
@@ -25,9 +22,6 @@ public interface InterfaceDBPostgreSQL {
 
 	//table 별 매핑
 	Entity_CampRt createCampRtMsg(String cpid) throws Exception;
-	JSONObject createCampRtJson(Entity_CampRt enCampRt,String business) throws Exception;
-	Entity_CampMaJson JsonCampMaCallbot(Entity_CampMa enCampMa, String datachgcd) throws Exception;
-	Entity_CampMaJsonUcrm JsonCampMaUcrm(Entity_CampMa enCampMa, String datachgcd) throws Exception;
 	Entity_CampMa CreateEnCampMa(String cpid) throws Exception;
 	Entity_ContactLt createContactLtMsg(String msg) throws Exception;
 	Entity_ContactLt createContactUcrm(Entity_Ucrm entityUcrm) throws Exception;
@@ -36,7 +30,6 @@ public interface InterfaceDBPostgreSQL {
 	Entity_CallbotRt createCallbotRt(String msg) throws Exception;
 	Entity_ApimRt createApimRt(String msg) throws Exception;
 	String createContactLtGC(String msg) throws Exception;
-	JSONObject createMaMsgApim(Entity_CampMa enCampMa,String datachgcd) throws Exception;
 	
 	//insert
 	Entity_CampRt InsertCampRt(Entity_CampRt entityCampRt) throws Exception;

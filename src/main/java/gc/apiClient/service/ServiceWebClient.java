@@ -11,9 +11,12 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class ServiceWebClient implements InterfaceWebClient {
+	
+	private static final int MAX_RETRIES = 3;
+    private static final long RETRY_INTERVAL_MS = 1000; // 1 second (adjust as needed)
 
 	@Override
-	public String GetApiRequet(String endpoint) {
+	public String GetApiRequet(String endpoint,int pagenumber) {
 
 		log.info(" ");
 		log.info("====== ClassName : ServiceWebClient & Method : GetApiRequet ======");
@@ -21,13 +24,11 @@ public class ServiceWebClient implements InterfaceWebClient {
 		String result = "";
 
 		WebClientApp webClient = new WebClientApp();
-		result = webClient.makeApiRequest(endpoint, "GET","sortBy","dateCreated","sortOrder","descending");//어떤 endpoint를 전달함으로써 어떤 api를 사용할지. http method는 어떤 형식일지. 
-																										   //그 뒤는 path 파라미터 두 쌍, (키,값)	여기서의 조건은, '캠페인 생성 날짜 기준으로 / 내림차순으로' 즉, 캠페인 생성일기준 최신순으로 결과값을 리턴 받기를 원함.  
+		result = webClient.makeApiRequest(endpoint, "GET", "sortBy", "dateCreated", "sortOrder", "descending", "pageSize",100, "pageNumber", pagenumber);
 
 		log.info("====== End GetApiRequet ======");
 		return result;
 	}
-
 
 	@Override
 	public String GetStatusApiRequet(String endpoint, String campaignId) {
@@ -40,7 +41,7 @@ public class ServiceWebClient implements InterfaceWebClient {
 		String result = "";
 
 		WebClientApp webClient = new WebClientApp();
-		result = webClient.makeApiRequest(endpoint, "GET",campaignId);
+		result = webClient.makeApiRequest(endpoint, "GET", campaignId);
 
 		log.info("====== End GetStatusApiRequet ======");
 		return result;
@@ -52,12 +53,31 @@ public class ServiceWebClient implements InterfaceWebClient {
 		log.info(" ");
 		log.info("====== ClassName : ServiceWebClient & Method : GetCampaignsApiRequet ======");
 
+		
 		String result = "";
 
-		WebClientApp webClient = new WebClientApp();
-		result = webClient.makeApiRequest(endpoint, "GET",campaignId);
+        int attempt = 0;
+        boolean success = false;
+        
+        while (attempt < MAX_RETRIES && !success) {
+            try {
+                WebClientApp webClient = new WebClientApp();
+                result = webClient.makeApiRequest(endpoint, "GET", campaignId);
+                success = true; // Mark success if no exception is thrown
+            } catch (Exception e) {
+                log.error("Attempt {} failed: {}", attempt + 1, e.getMessage());
+                attempt++;
+                if (attempt < MAX_RETRIES) {
+                    log.info("Retrying after {} ms...", RETRY_INTERVAL_MS);
+                    try {
+                        Thread.sleep(RETRY_INTERVAL_MS);
+                    } catch (InterruptedException ignored) {
+                        Thread.currentThread().interrupt();
+                    }
+                }
+            }
+        }
 
-		log.info("GetCampaignsApiRequet 요청 후 결과 값 : {}", result);
 		log.info("====== End GetCampaignsApiRequet ======");
 		return result;
 	}
@@ -72,7 +92,7 @@ public class ServiceWebClient implements InterfaceWebClient {
 		String result = "";
 
 		WebClientApp webClient = new WebClientApp();
-		result = webClient.makeApiRequest(endpoint, "GET",contactListId, contactId);
+		result = webClient.makeApiRequest(endpoint, "GET", contactListId, contactId);
 
 		log.info("====== End GetContactLtApiRequet ======");
 		return result;
@@ -87,7 +107,7 @@ public class ServiceWebClient implements InterfaceWebClient {
 
 		String result = "";
 		WebClientApp webClient = new WebClientApp();
-		result = webClient.makeApiRequest34(endpoint,contactListId, msg.toString());
+		result = webClient.makeApiRequest34(endpoint, contactListId, msg.toString());
 
 		int cnt = 3;
 		int retryCount = 1;
@@ -96,7 +116,7 @@ public class ServiceWebClient implements InterfaceWebClient {
 			log.info("Retrying count : {}", retryCount);
 			log.info("Retrying...");
 			retryCount++;
-			result = webClient.makeApiRequest34(endpoint,contactListId, msg.toString());
+			result = webClient.makeApiRequest34(endpoint, contactListId, msg.toString());
 			log.error("Result after retrying : {}", result);
 		}
 
@@ -105,10 +125,10 @@ public class ServiceWebClient implements InterfaceWebClient {
 		}
 
 		if (result != null) {
-			result = "Succeded";
+			result = "성공";
 		}
 
-		log.info("PostContactLtApiRequet 요청 후 결과 값 : {}, 시도횟수 : {}", result, retryCount);
+		log.info("PostContactLtApiRequet 요청 후 결과 값 : {}, 시도횟수 : {} || 컨텍리스트 아이디 : {}", result, retryCount,contactListId);
 		log.info("====== End PostContactLtApiRequet ======");
 		return result;
 	}
@@ -125,7 +145,7 @@ public class ServiceWebClient implements InterfaceWebClient {
 		log.info("cskes : {}", cskes.toString());
 
 		WebClientApp webClient = new WebClientApp();
-		result = webClient.makeApiRequest56(endpoint,contactListId, cskes);
+		result = webClient.makeApiRequest56(endpoint, contactListId, cskes);
 
 		log.info("PostContactLtApiBulk 요청 후 결과 값 result : {}", result);
 		log.info("====== End PostContactLtApiBulk ======");
@@ -141,7 +161,7 @@ public class ServiceWebClient implements InterfaceWebClient {
 		log.info("Endpoint : /api/v2/outbound/contactlists/{contactListId}/clear");
 		log.info("contactListId : {}", contactListId);
 		WebClientApp webClient = new WebClientApp();
-		webClient.makeApiRequest(endpoint, "POST",contactListId);
+		webClient.makeApiRequest(endpoint, "POST", contactListId);
 
 		log.info("====== End PostContactLtClearReq ======");
 
@@ -159,11 +179,12 @@ public class ServiceWebClient implements InterfaceWebClient {
 
 		String rst = msg.toString();
 		rst = rst.substring(1, rst.length() - 1);
-		result = webClient.ApionlyfordelContacts(endpoint, "DELETE",contactListId, rst); 
+		result = webClient.ApionlyfordelContacts(endpoint, "DELETE", contactListId, rst);
 
-		if (result == null)log.error("{} has been deleted well.", rst); 
-		else log.error("An error has occurred : {}", result);
-		
+		if (result == null)
+			log.error("{} has been deleted well.", rst);
+		else
+			log.error("An error has occurred : {}", result);
 
 		log.info("====== End DelContacts ======");
 		return result;

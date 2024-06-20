@@ -1,21 +1,63 @@
 package gc.apiClient.service;
 
-import org.json.JSONObject;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import gc.apiClient.entity.postgresql.Entity_Ucrm;
-import gc.apiClient.interfaceCollection.InterfaceJson;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class ServiceJson implements InterfaceJson {
+public class ServiceJson  {
+	
+	public static String extractStrVal(String methodNm, Object... params) throws Exception {
+		
+		log.info(" ");
+		log.info("====== ClassName : ServiceJson & Method : extractStrVal ======");
+		log.info("Type : {}",methodNm);
+		
+        switch (methodNm) {
+            case "ExtractVal":
+                return ExtractVal((String) params[0]);
+            case "ExtractValCrm12":
+                return ExtractValCrm12((String) params[0], (int) params[1]);
+            case "ExtractContacts56":
+            	return ExtractContacts56((String) params[0], (int) params[1]);
+            case "ExtractValCallBot":
+            	return ExtractValCallBot((String) params[0], (int) params[1]);
+            case "ExtractCampMaUpdateOrDel":
+                return ExtractCampMaUpdateOrDel((String) params[0]);
+            case "ExtrSaveRtData":
+                return ExtrSaveRtData((String) params[0]);
+            case "ExtractContactLtId":
+            	return ExtractContactLtId((String) params[0]);
+            case "ExtractRawUcrm":
+            	  if (params[0] instanceof Entity_Ucrm) {
+                      return ExtractRawUcrm((Entity_Ucrm) params[0]);
+                  } else {
+                      throw new IllegalArgumentException("Expected Entity_Ucrm as parameter for ExtractRawUcrm");
+                  }
+            default:
+                throw new IllegalArgumentException("Invalid strategy type");
+        }
+    }
+	
+	public static int extractIntVal(String methodNm, Object... params) throws Exception {
+		
+		log.info(" ");
+		log.info("====== ClassName : ServiceJson & Method : extractIntVal ======");
+		
+        switch (methodNm) {
+            case "CampaignListSize":
+                return CampaignListSize((String) params[0]);
+            case "ExtractDict":
+            	return ExtractDict((String) params[0]);
+            default:
+                throw new IllegalArgumentException("Invalid strategy type");
+        }
+    }
 
-	@Override
-	public String ExtractVal(String stringMsg) { // campMa 테이블의 3가지 속성(coid,cpid,cpna)에 넣기 위한 가공 작업
+	
+	public static String ExtractVal(String stringMsg) throws Exception { // campMa 테이블의 3가지 속성(coid,cpid,cpna)에 넣기 위한 가공 작업
 		// (현재는 아무거나 임의로 뽑아봄)-매개변수로 들어온 JsonString data 'stringMsg'에서
 		// 'id','name','dialingMode'값 그냥 뽑아봄.
 
@@ -25,7 +67,6 @@ public class ServiceJson implements InterfaceJson {
 		JsonNode jsonNode = null;
 		String result = "";
 
-		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
 
 			result = jsonNode.path("entities").path(0).path("id").asText();
@@ -34,109 +75,80 @@ public class ServiceJson implements InterfaceJson {
 
 			result = result + "::" + jsonNode.path("entities").path(0).path("dialingMode").asText();
 
-		} catch (JsonMappingException e) {
-
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 		// 리턴 데이터 형식 예) adhoahfd::oadiifaj::ohdhfa
 		return result;
 	}
+	
 
-	@Override
-	public String ExtractValCrm12(String stringMsg, int i) {//stringMsg에서 원하는 값만 추출. 
+	public static String ExtractValCrm12(String stringMsg, int i) throws Exception {//stringMsg에서 원하는 값만 추출. 
 
 		String jsonResponse = stringMsg;
 
-		log.info(" ");
-		log.info("====== ClassName : ServiceJson & Method : ExtractValCrm12 ======");
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode jsonNode = null;
 		String result = "";
 
-		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
-			result = jsonNode.path("entities").path(i).path("id").asText();
+			String cpid = jsonNode.path("entities").path(i).path("id").asText();
 			String coid = jsonNode.path("entities").path(i).path("callerName").asText();
 			String cpnm = jsonNode.path("entities").path(i).path("name").asText();
-			result = result + "::" + coid;
-			result = result + "::" + cpnm;
-			result = result + "::" + jsonNode.path("entities").path(i).path("division").path("name").asText();
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
+			String divisionName = jsonNode.path("entities").path(i).path("division").path("name").asText();
 
+		result = cpid+"::"+coid+"::"+cpnm+"::"+divisionName;
 		log.info("result : {}", result);
+		log.info("cpid(캠페인아이디) : {}", cpid);
+		log.info("coid(센터구분코드) : {}", coid);
+		log.info("cpnm(캠페인명) : {}", cpnm);
+		log.info("divisionName(디비전명) : {}", divisionName);
 		log.info("====== END ExtractValCrm12 ======");
 		return result;
 	}
 
-	@Override
-	public int CampaignListSize(String stringMsg) {
+	public static int CampaignListSize(String stringMsg) throws Exception{
 		String jsonResponse = stringMsg;
 
-		log.info(" ");
-		log.info("====== ClassName : ServiceJson & Method : CampaignListSize ======");
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode jsonNode = null;
 		int result = 0;
 
-		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
 			result = Integer.parseInt(jsonNode.path("total").asText()); //매개 변수로 받은 'stringMsg'에 "total"이라는 키가 있음. 그 키 값의 의미는 조회된 캠페인의 숫자.
 
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-
-		log.info("캠페인 리스트 사이즈 : {}", result);
+		log.info("총 캠페인 개수 : {}", result);
 		log.info("====== END CampaignListSize ======");
 		return result;
 	}
-
-	@Override
-	public String ExtractCampMaUpdateOrDel(String stringMsg) {// IF-CRM_001,IF-CRM_002에서 사용하기 위한 추출함수.
+	
+	
+	public static String ExtractCampMaUpdateOrDel(String stringMsg) throws Exception{
 		// cpid::coid::cpna::divisionid::action
 		String jsonResponse = stringMsg;
-
-		log.info(" ");
-		log.info("====== ClassName : ServiceJson & Method : ExtractCampMaUpdateOrDel ======");
-
-		log.info("Incoming Msg : {}", stringMsg);
 
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode jsonNode = null;
 		String result = "";
 
-		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
-			result = jsonNode.path("cpid").asText();
+			String cpid = jsonNode.path("cpid").asText();
 			String coid = jsonNode.path("callerName").asText();
 			String cpnm = jsonNode.path("cpnm").asText();
-			result = result + "::" + coid;
-			result = result + "::" + cpnm;
-			result = result + "::" + jsonNode.path("division").asText();
-			result = result + "::" + jsonNode.path("action").asText();
+			String division = jsonNode.path("division").asText();
+			String action = jsonNode.path("action").asText();
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
+		result = cpid+"::"+coid+"::"+cpnm+"::"+division+"::"+action;
+		
 		log.info("result : {}", result);
+		log.info("cpid(캠페인아이디) : {}", cpid);
+		log.info("coid(센터구분코드) : {}", coid);
+		log.info("cpnm(캠페인명) : {}", cpnm);
+		log.info("division(디비전아이디) : {}", division);
+		log.info("action(crud타입) : {}", action);
 		log.info("====== END ExtractCampMaUpdateOrDel ======");
 		return result;
 	}
 
-	@Override
-	public String ExtractValCallBot(String stringMsg, int i) {// IF-CRM_003,IF-CRM_004에서 사용하기 위한 추출함수.
+	
+	public static String ExtractValCallBot(String stringMsg, int i) throws Exception{
 
 		String jsonResponse = stringMsg;
 
@@ -144,7 +156,6 @@ public class ServiceJson implements InterfaceJson {
 		JsonNode jsonNode = null;
 		String result = "";
 
-		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
 			result = jsonNode.path("cmpnItemDto").path(i).path("cmpnId").asText();
 			result = result + "::" + jsonNode.path("cmpnItemDto").path(i).path("cmpnSeq").asText();
@@ -153,89 +164,30 @@ public class ServiceJson implements InterfaceJson {
 			result = result + "::" + jsonNode.path("cmpnItemDto").path(i).path("token").asText();
 			result = result + "::" + jsonNode.path("cmpnItemDto").path(i).path("flag").asText();
 
-		} catch (Exception e) {
-			log.info("Error Message : {}", e.getMessage());
-		}
 
 		return result;
 	}
 
-	@Override
-	public String ExtractValUcrm(String stringMsg) {
 
-		log.info(" ");
-		log.info("====== ClassName : ServiceJson & Method : ExtractValUcrm ======");
+	
+	public static String ExtractRawUcrm(Entity_Ucrm enUcrm) throws Exception {// cpid::cpsq::cske::csno::tkda::flag
 
-		log.info("Incoming msg : {}", stringMsg);
-
-		JSONObject jsonObject = new JSONObject(stringMsg);
-		String payload = jsonObject.getString("payload");
-		JSONObject payloadObject = new JSONObject(payload);
-
-		String result = "";
-		// (콜봇에서 뽑아온거)cpid::cpsq::cske::csno::tkda::flag
-
-		try {
-			result = payloadObject.getString("ctiCmpnId");
-			result = result + "::" + payloadObject.getString("ctiCmpnSno");
-			result = result + "::" + payloadObject.getString("hldrCustId");
-			result = result + "::" + payloadObject.getString("tlno");
-			result = result + "::" + payloadObject.getString("trdtCntn");
-			result = result + "::" + payloadObject.getString("workDivsCd");
-			result = result + "::" + payloadObject.getString("topcDataIsueSno");
-			result = result + "::" + payloadObject.getString("topcDataIsueDtm");
-			result = result + "::" + payloadObject.getString("subssDataChgCd");
-			result = result + "::" + payloadObject.getString("subssDataDelYn");
-			result = result + "::" + payloadObject.getString("custNm");
-			result = result + "::" + payloadObject.getString("cablTlno");
-			result = result + "::" + payloadObject.getString("custTlno");
-
-		} catch (Exception e) {
-
-			log.info("Error Message : {}", e.getMessage());
-			e.printStackTrace();
-		}
-
-		log.info("result : {}", result);
-		return result;
-	}
-
-	@Override
-	public String ExtractRawUcrm(Entity_Ucrm enUcrm) {// cpid::cpsq::cske::csno::tkda::flag::contactltId::queid
-
-//		log.info(" ");
-//		log.info("====== ClassName : ServiceJson & Method : ExtractRawUcrm ======");
-
-//		log.info("record info : {}",enUcrm.toString() );
 
 		String cpid = enUcrm.getId().getCpid();
 		String cpsq = enUcrm.getId().getCpsq();
 
 		String result = "";
 		result = cpid;
-//		log.info("cpid : {}",cpid );
 		result = result + "::" + cpsq;
-//		log.info("cpid : {}",cpsq );
 		result = result + "::" + enUcrm.getHldrCustId();
-//		log.info("cske : {}",enUcrm.getHldrCustId() );
 		result = result + "::" + enUcrm.getTlno();
-//		log.info("csno : {}",enUcrm.getTlno() );
 		result = result + "::" + enUcrm.getTrdtCntn();
-//		log.info("tkda : {}",enUcrm.getTrdtCntn() );
 		result = result + "::" + enUcrm.getWorkDivsCd();
-//		log.info("flag : {}",enUcrm.getWorkDivsCd() );
-
-//		log.info("result : {}",result );
-//		log.info("====== End ExtractRawUcrm ======");
 		return result;
 	}
 
-	@Override
-	public String ExtractVal56(String stringMsg) {// IF-CRM_005,IF-CRM_006에서 사용하기 위한 추출함수.
-
-		log.info(" ");
-		log.info("====== ClassName : ServiceJson & Method : ExtractVal56 ======");
-		log.info("Incoming Message : {}", stringMsg);
+	
+	public static String ExtractContacts56(String stringMsg, int i) throws Exception {
 
 		String jsonResponse = stringMsg;
 
@@ -243,36 +195,6 @@ public class ServiceJson implements InterfaceJson {
 		JsonNode jsonNode = null;
 		String result = "";
 
-		try {
-
-			jsonNode = objectMapper.readTree(jsonResponse);
-			result = jsonNode.path("cpid").asText();
-			result += "::" + jsonNode.path("contactList_id").asText();
-			result += "::" + jsonNode.path("division").asText();
-
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		log.info("result : {}", result);
-		log.info("====== End ExtractVal56 ======");
-
-		return result;
-	}
-
-	@Override
-	public String ExtractContacts56(String stringMsg, int i) {// IF-CRM_005,IF-CRM_006에서 사용하기 위한 추출함수.
-
-		log.info(" ");
-		log.info("====== ClassName : ServiceJson & Method : ExtractContacts56 ======");
-		String jsonResponse = stringMsg;
-
-		ObjectMapper objectMapper = new ObjectMapper();
-		JsonNode jsonNode = null;
-		String result = "";
-
-		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
 			result = jsonNode.path(i).path("id").asText();
 			result = result + "::" + jsonNode.path(i).path("contactListId").asText();
@@ -281,12 +203,6 @@ public class ServiceJson implements InterfaceJson {
 			result = result + "::" + jsonNode.path(i).path("callRecords").path("TNO1").path("lastResult").asText();
 			result = result + "::" + jsonNode.path(i).path("data").path("TKDA").asText();
 			result = result + "::" + jsonNode.path(i).path("callRecords").path("TNO1").path("lastAttempt").asText();
-
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
 
 		if (result.equals("::::::::::::")) {
 			result = "";
@@ -298,8 +214,8 @@ public class ServiceJson implements InterfaceJson {
 		return result;
 	}
 
-	@Override
-	public int ExtractDict(String stringMsg) {
+	
+	public static int ExtractDict(String stringMsg) throws Exception {
 
 		String jsonResponse = stringMsg;
 
@@ -307,24 +223,14 @@ public class ServiceJson implements InterfaceJson {
 		JsonNode jsonNode = null;
 		int result = 100;
 
-		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
 			result = jsonNode.path("contactRate").path("attempts").asInt();
-
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
 
 		return result;
 	}
 
-	@Override
-	public String ExtractContactLtId(String stringMsg) {
+	public static String ExtractContactLtId(String stringMsg) throws Exception{
 
-//		log.info(" ");
-//		log.info("====== ClassName : ServiceJson & Method : ExtractContactLtId ======");
 		String jsonResponse = stringMsg;
 
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -332,7 +238,6 @@ public class ServiceJson implements InterfaceJson {
 		String result = "";
 		String que = " ";
 
-		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
 			result = jsonNode.path("contactList").path("id").asText();
 			if (jsonNode.path("queue").path("id").asText().equals("")) {
@@ -341,49 +246,12 @@ public class ServiceJson implements InterfaceJson {
 			}
 			result = result + "::" + que;
 
-		} catch (Exception e) {
-			log.info("Error Message : {}", e.getMessage());
-		}
-
-//		log.info("result of ExtractContactLtId : {}",result);
-//		log.info("====== End ExtractContactLtId ======");
 		return result;
 	}
 
-	@Override
-	public String ExtractDidtDirt(String stringMsg) {// stringMsg에서 didt,dirt추출헤서 리턴해주는 함수.
+	
+	public static String ExtrSaveRtData(String stringMsg) throws Exception {
 
-		System.out.println("=====ExtractDidtDirt=====");
-//		String result = "2023-11-29T11:15:31.705Z::ININ-OUTBOUND-PREVIEW-ERROR-PHONE-NUMBER"; // didt,dirt 임시로 넣어둠.
-
-		String jsonResponse = stringMsg;
-
-		ObjectMapper objectMapper = new ObjectMapper();
-		JsonNode jsonNode = null;
-		String result = "";
-
-		try {
-			jsonNode = objectMapper.readTree(jsonResponse);
-			result = jsonNode.path("callRecords").path("전화번호").path("lastAttempt").asText();
-			result += "::" + jsonNode.path("callRecords").path("전화번호").path("lastResult").asText();
-
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		System.out.println("resulte : " + result);
-
-		return result;
-
-	}
-
-	@Override
-	public String ExtrSaveRtData(String stringMsg) throws Exception {
-
-		log.info(" ");
-		log.info("====== ClassName : ServiceJson & Method : ExtrSaveRtData ======");
-		log.info("incoming msg : {} : ",stringMsg);
 		String jsonResponse = stringMsg;
 
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -391,36 +259,18 @@ public class ServiceJson implements InterfaceJson {
 		String result = "";
 
 		jsonNode = objectMapper.readTree(jsonResponse);
-		result = jsonNode.path("cpid").asText();
-		result += "::" + jsonNode.path("cpsq").asText();
-		result += "::" + jsonNode.path("divisionid").asText();
+		String cpid = jsonNode.path("cpid").asText();
+		String cpsq = jsonNode.path("cpsq").asText();
+		String divisionid = jsonNode.path("divisionid").asText();
 
+		result = cpid+"::"+cpsq+"::"+divisionid;
 		log.info("result : {}", result);
+		log.info("cpid(캠페인아이디) : {}", cpid);
+		log.info("cpsq(캠페인시퀀스) : {}", cpsq);
+		log.info("divisionid(디비전아이디) : {}", divisionid);
 
 		log.info("====== End ExtrSaveRtData ======");
 		return result;
-	}
-
-	@Override
-	public String ExtrDivisionNm(String stringMsg) throws Exception {
-		
-		log.info(" ");
-		log.info("====== ClassName : ServiceJson & Method : ExtrDivisionNm ======");
-
-		String jsonResponse = stringMsg;
-
-		ObjectMapper objectMapper = new ObjectMapper();
-		JsonNode jsonNode = null;
-		String result = "";
-
-		jsonNode = objectMapper.readTree(jsonResponse);
-		result = jsonNode.path("division").path("name").asText();
-		
-		log.info("result : {}", result);
-
-		log.info("====== End ExtrDivisionNm ======");
-		return result;
-		
 	}
 
 }

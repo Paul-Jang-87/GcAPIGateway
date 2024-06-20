@@ -31,9 +31,9 @@ public class WebClientApp {
 	public WebClientApp() {
 
 		CLIENT_ID = WebClientConfig.getClientId();
-		log.info("Client Id : {}", CLIENT_ID);
+		log.info("제네시스 Client Id : {}", CLIENT_ID);
 		CLIENT_SECRET = WebClientConfig.getClientSecret();
-		log.info("Client secret : {}", CLIENT_SECRET);
+		log.info("제네시스 Client secret : {}", CLIENT_SECRET);
 		API_BASE_URL = WebClientConfig.getBaseUrl();
 
 		checkToken();
@@ -83,9 +83,9 @@ public class WebClientApp {
 			accessToken = newAccessToken;
 			tokenlist[index] = newAccessToken;
 
-			log.info("Access token has been refreshed successfully.");
+			log.info("Access token이 성공적으로 발급되었습니다.");
 		} catch (Exception e) {
-			log.error("Error occurred during access token refresh: {}", e.getMessage());
+			log.error("토큰 발급 과정에서 에러가 발생했습니다 : {}", e.getMessage());
 		}
 
 	}

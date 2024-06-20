@@ -31,14 +31,13 @@ import gc.apiClient.interfaceCollection.InterfaceDBPostgreSQL;
 import gc.apiClient.interfaceCollection.InterfaceMsgObjOrcl;
 import gc.apiClient.interfaceCollection.InterfaceWebClient;
 import gc.apiClient.messages.MessageTo360View;
-import gc.apiClient.service.ServiceJson;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
 @RestController
 @Slf4j
 @Profile("oracleH")
-public class Controller360view extends ServiceJson {
+public class Controller360view {
 
 	private final InterfaceDBOracle serviceOracle;
 	private final InterfaceMsgObjOrcl serviceMsgObjOrcl;
@@ -128,7 +127,7 @@ public class Controller360view extends ServiceJson {
 
 			String topic_id = "from_clcc_hmcepcalldt_message"; //토픽아이디
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id); // 해당 테이블에서 레코드 개수를 가지고 온다. 
-			log.info("(DataCall) the number of records : {}", numberOfRecords);
+			log.info("(DataCall)의 레코드의 개수 : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -150,7 +149,7 @@ public class Controller360view extends ServiceJson {
 
 		} catch (Exception e) {
 			log.error(e.getMessage());
-			e.printStackTrace();
+			 
 
 		}
 		return Mono.just(ResponseEntity.ok("'Msg360Datacall' got message successfully."));
@@ -164,7 +163,7 @@ public class Controller360view extends ServiceJson {
 		try {
 			String topic_id = "from_clcc_mblcepcalldt_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("(MDataCall) the number of records : {}", numberOfRecords);
+			log.info("(MDataCall)의 레코드의 개수 : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -185,7 +184,7 @@ public class Controller360view extends ServiceJson {
 
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			 
 			log.error("Error Message : {}", e.getMessage());
 		}
 		return Mono.just(ResponseEntity.ok("'Msg360MDatacall' got message successfully."));
@@ -198,7 +197,7 @@ public class Controller360view extends ServiceJson {
 		try {
 			String topic_id = "from_clcc_hmcepcalldtcust_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("(DataCallCustomer) the number of records : {}", numberOfRecords);
+			log.info("(DataCallCustomer)의 레코드의 개수 : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -218,7 +217,7 @@ public class Controller360view extends ServiceJson {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			 
 			log.error("Error Message : {}", e.getMessage());
 		}
 
@@ -232,7 +231,7 @@ public class Controller360view extends ServiceJson {
 
 			String topic_id = "from_clcc_mblcepcalldtcust_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("(MDataCallCustomer) the number of records : {}", numberOfRecords);
+			log.info("(MDataCallCustomer)의 레코드의 개수 : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -252,7 +251,7 @@ public class Controller360view extends ServiceJson {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			 
 			log.error("Error Message : {}", e.getMessage());
 		}
 
@@ -265,7 +264,7 @@ public class Controller360view extends ServiceJson {
 		try {
 			String topic_id = "from_clcc_hmcepcallsvccd_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("(DataCallService) the number of records : {}", numberOfRecords);
+			log.info("(DataCallService)의 레코드의 개수 : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -284,7 +283,7 @@ public class Controller360view extends ServiceJson {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			 
 			log.error("Error Message : {}", e.getMessage());
 		}
 
@@ -297,7 +296,7 @@ public class Controller360view extends ServiceJson {
 		try {
 			String topic_id = "from_clcc_mblcepcallsvccd_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("(MDataCallService) the number of records : {}", numberOfRecords);
+			log.info("(MDataCallService)의 레코드의 개수 : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -316,7 +315,7 @@ public class Controller360view extends ServiceJson {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			 
 			log.error("Error Message : {}", e.getMessage());
 		}
 
@@ -328,7 +327,7 @@ public class Controller360view extends ServiceJson {
 		try {
 			String topic_id = "from_clcc_hmcepcallmstrsvccd_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("(MasterServiceCode) the number of records : {}", numberOfRecords);
+			log.info("(MasterServiceCode)의 레코드의 개수 : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -347,7 +346,7 @@ public class Controller360view extends ServiceJson {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			 
 			log.error("Error Message : {}", e.getMessage());
 		}
 
@@ -360,7 +359,7 @@ public class Controller360view extends ServiceJson {
 		try {
 			String topic_id = "from_clcc_mblcepcallmstrsvccd_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("(MMasterServiceCode) the number of records : {}", numberOfRecords);
+			log.info("(MMasterServiceCode)의 레코드의 개수 : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -379,7 +378,7 @@ public class Controller360view extends ServiceJson {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			 
 			log.error("Error Message : {}", e.getMessage());
 		}
 		return Mono.just(ResponseEntity.ok("'Msg360MMstrsSvcCd' got message successfully."));
@@ -391,7 +390,7 @@ public class Controller360view extends ServiceJson {
 		try {
 			String topic_id = "from_clcc_hmcepwacalldt_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("(WaDataCall) the number of records : {}", numberOfRecords);
+			log.info("(WaDataCall)의 레코드의 개수 : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -410,7 +409,7 @@ public class Controller360view extends ServiceJson {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			 
 			log.error("Error Message : {}", e.getMessage());
 		}
 		return Mono.just(ResponseEntity.ok("'Msg360WaDataCall' got message successfully."));
@@ -422,7 +421,7 @@ public class Controller360view extends ServiceJson {
 		try {
 			String topic_id = "from_clcc_mblcepwacalldt_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("(MWaDataCall) the number of records : {}", numberOfRecords);
+			log.info("(MWaDataCall)의 레코드의 개수 : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -441,7 +440,7 @@ public class Controller360view extends ServiceJson {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			 
 			log.error("Error Message : {}", e.getMessage());
 		}
 		return Mono.just(ResponseEntity.ok("'Msg360MWaDataCall' got message successfully."));
@@ -453,7 +452,7 @@ public class Controller360view extends ServiceJson {
 		try {
 			String topic_id = "from_clcc_hmcepwacallopt_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("(WaDataCallOptional) the number of records : {}", numberOfRecords);
+			log.info("(WaDataCallOptional)의 레코드의 개수 : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -473,7 +472,7 @@ public class Controller360view extends ServiceJson {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			 
 			log.error("Error Message : {}", e.getMessage());
 		}
 		return Mono.just(ResponseEntity.ok("'Msg360WaDataCallOptional' got message successfully."));
@@ -485,7 +484,7 @@ public class Controller360view extends ServiceJson {
 		try {
 			String topic_id = "from_clcc_mblcepwacallopt_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("(MWaDataCallOptional) the number of records : {}", numberOfRecords);
+			log.info("(MWaDataCallOptional)의 레코드의 개수 : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -504,7 +503,7 @@ public class Controller360view extends ServiceJson {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			 
 			log.error("Error Message : {}", e.getMessage());
 		}
 		return Mono.just(ResponseEntity.ok("'Msg360MWaDataCallOptional' got message successfully."));
@@ -517,7 +516,7 @@ public class Controller360view extends ServiceJson {
 
 			String topic_id = "from_clcc_hmcepwacalltr_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("(WaDataCallTrace) the number of records : {}", numberOfRecords);
+			log.info("(WaDataCallTrace)의 레코드의 개수 : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -537,7 +536,7 @@ public class Controller360view extends ServiceJson {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			 
 			log.error("Error Message : {}", e.getMessage());
 		}
 
@@ -550,7 +549,7 @@ public class Controller360view extends ServiceJson {
 		try {
 			String topic_id = "from_clcc_mblcepwacalltr_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("(MWaDataCallTrace) the number of records : {}", numberOfRecords);
+			log.info("(MWaDataCallTrace)의 레코드의 개수 : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -569,7 +568,7 @@ public class Controller360view extends ServiceJson {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			 
 			log.error("Error Message : {}", e.getMessage());
 		}
 		return Mono.just(ResponseEntity.ok("'Msg360MWaDataCallTrace' got message successfully."));
@@ -581,7 +580,7 @@ public class Controller360view extends ServiceJson {
 		try {
 			String topic_id = "from_clcc_hmcepwatrcd_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("(WaMTracecode) the number of records : {}", numberOfRecords);
+			log.info("(WaMTracecode)의 레코드의 개수 : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -600,7 +599,7 @@ public class Controller360view extends ServiceJson {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			 
 			log.error("Error Message : {}", e.getMessage());
 		}
 		return Mono.just(ResponseEntity.ok("'Msg360WaMTrCode' got message successfully."));
@@ -612,7 +611,7 @@ public class Controller360view extends ServiceJson {
 		try {
 			String topic_id = "from_clcc_mblcepwatrcd_message";
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("(MWaMTracecode) the number of records : {}", numberOfRecords);
+			log.info("(MWaMTracecode)의 레코드의 개수 : {}", numberOfRecords);
 
 			if (numberOfRecords < 1) {
 
@@ -631,7 +630,7 @@ public class Controller360view extends ServiceJson {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			 
 			log.error("Error Message : {}", e.getMessage());
 		}
 

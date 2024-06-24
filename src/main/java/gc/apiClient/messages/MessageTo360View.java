@@ -36,8 +36,10 @@ public class MessageTo360View {
 
 		String endpointUrl = "/360view/" + towhere;
 
-		Mono<String> result = webClient.post().uri(endpointUrl).body(BodyInserters.fromValue(jsonString)).retrieve()
-				 .onStatus(
+		webClient.post()
+				.uri(endpointUrl)
+				.body(BodyInserters.fromValue(jsonString)).retrieve()
+				.onStatus(
 		                    status -> status.is4xxClientError() || status.is5xxServerError(),
 		                    response -> response.bodyToMono(String.class).flatMap(body -> {
 		                        return Mono.error(new RuntimeException("HTTP error: " + response.statusCode() + ", " + body));
@@ -49,12 +51,11 @@ public class MessageTo360View {
 	            }).onErrorResume(e -> {
 	            	 log.error("카프카 프로듀서 APP에서 받은 에러 메시지 : {}", e.getMessage());
 	            	 return Mono.empty();
-				}).doOnSuccess(responseBody -> {
-					log.info("카프카 프로듀서로 부터 받은 응답 메시지 : {}", responseBody);
-				});
+				}).subscribe(responseBody -> {
+	                log.info("카프카 프로듀서로 부터 받은 응답 메시지 : {}", responseBody);
+	            });
 
 		// Subscribe to the Mono
-		result.subscribe();
 
 		log.info("====== End SendMsgTo360View ======");
 

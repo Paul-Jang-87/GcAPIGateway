@@ -529,7 +529,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			entity.setCpna(cpna);
 			repositoryCampMa.save(entity);
 		} else {
-			throw new EntityNotFoundException("No Entity has been found with CPID: " + cpid);
+			throw new EntityNotFoundException("해당 cpid ("+cpid+")로 조회 된 레코드가 DB에 없습니다.");
 		}
 	}
 

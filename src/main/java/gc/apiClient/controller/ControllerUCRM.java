@@ -51,17 +51,17 @@ public class ControllerUCRM {
 		this.customProperties = customProperties;
 	}
 
-//	@Scheduled(fixedRate = 60000)// 1분 간격으로 함수 'SendUcrmRt' 스케줄 돌림.
-//	public void scheduledMethod() {
-//
-//		Mono.fromCallable(() -> SendUcrmRt()).subscribeOn(Schedulers.boundedElastic()).subscribe();
-//
-//	}
-//
-//	@Scheduled(fixedRate = 5000)// 5초 간격으로 함수 'UcrmMsgFrmCnsmer' 스케줄 돌림. 
-//	public void UcrmContactlt() {
-//		Mono.fromCallable(() -> UcrmMsgFrmCnsmer()).subscribeOn(Schedulers.boundedElastic()).subscribe();
-//	}
+	@Scheduled(fixedRate = 60000)// 1분 간격으로 함수 'SendUcrmRt' 스케줄 돌림.
+	public void scheduledMethod() {
+
+		Mono.fromCallable(() -> SendUcrmRt()).subscribeOn(Schedulers.boundedElastic()).subscribe();
+
+	}
+
+	@Scheduled(fixedRate = 5000)// 5초 간격으로 함수 'UcrmMsgFrmCnsmer' 스케줄 돌림. 
+	public void UcrmContactlt() {
+		Mono.fromCallable(() -> UcrmMsgFrmCnsmer()).subscribeOn(Schedulers.boundedElastic()).subscribe();
+	}
 
 	@PostMapping("/saveucrmdata")//이것을 카프카 컨슈머에서 호출하는 api. 컨슈머 앱에서 특정 토픽을 구독하면서 메시지를 받는다. 메시지를 받은 컨슈머는 이 api를 호출하여 받은 메시지를 전달해준다. 
 	public Mono<ResponseEntity<String>> SaveUcrmData(@RequestBody String msg) {
@@ -157,35 +157,39 @@ public class ControllerUCRM {
 
 					} catch (DataIntegrityViolationException ex) {//인서트 하려고 했는데 이미 있는 데이터여서 에러가 발생한 경우
 						log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
-						if (enContactLt.getFlag().equals("D")) {//만약 인서트 하려고 하는 해당 레코드의 flag 값이 'D'이면 회수하라는 의미 -> 즉 삭제하라는 의미.
-							log.error("flag가 'D', 레코드 삭제");
+						
+						// 해당 레코드의 flag 값이 'D'이면 회수하라는 의미 -> 즉 삭제하라는 의미.
+						if (enContactLt.getFlag().equals("D")) {
+							log.error("flag가 'D', 레코드 삭제 cpid '{}' /cpsq '{}'",cpid, row_result.split("::")[1]);
 
-							//이 부분은 제네시스로 삭제 api를 호출하기 위해서 필요한 부분.
+							//============  Genesys contact list 삭제를 위한 Map 세팅
+							// 삭제가 필요한 contact들만 따로 Map으로 모아둔다.
 							if (!delcontactlists.containsKey(contactLtId)) {
 								delcontactlists.put(contactLtId, new ArrayList<>());
 							}
 							delcontactlists.get(contactLtId).add(row_result.split("::")[1]);
-							//이 부분은 제네시스로 삭제 api를 호출하기 위해서 필요한 부분.
 							
-							
-							serviceDb.DelContactltById(enContactLt.getId());// 'contactlt' 테이블에서 삭제
+							// DB 'CONTACTLT' 테이블에서 row 데이터 삭제
+							serviceDb.DelContactltById(enContactLt.getId());
 						}
+						
 					} catch (DataAccessException ex) {
 						log.error("DataAccessException 발생 : {}", ex.getMessage());
 					}
-
 
 					//쉐도우 테이블에서 삭제 테이블명 'UCRMLT'
 					serviceDb.DelUcrmLtById(entitylist.getContent().get(i).getTopcDataIsueSno());
 
 				}
 
+				// 캠페인 컨택리스트 적재를 위한 Genesys API 호출 (add contact)
 				for (Map.Entry<String, List<String>> entry : contactlists.entrySet()) {
 
-					log.info("Now the size of Arraylist '{}': {}", entry.getKey(), entry.getValue().size());
+					log.info("Arraylist '{}'의 현재 사이즈: {}", entry.getKey(), entry.getValue().size());
 					serviceWeb.PostContactLtApiRequet("contact", entry.getKey(), entry.getValue());
 				}
 
+				// 캠페인 컨택리스트 삭제를 위한 Genesys API 호출 (delete contact)
 				for (Map.Entry<String, List<String>> entry : delcontactlists.entrySet()) {
 
 					log.info("Arraylist '{}'의 현재 사이즈: {}", entry.getKey(), entry.getValue().size());

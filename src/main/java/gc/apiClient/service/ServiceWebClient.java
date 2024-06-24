@@ -182,9 +182,9 @@ public class ServiceWebClient implements InterfaceWebClient {
 		result = webClient.ApionlyfordelContacts(endpoint, "DELETE", contactListId, rst);
 
 		if (result == null)
-			log.error("{} has been deleted well.", rst);
+			log.error("{} 정상적으로 삭제 되었습니다.", rst);
 		else
-			log.error("An error has occurred : {}", result);
+			log.error("에러가 발생했습니다. : {}", result);
 
 		log.info("====== End DelContacts ======");
 		return result;

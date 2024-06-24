@@ -47,8 +47,7 @@ public class Controller360view {
 		this.serviceOracle = serviceOracle;
 		this.serviceMsgObjOrcl = serviceMsgObjOrcl;
 	}
-
-
+	
 	@Scheduled(fixedRate = 60000) //1분 간격으로 아래 함수들을 자동 실행. 
 	public void scheduledMethod() {
 
@@ -118,7 +117,7 @@ public class Controller360view {
         .subscribe();
 
 	}
-
+	
 
 	@GetMapping("/360view1")
 	public Mono<ResponseEntity<String>> Msg360Datacall() {
@@ -465,10 +464,12 @@ public class Controller360view {
 
 					String crudtype = entitylist.get(i).getCmd();
 					int orderid = entitylist.get(i).getOrderid();
-					MessageTo360View.SendMsgTo360View(topic_id,
-							serviceMsgObjOrcl.WaDataCallOptionalMsg(entitylist.get(i), crudtype));
+//					MessageTo360View.SendMsgTo360View(topic_id,
+//							serviceMsgObjOrcl.WaDataCallOptionalMsg(entitylist.get(i), crudtype));
 
+					log.info("현재 orderid 는? : {}", orderid);
 					serviceOracle.deleteAll(Entity_WaDataCallOptional.class, orderid);
+					
 				}
 			}
 		} catch (Exception e) {

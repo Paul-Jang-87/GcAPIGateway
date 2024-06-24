@@ -51,12 +51,12 @@ public class ControllerCallBot {
 		this.customProperties = customProperties;
 	}
 
-//	@Scheduled(fixedRate = 60000) // 1분 간격으로 'SendCallBotRt' 비동기적으로 실행.
-//	public void scheduledMethod() {
-//
-//		Mono.fromCallable(() -> SendCallBotRt()).subscribeOn(Schedulers.boundedElastic()).subscribe();
-//
-//	}
+	@Scheduled(fixedRate = 60000) // 1분 간격으로 'SendCallBotRt' 비동기적으로 실행.
+	public void scheduledMethod() {
+
+		Mono.fromCallable(() -> SendCallBotRt()).subscribeOn(Schedulers.boundedElastic()).subscribe();
+
+	}
 
 	@PostMapping("/contactlt/{topic}")
 	public Mono<ResponseEntity<String>> CallbotMsgFrmCnsumer(@PathVariable("topic") String tranId,

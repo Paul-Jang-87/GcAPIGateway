@@ -36,10 +36,12 @@ public class LogArchiver {
 	@Scheduled(cron = "0 3 0 * * *") // 매일 12:03에 실행
 	public void startlogs() {
 		
-		Date today = new Date();
-
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
-		log.info("{}, apiClient 로그 시작",dateFormat.format(today).toString());
+		SimpleDateFormat form = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
+		Date now = new Date();
+		String nowtime = form.format(now);
+		
+		log.info("{}, apiClient 로그 시작",nowtime);
+		log.info("{}, apiClient_error 로그 시작",nowtime);
 	
 	}
 

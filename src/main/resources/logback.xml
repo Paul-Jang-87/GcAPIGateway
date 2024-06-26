@@ -165,6 +165,7 @@
 		<appender-ref ref="Error" />
 	</logger>
 	
+	
 	<!-- Specific logger for Catalina logs -->
 	<logger name="org.apache.catalina" level="DEBUG" additivity="false">
 		<appender-ref ref="CATALINA" />

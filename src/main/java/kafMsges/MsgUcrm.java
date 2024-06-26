@@ -39,8 +39,7 @@ public class MsgUcrm implements InterfaceKafMsg { //카프카 프로듀서로 �
 	@Override
 	public String maMassage(Entity_CampMa enCampMa, String datachgcd) throws Exception {//MA 메시지
 
-		log.info(" ");
-		log.info("====== ClassName : MsgUcrm & Method : maMassage ======");
+		log.info("====== Method : maMassage ======");
 		Entity_CampMaJsonUcrm enCampMaJson = new Entity_CampMaJsonUcrm();
 		ObjectMapper objectMapper = new ObjectMapper();
 		String jsonString = "";
@@ -88,7 +87,6 @@ public class MsgUcrm implements InterfaceKafMsg { //카프카 프로듀서로 �
 
 		jsonString = objectMapper.writeValueAsString(enCampMaJson);//객체를 String 타입으로 변환. 
 		log.info("jsonString : {}", jsonString);
-		log.info("====== End maMassage ======");
 		return jsonString;
 	}
 

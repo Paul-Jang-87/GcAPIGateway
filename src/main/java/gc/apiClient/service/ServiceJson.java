@@ -11,8 +11,7 @@ public class ServiceJson  {
 	
 	public static String extractStrVal(String methodNm, Object... params) throws Exception {
 		
-		log.info(" ");
-		log.info("====== ClassName : ServiceJson & Method : extractStrVal ======");
+		log.info("====== Method : extractStrVal ======");
 		log.info("Type : {}",methodNm);
 		
         switch (methodNm) {
@@ -43,8 +42,7 @@ public class ServiceJson  {
 	
 	public static int extractIntVal(String methodNm, Object... params) throws Exception {
 		
-		log.info(" ");
-		log.info("====== ClassName : ServiceJson & Method : extractIntVal ======");
+		log.info("====== Method : extractIntVal ======");
 		
         switch (methodNm) {
             case "CampaignListSize":
@@ -100,7 +98,6 @@ public class ServiceJson  {
 		log.info("coid(센터구분코드) : {}", coid);
 		log.info("cpnm(캠페인명) : {}", cpnm);
 		log.info("divisionName(디비전명) : {}", divisionName);
-		log.info("====== END ExtractValCrm12 ======");
 		return result;
 	}
 
@@ -115,7 +112,6 @@ public class ServiceJson  {
 			result = Integer.parseInt(jsonNode.path("total").asText()); //매개 변수로 받은 'stringMsg'에 "total"이라는 키가 있음. 그 키 값의 의미는 조회된 캠페인의 숫자.
 
 		log.info("총 캠페인 개수 : {}", result);
-		log.info("====== END CampaignListSize ======");
 		return result;
 	}
 	
@@ -143,7 +139,6 @@ public class ServiceJson  {
 		log.info("cpnm(캠페인명) : {}", cpnm);
 		log.info("division(디비전아이디) : {}", division);
 		log.info("action(crud타입) : {}", action);
-		log.info("====== END ExtractCampMaUpdateOrDel ======");
 		return result;
 	}
 
@@ -209,7 +204,6 @@ public class ServiceJson  {
 		}
 
 		log.info("추출 이후 결과 값 rs: {}", result);
-		log.info("====== End ExtractContacts56 ======");
 
 		return result;
 	}
@@ -269,7 +263,6 @@ public class ServiceJson  {
 		log.info("cpsq(캠페인시퀀스) : {}", cpsq);
 		log.info("divisionid(디비전아이디) : {}", divisionid);
 
-		log.info("====== End ExtrSaveRtData ======");
 		return result;
 	}
 

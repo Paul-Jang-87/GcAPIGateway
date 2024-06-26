@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.scheduler.Schedulers;
@@ -38,6 +39,7 @@ import reactor.core.publisher.Mono;
 @Slf4j
 @Profile("oracleH")
 public class Controller360view {
+	
 
 	private final InterfaceDBOracle serviceOracle;
 	private final InterfaceMsgObjOrcl serviceMsgObjOrcl;
@@ -48,7 +50,7 @@ public class Controller360view {
 		this.serviceMsgObjOrcl = serviceMsgObjOrcl;
 	}
 	
-	@Scheduled(fixedRate = 60000) //1분 간격으로 아래 함수들을 자동 실행. 
+	@Scheduled(fixedRate = 30000) //30초 간격으로 아래 함수들을 자동 실행. 
 	public void scheduledMethod() {
 
 
@@ -120,6 +122,7 @@ public class Controller360view {
 	
 
 	@GetMapping("/360view1")
+	@Transactional
 	public Mono<ResponseEntity<String>> Msg360Datacall() {
 
 		try {
@@ -154,9 +157,9 @@ public class Controller360view {
 		return Mono.just(ResponseEntity.ok("'Msg360Datacall' got message successfully."));
 	}
 	
-	//이하 동문... 
 
 	@GetMapping("/360view2")
+	@Transactional
 	public Mono<ResponseEntity<String>> Msg360MDatacall() {
 
 		try {
@@ -190,7 +193,7 @@ public class Controller360view {
 	}
 
 	@GetMapping("/360view3")
-
+	@Transactional
 	public Mono<ResponseEntity<String>> Msg360DataCallCustomer() {
 
 		try {
@@ -224,6 +227,7 @@ public class Controller360view {
 	}
 
 	@GetMapping("/360view4")
+	@Transactional
 	public Mono<ResponseEntity<String>> Msg360MDataCallCustomer() {
 
 		try {
@@ -258,6 +262,7 @@ public class Controller360view {
 	}
 
 	@GetMapping("/360view5")
+	@Transactional
 	public Mono<ResponseEntity<String>> Msg360DataCallService() {
 
 		try {
@@ -290,6 +295,7 @@ public class Controller360view {
 	}
 
 	@GetMapping("/360view6")
+	@Transactional
 	public Mono<ResponseEntity<String>> Msg360MDataCallService() {
 
 		try {
@@ -322,6 +328,7 @@ public class Controller360view {
 	}
 
 	@GetMapping("/360view7")
+	@Transactional
 	public Mono<ResponseEntity<String>> Msg360MstrsSvcCd() {
 		try {
 			String topic_id = "from_clcc_hmcepcallmstrsvccd_message";
@@ -353,6 +360,7 @@ public class Controller360view {
 	}
 
 	@GetMapping("/360view8")
+	@Transactional
 	public Mono<ResponseEntity<String>> Msg360MMstrsSvcCd() {
 
 		try {
@@ -384,6 +392,7 @@ public class Controller360view {
 	}
 
 	@GetMapping("/360view9")
+	@Transactional
 	public Mono<ResponseEntity<String>> Msg360WaDataCall() {
 
 		try {
@@ -415,6 +424,7 @@ public class Controller360view {
 	}
 
 	@GetMapping("/360view10")
+	@Transactional
 	public Mono<ResponseEntity<String>> Msg360MWaDataCall() {
 
 		try {
@@ -446,40 +456,33 @@ public class Controller360view {
 	}
 
 	@GetMapping("/360view11")
+	@Transactional
 	public Mono<ResponseEntity<String>> Msg360WaDataCallOptional() {
+	    try {
+	        String topic_id = "from_clcc_hmcepwacallopt_message";
+	        int numberOfRecords = serviceOracle.getRecordCount(topic_id);
+	        log.info("(WaDataCallOptional)의 레코드의 개수 : {}", numberOfRecords);
 
-		try {
-			String topic_id = "from_clcc_hmcepwacallopt_message";
-			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
-			log.info("(WaDataCallOptional)의 레코드의 개수 : {}", numberOfRecords);
+	        if (numberOfRecords >= 1) {
+	            List<Entity_WaDataCallOptional> entityList = serviceOracle.getAll(Entity_WaDataCallOptional.class);
 
-			if (numberOfRecords < 1) {
+	            for (Entity_WaDataCallOptional entity : entityList) {
+	                String crudType = entity.getCmd();
+	                int orderId = entity.getOrderid();
 
-			} else {// 1. 쉐도우 테이블에 레코드가 1개 이상 있다면 있는 레코드들을 다 긁어 온다.
-					// 2. crud 구분해서 메시지 키를 정한다.
-					// 3. 프로듀서로 메시지 재가공해서 보낸다.
-				List<Entity_WaDataCallOptional> entitylist = serviceOracle.getAll(Entity_WaDataCallOptional.class);
+	                MessageTo360View.SendMsgTo360View(topic_id, serviceMsgObjOrcl.WaDataCallOptionalMsg(entity, crudType));
 
-				for (int i = 0; i < entitylist.size(); i++) {
-
-					String crudtype = entitylist.get(i).getCmd();
-					int orderid = entitylist.get(i).getOrderid();
-//					MessageTo360View.SendMsgTo360View(topic_id,
-//							serviceMsgObjOrcl.WaDataCallOptionalMsg(entitylist.get(i), crudtype));
-
-					log.info("현재 orderid 는? : {}", orderid);
-					serviceOracle.deleteAll(Entity_WaDataCallOptional.class, orderid);
-					
-				}
-			}
-		} catch (Exception e) {
-			 
-			log.error("Error Message : {}", e.getMessage());
-		}
-		return Mono.just(ResponseEntity.ok("'Msg360WaDataCallOptional' got message successfully."));
+	                serviceOracle.deleteAll(Entity_WaDataCallOptional.class, orderId);
+	            }
+	        }
+	    } catch (Exception e) {
+	        log.error("Error Message : {}", e.getMessage(), e);
+	    }
+	    return Mono.just(ResponseEntity.ok("'Msg360WaDataCallOptional' got message successfully."));
 	}
 
 	@GetMapping("/360view12")
+	@Transactional
 	public Mono<ResponseEntity<String>> Msg360MWaDataCallOptional() {
 
 		try {
@@ -511,6 +514,7 @@ public class Controller360view {
 	}
 
 	@GetMapping("/360view13")
+	@Transactional
 	public Mono<ResponseEntity<String>> Msg360WaDataCallTrace() {
 
 		try {
@@ -545,6 +549,7 @@ public class Controller360view {
 	}
 
 	@GetMapping("/360view14")
+	@Transactional
 	public Mono<ResponseEntity<String>> Msg360MWaDataCallTrace() {
 
 		try {
@@ -576,6 +581,7 @@ public class Controller360view {
 	}
 
 	@GetMapping("/360view15")
+	@Transactional
 	public Mono<ResponseEntity<String>> Msg360WaMTrCode() {
 
 		try {
@@ -607,6 +613,7 @@ public class Controller360view {
 	}
 
 	@GetMapping("/360view16")
+	@Transactional
 	public Mono<ResponseEntity<String>> Msg360MWaMTrCode() {
 
 		try {

@@ -69,13 +69,11 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		this.repositoryApimRt = repositoryApimRt;
 	}
 
-
 	@Override
 	public Entity_CampRt createCampRtMsg(String cpid) {
 		// contactid::contactListId::cpid::CPSQ::dirt::tkda::dateCreated
 
-		log.info(" ");
-		log.info("====== Class : ServicePostgre & Method : createCampRtMsg ======");
+		log.info("====== Method : createCampRtMsg ======");
 
 		log.info("들어온 rs : {}", cpid);
 		Entity_CampRt enCampRt = new Entity_CampRt();
@@ -176,8 +174,6 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			log.info("dict: {}", dict);
 			log.info("------ return 하기 전 변수들의 최종 값 확인 ------");
 
-			log.info("===== End createCampRtMsg =====");
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("Error Message : {}", e.getMessage());
@@ -189,8 +185,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	@Override
 	public Entity_CampMa CreateEnCampMa(String msg) { // 매개변수로 받는 String msg = > cpid::coid::cpna::division
 
-		log.info(" ");
-		log.info("====== ClassName : ServicePostgre & Method : CreateEnCampMa ======");
+		log.info("====== Method : CreateEnCampMa ======");
 
 		Entity_CampMa enCampMa = new Entity_CampMa();
 		String parts[] = msg.split("::");
@@ -204,7 +199,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			coid = Integer.parseInt(parts[1]); // 센터구분 코드
 		} catch (Exception e) {
 			log.info("잘못된 coid(센터구분 코드)입니다 coid(센터구분 코드)는 두 자리 숫자여야 합니다 : {}", parts[1]);
-			coid=99;
+			coid = 99;
 			log.info("coid(센터구분 코드)임의로 숫자 '99'로 변경 : {}", coid);
 		}
 		cpna = parts[2]; // 캠페인 명
@@ -219,23 +214,16 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		log.info("divisionId : {}", divisionId);
 		log.info("cpna : {}", cpna);
 
-		// db인서트 하기 위한 Entity_CampMa완성 후 리턴.
-		log.info("====== End CreateEnCampMa ======");
 		return enCampMa;
 	}
 
 	@Override
 	public Entity_ContactLt createContactLtMsg(String msg) {// (콜봇에서 뽑아온거)cpid::cpsq::cske::csno::tkda::flag
 
-//		log.info(" ");
-//		log.info("====== ClassName : ServicePostgre & Method : createContactLtMsg ======");
-
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
 		ContactLtId id = new ContactLtId();
 		String ContactLvalues[] = msg.split("::");
 
-//		log.info("delivered msg from ExtractValCallBot : {}", msg);
-		// 임시로 데이터 적재
 		try {
 			id.setCpid(ContactLvalues[0]);
 			id.setCpsq(Integer.parseInt(ContactLvalues[1]));
@@ -244,11 +232,6 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			enContactLt.setFlag(ContactLvalues[5]);// "HO2"
 			enContactLt.setTkda(ContactLvalues[4]);// "custid,111"
 
-//			log.info("cpid : {}", ContactLvalues[0]);
-//			log.info("cpsq : {}", Integer.parseInt(ContactLvalues[1]));
-//			log.info("cske : {}", ContactLvalues[2]);
-//			log.info("flag : {}", ContactLvalues[5]);
-//			log.info("tkda : {}", ContactLvalues[4]);
 		} catch (Exception e) {
 			log.info("Error Messge : {}", e.getMessage());
 		}
@@ -258,7 +241,6 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 	@Override
 	public Entity_ContactLt createContactUcrm(Entity_Ucrm entityUcrm) {
-
 
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
 		ContactLtId id = new ContactLtId();
@@ -346,7 +328,6 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		return mainObj.toString();
 	}
 
-	// **Insert
 	@Override
 	public Entity_CampRt InsertCampRt(Entity_CampRt entity_CampRt) {
 
@@ -394,9 +375,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		if (existingEntity.isPresent()) {
 			throw new DataIntegrityViolationException("주어진 복합키를 가진 레코드가 이미 테이블에 존재합니다.");
 		}
-
 		return repositoryContactLt.save(entityContactLt);
-
 	}
 
 	@Override
@@ -473,7 +452,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	public Page<Entity_Ucrm> getAll() throws Exception {
 		return repositoryUcrm.findAll(PageRequest.of(0, 1000));
 	}
-	
+
 	@Override
 	public Page<Entity_UcrmRt> getAllUcrmRt() throws Exception {
 		return repositoryUcrmRt.findAll(PageRequest.of(0, 1000));
@@ -529,7 +508,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			entity.setCpna(cpna);
 			repositoryCampMa.save(entity);
 		} else {
-			throw new EntityNotFoundException("해당 cpid ("+cpid+")로 조회 된 레코드가 DB에 없습니다.");
+			throw new EntityNotFoundException("해당 cpid (" + cpid + ")로 조회 된 레코드가 DB에 없습니다.");
 		}
 	}
 

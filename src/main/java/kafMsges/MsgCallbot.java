@@ -36,8 +36,7 @@ public class MsgCallbot implements InterfaceKafMsg {
 	@Override
 	public String maMassage(Entity_CampMa enCampMa, String datachgcd) throws Exception {
 
-		log.info(" ");
-		log.info("====== ClassName : MsgCallbot & Method : maMassage ======");
+		log.info("====== Method : maMassage ======");
 		Entity_CampMaJson enCampMaJson = new Entity_CampMaJson();
 		ObjectMapper objectMapper = new ObjectMapper();
 		String jsonString = "";
@@ -79,7 +78,6 @@ public class MsgCallbot implements InterfaceKafMsg {
 
 		jsonString = objectMapper.writeValueAsString(enCampMaJson);
 		log.info("jsonString : {}", jsonString);
-		log.info("====== End maMassage ======");
 		return jsonString;
 	}
 

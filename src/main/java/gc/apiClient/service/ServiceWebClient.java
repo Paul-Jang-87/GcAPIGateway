@@ -18,23 +18,20 @@ public class ServiceWebClient implements InterfaceWebClient {
 	@Override
 	public String GetApiRequet(String endpoint,int pagenumber) {
 
-		log.info(" ");
-		log.info("====== ClassName : ServiceWebClient & Method : GetApiRequet ======");
+		log.info("====== Method : GetApiRequet ======");
 
 		String result = "";
 
 		WebClientApp webClient = new WebClientApp();
 		result = webClient.makeApiRequest(endpoint, "GET", "sortBy", "dateCreated", "sortOrder", "descending", "pageSize",100, "pageNumber", pagenumber);
 
-		log.info("====== End GetApiRequet ======");
 		return result;
 	}
 
 	@Override
 	public String GetStatusApiRequet(String endpoint, String campaignId) {
 
-		log.info(" ");
-		log.info("====== ClassName : ServiceWebClient & Method : GetStatusApiRequet ======");
+		log.info("====== Method : GetStatusApiRequet ======");
 		log.info("Endpoint : {} => {}", endpoint, "/api/v2/outbound/campaigns/{campaignId}/stats");
 		log.info("campaignId : {}", campaignId);
 
@@ -43,15 +40,13 @@ public class ServiceWebClient implements InterfaceWebClient {
 		WebClientApp webClient = new WebClientApp();
 		result = webClient.makeApiRequest(endpoint, "GET", campaignId);
 
-		log.info("====== End GetStatusApiRequet ======");
 		return result;
 	}
 
 	@Override // "/api/v2/outbound/campaigns/{campaignId}"
 	public String GetCampaignsApiRequet(String endpoint, String campaignId) {// path parameter 'campaignId'
 
-		log.info(" ");
-		log.info("====== ClassName : ServiceWebClient & Method : GetCampaignsApiRequet ======");
+		log.info("====== Method : GetCampaignsApiRequet ======");
 
 		
 		String result = "";
@@ -78,7 +73,6 @@ public class ServiceWebClient implements InterfaceWebClient {
             }
         }
 
-		log.info("====== End GetCampaignsApiRequet ======");
 		return result;
 	}
 
@@ -86,24 +80,20 @@ public class ServiceWebClient implements InterfaceWebClient {
 	public String GetContactLtApiRequet(String endpoint, String contactListId, String contactId) {// path parameter
 																									// 'contactListId','contactId'
 
-		log.info(" ");
-		log.info("====== ClassName : ServiceWebClient & Method : GetContactLtApiRequet ======");
+		log.info("====== Method : GetContactLtApiRequet ======");
 
 		String result = "";
 
 		WebClientApp webClient = new WebClientApp();
 		result = webClient.makeApiRequest(endpoint, "GET", contactListId, contactId);
 
-		log.info("====== End GetContactLtApiRequet ======");
 		return result;
 	}
 
 	@Override // api/v2/outbound/contactlists/{contactListId}/contacts/bulk
 	public String PostContactLtApiRequet(String endpoint, String contactListId, List<String> msg) {// path parameter
 																									// 'contactListId','contactId'
-
-		log.info(" ");
-		log.info("====== ClassName : ServiceWebClient & Method : PostContactLtApiRequet ======");
+		log.info("====== Method : PostContactLtApiRequet ======");
 
 		String result = "";
 		WebClientApp webClient = new WebClientApp();
@@ -129,15 +119,13 @@ public class ServiceWebClient implements InterfaceWebClient {
 		}
 
 		log.info("PostContactLtApiRequet 요청 후 결과 값 : {}, 시도횟수 : {} || 컨텍리스트 아이디 : {}", result, retryCount,contactListId);
-		log.info("====== End PostContactLtApiRequet ======");
 		return result;
 	}
 
 	@Override // "/api/v2/outbound/contactlists/{contactListId}/contacts/bulk"
 	public String PostContactLtApiBulk(String endpoint, String contactListId, List<String> cskes) {// path parameter
 
-		log.info(" ");
-		log.info("====== ClassName : ServiceWebClient & Method : PostContactLtApiBulk ======");
+		log.info("====== Method : PostContactLtApiBulk ======");
 
 		String result = "";
 		log.info("Endpoint : {} => {}", endpoint, "/api/v2/outbound/contactlists/{contactListId}/contacts/bulk");
@@ -148,30 +136,25 @@ public class ServiceWebClient implements InterfaceWebClient {
 		result = webClient.makeApiRequest56(endpoint, contactListId, cskes);
 
 		log.info("PostContactLtApiBulk 요청 후 결과 값 result : {}", result);
-		log.info("====== End PostContactLtApiBulk ======");
 		return result;
 	}
 
 	@Override
 	public Void PostContactLtClearReq(String endpoint, String contactListId) {
 
-		log.info(" ");
-		log.info("====== ClassName : ServiceWebClient & Method : PostContactLtClearReq ======");
+		log.info("====== Method : PostContactLtClearReq ======");
 
 		log.info("Endpoint : /api/v2/outbound/contactlists/{contactListId}/clear");
 		log.info("contactListId : {}", contactListId);
 		WebClientApp webClient = new WebClientApp();
 		webClient.makeApiRequest(endpoint, "POST", contactListId);
 
-		log.info("====== End PostContactLtClearReq ======");
-
 		return null;
 	}
 
 	@Override
 	public String DelContacts(String endpoint, String contactListId, List<String> msg) throws Exception {
-		log.info(" ");
-		log.info("====== ClassName : ServiceWebClient & Method : DelContacts ======");
+		log.info("====== Method : DelContacts ======");
 		log.info("Incoming message : {}", msg.toString());
 
 		String result = "";
@@ -186,7 +169,6 @@ public class ServiceWebClient implements InterfaceWebClient {
 		else
 			log.error("에러가 발생했습니다. : {}", result);
 
-		log.info("====== End DelContacts ======");
 		return result;
 	}
 

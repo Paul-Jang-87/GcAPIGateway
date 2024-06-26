@@ -17,8 +17,7 @@ public class MsgApim implements InterfaceKafMsg {
 	@Override
 	public String maMassage(Entity_CampMa enCampMa, String datachgcd) throws Exception {
 
-		log.info(" ");
-		log.info("====== ClassName : MsgApim & Method : maMassage ======");
+		log.info("====== Method : maMassage ======");
 
 		JSONObject obj = new JSONObject();
 		String coid = "";
@@ -60,7 +59,6 @@ public class MsgApim implements InterfaceKafMsg {
 			break;
 		}
 		log.info("jsonString : {}", obj.toString());
-		log.info("====== End maMassage ======");
 		return obj.toString();
 	}
 

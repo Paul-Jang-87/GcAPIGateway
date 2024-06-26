@@ -83,8 +83,7 @@ public class ControllerCenter {
 	@GetMapping("/gcapi/get/{topic}")
 	public Mono<Void> ReceiveMessage(@PathVariable("topic") String tranId) {
 
-		log.info(" ");
-		log.info("====== Class : ControllerCenter - Method : ReceiveMessage ======");
+		log.info("====== Method : ReceiveMessage ======");
 
 		String result = "";
 		String topic_id = tranId;
@@ -151,8 +150,7 @@ public class ControllerCenter {
 		Entity_CampMa enCampMa = null;
 
 		try {
-			log.info(" ");
-			log.info("====== Class : ControllerCenter - Method : UpdateOrDelCampMa ======");
+			log.info("====== Method : UpdateOrDelCampMa ======");
 
 			String ipAddress = request.getRemoteAddr();
 			int port = request.getRemotePort();
@@ -330,8 +328,7 @@ public class ControllerCenter {
 	@PostMapping("/SaveRtData") // 제네시스의 이벤트를 통해 이 api가 불려짐.
 	public Mono<ResponseEntity<String>> SaveRtData(@RequestBody String msg) {
 
-		log.info(" ");
-		log.info("====== Class : ControllerCenter - Method : SaveRtData ======");
+		log.info("====== Method : SaveRtData ======");
 
 		try {
 
@@ -349,7 +346,6 @@ public class ControllerCenter {
 
 				Entity_UcrmRt enUcrmrt = serviceDb.createUcrmRt(result);
 				serviceDb.InsertUcrmRt(enUcrmrt);
-				log.info("====== End SaveRtData ======");
 				return Mono.just(ResponseEntity.ok("Ucrm 데이터가 성공적으로 인서트 되었습니다."));
 
 			case "CallbotHome":
@@ -357,18 +353,15 @@ public class ControllerCenter {
 
 				Entity_CallbotRt enCallBotRt = serviceDb.createCallbotRt(result);
 				serviceDb.InsertCallbotRt(enCallBotRt);
-				log.info("====== End SaveRtData ======");
 				return Mono.just(ResponseEntity.ok("Callbot 데이터가 성공적으로 인서트 되었습니다."));
 			default:
 				Entity_ApimRt enApimRt = serviceDb.createApimRt(result);
 				serviceDb.InsertApimRt(enApimRt);
-				log.info("====== End SaveRtData ======");
 				return Mono.just(ResponseEntity.ok("Apim 데이터가 성공적으로 인서트 되었습니다."));
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			log.info("====== End SaveRtData ======");
 			return Mono.just(ResponseEntity.ok().body(String.format("에러가 발생했습니다. : %s", e.getMessage())));
 		}
 
@@ -378,8 +371,7 @@ public class ControllerCenter {
 	public Mono<ResponseEntity<String>> SendApimRt() {
 
 		try {
-			log.info(" ");
-			log.info("====== Class : ControllerCenter - Method : SendApimRt ======");
+			log.info("====== Method : SendApimRt ======");
 
 			Page<Entity_ApimRt> entitylist = serviceDb.getAllApimRt();// apim 발신 결과와 관련된 테이블의 레코드들을 최대 1000개까지 가지고 온다.
 
@@ -460,14 +452,12 @@ public class ControllerCenter {
 			log.error("에러 메시지 : {}", e.getMessage());
 		}
 
-		log.info("====== End SendApimRt ======");
 		return Mono.just(ResponseEntity.ok("Successfully processed the message."));
 	}
 
 	public Mono<Void> Roop(String contactLtId, List<String> values, String divisionName) throws Exception {
 
-		log.info(" ");
-		log.info("====== Class : ControllerCenter - Method : Roop ======");
+		log.info("====== Method : Roop ======");
 		log.info("고객키의 개수 : {}", values.size());
 		ObjectMapper objectMapper = null;
 		String result = serviceWeb.PostContactLtApiBulk("contactList", contactLtId, values);
@@ -513,79 +503,6 @@ public class ControllerCenter {
 		return Mono.empty();
 	}
 
-	@GetMapping("/put/{topic}")
-	public void k(@PathVariable("topic") int tranId) {
-
-		int till = tranId;
-		Entity_CampMa enCampMa = new Entity_CampMa();
-		try {
-
-			for (int i = 0; i < till; i++) {
-				enCampMa.setCpid(Integer.toString(i));
-				enCampMa.setCoid(i);
-				enCampMa.setCpna("ggplay");
-				serviceDb.InsertCampMa(enCampMa);
-			}
-
-		} catch (Exception e) {
-
-		}
-	}
-
-	@GetMapping("/delete/{topic}")
-	public void d(@PathVariable("topic") int tranId) {
-
-		int till = tranId;
-		try {
-
-			for (int i = 0; i < till; i++) {
-				String k = Integer.toString(i);
-				serviceDb.DelCampMaById(k);
-			}
-
-		} catch (Exception e) {
-
-		}
-	}
-
-	@GetMapping("/push360/{topic}")
-	public void push360(@PathVariable("topic") int tranId) {
-
-		int till = tranId;
-		Entity_WaDataCallOptional enCampMa = new Entity_WaDataCallOptional();
-		try {
-
-			for (int i = 0; i < till; i++) {
-				enCampMa.setCmd("a");
-				enCampMa.setNew_data02("a");
-				enCampMa.setNew_wcseq(0);
-				enCampMa.setOld_data02(null);
-				enCampMa.setOld_wcseq(null);
-				enCampMa.setOrderid(i);
-				
-				serviceOracle.InsertWaDataCallOptional(enCampMa, i);
-			}
-
-		} catch (Exception e) {
-
-		}
-	}
-
-//	@GetMapping("/delete360/{topic}")
-//	public void delete360(@PathVariable("topic") int tranId) {
-//
-//		int till = tranId;
-//		try {
-//
-//			for (int i = 0; i < till; i++) {
-//				String k = Integer.toString(i);
-//				serviceDb.DelCampMaById(k);
-//			}
-//
-//		} catch (Exception e) {
-//
-//		}
-//	}
 
 	public void handlingCampMaster(int reps, String result) throws Exception {
 
@@ -698,6 +615,64 @@ public class ControllerCenter {
 	@GetMapping("/kafka-gw")
 	public Mono<ResponseEntity<String>> getHealthCheckKafka() throws Exception {
 		return Mono.just(ResponseEntity.ok("TEST RESPONSE"));
+	}
+	
+	@GetMapping("/put/{topic}")
+	public void k(@PathVariable("topic") int tranId) {
+
+		int till = tranId;
+		Entity_CampMa enCampMa = new Entity_CampMa();
+		try {
+
+			for (int i = 0; i < till; i++) {
+				enCampMa.setCpid(Integer.toString(i));
+				enCampMa.setCoid(i);
+				enCampMa.setCpna("ggplay");
+				serviceDb.InsertCampMa(enCampMa);
+			}
+
+		} catch (Exception e) {
+
+		}
+	}
+
+	@GetMapping("/delete/{topic}")
+	public void d(@PathVariable("topic") int tranId) {
+
+		int till = tranId;
+		try {
+
+			for (int i = 0; i < till; i++) {
+				String k = Integer.toString(i);
+				serviceDb.DelCampMaById(k);
+			}
+
+		} catch (Exception e) {
+
+		}
+	}
+
+	@GetMapping("/push360/{topic}")
+	public void push360(@PathVariable("topic") int tranId) {
+
+		int till = tranId;
+		Entity_WaDataCallOptional enCampMa = new Entity_WaDataCallOptional();
+		try {
+
+			for (int i = 90000; i < 90000+till; i++) {
+				enCampMa.setCmd("a");
+				enCampMa.setNew_data02("a");
+				enCampMa.setNew_wcseq(0);
+				enCampMa.setOld_data02(null);
+				enCampMa.setOld_wcseq(null);
+				enCampMa.setOrderid(i);
+				
+				serviceOracle.InsertWaDataCallOptional(enCampMa, i);
+			}
+
+		} catch (Exception e) {
+
+		}
 	}
 
 }

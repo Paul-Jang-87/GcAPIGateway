@@ -19,8 +19,7 @@ public class MessageTo360View {
 
 	public static void SendMsgTo360View(String towhere, String massage) {
 
-		log.info(" ");
-		log.info("====== ClassName : MessageTo360View & Method : SendMsgTo360View ======");
+		log.info("====== Method : SendMsgTo360View ======");
 
 		String jsonString = massage;
 
@@ -47,17 +46,10 @@ public class MessageTo360View {
 		                )
 				.bodyToMono(String.class)
 				.doOnError(error -> {
-	                log.error("API로 요청을 보내는 과정에서 에러가 발생했습니다. : {}", error.getMessage());
 	            }).onErrorResume(e -> {
-	            	 log.error("카프카 프로듀서 APP에서 받은 에러 메시지 : {}", e.getMessage());
 	            	 return Mono.empty();
 				}).subscribe(responseBody -> {
-	                log.info("카프카 프로듀서로 부터 받은 응답 메시지 : {}", responseBody);
 	            });
-
-		// Subscribe to the Mono
-
-		log.info("====== End SendMsgTo360View ======");
 
 	}
 

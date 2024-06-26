@@ -1,5 +1,6 @@
 package gc.apiClient.repository.postgresql;
 
+import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -13,6 +14,7 @@ import java.util.Optional;
 
 import gc.apiClient.embeddable.Ucrm;
 import gc.apiClient.entity.postgresql.Entity_Ucrm;
+import jakarta.persistence.LockModeType;
 import jakarta.transaction.Transactional;
 
 @Repository
@@ -22,6 +24,9 @@ public interface Repository_Ucrm extends CrudRepository<Entity_Ucrm,  Ucrm> {
     List<Entity_Ucrm> findByCpid(@Param("cpidValue") String id);
 
     Optional<Entity_Ucrm> findById(Ucrm id);
+    
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query("SELECT c FROM Entity_Ucrm c")
     Page<Entity_Ucrm> findAll(Pageable pageable);
     
     @Modifying

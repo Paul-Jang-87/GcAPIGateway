@@ -10,7 +10,7 @@ public class MessageToApim {
 	
 	public void sendMsgToApim (String towhere, String entity) {
 		
-		log.info("====== ClassName : 'MessageToApim' & Method : 'ToApim' ======");
+		log.info("====== Method : 'ToApim' ======");
 		
 		WebClient webClient = WebClient.builder()
 				.baseUrl("http://localhost:8084")
@@ -33,7 +33,6 @@ public class MessageToApim {
 	            })
 	            .block(); // Wait for the result
 
-	    log.info("====== End ToApim ======");
 	}
 	
 }

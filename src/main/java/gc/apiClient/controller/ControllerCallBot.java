@@ -62,8 +62,7 @@ public class ControllerCallBot {
 	public Mono<ResponseEntity<String>> CallbotMsgFrmCnsumer(@PathVariable("topic") String tranId,
 			@RequestBody String msg) {
 
-		log.info(" ");
-		log.info("====== Class : ControllerCallBot - Method : CallbotMsgFrmCnsumer ======");
+		log.info("====== Method : CallbotMsgFrmCnsumer ======");
 
 		String jsonResponse = msg;
 
@@ -139,8 +138,6 @@ public class ControllerCallBot {
 
 				serviceWeb.PostContactLtApiRequet("contact", contactLtId, arr);
 
-				log.info("====== End CallbotMsgFrmCnsumer ======");
-
 				return Mono.just(ResponseEntity.ok("Successfully processed the message."));
 
 			} catch (Exception e) {
@@ -151,7 +148,6 @@ public class ControllerCallBot {
 
 		default:
 
-			log.info("====== End CallbotMsgFrmCnsumer ======");
 			return Mono.just(ResponseEntity.badRequest().body("유효하지 않은 topic_id"));
 		}
 	}
@@ -160,8 +156,7 @@ public class ControllerCallBot {
 	public Mono<ResponseEntity<String>> SendCallBotRt() {
 
 		try {
-			log.info(" ");
-			log.info("====== Class : ControllerCallBot - Method : SendCallBotRt ======");
+			log.info("====== Method : SendCallBotRt ======");
 
 			Page<Entity_CallbotRt> entitylist = serviceDb.getAllCallBotRt();
 
@@ -240,7 +235,6 @@ public class ControllerCallBot {
 			log.error("에러 메시지 : {}", e.getMessage());
 		}
 
-		log.info("====== End SendCallBotRt ======");
 		return Mono.just(ResponseEntity.ok("Successfully processed the message."));
 	}
 

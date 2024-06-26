@@ -56,12 +56,11 @@ public interface InterfaceDBPostgreSQL {
 	public void UpdateCampMa(String cpid, String cpna)throws Exception;
 	
 	//delete
-	public void DelCampMaById(String cpid)throws Exception;
+	public void DelCampMaById(String cpid) throws Exception;
 	public void DelContactltById(ContactLtId id)throws Exception;
-	public void DelCallBotRtById(CallBotCampRt id)throws Exception;
-	public void DelUcrmRtById(UcrmCampRt id)throws Exception;
-	public void DelApimRtById(ApimCampRt id)throws Exception;
-	public void DelUcrmLtById(String topcDataIsueSno)throws Exception;
-	
+	public void DelCallBotRtById(CallBotCampRt id) throws Exception;
+	public void DelUcrmRtById(UcrmCampRt id) throws Exception;
+	public void DelApimRtById(ApimCampRt id) throws Exception;
+	public void DelUcrmLtById(String topcDataIsueSno) throws Exception;
 	
 }

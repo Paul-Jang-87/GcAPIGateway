@@ -50,14 +50,30 @@ public class ControllerCallBot {
 		this.serviceWeb = serviceWeb;
 		this.customProperties = customProperties;
 	}
-
+	
+	/**
+	 * 
+	 */
 	@Scheduled(fixedRate = 60000) // 1분 간격으로 'SendCallBotRt' 비동기적으로 실행.
 	public void scheduledMethod() {
-
+		/*
+		 *  SendCallBotRt() 메서드를 비동기 방식 스케쥴링을 위한 메서드
+		 *  Mono.fromCallable : 주어진 callable을 호출하고 그 결과를 발행하는 Mono를 생성 
+		 *  subscribeOn(Schedulers.boundedElastic() : 작업을 실행할 스케쥴러를 설정. (스레드풀 제공)
+		 *  subscribe() : 'Mono'를 구독하여 실제로 작업이 수행 됨.
+		 */
 		Mono.fromCallable(() -> SendCallBotRt()).subscribeOn(Schedulers.boundedElastic()).subscribe();
 
 	}
-
+	
+	/**
+	 * 
+	 * 캠페인 대상자 전송 To Genesys (from kafka-consumer)
+	 * 
+	 * @param tranId
+	 * @param msg
+	 * @return
+	 */
 	@PostMapping("/contactlt/{topic}")
 	public Mono<ResponseEntity<String>> CallbotMsgFrmCnsumer(@PathVariable("topic") String tranId,
 			@RequestBody String msg) {
@@ -75,9 +91,9 @@ public class ControllerCallBot {
 			casenum = jsonNode.path("cmpnItemDto").size();
 
 		} catch (JsonMappingException e) {
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		} catch (JsonProcessingException e) {
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		}
 
 		int cntofmsg = casenum;
@@ -141,7 +157,6 @@ public class ControllerCallBot {
 				return Mono.just(ResponseEntity.ok("Successfully processed the message."));
 
 			} catch (Exception e) {
-				e.printStackTrace();
 				log.error("에러 메시지 : {}", e.getMessage());
 				return Mono.just(ResponseEntity.ok().body(String.format("에러가 발생했습니다 : %s", e.getMessage())));
 			}
@@ -152,6 +167,12 @@ public class ControllerCallBot {
 		}
 	}
 
+	/**
+	 * 1분 배치 (비동기 방식 스케쥴링)
+	 * DB TABLE : CAMPRT_CALLBOT_W 
+	 * 
+	 * @return
+	 */
 	@GetMapping("/sendcallbotrt")
 	public Mono<ResponseEntity<String>> SendCallBotRt() {
 
@@ -166,7 +187,6 @@ public class ControllerCallBot {
 				log.info("DB에서 조회 된 모든 레코드 : {}", entitylist.toString());
 				int reps = entitylist.getNumberOfElements();
 				log.info("'CAMPRT_CALLBOT_W' table에서 조회 된 레코드 개수 : {}", reps);
-				log.info("{}만큼 반복", reps);
 
 				Map<String, String> mapcontactltId = new HashMap<String, String>();
 				Map<String, String> mapdivision = new HashMap<String, String>();
@@ -179,18 +199,16 @@ public class ControllerCallBot {
 
 					Entity_CallbotRt enCallbotRt = entitylist.getContent().get(i);
 
-					cpid = enCallbotRt.getId().getCpid(); // 첫번째 레코드부터 cpid를 가지고 온다.
-					String cqsq = enCallbotRt.getId().getCpsq(); // 첫번째 레코드부터 cpid를 가지고 온다.
+					cpid = enCallbotRt.getId().getCpid(); 			// 첫번째 레코드부터 cpid를 가지고 온다.
+					String cqsq = enCallbotRt.getId().getCpsq(); 	// 첫번째 레코드부터 cpsq를 가지고 온다.
 
 					contactLtId = mapcontactltId.get(cpid) != null ? mapcontactltId.get(cpid) : "";
 					divisionName = mapdivision.get(contactLtId) != null ? mapdivision.get(contactLtId) : "";
 
-					if (contactLtId == null || contactLtId.equals("")) {// cpid를 조회 했는데 그것에 대응하는 contactltId가 없다면,
+					if (contactLtId == null || contactLtId.equals("")) {	// cpid를 조회 했는데 그것에 대응하는 contactltId가 없다면,
 						log.info("일치하는 contactLtId 없음");
 						String result = serviceWeb.GetCampaignsApiRequet("campaigns", cpid);
-						String res = ServiceJson.extractStrVal("ExtractContactLtId", result); // 가져온 결과에서
-																								// contactlistid,queueid만
-																								// 추출.
+						String res = ServiceJson.extractStrVal("ExtractContactLtId", result); // result 에서 contactlistid,queueid만 추출.
 						contactLtId = res.split("::")[0];
 
 						String division = enCallbotRt.getDivisionid();
@@ -199,31 +217,29 @@ public class ControllerCallBot {
 
 						mapcontactltId.put(cpid, contactLtId);
 						mapdivision.put(contactLtId, divisionName);
-					} else {
-						log.info("일치하는 contactId 있음");
-					}
-
+					} 
+					
+					// contactList ID Mapping
 					if (!contactlists.containsKey(contactLtId)) {
 						contactlists.put(contactLtId, new ArrayList<>());
 					}
+					// contactListId 별로 cpsq 세팅
 					contactlists.get(contactLtId).add(cqsq);
+					// 복합키(camp_id, camp_seq)로 delete row
 					serviceDb.DelCallBotRtById(enCallbotRt.getId());
 
 					log.info("아이디가 '{}'인 contactListId에 값 추가", contactLtId);
 
 					for (Map.Entry<String, List<String>> entry : contactlists.entrySet()) {
-
 						divisionName = mapdivision.get(entry.getKey());
-
+						// 캠페인 발신결과 전송 (G.C API add contact bulk 데이터는 한번에 최대 50개까지 add 가능)
 						if (entry.getValue().size() >= 50) {
 							Roop(entry.getKey(), entry.getValue(), divisionName);
 						}
 					}
-
 				}
 
 				for (Map.Entry<String, List<String>> entry : contactlists.entrySet()) {
-
 					divisionName = mapdivision.get(entry.getKey());
 					Roop(entry.getKey(), entry.getValue(), divisionName);
 				}
@@ -238,24 +254,36 @@ public class ControllerCallBot {
 		return Mono.just(ResponseEntity.ok("Successfully processed the message."));
 	}
 
+	/**
+	 * contact data List가 50건 이상인 경우 bulk 데이터를 50건씩 나눠서 API 호출 
+	 * 캠페인 결과 발신에 필요한 데이터 세팅 
+	 * kafka-producer 메세지 세팅 후 전송
+	 * 
+	 * @param contactLtId
+	 * @param values(List) : contact data (cpsq)
+	 * @param divisionName
+	 * @return
+	 * @throws Exception
+	 */
 	public Mono<Void> Roop(String contactLtId, List<String> values, String divisionName) throws Exception {
-
+		
+		// 컨택리스트(contactListId)별 컨택데이터(contact-cpsq)를 Genesys Cloud로 전송 (Bulk)
 		String result = serviceWeb.PostContactLtApiBulk("contactList", contactLtId, values);
 
 		if (result.equals("[]")) {
-			log.info("결과 없음, 다음으로 건너 뜀.");
 			values.clear();
 			return Mono.empty();
 		}
-
+		
+		/* 캠페인 결과 발신에 필요한 데이터 세팅  */
 		// 캠페인이 어느 비즈니스 로직인지 판단하기 위해서 일단 목록 중 하나만 꺼내서 확인해 보도록한다.
 		// 왜냐면 나머지는 똑같을테니.
-		String contactsresult = ServiceJson.extractStrVal("ExtractContacts56", result, 0);// JsonString 결과값과 조회하고 싶은
-																							// 인덱스(첫번째)를 인자로
-		// 넣는다.
-		Entity_CampRt entityCmRt = serviceDb.createCampRtMsg(contactsresult);// contactsresult값으로
-																				// entity하나를 만든다.
-		Character tkda = entityCmRt.getTkda().charAt(0);// 그리고 비즈니스 로직을 구분하게 해줄 수 있는 토큰데이터를 구해온다.
+		// JsonString 결과값과 조회하고 싶은 인덱스(첫번째)를 인자로 넣는다.
+		String contactsresult = ServiceJson.extractStrVal("ExtractContacts56", result, 0);
+		
+		// contacts result값으로 entity하나를 만든다.
+		Entity_CampRt entityCmRt = serviceDb.createCampRtMsg(contactsresult);
+		Character tkda = entityCmRt.getTkda().charAt(0); // 그리고 비즈니스 로직을 구분하게 해줄 수 있는 토큰데이터를 구해온다.
 
 		// 토큰데이터와 디비젼네임을 인자로 넘겨서 어떤 비지니스 로직인지, 토픽은 어떤 것으로 해야하는지를 결과 값으로 반환 받는다.
 		Map<String, String> businessLogic = BusinessLogic.SelectedBusiness(tkda, divisionName);

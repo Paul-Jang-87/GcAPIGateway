@@ -9,10 +9,18 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ServiceJson  {
 	
+	/**
+	 * 
+	 * 
+	 * 
+	 * @param methodNm
+	 * @param params
+	 * @return
+	 * @throws Exception
+	 */
 	public static String extractStrVal(String methodNm, Object... params) throws Exception {
 		
-		log.info("====== Method : extractStrVal ======");
-		log.info("Type : {}",methodNm);
+		log.info("====== Method : extractStrVal ( TYPE: {} ) ======", methodNm);
 		
         switch (methodNm) {
             case "ExtractVal":
@@ -40,9 +48,17 @@ public class ServiceJson  {
         }
     }
 	
+	/**
+	 * 
+	 * 
+	 * @param methodNm
+	 * @param params
+	 * @return
+	 * @throws Exception
+	 */
 	public static int extractIntVal(String methodNm, Object... params) throws Exception {
 		
-		log.info("====== Method : extractIntVal ======");
+		log.info("====== Method : extractIntVal ( TYPE: {} ) ======", methodNm);
 		
         switch (methodNm) {
             case "CampaignListSize":
@@ -55,7 +71,8 @@ public class ServiceJson  {
     }
 
 	
-	public static String ExtractVal(String stringMsg) throws Exception { // campMa 테이블의 3가지 속성(coid,cpid,cpna)에 넣기 위한 가공 작업
+	public static String ExtractVal(String stringMsg) throws Exception { 
+		// campMa 테이블의 3가지 속성(coid,cpid,cpna)에 넣기 위한 가공 작업
 		// (현재는 아무거나 임의로 뽑아봄)-매개변수로 들어온 JsonString data 'stringMsg'에서
 		// 'id','name','dialingMode'값 그냥 뽑아봄.
 

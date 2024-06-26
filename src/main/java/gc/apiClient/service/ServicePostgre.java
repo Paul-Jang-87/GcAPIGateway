@@ -175,8 +175,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			log.info("------ return 하기 전 변수들의 최종 값 확인 ------");
 
 		} catch (Exception e) {
-			e.printStackTrace();
-			log.error("Error Message : {}", e.getMessage());
+			log.error("Error Message : {}", e.getMessage(), e);
 		}
 
 		return enCampRt;
@@ -469,12 +468,12 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
-	public void DelCampMaById(String cpid) {
+	public void DelCampMaById(String cpid) throws Exception {
 		repositoryCampMa.deleteById(cpid);
 	}
 
 	@Override
-	public void DelCallBotRtById(CallBotCampRt id) {
+	public void DelCallBotRtById(CallBotCampRt id) throws Exception {
 		repositoryCallbotRt.deleteById(id);
 	}
 
@@ -489,7 +488,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
-	public void DelUcrmLtById(String topcDataIsueSno) {
+	public void DelUcrmLtById(String topcDataIsueSno) throws Exception {
 		repositoryUcrm.deleteByTopcDataIsueSno(topcDataIsueSno);
 	}
 
@@ -500,7 +499,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 	@Override
 	@Transactional
-	public void UpdateCampMa(String cpid, String cpna) {
+	public void UpdateCampMa(String cpid, String cpna) throws Exception {
 		Optional<Entity_CampMa> optionalEntity = repositoryCampMa.findById(cpid);// 캠페인 아이디로 레코드 조회.
 
 		if (optionalEntity.isPresent()) {// 조회 후 있다면 해당 레코드의 캠페인명 업데이트
@@ -596,5 +595,5 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 		return apimRt;
 	}
-
+	
 }

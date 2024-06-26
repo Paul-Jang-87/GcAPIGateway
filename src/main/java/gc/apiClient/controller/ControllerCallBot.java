@@ -122,9 +122,7 @@ public class ControllerCallBot {
 				// Entity_ContactLt 객체에 매핑시킨다.
 				cpid = enContactLt.getId().getCpid();// 캠페인 아이디를 가져온다.
 
-				result = serviceWeb.GetCampaignsApiRequet("campaigns", cpid);// 캠페인 아이디로
-//																					// "/api/v2/outbound/campaigns/{campaignId}"호출
-//																					// 후 결과 가져온다.
+				result = serviceWeb.GetCampaignsApiRequet("campaigns", cpid);// 캠페인 아이디로 "/api/v2/outbound/campaigns/{campaignId}"호출 후 결과 가져온다.
 				res = ServiceJson.extractStrVal("ExtractContactLtId", result);
 				contactLtId = res.split("::")[0];
 				log.info("컨텍리스트 아이디 : {}", contactLtId);

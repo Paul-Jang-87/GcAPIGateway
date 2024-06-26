@@ -37,7 +37,7 @@ public class MsgUcrm implements InterfaceKafMsg { //카프카 프로듀서로 �
 	}
 
 	@Override
-	public String maMassage(Entity_CampMa enCampMa, String datachgcd) throws Exception {//MA 메시지
+	public String maMassage(Entity_CampMa enCampMa, String datachgcd) throws Exception {  // MA 메시지
 
 		log.info("====== Method : maMassage ======");
 		Entity_CampMaJsonUcrm enCampMaJson = new Entity_CampMaJsonUcrm();
@@ -51,42 +51,40 @@ public class MsgUcrm implements InterfaceKafMsg { //카프카 프로듀서로 �
 		MappingCenter mappingData = new MappingCenter();
 
 		switch (datachgcd) {
-
-		case "insert":
-		case "update":
-
-			coid = mappingData.getCentercodeById(Integer.toString(enCampMa.getCoid()));//센터코드 맵핑된 거 'id'를 키 값으로 하여 가지고 옴. 
-			coid = coid != null ? coid : "EX";
-			enCampMaJson.setCenterCd(coid);//센터코드
-			enCampMaJson.setCmpnId(enCampMa.getCpid());//캠페인아이디
-			enCampMaJson.setCmpnNm(enCampMa.getCpna());//캠페인명
-
-			topcDataIsueDtm = formatter.format(now);
-
-			enCampMaJson.setDataChgCd(datachgcd);
-			enCampMaJson.setDataDelYn("N");
-			enCampMaJson.setTopcDataIsueDtm(topcDataIsueDtm);
-
-			break;
-
-		default:
-
-			coid = mappingData.getCentercodeById(Integer.toString(enCampMa.getCoid()));
-			coid = coid != null ? coid : "EX";
-			enCampMaJson.setCenterCd(coid);
-			enCampMaJson.setCmpnId(enCampMa.getCpid());
-			enCampMaJson.setCmpnNm("");
-
-			topcDataIsueDtm = formatter.format(now);
-
-			enCampMaJson.setDataChgCd(datachgcd);
-			enCampMaJson.setDataDelYn("Y");
-			enCampMaJson.setTopcDataIsueDtm(topcDataIsueDtm);
-			break;
+			case "insert":
+			case "update":
+	
+				coid = mappingData.getCentercodeById(Integer.toString(enCampMa.getCoid()));//센터코드 맵핑된 거 'id'를 키 값으로 하여 가지고 옴. 
+				coid = coid != null ? coid : "EX";
+				enCampMaJson.setCenterCd(coid);//센터코드
+				enCampMaJson.setCmpnId(enCampMa.getCpid());//캠페인아이디
+				enCampMaJson.setCmpnNm(enCampMa.getCpna());//캠페인명
+	
+				topcDataIsueDtm = formatter.format(now);
+	
+				enCampMaJson.setDataChgCd(datachgcd);
+				enCampMaJson.setDataDelYn("N");
+				enCampMaJson.setTopcDataIsueDtm(topcDataIsueDtm);
+				break;
+				
+			default:
+			
+				coid = mappingData.getCentercodeById(Integer.toString(enCampMa.getCoid()));
+				coid = coid != null ? coid : "EX";
+				enCampMaJson.setCenterCd(coid);
+				enCampMaJson.setCmpnId(enCampMa.getCpid());
+				enCampMaJson.setCmpnNm("");
+	
+				topcDataIsueDtm = formatter.format(now);
+	
+				enCampMaJson.setDataChgCd(datachgcd);
+				enCampMaJson.setDataDelYn("Y");
+				enCampMaJson.setTopcDataIsueDtm(topcDataIsueDtm);
+				break;
 		}
 
-		jsonString = objectMapper.writeValueAsString(enCampMaJson);//객체를 String 타입으로 변환. 
-		log.info("jsonString : {}", jsonString);
+		jsonString = objectMapper.writeValueAsString(enCampMaJson);	// 객체를 String 타입으로 변환. 
+		log.info(" enCampMaJson : {}", jsonString);
 		return jsonString;
 	}
 

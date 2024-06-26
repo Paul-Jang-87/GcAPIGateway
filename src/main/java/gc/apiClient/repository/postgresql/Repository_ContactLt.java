@@ -1,5 +1,6 @@
 package gc.apiClient.repository.postgresql;
 
+import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -10,6 +11,7 @@ import java.util.Optional;
 
 import gc.apiClient.embeddable.ContactLtId;
 import gc.apiClient.entity.postgresql.Entity_ContactLt;
+import jakarta.persistence.LockModeType;
 
 @Repository
 public interface Repository_ContactLt extends CrudRepository<Entity_ContactLt,  ContactLtId> {
@@ -18,7 +20,9 @@ public interface Repository_ContactLt extends CrudRepository<Entity_ContactLt,  
     List<Entity_ContactLt> findByCpid(@Param("cpidValue") String id);
 
     Optional<Entity_ContactLt> findByCske(String id);
-
-    Optional<Entity_ContactLt> findById(ContactLtId id);
+    
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query("SELECT c FROM Entity_ContactLt c WHERE c.id = :id")
+    Optional<Entity_ContactLt> findById(@Param("id") ContactLtId id);
 
 }

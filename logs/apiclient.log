@@ -1,0 +1,472 @@
+INFO  24-06-26 15:00:16[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 484 (D:\GitWorkSpace\GcAPIGateway\target\classes started by 인포전스 in D:\GitWorkSpace\GcAPIGateway)
+INFO  24-06-26 15:00:16[main] [GcClientApplication:660] - The following 4 profiles are active: "genesys_info", "postgres", "oracleH", "oracleM"
+INFO  24-06-26 15:00:18[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-06-26 15:00:18[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 308 ms. Found 8 JPA repository interfaces.
+INFO  24-06-26 15:00:18[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-06-26 15:00:18[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 67 ms. Found 8 JPA repository interfaces.
+INFO  24-06-26 15:00:18[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-06-26 15:00:18[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 66 ms. Found 7 JPA repository interfaces.
+INFO  24-06-26 15:00:21[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-06-26 15:00:21[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-06-26 15:00:22[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 5525 ms
+INFO  24-06-26 15:00:25[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-06-26 15:00:25[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-06-26 15:00:25[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
+WARN  24-06-26 15:00:25[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-06-26 15:00:26[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@6e6c8854
+INFO  24-06-26 15:00:26[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
+INFO  24-06-26 15:00:29[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-06-26 15:00:29[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-06-26 15:00:29[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-06-26 15:00:29[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
+WARN  24-06-26 15:00:29[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-06-26 15:00:29[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@641bd93e
+INFO  24-06-26 15:00:29[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
+INFO  24-06-26 15:00:30[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-06-26 15:00:30[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+INFO  24-06-26 15:00:30[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-06-26 15:00:31[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@67a2fb00
+INFO  24-06-26 15:00:31[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-06-26 15:00:32[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-06-26 15:00:33[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-06-26 15:00:36[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-06-26 15:00:37[main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8083"]
+INFO  24-06-26 15:00:37[main] [TomcatWebServer:241] - Tomcat started on port 8083 (http) with context path ''
+INFO  24-06-26 15:00:37[main] [GcClientApplication:56] - Started GcClientApplication in 21.906 seconds (process running for 26.458)
+INFO  24-06-26 15:00:37[boundedElastic-5] [ControllerUCRM:222] - ====== Method : SendUcrmRt ======
+INFO  24-06-26 15:00:37[boundedElastic-3] [ControllerCenter:82] - ====== Method : ReceiveMessage ( TYPE : campma ) ====== 
+INFO  24-06-26 15:00:37[boundedElastic-1] [ControllerCallBot:178] - ====== Method : SendCallBotRt ======
+INFO  24-06-26 15:00:37[boundedElastic-2] [ControllerUCRM:100] - ====== Method : UcrmMsgFrmCnsmer ======
+INFO  24-06-26 15:00:37[boundedElastic-3] [ServiceWebClient:21] - ====== Method : GetApiRequet ======
+INFO  24-06-26 15:00:37[boundedElastic-3] [WebClientApp:34] - 제네시스 Client Id : 3f3a95ae-ecbf-40dd-bbe1-a9eb9fd313b7
+INFO  24-06-26 15:00:37[boundedElastic-3] [WebClientApp:36] - 제네시스 Client secret : oLZ-czDCyY9XflUn6QyAJDmA9L5Xs7ssCQTxlWDGFEg
+INFO  24-06-26 15:00:37[boundedElastic-6] [ControllerCenter:360] - ====== Method : SendApimRt ======
+INFO  24-06-26 15:00:37[boundedElastic-3] [WebClientApp:45] - 토큰 없음
+INFO  24-06-26 15:00:37[boundedElastic-3] [WebClientApp:46] - 현재 인덱스 : 0
+INFO  24-06-26 15:00:37[boundedElastic-5] [ControllerUCRM:227] - DB에서 조회 된 모든 레코드 : 없음
+INFO  24-06-26 15:00:37[boundedElastic-1] [ControllerCallBot:183] - DB에서 조회 된 모든 레코드 : 없음
+INFO  24-06-26 15:00:37[boundedElastic-6] [ControllerCenter:365] - DB에서 조회 된 모든 레코드 : 없음
+INFO  24-06-26 15:00:37[boundedElastic-9] [Controller360view:168] - (MDataCall)의 레코드의 개수 : 0
+INFO  24-06-26 15:00:37[boundedElastic-17] [Controller360view:622] - (MWaMTracecode)의 레코드의 개수 : 0
+INFO  24-06-26 15:00:37[boundedElastic-8] [Controller360view:271] - (DataCallService)의 레코드의 개수 : 0
+INFO  24-06-26 15:00:37[boundedElastic-20] [Controller360view:524] - (WaDataCallTrace)의 레코드의 개수 : 0
+INFO  24-06-26 15:00:37[boundedElastic-7] [Controller360view:202] - (DataCallCustomer)의 레코드의 개수 : 0
+INFO  24-06-26 15:00:37[boundedElastic-16] [Controller360view:558] - (MWaDataCallTrace)의 레코드의 개수 : 0
+INFO  24-06-26 15:00:37[boundedElastic-18] [Controller360view:401] - (WaDataCall)의 레코드의 개수 : 0
+INFO  24-06-26 15:00:37[boundedElastic-14] [Controller360view:433] - (MWaDataCall)의 레코드의 개수 : 0
+INFO  24-06-26 15:00:37[boundedElastic-4] [Controller360view:132] - (DataCall)의 레코드의 개수 : 0
+INFO  24-06-26 15:00:37[boundedElastic-10] [Controller360view:237] - (MDataCallCustomer)의 레코드의 개수 : 0
+INFO  24-06-26 15:00:37[boundedElastic-12] [Controller360view:369] - (MMasterServiceCode)의 레코드의 개수 : 0
+INFO  24-06-26 15:00:37[boundedElastic-11] [Controller360view:304] - (MDataCallService)의 레코드의 개수 : 0
+INFO  24-06-26 15:00:37[boundedElastic-19] [Controller360view:464] - (WaDataCallOptional)의 레코드의 개수 : 0
+INFO  24-06-26 15:00:37[boundedElastic-21] [Controller360view:590] - (WaMTracecode)의 레코드의 개수 : 0
+INFO  24-06-26 15:00:37[boundedElastic-15] [Controller360view:491] - (MWaDataCallOptional)의 레코드의 개수 : 0
+INFO  24-06-26 15:00:37[boundedElastic-13] [Controller360view:336] - (MasterServiceCode)의 레코드의 개수 : 0
+ERROR 24-06-26 15:00:37[boundedElastic-2] [SqlExceptionHelper:150] - 오류: 읽기 전용 트랜잭션에서는 SELECT FOR NO KEY UPDATE 명령을 실행할 수 없습니다.
+ERROR 24-06-26 15:00:37[boundedElastic-2] [ControllerUCRM:212] - 에러 메시지 : JDBC exception executing SQL [select eu1_0.ctiCmpnId,eu1_0.ctiCmpnSno,eu1_0.cablTlno,eu1_0.custNm,eu1_0.custTlno,eu1_0.hldrCustId,eu1_0.subssDataChgCd,eu1_0.subssDataDelYn,eu1_0.tlno,eu1_0.topcDataIsueDtm,eu1_0.topcDataIsueSno,eu1_0.trdtCntn,eu1_0.workDivsCd from UCRMLT eu1_0 offset ? rows fetch first ? rows only for no key update] [오류: 읽기 전용 트랜잭션에서는 SELECT FOR NO KEY UPDATE 명령을 실행할 수 없습니다.] [n/a]
+INFO  24-06-26 15:00:39[boundedElastic-3] [WebClientApp:86] - Access token이 성공적으로 발급되었습니다.
+INFO  24-06-26 15:00:39[boundedElastic-3] [WebClientApp:52] - 발급 후 현재 인덱스 : 1
+INFO  24-06-26 15:00:39[boundedElastic-3] [WebClientApp:68] - 발급 받은 토큰 : 0L3G5azyikwO3qWN4VZeFtbaNhKtWjABpU4SdE2x-LgdLUxOKTPqoybNbSDFVdBHqPt21wO1c2tIoFQ3sOQexg
+INFO  24-06-26 15:00:41[boundedElastic-3] [ServiceJson:61] - ====== Method : extractIntVal ( TYPE: CampaignListSize ) ======
+INFO  24-06-26 15:00:41[boundedElastic-3] [ServiceJson:131] - 총 캠페인 개수 : 35
+INFO  24-06-26 15:00:41[boundedElastic-3] [ServicePostgre:446] - Campma 테이블 레코드 수 : 35
+INFO  24-06-26 15:00:42[boundedElastic-3] [ControllerUCRM:100] - ====== Method : UcrmMsgFrmCnsmer ======
+ERROR 24-06-26 15:00:42[boundedElastic-3] [SqlExceptionHelper:150] - 오류: 읽기 전용 트랜잭션에서는 SELECT FOR NO KEY UPDATE 명령을 실행할 수 없습니다.
+ERROR 24-06-26 15:00:42[boundedElastic-3] [ControllerUCRM:212] - 에러 메시지 : JDBC exception executing SQL [select eu1_0.ctiCmpnId,eu1_0.ctiCmpnSno,eu1_0.cablTlno,eu1_0.custNm,eu1_0.custTlno,eu1_0.hldrCustId,eu1_0.subssDataChgCd,eu1_0.subssDataDelYn,eu1_0.tlno,eu1_0.topcDataIsueDtm,eu1_0.topcDataIsueSno,eu1_0.trdtCntn,eu1_0.workDivsCd from UCRMLT eu1_0 offset ? rows fetch first ? rows only for no key update] [오류: 읽기 전용 트랜잭션에서는 SELECT FOR NO KEY UPDATE 명령을 실행할 수 없습니다.] [n/a]
+INFO  24-06-26 15:00:47[boundedElastic-3] [ControllerUCRM:100] - ====== Method : UcrmMsgFrmCnsmer ======
+ERROR 24-06-26 15:00:47[boundedElastic-3] [SqlExceptionHelper:150] - 오류: 읽기 전용 트랜잭션에서는 SELECT FOR NO KEY UPDATE 명령을 실행할 수 없습니다.
+ERROR 24-06-26 15:00:47[boundedElastic-3] [ControllerUCRM:212] - 에러 메시지 : JDBC exception executing SQL [select eu1_0.ctiCmpnId,eu1_0.ctiCmpnSno,eu1_0.cablTlno,eu1_0.custNm,eu1_0.custTlno,eu1_0.hldrCustId,eu1_0.subssDataChgCd,eu1_0.subssDataDelYn,eu1_0.tlno,eu1_0.topcDataIsueDtm,eu1_0.topcDataIsueSno,eu1_0.trdtCntn,eu1_0.workDivsCd from UCRMLT eu1_0 offset ? rows fetch first ? rows only for no key update] [오류: 읽기 전용 트랜잭션에서는 SELECT FOR NO KEY UPDATE 명령을 실행할 수 없습니다.] [n/a]
+INFO  24-06-26 15:00:49[RMI TCP Connection(2)-127.0.0.1] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin:159] - Application shutdown requested.
+INFO  24-06-26 15:00:49[RMI TCP Connection(2)-127.0.0.1] [Http11NioProtocol:173] - Stopping ProtocolHandler ["http-nio-8083"]
+INFO  24-06-26 15:00:51[RMI TCP Connection(2)-127.0.0.1] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-06-26 15:00:51[RMI TCP Connection(2)-127.0.0.1] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-06-26 15:00:51[RMI TCP Connection(2)-127.0.0.1] [HikariDataSource:350] - InfogncORCLM-hikari-pool - Shutdown initiated...
+INFO  24-06-26 15:00:51[RMI TCP Connection(2)-127.0.0.1] [HikariDataSource:352] - InfogncORCLM-hikari-pool - Shutdown completed.
+INFO  24-06-26 15:00:51[RMI TCP Connection(2)-127.0.0.1] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-06-26 15:00:51[RMI TCP Connection(2)-127.0.0.1] [HikariDataSource:350] - InfogncORCLH-hikari-pool - Shutdown initiated...
+INFO  24-06-26 15:00:51[RMI TCP Connection(2)-127.0.0.1] [HikariDataSource:352] - InfogncORCLH-hikari-pool - Shutdown completed.
+INFO  24-06-26 15:00:51[RMI TCP Connection(2)-127.0.0.1] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-06-26 15:00:51[RMI TCP Connection(2)-127.0.0.1] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.
+INFO  24-06-26 15:03:26[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 10616 (D:\GitWorkSpace\GcAPIGateway\target\classes started by 인포전스 in D:\GitWorkSpace\GcAPIGateway)
+INFO  24-06-26 15:03:26[main] [GcClientApplication:660] - The following 4 profiles are active: "genesys_info", "postgres", "oracleH", "oracleM"
+INFO  24-06-26 15:03:28[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-06-26 15:03:29[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 518 ms. Found 8 JPA repository interfaces.
+INFO  24-06-26 15:03:29[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-06-26 15:03:29[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 96 ms. Found 8 JPA repository interfaces.
+INFO  24-06-26 15:03:29[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-06-26 15:03:29[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 98 ms. Found 7 JPA repository interfaces.
+INFO  24-06-26 15:03:32[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-06-26 15:03:32[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-06-26 15:03:32[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 5844 ms
+INFO  24-06-26 15:03:35[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-06-26 15:03:35[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-06-26 15:03:35[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
+WARN  24-06-26 15:03:35[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-06-26 15:03:36[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@62f7d7bd
+INFO  24-06-26 15:03:36[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
+INFO  24-06-26 15:03:41[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-06-26 15:03:42[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-06-26 15:03:42[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-06-26 15:03:42[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
+WARN  24-06-26 15:03:42[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-06-26 15:03:42[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@78f2cab9
+INFO  24-06-26 15:03:42[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
+INFO  24-06-26 15:03:43[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-06-26 15:03:44[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+INFO  24-06-26 15:03:44[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-06-26 15:03:45[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@282919de
+INFO  24-06-26 15:03:45[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-06-26 15:03:45[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-06-26 15:03:46[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-06-26 15:03:48[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-06-26 15:03:49[main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8083"]
+INFO  24-06-26 15:03:50[main] [TomcatWebServer:241] - Tomcat started on port 8083 (http) with context path ''
+INFO  24-06-26 15:03:50[main] [GcClientApplication:56] - Started GcClientApplication in 24.655 seconds (process running for 28.713)
+INFO  24-06-26 15:03:50[boundedElastic-1] [ControllerCallBot:178] - ====== Method : SendCallBotRt ======
+INFO  24-06-26 15:03:50[boundedElastic-4] [ControllerUCRM:100] - ====== Method : UcrmMsgFrmCnsmer ======
+INFO  24-06-26 15:03:50[boundedElastic-5] [ControllerUCRM:222] - ====== Method : SendUcrmRt ======
+INFO  24-06-26 15:03:50[boundedElastic-2] [ControllerCenter:82] - ====== Method : ReceiveMessage ( TYPE : campma ) ====== 
+INFO  24-06-26 15:03:50[boundedElastic-2] [ServiceWebClient:21] - ====== Method : GetApiRequet ======
+INFO  24-06-26 15:03:50[boundedElastic-2] [WebClientApp:34] - 제네시스 Client Id : 3f3a95ae-ecbf-40dd-bbe1-a9eb9fd313b7
+INFO  24-06-26 15:03:50[boundedElastic-2] [WebClientApp:36] - 제네시스 Client secret : oLZ-czDCyY9XflUn6QyAJDmA9L5Xs7ssCQTxlWDGFEg
+INFO  24-06-26 15:03:50[boundedElastic-2] [WebClientApp:45] - 토큰 없음
+INFO  24-06-26 15:03:50[boundedElastic-2] [WebClientApp:46] - 현재 인덱스 : 0
+INFO  24-06-26 15:03:50[boundedElastic-7] [ControllerCenter:360] - ====== Method : SendApimRt ======
+INFO  24-06-26 15:03:50[boundedElastic-1] [ControllerCallBot:183] - DB에서 조회 된 모든 레코드 : 없음
+INFO  24-06-26 15:03:50[boundedElastic-7] [ControllerCenter:365] - DB에서 조회 된 모든 레코드 : 없음
+INFO  24-06-26 15:03:50[boundedElastic-5] [ControllerUCRM:227] - DB에서 조회 된 모든 레코드 : 없음
+INFO  24-06-26 15:03:50[boundedElastic-4] [ControllerUCRM:106] - DB에서 조회 된 모든 레코드 : 없음
+INFO  24-06-26 15:03:50[boundedElastic-13] [Controller360view:336] - (MasterServiceCode)의 레코드의 개수 : 0
+INFO  24-06-26 15:03:50[boundedElastic-3] [Controller360view:132] - (DataCall)의 레코드의 개수 : 0
+INFO  24-06-26 15:03:50[boundedElastic-11] [Controller360view:304] - (MDataCallService)의 레코드의 개수 : 0
+INFO  24-06-26 15:03:50[boundedElastic-8] [Controller360view:271] - (DataCallService)의 레코드의 개수 : 0
+INFO  24-06-26 15:03:50[boundedElastic-15] [Controller360view:491] - (MWaDataCallOptional)의 레코드의 개수 : 0
+INFO  24-06-26 15:03:50[boundedElastic-12] [Controller360view:369] - (MMasterServiceCode)의 레코드의 개수 : 0
+INFO  24-06-26 15:03:50[boundedElastic-20] [Controller360view:524] - (WaDataCallTrace)의 레코드의 개수 : 0
+INFO  24-06-26 15:03:50[boundedElastic-19] [Controller360view:464] - (WaDataCallOptional)의 레코드의 개수 : 0
+INFO  24-06-26 15:03:50[boundedElastic-17] [Controller360view:622] - (MWaMTracecode)의 레코드의 개수 : 0
+INFO  24-06-26 15:03:50[boundedElastic-10] [Controller360view:237] - (MDataCallCustomer)의 레코드의 개수 : 0
+INFO  24-06-26 15:03:50[boundedElastic-21] [Controller360view:590] - (WaMTracecode)의 레코드의 개수 : 0
+INFO  24-06-26 15:03:50[boundedElastic-16] [Controller360view:558] - (MWaDataCallTrace)의 레코드의 개수 : 0
+INFO  24-06-26 15:03:50[boundedElastic-14] [Controller360view:433] - (MWaDataCall)의 레코드의 개수 : 0
+INFO  24-06-26 15:03:50[boundedElastic-18] [Controller360view:401] - (WaDataCall)의 레코드의 개수 : 0
+INFO  24-06-26 15:03:50[boundedElastic-9] [Controller360view:168] - (MDataCall)의 레코드의 개수 : 0
+INFO  24-06-26 15:03:50[boundedElastic-6] [Controller360view:202] - (DataCallCustomer)의 레코드의 개수 : 0
+INFO  24-06-26 15:03:51[boundedElastic-2] [WebClientApp:86] - Access token이 성공적으로 발급되었습니다.
+INFO  24-06-26 15:03:51[boundedElastic-2] [WebClientApp:52] - 발급 후 현재 인덱스 : 1
+INFO  24-06-26 15:03:51[boundedElastic-2] [WebClientApp:68] - 발급 받은 토큰 : kcQ7T9atwPgxAXw8kvMG6Fn3rB863b79aItdPyRS6mw4qrNyl_sgZIx1MpwV546iJmAKUGfQlH205LKnNNVf3g
+INFO  24-06-26 15:03:53[boundedElastic-2] [ServiceJson:61] - ====== Method : extractIntVal ( TYPE: CampaignListSize ) ======
+INFO  24-06-26 15:03:53[boundedElastic-2] [ServiceJson:131] - 총 캠페인 개수 : 35
+INFO  24-06-26 15:03:53[boundedElastic-2] [ServicePostgre:446] - Campma 테이블 레코드 수 : 35
+INFO  24-06-26 15:03:55[boundedElastic-2] [ControllerUCRM:100] - ====== Method : UcrmMsgFrmCnsmer ======
+INFO  24-06-26 15:03:55[boundedElastic-2] [ControllerUCRM:106] - DB에서 조회 된 모든 레코드 : 없음
+INFO  24-06-26 15:04:00[boundedElastic-2] [ControllerUCRM:100] - ====== Method : UcrmMsgFrmCnsmer ======
+INFO  24-06-26 15:04:00[boundedElastic-2] [ControllerUCRM:106] - DB에서 조회 된 모든 레코드 : 없음
+INFO  24-06-26 15:04:05[boundedElastic-2] [ControllerUCRM:100] - ====== Method : UcrmMsgFrmCnsmer ======
+INFO  24-06-26 15:04:05[boundedElastic-2] [ControllerUCRM:106] - DB에서 조회 된 모든 레코드 : 없음
+INFO  24-06-26 15:04:07[RMI TCP Connection(2)-127.0.0.1] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin:159] - Application shutdown requested.
+INFO  24-06-26 15:04:07[RMI TCP Connection(2)-127.0.0.1] [Http11NioProtocol:173] - Stopping ProtocolHandler ["http-nio-8083"]
+INFO  24-06-26 15:04:08[RMI TCP Connection(4)-127.0.0.1] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin:159] - Application shutdown requested.
+WARN  24-06-26 15:04:08[RMI TCP Connection(2)-127.0.0.1] [DefaultLifecycleProcessor:370] - Failed to stop bean 'reactorResourceFactory'
+reactor.core.Exceptions$ReactiveException: java.lang.InterruptedException
+	at reactor.core.Exceptions.propagate(Exceptions.java:408)
+	at reactor.core.publisher.BlockingSingleSubscriber.blockingGet(BlockingSingleSubscriber.java:95)
+	at reactor.core.publisher.Mono.block(Mono.java:1728)
+	at org.springframework.http.client.ReactorResourceFactory.stop(ReactorResourceFactory.java:251)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStop(DefaultLifecycleProcessor.java:357)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.stop(DefaultLifecycleProcessor.java:483)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.context.support.DefaultLifecycleProcessor.stopBeans(DefaultLifecycleProcessor.java:313)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onClose(DefaultLifecycleProcessor.java:214)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1136)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:174)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1090)
+	at org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin.shutdown(SpringApplicationAdminMXBeanRegistrar.java:160)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:64)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:97)
+	at java.management/com.sun.jmx.mbeanserver.ConvertingMethod.invokeWithOpenReturn(ConvertingMethod.java:193)
+	at java.management/com.sun.jmx.mbeanserver.ConvertingMethod.invokeWithOpenReturn(ConvertingMethod.java:175)
+	at java.management/com.sun.jmx.mbeanserver.MXBeanIntrospector.invokeM2(MXBeanIntrospector.java:115)
+	at java.management/com.sun.jmx.mbeanserver.MXBeanIntrospector.invokeM2(MXBeanIntrospector.java:52)
+	at java.management/com.sun.jmx.mbeanserver.MBeanIntrospector.invokeM(MBeanIntrospector.java:236)
+	at java.management/com.sun.jmx.mbeanserver.PerInterface.invoke(PerInterface.java:138)
+	at java.management/com.sun.jmx.mbeanserver.MBeanSupport.invoke(MBeanSupport.java:252)
+	at java.management/com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:803)
+	at java.management/com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:802)
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doOperation(RMIConnectionImpl.java:1472)
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl$PrivilegedOperation.run(RMIConnectionImpl.java:1310)
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doPrivilegedOperation(RMIConnectionImpl.java:1405)
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.invoke(RMIConnectionImpl.java:829)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:714)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:598)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:844)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:721)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:720)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.lang.InterruptedException: null
+	at java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireSharedInterruptibly(AbstractQueuedSynchronizer.java:1100)
+	at java.base/java.util.concurrent.CountDownLatch.await(CountDownLatch.java:230)
+	at reactor.core.publisher.BlockingSingleSubscriber.blockingGet(BlockingSingleSubscriber.java:90)
+	... 45 common frames omitted
+INFO  24-06-26 15:04:08[RMI TCP Connection(2)-127.0.0.1] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-06-26 15:04:08[RMI TCP Connection(2)-127.0.0.1] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-06-26 15:04:08[RMI TCP Connection(2)-127.0.0.1] [HikariDataSource:350] - InfogncORCLM-hikari-pool - Shutdown initiated...
+WARN  24-06-26 15:04:08[RMI TCP Connection(2)-127.0.0.1] [HikariDataSource:355] - InfogncORCLM-hikari-pool - Interrupted during closing
+java.lang.InterruptedException: null
+	at java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1744)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.awaitTermination(ThreadPoolExecutor.java:1475)
+	at com.zaxxer.hikari.pool.HikariPool.shutdown(HikariPool.java:243)
+	at com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:351)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:232)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1202)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1195)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1183)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1144)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:174)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1090)
+	at org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin.shutdown(SpringApplicationAdminMXBeanRegistrar.java:160)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:64)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:97)
+	at java.management/com.sun.jmx.mbeanserver.ConvertingMethod.invokeWithOpenReturn(ConvertingMethod.java:193)
+	at java.management/com.sun.jmx.mbeanserver.ConvertingMethod.invokeWithOpenReturn(ConvertingMethod.java:175)
+	at java.management/com.sun.jmx.mbeanserver.MXBeanIntrospector.invokeM2(MXBeanIntrospector.java:115)
+	at java.management/com.sun.jmx.mbeanserver.MXBeanIntrospector.invokeM2(MXBeanIntrospector.java:52)
+	at java.management/com.sun.jmx.mbeanserver.MBeanIntrospector.invokeM(MBeanIntrospector.java:236)
+	at java.management/com.sun.jmx.mbeanserver.PerInterface.invoke(PerInterface.java:138)
+	at java.management/com.sun.jmx.mbeanserver.MBeanSupport.invoke(MBeanSupport.java:252)
+	at java.management/com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:803)
+	at java.management/com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:802)
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doOperation(RMIConnectionImpl.java:1472)
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl$PrivilegedOperation.run(RMIConnectionImpl.java:1310)
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doPrivilegedOperation(RMIConnectionImpl.java:1405)
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.invoke(RMIConnectionImpl.java:829)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:714)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:598)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:844)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:721)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:720)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+INFO  24-06-26 15:04:08[RMI TCP Connection(2)-127.0.0.1] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-06-26 15:04:08[RMI TCP Connection(2)-127.0.0.1] [HikariDataSource:350] - InfogncORCLH-hikari-pool - Shutdown initiated...
+WARN  24-06-26 15:04:09[RMI TCP Connection(2)-127.0.0.1] [HikariDataSource:355] - InfogncORCLH-hikari-pool - Interrupted during closing
+java.lang.InterruptedException: null
+	at java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1744)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.awaitTermination(ThreadPoolExecutor.java:1475)
+	at com.zaxxer.hikari.pool.HikariPool.shutdown(HikariPool.java:243)
+	at com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:351)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:232)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1202)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1195)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1183)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1144)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:174)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1090)
+	at org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin.shutdown(SpringApplicationAdminMXBeanRegistrar.java:160)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:64)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:97)
+	at java.management/com.sun.jmx.mbeanserver.ConvertingMethod.invokeWithOpenReturn(ConvertingMethod.java:193)
+	at java.management/com.sun.jmx.mbeanserver.ConvertingMethod.invokeWithOpenReturn(ConvertingMethod.java:175)
+	at java.management/com.sun.jmx.mbeanserver.MXBeanIntrospector.invokeM2(MXBeanIntrospector.java:115)
+	at java.management/com.sun.jmx.mbeanserver.MXBeanIntrospector.invokeM2(MXBeanIntrospector.java:52)
+	at java.management/com.sun.jmx.mbeanserver.MBeanIntrospector.invokeM(MBeanIntrospector.java:236)
+	at java.management/com.sun.jmx.mbeanserver.PerInterface.invoke(PerInterface.java:138)
+	at java.management/com.sun.jmx.mbeanserver.MBeanSupport.invoke(MBeanSupport.java:252)
+	at java.management/com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:803)
+	at java.management/com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:802)
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doOperation(RMIConnectionImpl.java:1472)
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl$PrivilegedOperation.run(RMIConnectionImpl.java:1310)
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doPrivilegedOperation(RMIConnectionImpl.java:1405)
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.invoke(RMIConnectionImpl.java:829)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:714)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:598)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:844)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:721)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:720)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+INFO  24-06-26 15:04:09[RMI TCP Connection(2)-127.0.0.1] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+WARN  24-06-26 15:04:09[RMI TCP Connection(2)-127.0.0.1] [HikariDataSource:355] - Infognc-hikari-pool - Interrupted during closing
+java.lang.InterruptedException: null
+	at java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1744)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.awaitTermination(ThreadPoolExecutor.java:1475)
+	at com.zaxxer.hikari.pool.HikariPool.shutdown(HikariPool.java:243)
+	at com.zaxxer.hikari.HikariDataSource.close(HikariDataSource.java:351)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:232)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1202)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1195)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1183)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1144)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:174)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1090)
+	at org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin.shutdown(SpringApplicationAdminMXBeanRegistrar.java:160)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:64)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:97)
+	at java.management/com.sun.jmx.mbeanserver.ConvertingMethod.invokeWithOpenReturn(ConvertingMethod.java:193)
+	at java.management/com.sun.jmx.mbeanserver.ConvertingMethod.invokeWithOpenReturn(ConvertingMethod.java:175)
+	at java.management/com.sun.jmx.mbeanserver.MXBeanIntrospector.invokeM2(MXBeanIntrospector.java:115)
+	at java.management/com.sun.jmx.mbeanserver.MXBeanIntrospector.invokeM2(MXBeanIntrospector.java:52)
+	at java.management/com.sun.jmx.mbeanserver.MBeanIntrospector.invokeM(MBeanIntrospector.java:236)
+	at java.management/com.sun.jmx.mbeanserver.PerInterface.invoke(PerInterface.java:138)
+	at java.management/com.sun.jmx.mbeanserver.MBeanSupport.invoke(MBeanSupport.java:252)
+	at java.management/com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:803)
+	at java.management/com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:802)
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doOperation(RMIConnectionImpl.java:1472)
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl$PrivilegedOperation.run(RMIConnectionImpl.java:1310)
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.doPrivilegedOperation(RMIConnectionImpl.java:1405)
+	at java.management.rmi/javax.management.remote.rmi.RMIConnectionImpl.invoke(RMIConnectionImpl.java:829)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:360)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:714)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:598)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:844)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:721)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:720)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+INFO  24-06-26 15:51:36[main] [GcClientApplication:50] - Starting GcClientApplication using Java 21.0.1 with PID 11560 (D:\GitWorkSpace\GcAPIGateway\target\classes started by 인포전스 in D:\GitWorkSpace\GcAPIGateway)
+INFO  24-06-26 15:51:36[main] [GcClientApplication:660] - The following 4 profiles are active: "genesys_info", "postgres", "oracleH", "oracleM"
+INFO  24-06-26 15:51:39[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-06-26 15:51:39[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 516 ms. Found 8 JPA repository interfaces.
+INFO  24-06-26 15:51:39[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-06-26 15:51:39[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 106 ms. Found 8 JPA repository interfaces.
+INFO  24-06-26 15:51:39[main] [RepositoryConfigurationDelegate:139] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  24-06-26 15:51:39[main] [RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 105 ms. Found 7 JPA repository interfaces.
+INFO  24-06-26 15:51:42[main] [TomcatWebServer:109] - Tomcat initialized with port 8083 (http)
+INFO  24-06-26 15:51:42[main] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8083"]
+INFO  24-06-26 15:51:43[main] [ServletWebServerApplicationContext:296] - Root WebApplicationContext: initialization completed in 6261 ms
+INFO  24-06-26 15:51:46[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-06-26 15:51:46[main] [HikariConfig:1089] - InfogncORCLH-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-06-26 15:51:46[main] [HikariDataSource:110] - InfogncORCLH-hikari-pool - Starting...
+WARN  24-06-26 15:51:46[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-06-26 15:51:47[main] [HikariPool:565] - InfogncORCLH-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@6f7b8ae1
+INFO  24-06-26 15:51:47[main] [HikariDataSource:123] - InfogncORCLH-hikari-pool - Start completed.
+INFO  24-06-26 15:51:52[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-06-26 15:51:52[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+WARN  24-06-26 15:51:52[main] [HikariConfig:1089] - InfogncORCLM-hikari-pool - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+INFO  24-06-26 15:51:52[main] [HikariDataSource:110] - InfogncORCLM-hikari-pool - Starting...
+WARN  24-06-26 15:51:52[main] [DriverDataSource:70] - Registered driver with driverClassName=oracle.jdbc.driver.OracleDriver was not found, trying direct instantiation.
+INFO  24-06-26 15:51:53[main] [HikariPool:565] - InfogncORCLM-hikari-pool - Added connection oracle.jdbc.driver.T4CConnection@f507d33
+INFO  24-06-26 15:51:53[main] [HikariDataSource:123] - InfogncORCLM-hikari-pool - Start completed.
+INFO  24-06-26 15:51:54[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-06-26 15:51:54[main] [SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+INFO  24-06-26 15:51:54[main] [HikariDataSource:110] - Infognc-hikari-pool - Starting...
+INFO  24-06-26 15:51:55[main] [HikariPool:565] - Infognc-hikari-pool - Added connection org.postgresql.jdbc.PgConnection@75f1c170
+INFO  24-06-26 15:51:55[main] [HikariDataSource:123] - Infognc-hikari-pool - Start completed.
+INFO  24-06-26 15:51:56[main] [LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-06-26 15:51:57[main] [QueryEnhancerFactory:49] - Hibernate is in classpath; If applicable, HQL parser will be used.
+WARN  24-06-26 15:52:01[main] [JpaBaseConfiguration$JpaWebConfiguration:232] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  24-06-26 15:52:02[main] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8083"]
+INFO  24-06-26 15:52:02[main] [TomcatWebServer:241] - Tomcat started on port 8083 (http) with context path ''
+INFO  24-06-26 15:52:02[main] [GcClientApplication:56] - Started GcClientApplication in 26.606 seconds (process running for 31.065)
+INFO  24-06-26 15:52:02[boundedElastic-1] [ControllerCallBot:178] - ====== Method : SendCallBotRt ======
+INFO  24-06-26 15:52:02[boundedElastic-3] [ControllerCenter:82] - ====== Method : ReceiveMessage ( TYPE : campma ) ====== 
+INFO  24-06-26 15:52:02[boundedElastic-3] [ServiceWebClient:21] - ====== Method : GetApiRequet ======
+INFO  24-06-26 15:52:02[boundedElastic-3] [WebClientApp:34] - 제네시스 Client Id : 3f3a95ae-ecbf-40dd-bbe1-a9eb9fd313b7
+INFO  24-06-26 15:52:02[boundedElastic-3] [WebClientApp:36] - 제네시스 Client secret : oLZ-czDCyY9XflUn6QyAJDmA9L5Xs7ssCQTxlWDGFEg
+INFO  24-06-26 15:52:02[boundedElastic-3] [WebClientApp:45] - 토큰 없음
+INFO  24-06-26 15:52:02[boundedElastic-3] [WebClientApp:46] - 현재 인덱스 : 0
+INFO  24-06-26 15:52:02[boundedElastic-5] [ControllerUCRM:222] - ====== Method : SendUcrmRt ======
+INFO  24-06-26 15:52:02[boundedElastic-4] [ControllerUCRM:100] - ====== Method : UcrmMsgFrmCnsmer ======
+INFO  24-06-26 15:52:02[boundedElastic-6] [ControllerCenter:360] - ====== Method : SendApimRt ======
+INFO  24-06-26 15:52:02[boundedElastic-1] [ControllerCallBot:183] - DB에서 조회 된 모든 레코드 : 없음
+INFO  24-06-26 15:52:02[boundedElastic-6] [ControllerCenter:365] - DB에서 조회 된 모든 레코드 : 없음
+INFO  24-06-26 15:52:02[boundedElastic-4] [ControllerUCRM:106] - DB에서 조회 된 모든 레코드 : 없음
+INFO  24-06-26 15:52:02[boundedElastic-5] [ControllerUCRM:227] - DB에서 조회 된 모든 레코드 : 없음
+INFO  24-06-26 15:52:02[boundedElastic-2] [Controller360view:132] - (DataCall)의 레코드의 개수 : 0
+INFO  24-06-26 15:52:02[boundedElastic-10] [Controller360view:237] - (MDataCallCustomer)의 레코드의 개수 : 0
+INFO  24-06-26 15:52:02[boundedElastic-8] [Controller360view:271] - (DataCallService)의 레코드의 개수 : 0
+INFO  24-06-26 15:52:02[boundedElastic-18] [Controller360view:401] - (WaDataCall)의 레코드의 개수 : 0
+INFO  24-06-26 15:52:02[boundedElastic-21] [Controller360view:590] - (WaMTracecode)의 레코드의 개수 : 0
+INFO  24-06-26 15:52:02[boundedElastic-7] [Controller360view:202] - (DataCallCustomer)의 레코드의 개수 : 0
+INFO  24-06-26 15:52:02[boundedElastic-11] [Controller360view:304] - (MDataCallService)의 레코드의 개수 : 0
+INFO  24-06-26 15:52:02[boundedElastic-14] [Controller360view:433] - (MWaDataCall)의 레코드의 개수 : 0
+INFO  24-06-26 15:52:02[boundedElastic-15] [Controller360view:491] - (MWaDataCallOptional)의 레코드의 개수 : 0
+INFO  24-06-26 15:52:02[boundedElastic-16] [Controller360view:558] - (MWaDataCallTrace)의 레코드의 개수 : 0
+INFO  24-06-26 15:52:02[boundedElastic-20] [Controller360view:524] - (WaDataCallTrace)의 레코드의 개수 : 0
+INFO  24-06-26 15:52:02[boundedElastic-17] [Controller360view:622] - (MWaMTracecode)의 레코드의 개수 : 0
+INFO  24-06-26 15:52:02[boundedElastic-13] [Controller360view:336] - (MasterServiceCode)의 레코드의 개수 : 0
+INFO  24-06-26 15:52:02[boundedElastic-9] [Controller360view:168] - (MDataCall)의 레코드의 개수 : 0
+INFO  24-06-26 15:52:02[boundedElastic-12] [Controller360view:369] - (MMasterServiceCode)의 레코드의 개수 : 0
+INFO  24-06-26 15:52:02[boundedElastic-19] [Controller360view:464] - (WaDataCallOptional)의 레코드의 개수 : 0
+INFO  24-06-26 15:52:03[boundedElastic-3] [WebClientApp:86] - Access token이 성공적으로 발급되었습니다.
+INFO  24-06-26 15:52:03[boundedElastic-3] [WebClientApp:52] - 발급 후 현재 인덱스 : 1
+INFO  24-06-26 15:52:03[boundedElastic-3] [WebClientApp:68] - 발급 받은 토큰 : Vu10MajRkkdqcKjxnjSix7UJIlWb_wm1BrvyHESLIewywJkFN57yC66SuTMFLbri07P0amWH-42z2wtyknNF-g
+INFO  24-06-26 15:52:07[boundedElastic-3] [ServiceJson:61] - ====== Method : extractIntVal ( TYPE: CampaignListSize ) ======
+INFO  24-06-26 15:52:07[boundedElastic-19] [ControllerUCRM:100] - ====== Method : UcrmMsgFrmCnsmer ======
+INFO  24-06-26 15:52:07[boundedElastic-19] [ControllerUCRM:106] - DB에서 조회 된 모든 레코드 : 없음
+INFO  24-06-26 15:52:07[boundedElastic-3] [ServiceJson:131] - 총 캠페인 개수 : 35
+INFO  24-06-26 15:52:07[boundedElastic-3] [ServicePostgre:446] - Campma 테이블 레코드 수 : 35
+INFO  24-06-26 15:52:12[boundedElastic-3] [ControllerUCRM:100] - ====== Method : UcrmMsgFrmCnsmer ======
+INFO  24-06-26 15:52:12[boundedElastic-3] [ControllerUCRM:106] - DB에서 조회 된 모든 레코드 : 없음
+INFO  24-06-26 15:52:17[boundedElastic-3] [ControllerUCRM:100] - ====== Method : UcrmMsgFrmCnsmer ======
+INFO  24-06-26 15:52:17[boundedElastic-3] [ControllerUCRM:106] - DB에서 조회 된 모든 레코드 : 없음
+INFO  24-06-26 15:52:22[boundedElastic-3] [ControllerUCRM:100] - ====== Method : UcrmMsgFrmCnsmer ======
+INFO  24-06-26 15:52:22[boundedElastic-3] [ControllerUCRM:106] - DB에서 조회 된 모든 레코드 : 없음
+INFO  24-06-26 15:52:25[RMI TCP Connection(4)-127.0.0.1] [SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin:159] - Application shutdown requested.
+INFO  24-06-26 15:52:25[RMI TCP Connection(4)-127.0.0.1] [Http11NioProtocol:173] - Stopping ProtocolHandler ["http-nio-8083"]
+INFO  24-06-26 15:52:27[RMI TCP Connection(4)-127.0.0.1] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'postgres'
+INFO  24-06-26 15:52:27[RMI TCP Connection(4)-127.0.0.1] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleM'
+INFO  24-06-26 15:52:27[RMI TCP Connection(4)-127.0.0.1] [HikariDataSource:350] - InfogncORCLM-hikari-pool - Shutdown initiated...
+INFO  24-06-26 15:52:28[RMI TCP Connection(4)-127.0.0.1] [HikariDataSource:352] - InfogncORCLM-hikari-pool - Shutdown completed.
+INFO  24-06-26 15:52:28[RMI TCP Connection(4)-127.0.0.1] [LocalContainerEntityManagerFactoryBean:650] - Closing JPA EntityManagerFactory for persistence unit 'oracleH'
+INFO  24-06-26 15:52:28[RMI TCP Connection(4)-127.0.0.1] [HikariDataSource:350] - InfogncORCLH-hikari-pool - Shutdown initiated...
+INFO  24-06-26 15:52:28[RMI TCP Connection(4)-127.0.0.1] [HikariDataSource:352] - InfogncORCLH-hikari-pool - Shutdown completed.
+INFO  24-06-26 15:52:28[RMI TCP Connection(4)-127.0.0.1] [HikariDataSource:350] - Infognc-hikari-pool - Shutdown initiated...
+INFO  24-06-26 15:52:28[RMI TCP Connection(4)-127.0.0.1] [HikariDataSource:352] - Infognc-hikari-pool - Shutdown completed.

@@ -15,7 +15,6 @@ import java.util.Optional;
 import gc.apiClient.embeddable.Ucrm;
 import gc.apiClient.entity.postgresql.Entity_Ucrm;
 import jakarta.persistence.LockModeType;
-import jakarta.transaction.Transactional;
 
 @Repository
 public interface Repository_Ucrm extends CrudRepository<Entity_Ucrm,  Ucrm> {
@@ -25,12 +24,10 @@ public interface Repository_Ucrm extends CrudRepository<Entity_Ucrm,  Ucrm> {
 
     Optional<Entity_Ucrm> findById(Ucrm id);
     
-    @Lock(LockModeType.PESSIMISTIC_WRITE)
-    @Query("SELECT c FROM Entity_Ucrm c")
     Page<Entity_Ucrm> findAll(Pageable pageable);
     
     @Modifying
-    @Transactional
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("DELETE FROM Entity_Ucrm c WHERE c.topcDataIsueSno = :issueNo")
     void deleteByTopcDataIsueSno(@Param("issueNo") String topcDataIsueSno);
 }

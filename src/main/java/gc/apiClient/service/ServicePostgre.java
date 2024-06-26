@@ -468,33 +468,72 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
+	@Transactional
 	public void DelCampMaById(String cpid) throws Exception {
-		repositoryCampMa.deleteById(cpid);
+		
+		Optional<Entity_CampMa> entityOpt = repositoryCampMa.findByCpid(cpid);
+		if (entityOpt.isPresent()) {
+			repositoryCampMa.deleteById(cpid);
+		} else {
+			throw new Exception("삭제하려는 id를 가진 엔티티가 DB테이블에서 조회되지 않습니다.: " + cpid);
+		}
 	}
 
+	
 	@Override
+	@Transactional
 	public void DelCallBotRtById(CallBotCampRt id) throws Exception {
-		repositoryCallbotRt.deleteById(id);
+		
+		Optional<Entity_CallbotRt> entityOpt = repositoryCallbotRt.findById(id);
+		if (entityOpt.isPresent()) {
+			repositoryCallbotRt.deleteById(id);
+		} else {
+			throw new Exception("삭제하려는 id를 가진 엔티티가 DB테이블에서 조회되지 않습니다.: " + id);
+		}
 	}
 
+	
 	@Override
+	@Transactional
 	public void DelUcrmRtById(UcrmCampRt id) throws Exception {
-		repositoryUcrmRt.deleteById(id);
+		
+		Optional<Entity_UcrmRt> entityOpt = repositoryUcrmRt.findById(id);
+		if (entityOpt.isPresent()) {
+			repositoryUcrmRt.deleteById(id);
+		} else {
+			throw new Exception("삭제하려는 id를 가진 엔티티가 DB테이블에서 조회되지 않습니다.: " + id);
+		}
 	}
+	
 
 	@Override
+	@Transactional
 	public void DelApimRtById(ApimCampRt id) throws Exception {
-		repositoryApimRt.deleteById(id);
+
+		Optional<Entity_ApimRt> entityOpt = repositoryApimRt.findById(id);
+		if (entityOpt.isPresent()) {
+			repositoryApimRt.deleteById(id);
+		} else {
+			throw new Exception("삭제하려는 id를 가진 엔티티가 DB테이블에서 조회되지 않습니다.: " + id);
+		}
 	}
 
 	@Override
+	@Transactional
 	public void DelUcrmLtById(String topcDataIsueSno) throws Exception {
 		repositoryUcrm.deleteByTopcDataIsueSno(topcDataIsueSno);
 	}
 
 	@Override
+	@Transactional
 	public void DelContactltById(ContactLtId id) throws Exception {
-		repositoryContactLt.deleteById(id);
+
+		Optional<Entity_ContactLt> entityOpt = repositoryContactLt.findById(id);
+		if (entityOpt.isPresent()) {
+			repositoryContactLt.deleteById(id);
+		} else {
+			throw new Exception("삭제하려는 id를 가진 엔티티가 DB테이블에서 조회되지 않습니다.: " + id);
+		}
 	}
 
 	@Override
@@ -595,5 +634,5 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 		return apimRt;
 	}
-	
+
 }

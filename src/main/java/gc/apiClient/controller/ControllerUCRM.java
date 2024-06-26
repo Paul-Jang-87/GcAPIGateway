@@ -91,8 +91,8 @@ public class ControllerUCRM {
 
 		return Mono.just(ResponseEntity.ok("Successfully processed the message."));
 	}
+	
 
-	@Transactional
 	public Mono<ResponseEntity<String>> UcrmMsgFrmCnsmer() {// 이 함수는 스케줄러에 의해 5초마다 실행되면서 쉐도우 테이블('UCRMLT')에 있는 데이터들을
 															// 처리해주는 작업을 수행한다.
 

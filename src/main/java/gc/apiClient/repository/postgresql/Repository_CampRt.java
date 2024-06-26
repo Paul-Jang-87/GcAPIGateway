@@ -13,7 +13,6 @@ import gc.apiClient.entity.postgresql.Entity_CampRt;
 public interface Repository_CampRt extends CrudRepository<Entity_CampRt, CampRt> {
 
 	Optional<Entity_CampRt> findByCpid(String cpid);
-
 	Optional<Entity_CampRt> findById(CampRt id);
 
 	@Query("SELECT MAX(e.id.rlsq) FROM Entity_CampRt e")

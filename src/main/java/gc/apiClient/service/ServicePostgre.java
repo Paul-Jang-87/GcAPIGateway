@@ -10,6 +10,8 @@ import java.util.TimeZone;
 import org.springframework.data.domain.Page;
 
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.data.domain.PageRequest;
@@ -44,6 +46,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class ServicePostgre implements InterfaceDBPostgreSQL {
+	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
 	// 검색 **Create **Insert **Select
 	private final Repository_CampRt repositoryCampRt;
 	private final Repository_CampMa repositoryCampMa;
@@ -175,7 +178,8 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			log.info("------ return 하기 전 변수들의 최종 값 확인 ------");
 
 		} catch (Exception e) {
-			log.error("Error Message : {}", e.getMessage(), e);
+			log.error("Error Message : {}", e.getMessage());
+			errorLogger.error(e.getMessage(), e);
 		}
 
 		return enCampRt;
@@ -232,7 +236,8 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			enContactLt.setTkda(ContactLvalues[4]);// "custid,111"
 
 		} catch (Exception e) {
-			log.info("Error Messge : {}", e.getMessage());
+			log.error("Error Messge : {}", e.getMessage());
+			errorLogger.error(e.getMessage(), e);
 		}
 
 		return enContactLt;
@@ -252,7 +257,8 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			enContactLt.setTkda(entityUcrm.getTrdtCntn());
 
 		} catch (Exception e) {
-			log.info("Error Messge : {}", e.getMessage());
+			log.error("Error Messge : {}", e.getMessage());
+			errorLogger.error(e.getMessage(), e);
 		}
 
 		return enContactLt;
@@ -321,7 +327,8 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			mainObj.put("contactListId", values[6]);
 
 		} catch (Exception e) {
-			log.info("Error Message :{}", e.getMessage());
+			log.error("Error Message :{}", e.getMessage());
+			errorLogger.error(e.getMessage(), e);
 		}
 
 		return mainObj.toString();
@@ -384,8 +391,8 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			Optional<Entity_CampMa> optionalEntity = repositoryCampMa.findByCpid(cpid);
 			return optionalEntity.orElse(null);
 		} catch (IncorrectResultSizeDataAccessException ex) {
-			log.error("Error retrieving Entity_CampMa by cpid: {}", cpid, ex);
-
+			log.error("Error retrieving Entity_CampMa by cpid: {}", cpid);
+			errorLogger.error("Error retrieving Entity_CampMa by cpid: {}", cpid, ex);
 			return null;
 		}
 	}
@@ -397,7 +404,8 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			Optional<Entity_CampRt> optionalEntity = repositoryCampRt.findByCpid(cpid);
 			return optionalEntity.orElse(null);
 		} catch (IncorrectResultSizeDataAccessException ex) {
-			log.error("Error retrieving Entity_CampRt by cpid: {}", cpid, ex);
+			log.error("Error retrieving Entity_CampRt by cpid: {}", cpid);
+			errorLogger.error("Error retrieving Entity_CampRt by cpid: {}", cpid, ex);
 
 			return null;
 		}
@@ -410,8 +418,8 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			Optional<Integer> optionalEntity = repositoryCampRt.findMaxRlsq();
 			return optionalEntity.orElse(null);
 		} catch (IncorrectResultSizeDataAccessException ex) {
-			log.error("Error retrieving Entity_CampRt which has hightest value of 'rlsq' column: {}", ex);
-
+			log.error("Error retrieving Entity_CampRt which has hightest value of 'rlsq' column: {}", ex.getMessage());
+			errorLogger.error("Error retrieving Entity_CampRt which has hightest value of 'rlsq' column: {}", ex.getMessage(), ex);
 			return null;
 		}
 	}
@@ -435,8 +443,8 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			Optional<Entity_ContactLt> optionalEntity = repositoryContactLt.findByCske(cske);
 			return optionalEntity.orElse(null);
 		} catch (IncorrectResultSizeDataAccessException ex) {
-			log.error("Error retrieving contact by cske: {}", cske, ex);
-
+			log.error("Error retrieving contact by cske: {}", cske);
+			errorLogger.error("Error retrieving contact by cske: {}", cske, ex);
 			return null;
 		}
 	}

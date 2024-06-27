@@ -10,18 +10,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.data.domain.Page;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import reactor.core.scheduler.Schedulers;
 
 import gc.apiClient.BusinessLogic;
 import gc.apiClient.customproperties.CustomProperties;
@@ -36,11 +35,12 @@ import gc.apiClient.service.ServiceJson;
 import kafMsges.MsgUcrm;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
 
 @RestController
 @Slf4j
 public class ControllerUCRM {
-
+	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
 	private final InterfaceDBPostgreSQL serviceDb;
 	private final InterfaceWebClient serviceWeb;
 	private final CustomProperties customProperties;
@@ -79,13 +79,15 @@ public class ControllerUCRM {
 				log.info("저장된 메시지 : {}", msg);
 			} catch (DataIntegrityViolationException ex) {
 				log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+				errorLogger.error(ex.getMessage(), ex);
 			} catch (DataAccessException ex) {
 				log.error("DataAccessException 발생 : {}", ex.getMessage());
+				errorLogger.error(ex.getMessage(), ex);
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			log.error("에러 메시지 : {}", e.getMessage());
+			errorLogger.error(e.getMessage(), e);
 			return Mono.just(ResponseEntity.ok().body(String.format("You've got an error : %s", e.getMessage())));
 		}
 
@@ -184,6 +186,7 @@ public class ControllerUCRM {
 
 					} catch (Exception ex) {// 인서트 하려고 했는데 이미 있는 데이터여서 에러가 발생한 경우
 						log.error("Exception 발생 : {}", ex.getMessage());
+						errorLogger.error(ex.getMessage(), ex);
 					} 
 
 					// 쉐도우 테이블에서 삭제 테이블명 'UCRMLT'
@@ -208,8 +211,8 @@ public class ControllerUCRM {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			log.error("에러 메시지 : {}", e.getMessage());
+			errorLogger.error(e.getMessage(), e);
 		}
 
 		return Mono.just(ResponseEntity.ok("Successfully processed the message."));
@@ -294,8 +297,8 @@ public class ControllerUCRM {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			log.error("에러 메시지 : {}", e.getMessage());
+			errorLogger.error(e.getMessage(), e);
 		}
 
 		return Mono.just(ResponseEntity.ok("Successfully processed the message."));
@@ -357,8 +360,10 @@ public class ControllerUCRM {
 				serviceDb.InsertCampRt(entityCmRt);
 			} catch (DataIntegrityViolationException ex) {
 				log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+				errorLogger.error(ex.getMessage(), ex);
 			} catch (DataAccessException ex) {
 				log.error("DataAccessException 발생 : {}", ex.getMessage());
+				errorLogger.error(ex.getMessage(), ex);
 			}
 		}
 		values.clear();

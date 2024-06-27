@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import gc.apiClient.entity.oracleH.Entity_DataCall;
@@ -28,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
-
+	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
 	@Override
 	public <T> String DataCallMsg(T t, String crudtype) {//(T) 매개변수를 제네릭 타임으로 받는다. 
 
@@ -63,9 +65,8 @@ public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 
 
 		} catch (Exception e) {
-
 			log.error(e.getMessage());
-			e.printStackTrace();
+			errorLogger.error(e.getMessage(), e);
 		}
 		return obj.toString();
 	}

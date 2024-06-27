@@ -2,6 +2,8 @@ package gc.apiClient.service;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import gc.apiClient.interfaceCollection.InterfaceWebClient;
@@ -11,14 +13,14 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class ServiceWebClient implements InterfaceWebClient {
-	
+	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
 	private static final int MAX_RETRIES = 3;
     private static final long RETRY_INTERVAL_MS = 1000; // 1 second (adjust as needed)
 
 	@Override
 	public String GetApiRequet(String endpoint,int pagenumber) {
 
-		log.info("====== Method : GetApiRequet ======");
+		log.info("====== Method : GetApiRequet {} ======", endpoint);
 
 		String result = "";
 
@@ -31,9 +33,7 @@ public class ServiceWebClient implements InterfaceWebClient {
 	@Override
 	public String GetStatusApiRequet(String endpoint, String campaignId) {
 
-		log.info("====== Method : GetStatusApiRequet ======");
-		log.info("Endpoint : {} => {}", endpoint, "/api/v2/outbound/campaigns/{campaignId}/stats");
-		log.info("campaignId : {}", campaignId);
+		log.info("====== Method : GetStatusApiRequet {} ======", endpoint);
 
 		String result = "";
 
@@ -42,13 +42,14 @@ public class ServiceWebClient implements InterfaceWebClient {
 
 		return result;
 	}
+	
 
-	@Override // "/api/v2/outbound/campaigns/{campaignId}"
-	public String GetCampaignsApiRequet(String endpoint, String campaignId) {// path parameter 'campaignId'
-
-		log.info("====== Method : GetCampaignsApiRequet ======");
-
-		
+	@Override 
+	public String GetCampaignsApiRequet(String endpoint, String campaignId) {
+		/*
+		 * <Genesys API 호출> - 캠페인 조회 [GET]/api/v2/outbound/campaigns/{campaignId}
+		 */
+		log.info("====== Method : GetCampaignsApiRequet {} ======", endpoint);
 		String result = "";
 
         int attempt = 0;
@@ -61,9 +62,9 @@ public class ServiceWebClient implements InterfaceWebClient {
                 success = true; // Mark success if no exception is thrown
             } catch (Exception e) {
                 log.error("Attempt {} failed: {}", attempt + 1, e.getMessage());
+                errorLogger.error(e.getMessage(), e);
                 attempt++;
                 if (attempt < MAX_RETRIES) {
-                    log.info("Retrying after {} ms...", RETRY_INTERVAL_MS);
                     try {
                         Thread.sleep(RETRY_INTERVAL_MS);
                     } catch (InterruptedException ignored) {
@@ -77,11 +78,8 @@ public class ServiceWebClient implements InterfaceWebClient {
 	}
 
 	@Override
-	public String GetContactLtApiRequet(String endpoint, String contactListId, String contactId) {// path parameter
-																									// 'contactListId','contactId'
-
-		log.info("====== Method : GetContactLtApiRequet ======");
-
+	public String GetContactLtApiRequet(String endpoint, String contactListId, String contactId) {
+		log.info("====== Method : GetContactLtApiRequet {} ======", endpoint);
 		String result = "";
 
 		WebClientApp webClient = new WebClientApp();
@@ -90,10 +88,12 @@ public class ServiceWebClient implements InterfaceWebClient {
 		return result;
 	}
 
-	@Override // api/v2/outbound/contactlists/{contactListId}/contacts/bulk
-	public String PostContactLtApiRequet(String endpoint, String contactListId, List<String> msg) {// path parameter
-																									// 'contactListId','contactId'
-		log.info("====== Method : PostContactLtApiRequet ======");
+	@Override 
+	public String PostContactLtApiRequet(String endpoint, String contactListId, List<String> msg) {
+		/*
+		 * Genesys API 호출 - 컨택리스트 적재 [POST] api/v2/outbound/contactlists/{contactListId}/contacts
+		 */
+		log.info("====== Method : PostContactLtApiRequet {} ======", endpoint);
 
 		String result = "";
 		WebClientApp webClient = new WebClientApp();
@@ -102,12 +102,9 @@ public class ServiceWebClient implements InterfaceWebClient {
 		int cnt = 3;
 		int retryCount = 1;
 		while (result == null && retryCount < cnt) {
-
 			log.info("Retrying count : {}", retryCount);
-			log.info("Retrying...");
 			retryCount++;
 			result = webClient.makeApiRequest34(endpoint, contactListId, msg.toString());
-			log.error("Result after retrying : {}", result);
 		}
 
 		if (result == null && retryCount >= cnt) {
@@ -122,15 +119,14 @@ public class ServiceWebClient implements InterfaceWebClient {
 		return result;
 	}
 
-	@Override // "/api/v2/outbound/contactlists/{contactListId}/contacts/bulk"
-	public String PostContactLtApiBulk(String endpoint, String contactListId, List<String> cskes) {// path parameter
-
-		log.info("====== Method : PostContactLtApiBulk ======");
-
+	@Override 
+	public String PostContactLtApiBulk(String endpoint, String contactListId, List<String> cskes) {
+		/*
+		 * Genesys API 호출 - 컨택리스트 조회 [POST] api/v2/outbound/contactlists/{contactListId}/contacts/bulk
+		 */
+		log.info("====== Method : PostContactLtApiBulk {} ======", endpoint);
 		String result = "";
-		log.info("Endpoint : {} => {}", endpoint, "/api/v2/outbound/contactlists/{contactListId}/contacts/bulk");
-		log.info("contactListId : {}", contactListId);
-		log.info("cskes : {}", cskes.toString());
+		log.info("contactListId : {}, cskes : {}", contactListId, cskes.toString());
 
 		WebClientApp webClient = new WebClientApp();
 		result = webClient.makeApiRequest56(endpoint, contactListId, cskes);
@@ -138,14 +134,16 @@ public class ServiceWebClient implements InterfaceWebClient {
 		log.info("PostContactLtApiBulk 요청 후 결과 값 result : {}", result);
 		return result;
 	}
-
+	
+	/**
+	 * 컨택리스트에 있는 대상자 전부 삭제 API 호출 - 사용 X
+	 * 혹시 몰라 남겨둠
+	 */
 	@Override
 	public Void PostContactLtClearReq(String endpoint, String contactListId) {
-
-		log.info("====== Method : PostContactLtClearReq ======");
-
-		log.info("Endpoint : /api/v2/outbound/contactlists/{contactListId}/clear");
+		log.info("====== Method : PostContactLtClearReq {} ======", endpoint);
 		log.info("contactListId : {}", contactListId);
+		
 		WebClientApp webClient = new WebClientApp();
 		webClient.makeApiRequest(endpoint, "POST", contactListId);
 
@@ -154,8 +152,11 @@ public class ServiceWebClient implements InterfaceWebClient {
 
 	@Override
 	public String DelContacts(String endpoint, String contactListId, List<String> msg) throws Exception {
-		log.info("====== Method : DelContacts ======");
-		log.info("Incoming message : {}", msg.toString());
+		/*
+		 * Genesys API 호출 - 컨택리스트 삭제 [DELETE] api/v2/outbound/contactlists/{contactListId}/contacts
+		 */
+		log.info("====== Method : DelContacts {} ======", endpoint);
+		log.info("Incoming message (삭제 대상자 리스트-CPSQ) : {}", msg.toString());
 
 		String result = "";
 		WebClientApp webClient = new WebClientApp();

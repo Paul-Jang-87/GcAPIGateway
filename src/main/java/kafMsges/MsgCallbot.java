@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.TimeZone;
 
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class MsgCallbot implements InterfaceKafMsg {
-
+	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
 	private InterfaceDBPostgreSQL serviceDb;
 
 	public MsgCallbot(InterfaceDBPostgreSQL serviceDb) {
@@ -131,8 +133,8 @@ public class MsgCallbot implements InterfaceKafMsg {
 		}
 
 		catch (Exception e) {
-			e.printStackTrace();
 			log.error("Error Message : {}", e.getMessage());
+			errorLogger.error(e.getMessage(), e);
 		}
 
 		return obj.toString();

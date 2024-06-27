@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.TimeZone;
 
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,7 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class MsgUcrm implements InterfaceKafMsg { //카프카 프로듀서로 보내기 위한 UCRM 메시지만을 모아둔 클래스
-
+	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
 	private InterfaceDBPostgreSQL serviceDb;
 
 	public MsgUcrm(InterfaceDBPostgreSQL serviceDb) {
@@ -139,8 +141,8 @@ public class MsgUcrm implements InterfaceKafMsg { //카프카 프로듀서로 �
 			obj.put("lastResult", dirt);
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			log.error("Error Message : {}", e.getMessage());
+			errorLogger.error(e.getMessage(), e);
 		}
 
 		return obj.toString();

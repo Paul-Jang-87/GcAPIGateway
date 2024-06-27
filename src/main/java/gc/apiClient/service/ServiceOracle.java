@@ -3,13 +3,14 @@ package gc.apiClient.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Profile;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import gc.apiClient.entity.oracleH.Entity_DataCall;
@@ -56,6 +57,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Profile("oracleH")
 public class ServiceOracle implements InterfaceDBOracle {
+	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
 	// 검색 **Create **Insert **Select
 	private final Repository_DataCall repositoryDataCall;
 	private final Repository_DataCallCustomer repositoryDataCallCustomer;
@@ -253,8 +255,8 @@ public class ServiceOracle implements InterfaceDBOracle {
 						.setMaxResults(400) //가져올 수 있는 레코드 최대 400개로 제한
 						.getResultList();
 			} catch (Exception e) {
-				
 				log.error("엔티티를 불러오는 과정에서 에러가 발생했습니다. {} : {}", clazz.getName(), e.getMessage());
+				errorLogger.error("엔티티를 불러오는 과정에서 에러가 발생했습니다. {} : {}", clazz.getName(), e.getMessage(), e);
 				throw new RuntimeException("엔티티를 불러오는 과정에서 에러가 발생했습니다. : " + clazz.getName(), e);
 			}
 		});
@@ -277,6 +279,7 @@ public class ServiceOracle implements InterfaceDBOracle {
 				}
 			} catch (Exception e) {
 				log.error("해당 orderid({})의 레코드를 삭제하는데 에러가 발생했습니다.: {} ", orderid, e.getMessage());
+				errorLogger.error("엔티티를 불러오는 과정에서 에러가 발생했습니다. {} : {}", clazz.getName(), e.getMessage(), e);
 				throw new RuntimeException("해당 orderid({})의 레코드를 삭제하는데 에러가 발생했습니다.: " + orderid, e);
 			}
 		});

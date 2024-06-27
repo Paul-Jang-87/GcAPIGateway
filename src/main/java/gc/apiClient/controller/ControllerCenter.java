@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -47,7 +49,7 @@ import reactor.core.scheduler.Schedulers;
 @RestController
 @Slf4j
 public class ControllerCenter {
-
+	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
 	private final InterfaceDBPostgreSQL serviceDb;
 	private final InterfaceDBOracle serviceOracle;
 	private final InterfaceWebClient serviceWeb;
@@ -200,6 +202,7 @@ public class ControllerCenter {
 
 					} catch (EntityNotFoundException ex) { // update 실행 전 cpid로 CAMPMA TABLE 조회, 조회가 되지 않을 경우 Exception 발생
 						log.error("EntityNotFoundException occurred: {} ", ex.getMessage());
+						errorLogger.error(ex.getMessage(), ex);
 //						serviceDb.InsertCampMa(enCampMa);//인서트 해버린다. 
 //
 //						msg = msgucrm.maMassage(enCampMa, "insert");//이후 인서트 형식으로 메시지 보냄
@@ -241,6 +244,7 @@ public class ControllerCenter {
 
 					} catch (EntityNotFoundException ex) {	// update 실행 전 cpid로 CAMPMA TABLE 조회, 조회가 되지 않을 경우 Exception 발생
 						log.error("EntityNotFoundException occurred: {} ", ex.getMessage());
+						errorLogger.error(ex.getMessage(), ex);
 //						enCampMa = serviceDb.CreateEnCampMa(row_result);
 //						serviceDb.InsertCampMa(enCampMa);
 //
@@ -280,8 +284,8 @@ public class ControllerCenter {
 						log.info("업데이트를 위한 변경할 대상 cpid : {}, 새로운 캠페인명 : {}, APIM으로 보냄. : {}", cpid, cpna, msg);
 
 					} catch (EntityNotFoundException ex) {
-
 						log.error("EntityNotFoundException occurred: {} ", ex.getMessage());
+						errorLogger.error(ex.getMessage(), ex);
 //						enCampMa = serviceDb.CreateEnCampMa(row_result);
 //						serviceDb.InsertCampMa(enCampMa);
 //
@@ -310,6 +314,7 @@ public class ControllerCenter {
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("Error Messge : {}", e.getMessage());
+			errorLogger.error(e.getMessage(), e);
 			return Mono.just(ResponseEntity.ok().body(String.format("에러가 발생하였습니다. : %s", e.getMessage())));
 		}
 	}
@@ -433,6 +438,7 @@ public class ControllerCenter {
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("에러 메시지 : {}", e.getMessage());
+			errorLogger.error(e.getMessage(), e);
 		}
 
 		return Mono.just(ResponseEntity.ok("Successfully processed the message."));
@@ -520,9 +526,11 @@ public class ControllerCenter {
 					serviceDb.InsertCampMa(enCampMa);// 'enCampMa' db에 인서트
 				} catch (DataIntegrityViolationException ex) {
 					log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+					errorLogger.error(ex.getMessage(), ex);
 					continue;
 				} catch (DataAccessException ex) {
 					log.error("DataAccessException 발생 : {}", ex.getMessage());
+					errorLogger.error(ex.getMessage(), ex);
 					continue;
 				}
 
@@ -541,9 +549,11 @@ public class ControllerCenter {
 					serviceDb.InsertCampMa(enCampMa);
 				} catch (DataIntegrityViolationException ex) {
 					log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+					errorLogger.error(ex.getMessage(), ex);
 					continue;
 				} catch (DataAccessException ex) {
 					log.error("DataAccessException 발생 : {}", ex.getMessage());
+					errorLogger.error(ex.getMessage(), ex);
 					continue;
 				}
 
@@ -559,9 +569,11 @@ public class ControllerCenter {
 					serviceDb.InsertCampMa(enCampMa);
 				} catch (DataIntegrityViolationException ex) {
 					log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+					errorLogger.error(ex.getMessage(), ex);
 					continue;
 				} catch (DataAccessException ex) {
 					log.error("DataAccessException 발생 : {}", ex.getMessage());
+					errorLogger.error(ex.getMessage(), ex);
 					continue;
 				}
 

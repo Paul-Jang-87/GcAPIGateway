@@ -22,6 +22,7 @@ import gc.apiClient.BusinessLogic;
 import gc.apiClient.customproperties.CustomProperties;
 import gc.apiClient.entity.Entity_ToApim;
 import gc.apiClient.entity.oracleH.Entity_WaDataCallOptional;
+import gc.apiClient.entity.oracleM.Entity_MWaDataCallOptional;
 import gc.apiClient.entity.postgresql.Entity_ApimRt;
 import gc.apiClient.entity.postgresql.Entity_CallbotRt;
 import gc.apiClient.entity.postgresql.Entity_CampMa;
@@ -67,6 +68,7 @@ public class ControllerCenter {
 		WebClientApp.EmptyTockenlt();
 
 	}
+	
 
 	@Scheduled(fixedRate = 60000)
 	public void scheduledMethod() {// 1분 간격으로 안의 함수들 비동기적으로 실행
@@ -75,6 +77,7 @@ public class ControllerCenter {
 		Mono.fromCallable(() -> SendApimRt()).subscribeOn(Schedulers.boundedElastic()).subscribe();
 
 	}
+
 
 	@GetMapping("/gcapi/get/{topic}")
 	public Mono<Void> ReceiveMessage(@PathVariable("topic") String tranId) {
@@ -635,7 +638,7 @@ public class ControllerCenter {
 		Entity_WaDataCallOptional enCampMa = new Entity_WaDataCallOptional();
 		try {
 
-			for (int i = 90000; i < 90000+till; i++) {
+			for (int i = 0; i < till; i++) {
 				enCampMa.setCmd("a");
 				enCampMa.setNew_data02("a");
 				enCampMa.setNew_wcseq(0);
@@ -650,5 +653,75 @@ public class ControllerCenter {
 
 		}
 	}
+	
+	
+	@GetMapping("/push3601/{topic}")
+	public void push3601(@PathVariable("topic") int tranId) {
+
+		int till = tranId;
+		Entity_MWaDataCallOptional enCampMa = new Entity_MWaDataCallOptional();
+		try {
+
+			for (int i = 0; i < till; i++) {
+				enCampMa.setCmd("a");
+				enCampMa.setNew_data02("a");
+				enCampMa.setNew_wcseq(0);
+				enCampMa.setOld_data02(null);
+				enCampMa.setOld_wcseq(null);
+				enCampMa.setOrderid(i);
+				
+				serviceOracle.InsertMWaDataCallOptional(enCampMa, i);
+			}
+
+		} catch (Exception e) {
+
+		}
+	}
+	
+//	@GetMapping("/pushh3601/{topic}")
+//	public void pushh3601(@PathVariable("topic") int tranId) {
+//
+//		int till = tranId;
+//		Entity_MWaDataCallOptional enCampMa = new Entity_MWaDataCallOptional();
+//		try {
+//
+//			for (int i = 0; i < till; i++) {
+//				enCampMa.setCmd("a");
+//				enCampMa.setNew_data02("a");
+//				enCampMa.setNew_wcseq(0);
+//				enCampMa.setOld_data02(null);
+//				enCampMa.setOld_wcseq(null);
+//				enCampMa.setOrderid(i);
+//				
+//				serviceOracle.InsertMWaDataCallOptional(enCampMa, i);
+//			}
+//
+//		} catch (Exception e) {
+//
+//		}
+//	}
+//	
+//	@GetMapping("/pushm3601/{topic}")
+//	public void pushm3601(@PathVariable("topic") int tranId) {
+//
+//		int till = tranId;
+//		Entity_MWaDataCallOptional enCampMa = new Entity_MWaDataCallOptional();
+//		try {
+//
+//			for (int i = 0; i < till; i++) {
+//				enCampMa.setCmd("a");
+//				enCampMa.setNew_data02("a");
+//				enCampMa.setNew_wcseq(0);
+//				enCampMa.setOld_data02(null);
+//				enCampMa.setOld_wcseq(null);
+//				enCampMa.setOrderid(i);
+//				
+//				serviceOracle.InsertMWaDataCallOptional(enCampMa, i);
+//			}
+//
+//		} catch (Exception e) {
+//
+//		}
+//	}
 
 }

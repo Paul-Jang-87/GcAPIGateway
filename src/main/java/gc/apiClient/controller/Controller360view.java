@@ -481,6 +481,7 @@ public class Controller360view {
 	    return Mono.just(ResponseEntity.ok("'Msg360WaDataCallOptional' got message successfully."));
 	}
 
+
 	@GetMapping("/360view12")
 	@Transactional
 	public Mono<ResponseEntity<String>> Msg360MWaDataCallOptional() {
@@ -490,22 +491,18 @@ public class Controller360view {
 			int numberOfRecords = serviceOracle.getRecordCount(topic_id);
 			log.info("(MWaDataCallOptional)의 레코드의 개수 : {}", numberOfRecords);
 
-			if (numberOfRecords < 1) {
+			if (numberOfRecords >= 1) {
+	            List<Entity_MWaDataCallOptional> entityList = serviceOracle.getAll(Entity_MWaDataCallOptional.class);
 
-			} else {// 1. 쉐도우 테이블에 레코드가 1개 이상 있다면 있는 레코드들을 다 긁어 온다.
-					// 2. crud 구분해서 메시지 키를 정한다.
-					// 3. 프로듀서로 메시지 재가공해서 보낸다.
-				List<Entity_MWaDataCallOptional> entitylist = serviceOracle.getAll(Entity_MWaDataCallOptional.class);
+	            for (Entity_MWaDataCallOptional entity : entityList) {
+	                String crudType = entity.getCmd();
+	                int orderId = entity.getOrderid();
 
-				for (int i = 0; i < entitylist.size(); i++) {
+	                MessageTo360View.SendMsgTo360View(topic_id, serviceMsgObjOrcl.WaDataCallOptionalMsg(entity, crudType));
 
-					String crudtype = entitylist.get(i).getCmd();
-					int orderid = entitylist.get(i).getOrderid();
-					MessageTo360View.SendMsgTo360View(topic_id,
-							serviceMsgObjOrcl.WaDataCallOptionalMsg(entitylist.get(i), crudtype));
-					serviceOracle.deleteAll(Entity_MWaDataCallOptional.class, orderid);
-				}
-			}
+	                serviceOracle.deleteAll(Entity_MWaDataCallOptional.class, orderId);
+	            }
+	        }
 		} catch (Exception e) {
 			 
 			log.error("Error Message : {}", e.getMessage());

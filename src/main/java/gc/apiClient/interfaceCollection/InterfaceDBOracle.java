@@ -2,20 +2,14 @@ package gc.apiClient.interfaceCollection;
 
 import java.util.List;
 
-import gc.apiClient.entity.oracleH.Entity_DataCall;
-import gc.apiClient.entity.oracleH.Entity_WaDataCall;
 import gc.apiClient.entity.oracleH.Entity_WaDataCallOptional;
-import gc.apiClient.entity.postgresql.Entity_CampRt;
+import gc.apiClient.entity.oracleM.Entity_MWaDataCallOptional;
 
 public interface InterfaceDBOracle {
 
 	// insert
 	Entity_WaDataCallOptional InsertWaDataCallOptional(Entity_WaDataCallOptional entityWaDataCallOptional,int wcseq);
-
-	// select
-	Entity_WaDataCallOptional findWaDataCallOptional(int wcseq)throws Exception;
-
-	Entity_DataCall findDataCallByCpid(int orderid)throws Exception;
+	Entity_MWaDataCallOptional InsertMWaDataCallOptional(Entity_MWaDataCallOptional entityWaDataCallOptional,int wcseq);
 
 	int getRecordCount(String topic_id)throws Exception;
 

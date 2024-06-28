@@ -17,17 +17,17 @@ import gc.apiClient.entity.postgresql.Entity_Ucrm;
 import jakarta.persistence.LockModeType;
 
 @Repository
-public interface Repository_Ucrm extends CrudRepository<Entity_Ucrm,  Ucrm> {
-    
-    @Query("SELECT c FROM Entity_ContactLt c WHERE c.id.cpid = :cpidValue")
-    List<Entity_Ucrm> findByCpid(@Param("cpidValue") String id);
+public interface Repository_Ucrm extends CrudRepository<Entity_Ucrm, Ucrm> {
 
-    Optional<Entity_Ucrm> findById(Ucrm id);
-    
-    Page<Entity_Ucrm> findAll(Pageable pageable);
-    
-    @Modifying
-    @Lock(LockModeType.PESSIMISTIC_WRITE)
-    @Query("DELETE FROM Entity_Ucrm c WHERE c.topcDataIsueSno = :issueNo")
-    void deleteByTopcDataIsueSno(@Param("issueNo") String topcDataIsueSno);
+	@Query("SELECT c FROM Entity_ContactLt c WHERE c.id.cpid = :cpidValue")
+	List<Entity_Ucrm> findByCpid(@Param("cpidValue") String id);
+
+	Optional<Entity_Ucrm> findById(Ucrm id);
+
+	Page<Entity_Ucrm> findAll(Pageable pageable);
+
+	@Modifying
+	@Lock(LockModeType.PESSIMISTIC_WRITE)
+	@Query("DELETE FROM Entity_Ucrm c WHERE c.topcDataIsueSno = :issueNo")
+	void deleteByTopcDataIsueSno(@Param("issueNo") String topcDataIsueSno);
 }

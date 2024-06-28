@@ -4,11 +4,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
+import gc.apiClient.controller.ControllerCenter;
 import jakarta.annotation.PostConstruct;
-
+import lombok.extern.slf4j.Slf4j;
 
 @Component
-@PropertySource("classpath:application.properties") // 참조 경로, 참조하는 파일 프로젝트 내 'application.properties'파일
+@Slf4j
+@PropertySource("file:./logs/gc_config/gcapi_info.properties") 
 public class WebClientConfig {// api들의 정보들 수록.
 
 	private static final String API_BASE_URL = "https://api.apne2.pure.cloud"; //제네시스 기본 api 주소.
@@ -25,6 +27,8 @@ public class WebClientConfig {// api들의 정보들 수록.
     private void init() {
 		CLIENT_ID = id;
 		CLIENT_SECRET = pw;
+		log.info("CLIENT_ID & CLIENT_SECRET = {} / {}" , CLIENT_ID,CLIENT_SECRET);
+		
     }
 	
 	

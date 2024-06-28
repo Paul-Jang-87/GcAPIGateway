@@ -120,9 +120,7 @@ public class Controller360view {
         .subscribe();
 
 	}
-	
 
-	@GetMapping("/360view1")
 	@Transactional
 	public Mono<ResponseEntity<String>> Msg360Datacall() {
 
@@ -158,7 +156,6 @@ public class Controller360view {
 	}
 	
 
-	@GetMapping("/360view2")
 	@Transactional
 	public Mono<ResponseEntity<String>> Msg360MDatacall() {
 
@@ -192,7 +189,6 @@ public class Controller360view {
 		return Mono.just(ResponseEntity.ok("'Msg360MDatacall' got message successfully."));
 	}
 
-	@GetMapping("/360view3")
 	@Transactional
 	public Mono<ResponseEntity<String>> Msg360DataCallCustomer() {
 
@@ -226,7 +222,6 @@ public class Controller360view {
 		return Mono.just(ResponseEntity.ok("'Msg360DataCallCustomer' got message successfully."));
 	}
 
-	@GetMapping("/360view4")
 	@Transactional
 	public Mono<ResponseEntity<String>> Msg360MDataCallCustomer() {
 
@@ -261,7 +256,6 @@ public class Controller360view {
 		return Mono.just(ResponseEntity.ok("'Msg360MDataCallCustomer' got message successfully."));
 	}
 
-	@GetMapping("/360view5")
 	@Transactional
 	public Mono<ResponseEntity<String>> Msg360DataCallService() {
 
@@ -294,7 +288,6 @@ public class Controller360view {
 		return Mono.just(ResponseEntity.ok("'Msg360DataCallService' got message successfully."));
 	}
 
-	@GetMapping("/360view6")
 	@Transactional
 	public Mono<ResponseEntity<String>> Msg360MDataCallService() {
 
@@ -327,7 +320,6 @@ public class Controller360view {
 		return Mono.just(ResponseEntity.ok("'Msg360MDataCallService' got message successfully."));
 	}
 
-	@GetMapping("/360view7")
 	@Transactional
 	public Mono<ResponseEntity<String>> Msg360MstrsSvcCd() {
 		try {
@@ -359,7 +351,6 @@ public class Controller360view {
 		return Mono.just(ResponseEntity.ok("'Msg360MstrsSvcCd' got message successfully."));
 	}
 
-	@GetMapping("/360view8")
 	@Transactional
 	public Mono<ResponseEntity<String>> Msg360MMstrsSvcCd() {
 
@@ -391,7 +382,6 @@ public class Controller360view {
 		return Mono.just(ResponseEntity.ok("'Msg360MMstrsSvcCd' got message successfully."));
 	}
 
-	@GetMapping("/360view9")
 	@Transactional
 	public Mono<ResponseEntity<String>> Msg360WaDataCall() {
 
@@ -423,7 +413,6 @@ public class Controller360view {
 		return Mono.just(ResponseEntity.ok("'Msg360WaDataCall' got message successfully."));
 	}
 
-	@GetMapping("/360view10")
 	@Transactional
 	public Mono<ResponseEntity<String>> Msg360MWaDataCall() {
 
@@ -455,7 +444,6 @@ public class Controller360view {
 		return Mono.just(ResponseEntity.ok("'Msg360MWaDataCall' got message successfully."));
 	}
 
-	@GetMapping("/360view11")
 	@Transactional
 	public Mono<ResponseEntity<String>> Msg360WaDataCallOptional() {
 	    try {
@@ -483,7 +471,6 @@ public class Controller360view {
 	}
 
 
-	@GetMapping("/360view12")
 	@Transactional
 	public Mono<ResponseEntity<String>> Msg360MWaDataCallOptional() {
 
@@ -511,7 +498,6 @@ public class Controller360view {
 		return Mono.just(ResponseEntity.ok("'Msg360MWaDataCallOptional' got message successfully."));
 	}
 
-	@GetMapping("/360view13")
 	@Transactional
 	public Mono<ResponseEntity<String>> Msg360WaDataCallTrace() {
 
@@ -546,7 +532,6 @@ public class Controller360view {
 		return Mono.just(ResponseEntity.ok("'Msg360WaDataCallTrace' got message successfully."));
 	}
 
-	@GetMapping("/360view14")
 	@Transactional
 	public Mono<ResponseEntity<String>> Msg360MWaDataCallTrace() {
 
@@ -578,7 +563,6 @@ public class Controller360view {
 		return Mono.just(ResponseEntity.ok("'Msg360MWaDataCallTrace' got message successfully."));
 	}
 
-	@GetMapping("/360view15")
 	@Transactional
 	public Mono<ResponseEntity<String>> Msg360WaMTrCode() {
 
@@ -610,7 +594,6 @@ public class Controller360view {
 		return Mono.just(ResponseEntity.ok("'Msg360WaMTrCode' got message successfully."));
 	}
 
-	@GetMapping("/360view16")
 	@Transactional
 	public Mono<ResponseEntity<String>> Msg360MWaMTrCode() {
 

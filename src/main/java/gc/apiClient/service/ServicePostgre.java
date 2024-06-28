@@ -335,6 +335,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
+	@Transactional
 	public Entity_CampRt InsertCampRt(Entity_CampRt entity_CampRt) {
 
 		Optional<Entity_CampRt> existingEntity = repositoryCampRt.findById(entity_CampRt.getId());
@@ -348,6 +349,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
+	@Transactional
 	public Entity_CampMa InsertCampMa(Entity_CampMa entityCampMa) {
 
 		Optional<Entity_CampMa> existingEntity = repositoryCampMa.findByCpid(entityCampMa.getCpid()); // db에 인서트 하기 전. 키
@@ -362,6 +364,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
+	@Transactional
 	public Entity_Ucrm InsertUcrm(Entity_Ucrm entityUcrm) {
 
 		Optional<Entity_Ucrm> existingEntity = repositoryUcrm.findById(entityUcrm.getId());
@@ -374,6 +377,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
+	@Transactional
 	public Entity_ContactLt InsertContactLt(Entity_ContactLt entityContactLt) {
 
 		Optional<Entity_ContactLt> existingEntity = repositoryContactLt.findById(entityContactLt.getId());
@@ -385,6 +389,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
+	@Transactional
 	public Entity_CampMa findCampMaByCpid(String cpid) {
 
 		try {
@@ -398,6 +403,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
+	@Transactional	
 	public Entity_CampRt findCampRtByCpid(String cpid) {
 
 		try {
@@ -425,6 +431,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
+	@Transactional
 	public List<Entity_ContactLt> findContactLtByCpid(String id) {
 
 		List<Entity_ContactLt> resultList = repositoryContactLt.findByCpid(id);
@@ -437,6 +444,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
+	@Transactional
 	public Entity_ContactLt findContactLtByCske(String cske) {
 
 		try {
@@ -559,6 +567,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
+	@Transactional
 	public Entity_CallbotRt InsertCallbotRt(Entity_CallbotRt enCallbotRt) throws Exception {
 
 		Optional<Entity_CallbotRt> existingEntity = repositoryCallbotRt.findById(enCallbotRt.getId());
@@ -571,6 +580,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
+	@Transactional
 	public Entity_UcrmRt InsertUcrmRt(Entity_UcrmRt enUcrmRt) throws Exception {
 		Optional<Entity_UcrmRt> existingEntity = repositoryUcrmRt.findById(enUcrmRt.getId());
 
@@ -582,6 +592,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
+	@Transactional
 	public Entity_ApimRt InsertApimRt(Entity_ApimRt enApimRt) throws Exception {
 		Optional<Entity_ApimRt> existingEntity = repositoryApimRt.findById(enApimRt.getId());
 

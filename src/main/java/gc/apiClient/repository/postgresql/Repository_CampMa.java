@@ -15,7 +15,7 @@ import jakarta.persistence.LockModeType;
 public interface Repository_CampMa extends CrudRepository<Entity_CampMa, String> {
 
 	@Lock(LockModeType.PESSIMISTIC_WRITE)
-	@Query("DELETE FROM Entity_CampMa c WHERE c.cpid = :cpid")
+	@Query("SELECT c FROM Entity_CampMa c WHERE c.cpid = :cpid")
 	Optional<Entity_CampMa> findByCpid(@Param("cpid") String cpid);
 
 	int countBy();

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -72,13 +73,13 @@ public class ControllerCenter {
 	}
 	
 
-	@Scheduled(fixedRate = 60000)
-	public void scheduledMethod() {// 1분 간격으로 안의 함수들 비동기적으로 실행
-
-		Mono.fromCallable(() -> ReceiveMessage("campma")).subscribeOn(Schedulers.boundedElastic()).subscribe();
-		Mono.fromCallable(() -> SendApimRt()).subscribeOn(Schedulers.boundedElastic()).subscribe();
-
-	}
+//	@Scheduled(fixedRate = 60000)
+//	public void scheduledMethod() {// 1분 간격으로 안의 함수들 비동기적으로 실행
+//
+//		Mono.fromCallable(() -> ReceiveMessage("campma")).subscribeOn(Schedulers.boundedElastic()).subscribe();
+//		Mono.fromCallable(() -> SendApimRt()).subscribeOn(Schedulers.boundedElastic()).subscribe();
+//
+//	}
 
 
 	@GetMapping("/gcapi/get/{topic}")
@@ -135,6 +136,7 @@ public class ControllerCenter {
 				}
 			} catch (Exception e) {
 				log.error("에러 메시지 : {}", e.getMessage());
+				errorLogger.error(e.getMessage(),e);
 			}
 		}
 

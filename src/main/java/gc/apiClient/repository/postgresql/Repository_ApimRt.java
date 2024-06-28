@@ -1,6 +1,5 @@
 package gc.apiClient.repository.postgresql;
 
-
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -16,10 +15,11 @@ import gc.apiClient.entity.postgresql.Entity_ApimRt;
 import jakarta.persistence.LockModeType;
 
 @Repository
-public interface Repository_ApimRt extends CrudRepository<Entity_ApimRt ,ApimCampRt> {
-	
+public interface Repository_ApimRt extends CrudRepository<Entity_ApimRt, ApimCampRt> {
+
 	@Lock(LockModeType.PESSIMISTIC_WRITE)
-    @Query("SELECT c FROM Entity_ApimRt c WHERE c.id = :id")
+	@Query("SELECT c FROM Entity_ApimRt c WHERE c.id = :id")
 	Optional<Entity_ApimRt> findById(@Param("id") ApimCampRt id);
-	 Page<Entity_ApimRt> findAll(Pageable pageable);
+
+	Page<Entity_ApimRt> findAll(Pageable pageable);
 }

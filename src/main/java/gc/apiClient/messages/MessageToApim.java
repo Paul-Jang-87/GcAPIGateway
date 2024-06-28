@@ -13,7 +13,7 @@ public class MessageToApim {
 		log.info("====== Method : 'ToApim' ======");
 		
 		WebClient webClient = WebClient.builder()
-				.baseUrl("http://localhost:8084")
+				.baseUrl("http://gckafka.lguplus.co.kr:8084")
 				.defaultHeader("Accept", "application/json")
 				.defaultHeader("Content-Type", "application/json").build();
 

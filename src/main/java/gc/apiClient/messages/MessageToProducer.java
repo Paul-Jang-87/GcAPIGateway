@@ -15,7 +15,7 @@ public class MessageToProducer {
 		log.info("====== Method : sendMsgToProducer ======");
 		log.info("Producer로 보낼 EndPoint & 메시지 : '{}' / {}",towhere,jsonString);
 		
-		WebClient webClient = WebClient.builder().baseUrl("http://localhost:8081").build();
+		WebClient webClient = WebClient.builder().baseUrl("http://gckafka.lguplus.co.kr:8081").build();
 
 	    String endpointUrl = towhere;  
 	    

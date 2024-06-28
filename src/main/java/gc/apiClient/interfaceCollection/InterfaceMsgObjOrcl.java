@@ -1,6 +1,5 @@
 package gc.apiClient.interfaceCollection;
 
-
 public interface InterfaceMsgObjOrcl {
 
 	<T> String DataCallMsg(T t, String crudtype) throws Exception;
@@ -11,5 +10,6 @@ public interface InterfaceMsgObjOrcl {
 	<T> String WaDataCallMsg(T t, String crudtype)throws Exception;
 	<T> String WaDataCallTraceMsg(T t, String crudtype)throws Exception;
 	<T> String WaMTraceCdMsg(T t, String crudtype)throws Exception;
+	
 
 }

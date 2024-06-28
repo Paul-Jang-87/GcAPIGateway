@@ -62,7 +62,7 @@ public class ControllerCallBot {
 		 *  subscribeOn(Schedulers.boundedElastic() : 작업을 실행할 스케쥴러를 설정. (스레드풀 제공)
 		 *  subscribe() : 'Mono'를 구독하여 실제로 작업이 수행 됨.
 		 */
-		Mono.fromCallable(() -> SendCallBotRt()).subscribeOn(Schedulers.boundedElastic()).subscribe();
+//		Mono.fromCallable(() -> SendCallBotRt()).subscribeOn(Schedulers.boundedElastic()).subscribe();
 
 	}
 	

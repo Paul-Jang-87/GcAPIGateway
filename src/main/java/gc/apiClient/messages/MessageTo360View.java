@@ -30,7 +30,7 @@ public class MessageTo360View {
 		clientHttpConnector = new ReactorClientHttpConnector(
 				HttpClient.create(connectionProvider));
 
-		webClient = WebClient.builder().clientConnector(clientHttpConnector).baseUrl("http://localhost:8081")
+		webClient = WebClient.builder().clientConnector(clientHttpConnector).baseUrl("http://gckafka.lguplus.co.kr:8081")
 				.defaultHeader("Accept", "application/json").defaultHeader("Content-Type", "application/json").build();
 
 		String endpointUrl = "/360view/" + towhere;

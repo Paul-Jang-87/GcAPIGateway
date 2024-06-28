@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +20,7 @@ public class LogArchiver {
 	// @Scheduled(cron = "0 */3 * * * *") // Every 3 minutes
 	// @Scheduled(cron = "0 * * * * *") // Every minute
 	// @Scheduled(cron = "*/5 * * * * *") // Every 5second
+	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
 
 	@Scheduled(cron = "0 5 0 * * *") // 매일 12:05에 실행
 	public void archiveLogs() {
@@ -42,6 +45,7 @@ public class LogArchiver {
 		
 		log.info("{}, apiClient 로그 시작",nowtime);
 		log.info("{}, apiClient_error 로그 시작",nowtime);
+		errorLogger.error("{}, apiClient_error 로그 시작",nowtime); 
 	
 	}
 

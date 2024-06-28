@@ -1,36 +1,26 @@
 package gc.apiClient.webclient;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
-import gc.apiClient.controller.ControllerCenter;
+import gc.apiClient.AppConfig;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-@PropertySource("file:./logs/gc_config/gcapi_info.properties") 
-public class WebClientConfig {// api들의 정보들 수록.
-
+public class WebClientConfig {		// api들의 정보들 수록.
 	private static final String API_BASE_URL = "https://api.apne2.pure.cloud"; //제네시스 기본 api 주소.
 	
 	private static String CLIENT_ID = "";
 	private static String CLIENT_SECRET = "";
 	
-	@Value("${gc.client.id}")//'application.properties' 파일 안의 'gc.client.id'값 가져옴.
-	private  String id;//제네시스 api를 호출 하기 위해서 필요한 인증 아이디. 
-	@Value("${gc.client.secret}")//'application.properties' 파일 안의 'gc.client.secret'값 가져옴.
-	private  String pw;//제네시스 api를 호출 하기 위해서 필요한 인증 패스워드.
-	
 	@PostConstruct
     private void init() {
-		CLIENT_ID = id;
-		CLIENT_SECRET = pw;
+		CLIENT_ID 		= AppConfig.getId();
+		CLIENT_SECRET 	= AppConfig.getSecret();
 		log.info("CLIENT_ID & CLIENT_SECRET = {} / {}" , CLIENT_ID,CLIENT_SECRET);
 		
     }
-	
 	
 	public static String getBaseUrl() {
 		return API_BASE_URL;

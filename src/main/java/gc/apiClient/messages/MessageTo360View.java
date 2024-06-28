@@ -5,6 +5,7 @@ import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import gc.apiClient.AppConfig;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
@@ -12,6 +13,9 @@ import reactor.netty.resources.ConnectionProvider;
 
 @Slf4j
 public class MessageTo360View {
+	
+	private static String domain = AppConfig.getDomain();;
+	private static String port="8081"; 
 
 	public static WebClient webClient = null;
 	public static ConnectionProvider connectionProvider = null;
@@ -30,7 +34,7 @@ public class MessageTo360View {
 		clientHttpConnector = new ReactorClientHttpConnector(
 				HttpClient.create(connectionProvider));
 
-		webClient = WebClient.builder().clientConnector(clientHttpConnector).baseUrl("http://gckafka.lguplus.co.kr:8081")
+		webClient = WebClient.builder().clientConnector(clientHttpConnector).baseUrl(domain+":"+port)
 				.defaultHeader("Accept", "application/json").defaultHeader("Content-Type", "application/json").build();
 
 		String endpointUrl = "/360view/" + towhere;

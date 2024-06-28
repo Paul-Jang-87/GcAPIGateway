@@ -52,17 +52,17 @@ public class ControllerUCRM {
 		this.customProperties = customProperties;
 	}
 
-//	@Scheduled(fixedRate = 60000) // 1분 간격으로 함수 'SendUcrmRt' 스케줄 돌림.
-//	public void scheduledMethod() {
-//
-//		Mono.fromCallable(() -> SendUcrmRt()).subscribeOn(Schedulers.boundedElastic()).subscribe();
-//
-//	}
-//
-//	@Scheduled(fixedRate = 5000) // 5초 간격으로 함수 'UcrmMsgFrmCnsmer' 스케줄 돌림.
-//	public void UcrmContactlt() {
-//		Mono.fromCallable(() -> UcrmMsgFrmCnsmer()).subscribeOn(Schedulers.boundedElastic()).subscribe();
-//	}
+	@Scheduled(fixedRate = 60000) // 1분 간격으로 함수 'SendUcrmRt' 스케줄 돌림.
+	public void scheduledMethod() {
+
+		Mono.fromCallable(() -> SendUcrmRt()).subscribeOn(Schedulers.boundedElastic()).subscribe();
+
+	}
+
+	@Scheduled(fixedRate = 5000) // 5초 간격으로 함수 'UcrmMsgFrmCnsmer' 스케줄 돌림.
+	public void UcrmContactlt() {
+		Mono.fromCallable(() -> UcrmMsgFrmCnsmer()).subscribeOn(Schedulers.boundedElastic()).subscribe();
+	}
 
 	@PostMapping("/saveucrmdata") // 이것을 카프카 컨슈머에서 호출하는 api. 컨슈머 앱에서 특정 토픽을 구독하면서 메시지를 받는다. 메시지를 받은 컨슈머는 이 api를
 									// 호출하여 받은 메시지를 전달해준다.

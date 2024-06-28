@@ -2,18 +2,23 @@ package gc.apiClient.messages;
 
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
+
+import gc.apiClient.AppConfig;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
 @Slf4j
 public class MessageToApim {
 	
+	private String domain = AppConfig.getDomain(); 
+	private String port="8084"; 
+	
 	public void sendMsgToApim (String towhere, String entity) {
 		
 		log.info("====== Method : 'ToApim' ======");
 		
 		WebClient webClient = WebClient.builder()
-				.baseUrl("http://gckafka.lguplus.co.kr:8084")
+				.baseUrl(domain+":"+port)
 				.defaultHeader("Accept", "application/json")
 				.defaultHeader("Content-Type", "application/json").build();
 

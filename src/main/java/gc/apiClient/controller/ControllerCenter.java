@@ -73,13 +73,13 @@ public class ControllerCenter {
 	}
 	
 
-//	@Scheduled(fixedRate = 60000)
-//	public void scheduledMethod() {// 1분 간격으로 안의 함수들 비동기적으로 실행
-//
-//		Mono.fromCallable(() -> ReceiveMessage("campma")).subscribeOn(Schedulers.boundedElastic()).subscribe();
-//		Mono.fromCallable(() -> SendApimRt()).subscribeOn(Schedulers.boundedElastic()).subscribe();
-//
-//	}
+	@Scheduled(fixedRate = 60000)
+	public void scheduledMethod() {// 1분 간격으로 안의 함수들 비동기적으로 실행
+
+		Mono.fromCallable(() -> ReceiveMessage("campma")).subscribeOn(Schedulers.boundedElastic()).subscribe();
+		Mono.fromCallable(() -> SendApimRt()).subscribeOn(Schedulers.boundedElastic()).subscribe();
+
+	}
 
 
 	@GetMapping("/gcapi/get/{topic}")

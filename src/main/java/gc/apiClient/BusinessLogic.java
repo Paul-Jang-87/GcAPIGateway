@@ -10,9 +10,9 @@ public class BusinessLogic {
 
 	private static Map<String, String> businesslogic;
 
-	public static Map<String, String> SelectedBusiness(String division) {
+	public static Map<String, String> selectedBusiness(String division) {
 
-		log.info("====== Method : SelectedBusiness ======");
+		log.info("====== Method : selectedBusiness ======");
 		log.info("division : {}", division);
 
 		businesslogic = new HashMap<String, String>();
@@ -74,9 +74,9 @@ public class BusinessLogic {
 		return businesslogic;
 	}
 
-	public static Map<String, String> SelectedBusiness(Character tkda ,String divisionName) {
+	public static Map<String, String> selectedBusiness(Character tkda ,String divisionName) {
 		
-		log.info("====== Method : SelectedBusiness ======");
+		log.info("====== Method : selectedBusiness ======");
 		log.info("tkda : {}", tkda);
 		log.info("divisionName : {}", divisionName);
 		

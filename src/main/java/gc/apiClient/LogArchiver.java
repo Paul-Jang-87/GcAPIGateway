@@ -26,7 +26,7 @@ public class LogArchiver {
 	public void archiveLogs() {
 		try {
 			ProcessBuilder processBuilder = new ProcessBuilder("bash", "/logs/archive_logs.sh");
-			processBuilder.directory(new File(System.getProperty("user.dir"))); // Set working directory
+			processBuilder.directory(new File(System.getProperty("user.dir"))); // 작업 디렉토리 세팅
 			Process process = processBuilder.start();
 			process.waitFor();
 			System.out.println("Log archiving script executed successfully.");

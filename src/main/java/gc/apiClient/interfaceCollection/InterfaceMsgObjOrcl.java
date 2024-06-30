@@ -2,14 +2,14 @@ package gc.apiClient.interfaceCollection;
 
 public interface InterfaceMsgObjOrcl {
 
-	<T> String DataCallMsg(T t, String crudtype) throws Exception;
-	<T> String WaDataCallOptionalMsg(T t, String crudtype)throws Exception;
-	<T> String DataCallCustomerMsg(T t, String crudtype)throws Exception;
-	<T> String DataCallService(T t, String crudtype)throws Exception;
-	<T> String MstrSvcCdMsg(T t, String crudtype)throws Exception;
-	<T> String WaDataCallMsg(T t, String crudtype)throws Exception;
-	<T> String WaDataCallTraceMsg(T t, String crudtype)throws Exception;
-	<T> String WaMTraceCdMsg(T t, String crudtype)throws Exception;
+	<T> String dataCallMsg(T t, String crudtype) throws Exception;
+	<T> String waDataCallOptionalMsg(T t, String crudtype)throws Exception;
+	<T> String dataCallCustomerMsg(T t, String crudtype)throws Exception;
+	<T> String dataCallService(T t, String crudtype)throws Exception;
+	<T> String mstrSvcCdMsg(T t, String crudtype)throws Exception;
+	<T> String waDataCallMsg(T t, String crudtype)throws Exception;
+	<T> String waDataCallTraceMsg(T t, String crudtype)throws Exception;
+	<T> String waMTraceCdMsg(T t, String crudtype)throws Exception;
 	
 
 }

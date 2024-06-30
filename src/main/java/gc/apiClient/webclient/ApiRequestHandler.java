@@ -56,7 +56,7 @@ public class ApiRequestHandler {// 모든 api를 핸들링하는 클래스
 
 	
 
-	public UriComponents buildApiRequest1(String path, Object... pathVariables) {// uri를 api에 맞게 커스터 마이징.
+	public UriComponents apiReqForContacts(String path, Object... pathVariables) {// uri를 api에 맞게 커스터 마이징.
 		String BASE_URL = WebClientConfig.getBaseUrl();
 		UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromUriString(BASE_URL).path(path);
 

@@ -1,9 +1,6 @@
 package gc.apiClient.interfaceCollection;
 
 
-import java.util.List;
-
-
 import gc.apiClient.embeddable.ApimCampRt;
 import gc.apiClient.embeddable.CallBotCampRt;
 import gc.apiClient.embeddable.ContactLtId;
@@ -22,7 +19,7 @@ public interface InterfaceDBPostgreSQL {
 
 	//table 별 매핑
 	Entity_CampRt createCampRtMsg(String cpid) throws Exception;
-	Entity_CampMa CreateEnCampMa(String cpid) throws Exception;
+	Entity_CampMa createEnCampMa(String cpid) throws Exception;
 	Entity_ContactLt createContactLtMsg(String msg) throws Exception;
 	Entity_ContactLt createContactUcrm(Entity_Ucrm entityUcrm) throws Exception;
 	Entity_Ucrm createUcrm(String msg) throws Exception;
@@ -32,20 +29,17 @@ public interface InterfaceDBPostgreSQL {
 	String createContactLtGC(String msg) throws Exception;
 	
 	//insert
-	Entity_CampRt InsertCampRt(Entity_CampRt entityCampRt) throws Exception;
-	Entity_Ucrm InsertUcrm(Entity_Ucrm entityUcrm) throws Exception;
-	Entity_CampMa InsertCampMa(Entity_CampMa entityCampMa) throws Exception;
-	Entity_ContactLt InsertContactLt(Entity_ContactLt entityContactLt) throws Exception;
-	Entity_CallbotRt InsertCallbotRt(Entity_CallbotRt enCallbotRt) throws Exception;
-	Entity_UcrmRt InsertUcrmRt(Entity_UcrmRt enUcrmRt) throws Exception;
-	Entity_ApimRt InsertApimRt(Entity_ApimRt enApimRt) throws Exception;
+	Entity_CampRt insertCampRt(Entity_CampRt entityCampRt) throws Exception;
+	Entity_Ucrm insertUcrm(Entity_Ucrm entityUcrm) throws Exception;
+	Entity_CampMa insertCampMa(Entity_CampMa entityCampMa) throws Exception;
+	Entity_ContactLt insertContactLt(Entity_ContactLt entityContactLt) throws Exception;
+	Entity_CallbotRt insertCallbotRt(Entity_CallbotRt enCallbotRt) throws Exception;
+	Entity_UcrmRt insertUcrmRt(Entity_UcrmRt enUcrmRt) throws Exception;
+	Entity_ApimRt insertApimRt(Entity_ApimRt enApimRt) throws Exception;
 	
 	//select
 	Entity_CampMa findCampMaByCpid(String cpid) throws Exception;
-	Entity_CampRt findCampRtByCpid(String cpid) throws Exception;
 	Integer findCampRtMaxRlsq() throws Exception;
-	Entity_ContactLt findContactLtByCske(String cske)throws Exception;
-	List<Entity_ContactLt> findContactLtByCpid(String cpid)throws Exception;
 	Page<Entity_Ucrm> getAll() throws Exception; 
 	Page<Entity_UcrmRt> getAllUcrmRt() throws Exception; 
 	Page<Entity_CallbotRt> getAllCallBotRt() throws Exception; 
@@ -53,14 +47,14 @@ public interface InterfaceDBPostgreSQL {
 	int getRecordCount()throws Exception;
 	
 	//update 
-	public void UpdateCampMa(String cpid, String cpna)throws Exception;
+	public void updateCampMa(String cpid, String cpna)throws Exception;
 	
 	//delete
-	public void DelCampMaById(String cpid) throws Exception;
-	public void DelContactltById(ContactLtId id)throws Exception;
-	public void DelCallBotRtById(CallBotCampRt id) throws Exception;
-	public void DelUcrmRtById(UcrmCampRt id) throws Exception;
-	public void DelApimRtById(ApimCampRt id) throws Exception;
-	public void DelUcrmLtById(String topcDataIsueSno) throws Exception;
+	public void delCampMaById(String cpid) throws Exception;
+	public void delContactltById(ContactLtId id)throws Exception;
+	public void delCallBotRtById(CallBotCampRt id) throws Exception;
+	public void delUcrmRtById(UcrmCampRt id) throws Exception;
+	public void delApimRtById(ApimCampRt id) throws Exception;
+	public void delUcrmLtById(String topcDataIsueSno) throws Exception;
 	
 }

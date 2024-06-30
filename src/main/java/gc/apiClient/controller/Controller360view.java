@@ -40,10 +40,10 @@ public class Controller360view {
     @Scheduled(fixedRate = 30000)
     public void scheduledMethod() {
         String[] methods = {
-            "Msg360Datacall", "Msg360DataCallCustomer", "Msg360DataCallService", "Msg360MDatacall",
-            "Msg360MDataCallCustomer", "Msg360MDataCallService", "Msg360MMstrsSvcCd", "Msg360MstrsSvcCd",
-            "Msg360MWaDataCall", "Msg360MWaDataCallOptional", "Msg360MWaDataCallTrace", "Msg360MWaMTrCode",
-            "Msg360WaDataCall", "Msg360WaDataCallOptional", "Msg360WaDataCallTrace", "Msg360WaMTrCode"
+            "msg360Datacall", "msg360DataCallCustomer", "msg360DataCallService", "msg360MDatacall",
+            "msg360MDataCallCustomer", "msg360MDataCallService", "msg360MMstrsSvcCd", "msg360MstrsSvcCd",
+            "msg360MWaDataCall", "msg360MWaDataCallOptional", "msg360MWaDataCallTrace", "msg360MWaMTrCode",
+            "msg360WaDataCall", "msg360WaDataCallOptional", "msg360WaDataCallTrace", "msg360WaMTrCode"
         };
         for (String method : methods) {
             Mono.fromCallable(() -> invokeMethod(method))
@@ -79,85 +79,94 @@ public class Controller360view {
     }
 
     @Transactional
-    public Mono<Void> Msg360Datacall() {
-        return processRecords("from_clcc_hmcepcalldt_message", Entity_DataCall.class, wrap(serviceMsgObjOrcl::DataCallMsg));
+    public Mono<Void> msg360Datacall() {
+        return processRecords("from_clcc_hmcepcalldt_message", Entity_DataCall.class, wrap(serviceMsgObjOrcl::dataCallMsg));
     }
 
     @Transactional
-    public Mono<Void> Msg360MDatacall() {
-        return processRecords("from_clcc_mblcepcalldt_message", Entity_MDataCall.class, wrap(serviceMsgObjOrcl::DataCallMsg));
+    public Mono<Void> msg360MDatacall() {
+        return processRecords("from_clcc_mblcepcalldt_message", Entity_MDataCall.class, wrap(serviceMsgObjOrcl::dataCallMsg));
     }
 
     @Transactional
-    public Mono<Void> Msg360DataCallCustomer() {
-        return processRecords("from_clcc_hmcepcalldtcust_message", Entity_DataCallCustomer.class, wrap(serviceMsgObjOrcl::DataCallCustomerMsg));
+    public Mono<Void> msg360DataCallCustomer() {
+        return processRecords("from_clcc_hmcepcalldtcust_message", Entity_DataCallCustomer.class, wrap(serviceMsgObjOrcl::dataCallCustomerMsg));
     }
 
     @Transactional
-    public Mono<Void> Msg360MDataCallCustomer() {
-        return processRecords("from_clcc_mblcepcalldtcust_message", Entity_MDataCallCustomer.class, wrap(serviceMsgObjOrcl::DataCallCustomerMsg));
+    public Mono<Void> msg360MDataCallCustomer() {
+        return processRecords("from_clcc_mblcepcalldtcust_message", Entity_MDataCallCustomer.class, wrap(serviceMsgObjOrcl::dataCallCustomerMsg));
     }
 
     @Transactional
-    public Mono<Void> Msg360DataCallService() {
-        return processRecords("from_clcc_hmcepcallsvccd_message", Entity_DataCallService.class, wrap(serviceMsgObjOrcl::DataCallService));
+    public Mono<Void> msg360DataCallService() {
+        return processRecords("from_clcc_hmcepcallsvccd_message", Entity_DataCallService.class, wrap(serviceMsgObjOrcl::dataCallService));
     }
 
     @Transactional
-    public Mono<Void> Msg360MDataCallService() {
-        return processRecords("from_clcc_mblcepcallsvccd_message", Entity_MDataCallService.class, wrap(serviceMsgObjOrcl::DataCallService));
+    public Mono<Void> msg360MDataCallService() {
+        return processRecords("from_clcc_mblcepcallsvccd_message", Entity_MDataCallService.class, wrap(serviceMsgObjOrcl::dataCallService));
     }
 
     @Transactional
-    public Mono<Void> Msg360MstrsSvcCd() {
-        return processRecords("from_clcc_hmcepcallmstrsvccd_message", Entity_MasterServiceCode.class, wrap(serviceMsgObjOrcl::MstrSvcCdMsg));
+    public Mono<Void> msg360MstrsSvcCd() {
+        return processRecords("from_clcc_hmcepcallmstrsvccd_message", Entity_MasterServiceCode.class, wrap(serviceMsgObjOrcl::mstrSvcCdMsg));
     }
 
     @Transactional
-    public Mono<Void> Msg360MMstrsSvcCd() {
-        return processRecords("from_clcc_mblcepcallmstrsvccd_message", Entity_MMasterServiceCode.class, wrap(serviceMsgObjOrcl::MstrSvcCdMsg));
+    public Mono<Void> msg360MMstrsSvcCd() {
+        return processRecords("from_clcc_mblcepcallmstrsvccd_message", Entity_MMasterServiceCode.class, wrap(serviceMsgObjOrcl::mstrSvcCdMsg));
     }
 
     @Transactional
-    public Mono<Void> Msg360WaDataCall() {
-        return processRecords("from_clcc_hmcepwacalldt_message", Entity_WaDataCall.class, wrap(serviceMsgObjOrcl::WaDataCallMsg));
+    public Mono<Void> msg360WaDataCall() {
+        return processRecords("from_clcc_hmcepwacalldt_message", Entity_WaDataCall.class, wrap(serviceMsgObjOrcl::waDataCallMsg));
     }
 
     @Transactional
-    public Mono<Void> Msg360MWaDataCall() {
-        return processRecords("from_clcc_mblcepwacalldt_message", Entity_MWaDataCall.class, wrap(serviceMsgObjOrcl::WaDataCallMsg));
+    public Mono<Void> msg360MWaDataCall() {
+        return processRecords("from_clcc_mblcepwacalldt_message", Entity_MWaDataCall.class, wrap(serviceMsgObjOrcl::waDataCallMsg));
     }
 
     @Transactional
-    public Mono<Void> Msg360WaDataCallOptional() {
-        return processRecords("from_clcc_hmcepwacallopt_message", Entity_WaDataCallOptional.class, wrap(serviceMsgObjOrcl::WaDataCallOptionalMsg));
+    public Mono<Void> msg360WaDataCallOptional() {
+        return processRecords("from_clcc_hmcepwacallopt_message", Entity_WaDataCallOptional.class, wrap(serviceMsgObjOrcl::waDataCallOptionalMsg));
     }
 
     @Transactional
-    public Mono<Void> Msg360MWaDataCallOptional() {
-        return processRecords("from_clcc_mblcepwacallopt_message", Entity_MWaDataCallOptional.class, wrap(serviceMsgObjOrcl::WaDataCallOptionalMsg));
+    public Mono<Void> msg360MWaDataCallOptional() {
+        return processRecords("from_clcc_mblcepwacallopt_message", Entity_MWaDataCallOptional.class, wrap(serviceMsgObjOrcl::waDataCallOptionalMsg));
     }
 
     @Transactional
-    public Mono<Void> Msg360WaDataCallTrace() {
-        return processRecords("from_clcc_hmcepwacalltr_message", Entity_WaDataCallTrace.class, wrap(serviceMsgObjOrcl::WaDataCallTraceMsg));
+    public Mono<Void> msg360WaDataCallTrace() {
+        return processRecords("from_clcc_hmcepwacalltr_message", Entity_WaDataCallTrace.class, wrap(serviceMsgObjOrcl::waDataCallTraceMsg));
     }
 
     @Transactional
-    public Mono<Void> Msg360MWaDataCallTrace() {
-        return processRecords("from_clcc_mblcepwacalltr_message", Entity_MWaDataCallTrace.class, wrap(serviceMsgObjOrcl::WaDataCallTraceMsg));
+    public Mono<Void> msg360MWaDataCallTrace() {
+        return processRecords("from_clcc_mblcepwacalltr_message", Entity_MWaDataCallTrace.class, wrap(serviceMsgObjOrcl::waDataCallTraceMsg));
     }
     
     @Transactional
-    public Mono<Void> Msg360WaMTrCode() {
-        return processRecords("from_clcc_hmcepwatrcd_message", Entity_WaMTracecode.class, wrap(serviceMsgObjOrcl::WaMTraceCdMsg));
+    public Mono<Void> msg360WaMTrCode() {
+        return processRecords("from_clcc_hmcepwatrcd_message", Entity_WaMTracecode.class, wrap(serviceMsgObjOrcl::waMTraceCdMsg));
     }
     
     @Transactional
-    public Mono<Void> Msg360MWaMTrCode() {
-        return processRecords("from_clcc_mblcepwatrcd_message", Entity_MWaMTracecode.class, wrap(serviceMsgObjOrcl::WaMTraceCdMsg));
+    public Mono<Void> msg360MWaMTrCode() {
+        return processRecords("from_clcc_mblcepwatrcd_message", Entity_MWaMTracecode.class, wrap(serviceMsgObjOrcl::waMTraceCdMsg));
     }
 
+    /**
+     * 데이터베이스에서 레코드를 가져와 처리한 후, 외부 시스템에 메시지를 전송하고 해당 레코드를 삭제하는 프로세스를 구현한 매서드
+     * @param <T>
+     * @param topicId 처리할 레코드의 토픽 ID.
+     * @param entityClass  처리할 엔티티 클래스.
+     * @param messageFunction 엔티티를 처리할 함수.
+     * @return 빈 Mono를 반환.
+     */
+    
     private <T> Mono<Void> processRecords(String topicId, Class<T> entityClass, BiFunction<T, String, String> messageFunction) {
         try {
             int numberOfRecords = serviceOracle.getRecordCount(topicId);
@@ -168,7 +177,7 @@ public class Controller360view {
                 for (T entity : entityList) {
                     String crudType = (String) entityClass.getMethod("getCmd").invoke(entity);
                     int orderId = (int) entityClass.getMethod("getOrderid").invoke(entity);
-                    MessageTo360View.SendMsgTo360View(topicId, messageFunction.apply(entity, crudType));
+                    MessageTo360View.sendMsgTo360View(topicId, messageFunction.apply(entity, crudType));
                     serviceOracle.deleteAll(entityClass, orderId);
                 }
             }
@@ -179,7 +188,17 @@ public class Controller360view {
         return Mono.empty();
     }
 
-    // Wrapper method to handle exceptions in BiFunction
+    
+    /**
+     * 
+     * 기본 BiFunction은 체크 예외를 던질 수 없기 때문에, 체크 예외를 던질 수 있는 BiFunctionWithException을 정의하고 이를 wrap 메서드를 통해 처리.
+     * 내부적으로 BiFunctionWithException의 apply 메서드를 호출하고, 예외가 발생하면 RuntimeException으로 래핑하여 던집니다.
+     * @param <T>
+     * @param <U>
+     * @param <R>
+     * @param biFunction
+     * @return 변환된 BiFunction 반환
+     */
     private <T, U, R> BiFunction<T, U, R> wrap(BiFunctionWithException<T, U, R> biFunction) {
         return (t, u) -> {
             try {
@@ -190,8 +209,15 @@ public class Controller360view {
         };
     }
 
+    
+    /**
+     * 예외를 던질 수 있는 apply 메서드를 가진 함수형 인터페이스.
+     * @param <T>
+     * @param <U>
+     * @param <R>
+     */
     @FunctionalInterface
     public interface BiFunctionWithException<T, U, R> {
-        R apply(T t, U u) throws Exception;
+        R apply(T t, U u) throws Exception;//예외
     }
 }

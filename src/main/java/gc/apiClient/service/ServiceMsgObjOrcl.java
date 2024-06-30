@@ -44,7 +44,7 @@ public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 	}
 
 	@Override
-	public <T> String DataCallMsg(T t, String crudtype) {
+	public <T> String dataCallMsg(T t, String crudtype) {
 		JSONObject obj = new JSONObject();
 		try {
 			populateCommonFields(obj, crudtype);
@@ -76,7 +76,7 @@ public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 	}
 
 	@Override
-	public <T> String DataCallCustomerMsg(T t, String crudtype) {
+	public <T> String dataCallCustomerMsg(T t, String crudtype) {
 		JSONObject obj = new JSONObject();
 		try {
 			populateCommonFields(obj, crudtype);
@@ -114,7 +114,7 @@ public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 	}
 
 	@Override
-	public <T> String DataCallService(T t, String crudtype) {
+	public <T> String dataCallService(T t, String crudtype) {
 		JSONObject obj = new JSONObject();
 		try {
 			populateCommonFields(obj, crudtype);
@@ -224,7 +224,7 @@ public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 	}
 
 	@Override
-	public <T> String MstrSvcCdMsg(T t, String crudtype) {
+	public <T> String mstrSvcCdMsg(T t, String crudtype) {
 		JSONObject obj = new JSONObject();
 		try {
 			populateCommonFields(obj, crudtype);
@@ -256,7 +256,7 @@ public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 	
 	
 	@Override
-	public <T> String WaDataCallMsg(T t, String crudtype) {
+	public <T> String waDataCallMsg(T t, String crudtype) {
 		JSONObject obj = new JSONObject();
 		try {
 			populateCommonFields(obj, crudtype);
@@ -287,7 +287,7 @@ public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 	
 	
 	@Override
-	public <T> String WaDataCallOptionalMsg(T t, String crudtype) {
+	public <T> String waDataCallOptionalMsg(T t, String crudtype) {
 		JSONObject obj = new JSONObject();
 		try {
 			populateCommonFields(obj, crudtype);
@@ -315,7 +315,7 @@ public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 	
 	
 	@Override
-	public <T> String WaDataCallTraceMsg(T t, String crudtype) {
+	public <T> String waDataCallTraceMsg(T t, String crudtype) {
 		JSONObject obj = new JSONObject();
 		try {
 			populateCommonFields(obj, crudtype);
@@ -345,7 +345,7 @@ public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 	
 	
 	@Override
-	public <T> String WaMTraceCdMsg(T t, String crudtype) {
+	public <T> String waMTraceCdMsg(T t, String crudtype) {
 		JSONObject obj = new JSONObject();
 		try {
 			populateCommonFields(obj, crudtype);
@@ -379,5 +379,6 @@ public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 		log.error("에러 메시지 : {}", e.getMessage());
 		errorLogger.error("ServiceMsgObjOrcl - 에러메시지 = " + e);
 	}
+
 
 }

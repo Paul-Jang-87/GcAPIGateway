@@ -21,9 +21,9 @@ public class MessageTo360View {
 	public static ConnectionProvider connectionProvider = null;
 	public static ReactorClientHttpConnector clientHttpConnector = null;
 
-	public static void SendMsgTo360View(String towhere, String massage) {
+	public static void sendMsgTo360View(String towhere, String massage) {
 
-		log.info("====== Method : SendMsgTo360View ======");
+		log.info("====== Method : sendMsgTo360View ======");
 
 		String jsonString = massage;
 

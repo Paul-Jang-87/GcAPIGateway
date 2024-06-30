@@ -39,7 +39,7 @@ public class MsgUcrm implements InterfaceKafMsg { //카프카 프로듀서로 �
 	}
 
 	@Override
-	public String maMassage(Entity_CampMa enCampMa, String datachgcd) throws Exception {  // MA 메시지
+	public String maMessage(Entity_CampMa enCampMa, String datachgcd) throws Exception {  // MA 메시지
 
 		log.info("====== Method : maMassage ======");
 		Entity_CampMaJsonUcrm enCampMaJson = new Entity_CampMaJsonUcrm();
@@ -69,8 +69,7 @@ public class MsgUcrm implements InterfaceKafMsg { //카프카 프로듀서로 �
 				enCampMaJson.setTopcDataIsueDtm(topcDataIsueDtm);
 				break;
 				
-			default:
-			
+			case "delete":
 				coid = mappingData.getCentercodeById(Integer.toString(enCampMa.getCoid()));
 				coid = coid != null ? coid : "EX";
 				enCampMaJson.setCenterCd(coid);
@@ -83,15 +82,20 @@ public class MsgUcrm implements InterfaceKafMsg { //카프카 프로듀서로 �
 				enCampMaJson.setDataDelYn("Y");
 				enCampMaJson.setTopcDataIsueDtm(topcDataIsueDtm);
 				break;
+				
+			default:
+			
+				log.info("유효하지 않은 CRUD 작업요청입니다. : {}",datachgcd);
+				break;
 		}
 
 		jsonString = objectMapper.writeValueAsString(enCampMaJson);	// 객체를 String 타입으로 변환. 
-		log.info(" enCampMaJson : {}", jsonString);
+		log.info("enCampMaJson : {}", jsonString);
 		return jsonString;
 	}
 
 	@Override
-	public String rtMassage(Entity_CampRt enCampRt) throws Exception { //RT 메시지, 결과 발신 메시지.
+	public String rtMessage(Entity_CampRt enCampRt) throws Exception { //RT 메시지, 결과 발신 메시지.
 
 		JSONObject obj = new JSONObject();
 		try {
@@ -114,7 +118,7 @@ public class MsgUcrm implements InterfaceKafMsg { //카프카 프로듀서로 �
 			dirt = enCampRt.getDirt();
 
 			ServiceWebClient crmapi = new ServiceWebClient();
-			String result = crmapi.GetStatusApiRequet("campaign_stats", campid);
+			String result = crmapi.getStatusApiReq("campaign_stats", campid);
 			dict = ServiceJson.extractIntVal("ExtractDict", result);
 
 			Entity_CampMa enCampMa = new Entity_CampMa();

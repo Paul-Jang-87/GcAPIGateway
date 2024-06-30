@@ -1,14 +1,12 @@
 package gc.apiClient.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Profile;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.support.TransactionTemplate;
@@ -169,10 +167,7 @@ public class ServiceOracle implements InterfaceDBOracle {
 		}
 	}
 	
-	/**
-	 * 
-	 * 테이블에 있는 레코드의 개수를 리턴해주는 함수.
-	 */
+	//테이블에 있는 레코드의 개수를 리턴해주는 함수.
 	@Override
 	public int getRecordCount(String topic_id) {
 
@@ -283,34 +278,6 @@ public class ServiceOracle implements InterfaceDBOracle {
 				throw new RuntimeException("해당 orderid({})의 레코드를 삭제하는데 에러가 발생했습니다.: " + orderid, e);
 			}
 		});
-	}
-
-	@Override
-	public Entity_WaDataCallOptional InsertWaDataCallOptional(Entity_WaDataCallOptional entityWaDataCallOptional,
-			int wcseq) {
-		Optional<Entity_WaDataCallOptional> existingEntity = repositoryWaDataCallOptional.findById(wcseq); // db에 인서트 하기
-																											// 전. 키
-
-		if (existingEntity.isPresent()) {// 조회 해본 결과 레코드가 이미 있는 상황이라면 에러는 발생시킨다.
-			throw new DataIntegrityViolationException("주어진 'cpid'를 가진 레코드가 테이블에 이미 존재합니다.");
-		}
-
-		return repositoryWaDataCallOptional.save(entityWaDataCallOptional);// 없으면 인서트
-
-	}
-
-	@Override
-	public Entity_MWaDataCallOptional InsertMWaDataCallOptional(Entity_MWaDataCallOptional entityWaDataCallOptional,
-			int wcseq) {
-		Optional<Entity_MWaDataCallOptional> existingEntity = repositoryMWaDataCallOptional.findById(wcseq); // db에 인서트
-																												// 하기
-		// 전. 키
-
-		if (existingEntity.isPresent()) {// 조회 해본 결과 레코드가 이미 있는 상황이라면 에러는 발생시킨다.
-			throw new DataIntegrityViolationException("주어진 'cpid'를 가진 레코드가 테이블에 이미 존재합니다.");
-		}
-
-		return repositoryMWaDataCallOptional.save(entityWaDataCallOptional);// 없으면 인서트
 	}
 
 }

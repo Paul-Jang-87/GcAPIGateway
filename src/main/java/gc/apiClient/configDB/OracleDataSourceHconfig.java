@@ -24,11 +24,15 @@ import jakarta.persistence.EntityManagerFactory;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        basePackages = "gc.apiClient.repository.oracleH", // Reference to repository package
+        basePackages = "gc.apiClient.repository.oracleH", // 레토지토리 패키지 참조
         entityManagerFactoryRef = "oracleHEntityManagerFactory",
         transactionManagerRef = "oracleHTransactionManager"
 )
-@Profile("oracleH")
+
+/*
+ * 360view home 관련 db에 관려한 설정들을 정의해주는 클래스
+ * 엔티티 매니저 팩토리, 트랜젝션 매니저 팩토리를 정의하고 프로젝트 전역에서 사용할 수 있도록 도와주는 역할의 클래스.
+ */
 public class OracleDataSourceHconfig {
 
     @Autowired
@@ -45,6 +49,8 @@ public class OracleDataSourceHconfig {
                 .build();
     }
 
+    
+    //프로젝트 내부에 있는 파일인 'application.properties'에서 'spring.datasource.orclh'로 시작하는 키들을 참조하여 값을 가지고와 'DataSourceBuilder'를 만든다.   
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource.orclh")
     public DataSource oracleHDataSource() {

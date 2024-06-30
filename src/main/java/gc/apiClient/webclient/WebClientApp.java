@@ -90,26 +90,8 @@ public class WebClientApp {
 
 	}
 
-//	public Mono<String> makeApiRequestAsync() {
-//
-//		RequestHeadersUriSpec<?> requestSpec = null;
-//
-//		if (HTTP_METHOD.equals("GET")) {// http method설정.
-//			requestSpec = webClient.get();
-//		} else {
-//			requestSpec = webClient.post();
-//		}
-//
-//		ApiRequestHandler apiRequestHandler = new ApiRequestHandler();
-//		UriComponents api1 = apiRequestHandler.buildApiRequest(API_END_POINT, "87dde849-5710-4470-8a00-5e94c679e703");// 첫번째
-//
-//		return requestSpec.uri(api1.toUriString()).retrieve().bodyToMono(String.class).onErrorResume(error -> {
-//			log.error("Error making API request: {}", error.getMessage());
-//			return Mono.empty();
-//		});
-//	}
 
-	public String ApionlyfordelContacts(String endpoint, String httpmethod, Object... param) {
+	public String apionlyfordelContacts(String endpoint, String httpmethod, Object... param) {
 		RequestHeadersUriSpec<?> requestSpec = null;
 
 		String API_END_POINT = WebClientConfig.getApiEndpoint(endpoint);
@@ -123,9 +105,9 @@ public class WebClientApp {
 		}
 
 		ApiRequestHandler apiRequestHandler = new ApiRequestHandler();
-		UriComponents api1 = apiRequestHandler.buildApiRequest1(API_END_POINT, param);
+		UriComponents api = apiRequestHandler.apiReqForContacts(API_END_POINT, param);
 
-		return requestSpec.uri(api1.toUriString()).retrieve()
+		return requestSpec.uri(api.toUriString()).retrieve()
 				.onStatus(status -> status.is4xxClientError() || status.is5xxServerError(),
 						response -> response.bodyToMono(String.class).flatMap(errorBody -> {
 							return Mono.error(new RuntimeException("Error: " + errorBody));
@@ -133,6 +115,7 @@ public class WebClientApp {
 				.bodyToMono(String.class).block();
 	}
 
+	
 	public String makeApiRequest(String endpoint, String httpmethod, Object... param) {
 		RequestHeadersUriSpec<?> requestSpec = null;
 
@@ -158,12 +141,12 @@ public class WebClientApp {
 	}
 
 
-	public String makeApiRequest34(String endpoint, String contactListId, String msg) {
+	public String apiReqPushContacts(String endpoint, String contactListId, String msg) {
 		String API_END_POINT = WebClientConfig.getApiEndpoint(endpoint);
 		ApiRequestHandler apiRequestHandler = new ApiRequestHandler();
-		UriComponents api1 = apiRequestHandler.buildApiRequest(API_END_POINT, contactListId);
+		UriComponents api = apiRequestHandler.buildApiRequest(API_END_POINT, contactListId);
 
-		return webClient.post().uri(api1.toUriString()).body(BodyInserters.fromValue(msg)).retrieve()
+		return webClient.post().uri(api.toUriString()).body(BodyInserters.fromValue(msg)).retrieve()
 				.onStatus(status -> status.is4xxClientError() || status.is5xxServerError(),
 						response -> response.bodyToMono(String.class).flatMap(errorBody -> {
 							return Mono.error(new RuntimeException("Error: " + errorBody));
@@ -171,13 +154,13 @@ public class WebClientApp {
 				.bodyToMono(String.class).block();
 	}
 
-	public String makeApiRequest56(String endpoint, String contactListId, List<String> cskes) {
+	public String apiReqGetRtOfContacts(String endpoint, String contactListId, List<String> cskes) {
 
 		String API_END_POINT = WebClientConfig.getApiEndpoint(endpoint);
 		ApiRequestHandler apiRequestHandler = new ApiRequestHandler();
-		UriComponents api1 = apiRequestHandler.buildApiRequest(API_END_POINT, contactListId);
+		UriComponents api = apiRequestHandler.buildApiRequest(API_END_POINT, contactListId);
 
-		return webClient.post().uri(api1.toUriString()).body(BodyInserters.fromValue(cskes)).retrieve()
+		return webClient.post().uri(api.toUriString()).body(BodyInserters.fromValue(cskes)).retrieve()
 				.onStatus(status -> status.is4xxClientError() || status.is5xxServerError(),
 						response -> response.bodyToMono(String.class).flatMap(errorBody -> {
 							return Mono.error(new RuntimeException("Error: " + errorBody));

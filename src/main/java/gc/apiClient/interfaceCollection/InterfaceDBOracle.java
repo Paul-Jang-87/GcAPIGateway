@@ -2,19 +2,13 @@ package gc.apiClient.interfaceCollection;
 
 import java.util.List;
 
-import gc.apiClient.entity.oracleH.Entity_WaDataCallOptional;
-import gc.apiClient.entity.oracleM.Entity_MWaDataCallOptional;
-
 public interface InterfaceDBOracle {
 
-	// insert
-	Entity_WaDataCallOptional InsertWaDataCallOptional(Entity_WaDataCallOptional entityWaDataCallOptional,int wcseq);
-	Entity_MWaDataCallOptional InsertMWaDataCallOptional(Entity_MWaDataCallOptional entityWaDataCallOptional,int wcseq);
 
+	//테이블에 있는 레코드의 개수를 리턴해주는 함수.
 	int getRecordCount(String topic_id)throws Exception;
 
-//	List<Entity_WaDataCallOptional> getAllWaDataCallOptional();
-	
+	// 모든 레코드를 가져옴.
 	<T> List<T> getAll(Class<T> clazz)throws Exception;
 	<T> void deleteAll(Class<T> clazz,int orderid)throws Exception;
 

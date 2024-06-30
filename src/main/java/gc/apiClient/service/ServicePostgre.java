@@ -1,7 +1,6 @@
 package gc.apiClient.service;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 import java.text.SimpleDateFormat;
 import java.util.Optional;
@@ -135,8 +134,8 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			dirt = Integer.parseInt(properties.getOrDefault(parts[4], "1"));
 			log.info("dirt(맵핑 후) : {}", dirt);
 
-			ServiceWebClient crmapi1 = new ServiceWebClient();
-			String result = crmapi1.GetStatusApiRequet("campaign_stats", campid);
+			ServiceWebClient crmapi = new ServiceWebClient();
+			String result = crmapi.getStatusApiReq("campaign_stats", campid);
 			dict = ServiceJson.extractIntVal("ExtractDict", result);
 
 			Entity_CampMa enCampMa = new Entity_CampMa();
@@ -186,9 +185,9 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
-	public Entity_CampMa CreateEnCampMa(String msg) { // 매개변수로 받는 String msg = > cpid::coid::cpna::division
+	public Entity_CampMa createEnCampMa(String msg) { // 매개변수로 받는 String msg = > cpid::coid::cpna::division
 
-		log.info("====== Method : CreateEnCampMa ======");
+		log.info("====== Method : createEnCampMa ======");
 
 		Entity_CampMa enCampMa = new Entity_CampMa();
 		String parts[] = msg.split("::");
@@ -336,7 +335,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 	@Override
 	@Transactional
-	public Entity_CampRt InsertCampRt(Entity_CampRt entity_CampRt) {
+	public Entity_CampRt insertCampRt(Entity_CampRt entity_CampRt) {
 
 		Optional<Entity_CampRt> existingEntity = repositoryCampRt.findById(entity_CampRt.getId());
 
@@ -350,7 +349,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 	@Override
 	@Transactional
-	public Entity_CampMa InsertCampMa(Entity_CampMa entityCampMa) {
+	public Entity_CampMa insertCampMa(Entity_CampMa entityCampMa) {
 
 		Optional<Entity_CampMa> existingEntity = repositoryCampMa.findByCpid(entityCampMa.getCpid()); // db에 인서트 하기 전. 키
 																										// 값인 캠페인 아이디로
@@ -365,7 +364,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 	@Override
 	@Transactional
-	public Entity_Ucrm InsertUcrm(Entity_Ucrm entityUcrm) {
+	public Entity_Ucrm insertUcrm(Entity_Ucrm entityUcrm) {
 
 		Optional<Entity_Ucrm> existingEntity = repositoryUcrm.findById(entityUcrm.getId());
 
@@ -378,7 +377,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 	@Override
 	@Transactional
-	public Entity_ContactLt InsertContactLt(Entity_ContactLt entityContactLt) {
+	public Entity_ContactLt insertContactLt(Entity_ContactLt entityContactLt) {
 
 		Optional<Entity_ContactLt> existingEntity = repositoryContactLt.findById(entityContactLt.getId());
 
@@ -402,20 +401,6 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		}
 	}
 
-	@Override
-	@Transactional	
-	public Entity_CampRt findCampRtByCpid(String cpid) {
-
-		try {
-			Optional<Entity_CampRt> optionalEntity = repositoryCampRt.findByCpid(cpid);
-			return optionalEntity.orElse(null);
-		} catch (IncorrectResultSizeDataAccessException ex) {
-			log.error("Error retrieving Entity_CampRt by cpid: {}", cpid);
-			errorLogger.error("Error retrieving Entity_CampRt by cpid: {}", cpid, ex);
-
-			return null;
-		}
-	}
 
 	@Override
 	public Integer findCampRtMaxRlsq() {
@@ -430,32 +415,6 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		}
 	}
 
-	@Override
-	@Transactional
-	public List<Entity_ContactLt> findContactLtByCpid(String id) {
-
-		List<Entity_ContactLt> resultList = repositoryContactLt.findByCpid(id);
-		if (!resultList.isEmpty()) {
-			return resultList;
-		} else {
-			log.error("records can't be found with {}", id);
-			return null;
-		}
-	}
-
-	@Override
-	@Transactional
-	public Entity_ContactLt findContactLtByCske(String cske) {
-
-		try {
-			Optional<Entity_ContactLt> optionalEntity = repositoryContactLt.findByCske(cske);
-			return optionalEntity.orElse(null);
-		} catch (IncorrectResultSizeDataAccessException ex) {
-			log.error("Error retrieving contact by cske: {}", cske);
-			errorLogger.error("Error retrieving contact by cske: {}", cske, ex);
-			return null;
-		}
-	}
 
 	@Override
 	public int getRecordCount() {
@@ -485,7 +444,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 	@Override
 	@Transactional
-	public void DelCampMaById(String cpid) throws Exception {
+	public void delCampMaById(String cpid) throws Exception {
 		
 		Optional<Entity_CampMa> entityOpt = repositoryCampMa.findByCpid(cpid);
 		if (entityOpt.isPresent()) {
@@ -498,7 +457,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	
 	@Override
 	@Transactional
-	public void DelCallBotRtById(CallBotCampRt id) throws Exception {
+	public void delCallBotRtById(CallBotCampRt id) throws Exception {
 		
 		Optional<Entity_CallbotRt> entityOpt = repositoryCallbotRt.findById(id);
 		if (entityOpt.isPresent()) {
@@ -511,7 +470,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	
 	@Override
 	@Transactional
-	public void DelUcrmRtById(UcrmCampRt id) throws Exception {
+	public void delUcrmRtById(UcrmCampRt id) throws Exception {
 		
 		Optional<Entity_UcrmRt> entityOpt = repositoryUcrmRt.findById(id);
 		if (entityOpt.isPresent()) {
@@ -524,7 +483,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 	@Override
 	@Transactional
-	public void DelApimRtById(ApimCampRt id) throws Exception {
+	public void delApimRtById(ApimCampRt id) throws Exception {
 
 		Optional<Entity_ApimRt> entityOpt = repositoryApimRt.findById(id);
 		if (entityOpt.isPresent()) {
@@ -536,13 +495,13 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 	@Override
 	@Transactional
-	public void DelUcrmLtById(String topcDataIsueSno) throws Exception {
+	public void delUcrmLtById(String topcDataIsueSno) throws Exception {
 		repositoryUcrm.deleteByTopcDataIsueSno(topcDataIsueSno);
 	}
 
 	@Override
 	@Transactional
-	public void DelContactltById(ContactLtId id) throws Exception {
+	public void delContactltById(ContactLtId id) throws Exception {
 
 		Optional<Entity_ContactLt> entityOpt = repositoryContactLt.findById(id);
 		if (entityOpt.isPresent()) {
@@ -554,7 +513,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 	@Override
 	@Transactional
-	public void UpdateCampMa(String cpid, String cpna) throws Exception {
+	public void updateCampMa(String cpid, String cpna) throws Exception {
 		Optional<Entity_CampMa> optionalEntity = repositoryCampMa.findById(cpid);// 캠페인 아이디로 레코드 조회.
 
 		if (optionalEntity.isPresent()) {// 조회 후 있다면 해당 레코드의 캠페인명 업데이트
@@ -568,7 +527,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 	@Override
 	@Transactional
-	public Entity_CallbotRt InsertCallbotRt(Entity_CallbotRt enCallbotRt) throws Exception {
+	public Entity_CallbotRt insertCallbotRt(Entity_CallbotRt enCallbotRt) throws Exception {
 
 		Optional<Entity_CallbotRt> existingEntity = repositoryCallbotRt.findById(enCallbotRt.getId());
 
@@ -581,7 +540,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 	@Override
 	@Transactional
-	public Entity_UcrmRt InsertUcrmRt(Entity_UcrmRt enUcrmRt) throws Exception {
+	public Entity_UcrmRt insertUcrmRt(Entity_UcrmRt enUcrmRt) throws Exception {
 		Optional<Entity_UcrmRt> existingEntity = repositoryUcrmRt.findById(enUcrmRt.getId());
 
 		if (existingEntity.isPresent()) {
@@ -593,7 +552,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 	@Override
 	@Transactional
-	public Entity_ApimRt InsertApimRt(Entity_ApimRt enApimRt) throws Exception {
+	public Entity_ApimRt insertApimRt(Entity_ApimRt enApimRt) throws Exception {
 		Optional<Entity_ApimRt> existingEntity = repositoryApimRt.findById(enApimRt.getId());
 
 		if (existingEntity.isPresent()) {

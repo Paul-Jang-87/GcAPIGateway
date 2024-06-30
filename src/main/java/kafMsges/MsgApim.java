@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 public class MsgApim implements InterfaceKafMsg {
 
 	@Override
-	public String maMassage(Entity_CampMa enCampMa, String datachgcd) throws Exception {
+	public String maMessage(Entity_CampMa enCampMa, String datachgcd) throws Exception {
 
 		log.info("====== Method : maMassage ======");
 
@@ -46,30 +46,26 @@ public class MsgApim implements InterfaceKafMsg {
 			obj.put("cmd", datachgcd);
 
 			break;
-
-		default:
-
+			
+		case "delete":
+			
 			coid = mappingData.getCentercodeById(Integer.toString(enCampMa.getCoid()));
 			coid = coid != null ? coid : "EX";
 			obj.put("cpid", enCampMa.getCpid());
 			obj.put("gubun", coid);
 			obj.put("cpna", enCampMa.getCpna());
 			obj.put("cmd", datachgcd);
+			
+			break;
 
+		default:
+			log.info("유효하지 않은 CRUD 작업요청입니다. : {}",datachgcd);
 			break;
 		}
-		log.info("jsonString : {}", obj.toString());
+		log.info("enCampMaJson : {}", obj.toString());
 		return obj.toString();
 	}
 
-	@Override
-	public String rtMassage(Entity_CampRt enCampRt) throws Exception {
-		
-		
-		return null;
-		
-	}
-	
 	
 	public Entity_ToApim rstMassage(Entity_CampRt enCampRt) throws Exception {
 		
@@ -86,5 +82,10 @@ public class MsgApim implements InterfaceKafMsg {
 		
 	}
 
+
+	@Override
+	public String rtMessage(Entity_CampRt enCampRt) throws Exception {
+		return null;
+	}
 
 }

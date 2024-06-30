@@ -5,7 +5,7 @@ import gc.apiClient.entity.postgresql.Entity_CampRt;
 
 public interface InterfaceKafMsg {
 	
-	String maMassage (Entity_CampMa enCampMa, String datachgcd) throws Exception;
-	String rtMassage (Entity_CampRt enCampRt) throws Exception;
+	String maMessage (Entity_CampMa enCampMa, String datachgcd) throws Exception;
+	String rtMessage (Entity_CampRt enCampRt) throws Exception;
 
 }

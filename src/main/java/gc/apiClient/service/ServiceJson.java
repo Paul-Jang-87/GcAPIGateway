@@ -11,13 +11,12 @@ public class ServiceJson  {
 	
 	/**
 	 * 
-	 * 
-	 * 
 	 * @param methodNm
 	 * @param params
 	 * @return
 	 * @throws Exception
 	 */
+	
 	public static String extractStrVal(String methodNm, Object... params) throws Exception {
 		
 		log.info("====== Method : extractStrVal ( TYPE: {} ) ======", methodNm);
@@ -25,10 +24,10 @@ public class ServiceJson  {
         switch (methodNm) {
             case "ExtractVal":
                 return ExtractVal((String) params[0]);
-            case "ExtractValCrm12":
-                return ExtractValCrm12((String) params[0], (int) params[1]);
-            case "ExtractContacts56":
-            	return ExtractContacts56((String) params[0], (int) params[1]);
+            case "ExtractValCrm":
+                return ExtractValCrm((String) params[0], (int) params[1]);
+            case "ExtractContacts":
+            	return ExtractContacts((String) params[0], (int) params[1]);
             case "ExtractValCallBot":
             	return ExtractValCallBot((String) params[0], (int) params[1]);
             case "ExtractCampMaUpdateOrDel":
@@ -95,7 +94,7 @@ public class ServiceJson  {
 	}
 	
 
-	public static String ExtractValCrm12(String stringMsg, int i) throws Exception {//stringMsg에서 원하는 값만 추출. 
+	public static String ExtractValCrm(String stringMsg, int i) throws Exception {//stringMsg에서 원하는 값만 추출. 
 
 		String jsonResponse = stringMsg;
 
@@ -199,7 +198,7 @@ public class ServiceJson  {
 	}
 
 	
-	public static String ExtractContacts56(String stringMsg, int i) throws Exception {
+	public static String ExtractContacts(String stringMsg, int i) throws Exception {
 
 		String jsonResponse = stringMsg;
 

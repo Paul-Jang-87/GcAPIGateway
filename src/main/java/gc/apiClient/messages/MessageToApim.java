@@ -15,7 +15,7 @@ public class MessageToApim {
 	
 	public void sendMsgToApim (String towhere, String entity) {
 		
-		log.info("====== Method : 'ToApim' ======");
+		log.info("====== Method : sendMsgToApim ======");
 		
 		WebClient webClient = WebClient.builder()
 				.baseUrl(domain+":"+port)

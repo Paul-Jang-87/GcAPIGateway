@@ -36,7 +36,7 @@ public class MsgCallbot implements InterfaceKafMsg {
 	
 
 	@Override
-	public String maMassage(Entity_CampMa enCampMa, String datachgcd) throws Exception {
+	public String maMessage(Entity_CampMa enCampMa, String datachgcd) throws Exception {
 
 		log.info("====== Method : maMassage ======");
 		Entity_CampMaJson enCampMaJson = new Entity_CampMaJson();
@@ -63,9 +63,9 @@ public class MsgCallbot implements InterfaceKafMsg {
 			enCampMaJson.setTopcDataIsueDtm(topcDataIsueDtm);
 
 			break;
-
-		default:
-
+			
+		case "delete":
+			
 			enCampMaJson.setTenantId(Integer.toString(enCampMa.getCoid()));
 			enCampMaJson.setCmpnId(enCampMa.getCpid());
 			enCampMaJson.setCmpnNm("");
@@ -76,15 +76,20 @@ public class MsgCallbot implements InterfaceKafMsg {
 			enCampMaJson.setDataDelYn("Y");
 			enCampMaJson.setTopcDataIsueDtm(topcDataIsueDtm);
 			break;
+
+		default:
+
+			log.info("유효하지 않은 CRUD 작업요청입니다. : {}",datachgcd);
+			break;
 		}
 
 		jsonString = objectMapper.writeValueAsString(enCampMaJson);
-		log.info("jsonString : {}", jsonString);
+		log.info("enCampMaJson : {}", jsonString);
 		return jsonString;
 	}
 
 	@Override
-	public String rtMassage(Entity_CampRt enCampRt) throws Exception {
+	public String rtMessage(Entity_CampRt enCampRt) throws Exception {
 
 		JSONObject obj = new JSONObject();
 		try {
@@ -107,7 +112,7 @@ public class MsgCallbot implements InterfaceKafMsg {
 			dirt = enCampRt.getDirt();
 
 			ServiceWebClient crmapi = new ServiceWebClient();
-			String result = crmapi.GetStatusApiRequet("campaign_stats", campid);
+			String result = crmapi.getStatusApiReq("campaign_stats", campid);
 			dict = ServiceJson.extractIntVal("ExtractDict", result);
 
 			Entity_CampMa enCampMa = new Entity_CampMa();

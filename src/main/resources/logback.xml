@@ -173,7 +173,7 @@
 	
 	<!--  error logger -->
     <Logger name="ErrorLogger" level="error" additivity="false">
-    	<AppenderRef ref="Error" />
+    	<appender-ref ref="Error" />
     </Logger>
 	
 	<logger name="io.netty.handler.timeout" level="OFF" />

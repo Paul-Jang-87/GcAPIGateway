@@ -44,7 +44,6 @@ public class LogArchiver {
 		String nowtime = form.format(now);
 		
 		log.info("{}, apiClient 로그 시작",nowtime);
-		log.info("{}, apiClient_error 로그 시작",nowtime);
 		errorLogger.error("{}, apiClient_error 로그 시작",nowtime); 
 	
 	}

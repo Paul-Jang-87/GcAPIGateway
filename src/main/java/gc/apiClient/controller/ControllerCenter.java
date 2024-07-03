@@ -28,7 +28,6 @@ import gc.apiClient.entity.postgresql.Entity_CallbotRt;
 import gc.apiClient.entity.postgresql.Entity_CampMa;
 import gc.apiClient.entity.postgresql.Entity_CampRt;
 import gc.apiClient.entity.postgresql.Entity_UcrmRt;
-import gc.apiClient.interfaceCollection.InterfaceDBOracle;
 import gc.apiClient.interfaceCollection.InterfaceDBPostgreSQL;
 import gc.apiClient.interfaceCollection.InterfaceWebClient;
 import gc.apiClient.messages.MessageToApim;
@@ -53,8 +52,7 @@ public class ControllerCenter {
 	private final CustomProperties customProperties;
 	private static List<Entity_ToApim> apimEntitylt = new ArrayList<Entity_ToApim>();
 
-	public ControllerCenter(InterfaceDBPostgreSQL serviceDb, InterfaceDBOracle serviceOracle,
-			InterfaceWebClient serviceWeb, CustomProperties customProperties) {
+	public ControllerCenter(InterfaceDBPostgreSQL serviceDb, InterfaceWebClient serviceWeb, CustomProperties customProperties) {
 		this.serviceDb = serviceDb;
 		this.serviceWeb = serviceWeb;
 		this.customProperties = customProperties;

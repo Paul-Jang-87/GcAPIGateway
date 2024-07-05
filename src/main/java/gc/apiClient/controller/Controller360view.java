@@ -199,7 +199,7 @@ public class Controller360view {
      * @param biFunction
      * @return 변환된 BiFunction 반환
      */
-    private <T, U, R> BiFunction<T, U, R> wrap(BiFunctionWithException<T, U, R> biFunction) {
+    private <T, U, R> BiFunction<T, U, R> wrap(BiFunctionWithException<T, U, R> biFunction) {   
         return (t, u) -> {
             try {
                 return biFunction.apply(t, u);

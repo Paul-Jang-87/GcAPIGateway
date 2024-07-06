@@ -18,7 +18,7 @@ import org.springframework.data.domain.Page;
 public interface InterfaceDBPostgreSQL {
 
 	//table 별 매핑
-	Entity_CampRt createCampRtMsg(String cpid) throws Exception;
+	Entity_CampRt createCampRtMsg(String cpid, Entity_CampMa enCampMa) throws Exception;
 	Entity_CampMa createEnCampMa(String cpid) throws Exception;
 	Entity_ContactLt createContactLtMsg(String msg) throws Exception;
 	Entity_ContactLt createContactUcrm(Entity_Ucrm entityUcrm) throws Exception;

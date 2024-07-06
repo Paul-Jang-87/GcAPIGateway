@@ -169,7 +169,7 @@ public class ControllerCenter {
 			Map<String, String> properties = customProperties.getDivision();
 			String divisionName = properties.getOrDefault(division, "디비전을 찾을 수 없습니다.");// src/main/resources 경로의 application.properties 참조, division 아이디를 키로하여 값 조회.
 
-			Map<String, String> businessLogic = BusinessLogic.selectedBusiness(divisionName);
+			Map<String, String> businessLogic = BusinessLogic.selectedBusiness(divisionName.trim());
 
 			String endpoint = "";
 			String business = businessLogic.get("business");
@@ -294,7 +294,7 @@ public class ControllerCenter {
 			String divisionName = properties.getOrDefault(division, "디비전을 찾을 수 없습니다.");
 			log.info("디비전 이름 : {}", divisionName);
 
-			switch (divisionName) {
+			switch (divisionName.trim()) {
 			case "Home":
 			case "Mobile":
 
@@ -418,7 +418,11 @@ public class ControllerCenter {
 		// 캠페인이 어느 비즈니스 로직인지 판단하기 위해서 일단 목록 중 하나만 꺼내서 확인해 보도록한다.
 		// 왜냐면 나머지는 똑같을테니.
 		String contactsresult = ServiceJson.extractStrVal("ExtractContacts", result, 0);// JsonString 결과값과 조회하고 싶은 인덱스(첫번째)를 인자로 넣는다.
-		Entity_CampRt entityCmRt = serviceDb.createCampRtMsg(contactsresult);// contactsresult값으로 entity하나를 만든다.
+
+		Entity_CampMa enCampMa = new Entity_CampMa();
+		enCampMa = serviceDb.findCampMaByCpid(contactsresult.split("::")[2]);
+		
+		Entity_CampRt entityCmRt = serviceDb.createCampRtMsg(contactsresult, enCampMa);// contactsresult값으로 entity하나를 만든다.
 
 		MsgApim msgapim = new MsgApim();
 		Entity_ToApim enToApim = new Entity_ToApim();
@@ -426,7 +430,7 @@ public class ControllerCenter {
 
 			contactsresult = ServiceJson.extractStrVal("ExtractContacts", result, i);
 
-			entityCmRt = serviceDb.createCampRtMsg(contactsresult);
+			entityCmRt = serviceDb.createCampRtMsg(contactsresult, enCampMa);
 			enToApim = msgapim.rstMassage(entityCmRt);
 
 			apimEntitylt.add(enToApim);
@@ -476,7 +480,7 @@ public class ControllerCenter {
 
 			Entity_CampMa enCampMa = serviceDb.createEnCampMa(row_result);
 
-			switch (business) {// 여기서 비즈니스 로직 구분. default는 'apim'
+			switch (business.trim()) {// 여기서 비즈니스 로직 구분. default는 'apim'
 			case "UCRM":
 
 				MsgUcrm msgucrm = new MsgUcrm();

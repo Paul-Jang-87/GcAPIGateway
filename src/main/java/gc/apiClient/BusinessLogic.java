@@ -19,7 +19,7 @@ public class BusinessLogic {
 		String topic_id = "";
 		String business = "";
 
-		switch (division) {
+		switch (division.trim()) {
 		case "홈":
 		case "Home":
 

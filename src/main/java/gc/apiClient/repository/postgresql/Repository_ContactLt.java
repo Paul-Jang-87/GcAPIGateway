@@ -16,6 +16,7 @@ import jakarta.persistence.LockModeType;
 @Repository
 public interface Repository_ContactLt extends CrudRepository<Entity_ContactLt, ContactLtId> {
 
+	@Lock(LockModeType.PESSIMISTIC_WRITE)
 	@Query("SELECT c FROM Entity_ContactLt c WHERE c.id.cpid = :cpidValue")
 	List<Entity_ContactLt> findByCpid(@Param("cpidValue") String id);
 

@@ -52,7 +52,7 @@ public class MsgUcrm implements InterfaceKafMsg { //카프카 프로듀서로 �
 		String coid = "";
 		MappingCenter mappingData = new MappingCenter();
 
-		switch (datachgcd) {
+		switch (datachgcd.trim()) {
 			case "insert":
 			case "update":
 	

@@ -23,7 +23,7 @@ public class MsgApim implements InterfaceKafMsg {
 		String coid = "";
 		MappingCenter mappingData = new MappingCenter();
 
-		switch (datachgcd) {
+		switch (datachgcd.trim()) {
 
 		case "insert":
 

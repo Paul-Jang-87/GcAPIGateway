@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -18,7 +19,8 @@ import jakarta.persistence.LockModeType;
 
 @Repository
 public interface Repository_Ucrm extends CrudRepository<Entity_Ucrm, Ucrm> {
-
+	
+	@Lock(LockModeType.PESSIMISTIC_WRITE)
 	@Query("SELECT c FROM Entity_ContactLt c WHERE c.id.cpid = :cpidValue")
 	List<Entity_Ucrm> findByCpid(@Param("cpidValue") String id);
 
@@ -27,7 +29,8 @@ public interface Repository_Ucrm extends CrudRepository<Entity_Ucrm, Ucrm> {
 	Page<Entity_Ucrm> findAll(Pageable pageable);
 
 	@Modifying
-	@Lock(LockModeType.PESSIMISTIC_WRITE)
+	@Transactional
+//	@Lock(LockModeType.PESSIMISTIC_WRITE)
 	@Query("DELETE FROM Entity_Ucrm c WHERE c.topcDataIsueSno = :issueNo")
 	void deleteByTopcDataIsueSno(@Param("issueNo") String topcDataIsueSno);
 }

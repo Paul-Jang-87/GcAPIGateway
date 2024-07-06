@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import gc.apiClient.BusinessLogic;
 import gc.apiClient.customproperties.CustomProperties;
+import gc.apiClient.entity.postgresql.Entity_CampMa;
 import gc.apiClient.entity.postgresql.Entity_CampRt;
 import gc.apiClient.entity.postgresql.Entity_ContactLt;
 import gc.apiClient.entity.postgresql.Entity_Ucrm;
@@ -64,16 +65,14 @@ public class ControllerUCRM {
 		Mono.fromCallable(() -> ucrmMsgFrmCnsmer()).subscribeOn(Schedulers.boundedElastic()).subscribe();
 	}
 
-	@PostMapping("/saveucrmdata") // 이것을 카프카 컨슈머에서 호출하는 api. 컨슈머 앱에서 특정 토픽을 구독하면서 메시지를 받는다. 메시지를 받은 컨슈머는 이 api를
-									// 호출하여 받은 메시지를 전달해준다.
+	// 이것을 카프카 컨슈머에서 호출하는 api. 컨슈머 앱에서 특정 토픽을 구독하면서 메시지를 받는다. 메시지를 받은 컨슈머는 이 api를 호출하여 받은 메시지를 전달해준다.
+	@PostMapping("/saveucrmdata") 
 	public Mono<ResponseEntity<String>> saveUcrmData(@RequestBody String msg) {
 
 		try {
 
 			log.info("====== Method : saveUcrmData ======");
-			Entity_Ucrm enUcrm = serviceDb.createUcrm(msg); // 전달 받은 String 형태의 메시지를 쉐도우테이블('UCRMLT')에 인서트 하기 위해서 Entity
-															// 형태로 제가공해준다.
-
+			Entity_Ucrm enUcrm = serviceDb.createUcrm(msg); // 전달 받은 String 형태의 메시지를 쉐도우테이블('UCRMLT')에 인서트 하기 위해서 Entity 형태로 제가공해준다.
 			try {
 				serviceDb.insertUcrm(enUcrm);
 				log.info("저장된 메시지 : {}", msg);
@@ -95,16 +94,13 @@ public class ControllerUCRM {
 	}
 	
 
-	public Mono<ResponseEntity<String>> ucrmMsgFrmCnsmer() {// 이 함수는 스케줄러에 의해 5초마다 실행되면서 쉐도우 테이블('UCRMLT')에 있는 데이터들을
-															// 처리해주는 작업을 수행한다.
-
+	public Mono<ResponseEntity<String>> ucrmMsgFrmCnsmer() {// 이 함수는 스케줄러에 의해 5초마다 실행되면서 쉐도우 테이블('UCRMLT')에 있는 데이터들을 처리해주는 작업을 수행한다.
 		try {
 			log.info("====== Method : ucrmMsgFrmCnsmer ======");
 
-			Page<Entity_Ucrm> entitylist = serviceDb.getAll();// 바로 위의 함수 'SaveUcrmData'에 의해 테이블에 적재된 데이터들은 최대 1000개씩
-																// 불러온다.
+			Page<Entity_Ucrm> entitylist = serviceDb.getAll();// 바로 위의 함수 'SaveUcrmData'에 의해 테이블에 적재된 데이터들은 최대 1000개씩 불러온다.
 
-			if (entitylist.isEmpty()) {
+			if (entitylist.isEmpty()) { 
 				log.info("DB에서 조회 된 모든 레코드 : 없음");
 			} else {
 				int reps = entitylist.getNumberOfElements();
@@ -114,8 +110,7 @@ public class ControllerUCRM {
 
 				Map<String, String> mapcontactltId = new HashMap<String, String>();// 키 : cpid, 값 : contactLtId
 				Map<String, String> mapquetId = new HashMap<String, String>();// 키 : cpid, 값 : queid
-				Map<String, List<String>> contactlists = new HashMap<String, List<String>>();// 키 : contactLtId, 값 :
-																								// 발신대상자 배열
+				Map<String, List<String>> contactlists = new HashMap<String, List<String>>();// 키 : contactLtId, 값 :발신대상자 배열
 				Map<String, List<String>> delcontactlists = new HashMap<String, List<String>>();
 				String contactLtId = "";
 				String flag = "";
@@ -130,10 +125,8 @@ public class ControllerUCRM {
 					contactLtId = mapcontactltId.get(cpid);
 					String queid = mapquetId.get(cpid);
 
-					if (contactLtId == null || contactLtId.equals("")) {// cpid로 Map(mapcontactltId)을 조회했는데 Map 안에
-																		// 그것(cpid)에 대응하는 contactltId가 없다면,
-						String result = serviceWeb.getCampaignsApiReq("campaigns", cpid);// cpid를 가지고 직접 제네시스 api를
-																							// 호출해서 contactltId를 알아낸다.
+					if (contactLtId == null || contactLtId.equals("")) {						// cpid로 Map(mapcontactltId)을 조회했는데 Map 안에 그것(cpid)에 대응하는 contactltId가 없다면,
+						String result = serviceWeb.getCampaignsApiReq("campaigns", cpid);		// cpid를 가지고 직접 제네시스 api를 호출해서 contactltId를 알아낸다
 
 						if (result.equals("")) {// cpid를 가지고 직접 제네시스 api를 호출해서 contactltId를 알아내려고 했는데 결과 값이 없다면,
 							// 쉐도우 테이블에서 삭제. 테이블명 'UCRMLT'
@@ -143,10 +136,7 @@ public class ControllerUCRM {
 							continue;
 						}
 
-						String res = ServiceJson.extractStrVal("ExtractContactLtId", result); // 가져온 결과에서
-																								// contactlistid,queueid만
-																								// 추출. 변수 'res' 형식의 예 )
-																								// contactlistid::queueid
+						String res = ServiceJson.extractStrVal("ExtractContactLtId", result); // 가져온 결과에서 contactlistid,queueid만 추출. 변수 'res' 형식의 예 ) contactlistid::queueid
 						contactLtId = res.split("::")[0];
 						queid = res.split("::")[1];
 
@@ -157,9 +147,8 @@ public class ControllerUCRM {
 					// UCRM에서 보내 준 데이터를 가지고 제네시스에 PUSH하기 위해서 필요한 데이터들을 추출한다.
 					String row_result = ServiceJson.extractStrVal("ExtractRawUcrm", entitylist.getContent().get(i));
 					row_result = row_result + "::" + contactLtId + "::" + queid;
-					String contactltMapper = serviceDb.createContactLtGC(row_result); // row_result =
-																						// cpid::cpsq::cske::csno::tkda::flag::contactltId::queid
-
+					String contactltMapper = serviceDb.createContactLtGC(row_result); // row_result = cpid::cpsq::cske::csno::tkda::flag::contactltId::queid
+					
 					// 제네시스에 인서트 하기 위한 배열 준비
 					if (!contactlists.containsKey(contactLtId)) {
 						contactlists.put(contactLtId, new ArrayList<>());
@@ -171,41 +160,42 @@ public class ControllerUCRM {
 					}
 
 					flag = enContactLt.getFlag();
-					if (flag.equals("D")) {//flag가 'D'일 경우 회수 리스트에 넣는다.
-						delcontactlists.get(contactLtId).add(contactltMapper);
-					} else {//flag가 'D'가 아닐 경우 push하는 리스트에 넣는다. 
-						contactlists.get(contactLtId).add(contactltMapper);
-					}
-
 					try {
-						if (flag.equals("D")) {//'D'면 DB에서 삭제
+						if (flag.equals("A")) {							// Add Contact
+							contactlists.get(contactLtId).add(contactltMapper);
+							serviceDb.insertContactLt(enContactLt);		// 테이블명 'contactlt'
+						}else if (flag.equals("D")) {					// Delete Contact 
+							delcontactlists.get(contactLtId).add(contactltMapper);
 							serviceDb.delContactltById(enContactLt.getId());
-						} else {//'D'가 아닐 경우 DB에 추가
-							serviceDb.insertContactLt(enContactLt);// 테이블명 'contactlt'
+						} else {
+							log.info("FLAG A or D가 아님");
 						}
-
-					} catch (Exception ex) {// 인서트 하려고 했는데 이미 있는 데이터여서 에러가 발생한 경우
-						log.error("Exception 발생 : {}", ex.getMessage());
+						
+					} catch (Exception ex) {	// 인서트 하려고 했는데 이미 있는 데이터여서 에러가 발생한 경우
+						log.error("Exception 발생 : {}, {}", ex.getMessage() , enContactLt.toString());
 						errorLogger.error(ex.getMessage(), ex);
 					} 
-
+					
 					// 쉐도우 테이블에서 삭제 테이블명 'UCRMLT'
 					serviceDb.delUcrmLtById(entitylist.getContent().get(i).getTopcDataIsueSno());
-
 				}
-
+				
 				// 캠페인 컨택리스트 적재를 위한 Genesys API 호출 (add contact)
 				for (Map.Entry<String, List<String>> entry : contactlists.entrySet()) {
-
 					log.info("(Add)Arraylist '{}'의 현재 사이즈: {}", entry.getKey(), entry.getValue().size());
-					serviceWeb.postContactLtApiReq("contact", entry.getKey(), entry.getValue());
+					// entry.getValue().size()=0 일때 API 호출을 할 필요가 없음.
+					if(entry.getValue().size() > 0) {
+						serviceWeb.postContactLtApiReq("contact", entry.getKey(), entry.getValue());
+					}
 				}
 
 				// 캠페인 컨택리스트 삭제를 위한 Genesys API 호출 (delete contact)
 				for (Map.Entry<String, List<String>> entry : delcontactlists.entrySet()) {
-
 					log.info("(delete)Arraylist '{}'의 현재 사이즈: {}", entry.getKey(), entry.getValue().size());
-					serviceWeb.delContacts("delcontacts", entry.getKey(), entry.getValue());
+					// entry.getValue().size()=0 일때 API 호출을 할 필요가 없음.
+					if(entry.getValue().size() > 0) {
+						serviceWeb.delContacts("delcontacts", entry.getKey(), entry.getValue());
+					}
 				}
 
 			}
@@ -317,26 +307,30 @@ public class ControllerUCRM {
 		// 캠페인이 어느 비즈니스 로직인지 판단하기 위해서 일단 목록 중 하나만 꺼내서 확인해 보도록한다.
 		// 왜냐면 나머지는 똑같을테니.
 
-		String contactsresult = ServiceJson.extractStrVal("ExtractContacts", result, 0);// JsonString 결과값과 조회하고 싶은
-																							// 인덱스(첫번째)를 인자로
-		// 넣는다.
-		Entity_CampRt entityCmRt = serviceDb.createCampRtMsg(contactsresult);// contactsresult값으로
-																				// entity하나를 만든다.
-		Character tkda = entityCmRt.getTkda().charAt(0);// 그리고 비즈니스 로직을 구분하게 해줄 수 있는 토큰데이터를 구해온다.
+		String contactsresult = ServiceJson.extractStrVal("ExtractContacts", result, 0);// JsonString 결과값과 조회하고 싶은인덱스(첫번째)를 인자로 넣는다.
+		
+		Entity_CampMa enCampMa = new Entity_CampMa();
+		enCampMa = serviceDb.findCampMaByCpid(contactsresult.split("::")[2]);
+		
+//		Entity_CampRt entityCmRt = null;
+		Entity_CampRt entityCmRt = serviceDb.createCampRtMsg(contactsresult, enCampMa);		// contactsresult값으로 entity하나를 만든다.
+
+		// tkda를 가져오기 위해서 createCampRtMsg()를 호출 하는거면 굳이 2번 호출 하지 않아도 되지 않을까?
+		Character tkda = entityCmRt.getTkda().charAt(0);	// 그리고 비즈니스 로직을 구분하게 해줄 수 있는 토큰데이터를 구해온다.
+//		Character tkda = contactsresult.split("::")[5].charAt(0);	
 
 		// 토큰데이터와 디비젼네임을 인자로 넘겨서 어떤 비지니스 로직인지, 토픽은 어떤 것으로 해야하는지를 결과 값으로 반환 받는다.
 		Map<String, String> businessLogic = BusinessLogic.selectedBusiness(tkda, divisionName);
 		String topic_id = businessLogic.get("topic_id");
 
 		for (int i = 0; i < values.size(); i++) {
-
 			contactsresult = ServiceJson.extractStrVal("ExtractContacts", result, i);
 			if (contactsresult.equals("")) {
 				log.info("결과 없음, 다음으로 건너 뜀.");
 				continue;
 			}
 
-			entityCmRt = serviceDb.createCampRtMsg(contactsresult);// db 인서트 하기 위한 entity.
+			entityCmRt = serviceDb.createCampRtMsg(contactsresult, enCampMa);	// db 인서트 하기 위한 entity.
 
 			MsgUcrm msgucrm = new MsgUcrm(serviceDb);
 			String msg = msgucrm.rtMessage(entityCmRt);
@@ -344,15 +338,11 @@ public class ControllerUCRM {
 			int dirt = entityCmRt.getDirt();// 응답코드
 
 			if (dirt == 1) {// URM이면서 정상일 때.
-
 				log.info("UCRM : dirt(응답코드)가 '1'이므로 카프카로 발신결과 메시지를 보내지 않습니다.");
-
 			} else {
-
 				MessageToProducer producer = new MessageToProducer();
 				String endpoint = "/gcapi/post/" + topic_id;
 				producer.sendMsgToProducer(endpoint, msg);
-
 			}
 
 			// db인서트

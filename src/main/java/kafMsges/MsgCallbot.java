@@ -47,7 +47,7 @@ public class MsgCallbot implements InterfaceKafMsg {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSSSSS");
 		String topcDataIsueDtm = "";
 
-		switch (datachgcd) {
+		switch (datachgcd.trim()) {
 
 		case "insert":
 		case "update":

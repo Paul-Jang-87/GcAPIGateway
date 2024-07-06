@@ -15,6 +15,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import gc.apiClient.customproperties.CustomProperties;
 import gc.apiClient.embeddable.ApimCampRt;
@@ -39,7 +40,6 @@ import gc.apiClient.repository.postgresql.Repository_ContactLt;
 import gc.apiClient.repository.postgresql.Repository_Ucrm;
 import gc.apiClient.repository.postgresql.Repository_UcrmRt;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -72,7 +72,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
-	public Entity_CampRt createCampRtMsg(String cpid) {
+	public Entity_CampRt createCampRtMsg(String cpid, Entity_CampMa enCampMa) {
 		// contactid::contactListId::cpid::CPSQ::dirt::tkda::dateCreated
 
 		log.info("====== Method : createCampRtMsg ======");
@@ -131,16 +131,15 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 			log.info("dirt(맵핑 전) : {}", parts[4]);
 			Map<String, String> properties = customProperties.getProperties();
-			dirt = Integer.parseInt(properties.getOrDefault(parts[4], "1"));
+			dirt = Integer.parseInt(properties.getOrDefault(parts[4], "1").trim());
 			log.info("dirt(맵핑 후) : {}", dirt);
 
 			ServiceWebClient crmapi = new ServiceWebClient();
 			String result = crmapi.getStatusApiReq("campaign_stats", campid);
 			dict = ServiceJson.extractIntVal("ExtractDict", result);
 
-			Entity_CampMa enCampMa = new Entity_CampMa();
-
-			enCampMa = findCampMaByCpid(campid);
+//			Entity_CampMa enCampMa = new Entity_CampMa();
+//			enCampMa = findCampMaByCpid(campid);
 			coid = enCampMa.getCoid();
 			log.info("campid({})로 조회한 레코드의 coid : {}", campid, coid);
 
@@ -351,9 +350,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	@Transactional
 	public Entity_CampMa insertCampMa(Entity_CampMa entityCampMa) {
 
-		Optional<Entity_CampMa> existingEntity = repositoryCampMa.findByCpid(entityCampMa.getCpid()); // db에 인서트 하기 전. 키
-																										// 값인 캠페인 아이디로
-																										// 먼저 조회를 한다.
+		Optional<Entity_CampMa> existingEntity = repositoryCampMa.findByCpid(entityCampMa.getCpid()); // db에 인서트 하기 전. 키 값인 캠페인 아이디로 먼저 조회를 한다.
 
 		if (existingEntity.isPresent()) {// 조회 해본 결과 레코드가 이미 있는 상황이라면 에러는 발생시킨다.
 			throw new DataIntegrityViolationException("주어진 'cpid'를 가진 레코드가 테이블에 이미 존재합니다.");

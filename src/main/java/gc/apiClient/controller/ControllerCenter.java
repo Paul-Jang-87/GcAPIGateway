@@ -418,11 +418,10 @@ public class ControllerCenter {
 		// 캠페인이 어느 비즈니스 로직인지 판단하기 위해서 일단 목록 중 하나만 꺼내서 확인해 보도록한다.
 		// 왜냐면 나머지는 똑같을테니.
 		String contactsresult = ServiceJson.extractStrVal("ExtractContacts", result, 0);// JsonString 결과값과 조회하고 싶은 인덱스(첫번째)를 인자로 넣는다.
-
-		Entity_CampMa enCampMa = new Entity_CampMa();
-		enCampMa = serviceDb.findCampMaByCpid(contactsresult.split("::")[2]);
+		String cpid = contactsresult.split("::")[2];
 		
-		Entity_CampRt entityCmRt = serviceDb.createCampRtMsg(contactsresult, enCampMa);// contactsresult값으로 entity하나를 만든다.
+		Entity_CampMa enCampMa = serviceDb.findCampMaByCpid(cpid);
+		Entity_CampRt entityCmRt = null;
 
 		MsgApim msgapim = new MsgApim();
 		Entity_ToApim enToApim = new Entity_ToApim();

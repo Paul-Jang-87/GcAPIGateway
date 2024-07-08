@@ -56,10 +56,8 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	private final Repository_ContactLt repositoryContactLt;
 	private final CustomProperties customProperties;
 
-	public ServicePostgre(Repository_CampRt repositoryCampRt, Repository_CampMa repositoryCampMa,
-			Repository_ContactLt repositoryContactLt, CustomProperties customProperties, Repository_Ucrm repositoryUcrm,
-			Repository_CallbotRt repositoryCallbotRt, Repository_UcrmRt repositoryUcrmRt,
-			Repository_ApimRt repositoryApimRt) {
+	public ServicePostgre(Repository_CampRt repositoryCampRt, Repository_CampMa repositoryCampMa, Repository_ContactLt repositoryContactLt, CustomProperties customProperties,
+			Repository_Ucrm repositoryUcrm, Repository_CallbotRt repositoryCallbotRt, Repository_UcrmRt repositoryUcrmRt, Repository_ApimRt repositoryApimRt) {
 
 		this.repositoryCampRt = repositoryCampRt;
 		this.repositoryUcrm = repositoryUcrm;
@@ -398,7 +396,6 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		}
 	}
 
-
 	@Override
 	public Integer findCampRtMaxRlsq() {
 
@@ -411,7 +408,6 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			return null;
 		}
 	}
-
 
 	@Override
 	public int getRecordCount() {
@@ -442,7 +438,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	@Override
 	@Transactional
 	public void delCampMaById(String cpid) throws Exception {
-		
+
 		Optional<Entity_CampMa> entityOpt = repositoryCampMa.findByCpid(cpid);
 		if (entityOpt.isPresent()) {
 			repositoryCampMa.deleteById(cpid);
@@ -451,11 +447,10 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		}
 	}
 
-	
 	@Override
 	@Transactional
 	public void delCallBotRtById(CallBotCampRt id) throws Exception {
-		
+
 		Optional<Entity_CallbotRt> entityOpt = repositoryCallbotRt.findById(id);
 		if (entityOpt.isPresent()) {
 			repositoryCallbotRt.deleteById(id);
@@ -464,11 +459,10 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		}
 	}
 
-	
 	@Override
 	@Transactional
 	public void delUcrmRtById(UcrmCampRt id) throws Exception {
-		
+
 		Optional<Entity_UcrmRt> entityOpt = repositoryUcrmRt.findById(id);
 		if (entityOpt.isPresent()) {
 			repositoryUcrmRt.deleteById(id);
@@ -476,7 +470,6 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			throw new Exception("삭제하려는 id를 가진 엔티티가 DB테이블에서 조회되지 않습니다.: " + id);
 		}
 	}
-	
 
 	@Override
 	@Transactional
@@ -493,7 +486,12 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	@Override
 	@Transactional
 	public void delUcrmLtById(String topcDataIsueSno) throws Exception {
-		repositoryUcrm.deleteByTopcDataIsueSno(topcDataIsueSno);
+		Optional<Entity_Ucrm> entityOptional = repositoryUcrm.lockByTopcDataIsueSno(topcDataIsueSno);
+		if (entityOptional.isPresent()) {
+			repositoryUcrm.deleteByTopcDataIsueSno(topcDataIsueSno);
+		} else {
+			throw new Exception("해당 topcDataIsueSno 값을 가진 엔티티가 DB테이블에서 조회되지 않습니다. : " + topcDataIsueSno);
+		}
 	}
 
 	@Override

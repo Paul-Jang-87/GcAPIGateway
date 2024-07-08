@@ -55,24 +55,23 @@ public class ServiceWebClient implements InterfaceWebClient {
         int attempt = 0;
         boolean success = false;
         
-        while (attempt < MAX_RETRIES && !success) {
-            try {
-                WebClientApp webClient = new WebClientApp();
-                result = webClient.makeApiRequest(endpoint, "GET", campaignId);
-                success = true; // Mark success if no exception is thrown
-            } catch (Exception e) {
-                log.error("Attempt {} failed: {}", attempt + 1, e.getMessage());
-                errorLogger.error(e.getMessage(), e);
-                attempt++;
-                if (attempt < MAX_RETRIES) {
-                    try {
-                        Thread.sleep(RETRY_INTERVAL_MS);
-                    } catch (InterruptedException ignored) {
-                        Thread.currentThread().interrupt();
-                    }
+        try {
+            WebClientApp webClient = new WebClientApp();
+            result = webClient.makeApiRequest(endpoint, "GET", campaignId);
+            success = true; // Mark success if no exception is thrown
+        } catch (Exception e) {
+            log.error("Attempt {} failed: {}",  e.getMessage());
+            errorLogger.error(e.getMessage(), e);
+            attempt++;
+            if (attempt < MAX_RETRIES) {
+                try {
+                    Thread.sleep(RETRY_INTERVAL_MS);
+                } catch (InterruptedException ignored) {
+                    Thread.currentThread().interrupt();
                 }
             }
         }
+        
 
 		return result;
 	}

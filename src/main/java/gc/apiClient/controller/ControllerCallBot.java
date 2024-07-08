@@ -279,13 +279,12 @@ public class ControllerCallBot {
 		// 왜냐면 나머지는 똑같을테니.
 		// JsonString 결과값과 조회하고 싶은 인덱스(첫번째)를 인자로 넣는다.
 		String contactsresult = ServiceJson.extractStrVal("ExtractContacts", result, 0);
-
-		Entity_CampMa enCampMa = new Entity_CampMa();
-		enCampMa = serviceDb.findCampMaByCpid(contactsresult.split("::")[2]);
+		String cpid = contactsresult.split("::")[2];
+		String full_tkda = contactsresult.split("::")[5];
 		
-		// contacts result값으로 entity하나를 만든다.
-		Entity_CampRt entityCmRt = serviceDb.createCampRtMsg(contactsresult, enCampMa);
-		Character tkda = entityCmRt.getTkda().charAt(0); // 그리고 비즈니스 로직을 구분하게 해줄 수 있는 토큰데이터를 구해온다.
+		Entity_CampMa enCampMa = serviceDb.findCampMaByCpid(cpid);
+		Entity_CampRt entityCmRt = null;
+		Character tkda = full_tkda.charAt(0); // 그리고 비즈니스 로직을 구분하게 해줄 수 있는 토큰데이터를 구해온다.
 
 		// 토큰데이터와 디비젼네임을 인자로 넘겨서 어떤 비지니스 로직인지, 토픽은 어떤 것으로 해야하는지를 결과 값으로 반환 받는다.
 		Map<String, String> businessLogic = BusinessLogic.selectedBusiness(tkda, divisionName);

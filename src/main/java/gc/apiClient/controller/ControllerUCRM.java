@@ -76,13 +76,10 @@ public class ControllerUCRM {
 			try {
 				serviceDb.insertUcrm(enUcrm);
 				log.info("저장된 메시지 : {}", msg);
-			} catch (DataIntegrityViolationException ex) {
-				log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+			} catch (Exception ex) {
+				log.error("saveUcrmData Exception 발생 : {}", ex.getMessage());
 				errorLogger.error(ex.getMessage(), ex);
-			} catch (DataAccessException ex) {
-				log.error("DataAccessException 발생 : {}", ex.getMessage());
-				errorLogger.error(ex.getMessage(), ex);
-			}
+			} 
 
 		} catch (Exception e) {
 			log.error("에러 메시지 : {}", e.getMessage());
@@ -125,7 +122,15 @@ public class ControllerUCRM {
 					contactLtId = mapcontactltId.get(cpid);
 					String queid = mapquetId.get(cpid);
 
-					if (contactLtId == null || contactLtId.equals("")) {						// cpid로 Map(mapcontactltId)을 조회했는데 Map 안에 그것(cpid)에 대응하는 contactltId가 없다면,
+					if (contactLtId == null || contactLtId.equals("")) {// cpid로 Map(mapcontactltId)을 조회했는데 Map 안에 그것(cpid)에 대응하는 contactltId가 없다면,
+						
+						int cpid_length = cpid.length();	
+						if(cpid_length != 36) {
+							serviceDb.delUcrmLtById(entitylist.getContent().get(i).getTopcDataIsueSno());
+							log.info("캠페인 조회 결과 유효한 캠페인 아이디 ({})가 아닙니다", cpid);
+							continue;
+						}
+						
 						String result = serviceWeb.getCampaignsApiReq("campaigns", cpid);		// cpid를 가지고 직접 제네시스 api를 호출해서 contactltId를 알아낸다
 
 						if (result.equals("")) {// cpid를 가지고 직접 제네시스 api를 호출해서 contactltId를 알아내려고 했는데 결과 값이 없다면,
@@ -308,16 +313,13 @@ public class ControllerUCRM {
 		// 왜냐면 나머지는 똑같을테니.
 
 		String contactsresult = ServiceJson.extractStrVal("ExtractContacts", result, 0);// JsonString 결과값과 조회하고 싶은인덱스(첫번째)를 인자로 넣는다.
+		String cpid = contactsresult.split("::")[2];
+		String full_tkda = contactsresult.split("::")[5];
 		
-		Entity_CampMa enCampMa = new Entity_CampMa();
-		enCampMa = serviceDb.findCampMaByCpid(contactsresult.split("::")[2]);
-		
-//		Entity_CampRt entityCmRt = null;
-		Entity_CampRt entityCmRt = serviceDb.createCampRtMsg(contactsresult, enCampMa);		// contactsresult값으로 entity하나를 만든다.
+		Entity_CampMa enCampMa = serviceDb.findCampMaByCpid(cpid);
+		Entity_CampRt entityCmRt = null;
 
-		// tkda를 가져오기 위해서 createCampRtMsg()를 호출 하는거면 굳이 2번 호출 하지 않아도 되지 않을까?
-		Character tkda = entityCmRt.getTkda().charAt(0);	// 그리고 비즈니스 로직을 구분하게 해줄 수 있는 토큰데이터를 구해온다.
-//		Character tkda = contactsresult.split("::")[5].charAt(0);	
+		Character tkda = full_tkda.charAt(0);	// 그리고 비즈니스 로직을 구분하게 해줄 수 있는 토큰데이터를 구해온다.
 
 		// 토큰데이터와 디비젼네임을 인자로 넘겨서 어떤 비지니스 로직인지, 토픽은 어떤 것으로 해야하는지를 결과 값으로 반환 받는다.
 		Map<String, String> businessLogic = BusinessLogic.selectedBusiness(tkda, divisionName);

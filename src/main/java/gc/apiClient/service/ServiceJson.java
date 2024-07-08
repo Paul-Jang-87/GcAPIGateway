@@ -231,7 +231,7 @@ public class ServiceJson  {
 
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode jsonNode = null;
-		int result = 100;
+		int result = 0;
 
 			jsonNode = objectMapper.readTree(jsonResponse);
 			result = jsonNode.path("contactRate").path("attempts").asInt();

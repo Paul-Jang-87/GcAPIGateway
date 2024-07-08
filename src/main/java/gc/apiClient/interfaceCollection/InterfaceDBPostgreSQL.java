@@ -39,6 +39,7 @@ public interface InterfaceDBPostgreSQL {
 	
 	//select
 	Entity_CampMa findCampMaByCpid(String cpid) throws Exception;
+	Entity_Ucrm findUcrmBykey(String cpid,String cpsq) throws Exception;
 	Integer findCampRtMaxRlsq() throws Exception;
 	Page<Entity_Ucrm> getAll() throws Exception; 
 	Page<Entity_UcrmRt> getAllUcrmRt() throws Exception; 
@@ -56,5 +57,6 @@ public interface InterfaceDBPostgreSQL {
 	public void delUcrmRtById(UcrmCampRt id) throws Exception;
 	public void delApimRtById(ApimCampRt id) throws Exception;
 	public void delUcrmLtById(String topcDataIsueSno) throws Exception;
+	public void deleteRecord(String cpid, String cpsq) throws Exception;
 	
 }

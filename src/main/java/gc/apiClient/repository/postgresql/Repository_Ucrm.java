@@ -26,7 +26,10 @@ public interface Repository_Ucrm extends CrudRepository<Entity_Ucrm, Ucrm> {
 
 	Optional<Entity_Ucrm> findById(Ucrm id);
 
-	Page<Entity_Ucrm> findAll(Pageable pageable);
+	@Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query("SELECT c FROM Entity_Ucrm c")
+    Page<Entity_Ucrm> findAllWithLock(Pageable pageable);
+	
 
 	@Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("SELECT c FROM Entity_Ucrm c WHERE c.topcDataIsueSno = :issueNo")
@@ -36,4 +39,15 @@ public interface Repository_Ucrm extends CrudRepository<Entity_Ucrm, Ucrm> {
     @Transactional
     @Query("DELETE FROM Entity_Ucrm c WHERE c.topcDataIsueSno = :issueNo")
     void deleteByTopcDataIsueSno(@Param("issueNo") String topcDataIsueSno);
+    
+    
+    
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query("SELECT c FROM Entity_Ucrm c WHERE c.id.cpid = :cpid AND c.id.cpsq = :cpsq")
+    Optional<Entity_Ucrm> lockByCpidAndCpsq(@Param("cpid") String cpid, @Param("cpsq") String cpsq);
+
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM Entity_Ucrm e WHERE e.id.cpid = :cpid AND e.id.cpsq = :cpsq")
+    void deleteByCpidAndCpsq(@Param("cpid") String cpid, @Param("cpsq") String cpsq);
 }

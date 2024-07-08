@@ -15,7 +15,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import gc.apiClient.customproperties.CustomProperties;
 import gc.apiClient.embeddable.ApimCampRt;
@@ -40,6 +39,7 @@ import gc.apiClient.repository.postgresql.Repository_ContactLt;
 import gc.apiClient.repository.postgresql.Repository_Ucrm;
 import gc.apiClient.repository.postgresql.Repository_UcrmRt;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -259,6 +259,8 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 		return enContactLt;
 	}
+	
+	
 
 	@Override
 	public Entity_Ucrm createUcrm(String msg) throws Exception {
@@ -372,7 +374,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 	@Override
 	@Transactional
-	public Entity_ContactLt insertContactLt(Entity_ContactLt entityContactLt) {
+	public Entity_ContactLt insertContactLt(Entity_ContactLt entityContactLt) throws Exception {
 
 		Optional<Entity_ContactLt> existingEntity = repositoryContactLt.findById(entityContactLt.getId());
 
@@ -395,6 +397,23 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			return null;
 		}
 	}
+	
+	
+	@Override
+	@Transactional
+	public Entity_Ucrm findUcrmBykey(String cpid, String cpsq) throws Exception {
+		
+		Optional<Entity_Ucrm> entityOptional = repositoryUcrm.lockByCpidAndCpsq(cpid, cpsq);
+		try {
+			return entityOptional.orElse(null);
+		} catch (Exception e) {
+			
+			log.error("cpid와 cpsq로 엔티티를 조회하는데 실패하였습니다.: {}", cpid);
+			errorLogger.error("cpid와 cpsq로 엔티티를 조회하는데 실패하였습니다.: {}", cpid, e.getMessage());
+			return null;
+		}
+		
+	}
 
 	@Override
 	public Integer findCampRtMaxRlsq() {
@@ -416,9 +435,10 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
-	public Page<Entity_Ucrm> getAll() throws Exception {
-		return repositoryUcrm.findAll(PageRequest.of(0, 1000));
-	}
+    @Transactional
+    public Page<Entity_Ucrm> getAll() throws Exception {
+        return repositoryUcrm.findAllWithLock(PageRequest.of(0, 500));
+    }
 
 	@Override
 	public Page<Entity_UcrmRt> getAllUcrmRt() throws Exception {
@@ -470,6 +490,22 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			throw new Exception("삭제하려는 id를 가진 엔티티가 DB테이블에서 조회되지 않습니다.: " + id);
 		}
 	}
+	
+	
+	@Override
+	@Transactional
+    public void deleteRecord(String cpid, String cpsq) throws Exception {
+        Optional<Entity_Ucrm> entityOptional = repositoryUcrm.lockByCpidAndCpsq(cpid, cpsq);
+        if (entityOptional.isPresent()) {
+            repositoryUcrm.deleteByCpidAndCpsq(cpid, cpsq);
+        } else {
+            throw new RuntimeException("Entity not found for CPID: " + cpid + " and CPSQ: " + cpsq);
+        }
+    }
+	
+	
+	
+	
 
 	@Override
 	@Transactional
@@ -607,5 +643,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 		return apimRt;
 	}
+
+	
 
 }

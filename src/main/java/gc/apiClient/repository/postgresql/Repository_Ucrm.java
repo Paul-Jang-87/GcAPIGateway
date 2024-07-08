@@ -18,7 +18,7 @@ import gc.apiClient.entity.postgresql.Entity_Ucrm;
 import jakarta.persistence.LockModeType;
 
 @Repository
-public interface Repository_Ucrm extends CrudRepository<Entity_Ucrm, Ucrm> {
+public interface Repository_Ucrm extends CrudRepository<Entity_Ucrm, Ucrm> {  
 	
 	@Lock(LockModeType.PESSIMISTIC_WRITE)
 	@Query("SELECT c FROM Entity_ContactLt c WHERE c.id.cpid = :cpidValue")

@@ -240,7 +240,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
-	public Entity_ContactLt createContactUcrm(Entity_Ucrm entityUcrm) {
+	public Entity_ContactLt createContactUcrm(Entity_Ucrm entityUcrm) throws Exception{
 
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
 		ContactLtId id = new ContactLtId();
@@ -251,6 +251,36 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			enContactLt.setCske(entityUcrm.getHldrCustId());
 			enContactLt.setFlag(entityUcrm.getWorkDivsCd());
 			enContactLt.setTkda(entityUcrm.getTrdtCntn());
+
+		} catch (Exception e) {
+			log.error("Error Messge : {}", e.getMessage());
+			errorLogger.error(e.getMessage(), e);
+		}
+
+		return enContactLt;
+	}
+	
+	
+	@Override
+	public Entity_ContactLt createContactUcrm(JSONObject jsonObject) throws Exception {
+		
+	
+
+		Entity_ContactLt enContactLt = new Entity_ContactLt();
+		ContactLtId id = new ContactLtId();
+		try {
+			JSONObject dataObject = jsonObject.getJSONObject("data");
+			String cpid = dataObject.getString("CPID");
+			String cpsq = dataObject.getString("CPSQ");
+			String cske = dataObject.getString("CSKE");
+			String tkda = dataObject.getString("TKDA");
+			
+			id.setCpid(cpid);
+			id.setCpsq(Integer.parseInt(cpsq));
+			enContactLt.setId(id);
+			enContactLt.setCske(cske);
+			enContactLt.setFlag("A");
+			enContactLt.setTkda(tkda);
 
 		} catch (Exception e) {
 			log.error("Error Messge : {}", e.getMessage());
@@ -494,7 +524,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	
 	@Override
 	@Transactional
-    public void deleteRecord(String cpid, String cpsq) throws Exception {
+    public void delUcrmltRecord(String cpid, String cpsq) throws Exception {
         Optional<Entity_Ucrm> entityOptional = repositoryUcrm.lockByCpidAndCpsq(cpid, cpsq);
         if (entityOptional.isPresent()) {
             repositoryUcrm.deleteByCpidAndCpsq(cpid, cpsq);
@@ -502,8 +532,6 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
             throw new RuntimeException("Entity not found for CPID: " + cpid + " and CPSQ: " + cpsq);
         }
     }
-	
-	
 	
 	
 
@@ -541,6 +569,21 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			throw new Exception("삭제하려는 id를 가진 엔티티가 DB테이블에서 조회되지 않습니다.: " + id);
 		}
 	}
+	
+	
+	@Override
+	@Transactional
+    public void delContactltRecord(String cpid, String cpsq) throws Exception {
+		
+		Optional<Entity_ContactLt> entityOptional = repositoryContactLt.lockByCpidAndCpsq(cpid, cpsq);
+        if (entityOptional.isPresent()) {
+        	repositoryContactLt.deleteByCpidAndCpsq(cpid, cpsq);
+        } else {
+            throw new RuntimeException("Entity not found for CPID: " + cpid + " and CPSQ: " + cpsq);
+        }
+        
+    }
+	
 
 	@Override
 	@Transactional

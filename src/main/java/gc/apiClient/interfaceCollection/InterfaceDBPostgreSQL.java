@@ -13,6 +13,7 @@ import gc.apiClient.entity.postgresql.Entity_ContactLt;
 import gc.apiClient.entity.postgresql.Entity_Ucrm;
 import gc.apiClient.entity.postgresql.Entity_UcrmRt;
 
+import org.json.JSONObject;
 import org.springframework.data.domain.Page;
 
 public interface InterfaceDBPostgreSQL {
@@ -27,6 +28,7 @@ public interface InterfaceDBPostgreSQL {
 	Entity_CallbotRt createCallbotRt(String msg) throws Exception;
 	Entity_ApimRt createApimRt(String msg) throws Exception;
 	String createContactLtGC(String msg) throws Exception;
+	Entity_ContactLt createContactUcrm(JSONObject jsonObject) throws Exception;
 	
 	//insert
 	Entity_CampRt insertCampRt(Entity_CampRt entityCampRt) throws Exception;
@@ -57,6 +59,7 @@ public interface InterfaceDBPostgreSQL {
 	public void delUcrmRtById(UcrmCampRt id) throws Exception;
 	public void delApimRtById(ApimCampRt id) throws Exception;
 	public void delUcrmLtById(String topcDataIsueSno) throws Exception;
-	public void deleteRecord(String cpid, String cpsq) throws Exception;
+	public void delUcrmltRecord(String cpid, String cpsq) throws Exception;
+	public void delContactltRecord(String cpid, String cpsq) throws Exception;
 	
 }

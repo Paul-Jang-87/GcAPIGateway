@@ -14,8 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ServiceWebClient implements InterfaceWebClient {
 	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
-	private static final int MAX_RETRIES = 3;
-    private static final long RETRY_INTERVAL_MS = 1000; // 1 second (adjust as needed)
 
 	@Override
 	public String getApiReq(String endpoint,int pagenumber) {
@@ -49,27 +47,16 @@ public class ServiceWebClient implements InterfaceWebClient {
 		/*
 		 * <Genesys API 호출> - 캠페인 조회 [GET]/api/v2/outbound/campaigns/{campaignId}
 		 */
-		log.info("====== Method : getCampaignsApiRequet {} ======", endpoint);
+		log.info("====== Method : getCampaignsApiRequet ======");
 		String result = "";
 
-        int attempt = 0;
-        boolean success = false;
         
         try {
             WebClientApp webClient = new WebClientApp();
             result = webClient.makeApiRequest(endpoint, "GET", campaignId);
-            success = true; // Mark success if no exception is thrown
         } catch (Exception e) {
-            log.error("Attempt {} failed: {}",  e.getMessage());
+            log.error("getCampaignsApiRequet 에러 : {}",  e.getMessage());
             errorLogger.error(e.getMessage(), e);
-            attempt++;
-            if (attempt < MAX_RETRIES) {
-                try {
-                    Thread.sleep(RETRY_INTERVAL_MS);
-                } catch (InterruptedException ignored) {
-                    Thread.currentThread().interrupt();
-                }
-            }
         }
         
 
@@ -154,8 +141,7 @@ public class ServiceWebClient implements InterfaceWebClient {
 		/*
 		 * Genesys API 호출 - 컨택리스트 삭제 [DELETE] api/v2/outbound/contactlists/{contactListId}/contacts
 		 */
-		log.info("====== Method : delContacts {} ======", endpoint);
-		log.info("Incoming message (삭제 대상자 리스트-CPSQ) : {}", msg.toString());
+		log.info("====== Method : delContacts ======");
 
 		String result = "";
 		WebClientApp webClient = new WebClientApp();

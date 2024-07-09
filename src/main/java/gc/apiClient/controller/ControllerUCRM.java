@@ -67,16 +67,14 @@ public class ControllerUCRM {
 		Mono.fromCallable(() -> ucrmMsgFrmCnsmer()).subscribeOn(Schedulers.boundedElastic()).subscribe();
 	}
 
-	// 이것을 카프카 컨슈머에서 호출하는 api. 컨슈머 앱에서 특정 토픽을 구독하면서 메시지를 받는다. 메시지를 받은 컨슈머는 이 api를
-	// 호출하여 받은 메시지를 전달해준다.
+	// 이것을 카프카 컨슈머에서 호출하는 api. 컨슈머 앱에서 특정 토픽을 구독하면서 메시지를 받는다. 메시지를 받은 컨슈머는 이 api를 호출하여 받은 메시지를 전달해준다.
 	@PostMapping("/saveucrmdata")
 	public Mono<ResponseEntity<String>> saveUcrmData(@RequestBody String msg) {
 
 		try {
 
 			log.info("====== Method : saveUcrmData ======");
-			Entity_Ucrm enUcrm = serviceDb.createUcrm(msg); // 전달 받은 String 형태의 메시지를 쉐도우테이블('UCRMLT')에 인서트 하기 위해서 Entity
-															// 형태로 제가공해준다.
+			Entity_Ucrm enUcrm = serviceDb.createUcrm(msg); // 전달 받은 String 형태의 메시지를 쉐도우테이블('UCRMLT')에 인서트 하기 위해서 Entity 형태로 제가공해준다.
 			try {
 				serviceDb.insertUcrm(enUcrm);
 				log.info("저장된 메시지 : {}", msg);
@@ -95,13 +93,11 @@ public class ControllerUCRM {
 	}
 
 	@Transactional
-	public Mono<ResponseEntity<String>> ucrmMsgFrmCnsmer() {// 이 함수는 스케줄러에 의해 5초마다 실행되면서 쉐도우 테이블('UCRMLT')에 있는 데이터들을
-															// 처리해주는 작업을 수행한다.
+	public Mono<ResponseEntity<String>> ucrmMsgFrmCnsmer() {// 이 함수는 스케줄러에 의해 5초마다 실행되면서 쉐도우 테이블('UCRMLT')에 있는 데이터들을 처리해주는 작업을 수행한다.
 		try {
 			log.info("====== Method : ucrmMsgFrmCnsmer ======");
 
-			Page<Entity_Ucrm> entitylist = serviceDb.getAll();// 바로 위의 함수 'SaveUcrmData'에 의해 테이블에 적재된 데이터들은 최대 1000개씩
-																// 불러온다.
+			Page<Entity_Ucrm> entitylist = serviceDb.getAll();// 바로 위의 함수 'SaveUcrmData'에 의해 테이블에 적재된 데이터들은 최대 1000개씩 불러온다.
 
 			if (entitylist.isEmpty()) {
 				log.info("DB에서 조회 된 모든 레코드 : 없음");
@@ -118,22 +114,23 @@ public class ControllerUCRM {
 				Map<String, List<String>> delcontactlists = new HashMap<String, List<String>>();
 				String contactLtId = "";
 				String flag = "";
+				String cpid = "";
+				String queid = "";
 
 				for (int i = 0; i < reps; i++) {// 가져온 레코드 갯수만큼 반복.
 
 					// UCRM에서 보내준 데이터를 우리쪽 contactlt테이블에 넣기 위해 재가공한 엔티티.
 					Entity_ContactLt enContactLt = serviceDb.createContactUcrm(entitylist.getContent().get(i));
 
-					String cpid = entitylist.getContent().get(i).getId().getCpid(); // 첫번째 레코드부터 cpid를 가지고 온다.
+					cpid = entitylist.getContent().get(i).getId().getCpid(); // 첫번째 레코드부터 cpid를 가지고 온다.
+					flag = entitylist.getContent().get(i).getWorkDivsCd();
 
 					contactLtId = mapcontactltId.get(cpid);
-					String queid = mapquetId.get(cpid);
+					queid = mapquetId.get(cpid);
 
-					if (contactLtId == null || contactLtId.equals("")) {// cpid로 Map(mapcontactltId)을 조회했는데 Map 안에
-																		// 그것(cpid)에 대응하는 contactltId가 없다면,
+					if (contactLtId == null || contactLtId.equals("")) {// cpid로 Map(mapcontactltId)을 조회했는데 Map 안에 그것(cpid)에 대응하는 contactltId가 없다면,
 
-						String result = serviceWeb.getCampaignsApiReq("campaigns", cpid); // cpid를 가지고 직접 제네시스 api를 호출해서
-																							// contactltId를 알아낸다
+						String result = serviceWeb.getCampaignsApiReq("campaigns", cpid); // cpid를 가지고 직접 제네시스 api를 호출해서 contactltId를 알아낸다
 
 						if (result.equals("")) {// cpid를 가지고 직접 제네시스 api를 호출해서 contactltId를 알아내려고 했는데 결과 값이 없다면,
 							// 쉐도우 테이블에서 삭제. 테이블명 'UCRMLT'
@@ -143,10 +140,7 @@ public class ControllerUCRM {
 							continue;
 						}
 
-						String res = ServiceJson.extractStrVal("ExtractContactLtId", result); // 가져온 결과에서
-																								// contactlistid,queueid만
-																								// 추출. 변수 'res' 형식의 예 )
-																								// contactlistid::queueid
+						String res = ServiceJson.extractStrVal("ExtractContactLtId", result); // 가져온 결과에서 contactlistid,queueid만 추출. 변수 'res' 형식의 예 )contactlistid::queueid
 						contactLtId = res.split("::")[0];
 						queid = res.split("::")[1];
 
@@ -157,8 +151,7 @@ public class ControllerUCRM {
 					// UCRM에서 보내 준 데이터를 가지고 제네시스에 PUSH하기 위해서 필요한 데이터들을 추출한다.
 					String row_result = ServiceJson.extractStrVal("ExtractRawUcrm", entitylist.getContent().get(i));
 					row_result = row_result + "::" + contactLtId + "::" + queid;
-					String contactltMapper = serviceDb.createContactLtGC(row_result); // row_result =
-																						// cpid::cpsq::cske::csno::tkda::flag::contactltId::queid
+					String contactltMapper = serviceDb.createContactLtGC(row_result); // row_result = cpid::cpsq::cske::csno::tkda::flag::contactltId::queid
 
 					// 제네시스에 인서트 하기 위한 배열 준비
 					if (!contactlists.containsKey(contactLtId)) {
@@ -170,13 +163,22 @@ public class ControllerUCRM {
 						delcontactlists.put(contactLtId, new ArrayList<>());
 					}
 
-					flag = enContactLt.getFlag();
+					
 					try {
 						if (flag.equals("A")) { // Add Contact
 							contactlists.get(contactLtId).add(contactltMapper);
 //							serviceDb.insertContactLt(enContactLt); // 테이블명 'contactlt'
 						} else if (flag.equals("D")) { // Delete Contact
+							
+							JSONObject jsonObject = new JSONObject(contactltMapper);
+							JSONObject dataObject = jsonObject.getJSONObject("data");
+
+							// CPID와 CPSQ 값을 추출
+							cpid = dataObject.getString("CPID");
+							String cpsq = dataObject.getString("CPSQ");
 							delcontactlists.get(contactLtId).add(contactltMapper);
+							serviceDb.delUcrmltRecord(cpid, cpsq);//ucrmlt (쉐도우테이블에서 삭제)
+							serviceDb.delContactltRecord(cpid, cpsq);//contactlt 테이블 삭제
 //							serviceDb.delContactltById(enContactLt.getId());
 						} else {
 							log.info("FLAG A or D가 아님");
@@ -189,9 +191,9 @@ public class ControllerUCRM {
 
 					// 쉐도우 테이블에서 삭제 테이블명 'UCRMLT'
 //					serviceDb.delUcrmLtById(entitylist.getContent().get(i).getTopcDataIsueSno());
-				}
+				}   
 
-				// 캠페인 컨택리스트 적재를 위한 Genesys API 호출 (add contact)
+				// 캠페인 컨택리스트 적재를 위한 Genesys API 호출 (add contact)  
 				for (Map.Entry<String, List<String>> entry : contactlists.entrySet()) {
 					log.info("(Add)Arraylist '{}'의 현재 사이즈: {}", entry.getKey(), entry.getValue().size());
 					// entry.getValue().size()=0 일때 API 호출을 할 필요가 없음.
@@ -204,14 +206,12 @@ public class ControllerUCRM {
 							JSONObject dataObject = jsonObject.getJSONObject("data");
 
 							// CPID와 CPSQ 값을 추출
-							String cpid = dataObject.getString("CPID");
+							cpid = dataObject.getString("CPID");
 							String cpsq = dataObject.getString("CPSQ");
-							Entity_Ucrm enUcrm = serviceDb.findUcrmBykey(cpid, cpsq);
-							Entity_ContactLt enContactLt = serviceDb.createContactUcrm(enUcrm);
+							Entity_ContactLt enContactLt = serviceDb.createContactUcrm(jsonObject);
 							
-							serviceDb.deleteRecord(cpid, cpsq);
-							serviceDb.insertContactLt(enContactLt); // 테이블명 'contactlt'
-
+							serviceDb.delUcrmltRecord(cpid, cpsq);//ucrmlt (쉐도우테이블에서 삭제)
+							serviceDb.insertContactLt(enContactLt); //contactlt테이블에 인서트
 						}
 
 					}
@@ -223,21 +223,20 @@ public class ControllerUCRM {
 					// entry.getValue().size()=0 일때 API 호출을 할 필요가 없음.
 					if (entry.getValue().size() > 0) {
 						serviceWeb.delContacts("delcontacts", entry.getKey(), entry.getValue());
-						for (int i = 0; i < entry.getValue().size(); i++) {
-
-							JSONObject jsonObject = new JSONObject(entry.getValue().get(i));
-							JSONObject dataObject = jsonObject.getJSONObject("data");
-
-							// CPID와 CPSQ 값을 추출
-							String cpid = dataObject.getString("CPID");
-							String cpsq = dataObject.getString("CPSQ");
-							Entity_Ucrm enUcrm = serviceDb.findUcrmBykey(cpid, cpsq);
-							Entity_ContactLt enContactLt = serviceDb.createContactUcrm(enUcrm);
-							
-							serviceDb.deleteRecord(cpid, cpsq);
-							serviceDb.delContactltById(enContactLt.getId());
-
-						}
+						
+//						for (int i = 0; i < entry.getValue().size(); i++) {
+//
+//							JSONObject jsonObject = new JSONObject(entry.getValue().get(i));
+//							JSONObject dataObject = jsonObject.getJSONObject("data");
+//
+//							// CPID와 CPSQ 값을 추출
+//							String cpid = dataObject.getString("CPID");
+//							String cpsq = dataObject.getString("CPSQ");
+//							
+//							serviceDb.delUcrmltRecord(cpid, cpsq);//ucrmlt (쉐도우테이블에서 삭제)
+//							serviceDb.delContactltRecord(cpid, cpsq);//contactlt테이블에서 삭제
+//
+//						}
 					}
 				}
 

@@ -38,7 +38,7 @@ public class Controller360view {
     }
     
     @Scheduled(fixedRate = 30000)
-    public void scheduledMethod() {
+    public void scheduledMethod() { 
         String[] methods = {
             "msg360Datacall", "msg360DataCallCustomer", "msg360DataCallService", "msg360MDatacall",
             "msg360MDataCallCustomer", "msg360MDataCallService", "msg360MMstrsSvcCd", "msg360MstrsSvcCd",

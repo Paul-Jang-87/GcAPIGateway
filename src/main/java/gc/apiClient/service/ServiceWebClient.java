@@ -47,9 +47,8 @@ public class ServiceWebClient implements InterfaceWebClient {
 		/*
 		 * <Genesys API 호출> - 캠페인 조회 [GET]/api/v2/outbound/campaigns/{campaignId}
 		 */
-		log.info("====== Method : getCampaignsApiRequet ======");
+		log.info("====== Method : getCampaignsApiRequet {} ======", endpoint);
 		String result = "";
-
         
         try {
             WebClientApp webClient = new WebClientApp();
@@ -85,23 +84,8 @@ public class ServiceWebClient implements InterfaceWebClient {
 		WebClientApp webClient = new WebClientApp();
 		result = webClient.apiReqPushContacts(endpoint, contactListId, msg.toString());
 
-		int cnt = 3;
-		int retryCount = 1;
-		while (result == null && retryCount < cnt) {
-			log.info("Retrying count : {}", retryCount);
-			retryCount++;
-			result = webClient.apiReqPushContacts(endpoint, contactListId, msg.toString());
-		}
 
-		if (result == null && retryCount >= cnt) {
-			log.error("Final result : {}", result);
-		}
-
-		if (result != null) {
-			result = "성공";
-		}
-
-		log.info("postContactLtApiRequet 요청 후 결과 값 : {}, 시도횟수 : {} || 컨텍리스트 아이디 : {}", result, retryCount,contactListId);
+//		log.info("postContactLtApiRequet 요청 후 결과 값 : {} || 컨텍리스트 아이디 : {}", rs,contactListId);
 		return result;
 	}
 
@@ -117,7 +101,8 @@ public class ServiceWebClient implements InterfaceWebClient {
 		WebClientApp webClient = new WebClientApp();
 		result = webClient.apiReqGetRtOfContacts(endpoint, contactListId, cskes);
 
-		log.info("postContactLtApiBulk 요청 후 결과 값 result : {}", result);
+		
+//		log.info("postContactLtApiBulk 요청 후 결과 값 result : {}", rs);
 		return result;
 	}
 	
@@ -141,7 +126,8 @@ public class ServiceWebClient implements InterfaceWebClient {
 		/*
 		 * Genesys API 호출 - 컨택리스트 삭제 [DELETE] api/v2/outbound/contactlists/{contactListId}/contacts
 		 */
-		log.info("====== Method : delContacts ======");
+		log.info("====== Method : delContacts {} ======", endpoint);
+		log.info("Incoming message (삭제 대상자 리스트-CPSQ) : {}", msg.toString());
 
 		String result = "";
 		WebClientApp webClient = new WebClientApp();
@@ -151,7 +137,7 @@ public class ServiceWebClient implements InterfaceWebClient {
 		result = webClient.apionlyfordelContacts(endpoint, "DELETE", contactListId, rst);
 
 		if (result == null)
-			log.error("{} 정상적으로 삭제 되었습니다.", rst);
+			log.info("{} 정상적으로 삭제 되었습니다.", rst);
 		else
 			log.error("에러가 발생했습니다. : {}", result);
 

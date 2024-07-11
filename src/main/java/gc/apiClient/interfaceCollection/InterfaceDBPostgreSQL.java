@@ -13,22 +13,24 @@ import gc.apiClient.entity.postgresql.Entity_ContactLt;
 import gc.apiClient.entity.postgresql.Entity_Ucrm;
 import gc.apiClient.entity.postgresql.Entity_UcrmRt;
 
+import java.util.List;
+
 import org.json.JSONObject;
 import org.springframework.data.domain.Page;
 
 public interface InterfaceDBPostgreSQL {
 
 	//table 별 매핑
-	Entity_CampRt createCampRtMsg(String cpid, Entity_CampMa enCampMa) throws Exception;
+	Entity_CampRt createCampRtMsg(String cpid, Entity_CampMa enCampMa,int rlsq) throws Exception;
 	Entity_CampMa createEnCampMa(String cpid) throws Exception;
 	Entity_ContactLt createContactLtMsg(String msg) throws Exception;
 	Entity_ContactLt createContactUcrm(Entity_Ucrm entityUcrm) throws Exception;
+	Entity_ContactLt createContactUcrm(JSONObject jsonObject) throws Exception;
 	Entity_Ucrm createUcrm(String msg) throws Exception;
 	Entity_UcrmRt createUcrmRt(String msg) throws Exception;
 	Entity_CallbotRt createCallbotRt(String msg) throws Exception;
 	Entity_ApimRt createApimRt(String msg) throws Exception;
 	String createContactLtGC(String msg) throws Exception;
-	Entity_ContactLt createContactUcrm(JSONObject jsonObject) throws Exception;
 	
 	//insert
 	Entity_CampRt insertCampRt(Entity_CampRt entityCampRt) throws Exception;
@@ -41,13 +43,13 @@ public interface InterfaceDBPostgreSQL {
 	
 	//select
 	Entity_CampMa findCampMaByCpid(String cpid) throws Exception;
-	Entity_Ucrm findUcrmBykey(String cpid,String cpsq) throws Exception;
 	Integer findCampRtMaxRlsq() throws Exception;
 	Page<Entity_Ucrm> getAll() throws Exception; 
 	Page<Entity_UcrmRt> getAllUcrmRt() throws Exception; 
 	Page<Entity_CallbotRt> getAllCallBotRt() throws Exception; 
 	Page<Entity_ApimRt> getAllApimRt() throws Exception; 
 	int getRecordCount()throws Exception;
+	public List<Entity_ContactLt> getRecordsByCpid(String cpid)throws Exception; 
 	
 	//update 
 	public void updateCampMa(String cpid, String cpna)throws Exception;

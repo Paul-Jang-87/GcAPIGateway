@@ -1,6 +1,7 @@
 package gc.apiClient.service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.text.SimpleDateFormat;
 import java.util.Optional;
@@ -15,6 +16,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import gc.apiClient.customproperties.CustomProperties;
 import gc.apiClient.embeddable.ApimCampRt;
@@ -39,7 +41,6 @@ import gc.apiClient.repository.postgresql.Repository_ContactLt;
 import gc.apiClient.repository.postgresql.Repository_Ucrm;
 import gc.apiClient.repository.postgresql.Repository_UcrmRt;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -69,8 +70,9 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		this.repositoryApimRt = repositoryApimRt;
 	}
 
+
 	@Override
-	public Entity_CampRt createCampRtMsg(String cpid, Entity_CampMa enCampMa) {
+	public Entity_CampRt createCampRtMsg(String cpid, Entity_CampMa enCampMa,int rlsq) {
 		// contactid::contactListId::cpid::CPSQ::dirt::tkda::dateCreated
 
 		log.info("====== Method : createCampRtMsg ======");
@@ -80,7 +82,6 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		CampRt id = new CampRt();
 		String parts[] = cpid.split("::");
 
-		int rlsq = 0;
 		int coid = 0;
 		int cpsq = Integer.parseInt(parts[3]);
 		long hubId = 0;
@@ -95,7 +96,6 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		try {
 
 			log.info("------ 들어온 rs를 분배해여 필요한 변수들 초기화 ------");
-			log.info("rlsq: {}", rlsq);
 			log.info("coid: {}", coid);
 			log.info("cpsq: {}", cpsq);
 			log.info("hubid: {}", hubId);
@@ -136,12 +136,9 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			String result = crmapi.getStatusApiReq("campaign_stats", campid);
 			dict = ServiceJson.extractIntVal("ExtractDict", result);
 
-//			Entity_CampMa enCampMa = new Entity_CampMa();
-//			enCampMa = findCampMaByCpid(campid);
 			coid = enCampMa.getCoid();
 			log.info("campid({})로 조회한 레코드의 coid : {}", campid, coid);
 
-			rlsq = findCampRtMaxRlsq().intValue();
 			log.info("camprt테이블에서 현재 가장 큰 rlsq 값 : {}", rlsq);
 			rlsq++;
 			log.info("가져온 rlsq의 값에 +1 : {}", rlsq);
@@ -240,7 +237,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
-	public Entity_ContactLt createContactUcrm(Entity_Ucrm entityUcrm) throws Exception{
+	public Entity_ContactLt createContactUcrm(Entity_Ucrm entityUcrm) {
 
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
 		ContactLtId id = new ContactLtId();
@@ -251,6 +248,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			enContactLt.setCske(entityUcrm.getHldrCustId());
 			enContactLt.setFlag(entityUcrm.getWorkDivsCd());
 			enContactLt.setTkda(entityUcrm.getTrdtCntn());
+			enContactLt.setTno1(entityUcrm.getTlno());
 
 		} catch (Exception e) {
 			log.error("Error Messge : {}", e.getMessage());
@@ -259,38 +257,6 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 		return enContactLt;
 	}
-	
-	
-	@Override
-	public Entity_ContactLt createContactUcrm(JSONObject jsonObject) throws Exception {
-		
-	
-
-		Entity_ContactLt enContactLt = new Entity_ContactLt();
-		ContactLtId id = new ContactLtId();
-		try {
-			JSONObject dataObject = jsonObject.getJSONObject("data");
-			String cpid = dataObject.getString("CPID");
-			String cpsq = dataObject.getString("CPSQ");
-			String cske = dataObject.getString("CSKE");
-			String tkda = dataObject.getString("TKDA");
-			
-			id.setCpid(cpid);
-			id.setCpsq(Integer.parseInt(cpsq));
-			enContactLt.setId(id);
-			enContactLt.setCske(cske);
-			enContactLt.setFlag("A");
-			enContactLt.setTkda(tkda);
-
-		} catch (Exception e) {
-			log.error("Error Messge : {}", e.getMessage());
-			errorLogger.error(e.getMessage(), e);
-		}
-
-		return enContactLt;
-	}
-	
-	
 
 	@Override
 	public Entity_Ucrm createUcrm(String msg) throws Exception {
@@ -404,12 +370,11 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 	@Override
 	@Transactional
-	public Entity_ContactLt insertContactLt(Entity_ContactLt entityContactLt) throws Exception {
+	public Entity_ContactLt insertContactLt(Entity_ContactLt entityContactLt) {
 
 		Optional<Entity_ContactLt> existingEntity = repositoryContactLt.findById(entityContactLt.getId());
 
 		if (existingEntity.isPresent()) {
-			throw new DataIntegrityViolationException("주어진 복합키를 가진 레코드가 이미 테이블에 존재합니다.");
 		}
 		return repositoryContactLt.save(entityContactLt);
 	}
@@ -427,25 +392,9 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			return null;
 		}
 	}
-	
-	
-	@Override
-	@Transactional
-	public Entity_Ucrm findUcrmBykey(String cpid, String cpsq) throws Exception {
-		
-		Optional<Entity_Ucrm> entityOptional = repositoryUcrm.lockByCpidAndCpsq(cpid, cpsq);
-		try {
-			return entityOptional.orElse(null);
-		} catch (Exception e) {
-			
-			log.error("cpid와 cpsq로 엔티티를 조회하는데 실패하였습니다.: {}", cpid);
-			errorLogger.error("cpid와 cpsq로 엔티티를 조회하는데 실패하였습니다.: {}", cpid, e.getMessage());
-			return null;
-		}
-		
-	}
 
 	@Override
+	@Transactional
 	public Integer findCampRtMaxRlsq() {
 
 		try {
@@ -465,10 +414,10 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
-    @Transactional
-    public Page<Entity_Ucrm> getAll() throws Exception {
-        return repositoryUcrm.findAllWithLock(PageRequest.of(0, 500));
-    }
+	@Transactional
+	public Page<Entity_Ucrm> getAll() throws Exception {
+		return repositoryUcrm.findAllWithLock(PageRequest.of(0, 750));
+	}
 
 	@Override
 	public Page<Entity_UcrmRt> getAllUcrmRt() throws Exception {
@@ -520,20 +469,6 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			throw new Exception("삭제하려는 id를 가진 엔티티가 DB테이블에서 조회되지 않습니다.: " + id);
 		}
 	}
-	
-	
-	@Override
-	@Transactional
-    public void delUcrmltRecord(String cpid, String cpsq) throws Exception {
-        Optional<Entity_Ucrm> entityOptional = repositoryUcrm.lockByCpidAndCpsq(cpid, cpsq);
-        if (entityOptional.isPresent()) {
-            repositoryUcrm.deleteByCpidAndCpsq(cpid, cpsq);
-        } else {
-            throw new RuntimeException("Entity not found for CPID: " + cpid + " and CPSQ: " + cpsq);
-        }
-    }
-	
-	
 
 	@Override
 	@Transactional
@@ -569,21 +504,6 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			throw new Exception("삭제하려는 id를 가진 엔티티가 DB테이블에서 조회되지 않습니다.: " + id);
 		}
 	}
-	
-	
-	@Override
-	@Transactional
-    public void delContactltRecord(String cpid, String cpsq) throws Exception {
-		
-		Optional<Entity_ContactLt> entityOptional = repositoryContactLt.lockByCpidAndCpsq(cpid, cpsq);
-        if (entityOptional.isPresent()) {
-        	repositoryContactLt.deleteByCpidAndCpsq(cpid, cpsq);
-        } else {
-            throw new RuntimeException("Entity not found for CPID: " + cpid + " and CPSQ: " + cpsq);
-        }
-        
-    }
-	
 
 	@Override
 	@Transactional
@@ -687,6 +607,59 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		return apimRt;
 	}
 
-	
+	@Override
+	public Entity_ContactLt createContactUcrm(JSONObject jsonObject) throws Exception {
+		Entity_ContactLt enContactLt = new Entity_ContactLt();
+		ContactLtId id = new ContactLtId();
+		try {
+			JSONObject dataObject = jsonObject.getJSONObject("data");
+			String cpid = dataObject.getString("CPID");
+			String cpsq = dataObject.getString("CPSQ");
+			String cske = dataObject.getString("CSKE");
+			String tkda = dataObject.getString("TKDA");
+			String tno1 = dataObject.getString("TNO1");
+
+			id.setCpid(cpid);
+			id.setCpsq(Integer.parseInt(cpsq));
+			enContactLt.setId(id);
+			enContactLt.setCske(cske);
+			enContactLt.setFlag("A");
+			enContactLt.setTkda(tkda);
+			enContactLt.setTno1(tno1);
+
+		} catch (Exception e) {
+			log.error("Error Messge : {}", e.getMessage());
+			errorLogger.error(e.getMessage(), e);
+		}
+
+		return enContactLt;
+	}
+
+	@Override
+	@Transactional
+	public void delUcrmltRecord(String cpid, String cpsq) throws Exception {
+		Optional<Entity_Ucrm> entityOptional = repositoryUcrm.lockByCpidAndCpsq(cpid, cpsq);
+		if (entityOptional.isPresent()) {
+			repositoryUcrm.deleteByCpidAndCpsq(cpid, cpsq);
+		} else {
+		}
+
+	}
+
+	@Override
+	@Transactional
+	public void delContactltRecord(String cpid, String cpsq) throws Exception {
+		Optional<Entity_ContactLt> entityOptional = repositoryContactLt.lockByCpidAndCpsq(cpid, cpsq);
+		if (entityOptional.isPresent()) {
+			repositoryContactLt.deleteByCpidAndCpsq(cpid, cpsq);
+		} else {
+		}
+
+	}
+
+	@Override
+	public List<Entity_ContactLt> getRecordsByCpid(String cpid) throws Exception {
+		return repositoryContactLt.findByCpId(cpid);
+	}
 
 }

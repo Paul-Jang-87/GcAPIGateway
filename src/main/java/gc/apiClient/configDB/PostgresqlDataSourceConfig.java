@@ -26,8 +26,12 @@ import jakarta.persistence.EntityManagerFactory;
 @EnableJpaRepositories(basePackages = "gc.apiClient.repository.postgresql", // 참고할 repository
 		entityManagerFactoryRef = "postgresqlEntityManagerFactory", transactionManagerRef = "postgresqlTransactionManager")
 
+
+
 @Profile("postgres")
 public class PostgresqlDataSourceConfig {
+	
+	
 	@Bean
 	@Primary
 	public LocalContainerEntityManagerFactoryBean postgresqlEntityManagerFactory(EntityManagerFactoryBuilder builder,

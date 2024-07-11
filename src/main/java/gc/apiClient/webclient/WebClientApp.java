@@ -32,8 +32,6 @@ public class WebClientApp {
 
 		CLIENT_ID = WebClientConfig.getClientId();
 		CLIENT_SECRET = WebClientConfig.getClientSecret();
-		log.info("제네시스 Client Id : {}", CLIENT_ID);
-		log.info("제네시스 Client secret : {}", CLIENT_SECRET);
 		API_BASE_URL = WebClientConfig.getBaseUrl();
 
 		checkToken();

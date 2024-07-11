@@ -284,6 +284,8 @@ public class ControllerCallBot {
 		
 		Entity_CampMa enCampMa = serviceDb.findCampMaByCpid(cpid);
 		Entity_CampRt entityCmRt = null;
+		int rlsq = serviceDb.findCampRtMaxRlsq().intValue();
+		
 		Character tkda = full_tkda.charAt(0); // 그리고 비즈니스 로직을 구분하게 해줄 수 있는 토큰데이터를 구해온다.
 
 		// 토큰데이터와 디비젼네임을 인자로 넘겨서 어떤 비지니스 로직인지, 토픽은 어떤 것으로 해야하는지를 결과 값으로 반환 받는다.
@@ -298,7 +300,7 @@ public class ControllerCallBot {
 				continue;
 			}
 
-			entityCmRt = serviceDb.createCampRtMsg(contactsresult, enCampMa);// db 인서트 하기 위한 entity.
+			entityCmRt = serviceDb.createCampRtMsg(contactsresult, enCampMa,rlsq);// db 인서트 하기 위한 entity.
 
 			MsgCallbot msgcallbot = new MsgCallbot(serviceDb);
 			String msg = msgcallbot.rtMessage(entityCmRt);

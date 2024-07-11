@@ -422,6 +422,7 @@ public class ControllerCenter {
 		
 		Entity_CampMa enCampMa = serviceDb.findCampMaByCpid(cpid);
 		Entity_CampRt entityCmRt = null;
+		int rlsq = serviceDb.findCampRtMaxRlsq().intValue();
 
 		MsgApim msgapim = new MsgApim();
 		Entity_ToApim enToApim = new Entity_ToApim();
@@ -429,7 +430,7 @@ public class ControllerCenter {
 
 			contactsresult = ServiceJson.extractStrVal("ExtractContacts", result, i);
 
-			entityCmRt = serviceDb.createCampRtMsg(contactsresult, enCampMa);
+			entityCmRt = serviceDb.createCampRtMsg(contactsresult, enCampMa,rlsq);
 			enToApim = msgapim.rstMassage(entityCmRt);
 
 			apimEntitylt.add(enToApim);

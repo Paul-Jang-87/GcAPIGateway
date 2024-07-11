@@ -46,7 +46,7 @@ public class ControllerUCRM {
 	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
 	private final InterfaceDBPostgreSQL serviceDb;
 	private final InterfaceWebClient serviceWeb;
-	private final CustomProperties customProperties;
+	private final CustomProperties customProperties; 
 
 	public ControllerUCRM(InterfaceDBPostgreSQL serviceDb, InterfaceWebClient serviceWeb,
 			CustomProperties customProperties) {

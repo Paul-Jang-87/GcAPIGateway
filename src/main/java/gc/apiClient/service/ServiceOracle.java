@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import gc.apiClient.entity.oracleH.Entity_DataCall;
@@ -232,6 +233,7 @@ public class ServiceOracle implements InterfaceDBOracle {
 	 * 매개변수로 들어오는 앤티티 클래스 즉, 그 테이블의 레코드들을 최대 400개까지 가져와 리스트로 반환한다. 
 	 */
 	public <T> List<T> getAll(Class<T> clazz) {
+		log.info("Transaction active processRecords: {}", TransactionSynchronizationManager.isActualTransactionActive());
 		
 		PlatformTransactionManager transactionManagerToUse = selectTransactionManager(clazz);
 		EntityManager entityManagerToUse = selectEntityManager(clazz);

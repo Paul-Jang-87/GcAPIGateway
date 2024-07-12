@@ -11,7 +11,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,7 +32,6 @@ import gc.apiClient.interfaceCollection.InterfaceWebClient;
 import gc.apiClient.messages.MessageToApim;
 import gc.apiClient.messages.MessageToProducer;
 import gc.apiClient.service.ServiceJson;
-import gc.apiClient.webclient.WebClientApp;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import kafMsges.MsgApim;
@@ -41,7 +39,6 @@ import kafMsges.MsgCallbot;
 import kafMsges.MsgUcrm;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Schedulers;
 
 @RestController
 @Slf4j
@@ -56,22 +53,6 @@ public class ControllerCenter {
 		this.serviceDb = serviceDb;
 		this.serviceWeb = serviceWeb;
 		this.customProperties = customProperties;
-	}
-
-	@Scheduled(fixedRate = 86400 * 1000) // 24시간 마다 토큰 초기화.
-	public void RefreshToken() {
-
-		WebClientApp.EmptyTockenlt();
-
-	}
-	
-
-	@Scheduled(fixedRate = 60000)
-	public void scheduledMethod() {// 1분 간격으로 안의 함수들 비동기적으로 실행
-
-		Mono.fromCallable(() -> receiveMessage("campma")).subscribeOn(Schedulers.boundedElastic()).subscribe();
-		Mono.fromCallable(() -> sendApimRt()).subscribeOn(Schedulers.boundedElastic()).subscribe();
-
 	}
 
 

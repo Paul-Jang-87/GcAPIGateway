@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,7 +33,6 @@ import gc.apiClient.service.ServiceJson;
 import kafMsges.MsgCallbot;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Schedulers;
 
 @RestController
 @Slf4j
@@ -53,16 +51,6 @@ public class ControllerCallBot {
 		this.customProperties = customProperties;
 	}
 
-	@Scheduled(fixedRate = 60000) // 1분 간격으로 'SendCallBotRt' 비동기적으로 실행.
-	public void scheduledMethod() {
-		/*
-		 * SendCallBotRt() 메서드를 비동기 방식 스케쥴링을 위한 메서드 Mono.fromCallable : 주어진 callable을
-		 * 호출하고 그 결과를 발행하는 Mono를 생성 subscribeOn(Schedulers.boundedElastic() : 작업을 실행할
-		 * 스케쥴러를 설정. (스레드풀 제공) subscribe() : 'Mono'를 구독하여 실제로 작업이 수행 됨.
-		 */
-		Mono.fromCallable(() -> sendCallBotRt()).subscribeOn(Schedulers.boundedElastic()).subscribe();
-
-	}
 
 	/**
 	 * 

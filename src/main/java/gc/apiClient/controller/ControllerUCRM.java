@@ -16,7 +16,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,7 +37,6 @@ import jakarta.transaction.Transactional;
 import kafMsges.MsgUcrm;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Schedulers;
 
 @RestController
 @Slf4j
@@ -54,20 +52,9 @@ public class ControllerUCRM {
 		this.customProperties = customProperties;
 	}
 
-	@Scheduled(fixedRate = 60000) // 1분 간격으로 함수 'SendUcrmRt' 스케줄 돌림.
-	public void scheduledMethod() {
 
-		Mono.fromCallable(() -> sendUcrmRt()).subscribeOn(Schedulers.boundedElastic()).subscribe();
 
-	}
-
-	@Scheduled(fixedRate = 10000) // 10초 간격으로 함수 'UcrmMsgFrmCnsmer' 스케줄 돌림.
-	public void ucrmContactlt() {
-		Mono.fromCallable(() -> ucrmMsgFrmCnsmer()).subscribeOn(Schedulers.boundedElastic()).subscribe();
-	}
-
-	// 이것을 카프카 컨슈머에서 호출하는 api. 컨슈머 앱에서 특정 토픽을 구독하면서 메시지를 받는다. 메시지를 받은 컨슈머는 이 api를
-	// 호출하여 받은 메시지를 전달해준다.
+	// 이것을 카프카 컨슈머에서 호출하는 api. 컨슈머 앱에서 특정 토픽을 구독하면서 메시지를 받는다. 메시지를 받은 컨슈머는 이 api를 호출하여 받은 메시지를 전달해준다.
 	@PostMapping("/saveucrmdata")
 	public Mono<ResponseEntity<String>> saveUcrmData(@RequestBody String msg) {
 
@@ -106,7 +93,7 @@ public class ControllerUCRM {
 
 				jsonObj = jsonArray.getJSONObject(i);
 				singleDate = jsonObj.toString();
-				Entity_Ucrm enUcrm = serviceDb.createUcrm(singleDate); // 전달 받은 String 형태의 메시지를 쉐도우테이블('UCRMLT')에 인서트 하기 위해서 Entity 형태로 제가공해준다.
+				Entity_Ucrm enUcrm = serviceDb.createUcrm(singleDate); // 전달 받은 String 형태의 메시지를 쉐도우테이블('UCRMLT')에 인서트 하기 위해서 Entity 형태로 재가공해준다.
 				serviceDb.insertUcrm(enUcrm);
 				log.info("저장된 메시지 : {}", msg);
 			}
@@ -122,7 +109,7 @@ public class ControllerUCRM {
 
 	
 	@Transactional
-	public Mono<ResponseEntity<String>> ucrmMsgFrmCnsmer() {// 이 함수는 스케줄러에 의해 5초마다 실행되면서 쉐도우 테이블('UCRMLT')에 있는 데이터들을 처리해주는 작업을 수행한다.
+	public Mono<Void> ucrmMsgFrmCnsmer() {// 이 함수는 스케줄러에 의해 5초마다 실행되면서 쉐도우 테이블('UCRMLT')에 있는 데이터들을 처리해주는 작업을 수행한다.
 		try {
 			log.info("====== Method : ucrmMsgFrmCnsmer ======");
 
@@ -347,7 +334,7 @@ public class ControllerUCRM {
 			errorLogger.error(e.getMessage(), e);
 		}
 
-		return Mono.just(ResponseEntity.ok("Successfully processed the message."));
+		return Mono.empty();
 	}
 
 	@Transactional

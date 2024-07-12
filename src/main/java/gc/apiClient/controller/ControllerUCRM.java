@@ -120,6 +120,7 @@ public class ControllerUCRM {
 		return Mono.just(ResponseEntity.ok("Successfully processed the message."));
 	}
 
+	
 	@Transactional
 	public Mono<ResponseEntity<String>> ucrmMsgFrmCnsmer() {// 이 함수는 스케줄러에 의해 5초마다 실행되면서 쉐도우 테이블('UCRMLT')에 있는 데이터들을 처리해주는 작업을 수행한다.
 		try {
@@ -142,7 +143,7 @@ public class ControllerUCRM {
 				Map<String, List<String>> delcontactlists = new HashMap<String, List<String>>();
 				Map<String, List<String>> delcontactltTb = new HashMap<String, List<String>>();
 
-				String invalid_camp = "";
+				List<String> invalid_camp = new ArrayList<String>();
 				String contactLtId = "";
 				String flag = "";
 				String cpid = "";
@@ -158,8 +159,7 @@ public class ControllerUCRM {
 
 					if (contactLtId == null || contactLtId.equals("")) {// cpid로 Map(mapcontactltId)을 조회했는데 Map 안에 그것(cpid)에 대응하는 contactltId가 없다면,
 
-						if (invalid_camp.equals(cpid)) {// 지금 레코드에 있는 캠페인 아이디가 유효하지 않은 캠페인 아이디라면 api호출 없이 DB에서 해당 레코드 삭제 후 그냥 다음 레코드로
-														// 넘어감.
+						if (invalid_camp.contains(cpid)) {// 지금 레코드에 있는 캠페인 아이디가 유효하지 않은 캠페인 아이디라면 api호출 없이 DB에서 해당 레코드 삭제 후 그냥 다음 레코드로 넘어감.
 							serviceDb.delUcrmLtById(entitylist.getContent().get(i).getTopcDataIsueSno());
 							continue;
 						}
@@ -170,7 +170,7 @@ public class ControllerUCRM {
 							// 쉐도우 테이블에서 삭제. 테이블명 'UCRMLT'
 							serviceDb.delUcrmLtById(entitylist.getContent().get(i).getTopcDataIsueSno());
 							log.info("캠페인 조회 결과 유효한 캠페인 아이디 ({})가 아닙니다", cpid);
-							invalid_camp = cpid; // 유효하지 않은 캠페인 저장.
+							invalid_camp.add(cpid); // 유효하지 않은 캠페인 저장.
 							// 밑의 로직을 수행하지 않고 다음 i번째로 넘어간다.
 							continue;
 						}
@@ -229,6 +229,8 @@ public class ControllerUCRM {
 					}
 
 				}
+				
+				invalid_camp.clear(); //유효하지 않았던 cpid들을 저장해 둔 배열 안의 요소들 삭제
 
 				// 캠페인 컨택리스트 적재를 위한 Genesys API 호출 (add contact)
 				for (Map.Entry<String, List<String>> entry : contactlists.entrySet()) {

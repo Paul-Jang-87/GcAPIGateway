@@ -99,7 +99,7 @@ public class ControllerCenter {
 							reps = reps - 100;
 						}
 						++page;
-						result = serviceWeb.getApiReq("campaignId", page);
+						result = serviceWeb.getApiReq("campaignId", page); 
 						reps = reps % 100;
 						handlingCampMaster(reps, result);
 

@@ -179,27 +179,25 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 	@Override
-	public Entity_CampMa createEnCampMa(String msg) { // 매개변수로 받는 String msg = > cpid::coid::cpna::division
+	public Entity_CampMa createEnCampMa(JSONObject jsonObject) { // 매개변수로 받는 String msg = > cpid::coid::cpna::division
 
 		log.info("====== Method : createEnCampMa ======");
 
 		Entity_CampMa enCampMa = new Entity_CampMa();
-		String parts[] = msg.split("::");
-		String cpid = "";
+		String cpid = jsonObject.getString("cpid");
 		int coid = 0;
 		String cpna = "";
-		String divisionId = "";
+		String divisionNm = "";
 
-		cpid = parts[0];// 캠페인 아이디
 		try {
-			coid = Integer.parseInt(parts[1]); // 센터구분 코드
+			coid = Integer.parseInt(jsonObject.getString("coid")); // 센터구분 코드
 		} catch (Exception e) {
-			log.info("잘못된 coid(센터구분 코드)입니다 coid(센터구분 코드)는 두 자리 숫자여야 합니다 : {}", parts[1]);
+			log.info("잘못된 coid(센터구분 코드)입니다 coid(센터구분 코드)는 두 자리 숫자여야 합니다 : {}", jsonObject.getString("coid"));
 			coid = 99;
 			log.info("coid(센터구분 코드)임의로 숫자 '99'로 변경 : {}", coid);
 		}
-		cpna = parts[2]; // 캠페인 명
-		divisionId = parts[3]; // 캠페인 명
+		cpna = jsonObject.getString("cpnm"); // 캠페인 명
+		divisionNm = jsonObject.getString("divisionName"); // 캠페인 명
 
 		enCampMa.setCpid(cpid);
 		enCampMa.setCoid(coid);
@@ -207,7 +205,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 		log.info("cpid : {}", cpid);
 		log.info("coid : {}", coid);
-		log.info("divisionId : {}", divisionId);
+		log.info("divisionNm : {}", divisionNm);
 		log.info("cpna : {}", cpna);
 
 		return enCampMa;
@@ -392,6 +390,14 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 			return null;
 		}
 	}
+	
+	
+	@Override
+	@Transactional
+	public List<Entity_CampMa> getAllRecords() throws Exception {
+		 return repositoryCampMa.findAll();
+	}
+	
 
 	@Override
 	@Transactional

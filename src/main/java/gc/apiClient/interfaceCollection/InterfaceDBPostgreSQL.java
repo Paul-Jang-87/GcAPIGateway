@@ -22,7 +22,7 @@ public interface InterfaceDBPostgreSQL {
 
 	//table 별 매핑
 	Entity_CampRt createCampRtMsg(String cpid, Entity_CampMa enCampMa,int rlsq) throws Exception;
-	Entity_CampMa createEnCampMa(String cpid) throws Exception;
+	Entity_CampMa createEnCampMa(JSONObject jsonObject) throws Exception;
 	Entity_ContactLt createContactLtMsg(String msg) throws Exception;
 	Entity_ContactLt createContactUcrm(Entity_Ucrm entityUcrm) throws Exception;
 	Entity_ContactLt createContactUcrm(JSONObject jsonObject) throws Exception;
@@ -43,6 +43,7 @@ public interface InterfaceDBPostgreSQL {
 	
 	//select
 	Entity_CampMa findCampMaByCpid(String cpid) throws Exception;
+	List<Entity_CampMa> getAllRecords() throws Exception;
 	Integer findCampRtMaxRlsq() throws Exception;
 	Page<Entity_Ucrm> getAll() throws Exception; 
 	Page<Entity_UcrmRt> getAllUcrmRt() throws Exception; 

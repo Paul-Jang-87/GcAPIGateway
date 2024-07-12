@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
@@ -63,8 +64,6 @@ public class ControllerCenter {
 
 		String result = "";
 		String topic_id = tranId;
-		int size = 0;
-		int numberOfRecords = 0;
 
 		switch (topic_id) {
 
@@ -72,42 +71,30 @@ public class ControllerCenter {
 
 			try {
 				
-				// 제네시스 api 호출. 'campaignId'는 'WebClientApp'클래스에 미리 정의 해둔 endpoint.
-				// G.C API 캠페인 전체 조회 (/api/v2/outbound/campaigns/{campaignId})
-				result = serviceWeb.getApiReq("campaignId", 1);	
-				size = ServiceJson.extractIntVal("CampaignListSize", result);	// G.C에서 불러온 캠페인 개수.
+				result = serviceWeb.getApiReq("campaignId", 1); // 제네시스 api 호출. 'campaignId'는 'WebClientApp'클래스에 미리 정의 해둔 endpoint.	
+				int reps = ServiceJson.extractIntVal("CampaignListSize", result);// G.C에서 불러온 캠페인 개수.
+				log.info("제네시스에서 조회한 캠페인 수 : {} ", reps);
 
-				numberOfRecords = serviceDb.getRecordCount(); 	// DB CAMPMA TABLE 총 레코드 갯수.
-
-				if (size == numberOfRecords) {// 조회된 캠페인의 개수와 현재 db에 저장된 캠페인 정보의 숫자가 동일하다. 즉, 새로 생성된 캠페인이 없다.
-
-				} else {
-					// 조회된 캠페인의 개수와 현재 db에 저장된 캠페인 정보의 숫자가 다르다. 즉, api 호출로 캠페인들을 조회 해본 결과 새로 생성된 캠페인이 있다.
-					int reps = size - numberOfRecords;  // 몇 개의 캠페인이 새로 생성됐는지.
-					log.info("신규 생성된 캠페인 수 : {} ", reps);
-
-					// G.C API 캠페인 조회에서 한번에 조회 가능한 캠페인 수는 최대 100개.
-					// reps 100개 이상인 경우 page 처리를 통해 캠페인을 조회한다. 
-					if (reps > 100) {
-						int page = 1;
+				// G.C API 캠페인 조회에서 한번에 조회 가능한 캠페인 수는 최대 100개 reps 100개 이상인 경우 page 처리를 통해 캠페인을 조회한다. 
+				if (reps > 100) {
+					int page = 1;
+					handlingCampMaster(100, result);
+					reps = reps - 100;
+					while ((reps / 100) != 0) {
+						++page;
+						result = serviceWeb.getApiReq("campaignId", page);
 						handlingCampMaster(100, result);
 						reps = reps - 100;
-						while ((reps / 100) != 0) {
-							++page;
-							result = serviceWeb.getApiReq("campaignId", page);
-							handlingCampMaster(100, result);
-							reps = reps - 100;
-						}
-						++page;
-						result = serviceWeb.getApiReq("campaignId", page); 
-						reps = reps % 100;
-						handlingCampMaster(reps, result);
-
-					} else {
-						handlingCampMaster(reps, result);
 					}
+					++page;
+					result = serviceWeb.getApiReq("campaignId", page); 
+					reps = reps % 100;
+					handlingCampMaster(reps, result);
 
+				} else {
+					handlingCampMaster(reps, result);
 				}
+
 			} catch (Exception e) {
 				log.error("에러 메시지 : {}", e.getMessage());
 				errorLogger.error(e.getMessage(),e);
@@ -129,7 +116,7 @@ public class ControllerCenter {
 	public Mono<ResponseEntity<String>> updateOrDelCampMa(@RequestBody String msg, HttpServletRequest request)
 			throws Exception {
 
-		String row_result = "";
+		JSONObject campInfoObj = null;
 		Entity_CampMa enCampMa = null;
 
 		try {
@@ -138,14 +125,14 @@ public class ControllerCenter {
 			String ipAddress = request.getRemoteAddr();
 			int port = request.getRemotePort();
 			log.info("IP주소 : {}, 포트 : {}로 부터 api가 호출되었습니다.", ipAddress, port);// 어디서 이 api를 불렀는지 ip와 port 번호를 찍어본다.
+			
+			campInfoObj = ServiceJson.extractObjVal("ExtractCampMaUpdateOrDel", msg); 
+			String division = campInfoObj.getString("divisionName");
+			String action = campInfoObj.getString("action");
 
-			row_result = ServiceJson.extractStrVal("ExtractCampMaUpdateOrDel", msg); // row_result >> cpid::coid::cpna::divisionid::action
-			String division = row_result.split("::")[3];
-			String action = row_result.split("::")[4];
-
-			enCampMa = serviceDb.createEnCampMa(row_result);
-			String cpid = row_result.split("::")[0];
-			String cpna = row_result.split("::")[2];
+			enCampMa = serviceDb.createEnCampMa(campInfoObj);
+			String cpid = campInfoObj.getString("cpid");
+			String cpna = campInfoObj.getString("cpna");
 
 			Map<String, String> properties = customProperties.getDivision();
 			String divisionName = properties.getOrDefault(division, "디비전을 찾을 수 없습니다.");// src/main/resources 경로의 application.properties 참조, division 아이디를 키로하여 값 조회.
@@ -436,30 +423,45 @@ public class ControllerCenter {
 
 	public void handlingCampMaster(int reps, String result) throws Exception {
 
-		String row_result = "";
+		JSONObject campInfoObj = null;
 		String division = "";
 		String business = "";
 		String topic_id = "";
 		String endpoint = "";
+		String cpid = "" ;
 		String msg = "";
 		MessageToProducer producer = null;
+		
+		List<String> cpFrmGenesys = new ArrayList<String>();
+		List<String> cpFrmDB = new ArrayList<String>();
+		List<Entity_CampMa> allRecords = serviceDb.getAllRecords();
+		
+		for(int i = 0; i<reps; i++) {
+			campInfoObj = ServiceJson.extractObjVal("ExtractValCrm", result, reps);
+			cpid = campInfoObj.getString("cpid");
+			cpFrmGenesys.add(cpid);
+		}
+		
+		for(Entity_CampMa entity : allRecords) {
+			cpFrmDB.add(entity.getCpid());
+		}
+		
+		
 
 		while (reps-- > 0) {// reps가 0이 될 때까지 reps를 줄여나가면서 반복.
 
 			log.info("{}번째 인덱스 ", reps);
 
-			row_result = ServiceJson.extractStrVal("ExtractValCrm", result, reps);// 결과 값 : cpid::coid::cpna::division
-																					// ->
-																					// 캠페인아이디::테넌트아이디::캠페인명::디비전
+			campInfoObj = ServiceJson.extractObjVal("ExtractValCrm", result, reps);
 
-			division = row_result.split("::")[3];
+			division = campInfoObj.getString("divisionName");
 
 			Map<String, String> businessLogic = BusinessLogic.selectedBusiness(division);
 
 			business = businessLogic.get("business");
 			topic_id = businessLogic.get("topic_id");
 
-			Entity_CampMa enCampMa = serviceDb.createEnCampMa(row_result);
+			Entity_CampMa enCampMa = serviceDb.createEnCampMa(campInfoObj);
 
 			switch (business.trim()) {// 여기서 비즈니스 로직 구분. default는 'apim'
 			case "UCRM":

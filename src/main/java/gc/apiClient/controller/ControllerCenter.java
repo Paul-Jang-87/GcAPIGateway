@@ -50,12 +50,15 @@ public class ControllerCenter {
 	private final CustomProperties customProperties;
 	private static List<Entity_ToApim> apimEntitylt = new ArrayList<Entity_ToApim>();
 
+	// 제네시스로부터 가져온 cpid(캠페인 아이디)들을 담을 list변수들
+	public static List<String> cpFrmGenesys1 = new ArrayList<String>();
+	public static List<String> cpFrmGenesys2 = new ArrayList<String>();
+
 	public ControllerCenter(InterfaceDBPostgreSQL serviceDb, InterfaceWebClient serviceWeb, CustomProperties customProperties) {
 		this.serviceDb = serviceDb;
 		this.serviceWeb = serviceWeb;
 		this.customProperties = customProperties;
 	}
-
 
 	@GetMapping("/gcapi/get/{topic}")
 	public Mono<Void> receiveMessage(@PathVariable("topic") String tranId) {
@@ -70,12 +73,14 @@ public class ControllerCenter {
 		case "campma":
 
 			try {
-				
-				result = serviceWeb.getApiReq("campaignId", 1); // 제네시스 api 호출. 'campaignId'는 'WebClientApp'클래스에 미리 정의 해둔 endpoint.	
+
+				result = serviceWeb.getApiReq("campaignId", 1); // 제네시스 api 호출. 'campaignId'는 'WebClientApp'클래스에 미리 정의
+																// 해둔 endpoint.
 				int reps = ServiceJson.extractIntVal("CampaignListSize", result);// G.C에서 불러온 캠페인 개수.
 				log.info("제네시스에서 조회한 캠페인 수 : {} ", reps);
 
-				// G.C API 캠페인 조회에서 한번에 조회 가능한 캠페인 수는 최대 100개 reps 100개 이상인 경우 page 처리를 통해 캠페인을 조회한다. 
+				// G.C API 캠페인 조회에서 한번에 조회 가능한 캠페인 수는 최대 100개 reps 100개 이상인 경우 page 처리를 통해 캠페인을
+				// 조회한다.
 				if (reps > 100) {
 					int page = 1;
 					handlingCampMaster(100, result);
@@ -87,7 +92,7 @@ public class ControllerCenter {
 						reps = reps - 100;
 					}
 					++page;
-					result = serviceWeb.getApiReq("campaignId", page); 
+					result = serviceWeb.getApiReq("campaignId", page);
 					reps = reps % 100;
 					handlingCampMaster(reps, result);
 
@@ -97,7 +102,7 @@ public class ControllerCenter {
 
 			} catch (Exception e) {
 				log.error("에러 메시지 : {}", e.getMessage());
-				errorLogger.error(e.getMessage(),e);
+				errorLogger.error(e.getMessage(), e);
 			}
 		}
 
@@ -113,8 +118,7 @@ public class ControllerCenter {
 	 * @throws Exception
 	 */
 	@PostMapping("/updateOrDelCampma")
-	public Mono<ResponseEntity<String>> updateOrDelCampMa(@RequestBody String msg, HttpServletRequest request)
-			throws Exception {
+	public Mono<ResponseEntity<String>> updateOrDelCampMa(@RequestBody String msg, HttpServletRequest request) throws Exception {
 
 		JSONObject campInfoObj = null;
 		Entity_CampMa enCampMa = null;
@@ -125,8 +129,8 @@ public class ControllerCenter {
 			String ipAddress = request.getRemoteAddr();
 			int port = request.getRemotePort();
 			log.info("IP주소 : {}, 포트 : {}로 부터 api가 호출되었습니다.", ipAddress, port);// 어디서 이 api를 불렀는지 ip와 port 번호를 찍어본다.
-			
-			campInfoObj = ServiceJson.extractObjVal("ExtractCampMaUpdateOrDel", msg); 
+
+			campInfoObj = ServiceJson.extractObjVal("ExtractCampMaUpdateOrDel", msg);
 			String division = campInfoObj.getString("divisionName");
 			String action = campInfoObj.getString("action");
 
@@ -135,7 +139,9 @@ public class ControllerCenter {
 			String cpna = campInfoObj.getString("cpna");
 
 			Map<String, String> properties = customProperties.getDivision();
-			String divisionName = properties.getOrDefault(division, "디비전을 찾을 수 없습니다.");// src/main/resources 경로의 application.properties 참조, division 아이디를 키로하여 값 조회.
+			String divisionName = properties.getOrDefault(division, "디비전을 찾을 수 없습니다.");// src/main/resources 경로의
+																						// application.properties 참조,
+																						// division 아이디를 키로하여 값 조회.
 
 			Map<String, String> businessLogic = BusinessLogic.selectedBusiness(divisionName.trim());
 
@@ -149,7 +155,7 @@ public class ControllerCenter {
 
 				if (action.equals("update")) {
 					// 캠페인 수정은 '캠페인명(cpnm)'만 가능
-					// 캠페인 수정 외 캠페인 발신, 발신중지등 캠페인 변화에 대한 이벤트도 'update'로 날아온다. 
+					// 캠페인 수정 외 캠페인 발신, 발신중지등 캠페인 변화에 대한 이벤트도 'update'로 날아온다.
 					MsgUcrm msgucrm = new MsgUcrm();
 					msg = msgucrm.maMessage(enCampMa, action);
 
@@ -161,21 +167,20 @@ public class ControllerCenter {
 
 						MessageToProducer producer = new MessageToProducer();
 						endpoint = "/gcapi/post/" + topic_id;
-						producer.sendMsgToProducer(endpoint, msg); // update 내용 kafka-producer 메시지 전송 
+						producer.sendMsgToProducer(endpoint, msg); // update 내용 kafka-producer 메시지 전송
 
-					} catch (EntityNotFoundException ex) { // update 실행 전 cpid로 CAMPMA TABLE 조회, 조회가 되지 않을 경우 Exception 발생
+					} catch (EntityNotFoundException ex) { // update 실행 전 cpid로 CAMPMA TABLE 조회, 조회가 되지 않을 경우 Exception
+															// 발생
 						log.error("EntityNotFoundException occurred: {} ", ex.getMessage());
 						errorLogger.error(ex.getMessage(), ex);
 					}
 
-					return Mono.just(
-							ResponseEntity.ok().body(String.format("UCRM, cpid가 %s인 레코드가 성공적으로 업데이트 완료되었습니다.", cpid)));
+					return Mono.just(ResponseEntity.ok().body(String.format("UCRM, cpid가 %s인 레코드가 성공적으로 업데이트 완료되었습니다.", cpid)));
 
 				} else {// update가 아닌 delete일 때
 					log.info("'delete' event - 삭제 대상 cpid : {}", cpid);
 					serviceDb.delCampMaById(cpid);
-					return Mono
-							.just(ResponseEntity.ok().body(String.format("UCRM, cpid가 %s인 레코드가 성공적으로 삭제되었습니다.", cpid)));
+					return Mono.just(ResponseEntity.ok().body(String.format("UCRM, cpid가 %s인 레코드가 성공적으로 삭제되었습니다.", cpid)));
 				}
 
 			case "Callbot":
@@ -192,25 +197,24 @@ public class ControllerCenter {
 						serviceDb.updateCampMa(cpid, cpna);
 						MessageToProducer producer = new MessageToProducer();
 						endpoint = "/gcapi/post/" + topic_id;
-						producer.sendMsgToProducer(endpoint, msg);	// update 내용 kafka-producer 메시지 전송 
+						producer.sendMsgToProducer(endpoint, msg); // update 내용 kafka-producer 메시지 전송
 
-					} catch (EntityNotFoundException ex) {	// update 실행 전 cpid로 CAMPMA TABLE 조회, 조회가 되지 않을 경우 Exception 발생
+					} catch (EntityNotFoundException ex) { // update 실행 전 cpid로 CAMPMA TABLE 조회, 조회가 되지 않을 경우 Exception
+															// 발생
 						log.error("EntityNotFoundException occurred: {} ", ex.getMessage());
 						errorLogger.error(ex.getMessage(), ex);
 					}
 
-					return Mono.just(ResponseEntity.ok()
-							.body(String.format("Callbot, cpid가 %s인 레코드가 성공적으로 업데이트 완료되었습니다.", cpid)));
+					return Mono.just(ResponseEntity.ok().body(String.format("Callbot, cpid가 %s인 레코드가 성공적으로 업데이트 완료되었습니다.", cpid)));
 
 				} else {
 					log.info("'delete' event - 삭제 대상 cpid : {}", cpid);
 					serviceDb.delCampMaById(cpid);
-					return Mono.just(
-							ResponseEntity.ok().body(String.format("Callbot, cpid가 %s인 레코드가 성공적으로 삭제되었습니다.", cpid)));
+					return Mono.just(ResponseEntity.ok().body(String.format("Callbot, cpid가 %s인 레코드가 성공적으로 삭제되었습니다.", cpid)));
 				}
 
 			default:
-				// APIM application으로 전송 
+				// APIM application으로 전송
 				MsgApim msgapim = new MsgApim();
 				msg = msgapim.maMessage(enCampMa, action);
 
@@ -228,16 +232,14 @@ public class ControllerCenter {
 						errorLogger.error(ex.getMessage(), ex);
 					}
 
-					return Mono.just(
-							ResponseEntity.ok().body(String.format("Apim, cpid가 %s인 레코드가 성공적으로 업데이트가 완료되었습니다.", cpid)));
+					return Mono.just(ResponseEntity.ok().body(String.format("Apim, cpid가 %s인 레코드가 성공적으로 업데이트가 완료되었습니다.", cpid)));
 				} else {
 					serviceDb.delCampMaById(cpid);
 					endpoint = "/cmpnMstrRegist";
 					apim.sendMsgToApim(endpoint, msg);
 					log.info("'delete' event - 삭제 대상 cpid : {}, APIM으로 보냄. : {}", cpid, msg);
 				}
-				return Mono
-						.just(ResponseEntity.ok().body(String.format("\"Apim, cpid가 %s인 레코드가 성공적으로 삭제되었습니다.", cpid)));
+				return Mono.just(ResponseEntity.ok().body(String.format("\"Apim, cpid가 %s인 레코드가 성공적으로 삭제되었습니다.", cpid)));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -324,7 +326,9 @@ public class ControllerCenter {
 																		// contactltId가 없다면,
 						log.info("일치하는 contactLtId 없음");
 						String result = serviceWeb.getCampaignsApiReq("campaigns", cpid);
-						String res = ServiceJson.extractStrVal("ExtractContactLtId", result); // 가져온 결과에서 contactlistid,queueid만 추출.
+						String res = ServiceJson.extractStrVal("ExtractContactLtId", result); // 가져온 결과에서
+																								// contactlistid,queueid만
+																								// 추출.
 						contactLtId = res.split("::")[0];
 
 						String division = enApimRt.getDivisionid(); // 첫번째 레코드부터 cpid를 가지고 온다.
@@ -349,7 +353,8 @@ public class ControllerCenter {
 
 						divisionName = mapdivision.get(entry.getKey());
 						// 캠페인 발신결과 전송 (G.C API add contact bulk 데이터는 한번에 최대 50개까지 add 가능)
-						// 배열 크기가 50이상일 때, 배열 안의 인수 개수가 50개 이상일 때는 일단 발신 결과 전송 로직을 탄다. 50개 이상 쌓이고 하게 되면 에러남.
+						// 배열 크기가 50이상일 때, 배열 안의 인수 개수가 50개 이상일 때는 일단 발신 결과 전송 로직을 탄다. 50개 이상 쌓이고 하게 되면
+						// 에러남.
 						if (entry.getValue().size() >= 50) {
 							sendCampRtToAPIM(entry.getKey(), entry.getValue(), divisionName);// contactLtId 와 contactLtId에 해당하는 배열, divisionName
 						}
@@ -385,9 +390,10 @@ public class ControllerCenter {
 
 		// 캠페인이 어느 비즈니스 로직인지 판단하기 위해서 일단 목록 중 하나만 꺼내서 확인해 보도록한다.
 		// 왜냐면 나머지는 똑같을테니.
-		String contactsresult = ServiceJson.extractStrVal("ExtractContacts", result, 0);// JsonString 결과값과 조회하고 싶은 인덱스(첫번째)를 인자로 넣는다.
+		String contactsresult = ServiceJson.extractStrVal("ExtractContacts", result, 0);// JsonString 결과값과 조회하고 싶은
+																						// 인덱스(첫번째)를 인자로 넣는다.
 		String cpid = contactsresult.split("::")[2];
-		
+
 		Entity_CampMa enCampMa = serviceDb.findCampMaByCpid(cpid);
 		Entity_CampRt entityCmRt = null;
 		int rlsq = serviceDb.findCampRtMaxRlsq().intValue();
@@ -398,7 +404,7 @@ public class ControllerCenter {
 
 			contactsresult = ServiceJson.extractStrVal("ExtractContacts", result, i);
 
-			entityCmRt = serviceDb.createCampRtMsg(contactsresult, enCampMa,rlsq);
+			entityCmRt = serviceDb.createCampRtMsg(contactsresult, enCampMa, rlsq);
 			enToApim = msgapim.rstMassage(entityCmRt);
 
 			apimEntitylt.add(enToApim);
@@ -420,7 +426,6 @@ public class ControllerCenter {
 		return Mono.empty();
 	}
 
-
 	public void handlingCampMaster(int reps, String result) throws Exception {
 
 		JSONObject campInfoObj = null;
@@ -428,114 +433,136 @@ public class ControllerCenter {
 		String business = "";
 		String topic_id = "";
 		String endpoint = "";
-		String cpid = "" ;
+		String cpid = "";
 		String msg = "";
 		MessageToProducer producer = null;
-		
-		List<String> cpFrmGenesys = new ArrayList<String>();
-		List<String> cpFrmDB = new ArrayList<String>();
+
+		// DB부터 가져온 cpid(캠페인 아이디)들을 담을 list변수들
+		List<String> cpFrmDB1 = new ArrayList<String>();
+		List<String> cpFrmDB2 = new ArrayList<String>();
 		List<Entity_CampMa> allRecords = serviceDb.getAllRecords();
-		
-		for(int i = 0; i<reps; i++) {
-			campInfoObj = ServiceJson.extractObjVal("ExtractValCrm", result, reps);
+
+		Map<String, Integer> cpididx = new HashMap<String, Integer>();
+
+		for (int i = 0; i < reps; i++) {
+			campInfoObj = ServiceJson.extractObjVal("ExtractValCrm", result, i);
 			cpid = campInfoObj.getString("cpid");
-			cpFrmGenesys.add(cpid);
+			cpFrmGenesys1.add(cpid);
+			cpFrmGenesys2.add(cpid);
+			cpididx.put(cpid, i);
 		}
-		
-		for(Entity_CampMa entity : allRecords) {
-			cpFrmDB.add(entity.getCpid());
+
+		for (Entity_CampMa entity : allRecords) {
+			cpFrmDB1.add(entity.getCpid());
+			cpFrmDB2.add(entity.getCpid());
 		}
-		
-		
 
-		while (reps-- > 0) {// reps가 0이 될 때까지 reps를 줄여나가면서 반복.
+		cpFrmGenesys1.removeAll(cpFrmDB1);
+		cpFrmDB2.removeAll(cpFrmGenesys2);
 
-			log.info("{}번째 인덱스 ", reps);
+		if (cpFrmGenesys1.size() > 0) {// 제네시스에는 있고 DB에는 없는 경우
 
-			campInfoObj = ServiceJson.extractObjVal("ExtractValCrm", result, reps);
+			for (String campid : cpFrmGenesys1) {
 
-			division = campInfoObj.getString("divisionName");
+				int idx = cpididx.get(campid);
+				log.info("제네시스에는 있고 DB에는 없는 경우, 그 캠페인의 숫자는? {} // 캠페인아이디와 해당인덱스 : {} / {}", cpFrmGenesys1.size(), campid, idx);
 
-			Map<String, String> businessLogic = BusinessLogic.selectedBusiness(division);
+				campInfoObj = ServiceJson.extractObjVal("ExtractValCrm", result, idx);
 
-			business = businessLogic.get("business");
-			topic_id = businessLogic.get("topic_id");
+				division = campInfoObj.getString("divisionName");
 
-			Entity_CampMa enCampMa = serviceDb.createEnCampMa(campInfoObj);
+				Map<String, String> businessLogic = BusinessLogic.selectedBusiness(division);
 
-			switch (business.trim()) {// 여기서 비즈니스 로직 구분. default는 'apim'
-			case "UCRM":
+				business = businessLogic.get("business");
+				topic_id = businessLogic.get("topic_id");
 
-				MsgUcrm msgucrm = new MsgUcrm();
-				msg = msgucrm.maMessage(enCampMa, "insert"); // 카프카 프로듀서로 보내기 위한 메시지 조립작업.
+				Entity_CampMa enCampMa = serviceDb.createEnCampMa(campInfoObj);
 
-				try {
-					serviceDb.insertCampMa(enCampMa);// 'enCampMa' db에 인서트
-				} catch (DataIntegrityViolationException ex) {
-					log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
-					errorLogger.error(ex.getMessage(), ex);
-					continue;
-				} catch (DataAccessException ex) {
-					log.error("DataAccessException 발생 : {}", ex.getMessage());
-					errorLogger.error(ex.getMessage(), ex);
-					continue;
+				switch (business.trim()) {// 여기서 비즈니스 로직 구분. default는 'apim'
+				case "UCRM":
+
+					MsgUcrm msgucrm = new MsgUcrm();
+					msg = msgucrm.maMessage(enCampMa, "insert"); // 카프카 프로듀서로 보내기 위한 메시지 조립작업.
+
+					try {
+						serviceDb.insertCampMa(enCampMa);// 'enCampMa' db에 인서트
+					} catch (DataIntegrityViolationException ex) {
+						log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+						errorLogger.error(ex.getMessage(), ex);
+						continue;
+					} catch (DataAccessException ex) {
+						log.error("DataAccessException 발생 : {}", ex.getMessage());
+						errorLogger.error(ex.getMessage(), ex);
+						continue;
+					}
+
+					producer = new MessageToProducer();
+					endpoint = "/gcapi/post/" + topic_id;
+					producer.sendMsgToProducer(endpoint, msg);
+
+					break;
+
+				case "Callbot":
+
+					MsgCallbot msgcallbot = new MsgCallbot();
+					msg = msgcallbot.maMessage(enCampMa, "insert");
+
+					try {
+						serviceDb.insertCampMa(enCampMa);
+					} catch (DataIntegrityViolationException ex) {
+						log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+						errorLogger.error(ex.getMessage(), ex);
+						continue;
+					} catch (DataAccessException ex) {
+						log.error("DataAccessException 발생 : {}", ex.getMessage());
+						errorLogger.error(ex.getMessage(), ex);
+						continue;
+					}
+
+					producer = new MessageToProducer();
+					endpoint = "/gcapi/post/" + topic_id;
+					producer.sendMsgToProducer(endpoint, msg);
+
+					break;
+
+				default:
+
+					try {
+						serviceDb.insertCampMa(enCampMa);
+					} catch (DataIntegrityViolationException ex) {
+						log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
+						errorLogger.error(ex.getMessage(), ex);
+						continue;
+					} catch (DataAccessException ex) {
+						log.error("DataAccessException 발생 : {}", ex.getMessage());
+						errorLogger.error(ex.getMessage(), ex);
+						continue;
+					}
+
+					MsgApim msgapim = new MsgApim();
+					msg = msgapim.maMessage(enCampMa, "insert");
+
+					// localhost:8084/dspRslt
+					// 192.168.219.134:8084/dspRslt
+					MessageToApim apim = new MessageToApim();
+					endpoint = "/cmpnMstrRegist";
+					apim.sendMsgToApim(endpoint, msg);
+					log.info("CMPA 로직, APIM으로 보냄. : {}", msg);
+
+					break;
 				}
-
-				producer = new MessageToProducer();
-				endpoint = "/gcapi/post/" + topic_id;
-				producer.sendMsgToProducer(endpoint, msg);
-
-				break;
-
-			case "Callbot":
-
-				MsgCallbot msgcallbot = new MsgCallbot();
-				msg = msgcallbot.maMessage(enCampMa, "insert");
-
-				try {
-					serviceDb.insertCampMa(enCampMa);
-				} catch (DataIntegrityViolationException ex) {
-					log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
-					errorLogger.error(ex.getMessage(), ex);
-					continue;
-				} catch (DataAccessException ex) {
-					log.error("DataAccessException 발생 : {}", ex.getMessage());
-					errorLogger.error(ex.getMessage(), ex);
-					continue;
-				}
-
-				producer = new MessageToProducer();
-				endpoint = "/gcapi/post/" + topic_id;
-				producer.sendMsgToProducer(endpoint, msg);
-
-				break;
-
-			default:
-
-				try {
-					serviceDb.insertCampMa(enCampMa);
-				} catch (DataIntegrityViolationException ex) {
-					log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
-					errorLogger.error(ex.getMessage(), ex);
-					continue;
-				} catch (DataAccessException ex) {
-					log.error("DataAccessException 발생 : {}", ex.getMessage());
-					errorLogger.error(ex.getMessage(), ex);
-					continue;
-				}
-
-				MsgApim msgapim = new MsgApim();
-				msg = msgapim.maMessage(enCampMa, "insert");
-
-				// localhost:8084/dspRslt
-				// 192.168.219.134:8084/dspRslt
-				MessageToApim apim = new MessageToApim();
-				endpoint = "/cmpnMstrRegist";
-				apim.sendMsgToApim(endpoint, msg);
-				log.info("CMPA 로직, APIM으로 보냄. : {}", msg);
-
-				break;
 			}
+		}
+
+		if (cpFrmDB2.size() > 0) {// DB에는 있고 제네시스에는 없는 경우
+			for (String campid : cpFrmDB2) {
+
+				log.info("DB에는 있고 제네시스에는 없는 경우, 그 캠페인의 숫자는? {} / DB에서 삭제해야할 cpid(캠페인 아이디는?) : {}", cpFrmDB2.size(), campid);
+				serviceDb.delCampMaById(campid);
+				cpFrmGenesys1.remove(cpid);
+				cpFrmGenesys2.remove(cpid);
+			}
+
 		}
 
 	}
@@ -554,5 +581,5 @@ public class ControllerCenter {
 	public Mono<ResponseEntity<String>> getHealthCheckKafka() throws Exception {
 		return Mono.just(ResponseEntity.ok("TEST RESPONSE"));
 	}
-	
+
 }

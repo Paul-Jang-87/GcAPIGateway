@@ -85,11 +85,11 @@ public class ControllerCallBot {
 		log.info("컨슈머로 부터 받은 발신 대상자 건수 : {}", cntofmsg);
 
 		String row_result = "";
-		String result = "";
 		String cpid = "";
 		String topic_id = tranId;
 		String res = "";
 		String contactLtId = "";
+		Entity_CampMa enCpma = null;
 		List<String> arr = new ArrayList<String>();
 
 		log.info("topic_id : {}", topic_id);
@@ -106,12 +106,9 @@ public class ControllerCallBot {
 				Entity_ContactLt enContactLt = serviceDb.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
 				// Entity_ContactLt 객체에 매핑시킨다.
 				cpid = enContactLt.getId().getCpid();// 캠페인 아이디를 가져온다.
+				enCpma = serviceDb.findCampMaByCpid(cpid);
+				contactLtId = enCpma.getCpid();
 
-				result = serviceWeb.getCampaignsApiReq("campaigns", cpid);// 캠페인 아이디로
-																				// "/api/v2/outbound/campaigns/{campaignId}"호출
-																				// 후 결과 가져온다.
-				res = ServiceJson.extractStrVal("ExtractContactLtId", result);
-				contactLtId = res.split("::")[0];
 				log.info("컨텍리스트 아이디 : {}", contactLtId);
 
 				for (int i = 0; i < cntofmsg; i++) {
@@ -175,6 +172,7 @@ public class ControllerCallBot {
 				Map<String, String> mapcontactltId = new HashMap<String, String>();
 				Map<String, String> mapdivision = new HashMap<String, String>();
 				Map<String, List<String>> contactlists = new HashMap<String, List<String>>();
+				Entity_CampMa enCpma = null;
 				String contactLtId = "";
 				String divisionName = "";
 				String cpid = "";
@@ -182,8 +180,8 @@ public class ControllerCallBot {
 				for (int i = 0; i < reps; i++) {
 
 					Entity_CallbotRt enCallbotRt = entitylist.getContent().get(i);
-
 					cpid = enCallbotRt.getId().getCpid(); // 첫번째 레코드부터 cpid를 가지고 온다.
+					enCpma = serviceDb.findCampMaByCpid(cpid);
 					String cqsq = enCallbotRt.getId().getCpsq(); // 첫번째 레코드부터 cpsq를 가지고 온다.
 
 					contactLtId = mapcontactltId.get(cpid) != null ? mapcontactltId.get(cpid) : "";
@@ -191,11 +189,8 @@ public class ControllerCallBot {
 
 					if (contactLtId == null || contactLtId.equals("")) { // cpid를 조회 했는데 그것에 대응하는 contactltId가 없다면,
 						log.info("일치하는 contactLtId 없음");
-						String result = serviceWeb.getCampaignsApiReq("campaigns", cpid);
-						String res = ServiceJson.extractStrVal("ExtractContactLtId", result); // result 에서
-																								// contactlistid,queueid만
-																								// 추출.
-						contactLtId = res.split("::")[0];
+
+						contactLtId = enCpma.getContactltid();
 
 						String division = enCallbotRt.getDivisionid();
 						Map<String, String> properties = customProperties.getDivision();

@@ -451,12 +451,14 @@ public class ControllerUCRM {
 				String contactLtId = "";
 				String divisionName = "";
 				String cpid = "";
+				Entity_CampMa enCpma = null;
 
 				for (int i = 0; i < reps; i++) {
 
 					Entity_UcrmRt enUcrmRt = entitylist.getContent().get(i);
 
 					cpid = enUcrmRt.getId().getCpid(); // 첫번째 레코드부터 cpid를 가지고 온다.
+					enCpma = serviceDb.findCampMaByCpid(cpid);
 					String cqsq = enUcrmRt.getId().getCpsq(); // 첫번째 레코드부터 cpid를 가지고 온다.
 
 					contactLtId = mapcontactltId.get(cpid) != null ? mapcontactltId.get(cpid) : "";
@@ -464,11 +466,8 @@ public class ControllerUCRM {
 
 					if (contactLtId == null || contactLtId.equals("")) {// cpid를 조회 했는데 그것에 대응하는 contactltId가 없다면,
 						log.info("일치하는 contactLtId 없음");
-						String result = serviceWeb.getCampaignsApiReq("campaigns", cpid);
-						String res = ServiceJson.extractStrVal("ExtractContactLtId", result); // 가져온 결과에서
-																								// contactlistid,queueid만
-																								// 추출.
-						contactLtId = res.split("::")[0];
+						
+						contactLtId = enCpma.getContactltid();
 
 						String division = enUcrmRt.getDivisionid(); // 첫번째 레코드부터 cpid를 가지고 온다.
 						Map<String, String> properties = customProperties.getDivision();

@@ -116,17 +116,35 @@ public class ServiceJson {
 		String cpid = jsonNode.path("entities").path(i).path("id").asText();
 		String coid = jsonNode.path("entities").path(i).path("callerName").asText();
 		String cpnm = jsonNode.path("entities").path(i).path("name").asText();
-		String divisionName = jsonNode.path("entities").path(i).path("division").path("name").asText();
+		String contactListid = jsonNode.path("entities").path(i).path("contactList").path("id").asText();
+		String contactListnm = jsonNode.path("entities").path(i).path("contactList").path("name").asText();
+		String queueid = jsonNode.path("entities").path(i).path("queue").path("id").asText();
+		String divisionid = jsonNode.path("entities").path(i).path("division").path("id").asText();
+		String divisionnm = jsonNode.path("entities").path(i).path("division").path("name").asText();
+		String insdate = jsonNode.path("entities").path(i).path("dateCreated").asText();
+		String moddate = jsonNode.path("entities").path(i).path("dateModified").asText();
 
 		jsonObj.put("cpid", cpid);
 		jsonObj.put("coid", coid);
 		jsonObj.put("cpnm", cpnm);
-		jsonObj.put("divisionName", divisionName);
+		jsonObj.put("contactListid", contactListid);
+		jsonObj.put("contactListnm", contactListnm);
+		jsonObj.put("queueid", queueid);
+		jsonObj.put("divisionid", divisionid);
+		jsonObj.put("divisionnm", divisionnm);
+		jsonObj.put("insdate", insdate);
+		jsonObj.put("moddate", moddate);
 
 		log.info("cpid(캠페인아이디) : {}", cpid);
 		log.info("coid(센터구분코드) : {}", coid);
 		log.info("cpnm(캠페인명) : {}", cpnm);
-		log.info("divisionName(디비전명) : {}", divisionName);
+		log.info("contactListid(컨택리스트아이디) : {}", contactListid);
+		log.info("contactListnm(컨택리스트명) : {}", contactListnm);
+		log.info("queueid(큐아이디) : {}", queueid);
+		log.info("divisionid(디비전아이디) : {}", divisionid);
+		log.info("divisionnm(디비전명) : {}", divisionnm);
+		log.info("insdate(생성날짜) : {}", insdate);
+		log.info("moddate(수정날짜) : {}", moddate);
 
 		return jsonObj;
 	}
@@ -157,19 +175,19 @@ public class ServiceJson {
 		String cpid = jsonNode.path("cpid").asText();
 		String coid = jsonNode.path("callerName").asText();
 		String cpnm = jsonNode.path("cpnm").asText();
-		String division = jsonNode.path("division").asText();
+		String divisionnm = jsonNode.path("division").asText();
 		String action = jsonNode.path("action").asText();
 		
 		jsonObj.put("cpid", cpid);
 		jsonObj.put("coid", coid);
 		jsonObj.put("cpnm", cpnm);
-		jsonObj.put("divisionName", division);
+		jsonObj.put("divisionnm", divisionnm);
 		jsonObj.put("action", action);
 
 		log.info("cpid(캠페인아이디) : {}", cpid);
 		log.info("coid(센터구분코드) : {}", coid);
 		log.info("cpnm(캠페인명) : {}", cpnm);
-		log.info("division(디비전아이디) : {}", division);
+		log.info("divisionnm(디비전명) : {}", divisionnm);
 		log.info("action(crud타입) : {}", action);
 		return jsonObj;
 	}

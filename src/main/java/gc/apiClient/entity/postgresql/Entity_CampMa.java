@@ -23,6 +23,27 @@ public class Entity_CampMa {
 	
 	@Column(name = "CPNA")
  	private String cpna;
+	
+	@Column(name = "CONTACTLTID")
+	private String contactltid;
+	
+	@Column(name = "CONTACTLTNM")
+	private String contactltnm;
+	
+	@Column(name = "QUEUEID")
+	private String queueid;
+	
+	@Column(name = "DIVISIONID")
+	private String divisionid;
+	
+	@Column(name = "DIVISIONNM")
+	private String divisionnm;
+	
+	@Column(name = "INSDATE")
+	private String insdate;
+	
+	@Column(name = "MODDATE")
+	private String moddate;
 
 	public Entity_CampMa() {
 	}

@@ -184,29 +184,58 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		log.info("====== Method : createEnCampMa ======");
 
 		Entity_CampMa enCampMa = new Entity_CampMa();
-		String cpid = jsonObject.getString("cpid");
+		String cpid = "";
 		int coid = 0;
 		String cpna = "";
-		String divisionNm = "";
+		String contactListid = "";
+		String contactListnm = "";
+		String queueid = "";
+		String divisionid = "";
+		String divisionnm = "";
+		String insdate = "";
+		String moddate = "";
 
 		try {
-			coid = Integer.parseInt(jsonObject.getString("coid")); // 센터구분 코드
+			
+			coid = Integer.parseInt(jsonObject.optString("coid", "")); // 센터구분 코드
+			
 		} catch (Exception e) {
 			log.info("잘못된 coid(센터구분 코드)입니다 coid(센터구분 코드)는 두 자리 숫자여야 합니다 : {}", jsonObject.getString("coid"));
 			coid = 99;
 			log.info("coid(센터구분 코드)임의로 숫자 '99'로 변경 : {}", coid);
 		}
-		cpna = jsonObject.getString("cpnm"); // 캠페인 명
-		divisionNm = jsonObject.getString("divisionName"); // 캠페인 명
+		
+		cpid = jsonObject.optString("cpid", ""); //캠페인아이디
+		cpna = jsonObject.optString("cpna", ""); //캠페인명
+		contactListid = jsonObject.optString("contactListid", ""); //컨텍리스트아이디
+		contactListnm = jsonObject.optString("contactListnm", ""); //컨텍리스트명
+		queueid = jsonObject.optString("queueid", ""); //큐아이디
+		divisionid = jsonObject.optString("divisionid", ""); //디비전아이디
+		divisionnm = jsonObject.optString("divisionnm", ""); //디비전명
+		insdate = jsonObject.optString("insdate", "");//최초생성일
+		moddate = jsonObject.optString("moddate", ""); //마지막수정일
 
 		enCampMa.setCpid(cpid);
 		enCampMa.setCoid(coid);
 		enCampMa.setCpna(cpna);
+		enCampMa.setContactltid(contactListid);
+		enCampMa.setContactltnm(contactListnm);
+		enCampMa.setQueueid(queueid);
+		enCampMa.setDivisionid(divisionid);
+		enCampMa.setDivisionnm(divisionnm);
+		enCampMa.setInsdate(insdate);
+		enCampMa.setModdate(moddate);
 
 		log.info("cpid : {}", cpid);
 		log.info("coid : {}", coid);
-		log.info("divisionNm : {}", divisionNm);
 		log.info("cpna : {}", cpna);
+		log.info("divisionid : {}", divisionid);
+		log.info("divisionNm : {}", divisionnm);
+		log.info("contactListid : {}", contactListid);
+		log.info("contactListnm : {}", contactListnm);
+		log.info("queueid : {}", queueid);
+		log.info("insdate : {}", insdate);
+		log.info("moddate : {}", moddate);
 
 		return enCampMa;
 	}

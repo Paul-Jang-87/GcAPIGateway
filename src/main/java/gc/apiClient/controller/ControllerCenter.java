@@ -131,7 +131,7 @@ public class ControllerCenter {
 			log.info("IP주소 : {}, 포트 : {}로 부터 api가 호출되었습니다.", ipAddress, port);// 어디서 이 api를 불렀는지 ip와 port 번호를 찍어본다.
 
 			campInfoObj = ServiceJson.extractObjVal("ExtractCampMaUpdateOrDel", msg);
-			String division = campInfoObj.getString("divisionName");
+			String division = campInfoObj.getString("divisionnm");
 			String action = campInfoObj.getString("action");
 
 			enCampMa = serviceDb.createEnCampMa(campInfoObj);
@@ -311,12 +311,14 @@ public class ControllerCenter {
 				String contactLtId = "";
 				String divisionName = "";
 				String cpid = "";
+				Entity_CampMa enCpma = null;
 
 				for (int i = 0; i < reps; i++) {
 
 					Entity_ApimRt enApimRt = entitylist.getContent().get(i);
 
 					cpid = enApimRt.getId().getCpid(); // 첫번째 레코드부터 cpid를 가지고 온다.
+					enCpma = serviceDb.findCampMaByCpid(cpid);
 					String cpsq = enApimRt.getId().getCpsq(); // 첫번째 레코드부터 cpsq를 가지고 온다.
 
 					contactLtId = mapcontactltId.get(cpid) != null ? mapcontactltId.get(cpid) : "";
@@ -325,11 +327,7 @@ public class ControllerCenter {
 					if (contactLtId == null || contactLtId.equals("")) {// cpid로 매치가 되는 contactltId가 있는지 조회 했는데 그것에 대응하는
 																		// contactltId가 없다면,
 						log.info("일치하는 contactLtId 없음");
-						String result = serviceWeb.getCampaignsApiReq("campaigns", cpid);
-						String res = ServiceJson.extractStrVal("ExtractContactLtId", result); // 가져온 결과에서
-																								// contactlistid,queueid만
-																								// 추출.
-						contactLtId = res.split("::")[0];
+						contactLtId = enCpma.getContactltid();
 
 						String division = enApimRt.getDivisionid(); // 첫번째 레코드부터 cpid를 가지고 온다.
 						Map<String, String> properties = customProperties.getDivision();
@@ -469,7 +467,7 @@ public class ControllerCenter {
 
 				campInfoObj = ServiceJson.extractObjVal("ExtractValCrm", result, idx);
 
-				division = campInfoObj.getString("divisionName");
+				division = campInfoObj.getString("divisionnm");
 
 				Map<String, String> businessLogic = BusinessLogic.selectedBusiness(division);
 

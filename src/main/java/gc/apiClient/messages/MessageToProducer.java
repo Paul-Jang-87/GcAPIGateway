@@ -15,8 +15,6 @@ public class MessageToProducer {
 	
 	public void sendMsgToProducer (String towhere, String jsonString) {
 		
-		
-		log.info("도메인 : {}",domain);
 		log.info("====== Method : sendMsgToProducer ======");
 		log.info("Producer로 보낼 EndPoint & 메시지 : '{}' / {}",towhere,jsonString);
 		

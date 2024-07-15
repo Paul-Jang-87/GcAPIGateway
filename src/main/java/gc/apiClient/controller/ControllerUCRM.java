@@ -76,7 +76,7 @@ public class ControllerUCRM {
 			return Mono.just(ResponseEntity.ok().body(String.format("You've got an error : %s", e.getMessage())));
 		}
 
-		return Mono.just(ResponseEntity.ok("Successfully processed the message."));
+		return Mono.empty();
 	}
 
 	@PostMapping("/insertucrmlist")

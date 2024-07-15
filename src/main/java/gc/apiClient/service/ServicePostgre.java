@@ -226,17 +226,6 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		enCampMa.setInsdate(insdate);
 		enCampMa.setModdate(moddate);
 
-		log.info("cpid : {}", cpid);
-		log.info("coid : {}", coid);
-		log.info("cpna : {}", cpna);
-		log.info("divisionid : {}", divisionid);
-		log.info("divisionNm : {}", divisionnm);
-		log.info("contactListid : {}", contactListid);
-		log.info("contactListnm : {}", contactListnm);
-		log.info("queueid : {}", queueid);
-		log.info("insdate : {}", insdate);
-		log.info("moddate : {}", moddate);
-
 		return enCampMa;
 	}
 

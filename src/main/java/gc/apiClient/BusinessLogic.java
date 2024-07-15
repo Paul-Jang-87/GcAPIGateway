@@ -3,17 +3,12 @@ package gc.apiClient;
 import java.util.HashMap;
 import java.util.Map;
 
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 public class BusinessLogic {
 
 	private static Map<String, String> businesslogic;
 
 	public static Map<String, String> selectedBusiness(String division) {
-
-		log.info("====== Method : selectedBusiness ======");
-		log.info("division : {}", division);
 
 		businesslogic = new HashMap<String, String>();
 		String topic_id = "";
@@ -68,17 +63,11 @@ public class BusinessLogic {
 			businesslogic.put("topic_id", topic_id);
 		}
 
-		log.info("business : {}", business);
-		log.info("topic_id : {}", topic_id);
 
 		return businesslogic;
 	}
 
 	public static Map<String, String> selectedBusiness(Character tkda ,String divisionName) {
-		
-		log.info("====== Method : selectedBusiness ======");
-		log.info("tkda : {}", tkda);
-		log.info("divisionName : {}", divisionName);
 		
 		businesslogic = new HashMap<String, String>();
 		String topic_id = "";
@@ -120,9 +109,6 @@ public class BusinessLogic {
 			businesslogic.put("topic_id", topic_id);
 			
 		}
-		
-		log.info("business : {}", business);
-		log.info("topic_id : {}", topic_id);
 		
 		return businesslogic;
 	}

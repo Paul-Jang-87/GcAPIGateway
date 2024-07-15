@@ -1,5 +1,7 @@
 package gc.apiClient.service;
 
+import java.util.List;
+
 import org.json.JSONObject;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -68,12 +70,16 @@ public class ServiceJson {
 	}
 
 	public static JSONObject extractObjVal(String methodNm, Object... params) throws Exception {
-
-		log.info("====== Method : extractObjVal ( TYPE: {} ) ======", methodNm);
+		
+		if(methodNm.equals("ExtractCampMaUpdateOrDel")) {
+			log.info("====== Method : extractObjVal ( TYPE: {} ) ======", methodNm);
+		}
 
 		switch (methodNm) {
 		case "ExtractValCrm":
 			return ExtractValCrm((String) params[0], (int) params[1]);
+		case "ExtrCmpObj":
+			return ExtrCmpObj((List<JSONObject>) params[0], (int) params[1]);
 		case "ExtractCampMaUpdateOrDel":
 			return ExtractCampMaUpdateOrDel((String) params[0]);
 		default:
@@ -135,19 +141,40 @@ public class ServiceJson {
 		jsonObj.put("insdate", insdate);
 		jsonObj.put("moddate", moddate);
 
-		log.info("cpid(캠페인아이디) : {}", cpid);
-		log.info("coid(센터구분코드) : {}", coid);
-		log.info("cpnm(캠페인명) : {}", cpnm);
-		log.info("contactListid(컨택리스트아이디) : {}", contactListid);
-		log.info("contactListnm(컨택리스트명) : {}", contactListnm);
-		log.info("queueid(큐아이디) : {}", queueid);
-		log.info("divisionid(디비전아이디) : {}", divisionid);
-		log.info("divisionnm(디비전명) : {}", divisionnm);
-		log.info("insdate(생성날짜) : {}", insdate);
-		log.info("moddate(수정날짜) : {}", moddate);
+		return jsonObj;
+	}
+	
+	
+	public static JSONObject ExtrCmpObj(List<JSONObject> camplist, int i) throws Exception {// stringMsg에서 원하는 값만 추출.
+
+		JSONObject jsonObj = camplist.get(i);
+		
+		String cpid = jsonObj.optString("cpid", "");
+		String coid = jsonObj.optString("coid", "");
+		String cpnm = jsonObj.optString("cpnm", "");
+		String contactListid = jsonObj.optString("contactListid", "");
+		String contactListnm = jsonObj.optString("contactListnm", "");
+		String queueid = jsonObj.optString("queueid", "");
+		String divisionid = jsonObj.optString("divisionid", "");
+		String divisionnm = jsonObj.optString("divisionnm", "");
+		String insdate = jsonObj.optString("insdate", "");
+		String moddate = jsonObj.optString("moddate", "");
+
+		jsonObj.put("cpid", cpid);
+		jsonObj.put("coid", coid);
+		jsonObj.put("cpnm", cpnm);
+		jsonObj.put("contactListid", contactListid);
+		jsonObj.put("contactListnm", contactListnm);
+		jsonObj.put("queueid", queueid);
+		jsonObj.put("divisionid", divisionid);
+		jsonObj.put("divisionnm", divisionnm);
+		jsonObj.put("insdate", insdate);
+		jsonObj.put("moddate", moddate);
 
 		return jsonObj;
 	}
+	
+	
 
 	public static int CampaignListSize(String stringMsg) throws Exception {
 		String jsonResponse = stringMsg;

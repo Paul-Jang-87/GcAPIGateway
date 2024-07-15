@@ -50,10 +50,6 @@ public class ControllerCenter {
 	private final CustomProperties customProperties;
 	private static List<Entity_ToApim> apimEntitylt = new ArrayList<Entity_ToApim>();
 
-	// 제네시스로부터 가져온 cpid(캠페인 아이디)들을 담을 list변수들
-	public static List<String> cpFrmGenesys1 = new ArrayList<String>();
-	public static List<String> cpFrmGenesys2 = new ArrayList<String>();
-
 	public ControllerCenter(InterfaceDBPostgreSQL serviceDb, InterfaceWebClient serviceWeb, CustomProperties customProperties) {
 		this.serviceDb = serviceDb;
 		this.serviceWeb = serviceWeb;
@@ -74,6 +70,8 @@ public class ControllerCenter {
 
 			try {
 
+				List<JSONObject> camplist = new ArrayList<JSONObject>();
+				JSONObject campInfoObj = null;
 				result = serviceWeb.getApiReq("campaignId", 1); // 제네시스 api 호출. 'campaignId'는 'WebClientApp'클래스에 미리 정의
 																// 해둔 endpoint.
 				int reps = ServiceJson.extractIntVal("CampaignListSize", result);// G.C에서 불러온 캠페인 개수.
@@ -83,21 +81,35 @@ public class ControllerCenter {
 				// 조회한다.
 				if (reps > 100) {
 					int page = 1;
-					handlingCampMaster(100, result);
+					for (int i = 0; i < 100; i++) {
+						campInfoObj = ServiceJson.extractObjVal("ExtractValCrm", result, i);
+						camplist.add(campInfoObj);
+					}
 					reps = reps - 100;
 					while ((reps / 100) != 0) {
 						++page;
 						result = serviceWeb.getApiReq("campaignId", page);
-						handlingCampMaster(100, result);
+						for (int i = 0; i < 100; i++) {
+							campInfoObj = ServiceJson.extractObjVal("ExtractValCrm", result, i);
+							camplist.add(campInfoObj);
+						}
 						reps = reps - 100;
 					}
 					++page;
 					result = serviceWeb.getApiReq("campaignId", page);
 					reps = reps % 100;
-					handlingCampMaster(reps, result);
+					for (int i = 0; i < reps; i++) {
+						campInfoObj = ServiceJson.extractObjVal("ExtractValCrm", result, i);
+						camplist.add(campInfoObj);
+					}
+
+					handlingCampMaster(camplist);
 
 				} else {
-					handlingCampMaster(reps, result);
+					for (int i = 0; i < reps; i++) {
+						campInfoObj = ServiceJson.extractObjVal("ExtractValCrm", result, i);
+						camplist.add(campInfoObj);
+					}
 				}
 
 			} catch (Exception e) {
@@ -424,7 +436,7 @@ public class ControllerCenter {
 		return Mono.empty();
 	}
 
-	public void handlingCampMaster(int reps, String result) throws Exception {
+	public void handlingCampMaster(List<JSONObject> camplist) throws Exception {
 
 		JSONObject campInfoObj = null;
 		String division = "";
@@ -435,6 +447,10 @@ public class ControllerCenter {
 		String msg = "";
 		MessageToProducer producer = null;
 
+		// 제네시스로부터 가져온 cpid(캠페인 아이디)들을 담을 list변수들
+		List<String> cpFrmGenesys1 = new ArrayList<String>();
+		List<String> cpFrmGenesys2 = new ArrayList<String>();
+
 		// DB부터 가져온 cpid(캠페인 아이디)들을 담을 list변수들
 		List<String> cpFrmDB1 = new ArrayList<String>();
 		List<String> cpFrmDB2 = new ArrayList<String>();
@@ -442,9 +458,9 @@ public class ControllerCenter {
 
 		Map<String, Integer> cpididx = new HashMap<String, Integer>();
 
-		for (int i = 0; i < reps; i++) {
-			campInfoObj = ServiceJson.extractObjVal("ExtractValCrm", result, i);
-			cpid = campInfoObj.getString("cpid");
+		for (int i = 0; i < camplist.size(); i++) {
+
+			cpid = camplist.get(i).getString("cpid");
 			cpFrmGenesys1.add(cpid);
 			cpFrmGenesys2.add(cpid);
 			cpididx.put(cpid, i);
@@ -465,7 +481,7 @@ public class ControllerCenter {
 				int idx = cpididx.get(campid);
 				log.info("제네시스에는 있고 DB에는 없는 경우, 그 캠페인의 숫자는? {} // 캠페인아이디와 해당인덱스 : {} / {}", cpFrmGenesys1.size(), campid, idx);
 
-				campInfoObj = ServiceJson.extractObjVal("ExtractValCrm", result, idx);
+				campInfoObj = ServiceJson.extractObjVal("ExtrCmpObj", camplist, idx);
 
 				division = campInfoObj.getString("divisionnm");
 

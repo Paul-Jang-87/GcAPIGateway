@@ -34,6 +34,7 @@ import gc.apiClient.interfaceCollection.InterfaceDBPostgreSQL;
 import gc.apiClient.interfaceCollection.InterfaceWebClient;
 import gc.apiClient.kafMsges.MsgUcrm;
 import gc.apiClient.messages.MessageToProducer;
+import gc.apiClient.service.CreateEntity;
 import gc.apiClient.service.ServiceJson;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
@@ -45,10 +46,12 @@ public class ControllerUCRM {
 	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
 	private final InterfaceDBPostgreSQL serviceDb;
 	private final InterfaceWebClient serviceWeb;
+	private final CreateEntity createEntity;
 	private final CustomProperties customProperties;
 
-	public ControllerUCRM(InterfaceDBPostgreSQL serviceDb, InterfaceWebClient serviceWeb, CustomProperties customProperties) {
+	public ControllerUCRM(InterfaceDBPostgreSQL serviceDb, InterfaceWebClient serviceWeb, CustomProperties customProperties,CreateEntity createEntity) {
 		this.serviceDb = serviceDb;
+		this.createEntity = createEntity;
 		this.serviceWeb = serviceWeb;
 		this.customProperties = customProperties;
 	}
@@ -61,7 +64,7 @@ public class ControllerUCRM {
 		try {
 
 			log.info("====== Method : saveUcrmData ======");
-			Entity_Ucrm enUcrm = serviceDb.createUcrm(msg); // 전달 받은 String 형태의 메시지를 쉐도우테이블('UCRMLT')에 인서트 하기 위해서 Entity 형태로 제가공해준다.
+			Entity_Ucrm enUcrm = createEntity.createUcrm(msg); // 전달 받은 String 형태의 메시지를 쉐도우테이블('UCRMLT')에 인서트 하기 위해서 Entity 형태로 제가공해준다.
 			try {
 				serviceDb.insertUcrm(enUcrm);
 				log.info("저장된 메시지 : {}", msg);
@@ -93,7 +96,7 @@ public class ControllerUCRM {
 
 				jsonObj = jsonArray.getJSONObject(i);
 				singleDate = jsonObj.toString();
-				Entity_Ucrm enUcrm = serviceDb.createUcrm(singleDate); // 전달 받은 String 형태의 메시지를 쉐도우테이블('UCRMLT')에 인서트 하기 위해서 Entity 형태로 재가공해준다.
+				Entity_Ucrm enUcrm = createEntity.createUcrm(singleDate); // 전달 받은 String 형태의 메시지를 쉐도우테이블('UCRMLT')에 인서트 하기 위해서 Entity 형태로 재가공해준다.
 				serviceDb.insertUcrm(enUcrm);
 				log.info("저장된 메시지 : {}", msg);
 			}
@@ -143,7 +146,7 @@ public class ControllerUCRM {
 					// UCRM에서 보내 준 데이터를 가지고 제네시스에 PUSH하기 위해서 필요한 데이터들을 추출한다.
 					String row_result = ServiceJson.extractStrVal("ExtractRawUcrm", entitylist.getContent().get(i));
 					row_result = row_result + "::" + contactLtId + "::" + queid;
-					String contactltMapper = serviceDb.createContactLtGC(row_result); // row_result = cpid::cpsq::cske::csno::tkda::flag::contactltId::queid
+					String contactltMapper = createEntity.createContactLtGC(row_result); // row_result = cpid::cpsq::cske::csno::tkda::flag::contactltId::queid
 
 					// 제네시스에 인서트 하기 위한 배열 준비
 					if (!contactlists.containsKey(contactLtId)) {
@@ -216,7 +219,7 @@ public class ControllerUCRM {
 									// CPID와 CPSQ 값을 추출
 									cpid = dataObject.getString("CPID");
 									String cpsq = dataObject.getString("CPSQ");
-									Entity_ContactLt enContactLt = serviceDb.createContactUcrm(jsonObject);
+									Entity_ContactLt enContactLt = createEntity.createContactUcrm(jsonObject);
 
 									serviceDb.delUcrmltRecord(cpid, cpsq);// ucrmlt (쉐도우테이블에서 삭제)
 									serviceDb.insertContactLt(enContactLt); // contactlt테이블에 인서트
@@ -347,7 +350,7 @@ public class ControllerUCRM {
 					queid = res.split("::")[1];
 
 					String row_result = cpid + "::" + cpsq + "::" + cske + "::" + csno + "::" + tkda + "::" + flag + "::" + contactLtId + "::" + queid;
-					String contactltMapper = serviceDb.createContactLtGC(row_result); // row_result = cpid::cpsq::cske::csno::tkda::flag::contactltId::queid
+					String contactltMapper = createEntity.createContactLtGC(row_result); // row_result = cpid::cpsq::cske::csno::tkda::flag::contactltId::queid
 
 					// 제네시스에 인서트 하기 위한 배열 준비
 					if (!contactlists.containsKey(contactLtId)) {
@@ -506,7 +509,7 @@ public class ControllerUCRM {
 				continue;
 			}
 
-			entityCmRt = serviceDb.createCampRtMsg(contactsresult, enCampMa, rlsq); // db 인서트 하기 위한 entity.
+			entityCmRt = createEntity.createCampRtMsg(contactsresult, enCampMa, rlsq); // db 인서트 하기 위한 entity.
 
 			MsgUcrm msgucrm = new MsgUcrm(serviceDb);
 			String msg = msgucrm.makeRtMsg(entityCmRt);

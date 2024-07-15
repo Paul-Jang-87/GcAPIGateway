@@ -30,6 +30,7 @@ import gc.apiClient.interfaceCollection.InterfaceDBPostgreSQL;
 import gc.apiClient.interfaceCollection.InterfaceWebClient;
 import gc.apiClient.kafMsges.MsgCallbot;
 import gc.apiClient.messages.MessageToProducer;
+import gc.apiClient.service.CreateEntity;
 import gc.apiClient.service.ServiceJson;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
@@ -43,9 +44,11 @@ public class ControllerCallBot {
 	private final InterfaceDBPostgreSQL serviceDb;
 	private final InterfaceWebClient serviceWeb;
 	private final CustomProperties customProperties;
+	private final CreateEntity createEntity;
 
-	public ControllerCallBot(InterfaceDBPostgreSQL serviceDb, InterfaceWebClient serviceWeb, CustomProperties customProperties) {
+	public ControllerCallBot(InterfaceDBPostgreSQL serviceDb, InterfaceWebClient serviceWeb, CustomProperties customProperties,CreateEntity createEntity) {
 		this.serviceDb = serviceDb;
+		this.createEntity = createEntity;
 		this.serviceWeb = serviceWeb;
 		this.customProperties = customProperties;
 	}
@@ -100,7 +103,7 @@ public class ControllerCallBot {
 
 				row_result = ServiceJson.extractStrVal("ExtractValCallBot", msg, 0);// 뽑아온다.cpid::cpsq::cske::csno::tkda::flag
 
-				Entity_ContactLt enContactLt = serviceDb.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
+				Entity_ContactLt enContactLt = createEntity.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
 				// Entity_ContactLt 객체에 매핑시킨다.
 				cpid = enContactLt.getId().getCpid();// 캠페인 아이디를 가져온다.
 				enCpma = serviceDb.findCampMaByCpid(cpid);
@@ -112,10 +115,10 @@ public class ControllerCallBot {
 
 					row_result = ServiceJson.extractStrVal("ExtractValCallBot", msg, i); // 뽑아온다.cpid::cpsq::cske::csno::tkda::flag
 
-					enContactLt = serviceDb.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
+					enContactLt = createEntity.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
 					// Entity_ContactLt 객체에 매핑시킨다.
 					row_result = row_result + "::" + res; // 뽑아온다.cpid::cpsq::cske::csna::tkda::flag::contactLtId
-					String contactltMapper = serviceDb.createContactLtGC(row_result);
+					String contactltMapper = createEntity.createContactLtGC(row_result);
 
 					arr.add(contactltMapper);
 
@@ -272,7 +275,7 @@ public class ControllerCallBot {
 				continue;
 			}
 
-			entityCmRt = serviceDb.createCampRtMsg(contactsresult, enCampMa, rlsq);// db 인서트 하기 위한 entity.
+			entityCmRt = createEntity.createCampRtMsg(contactsresult, enCampMa, rlsq);// db 인서트 하기 위한 entity.
 
 			MsgCallbot msgcallbot = new MsgCallbot(serviceDb);
 			String msg = msgcallbot.makeRtMsg(entityCmRt);

@@ -35,6 +35,7 @@ import gc.apiClient.kafMsges.MsgCallbot;
 import gc.apiClient.kafMsges.MsgUcrm;
 import gc.apiClient.messages.MessageToApim;
 import gc.apiClient.messages.MessageToProducer;
+import gc.apiClient.service.CreateEntity;
 import gc.apiClient.service.ServiceJson;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -47,12 +48,14 @@ public class ControllerCenter {
 	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
 	private final InterfaceDBPostgreSQL serviceDb;
 	private final InterfaceWebClient serviceWeb;
+	private final CreateEntity createEntity;
 	private final CustomProperties customProperties;
 	private static List<Entity_ToApim> apimEntitylt = new ArrayList<Entity_ToApim>();
 
-	public ControllerCenter(InterfaceDBPostgreSQL serviceDb, InterfaceWebClient serviceWeb, CustomProperties customProperties) {
+	public ControllerCenter(InterfaceDBPostgreSQL serviceDb, InterfaceWebClient serviceWeb, CustomProperties customProperties,CreateEntity createEntity) {
 		this.serviceDb = serviceDb;
 		this.serviceWeb = serviceWeb;
+		this.createEntity = createEntity;
 		this.customProperties = customProperties;
 	}
 
@@ -109,6 +112,7 @@ public class ControllerCenter {
 						campInfoObj = ServiceJson.extractObjVal("ExtractValCrm", result, i);
 						camplist.add(campInfoObj);
 					}
+					handlingCampMaster(camplist);
 				}
 
 			} catch (Exception e) {
@@ -145,7 +149,7 @@ public class ControllerCenter {
 			String division = campInfoObj.getString("divisionnm");
 			String action = campInfoObj.getString("action");
 
-			enCampMa = serviceDb.createEnCampMa(campInfoObj);
+			enCampMa = createEntity.createEnCampMa(campInfoObj);
 			String cpid = campInfoObj.getString("cpid");
 			String cpna = campInfoObj.getString("cpna");
 
@@ -279,18 +283,18 @@ public class ControllerCenter {
 			case "Home":
 			case "Mobile":
 
-				Entity_UcrmRt enUcrmrt = serviceDb.createUcrmRt(result);
+				Entity_UcrmRt enUcrmrt = createEntity.createUcrmRt(result);
 				serviceDb.insertUcrmRt(enUcrmrt);
 				return Mono.just(ResponseEntity.ok("Ucrm 데이터가 성공적으로 인서트 되었습니다."));
 
 			case "CallbotHome":
 			case "CallbotMobile":
 
-				Entity_CallbotRt enCallBotRt = serviceDb.createCallbotRt(result);
+				Entity_CallbotRt enCallBotRt = createEntity.createCallbotRt(result);
 				serviceDb.insertCallbotRt(enCallBotRt);
 				return Mono.just(ResponseEntity.ok("Callbot 데이터가 성공적으로 인서트 되었습니다."));
 			default:
-				Entity_ApimRt enApimRt = serviceDb.createApimRt(result);
+				Entity_ApimRt enApimRt = createEntity.createApimRt(result);
 				serviceDb.insertApimRt(enApimRt);
 				return Mono.just(ResponseEntity.ok("Apim 데이터가 성공적으로 인서트 되었습니다."));
 			}
@@ -407,7 +411,7 @@ public class ControllerCenter {
 
 			contactsresult = ServiceJson.extractStrVal("ExtractContacts", result, i);
 
-			entityCmRt = serviceDb.createCampRtMsg(contactsresult, enCampMa, rlsq);
+			entityCmRt = createEntity.createCampRtMsg(contactsresult, enCampMa, rlsq);
 			enToApim = msgapim.rstMassage(entityCmRt);
 
 			apimEntitylt.add(enToApim);
@@ -483,7 +487,7 @@ public class ControllerCenter {
 				business = businessLogic.get("business");
 				topic_id = businessLogic.get("topic_id");
 
-				Entity_CampMa enCampMa = serviceDb.createEnCampMa(campInfoObj);
+				Entity_CampMa enCampMa = createEntity.createEnCampMa(campInfoObj);
 
 				switch (business.trim()) {// 여기서 비즈니스 로직 구분. default는 'apim'
 				case "UCRM":

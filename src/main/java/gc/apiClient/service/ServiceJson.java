@@ -186,7 +186,6 @@ public class ServiceJson {
 		jsonNode = objectMapper.readTree(jsonResponse);
 		result = Integer.parseInt(jsonNode.path("total").asText()); // 매개 변수로 받은 'stringMsg'에 "total"이라는 키가 있음. 그 키 값의 의미는 조회된 캠페인의 숫자.
 
-		log.info("총 캠페인 개수 : {}", result);
 		return result;
 	}
 

@@ -28,9 +28,9 @@ import gc.apiClient.entity.postgresql.Entity_CampRt;
 import gc.apiClient.entity.postgresql.Entity_ContactLt;
 import gc.apiClient.interfaceCollection.InterfaceDBPostgreSQL;
 import gc.apiClient.interfaceCollection.InterfaceWebClient;
+import gc.apiClient.kafMsges.MsgCallbot;
 import gc.apiClient.messages.MessageToProducer;
 import gc.apiClient.service.ServiceJson;
-import kafMsges.MsgCallbot;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
@@ -44,13 +44,11 @@ public class ControllerCallBot {
 	private final InterfaceWebClient serviceWeb;
 	private final CustomProperties customProperties;
 
-	public ControllerCallBot(InterfaceDBPostgreSQL serviceDb, InterfaceWebClient serviceWeb,
-			CustomProperties customProperties) {
+	public ControllerCallBot(InterfaceDBPostgreSQL serviceDb, InterfaceWebClient serviceWeb, CustomProperties customProperties) {
 		this.serviceDb = serviceDb;
 		this.serviceWeb = serviceWeb;
 		this.customProperties = customProperties;
 	}
-
 
 	/**
 	 * 
@@ -61,8 +59,7 @@ public class ControllerCallBot {
 	 * @return
 	 */
 	@PostMapping("/contactlt/{topic}")
-	public Mono<ResponseEntity<String>> callbotMsgFrmCnsumer(@PathVariable("topic") String tranId,
-			@RequestBody String msg) {
+	public Mono<ResponseEntity<String>> callbotMsgFrmCnsumer(@PathVariable("topic") String tranId, @RequestBody String msg) {
 
 		log.info("====== Method : callbotMsgFrmCnsumer ======");
 
@@ -107,7 +104,7 @@ public class ControllerCallBot {
 				// Entity_ContactLt 객체에 매핑시킨다.
 				cpid = enContactLt.getId().getCpid();// 캠페인 아이디를 가져온다.
 				enCpma = serviceDb.findCampMaByCpid(cpid);
-				contactLtId = enCpma.getCpid();
+				contactLtId = enCpma.getContactltid();
 
 				log.info("컨텍리스트 아이디 : {}", contactLtId);
 
@@ -134,7 +131,7 @@ public class ControllerCallBot {
 					}
 				}
 
-				serviceWeb.postContactLtApiReq("contact", contactLtId, arr);
+				serviceWeb.postContactLtApiReq("contact", contactLtId, arr);// api : "/api/v2/outbound/contactlists/{contactListId}/contacts";
 
 				return Mono.just(ResponseEntity.ok("Successfully processed the message."));
 
@@ -169,7 +166,6 @@ public class ControllerCallBot {
 				int reps = entitylist.getNumberOfElements();
 				log.info("'CAMPRT_CALLBOT_W' table에서 조회 된 레코드 개수 : {}", reps);
 
-				Map<String, String> mapcontactltId = new HashMap<String, String>();
 				Map<String, String> mapdivision = new HashMap<String, String>();
 				Map<String, List<String>> contactlists = new HashMap<String, List<String>>();
 				Entity_CampMa enCpma = null;
@@ -184,21 +180,18 @@ public class ControllerCallBot {
 					enCpma = serviceDb.findCampMaByCpid(cpid);
 					String cqsq = enCallbotRt.getId().getCpsq(); // 첫번째 레코드부터 cpsq를 가지고 온다.
 
-					contactLtId = mapcontactltId.get(cpid) != null ? mapcontactltId.get(cpid) : "";
-					divisionName = mapdivision.get(contactLtId) != null ? mapdivision.get(contactLtId) : "";
+					contactLtId = enCpma.getContactltid();
+					divisionName = enCpma.getDivisionnm();
 
-					if (contactLtId == null || contactLtId.equals("")) { // cpid를 조회 했는데 그것에 대응하는 contactltId가 없다면,
-						log.info("일치하는 contactLtId 없음");
-
-						contactLtId = enCpma.getContactltid();
-
+					try {
+						divisionName = enCpma.getDivisionnm();
+					} catch (Exception e) {
 						String division = enCallbotRt.getDivisionid();
 						Map<String, String> properties = customProperties.getDivision();
 						divisionName = properties.getOrDefault(division, "디비전을 찾을 수 없습니다.");
-
-						mapcontactltId.put(cpid, contactLtId);
-						mapdivision.put(contactLtId, divisionName.trim());
 					}
+
+					mapdivision.put(contactLtId, divisionName.trim());
 
 					// contactList ID Mapping
 					if (!contactlists.containsKey(contactLtId)) {
@@ -247,10 +240,9 @@ public class ControllerCallBot {
 	 */
 	public Mono<Void> sendCampRtToCallbot(String contactLtId, List<String> values, String divisionName) throws Exception {
 
-		
 		log.info("====== Method : sendCampRtToCallbot ======");
 		// 컨택리스트(contactListId)별 컨택데이터(contact-cpsq)를 Genesys Cloud로 전송 (Bulk)
-		String result = serviceWeb.postContactLtApiBulk("contactList", contactLtId, values);
+		String result = serviceWeb.postContactLtApiBulk("contactList", contactLtId, values); // api : "/api/v2/outbound/contactlists/{contactListId}/contacts/bulk";
 
 		if (result.equals("[]")) {
 			values.clear();
@@ -263,16 +255,13 @@ public class ControllerCallBot {
 		// JsonString 결과값과 조회하고 싶은 인덱스(첫번째)를 인자로 넣는다.
 		String contactsresult = ServiceJson.extractStrVal("ExtractContacts", result, 0);
 		String cpid = contactsresult.split("::")[2];
-		String full_tkda = contactsresult.split("::")[5];
-		
+
 		Entity_CampMa enCampMa = serviceDb.findCampMaByCpid(cpid);
 		Entity_CampRt entityCmRt = null;
 		int rlsq = serviceDb.findCampRtMaxRlsq().intValue();
-		
-		Character tkda = full_tkda.charAt(0); // 그리고 비즈니스 로직을 구분하게 해줄 수 있는 토큰데이터를 구해온다.
 
 		// 토큰데이터와 디비젼네임을 인자로 넘겨서 어떤 비지니스 로직인지, 토픽은 어떤 것으로 해야하는지를 결과 값으로 반환 받는다.
-		Map<String, String> businessLogic = BusinessLogic.selectedBusiness(tkda, divisionName);
+		Map<String, String> businessLogic = BusinessLogic.rtSelectedBusiness(divisionName);
 		String topic_id = businessLogic.get("topic_id");
 
 		for (int i = 0; i < values.size(); i++) {
@@ -283,10 +272,10 @@ public class ControllerCallBot {
 				continue;
 			}
 
-			entityCmRt = serviceDb.createCampRtMsg(contactsresult, enCampMa,rlsq);// db 인서트 하기 위한 entity.
+			entityCmRt = serviceDb.createCampRtMsg(contactsresult, enCampMa, rlsq);// db 인서트 하기 위한 entity.
 
 			MsgCallbot msgcallbot = new MsgCallbot(serviceDb);
-			String msg = msgcallbot.rtMessage(entityCmRt);
+			String msg = msgcallbot.makeRtMsg(entityCmRt);
 
 			MessageToProducer producer = new MessageToProducer();
 			String endpoint = "/gcapi/post/" + topic_id;

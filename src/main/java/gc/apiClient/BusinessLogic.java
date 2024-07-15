@@ -67,47 +67,60 @@ public class BusinessLogic {
 		return businesslogic;
 	}
 
-	public static Map<String, String> selectedBusiness(Character tkda ,String divisionName) {
+	public static Map<String, String> rtSelectedBusiness(String divisionName) {
 		
 		businesslogic = new HashMap<String, String>();
 		String topic_id = "";
 		String business = "";
 		
-		if ( (tkda=='C')&&(divisionName.equals("Home")) ) { // UCRM
-			
+		switch (divisionName.trim()) {
+		
+		case "홈":
+		case "Home":
+
 			business = "UCRM";
 			topic_id = "from_clcc_hmucrmcmpnrs_message";
 			businesslogic.put("business", business);
 			businesslogic.put("topic_id", topic_id);
 
-		} else if( (tkda=='C')&&(divisionName.equals("Mobile")) ){
+			break;
 			
+		case "모바일":
+		case "Mobile":
+
 			business = "UCRM";
 			topic_id = "from_clcc_mblucrmcmpnrs_message"; 
 			businesslogic.put("business", business);
 			businesslogic.put("topic_id", topic_id);
+
+			break;
 			
-		} else if( (tkda=='A')&&(divisionName.equals("CallbotHome")) ){ 
-			
-			business = "CALLBOT";
+		case "콜봇홈": 
+		case "CallbotHome": 
+
+			business = "Callbot";
 			topic_id = "from_clcc_hmaiccmpnrs_message";
 			businesslogic.put("business", business);
 			businesslogic.put("topic_id", topic_id);
+
+			break;
 			
-		}else if( (tkda=='A')&&(divisionName.equals("CallbotMobile")) ){
-			
-			business = "CALLBOT";
-			topic_id = "from_clcc_mblaiccmpnrs_message"; 
+		case "콜봇모바일":
+		case "CallbotMobile":
+
+			business = "Callbot";
+			topic_id = "from_clcc_mblaiccmpnrs_message";  
 			businesslogic.put("business", business);
 			businesslogic.put("topic_id", topic_id);
+
+			break;
 			
-		}else {
-			
+		default:
+
 			business = "APIM";
 			topic_id = ""; 
 			businesslogic.put("business", business);
 			businesslogic.put("topic_id", topic_id);
-			
 		}
 		
 		return businesslogic;

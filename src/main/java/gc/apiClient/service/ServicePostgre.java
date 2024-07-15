@@ -17,6 +17,7 @@ import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import gc.apiClient.customproperties.CustomProperties;
 import gc.apiClient.embeddable.ApimCampRt;
@@ -420,6 +421,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	@Override
 	@Transactional
 	public Integer findCampRtMaxRlsq() {
+		log.info("Transaction active findCampRtMaxRlsq: {}", TransactionSynchronizationManager.isActualTransactionActive());
 
 		try {
 			Optional<Integer> optionalEntity = repositoryCampRt.findMaxRlsq();

@@ -1,4 +1,4 @@
-package kafMsges;
+package gc.apiClient.kafMsges;
 
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 public class MsgApim implements InterfaceKafMsg {
 
 	@Override
-	public String maMessage(Entity_CampMa enCampMa, String datachgcd) throws Exception {
+	public String makeMaMsg(Entity_CampMa enCampMa, String datachgcd) throws Exception {
 
 		log.info("====== Method : maMassage ======");
 
@@ -84,7 +84,7 @@ public class MsgApim implements InterfaceKafMsg {
 
 
 	@Override
-	public String rtMessage(Entity_CampRt enCampRt) throws Exception {
+	public String makeRtMsg(Entity_CampRt enCampRt) throws Exception {
 		return null;
 	}
 

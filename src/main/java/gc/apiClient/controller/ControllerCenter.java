@@ -30,14 +30,14 @@ import gc.apiClient.entity.postgresql.Entity_CampRt;
 import gc.apiClient.entity.postgresql.Entity_UcrmRt;
 import gc.apiClient.interfaceCollection.InterfaceDBPostgreSQL;
 import gc.apiClient.interfaceCollection.InterfaceWebClient;
+import gc.apiClient.kafMsges.MsgApim;
+import gc.apiClient.kafMsges.MsgCallbot;
+import gc.apiClient.kafMsges.MsgUcrm;
 import gc.apiClient.messages.MessageToApim;
 import gc.apiClient.messages.MessageToProducer;
 import gc.apiClient.service.ServiceJson;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
-import kafMsges.MsgApim;
-import kafMsges.MsgCallbot;
-import kafMsges.MsgUcrm;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
@@ -72,8 +72,7 @@ public class ControllerCenter {
 
 				List<JSONObject> camplist = new ArrayList<JSONObject>();
 				JSONObject campInfoObj = null;
-				result = serviceWeb.getApiReq("campaignId", 1); // 제네시스 api 호출. 'campaignId'는 'WebClientApp'클래스에 미리 정의
-																// 해둔 endpoint.
+				result = serviceWeb.getApiReq("campaigns", 1); // 제네시스 api 호출. 'campaignId'는 'WebClientApp'클래스에 미리 정의해둔 endpoint. api :
 				int reps = ServiceJson.extractIntVal("CampaignListSize", result);// G.C에서 불러온 캠페인 개수.
 				log.info("제네시스에서 조회한 캠페인 수 : {} ", reps);
 
@@ -88,7 +87,7 @@ public class ControllerCenter {
 					reps = reps - 100;
 					while ((reps / 100) != 0) {
 						++page;
-						result = serviceWeb.getApiReq("campaignId", page);
+						result = serviceWeb.getApiReq("campaigns", page);
 						for (int i = 0; i < 100; i++) {
 							campInfoObj = ServiceJson.extractObjVal("ExtractValCrm", result, i);
 							camplist.add(campInfoObj);
@@ -96,7 +95,7 @@ public class ControllerCenter {
 						reps = reps - 100;
 					}
 					++page;
-					result = serviceWeb.getApiReq("campaignId", page);
+					result = serviceWeb.getApiReq("campaigns", page);
 					reps = reps % 100;
 					for (int i = 0; i < reps; i++) {
 						campInfoObj = ServiceJson.extractObjVal("ExtractValCrm", result, i);
@@ -169,7 +168,7 @@ public class ControllerCenter {
 					// 캠페인 수정은 '캠페인명(cpnm)'만 가능
 					// 캠페인 수정 외 캠페인 발신, 발신중지등 캠페인 변화에 대한 이벤트도 'update'로 날아온다.
 					MsgUcrm msgucrm = new MsgUcrm();
-					msg = msgucrm.maMessage(enCampMa, action);
+					msg = msgucrm.makeMaMsg(enCampMa, action);
 
 					log.info("'update'를 위한 변경할 대상 cpid : {}, 새로운 캠페인명 : {} ", cpid, cpna);
 
@@ -198,7 +197,7 @@ public class ControllerCenter {
 			case "Callbot":
 
 				MsgCallbot msgcallbot = new MsgCallbot();
-				msg = msgcallbot.maMessage(enCampMa, action);
+				msg = msgcallbot.makeMaMsg(enCampMa, action);
 
 				// 테이블에 Update, Delete logic 추가.
 				if (action.equals("update")) {
@@ -228,7 +227,7 @@ public class ControllerCenter {
 			default:
 				// APIM application으로 전송
 				MsgApim msgapim = new MsgApim();
-				msg = msgapim.maMessage(enCampMa, action);
+				msg = msgapim.makeMaMsg(enCampMa, action);
 
 				MessageToApim apim = new MessageToApim();
 
@@ -317,7 +316,6 @@ public class ControllerCenter {
 				int reps = entitylist.getNumberOfElements();// 몇개의 레코드를 가지고 왔는지.
 				log.info("'CAMPRT_UCUBE_W' table에서 조회 된 레코드 개수 : {}", reps);
 
-				Map<String, String> mapcontactltId = new HashMap<String, String>();
 				Map<String, String> mapdivision = new HashMap<String, String>();
 				Map<String, List<String>> contactlists = new HashMap<String, List<String>>();
 				String contactLtId = "";
@@ -333,23 +331,18 @@ public class ControllerCenter {
 					enCpma = serviceDb.findCampMaByCpid(cpid);
 					String cpsq = enApimRt.getId().getCpsq(); // 첫번째 레코드부터 cpsq를 가지고 온다.
 
-					contactLtId = mapcontactltId.get(cpid) != null ? mapcontactltId.get(cpid) : "";
-					divisionName = mapdivision.get(contactLtId) != null ? mapdivision.get(contactLtId) : "";
+					contactLtId = enCpma.getContactltid();
+					divisionName = enCpma.getDivisionnm();
 
-					if (contactLtId == null || contactLtId.equals("")) {// cpid로 매치가 되는 contactltId가 있는지 조회 했는데 그것에 대응하는
-																		// contactltId가 없다면,
-						log.info("일치하는 contactLtId 없음");
-						contactLtId = enCpma.getContactltid();
-
-						String division = enApimRt.getDivisionid(); // 첫번째 레코드부터 cpid를 가지고 온다.
+					try {
+						divisionName = enCpma.getDivisionnm();
+					} catch (Exception e) {
+						String division = enApimRt.getDivisionid();
 						Map<String, String> properties = customProperties.getDivision();
 						divisionName = properties.getOrDefault(division, "디비전을 찾을 수 없습니다.");
-
-						mapcontactltId.put(cpid, contactLtId);
-						mapdivision.put(contactLtId, divisionName);
-					} else {
-						log.info("일치하는 contactId 있음");
 					}
+
+					mapdivision.put(contactLtId, divisionName);
 
 					if (!contactlists.containsKey(contactLtId)) {// 맵(contactlists)에 키값(contactLtId)이 없다면.
 						contactlists.put(contactLtId, new ArrayList<>());// 'contactLtId'로 된 키 값 추가.
@@ -496,7 +489,7 @@ public class ControllerCenter {
 				case "UCRM":
 
 					MsgUcrm msgucrm = new MsgUcrm();
-					msg = msgucrm.maMessage(enCampMa, "insert"); // 카프카 프로듀서로 보내기 위한 메시지 조립작업.
+					msg = msgucrm.makeMaMsg(enCampMa, "insert"); // 카프카 프로듀서로 보내기 위한 메시지 조립작업.
 
 					try {
 						serviceDb.insertCampMa(enCampMa);// 'enCampMa' db에 인서트
@@ -519,7 +512,7 @@ public class ControllerCenter {
 				case "Callbot":
 
 					MsgCallbot msgcallbot = new MsgCallbot();
-					msg = msgcallbot.maMessage(enCampMa, "insert");
+					msg = msgcallbot.makeMaMsg(enCampMa, "insert");
 
 					try {
 						serviceDb.insertCampMa(enCampMa);
@@ -554,7 +547,7 @@ public class ControllerCenter {
 					}
 
 					MsgApim msgapim = new MsgApim();
-					msg = msgapim.maMessage(enCampMa, "insert");
+					msg = msgapim.makeMaMsg(enCampMa, "insert");
 
 					// localhost:8084/dspRslt
 					// 192.168.219.134:8084/dspRslt

@@ -1,4 +1,4 @@
-package kafMsges;
+package gc.apiClient.kafMsges;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -39,7 +39,7 @@ public class MsgUcrm implements InterfaceKafMsg { //카프카 프로듀서로 �
 	}
 
 	@Override
-	public String maMessage(Entity_CampMa enCampMa, String datachgcd) throws Exception {  // MA 메시지
+	public String makeMaMsg(Entity_CampMa enCampMa, String datachgcd) throws Exception {  // MA 메시지
 
 		log.info("====== Method : maMassage ======");
 		Entity_CampMaJsonUcrm enCampMaJson = new Entity_CampMaJsonUcrm();
@@ -95,7 +95,7 @@ public class MsgUcrm implements InterfaceKafMsg { //카프카 프로듀서로 �
 	}
 
 	@Override
-	public String rtMessage(Entity_CampRt enCampRt) throws Exception { //RT 메시지, 결과 발신 메시지.
+	public String makeRtMsg(Entity_CampRt enCampRt) throws Exception { //RT 메시지, 결과 발신 메시지.
 
 		JSONObject obj = new JSONObject();
 		try {

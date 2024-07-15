@@ -1,4 +1,4 @@
-package kafMsges;
+package gc.apiClient.kafMsges;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -36,7 +36,7 @@ public class MsgCallbot implements InterfaceKafMsg {
 	
 
 	@Override
-	public String maMessage(Entity_CampMa enCampMa, String datachgcd) throws Exception {
+	public String makeMaMsg(Entity_CampMa enCampMa, String datachgcd) throws Exception {
 
 		log.info("====== Method : maMassage ======");
 		Entity_CampMaJson enCampMaJson = new Entity_CampMaJson();
@@ -89,7 +89,7 @@ public class MsgCallbot implements InterfaceKafMsg {
 	}
 
 	@Override
-	public String rtMessage(Entity_CampRt enCampRt) throws Exception {
+	public String makeRtMsg(Entity_CampRt enCampRt) throws Exception {
 
 		JSONObject obj = new JSONObject();
 		try {

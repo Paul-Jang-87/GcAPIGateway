@@ -4,6 +4,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.TimeZone;
 
@@ -539,6 +543,18 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		if (optionalEntity.isPresent()) {// 조회 후 있다면 해당 레코드의 캠페인명 업데이트
 			Entity_CampMa entity = optionalEntity.get();
 			entity.setCpna(cpna);
+			// 로컬 시간 가져오기
+	        LocalDateTime localDateTime = LocalDateTime.now();
+
+	        // UTC 시간대로 변환
+	        ZonedDateTime utcDateTime = localDateTime.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("UTC"));
+
+	        // 포맷 정의
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+
+	        // 문자열로 변환
+	        String formattedDateTime = utcDateTime.format(formatter);
+	        entity.setModdate(formattedDateTime);
 			repositoryCampMa.save(entity);
 		} else {
 			throw new EntityNotFoundException("해당 cpid (" + cpid + ")로 조회 된 레코드가 DB에 없습니다.");

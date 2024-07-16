@@ -26,6 +26,7 @@ import gc.apiClient.entity.Entity_ToApim;
 import gc.apiClient.entity.postgresql.Entity_ApimRt;
 import gc.apiClient.entity.postgresql.Entity_CallbotRt;
 import gc.apiClient.entity.postgresql.Entity_CampMa;
+import gc.apiClient.entity.postgresql.Entity_CampMa_D;
 import gc.apiClient.entity.postgresql.Entity_CampRt;
 import gc.apiClient.entity.postgresql.Entity_UcrmRt;
 import gc.apiClient.interfaceCollection.InterfaceDBPostgreSQL;
@@ -146,19 +147,14 @@ public class ControllerCenter {
 			log.info("IP주소 : {}, 포트 : {}로 부터 api가 호출되었습니다.", ipAddress, port);// 어디서 이 api를 불렀는지 ip와 port 번호를 찍어본다.
 
 			campInfoObj = ServiceJson.extractObjVal("ExtractCampMaUpdateOrDel", msg);
-			String division = campInfoObj.getString("divisionnm");
+			String cpid = campInfoObj.getString("cpid");
+			String cpna = campInfoObj.getString("cpnm");
+			String divisionnm = campInfoObj.getString("divisionnm");
 			String action = campInfoObj.getString("action");
 
 			enCampMa = createEntity.createEnCampMa(campInfoObj);
-			String cpid = campInfoObj.getString("cpid");
-			String cpna = campInfoObj.getString("cpna");
 
-			Map<String, String> properties = customProperties.getDivision();
-			String divisionName = properties.getOrDefault(division, "디비전을 찾을 수 없습니다.");// src/main/resources 경로의
-																						// application.properties 참조,
-																						// division 아이디를 키로하여 값 조회.
-
-			Map<String, String> businessLogic = BusinessLogic.selectedBusiness(divisionName.trim());
+			Map<String, String> businessLogic = BusinessLogic.selectedBusiness(divisionnm.trim());
 
 			String endpoint = "";
 			String business = businessLogic.get("business");
@@ -178,7 +174,7 @@ public class ControllerCenter {
 
 					try {
 
-						serviceDb.updateCampMa(cpid, cpna); // 캠페인 아이디를 기준으로 해당 레코드의 캠페인명 업데이트 (DB)
+						serviceDb.updateCampMa(campInfoObj); // 캠페인 아이디를 기준으로 해당 레코드의 캠페인명 업데이트 (DB)
 
 						MessageToProducer producer = new MessageToProducer();
 						endpoint = "/gcapi/post/" + topic_id;
@@ -194,7 +190,12 @@ public class ControllerCenter {
 
 				} else {// update가 아닌 delete일 때
 					log.info("'delete' event - 삭제 대상 cpid : {}", cpid);
+					
+					Entity_CampMa enCpma = serviceDb.findCampMaByCpid(cpid);
+					Entity_CampMa_D enCpma_D = createEntity.createEnCampMa_D(enCpma);
+					serviceDb.insertCampMa_D(enCpma_D);
 					serviceDb.delCampMaById(cpid);
+					
 					return Mono.just(ResponseEntity.ok().body(String.format("UCRM, cpid가 %s인 레코드가 성공적으로 삭제되었습니다.", cpid)));
 				}
 
@@ -209,7 +210,7 @@ public class ControllerCenter {
 					log.info("'update'를 위한 변경할 대상 cpid : {}, 새로운 캠페인명 : {} ", cpid, cpna);
 
 					try {
-						serviceDb.updateCampMa(cpid, cpna);
+						serviceDb.updateCampMa(campInfoObj);
 						MessageToProducer producer = new MessageToProducer();
 						endpoint = "/gcapi/post/" + topic_id;
 						producer.sendMsgToProducer(endpoint, msg); // update 내용 kafka-producer 메시지 전송
@@ -224,7 +225,12 @@ public class ControllerCenter {
 
 				} else {
 					log.info("'delete' event - 삭제 대상 cpid : {}", cpid);
+					
+					Entity_CampMa enCpma = serviceDb.findCampMaByCpid(cpid);
+					Entity_CampMa_D enCpma_D = createEntity.createEnCampMa_D(enCpma);
+					serviceDb.insertCampMa_D(enCpma_D);
 					serviceDb.delCampMaById(cpid);
+					
 					return Mono.just(ResponseEntity.ok().body(String.format("Callbot, cpid가 %s인 레코드가 성공적으로 삭제되었습니다.", cpid)));
 				}
 
@@ -237,7 +243,7 @@ public class ControllerCenter {
 
 				if (action.equals("update")) {
 					try {
-						serviceDb.updateCampMa(cpid, cpna);
+						serviceDb.updateCampMa(campInfoObj);
 						endpoint = "/cmpnMstrRegist";
 						apim.sendMsgToApim(endpoint, msg);
 						log.info("업데이트를 위한 변경할 대상 cpid : {}, 새로운 캠페인명 : {}, APIM으로 보냄. : {}", cpid, cpna, msg);
@@ -249,10 +255,14 @@ public class ControllerCenter {
 
 					return Mono.just(ResponseEntity.ok().body(String.format("Apim, cpid가 %s인 레코드가 성공적으로 업데이트가 완료되었습니다.", cpid)));
 				} else {
-					serviceDb.delCampMaById(cpid);
 					endpoint = "/cmpnMstrRegist";
 					apim.sendMsgToApim(endpoint, msg);
 					log.info("'delete' event - 삭제 대상 cpid : {}, APIM으로 보냄. : {}", cpid, msg);
+					
+					Entity_CampMa enCpma = serviceDb.findCampMaByCpid(cpid);
+					Entity_CampMa_D enCpma_D = createEntity.createEnCampMa_D(enCpma);
+					serviceDb.insertCampMa_D(enCpma_D);
+					serviceDb.delCampMaById(cpid);
 				}
 				return Mono.just(ResponseEntity.ok().body(String.format("\"Apim, cpid가 %s인 레코드가 성공적으로 삭제되었습니다.", cpid)));
 			}
@@ -397,21 +407,20 @@ public class ControllerCenter {
 
 		// 캠페인이 어느 비즈니스 로직인지 판단하기 위해서 일단 목록 중 하나만 꺼내서 확인해 보도록한다.
 		// 왜냐면 나머지는 똑같을테니.
-		String contactsresult = ServiceJson.extractStrVal("ExtractContacts", result, 0);// JsonString 결과값과 조회하고 싶은
+		JSONObject contactsresult = ServiceJson.extractObjVal("ExtractContacts", result, 0);// JsonString 결과값과 조회하고 싶은
 																						// 인덱스(첫번째)를 인자로 넣는다.
-		String cpid = contactsresult.split("::")[2];
+		String cpid = contactsresult.getString("cpid");
 
 		Entity_CampMa enCampMa = serviceDb.findCampMaByCpid(cpid);
 		Entity_CampRt entityCmRt = null;
-		int rlsq = serviceDb.findCampRtMaxRlsq().intValue();
 
 		MsgApim msgapim = new MsgApim();
 		Entity_ToApim enToApim = new Entity_ToApim();
 		for (int i = 0; i < values.size(); i++) {
 
-			contactsresult = ServiceJson.extractStrVal("ExtractContacts", result, i);
+			contactsresult = ServiceJson.extractObjVal("ExtractContacts", result, i);
 
-			entityCmRt = createEntity.createCampRtMsg(contactsresult, enCampMa, rlsq);
+			entityCmRt = createEntity.createCampRtMsg(contactsresult, enCampMa);
 			enToApim = msgapim.rstMassage(entityCmRt);
 
 			apimEntitylt.add(enToApim);
@@ -569,9 +578,11 @@ public class ControllerCenter {
 			for (String campid : cpFrmDB2) {
 
 				log.info("DB에는 있고 제네시스에는 없는 경우, 그 캠페인의 숫자는? {} / DB에서 삭제해야할 cpid(캠페인 아이디는?) : {}", cpFrmDB2.size(), campid);
+				
+				Entity_CampMa enCpma = serviceDb.findCampMaByCpid(campid);
+				Entity_CampMa_D enCpma_D = createEntity.createEnCampMa_D(enCpma);
+				serviceDb.insertCampMa_D(enCpma_D);
 				serviceDb.delCampMaById(campid);
-				cpFrmGenesys1.remove(cpid);
-				cpFrmGenesys2.remove(cpid);
 			}
 
 		}

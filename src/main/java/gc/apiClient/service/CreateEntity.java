@@ -1,6 +1,10 @@
 package gc.apiClient.service;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Map;
 import java.util.TimeZone;
@@ -20,10 +24,12 @@ import gc.apiClient.embeddable.UcrmCampRt;
 import gc.apiClient.entity.postgresql.Entity_ApimRt;
 import gc.apiClient.entity.postgresql.Entity_CallbotRt;
 import gc.apiClient.entity.postgresql.Entity_CampMa;
+import gc.apiClient.entity.postgresql.Entity_CampMa_D;
 import gc.apiClient.entity.postgresql.Entity_CampRt;
 import gc.apiClient.entity.postgresql.Entity_ContactLt;
 import gc.apiClient.entity.postgresql.Entity_Ucrm;
 import gc.apiClient.entity.postgresql.Entity_UcrmRt;
+import gc.apiClient.interfaceCollection.InterfaceDBPostgreSQL;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -32,32 +38,33 @@ public class CreateEntity {
 	
 	private final CustomProperties customProperties;
 	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
+	private final InterfaceDBPostgreSQL serviceDb;
 	
 	
-	public CreateEntity(CustomProperties customProperties) {
+	public CreateEntity(CustomProperties customProperties,InterfaceDBPostgreSQL serviceDb) {
 
 		this.customProperties = customProperties;
+		this.serviceDb = serviceDb;
 	}
 	
-	public Entity_CampRt createCampRtMsg(String cpid, Entity_CampMa enCampMa,int rlsq) {
+	public Entity_CampRt createCampRtMsg(JSONObject jsonobj, Entity_CampMa enCampMa) {
 		// contactid::contactListId::cpid::CPSQ::dirt::tkda::dateCreated
 
 		log.info("====== Method : createCampRtMsg ======");
 
-		log.info("들어온 rs : {}", cpid);
+		log.info("들어온 rs : {}", jsonobj.toString());
 		Entity_CampRt enCampRt = new Entity_CampRt();
 		CampRt id = new CampRt();
-		String parts[] = cpid.split("::");
 
 		int coid = 0;
-		int cpsq = Integer.parseInt(parts[3]);
+		int cpsq = Integer.parseInt(jsonobj.getString("cpsq"));
 		long hubId = 0;
 		int dirt = 0;
 		int dict = 0;
-		String campid = parts[2];
-		String contactLtId = parts[1];
-		String contactId = parts[0];
-		String tkda = parts[5];
+		String campid = jsonobj.optString("cpid", ""); 
+		String contactLtId = jsonobj.optString("contactListId", ""); 
+		String contactId = jsonobj.optString("id", "");
+		String tkda = jsonobj.optString("tkda", "");
 		Date didt = null;
 
 		try {
@@ -72,7 +79,7 @@ public class CreateEntity {
 			log.info("contactLtId: {}", contactLtId);
 			log.info("contactId: {}", contactId);
 			log.info("tkda: {}", tkda);
-			log.info("didt: {}", parts[6]);
+			log.info("didt: {}", jsonobj.optString("lastAttempt", ""));
 			log.info("------ 들어온 rs를 분배해여 필요한 변수들 초기화 끝 ------");
 
 			if (tkda.charAt(0) == 'C') {
@@ -82,21 +89,26 @@ public class CreateEntity {
 			} else {
 			}
 
-			SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
-			log.info("didt(포맷 변경 전) : {}", parts[6]);
-			Date parsedDate = inputFormat.parse(parts[6]);
+			String didval = jsonobj.optString("lastAttempt", "");
+			if(!didval.equals("")) {
+				
+				SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
+				log.info("didt(포맷 변경 전) : {}", didval);
+				Date parsedDate = inputFormat.parse(didval);
+				// Formatting the parsed date to the desired format
+				SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+				outputFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+				String formattedDateString = outputFormat.format(parsedDate);
+				Date formattedDate = outputFormat.parse(formattedDateString);
+				didt = formattedDate;
+				log.info("didt(포맷 변경 후) : {}", didt);
+				
+			}
+			
 
-			// Formatting the parsed date to the desired format
-			SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-			outputFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-			String formattedDateString = outputFormat.format(parsedDate);
-			Date formattedDate = outputFormat.parse(formattedDateString);
-			didt = formattedDate;
-			log.info("didt(포맷 변경 후) : {}", didt);
-
-			log.info("dirt(맵핑 전) : {}", parts[4]);
+			log.info("dirt(맵핑 전) : {}", jsonobj.optString("lastResult", ""));
 			Map<String, String> properties = customProperties.getProperties();
-			dirt = Integer.parseInt(properties.getOrDefault(parts[4], "1").trim());
+			dirt = Integer.parseInt(properties.getOrDefault(jsonobj.optString("lastResult", ""), "1").trim());
 			log.info("dirt(맵핑 후) : {}", dirt);
 
 			ServiceWebClient crmapi = new ServiceWebClient();
@@ -105,7 +117,7 @@ public class CreateEntity {
 
 			coid = enCampMa.getCoid();
 			log.info("campid({})로 조회한 레코드의 coid : {}", campid, coid);
-
+			int rlsq = serviceDb.findCampRtMaxRlsq().intValue();
 			log.info("camprt테이블에서 현재 가장 큰 rlsq 값 : {}", rlsq);
 			rlsq++;
 			log.info("가져온 rlsq의 값에 +1 : {}", rlsq);
@@ -194,6 +206,48 @@ public class CreateEntity {
 		enCampMa.setModdate(moddate);
 
 		return enCampMa;
+	}
+	
+	
+	public Entity_CampMa_D createEnCampMa_D(Entity_CampMa enCampma) { // 매개변수로 받는 String msg = > cpid::coid::cpna::division
+
+		log.info("====== Method : Entity_CampMa_D ======");
+		
+		// 로컬 시간 가져오기
+        LocalDateTime localDateTime = LocalDateTime.now();
+        // UTC 시간대로 변환
+        ZonedDateTime utcDateTime = localDateTime.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("UTC"));
+        // 포맷 정의
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        // 문자열로 변환
+        String formattedDateTime = utcDateTime.format(formatter);
+
+		Entity_CampMa_D enCampMa_D = new Entity_CampMa_D();
+		
+		String cpid = enCampma.getCpid();
+		int coid = enCampma.getCoid();
+		String cpnm = enCampma.getCpna();
+		String contactListid = enCampma.getContactltid();
+		String contactListnm = enCampma.getContactltnm();
+		String queueid = enCampma.getQueueid();
+		String divisionid = enCampma.getDivisionid();
+		String divisionnm = enCampma.getDivisionnm();
+		String insdate = formattedDateTime;
+		String moddate = enCampma.getModdate();
+			
+
+		enCampMa_D.setCpid(cpid);
+		enCampMa_D.setCoid(coid);
+		enCampMa_D.setCpna(cpnm);
+		enCampMa_D.setContactltid(contactListid);
+		enCampMa_D.setContactltnm(contactListnm);
+		enCampMa_D.setQueueid(queueid);
+		enCampMa_D.setDivisionid(divisionid);
+		enCampMa_D.setDivisionnm(divisionnm);
+		enCampMa_D.setInsdate(insdate);
+		enCampMa_D.setModdate(moddate);
+
+		return enCampMa_D;
 	}
 	
 	

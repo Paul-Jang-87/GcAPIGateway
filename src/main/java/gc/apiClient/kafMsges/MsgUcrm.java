@@ -109,11 +109,14 @@ public class MsgUcrm implements InterfaceKafMsg { //카프카 프로듀서로 �
 			String coid = "";
 			String campid = enCampRt.getCpid();
 			String didt = "";
+			String formattedTime = "";
 
-			SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-			outputFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-			String formattedDateString = outputFormat.format(enCampRt.getDidt());
-			didt = formattedDateString;
+			if( enCampRt.getDidt() !=null ) {
+				SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+				outputFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+				String formattedDateString = outputFormat.format(enCampRt.getDidt());
+				didt = formattedDateString;
+			}
 
 			dirt = enCampRt.getDirt();
 
@@ -129,13 +132,16 @@ public class MsgUcrm implements InterfaceKafMsg { //카프카 프로듀서로 �
 			coid = mappingData.getCentercodeById(coid);
 			coid = coid != null ? coid : "EX";
 
-			String dateString = didt;
-			DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-			LocalDateTime dateTime = LocalDateTime.parse(dateString, format);
-			LocalDateTime adjustedDateTime = dateTime.plusHours(9);
-
-			ZonedDateTime desiredTime = adjustedDateTime.atZone(ZoneId.of("UTC+09:00"));
-			String formattedTime = desiredTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+			if(!didt.equals("")) {
+				
+				String dateString = didt;
+				DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+				LocalDateTime dateTime = LocalDateTime.parse(dateString, format);
+				LocalDateTime adjustedDateTime = dateTime.plusHours(9);
+				
+				ZonedDateTime desiredTime = adjustedDateTime.atZone(ZoneId.of("UTC+09:00"));
+				formattedTime = desiredTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+			}
 
 			obj.put("topcDataIsueDtm", topcDataIsueDtm);
 			obj.put("ibmHubId", hubId);

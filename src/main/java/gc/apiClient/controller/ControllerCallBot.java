@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.data.domain.Page;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
@@ -31,6 +32,7 @@ import gc.apiClient.interfaceCollection.InterfaceWebClient;
 import gc.apiClient.kafMsges.MsgCallbot;
 import gc.apiClient.messages.MessageToProducer;
 import gc.apiClient.service.CreateEntity;
+import gc.apiClient.service.ServiceInstCmpRt;
 import gc.apiClient.service.ServiceJson;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
@@ -42,14 +44,17 @@ public class ControllerCallBot {
 	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
 
 	private final InterfaceDBPostgreSQL serviceDb;
+	private final ServiceInstCmpRt serviceInstCmpRt;
 	private final InterfaceWebClient serviceWeb;
 	private final CustomProperties customProperties;
 	private final CreateEntity createEntity;
 
-	public ControllerCallBot(InterfaceDBPostgreSQL serviceDb, InterfaceWebClient serviceWeb, CustomProperties customProperties,CreateEntity createEntity) {
+	public ControllerCallBot(InterfaceDBPostgreSQL serviceDb, InterfaceWebClient serviceWeb, 
+			CustomProperties customProperties,CreateEntity createEntity,ServiceInstCmpRt serviceInstCmpRt) {
 		this.serviceDb = serviceDb;
 		this.createEntity = createEntity;
 		this.serviceWeb = serviceWeb;
+		this.serviceInstCmpRt = serviceInstCmpRt;
 		this.customProperties = customProperties;
 	}
 
@@ -256,12 +261,11 @@ public class ControllerCallBot {
 		// 캠페인이 어느 비즈니스 로직인지 판단하기 위해서 일단 목록 중 하나만 꺼내서 확인해 보도록한다.
 		// 왜냐면 나머지는 똑같을테니.
 		// JsonString 결과값과 조회하고 싶은 인덱스(첫번째)를 인자로 넣는다.
-		String contactsresult = ServiceJson.extractStrVal("ExtractContacts", result, 0);
-		String cpid = contactsresult.split("::")[2];
+		JSONObject contactsresult = ServiceJson.extractObjVal("ExtractContacts", result, 0);
+		String cpid = contactsresult.getString("cpid");
 
 		Entity_CampMa enCampMa = serviceDb.findCampMaByCpid(cpid);
 		Entity_CampRt entityCmRt = null;
-		int rlsq = serviceDb.findCampRtMaxRlsq().intValue();
 
 		// 토큰데이터와 디비젼네임을 인자로 넘겨서 어떤 비지니스 로직인지, 토픽은 어떤 것으로 해야하는지를 결과 값으로 반환 받는다.
 		Map<String, String> businessLogic = BusinessLogic.rtSelectedBusiness(divisionName);
@@ -269,13 +273,13 @@ public class ControllerCallBot {
 
 		for (int i = 0; i < values.size(); i++) {
 
-			contactsresult = ServiceJson.extractStrVal("ExtractContacts", result, i);
-			if (contactsresult.equals("")) {
+			contactsresult = ServiceJson.extractObjVal("ExtractContacts", result, i);
+			if (contactsresult==null) {
 				log.info("결과 없음, 다음으로 건너 뜀.");
 				continue;
 			}
 
-			entityCmRt = createEntity.createCampRtMsg(contactsresult, enCampMa, rlsq);// db 인서트 하기 위한 entity.
+			entityCmRt = createEntity.createCampRtMsg(contactsresult, enCampMa);// db 인서트 하기 위한 entity.
 
 			MsgCallbot msgcallbot = new MsgCallbot(serviceDb);
 			String msg = msgcallbot.makeRtMsg(entityCmRt);
@@ -286,7 +290,8 @@ public class ControllerCallBot {
 
 			// db인서트
 			try {
-				serviceDb.insertCampRt(entityCmRt);
+				serviceInstCmpRt.insrtCmpRt(contactsresult,enCampMa);
+//				serviceDb.insertCampRt(entityCmRt);
 			} catch (DataIntegrityViolationException ex) {
 				log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());
 			} catch (DataAccessException ex) {

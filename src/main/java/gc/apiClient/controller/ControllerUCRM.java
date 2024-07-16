@@ -1,10 +1,5 @@
 package gc.apiClient.controller;
 
-//import java.text.SimpleDateFormat;
-//import java.time.LocalDateTime;
-//import java.time.format.DateTimeFormatter;
-//import java.util.Date;
-//import java.util.Random;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.support.TransactionSynchronizationManager;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import gc.apiClient.BusinessLogic;
 import gc.apiClient.customproperties.CustomProperties;
 import gc.apiClient.entity.postgresql.Entity_CampMa;
+import gc.apiClient.entity.postgresql.Entity_CampMa_D;
 import gc.apiClient.entity.postgresql.Entity_CampRt;
 import gc.apiClient.entity.postgresql.Entity_ContactLt;
 import gc.apiClient.entity.postgresql.Entity_Ucrm;
@@ -35,6 +30,7 @@ import gc.apiClient.interfaceCollection.InterfaceWebClient;
 import gc.apiClient.kafMsges.MsgUcrm;
 import gc.apiClient.messages.MessageToProducer;
 import gc.apiClient.service.CreateEntity;
+import gc.apiClient.service.ServiceInstCmpRt;
 import gc.apiClient.service.ServiceJson;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
@@ -48,11 +44,14 @@ public class ControllerUCRM {
 	private final InterfaceWebClient serviceWeb;
 	private final CreateEntity createEntity;
 	private final CustomProperties customProperties;
+	private final ServiceInstCmpRt serviceInstCmpRt;
 
-	public ControllerUCRM(InterfaceDBPostgreSQL serviceDb, InterfaceWebClient serviceWeb, CustomProperties customProperties,CreateEntity createEntity) {
+	public ControllerUCRM(InterfaceDBPostgreSQL serviceDb, InterfaceWebClient serviceWeb, 
+			CustomProperties customProperties,CreateEntity createEntity,ServiceInstCmpRt serviceInstCmpRt) {
 		this.serviceDb = serviceDb;
 		this.createEntity = createEntity;
 		this.serviceWeb = serviceWeb;
+		this.serviceInstCmpRt = serviceInstCmpRt;
 		this.customProperties = customProperties;
 	}
 
@@ -134,14 +133,23 @@ public class ControllerUCRM {
 				String cpid = "";
 				String queid = "";
 				Entity_CampMa enCpma = null;
+				Entity_CampMa_D enCpma_D = null;
 
 				for (int i = 0; i < reps; i++) {// 가져온 레코드 갯수만큼 반복.
 
 					cpid = entitylist.getContent().get(i).getId().getCpid(); // 첫번째 레코드부터 cpid를 가지고 온다.
 					flag = entitylist.getContent().get(i).getWorkDivsCd();
-					enCpma = serviceDb.findCampMaByCpid(cpid);
-					contactLtId = enCpma.getContactltid();
-					queid = enCpma.getQueueid();
+					
+					try {
+						enCpma = serviceDb.findCampMaByCpid(cpid);
+						contactLtId = enCpma.getContactltid();
+						queid = enCpma.getQueueid();
+					} catch (Exception e) {
+						log.error("원본 마스터 테이블에서 조회되지 않습니다.({}) flag 'D'테이블에서 조회합니다.",cpid);
+						enCpma_D = serviceDb.findCampMa_DByCpid(cpid);
+						contactLtId = enCpma_D.getContactltid();
+						queid = enCpma_D.getQueueid();
+					}
 
 					// UCRM에서 보내 준 데이터를 가지고 제네시스에 PUSH하기 위해서 필요한 데이터들을 추출한다.
 					String row_result = ServiceJson.extractStrVal("ExtractRawUcrm", entitylist.getContent().get(i));
@@ -405,7 +413,7 @@ public class ControllerUCRM {
 
 		try {
 			log.info("====== Method : sendUcrmRt ======");
-			log.info("Transaction active sendUcrmRt: {}", TransactionSynchronizationManager.isActualTransactionActive());
+//			log.info("Transaction active sendUcrmRt: {}", TransactionSynchronizationManager.isActualTransactionActive());
 
 			Page<Entity_UcrmRt> entitylist = serviceDb.getAllUcrmRt();
 
@@ -491,25 +499,24 @@ public class ControllerUCRM {
 		}
 
 		// 캠페인이 어느 비즈니스 로직인지 판단하기 위해서 일단 목록 중 하나만 꺼내서 확인해 보도록한다. 왜냐면 나머지는 똑같을테니.
-		String contactsresult = ServiceJson.extractStrVal("ExtractContacts", result, 0);// JsonString 결과값과 조회하고 싶은 인덱스(첫번째)를 인자로 넣는다.
-		String cpid = contactsresult.split("::")[2];
+		JSONObject contactsresult = ServiceJson.extractObjVal("ExtractContacts", result, 0);// JsonString 결과값과 조회하고 싶은 인덱스(첫번째)를 인자로 넣는다.
+		String cpid = contactsresult.getString("cpid");
 
 		Entity_CampMa enCampMa = serviceDb.findCampMaByCpid(cpid);
 		Entity_CampRt entityCmRt = null;
-		int rlsq = serviceDb.findCampRtMaxRlsq().intValue();
 
 		// 토큰데이터와 디비젼네임을 인자로 넘겨서 어떤 비지니스 로직인지, 토픽은 어떤 것으로 해야하는지를 결과 값으로 반환 받는다.
 		Map<String, String> businessLogic = BusinessLogic.rtSelectedBusiness(divisionName);
 		String topic_id = businessLogic.get("topic_id");
 
 		for (int i = 0; i < values.size(); i++) {
-			contactsresult = ServiceJson.extractStrVal("ExtractContacts", result, i);
-			if (contactsresult.equals("")) {
+			contactsresult = ServiceJson.extractObjVal("ExtractContacts", result, i);
+			if (contactsresult==null) {
 				log.info("결과 없음, 다음으로 건너 뜀.");
 				continue;
 			}
 
-			entityCmRt = createEntity.createCampRtMsg(contactsresult, enCampMa, rlsq); // db 인서트 하기 위한 entity.
+			entityCmRt = createEntity.createCampRtMsg(contactsresult, enCampMa); // db 인서트 하기 위한 entity.
 
 			MsgUcrm msgucrm = new MsgUcrm(serviceDb);
 			String msg = msgucrm.makeRtMsg(entityCmRt);
@@ -526,7 +533,8 @@ public class ControllerUCRM {
 
 			// db인서트
 			try {
-				serviceDb.insertCampRt(entityCmRt);
+				serviceInstCmpRt.insrtCmpRt(contactsresult,enCampMa);
+//				serviceDb.insertCampRt(entityCmRt);
 			} catch (Exception ex) {
 				errorLogger.error(ex.getMessage(), ex);
 			}

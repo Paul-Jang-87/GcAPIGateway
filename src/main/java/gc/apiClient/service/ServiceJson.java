@@ -28,8 +28,6 @@ public class ServiceJson {
 		switch (methodNm) {
 		case "ExtractVal":
 			return ExtractVal((String) params[0]);
-		case "ExtractContacts":
-			return ExtractContacts((String) params[0], (int) params[1]);
 		case "ExtractValCallBot":
 			return ExtractValCallBot((String) params[0], (int) params[1]);
 		case "ExtrSaveRtData":
@@ -82,6 +80,8 @@ public class ServiceJson {
 			return ExtrCmpObj((List<JSONObject>) params[0], (int) params[1]);
 		case "ExtractCampMaUpdateOrDel":
 			return ExtractCampMaUpdateOrDel((String) params[0]);
+		case "ExtractContacts":
+			return ExtractContacts((String) params[0], (int) params[1]);
 		default:
 			throw new IllegalArgumentException("Invalid strategy type");
 		}
@@ -201,20 +201,23 @@ public class ServiceJson {
 		String cpid = jsonNode.path("cpid").asText();
 		String coid = jsonNode.path("callerName").asText();
 		String cpnm = jsonNode.path("cpnm").asText();
-		String divisionnm = jsonNode.path("division").asText();
+		String divisionid = jsonNode.path("division").asText();
+		String divisionnm = jsonNode.path("divisionnm").asText();
 		String action = jsonNode.path("action").asText();
+		String contactListid = jsonNode.path("contactListid").asText();
+		String contactListnm = jsonNode.path("contactListnm").asText();
+		String queueid = jsonNode.path("queueid").asText();
 		
 		jsonObj.put("cpid", cpid);
 		jsonObj.put("coid", coid);
 		jsonObj.put("cpnm", cpnm);
+		jsonObj.put("divisionid", divisionid);
 		jsonObj.put("divisionnm", divisionnm);
 		jsonObj.put("action", action);
+		jsonObj.put("contactListid", contactListid);
+		jsonObj.put("contactListnm", contactListnm);
+		jsonObj.put("queueid", queueid);
 
-		log.info("cpid(캠페인아이디) : {}", cpid);
-		log.info("coid(센터구분코드) : {}", coid);
-		log.info("cpnm(캠페인명) : {}", cpnm);
-		log.info("divisionnm(디비전명) : {}", divisionnm);
-		log.info("action(crud타입) : {}", action);
 		return jsonObj;
 	}
 
@@ -252,10 +255,10 @@ public class ServiceJson {
 		return result;
 	}
 
-	public static String ExtractContacts(String stringMsg, int i) throws Exception {
+	public static JSONObject ExtractContacts(String stringMsg, int i) throws Exception {
 
 		String jsonResponse = stringMsg;
-
+		JSONObject jsonObj = new JSONObject();
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode jsonNode = null;
 		String result = "";
@@ -268,6 +271,14 @@ public class ServiceJson {
 		result = result + "::" + jsonNode.path(i).path("callRecords").path("TNO1").path("lastResult").asText();
 		result = result + "::" + jsonNode.path(i).path("data").path("TKDA").asText();
 		result = result + "::" + jsonNode.path(i).path("callRecords").path("TNO1").path("lastAttempt").asText();
+		
+		jsonObj.put("id", jsonNode.path(i).path("id").asText());
+		jsonObj.put("contactListId", jsonNode.path(i).path("contactListId").asText());
+		jsonObj.put("cpid", jsonNode.path(i).path("data").path("CPID").asText());
+		jsonObj.put("cpsq", jsonNode.path(i).path("data").path("CPSQ").asText());
+		jsonObj.put("lastResult", jsonNode.path(i).path("callRecords").path("TNO1").path("lastResult").asText());
+		jsonObj.put("tkda", jsonNode.path(i).path("data").path("TKDA").asText());
+		jsonObj.put("lastAttempt", jsonNode.path(i).path("callRecords").path("TNO1").path("lastAttempt").asText());
 
 		if (result.equals("::::::::::::")) {
 			result = "";
@@ -275,7 +286,7 @@ public class ServiceJson {
 
 		log.info("추출 이후 결과 값 rs: {}", result);
 
-		return result;
+		return jsonObj;
 	}
 
 	public static int ExtractDict(String stringMsg) throws Exception {

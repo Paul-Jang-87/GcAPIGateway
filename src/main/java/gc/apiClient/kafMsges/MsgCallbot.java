@@ -30,10 +30,9 @@ public class MsgCallbot implements InterfaceKafMsg {
 	public MsgCallbot(InterfaceDBPostgreSQL serviceDb) {
 		this.serviceDb = serviceDb;
 	}
-	
+
 	public MsgCallbot() {
 	}
-	
 
 	@Override
 	public String makeMaMsg(Entity_CampMa enCampMa, String datachgcd) throws Exception {
@@ -63,9 +62,9 @@ public class MsgCallbot implements InterfaceKafMsg {
 			enCampMaJson.setTopcDataIsueDtm(topcDataIsueDtm);
 
 			break;
-			
+
 		case "delete":
-			
+
 			enCampMaJson.setTenantId(Integer.toString(enCampMa.getCoid()));
 			enCampMaJson.setCmpnId(enCampMa.getCpid());
 			enCampMaJson.setCmpnNm("");
@@ -79,7 +78,7 @@ public class MsgCallbot implements InterfaceKafMsg {
 
 		default:
 
-			log.info("유효하지 않은 CRUD 작업요청입니다. : {}",datachgcd);
+			log.info("유효하지 않은 CRUD 작업요청입니다. : {}", datachgcd);
 			break;
 		}
 
@@ -103,11 +102,15 @@ public class MsgCallbot implements InterfaceKafMsg {
 			String coid = "";
 			String campid = enCampRt.getCpid();
 			String didt = "";
+			SimpleDateFormat outputFormat = null;
+			String formattedDateString = "";
 
-			SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-			outputFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-			String formattedDateString = outputFormat.format(enCampRt.getDidt());
-			didt = formattedDateString;
+			if (enCampRt.getDidt() != null) {
+				outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+				outputFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+				formattedDateString = outputFormat.format(enCampRt.getDidt());
+				didt = formattedDateString;
+			}
 
 			dirt = enCampRt.getDirt();
 
@@ -123,10 +126,12 @@ public class MsgCallbot implements InterfaceKafMsg {
 			coid = mappingData.getCentercodeById(coid);
 			coid = coid != null ? coid : "EX";
 
-			outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSS");
-			outputFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-			formattedDateString = outputFormat.format(enCampRt.getDidt());
-			didt = formattedDateString;
+			if (!didt.equals("")) {
+				outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSS");
+				outputFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+				formattedDateString = outputFormat.format(enCampRt.getDidt());
+				didt = formattedDateString;
+			}
 
 			obj.put("topcDataIsueDtm", topcDataIsueDtm);
 			obj.put("cpId", campid);

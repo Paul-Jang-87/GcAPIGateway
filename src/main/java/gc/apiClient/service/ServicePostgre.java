@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
-
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -16,7 +16,7 @@ import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.support.TransactionSynchronizationManager;
+
 
 import gc.apiClient.embeddable.ApimCampRt;
 import gc.apiClient.embeddable.CallBotCampRt;
@@ -25,6 +25,7 @@ import gc.apiClient.embeddable.UcrmCampRt;
 import gc.apiClient.entity.postgresql.Entity_ApimRt;
 import gc.apiClient.entity.postgresql.Entity_CallbotRt;
 import gc.apiClient.entity.postgresql.Entity_CampMa;
+import gc.apiClient.entity.postgresql.Entity_CampMa_D;
 import gc.apiClient.entity.postgresql.Entity_CampRt;
 import gc.apiClient.entity.postgresql.Entity_ContactLt;
 import gc.apiClient.entity.postgresql.Entity_Ucrm;
@@ -33,6 +34,7 @@ import gc.apiClient.interfaceCollection.InterfaceDBPostgreSQL;
 import gc.apiClient.repository.postgresql.Repository_ApimRt;
 import gc.apiClient.repository.postgresql.Repository_CallbotRt;
 import gc.apiClient.repository.postgresql.Repository_CampMa;
+import gc.apiClient.repository.postgresql.Repository_CampMa_D;
 import gc.apiClient.repository.postgresql.Repository_CampRt;
 import gc.apiClient.repository.postgresql.Repository_ContactLt;
 import gc.apiClient.repository.postgresql.Repository_Ucrm;
@@ -47,6 +49,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	// 검색 **Create **Insert **Select
 	private final Repository_CampRt repositoryCampRt;
 	private final Repository_CampMa repositoryCampMa;
+	private final Repository_CampMa_D repositoryCampMa_D;
 	private final Repository_Ucrm repositoryUcrm;
 	private final Repository_CallbotRt repositoryCallbotRt;
 	private final Repository_UcrmRt repositoryUcrmRt;
@@ -54,7 +57,8 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	private final Repository_ContactLt repositoryContactLt;
 
 	public ServicePostgre(Repository_CampRt repositoryCampRt, Repository_CampMa repositoryCampMa, Repository_ContactLt repositoryContactLt,
-			Repository_Ucrm repositoryUcrm, Repository_CallbotRt repositoryCallbotRt, Repository_UcrmRt repositoryUcrmRt, Repository_ApimRt repositoryApimRt) {
+			Repository_Ucrm repositoryUcrm, Repository_CallbotRt repositoryCallbotRt, Repository_UcrmRt repositoryUcrmRt, 
+			Repository_ApimRt repositoryApimRt,Repository_CampMa_D repositoryCampMa_D) {
 
 		this.repositoryCampRt = repositoryCampRt;
 		this.repositoryUcrm = repositoryUcrm;
@@ -63,6 +67,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		this.repositoryCallbotRt = repositoryCallbotRt;
 		this.repositoryUcrmRt = repositoryUcrmRt;
 		this.repositoryApimRt = repositoryApimRt;
+		this.repositoryCampMa_D = repositoryCampMa_D;
 	}
 
 
@@ -92,6 +97,21 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 		return repositoryCampMa.save(entityCampMa);// 없으면 인서트
 	}
+	
+	
+	@Override
+	@Transactional
+	public Entity_CampMa_D insertCampMa_D(Entity_CampMa_D entityCampMa_D) throws Exception {
+		
+		Optional<Entity_CampMa_D> existingEntity = repositoryCampMa_D.findByCpid(entityCampMa_D.getCpid()); // db에 인서트 하기 전. 키 값인 캠페인 아이디로 먼저 조회를 한다.
+
+		if (existingEntity.isPresent()) {// 조회 해본 결과 레코드가 이미 있는 상황이라면 에러는 발생시킨다.
+			throw new DataIntegrityViolationException("주어진 'cpid'를 가진 레코드가 테이블에 이미 존재합니다.");
+		}
+
+		return repositoryCampMa_D.save(entityCampMa_D);// 없으면 인서트
+	}
+	
 
 	@Override
 	@Transactional
@@ -134,6 +154,20 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	
 	@Override
 	@Transactional
+	public Entity_CampMa_D findCampMa_DByCpid(String cpid) throws Exception {
+		try {
+			Optional<Entity_CampMa_D> optionalEntity = repositoryCampMa_D.findByCpid(cpid);
+			return optionalEntity.orElse(null);
+		} catch (IncorrectResultSizeDataAccessException ex) {
+			log.error("Error retrieving Entity_CampMa by cpid: {}", cpid);
+			errorLogger.error("Error retrieving Entity_CampMa by cpid: {}", cpid, ex);
+			return null;
+		}
+	}
+	
+	
+	@Override
+	@Transactional
 	public List<Entity_CampMa> getAllRecords() throws Exception {
 		 return repositoryCampMa.findAll();
 	}
@@ -142,7 +176,6 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	@Override
 	@Transactional
 	public Integer findCampRtMaxRlsq() {
-		log.info("Transaction active findCampRtMaxRlsq: {}", TransactionSynchronizationManager.isActualTransactionActive());
 
 		try {
 			Optional<Integer> optionalEntity = repositoryCampRt.findMaxRlsq();
@@ -254,23 +287,26 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 	@Override
 	@Transactional
-	public void updateCampMa(String cpid, String cpna) throws Exception {
+	public void updateCampMa(JSONObject jsonobj) throws Exception {
+		
+		String cpid = jsonobj.getString("cpid");
+		
 		Optional<Entity_CampMa> optionalEntity = repositoryCampMa.findById(cpid);// 캠페인 아이디로 레코드 조회.
 
 		if (optionalEntity.isPresent()) {// 조회 후 있다면 해당 레코드의 캠페인명 업데이트
 			Entity_CampMa entity = optionalEntity.get();
-			entity.setCpna(cpna);
 			// 로컬 시간 가져오기
 	        LocalDateTime localDateTime = LocalDateTime.now();
-
 	        // UTC 시간대로 변환
 	        ZonedDateTime utcDateTime = localDateTime.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("UTC"));
-
 	        // 포맷 정의
 	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-
 	        // 문자열로 변환
 	        String formattedDateTime = utcDateTime.format(formatter);
+	        entity.setCpna(jsonobj.getString("cpnm"));
+	        entity.setContactltid(jsonobj.getString("contactListid"));
+	        entity.setContactltnm(jsonobj.getString("contactListnm"));
+	        entity.setQueueid(jsonobj.getString("queueid"));
 	        entity.setModdate(formattedDateTime);
 			repositoryCampMa.save(entity);
 		} else {
@@ -342,5 +378,6 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	public List<Entity_ContactLt> getRecordsByCpid(String cpid) throws Exception {
 		return repositoryContactLt.findByCpId(cpid);
 	}
+
 
 }

@@ -147,13 +147,12 @@ public class ControllerCenter {
 			log.info("IP주소 : {}, 포트 : {}로 부터 api가 호출되었습니다.", ipAddress, port);// 어디서 이 api를 불렀는지 ip와 port 번호를 찍어본다.
 
 			campInfoObj = ServiceJson.extractObjVal("ExtractCampMaUpdateOrDel", msg);
+			enCampMa = createEntity.createEnCampMa(campInfoObj);
 			String cpid = campInfoObj.getString("cpid");
 			String cpna = campInfoObj.getString("cpnm");
 			String divisionnm = campInfoObj.getString("divisionnm");
 			String action = campInfoObj.getString("action");
-
-			enCampMa = createEntity.createEnCampMa(campInfoObj);
-
+			
 			Map<String, String> businessLogic = BusinessLogic.selectedBusiness(divisionnm.trim());
 
 			String endpoint = "";

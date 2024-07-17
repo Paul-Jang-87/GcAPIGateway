@@ -22,6 +22,8 @@ public class AppConfig {
 	private static String secret;		// Genesys Cloud API OAuth SECRET
 	
 	public AppConfig() throws Exception {
+		
+		//제네시스 api를 호출 하기 위한 OAuth ID와 OAuth SECRET 정보, 다른 앱의 api를 호출하기 위한 도메인 정보들이 들어 있는 gcapi_info.properties 파일 경로
 		ResourcePropertySource rps = new ResourcePropertySource("file:./logs/gc_config/gcapi_info.properties");
 		
 		domain 	= String.valueOf(rps.getProperty("domain"));

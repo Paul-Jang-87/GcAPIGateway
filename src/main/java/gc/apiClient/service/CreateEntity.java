@@ -187,10 +187,10 @@ public class CreateEntity {
 		cpid = jsonObject.optString("cpid", ""); //캠페인아이디
 		cpnm = jsonObject.optString("cpnm", ""); //캠페인명
 		contactListid = jsonObject.optString("contactListid", ""); //컨텍리스트아이디
-		contactListnm = jsonObject.optString("contactListnm", ""); //컨텍리스트명
+		contactListnm = ""; // 사용 안 하는 컬럼.
 		queueid = jsonObject.optString("queueid", ""); //큐아이디
 		divisionid = jsonObject.optString("divisionid", ""); //디비전아이디
-		divisionnm = jsonObject.optString("divisionnm", ""); //디비전명
+		divisionnm = jsonObject.optString("divisionnm", ""); //디비전아이디
 		insdate = jsonObject.optString("insdate", "");//최초생성일
 		moddate = jsonObject.optString("moddate", ""); //마지막수정일
 
@@ -201,7 +201,7 @@ public class CreateEntity {
 		enCampMa.setContactltnm(contactListnm);
 		enCampMa.setQueueid(queueid);
 		enCampMa.setDivisionid(divisionid);
-		enCampMa.setDivisionnm(divisionnm);
+		enCampMa.setDivisionid(divisionnm);
 		enCampMa.setInsdate(insdate);
 		enCampMa.setModdate(moddate);
 

@@ -14,6 +14,13 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
+/**
+ * 
+ * 프로젝트관련하여 쌓여있는 로그파일들을 압축시키는데 필요한 클래스.
+ * 실질적으로 로그 파일을 압축시키는 파일은 'archive_logs.sh'인데 
+ * 이 클래스는 주기적으로 'archive_logs.sh'파일을 실행시켜준다. 
+ * 
+ */
 public class LogArchiver {
 
 	 //@Scheduled(cron = "0 0 0 * * *") //하루 한번 정각에 

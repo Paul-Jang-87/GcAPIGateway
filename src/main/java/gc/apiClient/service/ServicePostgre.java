@@ -17,7 +17,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import gc.apiClient.embeddable.ApimCampRt;
 import gc.apiClient.embeddable.CallBotCampRt;
 import gc.apiClient.embeddable.ContactLtId;
@@ -305,8 +304,9 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	        String formattedDateTime = utcDateTime.format(formatter);
 	        entity.setCpna(jsonobj.getString("cpnm"));
 	        entity.setContactltid(jsonobj.getString("contactListid"));
-	        entity.setContactltnm(jsonobj.getString("contactListnm"));
 	        entity.setQueueid(jsonobj.getString("queueid"));
+	        entity.setDivisionnm(jsonobj.getString("divisionnm"));
+	        entity.setCoid(Integer.parseInt(jsonobj.getString("coid")));
 	        entity.setModdate(formattedDateTime);
 			repositoryCampMa.save(entity);
 		} else {

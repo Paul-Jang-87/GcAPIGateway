@@ -191,6 +191,9 @@ public class ServiceJson {
 
 	public static JSONObject ExtractCampMaUpdateOrDel(String stringMsg) throws Exception {
 		// cpid::coid::cpna::divisionid::action
+		
+		log.info("Method : ExtractCampMaUpdateOrDel / 인입 메시지 : {} ", stringMsg);
+		
 		String jsonResponse = stringMsg;
 
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -204,7 +207,7 @@ public class ServiceJson {
 		String divisionid = jsonNode.path("division").asText();
 		String divisionnm = jsonNode.path("divisionnm").asText();
 		String action = jsonNode.path("action").asText();
-		String contactListid = jsonNode.path("contactListid").asText();
+		String contactListid = jsonNode.path("contactList_id").asText();
 		String contactListnm = jsonNode.path("contactListnm").asText();
 		String queueid = jsonNode.path("queueid").asText();
 		

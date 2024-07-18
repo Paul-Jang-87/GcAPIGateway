@@ -201,7 +201,7 @@ public class CreateEntity {
 		enCampMa.setContactltnm(contactListnm);
 		enCampMa.setQueueid(queueid);
 		enCampMa.setDivisionid(divisionid);
-		enCampMa.setDivisionid(divisionnm);
+		enCampMa.setDivisionnm(divisionnm);
 		enCampMa.setInsdate(insdate);
 		enCampMa.setModdate(moddate);
 
@@ -344,11 +344,11 @@ public class CreateEntity {
 	}
 	
 	
-	public Entity_UcrmRt createUcrmRt(String msg) throws Exception {
+	public Entity_UcrmRt createUcrmRt(JSONObject jsonobj) throws Exception {
 
-		String cpid = msg.split("::")[0];
-		String cpsq = msg.split("::")[1];
-		String divisionid = msg.split("::")[2];
+		String cpid = jsonobj.optString("cpid", "");
+		String cpsq = jsonobj.optString("cpsq", "");
+		String divisionid = jsonobj.optString("divisionid", "");
 
 		Entity_UcrmRt enUcrmRt = new Entity_UcrmRt();
 		UcrmCampRt ucrmCampRt = new UcrmCampRt();
@@ -361,11 +361,11 @@ public class CreateEntity {
 	}
 	
 	
-	public Entity_CallbotRt createCallbotRt(String msg) throws Exception {
+	public Entity_CallbotRt createCallbotRt(JSONObject jsonobj) throws Exception {
 
-		String cpid = msg.split("::")[0];
-		String cpsq = msg.split("::")[1];
-		String divisionid = msg.split("::")[2];
+		String cpid = jsonobj.optString("cpid", "");
+		String cpsq = jsonobj.optString("cpsq", "");
+		String divisionid = jsonobj.optString("divisionid", "");
 
 		Entity_CallbotRt enCallbotRt = new Entity_CallbotRt();
 		CallBotCampRt callbotCampRt = new CallBotCampRt();
@@ -378,11 +378,11 @@ public class CreateEntity {
 	}
 	
 	
-	public Entity_ApimRt createApimRt(String msg) throws Exception {
+	public Entity_ApimRt createApimRt(JSONObject jsonobj) throws Exception {
 
-		String cpid = msg.split("::")[0];
-		String cpsq = msg.split("::")[1];
-		String divisionid = msg.split("::")[2];
+		String cpid = jsonobj.optString("cpid", "");
+		String cpsq = jsonobj.optString("cpsq", "");
+		String divisionid = jsonobj.optString("divisionid", "");
 
 		Entity_ApimRt apimRt = new Entity_ApimRt();
 		ApimCampRt apimCampRt = new ApimCampRt();

@@ -9,18 +9,19 @@ import java.util.Map;
  *
  */
 public class BusinessLogic {
-
+	
+	
+	
 	private static Map<String, String> businesslogic;
 
-	public static Map<String, String> selectedBusiness(String division) {
+	public static Map<String, String> selectedBusiness(String divisionid) {
 
 		businesslogic = new HashMap<String, String>();
 		String topic_id = "";
 		String business = "";
 
-		switch (division.trim()) {
-		case "홈":
-		case "Home":
+		switch (divisionid.trim()) {
+		case "2c366c7a-349e-481c-bc61-df5153045fe8": //홈
 
 			business = "UCRM";
 			topic_id = "from_clcc_hmucrmcmpnma_message"; 
@@ -29,8 +30,7 @@ public class BusinessLogic {
 
 			break;
 
-		case "모바일":
-		case "Mobile":
+		case "232637ae-d261-46e5-92ea-62e8e4696eb5": //모바일
 
 			business = "UCRM";
 			topic_id = "from_clcc_mblucrmcmpnma_message";
@@ -39,8 +39,7 @@ public class BusinessLogic {
 
 			break;
 
-		case "콜봇홈": 
-		case "CallbotHome": 
+		case "1cd99d76-03bd-4bb6-87f1-1ea5b18cfa24": //콜봇홈
 
 			business = "Callbot";
 			topic_id = "from_clcc_hmaiccmpnma_message";
@@ -49,8 +48,7 @@ public class BusinessLogic {
 
 			break;
 
-		case "콜봇모바일":
-		case "CallbotMobile":
+		case "b26cc9f6-0608-46d9-a059-ab3d6b943771": //콜봇모바일
 
 			business = "Callbot";
 			topic_id = "from_clcc_mblaiccmpnma_message"; 
@@ -71,16 +69,15 @@ public class BusinessLogic {
 		return businesslogic;
 	}
 
-	public static Map<String, String> rtSelectedBusiness(String divisionName) {
+	public static Map<String, String> rtSelectedBusiness(String divisionid) {
 		
 		businesslogic = new HashMap<String, String>();
 		String topic_id = "";
 		String business = "";
 		
-		switch (divisionName.trim()) {
+		switch (divisionid.trim()) {
 		
-		case "홈":
-		case "Home":
+		case "2c366c7a-349e-481c-bc61-df5153045fe8": //홈
 
 			business = "UCRM";
 			topic_id = "from_clcc_hmucrmcmpnrs_message";
@@ -89,8 +86,7 @@ public class BusinessLogic {
 
 			break;
 			
-		case "모바일":
-		case "Mobile":
+		case "232637ae-d261-46e5-92ea-62e8e4696eb5": //모바일
 
 			business = "UCRM";
 			topic_id = "from_clcc_mblucrmcmpnrs_message"; 
@@ -99,8 +95,7 @@ public class BusinessLogic {
 
 			break;
 			
-		case "콜봇홈": 
-		case "CallbotHome": 
+		case "1cd99d76-03bd-4bb6-87f1-1ea5b18cfa24": //콜봇홈
 
 			business = "Callbot";
 			topic_id = "from_clcc_hmaiccmpnrs_message";
@@ -109,8 +104,7 @@ public class BusinessLogic {
 
 			break;
 			
-		case "콜봇모바일":
-		case "CallbotMobile":
+		case "b26cc9f6-0608-46d9-a059-ab3d6b943771": //콜봇모바일
 
 			business = "Callbot";
 			topic_id = "from_clcc_mblaiccmpnrs_message";  

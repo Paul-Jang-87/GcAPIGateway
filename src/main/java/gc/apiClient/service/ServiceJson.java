@@ -30,8 +30,6 @@ public class ServiceJson {
 			return ExtractVal((String) params[0]);
 		case "ExtractValCallBot":
 			return ExtractValCallBot((String) params[0], (int) params[1]);
-		case "ExtrSaveRtData":
-			return ExtrSaveRtData((String) params[0]);
 		case "ExtractContactLtId":
 			return ExtractContactLtId((String) params[0]);
 		case "ExtractRawUcrm":
@@ -80,6 +78,8 @@ public class ServiceJson {
 			return ExtrCmpObj((List<JSONObject>) params[0], (int) params[1]);
 		case "ExtractCampMaUpdateOrDel":
 			return ExtractCampMaUpdateOrDel((String) params[0]);
+		case "ExtrSaveRtData":
+			return ExtrSaveRtData((String) params[0]);
 		case "ExtractContacts":
 			return ExtractContacts((String) params[0], (int) params[1]);
 		default:
@@ -326,18 +326,23 @@ public class ServiceJson {
 		return result;
 	}
 
-	public static String ExtrSaveRtData(String stringMsg) throws Exception {
+	public static JSONObject ExtrSaveRtData(String stringMsg) throws Exception {
 
 		String jsonResponse = stringMsg;
 
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode jsonNode = null;
+		JSONObject jsonobj = new JSONObject();
 		String result = "";
 
 		jsonNode = objectMapper.readTree(jsonResponse);
 		String cpid = jsonNode.path("cpid").asText();
 		String cpsq = jsonNode.path("cpsq").asText();
 		String divisionid = jsonNode.path("divisionid").asText();
+		
+		jsonobj.put("cpid", cpid);
+		jsonobj.put("cpsq", cpsq);
+		jsonobj.put("divisionid", divisionid);
 
 		result = cpid + "::" + cpsq + "::" + divisionid;
 		log.info("result : {}", result);
@@ -345,7 +350,7 @@ public class ServiceJson {
 		log.info("cpsq(캠페인시퀀스) : {}", cpsq);
 		log.info("divisionid(디비전아이디) : {}", divisionid);
 
-		return result;
+		return jsonobj;
 	}
 
 }

@@ -54,7 +54,7 @@ public class ServiceWebClient implements InterfaceWebClient {
             WebClientApp webClient = new WebClientApp();
             result = webClient.makeApiRequest(endpoint, "GET", campaignId);
         } catch (Exception e) {
-            log.error("getCampaignsApiRequet 에러 : {}",  e.getMessage());
+            log.info("getCampaignsApiRequet 에러 : {}",  e.getMessage());
             errorLogger.error(e.getMessage(), e);
         }
         

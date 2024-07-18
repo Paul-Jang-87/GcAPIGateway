@@ -45,7 +45,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ServicePostgre implements InterfaceDBPostgreSQL {
 	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
-	// 검색 **Create **Insert **Select
+	// 검색 **Create **Insert **SelectupdateCampMa
 	private final Repository_CampRt repositoryCampRt;
 	private final Repository_CampMa repositoryCampMa;
 	private final Repository_CampMa_D repositoryCampMa_D;
@@ -194,8 +194,8 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 	@Override
 	@Transactional
-	public Page<Entity_Ucrm> getAll() throws Exception {
-		return repositoryUcrm.findAllWithLock(PageRequest.of(0, 750));
+	public Page<Entity_Ucrm> getAll(String workdivscd) throws Exception {
+	    return repositoryUcrm.findAllWithLock(workdivscd, PageRequest.of(0, 750));
 	}
 
 	@Override

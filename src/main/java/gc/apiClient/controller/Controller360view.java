@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
-import gc.apiClient.customproperties.CustomProperties;
 import gc.apiClient.entity.oracleH.*;
 import gc.apiClient.entity.oracleM.*;
 import gc.apiClient.interfaceCollection.InterfaceDBOracle;
@@ -28,9 +27,7 @@ public class Controller360view {
     private final InterfaceDBOracle serviceOracle;
     private final InterfaceMsgObjOrcl serviceMsgObjOrcl;
 
-    public Controller360view(InterfaceDBPostgreSQL serviceDb, InterfaceDBOracle serviceOracle,
-                             InterfaceWebClient serviceWeb, CustomProperties customProperties, 
-                             InterfaceMsgObjOrcl serviceMsgObjOrcl) {
+    public Controller360view(InterfaceDBPostgreSQL serviceDb, InterfaceDBOracle serviceOracle, InterfaceWebClient serviceWeb,InterfaceMsgObjOrcl serviceMsgObjOrcl) {
         this.serviceOracle = serviceOracle;
         this.serviceMsgObjOrcl = serviceMsgObjOrcl;
     }

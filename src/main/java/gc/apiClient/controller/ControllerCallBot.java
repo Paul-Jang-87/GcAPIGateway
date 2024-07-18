@@ -22,9 +22,9 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import gc.apiClient.BusinessLogic;
-import gc.apiClient.customproperties.CustomProperties;
 import gc.apiClient.entity.postgresql.Entity_CallbotRt;
 import gc.apiClient.entity.postgresql.Entity_CampMa;
+import gc.apiClient.entity.postgresql.Entity_CampMa_D;
 import gc.apiClient.entity.postgresql.Entity_CampRt;
 import gc.apiClient.entity.postgresql.Entity_ContactLt;
 import gc.apiClient.interfaceCollection.InterfaceDBPostgreSQL;
@@ -46,16 +46,13 @@ public class ControllerCallBot {
 	private final InterfaceDBPostgreSQL serviceDb;
 	private final ServiceInstCmpRt serviceInstCmpRt;
 	private final InterfaceWebClient serviceWeb;
-	private final CustomProperties customProperties;
 	private final CreateEntity createEntity;
 
-	public ControllerCallBot(InterfaceDBPostgreSQL serviceDb, InterfaceWebClient serviceWeb, 
-			CustomProperties customProperties,CreateEntity createEntity,ServiceInstCmpRt serviceInstCmpRt) {
+	public ControllerCallBot(InterfaceDBPostgreSQL serviceDb, InterfaceWebClient serviceWeb, CreateEntity createEntity, ServiceInstCmpRt serviceInstCmpRt) {
 		this.serviceDb = serviceDb;
 		this.createEntity = createEntity;
 		this.serviceWeb = serviceWeb;
 		this.serviceInstCmpRt = serviceInstCmpRt;
-		this.customProperties = customProperties;
 	}
 
 	/**
@@ -175,31 +172,62 @@ public class ControllerCallBot {
 				log.info("'CAMPRT_CALLBOT_W' table에서 조회 된 레코드 개수 : {}", reps);
 
 				Map<String, String> mapdivision = new HashMap<String, String>();
+				Map<String, String> mapcontactltId = new HashMap<String, String>();// 키 : cpid, 값 : contactLtId
 				Map<String, List<String>> contactlists = new HashMap<String, List<String>>();
-				Entity_CampMa enCpma = null;
+				
+				List<String> invalid_camp = new ArrayList<String>();
+				Entity_CampMa_D enCpma_D = null;
 				String contactLtId = "";
-				String divisionName = "";
+				String divisionid = "";
 				String cpid = "";
+				String cqsq = "";
 
 				for (int i = 0; i < reps; i++) {
 
 					Entity_CallbotRt enCallbotRt = entitylist.getContent().get(i);
 					cpid = enCallbotRt.getId().getCpid(); // 첫번째 레코드부터 cpid를 가지고 온다.
-					enCpma = serviceDb.findCampMaByCpid(cpid);
-					String cqsq = enCallbotRt.getId().getCpsq(); // 첫번째 레코드부터 cpsq를 가지고 온다.
+					cqsq = enCallbotRt.getId().getCpsq(); // 첫번째 레코드부터 cpsq를 가지고 온다.
+					contactLtId = mapcontactltId.get(cpid);
+					divisionid = enCallbotRt.getDivisionid();
 
-					contactLtId = enCpma.getContactltid();
-					divisionName = enCpma.getDivisionnm();
+					if (contactLtId == null || contactLtId.equals("")) {
 
-					try {
-						divisionName = enCpma.getDivisionnm();
-					} catch (Exception e) {
-						String division = enCallbotRt.getDivisionid();
-						Map<String, String> properties = customProperties.getDivision();
-						divisionName = properties.getOrDefault(division, "디비전을 찾을 수 없습니다.");
+						if (invalid_camp.contains(cpid)) {// 지금 레코드에 있는 캠페인 아이디가 유효하지 않은 캠페인 아이디라면 api호출 없이 DB에서 해당 레코드 삭제 후 그냥 다음 레코드로
+							// 넘어감.
+							serviceDb.delCallBotRtById(enCallbotRt.getId());
+							continue;
+						}
+
+						String result = serviceWeb.getCampaignsApiReq("campaignId", cpid); // cpid를 가지고 직접 제네시스 api를 호출해서 contactltId를 알아낸다
+
+						if (result.equals("")) {// cpid를 가지고 직접 제네시스 api를 호출해서 contactltId를 알아내려고 했는데 결과 값이 없다면, 혹시 campma_d테이블에
+												// 존재하는지 조회.
+
+							try {
+								log.info("캠페인 아이디 ({})로 api호출 결과 결과가 없습니다. 마스터D 테이블을 조회합니다.", cpid);
+								enCpma_D = serviceDb.findCampMa_DByCpid(cpid);
+
+								contactLtId = enCpma_D.getContactltid();
+								mapcontactltId.put(cpid, contactLtId);
+								mapdivision.put(contactLtId, divisionid);
+
+							} catch (Exception e) {// campma_d테이블을 조회했는데도 없다면 유효하지 않은 캠페인으로 처리하고 해당레코드 삭제
+								log.info("마스터D 테이블 조회 결과 유효한 캠페인 아이디 ({})가 아닙니다", cpid);
+								invalid_camp.add(cpid); // 유효하지 않은 캠페인 저장.
+								serviceDb.delCallBotRtById(enCallbotRt.getId());
+								// 밑의 로직을 수행하지 않고 다음 i번째로 넘어간다.
+								continue;
+							}
+
+						} else {
+
+							String res = ServiceJson.extractStrVal("ExtractContactLtId", result); // 가져온 결과에서 contactlistid,queueid만 추출. 변수 'res' 형식의 예 )contactlistid::queueid
+							contactLtId = res.split("::")[0];
+							mapcontactltId.put(cpid, contactLtId);
+							mapdivision.put(contactLtId, divisionid);
+						}
+
 					}
-
-					mapdivision.put(contactLtId, divisionName.trim());
 
 					// contactList ID Mapping
 					if (!contactlists.containsKey(contactLtId)) {
@@ -213,17 +241,19 @@ public class ControllerCallBot {
 					log.info("아이디가 '{}'인 contactListId에 값 추가", contactLtId);
 
 					for (Map.Entry<String, List<String>> entry : contactlists.entrySet()) {
-						divisionName = mapdivision.get(entry.getKey());
+						divisionid = mapdivision.get(entry.getKey());
 						// 캠페인 발신결과 전송 (G.C API add contact bulk 데이터는 한번에 최대 50개까지 add 가능)
 						if (entry.getValue().size() >= 50) {
-							sendCampRtToCallbot(entry.getKey(), entry.getValue(), divisionName);
+							sendCampRtToCallbot(entry.getKey(), entry.getValue(), divisionid);
 						}
 					}
 				}
+				
+				invalid_camp.clear();
 
 				for (Map.Entry<String, List<String>> entry : contactlists.entrySet()) {
-					divisionName = mapdivision.get(entry.getKey());
-					sendCampRtToCallbot(entry.getKey(), entry.getValue(), divisionName);
+					divisionid = mapdivision.get(entry.getKey());
+					sendCampRtToCallbot(entry.getKey(), entry.getValue(), divisionid);
 				}
 
 			}
@@ -246,7 +276,7 @@ public class ControllerCallBot {
 	 * @return
 	 * @throws Exception
 	 */
-	public Mono<Void> sendCampRtToCallbot(String contactLtId, List<String> values, String divisionName) throws Exception {
+	public Mono<Void> sendCampRtToCallbot(String contactLtId, List<String> values, String divisionid) throws Exception {
 
 		log.info("====== Method : sendCampRtToCallbot ======");
 		// 컨택리스트(contactListId)별 컨택데이터(contact-cpsq)를 Genesys Cloud로 전송 (Bulk)
@@ -268,13 +298,13 @@ public class ControllerCallBot {
 		Entity_CampRt entityCmRt = null;
 
 		// 토큰데이터와 디비젼네임을 인자로 넘겨서 어떤 비지니스 로직인지, 토픽은 어떤 것으로 해야하는지를 결과 값으로 반환 받는다.
-		Map<String, String> businessLogic = BusinessLogic.rtSelectedBusiness(divisionName);
+		Map<String, String> businessLogic = BusinessLogic.rtSelectedBusiness(divisionid);
 		String topic_id = businessLogic.get("topic_id");
 
 		for (int i = 0; i < values.size(); i++) {
 
 			contactsresult = ServiceJson.extractObjVal("ExtractContacts", result, i);
-			if (contactsresult==null) {
+			if (contactsresult == null) {
 				log.info("결과 없음, 다음으로 건너 뜀.");
 				continue;
 			}
@@ -290,7 +320,7 @@ public class ControllerCallBot {
 
 			// db인서트
 			try {
-				serviceInstCmpRt.insrtCmpRt(contactsresult,enCampMa);
+				serviceInstCmpRt.insrtCmpRt(contactsresult, enCampMa);
 //				serviceDb.insertCampRt(entityCmRt);
 			} catch (DataIntegrityViolationException ex) {
 				log.error("DataIntegrityViolationException 발생 : {}", ex.getMessage());

@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import gc.apiClient.BusinessLogic;
-import gc.apiClient.customproperties.CustomProperties;
 import gc.apiClient.entity.Entity_ToApim;
 import gc.apiClient.entity.postgresql.Entity_ApimRt;
 import gc.apiClient.entity.postgresql.Entity_CallbotRt;
@@ -50,14 +49,12 @@ public class ControllerCenter {
 	private final InterfaceDBPostgreSQL serviceDb;
 	private final InterfaceWebClient serviceWeb;
 	private final CreateEntity createEntity;
-	private final CustomProperties customProperties;
 	private static List<Entity_ToApim> apimEntitylt = new ArrayList<Entity_ToApim>();
 
-	public ControllerCenter(InterfaceDBPostgreSQL serviceDb, InterfaceWebClient serviceWeb, CustomProperties customProperties,CreateEntity createEntity) {
+	public ControllerCenter(InterfaceDBPostgreSQL serviceDb, InterfaceWebClient serviceWeb,CreateEntity createEntity) {
 		this.serviceDb = serviceDb;
 		this.serviceWeb = serviceWeb;
 		this.createEntity = createEntity;
-		this.customProperties = customProperties;
 	}
 
 	@GetMapping("/gcapi/get/{topic}")
@@ -150,10 +147,10 @@ public class ControllerCenter {
 			enCampMa = createEntity.createEnCampMa(campInfoObj);
 			String cpid = campInfoObj.getString("cpid");
 			String cpna = campInfoObj.getString("cpnm");
-			String divisionnm = campInfoObj.getString("divisionnm");
+			String divisionid = campInfoObj.getString("divisionid");
 			String action = campInfoObj.getString("action");
 			
-			Map<String, String> businessLogic = BusinessLogic.selectedBusiness(divisionnm.trim());
+			Map<String, String> businessLogic = BusinessLogic.selectedBusiness(divisionid.trim());
 
 			String endpoint = "";
 			String business = businessLogic.get("business");
@@ -280,24 +277,22 @@ public class ControllerCenter {
 
 		try {
 
-			String result = ServiceJson.extractStrVal("ExtrSaveRtData", msg);// cpid::cpsq::divisionid 리턴 값으로 이 String
+			JSONObject result = ServiceJson.extractObjVal("ExtrSaveRtData", msg);// cpid::cpsq::divisionid 리턴 값으로 이 String
 																				// 받음.
-			String division = result.split("::")[2];
+			String divisionid = result.optString("divisionid","");
 
-			Map<String, String> properties = customProperties.getDivision();
-			String divisionName = properties.getOrDefault(division, "디비전을 찾을 수 없습니다.");
-			log.info("디비전 이름 : {}", divisionName);
+			log.info("디비전 아이디 : {}", divisionid);
 
-			switch (divisionName.trim()) {
-			case "Home":
-			case "Mobile":
+			switch (divisionid.trim()) {
+			case "2c366c7a-349e-481c-bc61-df5153045fe8": //홈
+			case "232637ae-d261-46e5-92ea-62e8e4696eb5": //모바일
 
 				Entity_UcrmRt enUcrmrt = createEntity.createUcrmRt(result);
 				serviceDb.insertUcrmRt(enUcrmrt);
 				return Mono.just(ResponseEntity.ok("Ucrm 데이터가 성공적으로 인서트 되었습니다."));
 
-			case "CallbotHome":
-			case "CallbotMobile":
+			case "1cd99d76-03bd-4bb6-87f1-1ea5b18cfa24": //콜봇홈
+			case "b26cc9f6-0608-46d9-a059-ab3d6b943771": //콜봇모바일
 
 				Entity_CallbotRt enCallBotRt = createEntity.createCallbotRt(result);
 				serviceDb.insertCallbotRt(enCallBotRt);
@@ -309,7 +304,6 @@ public class ControllerCenter {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			return Mono.just(ResponseEntity.ok().body(String.format("에러가 발생했습니다. : %s", e.getMessage())));
 		}
 
@@ -329,33 +323,57 @@ public class ControllerCenter {
 				int reps = entitylist.getNumberOfElements();// 몇개의 레코드를 가지고 왔는지.
 				log.info("'CAMPRT_UCUBE_W' table에서 조회 된 레코드 개수 : {}", reps);
 
-				Map<String, String> mapdivision = new HashMap<String, String>();
+				Map<String, String> mapcontactltId = new HashMap<String, String>();// 키 : cpid, 값 : contactLtId
 				Map<String, List<String>> contactlists = new HashMap<String, List<String>>();
+				
+				List<String> invalid_camp = new ArrayList<String>();
 				String contactLtId = "";
-				String divisionName = "";
 				String cpid = "";
-				Entity_CampMa enCpma = null;
-
+				String cpsq = "";
+				Entity_CampMa_D enCpma_D = null;
 				for (int i = 0; i < reps; i++) {
 
 					Entity_ApimRt enApimRt = entitylist.getContent().get(i);
 
 					cpid = enApimRt.getId().getCpid(); // 첫번째 레코드부터 cpid를 가지고 온다.
-					enCpma = serviceDb.findCampMaByCpid(cpid);
-					String cpsq = enApimRt.getId().getCpsq(); // 첫번째 레코드부터 cpsq를 가지고 온다.
+					cpsq = enApimRt.getId().getCpsq(); // 첫번째 레코드부터 cpsq를 가지고 온다.
+					contactLtId = mapcontactltId.get(cpid);
+					
+					if (contactLtId == null || contactLtId.equals("")) {
 
-					contactLtId = enCpma.getContactltid();
-					divisionName = enCpma.getDivisionnm();
+						if (invalid_camp.contains(cpid)) {// 지금 레코드에 있는 캠페인 아이디가 유효하지 않은 캠페인 아이디라면 api호출 없이 DB에서 해당 레코드 삭제 후 그냥 다음 레코드로 넘어감.
+							serviceDb.delApimRtById(enApimRt.getId());
+							continue;
+						}
 
-					try {
-						divisionName = enCpma.getDivisionnm();
-					} catch (Exception e) {
-						String division = enApimRt.getDivisionid();
-						Map<String, String> properties = customProperties.getDivision();
-						divisionName = properties.getOrDefault(division, "디비전을 찾을 수 없습니다.");
+						String result = serviceWeb.getCampaignsApiReq("campaignId", cpid); // cpid를 가지고 직접 제네시스 api를 호출해서 contactltId를 알아낸다
+
+						if (result.equals("")) {// cpid를 가지고 직접 제네시스 api를 호출해서 contactltId를 알아내려고 했는데 결과 값이 없다면, 혹시 campma_d테이블에 존재하는지 조회.
+
+							try {
+								log.info("캠페인 아이디 ({})로 api호출 결과 결과가 없습니다. 마스터D 테이블을 조회합니다.", cpid);
+								enCpma_D = serviceDb.findCampMa_DByCpid(cpid);
+
+								contactLtId = enCpma_D.getContactltid();
+								mapcontactltId.put(cpid, contactLtId);
+
+							} catch (Exception e) {// campma_d테이블을 조회했는데도 없다면 유효하지 않은 캠페인으로 처리하고 해당레코드 삭제
+								log.info("마스터D 테이블 조회 결과 유효한 캠페인 아이디 ({})가 아닙니다", cpid);
+								invalid_camp.add(cpid); // 유효하지 않은 캠페인 저장.
+								serviceDb.delApimRtById(enApimRt.getId());
+								// 밑의 로직을 수행하지 않고 다음 i번째로 넘어간다.
+								continue;
+							}
+
+						} else {
+
+							String res = ServiceJson.extractStrVal("ExtractContactLtId", result); // 가져온 결과에서 contactlistid,queueid만 추출. 변수 'res' 형식의 예 )contactlistid::queueid
+							contactLtId = res.split("::")[0];
+							mapcontactltId.put(cpid, contactLtId);
+						}
+
 					}
 
-					mapdivision.put(contactLtId, divisionName);
 
 					if (!contactlists.containsKey(contactLtId)) {// 맵(contactlists)에 키값(contactLtId)이 없다면.
 						contactlists.put(contactLtId, new ArrayList<>());// 'contactLtId'로 된 키 값 추가.
@@ -367,20 +385,20 @@ public class ControllerCenter {
 
 					for (Map.Entry<String, List<String>> entry : contactlists.entrySet()) {
 
-						divisionName = mapdivision.get(entry.getKey());
 						// 캠페인 발신결과 전송 (G.C API add contact bulk 데이터는 한번에 최대 50개까지 add 가능)
 						// 배열 크기가 50이상일 때, 배열 안의 인수 개수가 50개 이상일 때는 일단 발신 결과 전송 로직을 탄다. 50개 이상 쌓이고 하게 되면
 						// 에러남.
 						if (entry.getValue().size() >= 50) {
-							sendCampRtToAPIM(entry.getKey(), entry.getValue(), divisionName);// contactLtId 와 contactLtId에 해당하는 배열, divisionName
+							sendCampRtToAPIM(entry.getKey(), entry.getValue());// contactLtId 와 contactLtId에 해당하는 배열, divisionName
 						}
 					}
 				}
 
 				for (Map.Entry<String, List<String>> entry : contactlists.entrySet()) {// 배열 안의 크기가 50개 이상이 아닐 때, 즉 50개 이상 전송하고 남은 나머지들 전송.
-					divisionName = mapdivision.get(entry.getKey());
-					sendCampRtToAPIM(entry.getKey(), entry.getValue(), divisionName);
+					sendCampRtToAPIM(entry.getKey(), entry.getValue());
 				}
+				
+				invalid_camp.clear(); // 유효하지 않았던 cpid들을 저장해 둔 배열 안의 요소들 삭제
 
 			}
 
@@ -393,7 +411,7 @@ public class ControllerCenter {
 		return Mono.just(ResponseEntity.ok("Successfully processed the message."));
 	}
 
-	public Mono<Void> sendCampRtToAPIM(String contactLtId, List<String> values, String divisionName) throws Exception {
+	public Mono<Void> sendCampRtToAPIM(String contactLtId, List<String> values) throws Exception {
 
 		log.info("====== Method : sendCampRtToAPIM ======");
 		ObjectMapper objectMapper = null;
@@ -444,7 +462,7 @@ public class ControllerCenter {
 	public void handlingCampMaster(List<JSONObject> camplist) throws Exception {
 
 		JSONObject campInfoObj = null;
-		String division = "";
+		String divisionid = "";
 		String business = "";
 		String topic_id = "";
 		String endpoint = "";
@@ -488,9 +506,9 @@ public class ControllerCenter {
 
 				campInfoObj = ServiceJson.extractObjVal("ExtrCmpObj", camplist, idx);
 
-				division = campInfoObj.getString("divisionnm");
+				divisionid = campInfoObj.getString("divisionid");
 
-				Map<String, String> businessLogic = BusinessLogic.selectedBusiness(division);
+				Map<String, String> businessLogic = BusinessLogic.selectedBusiness(divisionid.trim());
 
 				business = businessLogic.get("business");
 				topic_id = businessLogic.get("topic_id");

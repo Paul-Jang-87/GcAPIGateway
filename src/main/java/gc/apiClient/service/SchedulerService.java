@@ -90,7 +90,8 @@ public class SchedulerService {
 	//ucrm관련 스케줄러
 	@Scheduled(fixedRate = 10000) // 5초 간격으로 함수 'UcrmMsgFrmCnsmer' 스케줄 돌림.
 	public void ucrmContactlt() {
-		Mono.fromCallable(() -> ucrmService.ucrmMsgFrmCnsmer()).subscribeOn(Schedulers.boundedElastic()).subscribe();
+		Mono.fromCallable(() -> ucrmService.addUcrmMsgFrmConsumer()).subscribeOn(Schedulers.boundedElastic()).subscribe();
+		Mono.fromCallable(() -> ucrmService.delUcrmMsgFrmCnsmer()).subscribeOn(Schedulers.boundedElastic()).subscribe();
 		
 	}
 	@Scheduled(fixedRate = 60000) // 1분 간격으로 함수 'SendUcrmRt' 스케줄 돌림.

@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 import java.util.Optional;
 
 import gc.apiClient.embeddable.Ucrm;
@@ -20,15 +19,12 @@ import jakarta.persistence.LockModeType;
 @Repository
 public interface Repository_Ucrm extends CrudRepository<Entity_Ucrm, Ucrm> {
 	
-	@Lock(LockModeType.PESSIMISTIC_WRITE)
-	@Query("SELECT c FROM Entity_ContactLt c WHERE c.id.cpid = :cpidValue")
-	List<Entity_Ucrm> findByCpid(@Param("cpidValue") String id);
 
 	Optional<Entity_Ucrm> findById(Ucrm id);
 	
 	@Lock(LockModeType.PESSIMISTIC_WRITE)
-    @Query("SELECT c FROM Entity_Ucrm c")
-    Page<Entity_Ucrm> findAllWithLock(Pageable pageable);
+	@Query("SELECT c FROM Entity_Ucrm c WHERE c.workDivsCd = :workdivscd")
+	Page<Entity_Ucrm> findAllWithLock(@Param("workdivscd") String workdivscd, Pageable pageable);
 
 	Page<Entity_Ucrm> findAll(Pageable pageable);
 

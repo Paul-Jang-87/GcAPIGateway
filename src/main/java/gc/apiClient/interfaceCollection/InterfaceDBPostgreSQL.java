@@ -36,7 +36,7 @@ public interface InterfaceDBPostgreSQL {
 	Entity_CampMa_D findCampMa_DByCpid(String cpid) throws Exception;
 	List<Entity_CampMa> getAllRecords() throws Exception;
 	Integer findCampRtMaxRlsq() throws Exception;
-	Page<Entity_Ucrm> getAll() throws Exception; 
+	Page<Entity_Ucrm> getAll(String workdivscd) throws Exception;
 	Page<Entity_UcrmRt> getAllUcrmRt() throws Exception; 
 	Page<Entity_CallbotRt> getAllCallBotRt() throws Exception; 
 	Page<Entity_ApimRt> getAllApimRt() throws Exception; 

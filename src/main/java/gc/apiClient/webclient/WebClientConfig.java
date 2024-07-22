@@ -6,6 +6,9 @@ import gc.apiClient.AppConfig;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ *  사용하는 api들과 endpoint들 정리, 제네시스 OAuth ID,Secret 관련 클래스.
+ */
 @Component
 @Slf4j
 public class WebClientConfig {		// api들의 정보들 수록.

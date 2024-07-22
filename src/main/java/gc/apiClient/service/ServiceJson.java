@@ -26,8 +26,6 @@ public class ServiceJson {
 		log.info("====== Method : extractStrVal ( TYPE: {} ) ======", methodNm);
 
 		switch (methodNm) {
-		case "ExtractVal":
-			return ExtractVal((String) params[0]);
 		case "ExtractValCallBot":
 			return ExtractValCallBot((String) params[0], (int) params[1]);
 		case "ExtractContactLtId":
@@ -87,29 +85,7 @@ public class ServiceJson {
 		}
 	}
 
-	public static String ExtractVal(String stringMsg) throws Exception {
-		// campMa 테이블의 3가지 속성(coid,cpid,cpna)에 넣기 위한 가공 작업
-		// (현재는 아무거나 임의로 뽑아봄)-매개변수로 들어온 JsonString data 'stringMsg'에서
-		// 'id','name','dialingMode'값 그냥 뽑아봄.
-
-		String jsonResponse = stringMsg;
-
-		ObjectMapper objectMapper = new ObjectMapper();
-		JsonNode jsonNode = null;
-		String result = "";
-
-		jsonNode = objectMapper.readTree(jsonResponse);
-
-		result = jsonNode.path("entities").path(0).path("id").asText();
-
-		result = result + "::" + jsonNode.path("entities").path(0).path("queue").path("name").asText();
-
-		result = result + "::" + jsonNode.path("entities").path(0).path("dialingMode").asText();
-
-		// 리턴 데이터 형식 예) adhoahfd::oadiifaj::ohdhfa
-		return result;
-	}
-
+	
 	public static JSONObject ExtractValCrm(String stringMsg, int i) throws Exception {// stringMsg에서 원하는 값만 추출.
 
 		String jsonResponse = stringMsg;
@@ -149,16 +125,16 @@ public class ServiceJson {
 
 		JSONObject jsonObj = camplist.get(i);
 		
-		String cpid = jsonObj.optString("cpid", "");
-		String coid = jsonObj.optString("coid", "");
-		String cpnm = jsonObj.optString("cpnm", "");
-		String contactListid = jsonObj.optString("contactListid", "");
-		String contactListnm = jsonObj.optString("contactListnm", "");
-		String queueid = jsonObj.optString("queueid", "");
-		String divisionid = jsonObj.optString("divisionid", "");
-		String divisionnm = jsonObj.optString("divisionnm", "");
-		String insdate = jsonObj.optString("insdate", "");
-		String moddate = jsonObj.optString("moddate", "");
+		String cpid = jsonObj.getString("cpid");
+		String coid = jsonObj.getString("coid");
+		String cpnm = jsonObj.getString("cpnm");
+		String contactListid = jsonObj.getString("contactListid");
+		String contactListnm = jsonObj.getString("contactListnm");
+		String queueid = jsonObj.getString("queueid");
+		String divisionid = jsonObj.getString("divisionid");
+		String divisionnm = jsonObj.getString("divisionnm");
+		String insdate = jsonObj.getString("insdate");
+		String moddate = jsonObj.getString("moddate");
 
 		jsonObj.put("cpid", cpid);
 		jsonObj.put("coid", coid);

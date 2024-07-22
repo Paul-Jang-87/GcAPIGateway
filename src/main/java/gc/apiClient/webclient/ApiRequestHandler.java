@@ -8,8 +8,14 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ApiRequestHandler {// 모든 api를 핸들링하는 클래스
 
+/**
+ * URI를 만들어주는 클래스
+ * api를 호출할때 Path parameter, 혹은 (Path parameter,Query Parameters)와 함께 호출하는 경우가 있는데 
+ * Path parameter, 혹은 (Path parameter,Query Parameters)와 함께 호출되는 경우를 다루는 클래스이다. 
+ * 
+ */
+public class ApiRequestHandler {
 
 	public UriComponents buildApiRequest(String path, Object... pathVariables) {// uri를 api에 맞게 커스터 마이징.
 

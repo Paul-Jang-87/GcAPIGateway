@@ -150,7 +150,6 @@ public class CreateEntity {
 			log.info("------ return 하기 전 변수들의 최종 값 확인 ------");
 
 		} catch (Exception e) {
-			log.error("Error Message : {}", e.getMessage());
 			errorLogger.error(e.getMessage(), e);
 		}
 
@@ -184,15 +183,15 @@ public class CreateEntity {
 			log.info("coid(센터구분 코드)임의로 숫자 '99'로 변경 : {}", coid);
 		}
 		
-		cpid = jsonObject.optString("cpid", ""); //캠페인아이디
-		cpnm = jsonObject.optString("cpnm", ""); //캠페인명
-		contactListid = jsonObject.optString("contactListid", ""); //컨텍리스트아이디
+		cpid = jsonObject.getString("cpid"); //캠페인아이디
+		cpnm = jsonObject.getString("cpnm"); //캠페인명
+		contactListid = jsonObject.getString("contactListid"); //컨텍리스트아이디
 		contactListnm = ""; // 사용 안 하는 컬럼.
-		queueid = jsonObject.optString("queueid", ""); //큐아이디
-		divisionid = jsonObject.optString("divisionid", ""); //디비전아이디
-		divisionnm = jsonObject.optString("divisionnm", ""); //디비전아이디
-		insdate = jsonObject.optString("insdate", "");//최초생성일
-		moddate = jsonObject.optString("moddate", ""); //마지막수정일
+		queueid = jsonObject.getString("queueid"); //큐아이디
+		divisionid = jsonObject.getString("divisionid"); //디비전아이디
+		divisionnm = jsonObject.getString("divisionnm"); //디비전아이디
+		insdate = jsonObject.getString("insdate");//최초생성일
+		moddate = jsonObject.getString("moddate"); //마지막수정일
 
 		enCampMa.setCpid(cpid);
 		enCampMa.setCoid(coid);

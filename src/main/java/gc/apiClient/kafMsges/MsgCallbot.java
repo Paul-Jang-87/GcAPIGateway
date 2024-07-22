@@ -143,7 +143,6 @@ public class MsgCallbot implements InterfaceKafMsg {
 		}
 
 		catch (Exception e) {
-			log.error("Error Message : {}", e.getMessage());
 			errorLogger.error(e.getMessage(), e);
 		}
 

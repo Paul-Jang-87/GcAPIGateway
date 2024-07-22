@@ -151,7 +151,6 @@ public class MsgUcrm implements InterfaceKafMsg { //카프카 프로듀서로 �
 			obj.put("lastResult", dirt);
 
 		} catch (Exception e) {
-			log.error("Error Message : {}", e.getMessage());
 			errorLogger.error(e.getMessage(), e);
 		}
 

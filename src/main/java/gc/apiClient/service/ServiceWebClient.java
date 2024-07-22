@@ -23,11 +23,26 @@ public class ServiceWebClient implements InterfaceWebClient {
 		String result = "";
 
 		WebClientApp webClient = new WebClientApp();
+		/*
+		 * "sortBy", "dateCreated", "sortOrder", "descending", "pageSize",100, "pageNumber", pagenumber => 쿼리파라미터 내용 두개씩 짝. '키:값' 역할
+		 *  내용은 생성된 시간으로 / 내림차순 정렬 / 한페이지에 100개씩 / 페이지넘버.
+		 *  제네시스에서 캠페인 목록을 불러올 때 한꺼번에 다 불러오지 못한다. 
+		 *  예를 들어 제네시스에 등록된 캠페인 개수가 178개라고 가정할 때 최대 100개 1번 나머지 78개 한번. 이렇게 불러올 수 있다. 한번에 178개를 다 불러올 수 없다. 
+		 *  이 예시의 경우 api를 2번 호출 해야한다. 
+		 *  
+		 */
 		result = webClient.makeApiRequest(endpoint, "GET", "sortBy", "dateCreated", "sortOrder", "descending", "pageSize",100, "pageNumber", pagenumber);
 
 		return result;
 	}
+	
 
+	/*
+	 *   캠페인 아이디를 가지고 하나의 캠페인에 대한 통계 데이터를 가지온다. 
+	 *   주로 발신후 그 결과, 응답값에 대한 처리를 해줄때 사용하는 함수이다. 
+	 *   통화시도 횟수, 통화 연결 횟수, 커넷션 비율 등등... 
+	 *   근데 주로 통화 시도 횟수, attempts = > dict 를 알기 위해서 사용한다.
+	 */
 	@Override
 	public String getStatusApiReq(String endpoint, String campaignId) {
 
@@ -42,6 +57,10 @@ public class ServiceWebClient implements InterfaceWebClient {
 	}
 	
 
+	/**
+	 * 함수 'getApiReq'가 제네시스의 모든 캠페인 정보들을 조회하는 api함수였다면,
+	 * 이 함수는 캠페인 아이디를 가지고 하나의 캠페인에 대한 정보를 조회하는 함수이다. 
+	 */
 	@Override 
 	public String getCampaignsApiReq(String endpoint, String campaignId) {
 		/*
@@ -62,17 +81,7 @@ public class ServiceWebClient implements InterfaceWebClient {
 		return result;
 	}
 
-	@Override
-	public String getContactLtApiReq(String endpoint, String contactListId, String contactId) {
-		log.info("====== Method : getContactLtApiRequet {} ======", endpoint);
-		String result = "";
-
-		WebClientApp webClient = new WebClientApp();
-		result = webClient.makeApiRequest(endpoint, "GET", contactListId, contactId);
-
-		return result;
-	}
-
+	
 	@Override 
 	public String postContactLtApiReq(String endpoint, String contactListId, List<String> msg) {
 		/*
@@ -88,6 +97,7 @@ public class ServiceWebClient implements InterfaceWebClient {
 //		log.info("postContactLtApiRequet 요청 후 결과 값 : {} || 컨텍리스트 아이디 : {}", rs,contactListId);
 		return result;
 	}
+	
 
 	@Override 
 	public String postContactLtApiBulk(String endpoint, String contactListId, List<String> cskes) {

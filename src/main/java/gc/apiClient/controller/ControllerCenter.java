@@ -77,13 +77,14 @@ public class ControllerCenter {
 				int reps = ServiceJson.extractIntVal("CampaignListSize", result);// G.C에서 불러온 캠페인 개수.
 				log.info("제네시스에서 조회한 캠페인 수 : {} ", reps);
 
-				// G.C API 캠페인 조회에서 한번에 조회 가능한 캠페인 수는 최대 100개 reps 100개 이상인 경우 page 처리를 통해 캠페인을
-				// 조회한다.
+				// G.C API 캠페인 조회에서 한번에 조회 가능한 캠페인 수는 최대 100개 reps 100개 이상인 경우 page 처리를 통해 캠페인을 조회한다.
 				if (reps > 100) {
 					int page = 1;
 					for (int i = 0; i < 100; i++) {
 						campInfoObj = ServiceJson.extractObjVal("ExtractValCrm", result, i);
-						camplist.add(campInfoObj);
+						if(!camplist.contains(campInfoObj)) {
+							camplist.add(campInfoObj);
+						}
 					}
 					reps = reps - 100;
 					while ((reps / 100) != 0) {
@@ -91,7 +92,9 @@ public class ControllerCenter {
 						result = serviceWeb.getApiReq("campaigns", page);
 						for (int i = 0; i < 100; i++) {
 							campInfoObj = ServiceJson.extractObjVal("ExtractValCrm", result, i);
-							camplist.add(campInfoObj);
+							if(!camplist.contains(campInfoObj)) {
+								camplist.add(campInfoObj);
+							}
 						}
 						reps = reps - 100;
 					}
@@ -100,7 +103,9 @@ public class ControllerCenter {
 					reps = reps % 100;
 					for (int i = 0; i < reps; i++) {
 						campInfoObj = ServiceJson.extractObjVal("ExtractValCrm", result, i);
-						camplist.add(campInfoObj);
+						if(!camplist.contains(campInfoObj)) {
+							camplist.add(campInfoObj);
+						}
 					}
 
 					handlingCampMaster(camplist);
@@ -108,7 +113,9 @@ public class ControllerCenter {
 				} else {
 					for (int i = 0; i < reps; i++) {
 						campInfoObj = ServiceJson.extractObjVal("ExtractValCrm", result, i);
-						camplist.add(campInfoObj);
+						if(!camplist.contains(campInfoObj)) {
+							camplist.add(campInfoObj);
+						}
 					}
 					handlingCampMaster(camplist);
 				}
@@ -189,8 +196,8 @@ public class ControllerCenter {
 					
 					Entity_CampMa enCpma = serviceDb.findCampMaByCpid(cpid);
 					Entity_CampMa_D enCpma_D = createEntity.createEnCampMa_D(enCpma);
-					serviceDb.insertCampMa_D(enCpma_D);
 					serviceDb.delCampMaById(cpid);
+					serviceDb.insertCampMa_D(enCpma_D);
 					
 					return Mono.just(ResponseEntity.ok().body(String.format("UCRM, cpid가 %s인 레코드가 성공적으로 삭제되었습니다.", cpid)));
 				}
@@ -224,8 +231,8 @@ public class ControllerCenter {
 					
 					Entity_CampMa enCpma = serviceDb.findCampMaByCpid(cpid);
 					Entity_CampMa_D enCpma_D = createEntity.createEnCampMa_D(enCpma);
-					serviceDb.insertCampMa_D(enCpma_D);
 					serviceDb.delCampMaById(cpid);
+					serviceDb.insertCampMa_D(enCpma_D);
 					
 					return Mono.just(ResponseEntity.ok().body(String.format("Callbot, cpid가 %s인 레코드가 성공적으로 삭제되었습니다.", cpid)));
 				}
@@ -257,8 +264,8 @@ public class ControllerCenter {
 					
 					Entity_CampMa enCpma = serviceDb.findCampMaByCpid(cpid);
 					Entity_CampMa_D enCpma_D = createEntity.createEnCampMa_D(enCpma);
-					serviceDb.insertCampMa_D(enCpma_D);
 					serviceDb.delCampMaById(cpid);
+					serviceDb.insertCampMa_D(enCpma_D);
 				}
 				return Mono.just(ResponseEntity.ok().body(String.format("\"Apim, cpid가 %s인 레코드가 성공적으로 삭제되었습니다.", cpid)));
 			}
@@ -484,9 +491,11 @@ public class ControllerCenter {
 		for (int i = 0; i < camplist.size(); i++) {
 
 			cpid = camplist.get(i).getString("cpid");
-			cpFrmGenesys1.add(cpid);
-			cpFrmGenesys2.add(cpid);
-			cpididx.put(cpid, i);
+			if(!cpid.equals("")) {
+				cpFrmGenesys1.add(cpid);
+				cpFrmGenesys2.add(cpid);
+				cpididx.put(cpid, i);
+			}
 		}
 
 		for (Entity_CampMa entity : allRecords) {
@@ -502,7 +511,7 @@ public class ControllerCenter {
 			for (String campid : cpFrmGenesys1) {
 
 				int idx = cpididx.get(campid);
-				log.info("제네시스에는 있고 DB에는 없는 경우, 그 캠페인의 숫자는? {} // 캠페인아이디와 해당인덱스 : {} / {}", cpFrmGenesys1.size(), campid, idx);
+				log.info("제네시스에는 있고 DB에는 없는 경우, 인서트해야 할 캠페인의 수는? {} // 캠페인아이디와 해당인덱스 : {} / {}", cpFrmGenesys1.size(), campid, idx);
 
 				campInfoObj = ServiceJson.extractObjVal("ExtrCmpObj", camplist, idx);
 
@@ -595,10 +604,6 @@ public class ControllerCenter {
 			for (String campid : cpFrmDB2) {
 
 				log.info("DB에는 있고 제네시스에는 없는 경우, 그 캠페인의 숫자는? {} / DB에서 삭제해야할 cpid(캠페인 아이디는?) : {}", cpFrmDB2.size(), campid);
-				
-				Entity_CampMa enCpma = serviceDb.findCampMaByCpid(campid);
-				Entity_CampMa_D enCpma_D = createEntity.createEnCampMa_D(enCpma);
-				serviceDb.insertCampMa_D(enCpma_D);
 				serviceDb.delCampMaById(campid);
 			}
 

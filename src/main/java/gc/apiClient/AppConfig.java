@@ -8,6 +8,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Configuration
 //@PropertySource("file:./logs/gc_config/gcapi_info.properties") 
+/**
+ * 
+ * 도메인 정보와 제네시스 OAuth를 위한 Id와 Secret 정보를 어플리케이션 외부에서 관리를 하고 있는데 외부 파일에서 그 정보를 읽어 오는 클래스이다.
+ * 메시지를 다른 앱('Producer'앱이나 'APIM'앱)으로 api호출을 통해 보낼 때가 있다. 그 앱들의 도메인 정보가 'gcapi_info.properties'파일에 담겨있다. 
+ * 도메인은 'https://gckafka.lguplus.co.kr'
+ */
 public class AppConfig {
 /*	
 	@Value("${domain}")

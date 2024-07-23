@@ -1,5 +1,7 @@
 package gc.apiClient.entity.postgresql;
 
+import java.util.Date;
+
 import gc.apiClient.embeddable.ContactLtId;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
@@ -36,6 +38,9 @@ public class Entity_ContactLt {
 	
 	@Column(name = "FLAG")
 	private String flag;
+	
+	@Column(name = "DATE")
+	private Date date;
 	
 	public Entity_ContactLt(){
 		

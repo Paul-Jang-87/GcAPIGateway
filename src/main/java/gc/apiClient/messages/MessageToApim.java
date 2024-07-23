@@ -8,6 +8,11 @@ import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
 @Slf4j
+/**
+ * webClient이용
+ * Apim(으)로 메시지 보낼 때를 위한 클래스이다. 
+ * 어디로 메시지를 보낼지(토픽명-towhere), 어떤 내용을 보낼지(메시지-entity)를 매개변수로 전달한다. 
+ */
 public class MessageToApim {
 	
 	private String domain = AppConfig.getDomain(); 

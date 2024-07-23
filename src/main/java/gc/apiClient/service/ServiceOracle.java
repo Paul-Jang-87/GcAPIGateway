@@ -54,6 +54,11 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 @Profile("oracleH")
+/**
+ * 오라클 관련 클래스들은 전부 360view 비지니스 로직과 관련이 있다. 
+ * 관련 클래스 'Controller360view', 'OracleDataSourceHconfig', 'OracleDataSourceMConfig','MessageTo360View'
+ * 
+ */
 public class ServiceOracle implements InterfaceDBOracle {
 	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
 	// 검색 **Create **Insert **Select
@@ -268,7 +273,7 @@ public class ServiceOracle implements InterfaceDBOracle {
 		TransactionTemplate transactionTemplate = new TransactionTemplate(transactionManagerToUse);
 		transactionTemplate.executeWithoutResult(status -> {//트랜잭션 context 하에 안의 코드를 실행 후 리턴 값을 받지않음.
 			try {
-				T entity = entityManagerToUse.find(clazz, orderid, LockModeType.PESSIMISTIC_WRITE);
+				T entity = entityManagerToUse.find(clazz, orderid, LockModeType.PESSIMISTIC_WRITE);//비관적 락 적용. 락이 걸려있는 동안 다른 테스크가 지금 작업 중인 레코드에 접근할 수 없다. 팟이 3개다 돌아가는데 동시에 한 레코드에 접근해 삭제하는 것을 방지하기 위해. 
 				if (entity != null) {
 					entityManagerToUse.remove(entity);
 				}

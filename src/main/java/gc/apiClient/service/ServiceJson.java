@@ -11,44 +11,20 @@ import gc.apiClient.entity.postgresql.Entity_Ucrm;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+/**
+ * (1번) 제네시스 api를 호출 하면 결과 값을 받는다. 
+ * (2번) 제네시스에서 특정 이벤트가 발생하면 Request body 값을 받는다. 
+ * 
+ * 이 앱에서는 그 값들(1번, 2번)에서 특정 값들을 추출하여 db에 적재를 하거나 카프카로 메시지를 보내는 경우가 있다. 
+ * 이 클래스'ServiceJson'는 값들을 추출하여 db에 적재를 하거나 카프카로 메시지를 보내기 위해 재가공(?)리턴해주는 역할을 한다. 
+ * 
+ * 크게 2가지 함수가 있다. 
+ * int 타입을 리턴해주는 함수끼리 모아둔 'extractIntVal'함수
+ * JSONObject 타입을 리턴해주는 함수끼리 모아둔 'extractObjVal'함수
+ *   
+ */
 public class ServiceJson {
 
-	/**
-	 * 
-	 * @param methodNm
-	 * @param params
-	 * @return
-	 * @throws Exception
-	 */
-
-	public static String extractStrVal(String methodNm, Object... params) throws Exception {
-
-		log.info("====== Method : extractStrVal ( TYPE: {} ) ======", methodNm);
-
-		switch (methodNm) {
-		case "ExtractValCallBot":
-			return ExtractValCallBot((String) params[0], (int) params[1]);
-		case "ExtractContactLtId":
-			return ExtractContactLtId((String) params[0]);
-		case "ExtractRawUcrm":
-			if (params[0] instanceof Entity_Ucrm) {
-				return ExtractRawUcrm((Entity_Ucrm) params[0]);
-			} else {
-				throw new IllegalArgumentException("Expected Entity_Ucrm as parameter for ExtractRawUcrm");
-			}
-		default:
-			throw new IllegalArgumentException("Invalid strategy type");
-		}
-	}
-
-	/**
-	 * 
-	 * 
-	 * @param methodNm
-	 * @param params
-	 * @return
-	 * @throws Exception
-	 */
 	public static int extractIntVal(String methodNm, Object... params) throws Exception {
 
 		log.info("====== Method : extractIntVal ( TYPE: {} ) ======", methodNm);
@@ -62,6 +38,7 @@ public class ServiceJson {
 			throw new IllegalArgumentException("Invalid strategy type");
 		}
 	}
+	
 
 	public static JSONObject extractObjVal(String methodNm, Object... params) throws Exception {
 		
@@ -72,6 +49,8 @@ public class ServiceJson {
 		switch (methodNm) {
 		case "ExtractValCrm":
 			return ExtractValCrm((String) params[0], (int) params[1]);
+		case "ExtractContactLtId":
+			return ExtractContactLtId((String) params[0]);
 		case "ExtrCmpObj":
 			return ExtrCmpObj((List<JSONObject>) params[0], (int) params[1]);
 		case "ExtractCampMaUpdateOrDel":
@@ -80,11 +59,28 @@ public class ServiceJson {
 			return ExtrSaveRtData((String) params[0]);
 		case "ExtractContacts":
 			return ExtractContacts((String) params[0], (int) params[1]);
+		case "ExtractValCallBot":
+			return ExtractValCallBot((String) params[0], (int) params[1]);
+		case "ExtractRawUcrm":
+			if (params[0] instanceof Entity_Ucrm) {
+				return ExtractRawUcrm((Entity_Ucrm) params[0]);
+			} else {
+				throw new IllegalArgumentException("Expected Entity_Ucrm as parameter for ExtractRawUcrm");
+			}
 		default:
 			throw new IllegalArgumentException("Invalid strategy type");
 		}
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public static JSONObject ExtractValCrm(String stringMsg, int i) throws Exception {// stringMsg에서 원하는 값만 추출.
 
@@ -200,38 +196,38 @@ public class ServiceJson {
 		return jsonObj;
 	}
 
-	public static String ExtractValCallBot(String stringMsg, int i) throws Exception {
+	public static JSONObject ExtractValCallBot(String stringMsg, int i) throws Exception {
 
 		String jsonResponse = stringMsg;
+		JSONObject jsonobj = new JSONObject();
 
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode jsonNode = null;
-		String result = "";
-
 		jsonNode = objectMapper.readTree(jsonResponse);
-		result = jsonNode.path("cmpnItemDto").path(i).path("cmpnId").asText();
-		result = result + "::" + jsonNode.path("cmpnItemDto").path(i).path("cmpnSeq").asText();
-		result = result + "::" + jsonNode.path("cmpnItemDto").path(i).path("custNo").asText();
-		result = result + "::" + jsonNode.path("cmpnItemDto").path(i).path("custNum").asText();
-		result = result + "::" + jsonNode.path("cmpnItemDto").path(i).path("token").asText();
-		result = result + "::" + jsonNode.path("cmpnItemDto").path(i).path("flag").asText();
+		
+		jsonobj.put("cpid", jsonNode.path("cmpnItemDto").path(i).path("cmpnId").asText());
+		jsonobj.put("cpsq", jsonNode.path("cmpnItemDto").path(i).path("cmpnSeq").asText());
+		jsonobj.put("cske", jsonNode.path("cmpnItemDto").path(i).path("custNo").asText());
+		jsonobj.put("csno", jsonNode.path("cmpnItemDto").path(i).path("custNum").asText());
+		jsonobj.put("tkda", jsonNode.path("cmpnItemDto").path(i).path("token").asText());
+		jsonobj.put("flag", jsonNode.path("cmpnItemDto").path(i).path("flag").asText());
+		jsonobj.put("queueid","");
 
-		return result;
+		return jsonobj;
 	}
 
-	public static String ExtractRawUcrm(Entity_Ucrm enUcrm) throws Exception {// cpid::cpsq::cske::csno::tkda::flag
+	public static JSONObject ExtractRawUcrm(Entity_Ucrm enUcrm) throws Exception {
 
-		String cpid = enUcrm.getId().getCpid();
-		String cpsq = enUcrm.getId().getCpsq();
+		JSONObject jsonObj = new JSONObject();
+		
+		jsonObj.put("cpid", enUcrm.getId().getCpid());
+		jsonObj.put("cpsq", enUcrm.getId().getCpsq());
+		jsonObj.put("cske", enUcrm.getHldrCustId());
+		jsonObj.put("csno", enUcrm.getTlno());
+		jsonObj.put("tkda", enUcrm.getTrdtCntn());
+		jsonObj.put("flag", enUcrm.getWorkDivsCd());
 
-		String result = "";
-		result = cpid;
-		result = result + "::" + cpsq;
-		result = result + "::" + enUcrm.getHldrCustId();
-		result = result + "::" + enUcrm.getTlno();
-		result = result + "::" + enUcrm.getTrdtCntn();
-		result = result + "::" + enUcrm.getWorkDivsCd();
-		return result;
+		return jsonObj;
 	}
 
 	public static JSONObject ExtractContacts(String stringMsg, int i) throws Exception {
@@ -282,24 +278,29 @@ public class ServiceJson {
 		return result;
 	}
 
-	public static String ExtractContactLtId(String stringMsg) throws Exception {
+	public static JSONObject ExtractContactLtId(String stringMsg) throws Exception {
 
 		String jsonResponse = stringMsg;
 
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode jsonNode = null;
-		String result = "";
-		String que = " ";
+		JSONObject jsonObj = new JSONObject();
+		
+		jsonObj.put("contactltid", "");
+		jsonObj.put("queueid", "");
+		String contactltid = "";
+		String queueid = " ";
 
 		jsonNode = objectMapper.readTree(jsonResponse);
-		result = jsonNode.path("contactList").path("id").asText();
+		contactltid = jsonNode.path("contactList").path("id").asText();
+		jsonObj.put("contactltid", contactltid);
 		if (jsonNode.path("queue").path("id").asText().equals("")) {
 		} else {
-			que = jsonNode.path("queue").path("id").asText();
+			queueid = jsonNode.path("queue").path("id").asText();
+			jsonObj.put("queueid", queueid);
 		}
-		result = result + "::" + que;
 
-		return result;
+		return jsonObj;
 	}
 
 	public static JSONObject ExtrSaveRtData(String stringMsg) throws Exception {

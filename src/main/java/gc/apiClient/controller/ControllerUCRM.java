@@ -176,20 +176,21 @@ public class ControllerUCRM {
 
 							} else {
 
-								String res = ServiceJson.extractStrVal("ExtractContactLtId", result); // 가져온 결과에서 contactlistid,queueid만 추출. 변수 'res' 형식의 예 )contactlistid::queueid
-								contactLtId = res.split("::")[0];
-								queid = res.split("::")[1];
+								JSONObject res = ServiceJson.extractObjVal("ExtractContactLtId", result); // 가져온 결과에서 contactlistid,queueid만 추출. 변수 'res' 형식의 예 )contactlistid::queueid
+								contactLtId = res.getString("contactltid");
+								queid = res.getString("queueid");
 
 								mapcontactltId.put(cpid, contactLtId);
-								mapquetId.put(cpid, res.split("::")[1]);
+								mapquetId.put(cpid, queid);
 							}
 
 						}
 
 						// UCRM에서 보내 준 데이터를 가지고 제네시스에 PUSH하기 위해서 필요한 데이터들을 추출한다.
-						String row_result = ServiceJson.extractStrVal("ExtractRawUcrm", entitylist.getContent().get(i));
-						row_result = row_result + "::" + contactLtId + "::" + queid;
-						String contactltMapper = createEntity.createContactLtGC(row_result); // row_result = cpid::cpsq::cske::csno::tkda::flag::contactltId::queid
+						JSONObject contactltObj = ServiceJson.extractObjVal("ExtractRawUcrm", entitylist.getContent().get(i));
+						contactltObj.put("contactltid", contactLtId);
+						contactltObj.put("queueid", queid);
+						String contactltMapper = createEntity.createContactLtGC(contactltObj); // row_result = cpid::cpsq::cske::csno::tkda::flag::contactltid::queid
 
 						// 제네시스에 인서트 하기 위한 배열 준비
 						if (!contactlists.containsKey(contactLtId)) {
@@ -327,20 +328,22 @@ public class ControllerUCRM {
 
 							} else {
 
-								String res = ServiceJson.extractStrVal("ExtractContactLtId", result); // 가져온 결과에서 contactlistid,queueid만 추출. 변수 'res' 형식의 예 )contactlistid::queueid
-								contactLtId = res.split("::")[0];
-								queid = res.split("::")[1];
+								JSONObject res = ServiceJson.extractObjVal("ExtractContactLtId", result); // 가져온 결과에서 contactlistid,queueid만 추출. 변수 'res' 형식의 예 )contactlistid::queueid
+								contactLtId = res.getString("contactltid");
+								queid = res.getString("queueid");
 
 								mapcontactltId.put(cpid, contactLtId);
-								mapquetId.put(cpid, res.split("::")[1]);
+								mapquetId.put(cpid, queid);
 							}
 
 						}
+						
 
 						// UCRM에서 보내 준 데이터를 가지고 제네시스에 PUSH하기 위해서 필요한 데이터들을 추출한다.
-						String row_result = ServiceJson.extractStrVal("ExtractRawUcrm", entitylist.getContent().get(i));
-						row_result = row_result + "::" + contactLtId + "::" + queid;
-						String contactltMapper = createEntity.createContactLtGC(row_result); // row_result = cpid::cpsq::cske::csno::tkda::flag::contactltId::queid
+						JSONObject contactltObj = ServiceJson.extractObjVal("ExtractRawUcrm", entitylist.getContent().get(i));
+						contactltObj.put("contactltid", contactLtId);
+						contactltObj.put("queueid", queid);
+						String contactltMapper = createEntity.createContactLtGC(contactltObj); // row_result = cpid::cpsq::cske::csno::tkda::flag::contactltId::queid
 
 						// 제네시스에서 회수 하기 위한 배열 준비
 						if (!delcontactlists.containsKey(contactLtId)) {
@@ -491,12 +494,21 @@ public class ControllerUCRM {
 					tkda = records.get(i).getTkda();
 					flag = records.get(i).getFlag();
 
-					String res = ServiceJson.extractStrVal("ExtractContactLtId", result); // 가져온 결과에서 contactlistid,queueid만 추출. 변수 'res' 형식의 예) contactlistid::queueid
-					contactLtId = res.split("::")[0];
-					queid = res.split("::")[1];
+					JSONObject res = ServiceJson.extractObjVal("ExtractContactLtId", result); // 가져온 결과에서 contactlistid,queueid만 추출. 변수 'res' 형식의 예) contactlistid::queueid
+					contactLtId = res.getString("contactltid");
+					queid = res.getString("queueid");
+					
+					JSONObject contactltObj = new JSONObject();
+					contactltObj.put("cpid",cpid);
+					contactltObj.put("cpsq",cpsq);
+					contactltObj.put("cske",cske);
+					contactltObj.put("csno",csno);
+					contactltObj.put("tkda",tkda);
+					contactltObj.put("flag",flag);
+					contactltObj.put("contactltid",contactLtId);
+					contactltObj.put("queueid",queid);
 
-					String row_result = cpid + "::" + cpsq + "::" + cske + "::" + csno + "::" + tkda + "::" + flag + "::" + contactLtId + "::" + queid;
-					String contactltMapper = createEntity.createContactLtGC(row_result); // row_result = cpid::cpsq::cske::csno::tkda::flag::contactltId::queid
+					String contactltMapper = createEntity.createContactLtGC(contactltObj); // row_result = cpid::cpsq::cske::csno::tkda::flag::contactltId::queid
 
 					// 제네시스에 인서트 하기 위한 배열 준비
 					if (!contactlists.containsKey(contactLtId)) {
@@ -611,8 +623,8 @@ public class ControllerUCRM {
 
 						} else {
 
-							String res = ServiceJson.extractStrVal("ExtractContactLtId", result); // 가져온 결과에서 contactlistid,queueid만 추출. 변수 'res' 형식의 예 )contactlistid::queueid
-							contactLtId = res.split("::")[0];
+							JSONObject res = ServiceJson.extractObjVal("ExtractContactLtId", result); // 가져온 결과에서 contactlistid,queueid만 추출. 변수 'res' 형식의 예 )contactlistid::queueid
+							contactLtId = res.getString("contactltid");
 							mapcontactltId.put(cpid, contactLtId);
 							mapdivision.put(contactLtId, divisionid);
 						}

@@ -27,7 +27,12 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
-public class MsgUcrm implements InterfaceKafMsg { //카프카 프로듀서로 보내기 위한 UCRM 메시지만을 모아둔 클래스
+/**
+ * 'MessageToProducer'클래스를 보면 'sendMsgToProducer' 함수에 두번째 매개변수로 메시지가 들어간다. 
+ * 이 클래스는 거기에 들어가 메시지를 만드는 클래스이다. 특지 UCRM비지니스 로직과 관련된 메시지만을 다룬다.
+ * 
+ */
+public class MsgUcrm implements InterfaceKafMsg { 
 	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
 	private InterfaceDBPostgreSQL serviceDb;
 
@@ -38,7 +43,12 @@ public class MsgUcrm implements InterfaceKafMsg { //카프카 프로듀서로 �
 	public MsgUcrm() {
 	}
 
+	
 	@Override
+	/**
+	 * 캠페인 마스터와 관련된 메시지를 만들어주는 클래스이다. 
+	 * datachgcd(insert,update,delete)에 따라 보내질 메시지 내용이 달라진다. 
+	 */
 	public String makeMaMsg(Entity_CampMa enCampMa, String datachgcd) throws Exception {  // MA 메시지
 
 		log.info("====== Method : maMassage ======");
@@ -94,8 +104,9 @@ public class MsgUcrm implements InterfaceKafMsg { //카프카 프로듀서로 �
 		return jsonString;
 	}
 
+	
 	@Override
-	public String makeRtMsg(Entity_CampRt enCampRt) throws Exception { //RT 메시지, 결과 발신 메시지.
+	public String makeRtMsg(Entity_CampRt enCampRt) throws Exception { //RT 메시지, 발신결과 메시지.
 
 		JSONObject obj = new JSONObject();
 		try {

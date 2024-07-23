@@ -43,6 +43,12 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
+/**
+ * 데이터 베이스와 관련된 서비스이다. CRUD와 관련 된 내용이 들어있는 서비스다.   
+ * 참고 - 엔티티 클래스는 디비테이블로 볼 수 있고 레포지토리는 그 디비에 대한 동작(insert, select, delete)즉 쿼리를 정의한다.
+ * 때문에 엔티티와 레포지토리는 1:1로 연결되어있다. 깊은 연관성을 가진다.  
+ * 
+ */
 public class ServicePostgre implements InterfaceDBPostgreSQL {
 	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
 	// 검색 **Create **Insert **SelectupdateCampMa
@@ -70,16 +76,19 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	}
 
 
+	//Transactional 어노테이션은 트렌젝션 범위를 설정한다 함수 위에 쓰면 함수가 시작할 때부터 끝날 때 까지를 트랜잭션 범위로 설정한다는 의미가 된다. 
 	@Override
 	@Transactional
 	public Entity_CampRt insertCampRt(Entity_CampRt entity_CampRt) {
 
-		Optional<Entity_CampRt> existingEntity = repositoryCampRt.findById(entity_CampRt.getId());
+		//디비에서 해당 레코드를 찾는다. 엔티티(레코드)가 매개변수로 들어왔고, 그것의 키값(entity_CampRt.getId())으로 디비를 조회한다(findById). 
+		Optional<Entity_CampRt> existingEntity = repositoryCampRt.findById(entity_CampRt.getId());  
 
-		if (existingEntity.isPresent()) {
+		if (existingEntity.isPresent()) {//조회 결과 해당 레코드가 테이블에 이미 존재한다면 에러를 발생시킨다. ㄴ
 			throw new DataIntegrityViolationException("주어진 복합키를 가진 레코드가 이미 테이블에 존재합니다.");
 		}
 
+		//없으면 그대로 해달 레코드를 디비에 인서트한다. 
 		return repositoryCampRt.save(entity_CampRt);
 
 	}
@@ -141,8 +150,8 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	public Entity_CampMa findCampMaByCpid(String cpid) {
 
 		try {
-			Optional<Entity_CampMa> optionalEntity = repositoryCampMa.findByCpid(cpid);
-			return optionalEntity.orElse(null);
+			Optional<Entity_CampMa> optionalEntity = repositoryCampMa.findByCpid(cpid);//주어진 값(여기서는 'cpid')으로 주어진 값과 일치하는 값을 가지고 있는 레코드를 디비에서 찾는다. 
+			return optionalEntity.orElse(null); //있다면 찾은 레코드를 반환하고 없으면 null을 반환한다.
 		} catch (IncorrectResultSizeDataAccessException ex) {
 			log.error("Error retrieving Entity_CampMa by cpid: {}", cpid);
 			errorLogger.error("Error retrieving Entity_CampMa by cpid: {}", cpid, ex);
@@ -167,14 +176,14 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	
 	@Override
 	@Transactional
-	public List<Entity_CampMa> getAllRecords() throws Exception {
+	public List<Entity_CampMa> getAllRecords() throws Exception {//디비에 모든 레코드를 가지고 온다. 
 		 return repositoryCampMa.findAll();
 	}
 	
 
 	@Override
 	@Transactional
-	public Integer findCampRtMaxRlsq() {
+	public Integer findCampRtMaxRlsq() {//CAMPRT테이블의 속성 중 rlsq 값의 최고 값을 가지고 온다. 
 
 		try {
 			Optional<Integer> optionalEntity = repositoryCampRt.findMaxRlsq();
@@ -194,11 +203,17 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 	@Override
 	@Transactional
-	public Page<Entity_Ucrm> getAll(String workdivscd) throws Exception {
+	/*
+	 * UCRMLT테이블에서 workDivsCd 속성 값과 매개변수로 들어온 'workdivscd' 값이 일치하는 레코드들만 전부 반환.
+	 * 한번에 최대 750개 까지 
+	 */
+	public Page<Entity_Ucrm> getAll(String workdivscd) throws Exception { 
 	    return repositoryUcrm.findAllWithLock(workdivscd, PageRequest.of(0, 750));
 	}
 
+	
 	@Override
+	//레코드를 가지고 온다. 한번에 최대 1000개까지
 	public Page<Entity_UcrmRt> getAllUcrmRt() throws Exception {
 		return repositoryUcrmRt.findAll(PageRequest.of(0, 1000));
 	}
@@ -217,7 +232,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	@Transactional
 	public void delCampMaById(String cpid) throws Exception {
 
-		Optional<Entity_CampMa> entityOpt = repositoryCampMa.findByCpid(cpid);
+		Optional<Entity_CampMa> entityOpt = repositoryCampMa.findByCpid(cpid); //삭제하기 전에 삭제하려는 레코드(매개변수로 들어온 cpid와 일치하는 값을 가진)가 디비에 존재하는지 일단 찾는다.  
 		if (entityOpt.isPresent()) {
 			repositoryCampMa.deleteById(cpid);
 		} else {
@@ -302,13 +317,18 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 	        // 문자열로 변환
 	        String formattedDateTime = utcDateTime.format(formatter);
+	        
+	        //새로운 값들로 세팅
 	        entity.setCpna(jsonobj.getString("cpnm"));
 	        entity.setContactltid(jsonobj.getString("contactListid"));
 	        entity.setQueueid(jsonobj.getString("queueid"));
 	        entity.setDivisionnm(jsonobj.getString("divisionnm"));
 	        entity.setCoid(Integer.parseInt(jsonobj.getString("coid")));
 	        entity.setModdate(formattedDateTime);
+	        
+	        //새로운 값으로 인서트하면 업데이트가 된다. 
 			repositoryCampMa.save(entity);
+			
 		} else {
 			throw new EntityNotFoundException("해당 cpid (" + cpid + ")로 조회 된 레코드가 DB에 없습니다.");
 		}
@@ -354,7 +374,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 	@Override
 	@Transactional
-	public void delUcrmltRecord(String cpid, String cpsq) throws Exception {
+	public void delUcrmltRecord(String cpid, String cpsq) throws Exception {//두 값(cpid, cpsq)을 기준으로 레코드를 디비에서 찾는다.  
 		Optional<Entity_Ucrm> entityOptional = repositoryUcrm.lockByCpidAndCpsq(cpid, cpsq);
 		if (entityOptional.isPresent()) {
 			repositoryUcrm.deleteByCpidAndCpsq(cpid, cpsq);

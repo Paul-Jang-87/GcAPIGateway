@@ -374,8 +374,8 @@ public class ControllerCenter {
 
 						} else {
 
-							String res = ServiceJson.extractStrVal("ExtractContactLtId", result); // 가져온 결과에서 contactlistid,queueid만 추출. 변수 'res' 형식의 예 )contactlistid::queueid
-							contactLtId = res.split("::")[0];
+							JSONObject res = ServiceJson.extractObjVal("ExtractContactLtId", result); // 가져온 결과에서 contactlistid,queueid만 추출. 변수 'res' 형식의 예 )contactlistid::queueid
+							contactLtId = res.getString("contactltid");
 							mapcontactltId.put(cpid, contactLtId);
 						}
 
@@ -514,6 +514,7 @@ public class ControllerCenter {
 				log.info("제네시스에는 있고 DB에는 없는 경우, 인서트해야 할 캠페인의 수는? {} // 캠페인아이디와 해당인덱스 : {} / {}", cpFrmGenesys1.size(), campid, idx);
 
 				campInfoObj = ServiceJson.extractObjVal("ExtrCmpObj", camplist, idx);
+				log.info("인서트할 캠페인 마스터 정보 : {}",campInfoObj.toString());
 
 				divisionid = campInfoObj.getString("divisionid");
 
@@ -521,6 +522,7 @@ public class ControllerCenter {
 
 				business = businessLogic.get("business");
 				topic_id = businessLogic.get("topic_id");
+				
 
 				Entity_CampMa enCampMa = createEntity.createEnCampMa(campInfoObj);
 

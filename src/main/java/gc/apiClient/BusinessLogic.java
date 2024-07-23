@@ -4,8 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 
  * 현재 프로젝는 여러 비지니스 로직이 있다 
- * 그 중 UCRM 혹은 Callbot 로직을 division 값에 따라 로직과 메시지를 보내는 주소(토픽)를 분류해주는 클래스 이다.    
+ * 여러 비즈니스 로직 중 UCRM 혹은 Callbot 로직을 division 값에 따라 분류해주는 클래스 이다.
+ * 분류가 되면 토픽이 정해진다.
+ * 토픽은 우편 주소와 같다 메시지를 어디로 보낼지에 대한 정보이다. 
  *
  */
 public class BusinessLogic {

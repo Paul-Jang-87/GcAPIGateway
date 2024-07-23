@@ -12,6 +12,11 @@ import reactor.netty.http.client.HttpClient;
 import reactor.netty.resources.ConnectionProvider;
 
 @Slf4j
+/**
+ * webClient이용
+ * 360View(으)로 메시지 보낼 때를 위한 클래스이다. 엄밀히 말하면 Producer App으로 보낸다. 직접적으로 메시지를 보내는 건 'Producer App'
+ * 어디로 메시지를 보낼지(토픽명-towhere), 어떤 내용을 보낼지(메시지-massage)를 매개변수로 전달한다. 
+ */
 public class MessageTo360View {
 	
 	private static String domain = AppConfig.getDomain();;

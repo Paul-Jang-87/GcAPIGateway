@@ -157,10 +157,11 @@ public class CreateEntity {
 	}
 	
 	
-	public Entity_CampMa createEnCampMa(JSONObject jsonObject) { // 매개변수로 받는 String msg = > cpid::coid::cpna::division
+	public Entity_CampMa createEnCampMa(JSONObject jsonObject) { 
 
 		log.info("====== Method : createEnCampMa ======");
-
+		
+		
 		Entity_CampMa enCampMa = new Entity_CampMa();
 		String cpid = "";
 		int coid = 0;
@@ -250,19 +251,29 @@ public class CreateEntity {
 	}
 	
 	
-	public Entity_ContactLt createContactLtMsg(String msg) {// (콜봇에서 뽑아온거)cpid::cpsq::cske::csno::tkda::flag
-
+	public Entity_ContactLt createContactLtMsg(JSONObject jsonObj) {// (콜봇에서 뽑아온거)cpid::cpsq::cske::csno::tkda::flag
+		ZonedDateTime seoulTime = ZonedDateTime.now(ZoneId.of("Asia/Seoul"));
+		
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
 		ContactLtId id = new ContactLtId();
-		String ContactLvalues[] = msg.split("::");
+		
+		String cpid = jsonObj.getString("cpid");
+		String cpsq = jsonObj.getString("cpsq");
+		String cske = jsonObj.getString("cske");
+		String csno = jsonObj.getString("csno");
+		String tkda = jsonObj.getString("tkda");
+		String flag = jsonObj.getString("flag");
+		Date date = Date.from(seoulTime.toInstant());
 
 		try {
-			id.setCpid(ContactLvalues[0]);
-			id.setCpsq(Integer.parseInt(ContactLvalues[1]));
+			id.setCpid(cpid);
+			id.setCpsq(Integer.parseInt(cpsq));
 			enContactLt.setId(id);
-			enContactLt.setCske(ContactLvalues[2]);// "customerkey"
-			enContactLt.setFlag(ContactLvalues[5]);// "HO2"
-			enContactLt.setTkda(ContactLvalues[4]);// "custid,111"
+			enContactLt.setCske(cske);
+			enContactLt.setTno1(csno);
+			enContactLt.setFlag(flag);
+			enContactLt.setTkda(tkda);
+			enContactLt.setDate(date);
 
 		} catch (Exception e) {
 			log.error("Error Messge : {}", e.getMessage());
@@ -306,33 +317,33 @@ public class CreateEntity {
 	}
 	
 	
-	public String createContactLtGC(String msg) {
-		// 뽑아온다(콜봇).cpid::cpsq::cske::csno::tkda::flag::contactltId::queid
+	public String createContactLtGC(JSONObject jsonObj) {
+		// 뽑아온다(콜봇).cpid::cpsq::cske::csno::tkda::flag::contactltid::queid
 
-		String values[] = msg.split("::");
+		
 
 		JSONObject data = new JSONObject();
 		JSONObject mainObj = new JSONObject();
 		try {
-			data.put("CPID", values[0]);
-			data.put("CPSQ", values[1]);
-			data.put("CSKE", values[2]);
+			data.put("CPID", jsonObj.getString("cpid") );
+			data.put("CPSQ", jsonObj.getString("cpsq") );
+			data.put("CSKE", jsonObj.getString("cske") );
 			data.put("CSNA", "");
 			data.put("CBDN", "");
-			data.put("TKDA", values[4]);
-			data.put("TNO1", values[3]);
+			data.put("TKDA", jsonObj.getString("tkda") );
+			data.put("TNO1", jsonObj.getString("csno") );
 			data.put("TNO2", "");
 			data.put("TNO3", "");
 			data.put("TNO4", "");
 			data.put("TNO5", "");
 			data.put("TLNO", "");
 			data.put("TMZO", "Asia/Seoul"); // <-- (+09:00) 삭제
-			data.put("QUEUEID", values[7]);
+			data.put("QUEUEID", jsonObj.getString("queueid"));
 			data.put("TRYCNT", "0");
 
 			mainObj.put("data", data);
-			mainObj.put("id", values[1]);
-			mainObj.put("contactListId", values[6]);
+			mainObj.put("id", jsonObj.getString("cpsq") );
+			mainObj.put("contactListId", jsonObj.getString("contactltid"));
 
 		} catch (Exception e) {
 			log.error("Error Message :{}", e.getMessage());
@@ -395,6 +406,9 @@ public class CreateEntity {
 	
 	
 	public Entity_ContactLt createContactUcrm(JSONObject jsonObject) throws Exception {
+		
+		ZonedDateTime seoulTime = ZonedDateTime.now(ZoneId.of("Asia/Seoul"));
+		
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
 		ContactLtId id = new ContactLtId();
 		try {
@@ -404,6 +418,7 @@ public class CreateEntity {
 			String cske = dataObject.getString("CSKE");
 			String tkda = dataObject.getString("TKDA");
 			String tno1 = dataObject.getString("TNO1");
+			Date date = Date.from(seoulTime.toInstant());
 
 			id.setCpid(cpid);
 			id.setCpsq(Integer.parseInt(cpsq));
@@ -412,6 +427,7 @@ public class CreateEntity {
 			enContactLt.setFlag("A");
 			enContactLt.setTkda(tkda);
 			enContactLt.setTno1(tno1);
+			enContactLt.setDate(date);
 
 		} catch (Exception e) {
 			log.error("Error Messge : {}", e.getMessage());

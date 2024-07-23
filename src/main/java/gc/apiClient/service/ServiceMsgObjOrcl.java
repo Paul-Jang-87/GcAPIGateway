@@ -29,6 +29,11 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
+/**
+ *  360view 로직은 홈 8테이블, 모바일 8테이블 총 16테이블이 있다.16개 테이블 각각에 대해서 데이터들을 카프카 서버로 메시지형태로 보내는데
+ *  이 클래스는 각 테이블에 들어온 데이터들을 카프카로 보낼 메시지로 파싱해주는 역할을 한다. 
+ *  
+ */
 public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
 
@@ -59,7 +64,7 @@ public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 		return obj.toString();
 	}
 
-	private void populateDataCallFields(JSONObject obj, Entity_DataCall en) {
+	private void populateDataCallFields(JSONObject obj, Entity_DataCall en) {//(dataCallMsg)홈 관련 메시지 
 		obj.put("entTime", en.getNew_entered_time() != null ? en.getNew_entered_time() : "");
 		obj.put("entDate", en.getNew_entered_date() != null ? en.getNew_entered_date() : "");
 		obj.put("callSeq", en.getNew_call_seq() != null ? en.getNew_call_seq() : 0);
@@ -67,7 +72,7 @@ public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 		obj.put("siteCd", en.getNew_site_code() != null ? en.getNew_site_code() : 0);
 	}
 
-	private void populateMDataCallFields(JSONObject obj, Entity_MDataCall en) {
+	private void populateMDataCallFields(JSONObject obj, Entity_MDataCall en) {//(dataCallMsg)모바일 관련 메시지
 		obj.put("entTime", en.getNew_entered_time() != null ? en.getNew_entered_time() : "");
 		obj.put("entDate", en.getNew_entered_date() != null ? en.getNew_entered_date() : "");
 		obj.put("callSeq", en.getNew_call_seq() != null ? en.getNew_call_seq() : 0);
@@ -91,7 +96,7 @@ public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 		return obj.toString();
 	}
 
-	private void populateDataCallCustomerFields(JSONObject obj, Entity_DataCallCustomer en) {
+	private void populateDataCallCustomerFields(JSONObject obj, Entity_DataCallCustomer en) {//(dataCallCustomerMsg)홈 관련 메시지
 		obj.put("custDt01", en.getNew_customer_data01() != null ? en.getNew_customer_data01() : "");
 		obj.put("custDt02", en.getNew_customer_data02() != null ? en.getNew_customer_data02() : "");
 		obj.put("custDt03", en.getNew_customer_data03() != null ? en.getNew_customer_data03() : "");
@@ -102,7 +107,7 @@ public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 		obj.put("callSeq", en.getNew_call_seq() != null ? en.getNew_call_seq() : 0);
 	}
 
-	private void populateMDataCallCustomerFields(JSONObject obj, Entity_MDataCallCustomer en) {
+	private void populateMDataCallCustomerFields(JSONObject obj, Entity_MDataCallCustomer en) {//(dataCallCustomerMsg)모바일 관련 메시지
 		obj.put("custDt01", en.getNew_customer_data01() != null ? en.getNew_customer_data01() : "");
 		obj.put("custDt02", en.getNew_customer_data02() != null ? en.getNew_customer_data02() : "");
 		obj.put("custDt03", en.getNew_customer_data03() != null ? en.getNew_customer_data03() : "");

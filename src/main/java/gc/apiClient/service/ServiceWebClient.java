@@ -82,7 +82,13 @@ public class ServiceWebClient implements InterfaceWebClient {
 	}
 
 	
-	@Override 
+	
+	/**
+	 * 제네시스로 발신 대상자들을 적재하기 위한 함수. 
+	 * 'contactListId' 이 컨택리스트 아이디에 List<String> msg 대상자들을 리스트 형태로 묶어서 보낸다.  
+	 * 
+	 */
+	@Override
 	public String postContactLtApiReq(String endpoint, String contactListId, List<String> msg) {
 		/*
 		 * Genesys API 호출 - 컨택리스트 적재 [POST] api/v2/outbound/contactlists/{contactListId}/contacts
@@ -99,6 +105,10 @@ public class ServiceWebClient implements InterfaceWebClient {
 	}
 	
 
+	/**
+	 * 'contactListId'에 속한 대상자들과의 발신 결과 내용을 얻기 위한 함수.   
+	 * 
+	 */
 	@Override 
 	public String postContactLtApiBulk(String endpoint, String contactListId, List<String> cskes) {
 		/*
@@ -130,7 +140,11 @@ public class ServiceWebClient implements InterfaceWebClient {
 
 		return null;
 	}
+	
 
+	/**
+	 * 'contactListId'에 속한 발신대상자들을 삭제.
+	 */
 	@Override
 	public String delContacts(String endpoint, String contactListId, List<String> msg) throws Exception {
 		/*

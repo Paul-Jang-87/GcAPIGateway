@@ -86,10 +86,9 @@ public class ControllerCallBot {
 		int cntofmsg = casenum;
 		log.info("컨슈머로 부터 받은 발신 대상자 건수 : {}", cntofmsg);
 
-		String row_result = "";
+		JSONObject contactltObj = null;
 		String cpid = "";
 		String topic_id = tranId;
-		String res = "";
 		String contactLtId = "";
 		Entity_CampMa enCpma = null;
 		List<String> arr = new ArrayList<String>();
@@ -103,9 +102,9 @@ public class ControllerCallBot {
 
 			try {
 
-				row_result = ServiceJson.extractStrVal("ExtractValCallBot", msg, 0);// 뽑아온다.cpid::cpsq::cske::csno::tkda::flag
+				contactltObj = ServiceJson.extractObjVal("ExtractValCallBot", msg, 0);// 뽑아온다.cpid::cpsq::cske::csno::tkda::flag
 
-				Entity_ContactLt enContactLt = createEntity.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
+				Entity_ContactLt enContactLt = createEntity.createContactLtMsg(contactltObj);// ContactLt 테이블에 들어갈 값들을
 				// Entity_ContactLt 객체에 매핑시킨다.
 				cpid = enContactLt.getId().getCpid();// 캠페인 아이디를 가져온다.
 				enCpma = serviceDb.findCampMaByCpid(cpid);
@@ -115,12 +114,11 @@ public class ControllerCallBot {
 
 				for (int i = 0; i < cntofmsg; i++) {
 
-					row_result = ServiceJson.extractStrVal("ExtractValCallBot", msg, i); // 뽑아온다.cpid::cpsq::cske::csno::tkda::flag
-
-					enContactLt = createEntity.createContactLtMsg(row_result);// ContactLt 테이블에 들어갈 값들을
-					// Entity_ContactLt 객체에 매핑시킨다.
-					row_result = row_result + "::" + res; // 뽑아온다.cpid::cpsq::cske::csna::tkda::flag::contactLtId
-					String contactltMapper = createEntity.createContactLtGC(row_result);
+					contactltObj = ServiceJson.extractObjVal("ExtractValCallBot", msg, i); // 뽑아온다.cpid::cpsq::cske::csno::tkda::flag
+					contactltObj.put("contactltid", contactLtId);
+					
+					enContactLt = createEntity.createContactLtMsg(contactltObj);// ContactLt 테이블에 들어갈 값들을
+					String contactltMapper = createEntity.createContactLtGC(contactltObj);
 
 					arr.add(contactltMapper);
 
@@ -221,8 +219,8 @@ public class ControllerCallBot {
 
 						} else {
 
-							String res = ServiceJson.extractStrVal("ExtractContactLtId", result); // 가져온 결과에서 contactlistid,queueid만 추출. 변수 'res' 형식의 예 )contactlistid::queueid
-							contactLtId = res.split("::")[0];
+							JSONObject res = ServiceJson.extractObjVal("ExtractContactLtId", result); // 가져온 결과에서 contactlistid,queueid만 추출. 변수 'res' 형식의 예 )contactlistid::queueid
+							contactLtId = res.getString("contactltid");
 							mapcontactltId.put(cpid, contactLtId);
 							mapdivision.put(contactLtId, divisionid);
 						}

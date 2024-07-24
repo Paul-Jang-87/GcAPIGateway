@@ -12,14 +12,14 @@ import lombok.Data;
 @Entity
 @Table(name = "CAMPMA")
 public class Entity_CampMa {
-	
-	@Column(name = "COID")
-	private int coid;
 
 	@Id
 	@NotNull
 	@Column(name = "CPID")
 	private String cpid;
+	
+	@Column(name = "COID")
+	private int coid;
 	
 	@Column(name = "CPNA")
  	private String cpna;

@@ -305,7 +305,7 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		
 		String cpid = jsonobj.getString("cpid");
 		
-		Optional<Entity_CampMa> optionalEntity = repositoryCampMa.findById(cpid);// 캠페인 아이디로 레코드 조회.
+		Optional<Entity_CampMa> optionalEntity = repositoryCampMa.findByCpid(cpid);// 캠페인 아이디로 레코드 조회.
 
 		if (optionalEntity.isPresent()) {// 조회 후 있다면 해당 레코드의 캠페인명 업데이트
 			Entity_CampMa entity = optionalEntity.get();

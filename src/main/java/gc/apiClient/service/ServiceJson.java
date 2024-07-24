@@ -73,15 +73,6 @@ public class ServiceJson {
 	}
 
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public static JSONObject ExtractValCrm(String stringMsg, int i) throws Exception {// stringMsg에서 원하는 값만 추출.
 
 		String jsonResponse = stringMsg;

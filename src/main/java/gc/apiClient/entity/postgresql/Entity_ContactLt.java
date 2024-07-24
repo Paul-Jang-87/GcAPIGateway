@@ -1,6 +1,6 @@
 package gc.apiClient.entity.postgresql;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import gc.apiClient.embeddable.ContactLtId;
 import jakarta.persistence.Column;
@@ -40,7 +40,7 @@ public class Entity_ContactLt {
 	private String flag;
 	
 	@Column(name = "DATE")
-	private Date date;
+	private LocalDateTime date;
 	
 	public Entity_ContactLt(){
 		

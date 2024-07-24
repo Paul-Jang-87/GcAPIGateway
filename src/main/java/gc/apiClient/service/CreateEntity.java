@@ -30,23 +30,24 @@ import gc.apiClient.entity.postgresql.Entity_ContactLt;
 import gc.apiClient.entity.postgresql.Entity_Ucrm;
 import gc.apiClient.entity.postgresql.Entity_UcrmRt;
 import gc.apiClient.interfaceCollection.InterfaceDBPostgreSQL;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
 public class CreateEntity {
-	
+
 	private final CustomProperties customProperties;
 	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
 	private final InterfaceDBPostgreSQL serviceDb;
-	
-	
-	public CreateEntity(CustomProperties customProperties,InterfaceDBPostgreSQL serviceDb) {
+
+	public CreateEntity(CustomProperties customProperties, InterfaceDBPostgreSQL serviceDb) {
 
 		this.customProperties = customProperties;
 		this.serviceDb = serviceDb;
 	}
-	
+
+	@Transactional
 	public Entity_CampRt createCampRtMsg(JSONObject jsonobj, Entity_CampMa enCampMa) {
 		// contactid::contactListId::cpid::CPSQ::dirt::tkda::dateCreated
 
@@ -61,8 +62,8 @@ public class CreateEntity {
 		long hubId = 0;
 		int dirt = 0;
 		int dict = 0;
-		String campid = jsonobj.optString("cpid", ""); 
-		String contactLtId = jsonobj.optString("contactListId", ""); 
+		String campid = jsonobj.optString("cpid", "");
+		String contactLtId = jsonobj.optString("contactListId", "");
 		String contactId = jsonobj.optString("id", "");
 		String tkda = jsonobj.optString("tkda", "");
 		Date didt = null;
@@ -90,8 +91,8 @@ public class CreateEntity {
 			}
 
 			String didval = jsonobj.optString("lastAttempt", "");
-			if(!didval.equals("")) {
-				
+			if (!didval.equals("")) {
+
 				SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
 				log.info("didt(포맷 변경 전) : {}", didval);
 				Date parsedDate = inputFormat.parse(didval);
@@ -102,9 +103,8 @@ public class CreateEntity {
 				Date formattedDate = outputFormat.parse(formattedDateString);
 				didt = formattedDate;
 				log.info("didt(포맷 변경 후) : {}", didt);
-				
+
 			}
-			
 
 			log.info("dirt(맵핑 전) : {}", jsonobj.optString("lastResult", ""));
 			Map<String, String> properties = customProperties.getProperties();
@@ -155,13 +155,11 @@ public class CreateEntity {
 
 		return enCampRt;
 	}
-	
-	
-	public Entity_CampMa createEnCampMa(JSONObject jsonObject) { 
+
+	public Entity_CampMa createEnCampMa(JSONObject jsonObject) {
 
 		log.info("====== Method : createEnCampMa ======");
-		
-		
+
 		Entity_CampMa enCampMa = new Entity_CampMa();
 		String cpid = "";
 		int coid = 0;
@@ -175,24 +173,24 @@ public class CreateEntity {
 		String moddate = "";
 
 		try {
-			
+
 			coid = Integer.parseInt(jsonObject.optString("coid", "")); // 센터구분 코드
-			
+
 		} catch (Exception e) {
 			log.info("잘못된 coid(센터구분 코드)입니다 coid(센터구분 코드)는 두 자리 숫자여야 합니다 : {}", jsonObject.getString("coid"));
 			coid = 99;
 			log.info("coid(센터구분 코드)임의로 숫자 '99'로 변경 : {}", coid);
 		}
-		
-		cpid = jsonObject.getString("cpid"); //캠페인아이디
-		cpnm = jsonObject.getString("cpnm"); //캠페인명
-		contactListid = jsonObject.getString("contactListid"); //컨텍리스트아이디
+
+		cpid = jsonObject.getString("cpid"); // 캠페인아이디
+		cpnm = jsonObject.optString("cpnm",""); // 캠페인명
+		contactListid = jsonObject.optString("contactListid",""); // 컨텍리스트아이디
 		contactListnm = ""; // 사용 안 하는 컬럼.
-		queueid = jsonObject.getString("queueid"); //큐아이디
-		divisionid = jsonObject.getString("divisionid"); //디비전아이디
-		divisionnm = jsonObject.getString("divisionnm"); //디비전아이디
-		insdate = jsonObject.getString("insdate");//최초생성일
-		moddate = jsonObject.getString("moddate"); //마지막수정일
+		queueid = jsonObject.optString("queueid",""); // 큐아이디
+		divisionid = jsonObject.optString("divisionid",""); // 디비전아이디
+		divisionnm = jsonObject.optString("divisionnm",""); // 디비전아이디
+		insdate = jsonObject.optString("insdate","");// 최초생성일
+		moddate = jsonObject.optString("moddate",""); // 마지막수정일
 
 		enCampMa.setCpid(cpid);
 		enCampMa.setCoid(coid);
@@ -207,23 +205,22 @@ public class CreateEntity {
 
 		return enCampMa;
 	}
-	
-	
+
 	public Entity_CampMa_D createEnCampMa_D(Entity_CampMa enCampma) { // 매개변수로 받는 String msg = > cpid::coid::cpna::division
 
 		log.info("====== Method : Entity_CampMa_D ======");
-		
+
 		// 로컬 시간 가져오기
-        LocalDateTime localDateTime = LocalDateTime.now();
-        // UTC 시간대로 변환
-        ZonedDateTime utcDateTime = localDateTime.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("UTC"));
-        // 포맷 정의
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        // 문자열로 변환
-        String formattedDateTime = utcDateTime.format(formatter);
+		LocalDateTime localDateTime = LocalDateTime.now();
+		// UTC 시간대로 변환
+		ZonedDateTime utcDateTime = localDateTime.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("UTC"));
+		// 포맷 정의
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+		// 문자열로 변환
+		String formattedDateTime = utcDateTime.format(formatter);
 
 		Entity_CampMa_D enCampMa_D = new Entity_CampMa_D();
-		
+
 		String cpid = enCampma.getCpid();
 		int coid = enCampma.getCoid();
 		String cpnm = enCampma.getCpna();
@@ -234,7 +231,6 @@ public class CreateEntity {
 		String divisionnm = enCampma.getDivisionnm();
 		String insdate = formattedDateTime;
 		String moddate = enCampma.getModdate();
-			
 
 		enCampMa_D.setCpid(cpid);
 		enCampMa_D.setCoid(coid);
@@ -249,21 +245,22 @@ public class CreateEntity {
 
 		return enCampMa_D;
 	}
-	
+
 	
 	public Entity_ContactLt createContactLtMsg(JSONObject jsonObj) {// (콜봇에서 뽑아온거)cpid::cpsq::cske::csno::tkda::flag
-		ZonedDateTime seoulTime = ZonedDateTime.now(ZoneId.of("Asia/Seoul"));
 		
+		ZonedDateTime utcTime = ZonedDateTime.now(ZoneId.of("UTC"));
+		ZonedDateTime seoulTime = utcTime.withZoneSameInstant(ZoneId.of("Asia/Seoul"));
+
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
 		ContactLtId id = new ContactLtId();
-		
+
 		String cpid = jsonObj.getString("cpid");
 		String cpsq = jsonObj.getString("cpsq");
-		String cske = jsonObj.getString("cske");
-		String csno = jsonObj.getString("csno");
-		String tkda = jsonObj.getString("tkda");
-		String flag = jsonObj.getString("flag");
-		Date date = Date.from(seoulTime.toInstant());
+		String cske = jsonObj.optString("cske","");
+		String csno = jsonObj.optString("csno","");
+		String tkda = jsonObj.optString("tkda","");
+		String flag = jsonObj.optString("flag","");
 
 		try {
 			id.setCpid(cpid);
@@ -273,7 +270,7 @@ public class CreateEntity {
 			enContactLt.setTno1(csno);
 			enContactLt.setFlag(flag);
 			enContactLt.setTkda(tkda);
-			enContactLt.setDate(date);
+			enContactLt.setDate(seoulTime.toLocalDateTime());
 
 		} catch (Exception e) {
 			log.error("Error Messge : {}", e.getMessage());
@@ -282,8 +279,7 @@ public class CreateEntity {
 
 		return enContactLt;
 	}
-	
-	
+
 	public Entity_Ucrm createUcrm(String msg) throws Exception {
 
 		Entity_Ucrm enUcrm = new Entity_Ucrm();
@@ -315,23 +311,20 @@ public class CreateEntity {
 
 		return enUcrm;
 	}
-	
-	
+
 	public String createContactLtGC(JSONObject jsonObj) {
 		// 뽑아온다(콜봇).cpid::cpsq::cske::csno::tkda::flag::contactltid::queid
-
-		
 
 		JSONObject data = new JSONObject();
 		JSONObject mainObj = new JSONObject();
 		try {
-			data.put("CPID", jsonObj.getString("cpid") );
-			data.put("CPSQ", jsonObj.getString("cpsq") );
-			data.put("CSKE", jsonObj.getString("cske") );
+			data.put("CPID", jsonObj.getString("cpid"));
+			data.put("CPSQ", jsonObj.getString("cpsq"));
+			data.put("CSKE", jsonObj.getString("cske"));
 			data.put("CSNA", "");
 			data.put("CBDN", "");
-			data.put("TKDA", jsonObj.getString("tkda") );
-			data.put("TNO1", jsonObj.getString("csno") );
+			data.put("TKDA", jsonObj.getString("tkda"));
+			data.put("TNO1", jsonObj.getString("csno"));
 			data.put("TNO2", "");
 			data.put("TNO3", "");
 			data.put("TNO4", "");
@@ -342,7 +335,7 @@ public class CreateEntity {
 			data.put("TRYCNT", "0");
 
 			mainObj.put("data", data);
-			mainObj.put("id", jsonObj.getString("cpsq") );
+			mainObj.put("id", jsonObj.getString("cpsq"));
 			mainObj.put("contactListId", jsonObj.getString("contactltid"));
 
 		} catch (Exception e) {
@@ -352,8 +345,7 @@ public class CreateEntity {
 
 		return mainObj.toString();
 	}
-	
-	
+
 	public Entity_UcrmRt createUcrmRt(JSONObject jsonobj) throws Exception {
 
 		String cpid = jsonobj.optString("cpid", "");
@@ -369,8 +361,7 @@ public class CreateEntity {
 
 		return enUcrmRt;
 	}
-	
-	
+
 	public Entity_CallbotRt createCallbotRt(JSONObject jsonobj) throws Exception {
 
 		String cpid = jsonobj.optString("cpid", "");
@@ -386,8 +377,7 @@ public class CreateEntity {
 
 		return enCallbotRt;
 	}
-	
-	
+
 	public Entity_ApimRt createApimRt(JSONObject jsonobj) throws Exception {
 
 		String cpid = jsonobj.optString("cpid", "");
@@ -403,12 +393,13 @@ public class CreateEntity {
 
 		return apimRt;
 	}
-	
-	
+
 	public Entity_ContactLt createContactUcrm(JSONObject jsonObject) throws Exception {
-		
-		ZonedDateTime seoulTime = ZonedDateTime.now(ZoneId.of("Asia/Seoul"));
-		
+
+		ZonedDateTime utcTime = ZonedDateTime.now(ZoneId.of("UTC"));
+		ZonedDateTime seoulTime = utcTime.withZoneSameInstant(ZoneId.of("Asia/Seoul"));
+
+
 		Entity_ContactLt enContactLt = new Entity_ContactLt();
 		ContactLtId id = new ContactLtId();
 		try {
@@ -418,7 +409,6 @@ public class CreateEntity {
 			String cske = dataObject.getString("CSKE");
 			String tkda = dataObject.getString("TKDA");
 			String tno1 = dataObject.getString("TNO1");
-			Date date = Date.from(seoulTime.toInstant());
 
 			id.setCpid(cpid);
 			id.setCpsq(Integer.parseInt(cpsq));
@@ -427,7 +417,7 @@ public class CreateEntity {
 			enContactLt.setFlag("A");
 			enContactLt.setTkda(tkda);
 			enContactLt.setTno1(tno1);
-			enContactLt.setDate(date);
+			enContactLt.setDate(seoulTime.toLocalDateTime());
 
 		} catch (Exception e) {
 			log.error("Error Messge : {}", e.getMessage());
@@ -436,9 +426,5 @@ public class CreateEntity {
 
 		return enContactLt;
 	}
-	
-	
-	
-	
 
 }

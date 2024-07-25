@@ -12,7 +12,7 @@ public class Entity_CampMaJson {
  	private String cmpnId;
  	private String cmpnNm;
 
-	public Entity_CampMaJson() {
+	public Entity_CampMaJson() { 
 	}
 
 }

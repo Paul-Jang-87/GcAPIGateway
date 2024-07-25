@@ -3,6 +3,10 @@ package gc.apiClient.datamapping;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 센터구분 코드를 매핑해주는 클래스이다. 제네시스에서 센터구분 코드가 정수형태로 되어있는데 카프카로 메시지를 보낼 때는 
+ * 받은 정수와 매핑되는 코드를 전달해줘야한다. 
+ */
 public class MappingCenter {//홈 매핑 클래스.
 	
 	 // Define your mapping data

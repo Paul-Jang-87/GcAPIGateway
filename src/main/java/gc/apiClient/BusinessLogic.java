@@ -11,6 +11,7 @@ import java.util.Map;
  * 토픽은 우편 주소와 같다 메시지를 어디로 보낼지에 대한 정보이다. 
  *
  */
+
 public class BusinessLogic {
 	
 	

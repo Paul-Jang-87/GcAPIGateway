@@ -39,6 +39,18 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @Slf4j
+
+/**
+ *	이 클래스에는 크게 2가지 로직이 존재한다. 
+ *  첫번째, from 카프카 to 제네시스 
+ *  두번째, from 제네시스 to 카프카
+ *  첫번째 같은 경우에는 카프카로 부터 아웃바운데 발신 대상자들을 받아서 제네시스쪽으로 푸쉬를한다
+ *  두번째 같은 경우는 아웃바운드 발신이 끝나면 그 결과를 제네시스로부터 받아 카프카로 보낸다. 
+ *  엄밀히 말하면 카프카서버와 메시지를 주고, 받는 역할은 각각 우리가 만든 producer, consumer 앱들이 전적으로 담당하고 
+ *  그 두 앱은 오직 그 역할만 한다. 따라서 GcApiGateWay 앱은 producer 앱과 consumer앱을 통해 카프카 서버와 간접적으로 통신한다.
+ * 
+ */
+
 public class ControllerCallBot {
 
 	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");

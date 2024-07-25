@@ -21,6 +21,14 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @Slf4j
 @Profile("oracleH")
+/**
+ * 
+ * IVR쪽에서 그 쪽 담당자들이 만들어 놓은 쉐도우 테이블에 주기적(정확히는 트리거 발생시)으로 테이터를 쌓는다.
+ * 360view 로직은 그 쉐도우 테이블들에 쌓이 데이터들을 주기적(배치 30초마다)으로 읽어와서 어떠한 조작 없이
+ * 바로 카프카 서버로 전송한다. 엄밀히 말하면 'Producer APP' 보낸다. 카프카 서버로 메시지 보내는 것은 
+ * 전적으로 'Producer APP'이 담당.
+ * 
+ */
 public class Controller360view {
 
     private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");

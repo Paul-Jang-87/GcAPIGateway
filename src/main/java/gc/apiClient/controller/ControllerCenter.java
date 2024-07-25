@@ -44,6 +44,18 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @Slf4j
+/**
+ * 'ControllerCenter' 컨트롤러는 주로
+ * 첫째, 캠페인 생성, 수정, 삭제와 관련된 로직
+ * 둘째, 'UCRM','Callbot','APIM'관련 발신결과 로직
+ * 셋째, APIM 비즈니스로 데이터를 전달해주는 로직 
+ * GcApiGateWay앱에서 'APIM'로직을 다루지는 않는다. 
+ * GcApiGateWay앱에서는 'APIM' 앱에서 필요로하는 데이터들을 'APIM'으로 전달만해주기 때문에 
+ * 따로 'APIM'만을 위한 Controller(을)를 만들지는 않았다. 
+ * 가벼운 작업이기에 'ControllerCenter' 컨트롤러에 끼워 넣었다. 
+ * 
+ */
+
 public class ControllerCenter {
 	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
 	private final InterfaceDBPostgreSQL serviceDb;

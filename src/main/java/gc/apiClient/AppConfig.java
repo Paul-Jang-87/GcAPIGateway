@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
  * 도메인은 'https://gckafka.lguplus.co.kr'
  */
 public class AppConfig {
+	
 /*	
 	@Value("${domain}")
 	private String config_domian;

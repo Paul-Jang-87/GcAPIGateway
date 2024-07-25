@@ -76,34 +76,7 @@ public class ControllerUCRM {
 
 		return Mono.empty();
 	}
-
-	@PostMapping("/insertucrmlist")
-	public Mono<ResponseEntity<String>> insertUcrmList(@RequestBody String msg) {
-		log.info("====== Method : saveUcrmData ======");
-		try {
-
-			JSONArray jsonArray = new JSONArray(msg);
-
-			JSONObject jsonObj = new JSONObject();
-			String singleDate = "";
-
-			for (int i = 0; i < jsonArray.length(); i++) {
-
-				jsonObj = jsonArray.getJSONObject(i);
-				singleDate = jsonObj.toString();
-				Entity_Ucrm enUcrm = createEntity.createUcrm(singleDate); // 전달 받은 String 형태의 메시지를 쉐도우테이블('UCRMLT')에 인서트 하기 위해서 Entity 형태로 재가공해준다.
-				serviceDb.insertUcrm(enUcrm);
-				log.info("저장된 메시지 : {}", msg);
-			}
-
-		} catch (Exception e) {
-			log.error("에러 메시지 : {}", e.getMessage());
-			errorLogger.error(e.getMessage(), e);
-			return Mono.just(ResponseEntity.ok().body(String.format("You've got an error : %s", e.getMessage())));
-		}
-
-		return Mono.just(ResponseEntity.ok("Successfully processed the message."));
-	}
+	
 
 	@Transactional
 	public Mono<Void> addUcrmMsgFrmConsumer() {// 이 함수는 스케줄러에 의해 5초마다 실행되면서 쉐도우 테이블('UCRMLT')에 있는 데이터들을 처리해주는 작업을 수행한다.
@@ -456,6 +429,36 @@ public class ControllerUCRM {
 
 		return Mono.empty();
 	}
+	
+	
+	@PostMapping("/insertucrmlist")
+	public Mono<ResponseEntity<String>> insertUcrmList(@RequestBody String msg) {
+		log.info("====== Method : saveUcrmData ======");
+		try {
+
+			JSONArray jsonArray = new JSONArray(msg);
+
+			JSONObject jsonObj = new JSONObject();
+			String singleDate = "";
+
+			for (int i = 0; i < jsonArray.length(); i++) {
+
+				jsonObj = jsonArray.getJSONObject(i);
+				singleDate = jsonObj.toString();
+				Entity_Ucrm enUcrm = createEntity.createUcrm(singleDate); // 전달 받은 String 형태의 메시지를 쉐도우테이블('UCRMLT')에 인서트 하기 위해서 Entity 형태로 재가공해준다.
+				serviceDb.insertUcrm(enUcrm);
+				log.info("저장된 메시지 : {}", msg);
+			}
+
+		} catch (Exception e) {
+			log.error("에러 메시지 : {}", e.getMessage());
+			errorLogger.error(e.getMessage(), e);
+			return Mono.just(ResponseEntity.ok().body(String.format("You've got an error : %s", e.getMessage())));
+		}
+
+		return Mono.just(ResponseEntity.ok("Successfully processed the message."));
+	}
+	
 
 	@Transactional
 	@GetMapping("/pushucrm/{cpid}")

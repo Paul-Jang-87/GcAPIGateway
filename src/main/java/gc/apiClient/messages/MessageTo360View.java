@@ -29,14 +29,13 @@ public class MessageTo360View {
 	public static void sendMsgTo360View(String towhere, String massage) {
 
 		if (massage.equals("{}") || massage.equals("")) {
-			log.info("카프카로 보낼 메시지가 없습니다.");
+			log.info("(sendMsgTo360View) - 카프카로 보낼 메시지가 없습니다.");
 			return;
 		}else {
-			log.info("====== Method : sendMsgTo360View ======");
 
 			String jsonString = massage;
 
-			log.info("'{}' - Data : {}", towhere, jsonString);
+			log.info("(sendMsgTo360View) - {} - Data : {}", towhere, jsonString);
 
 			connectionProvider = ConnectionProvider.builder("myConnectionPool").maxConnections(100000).pendingAcquireMaxCount(100000).build();
 			clientHttpConnector = new ReactorClientHttpConnector(HttpClient.create(connectionProvider));

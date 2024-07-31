@@ -21,12 +21,11 @@ public class MessageToProducer {
 	public void sendMsgToProducer(String towhere, String jsonString) {
 
 		if (jsonString.equals("{}") || jsonString.equals("")) {
-			log.info("카프카로 보낼 메시지가 없습니다.");
+			log.info("(sendMsgToProducer) - 카프카로 보낼 메시지가 없습니다.");
 			return;
 		} else {
 			
-			log.info("====== Method : sendMsgToProducer ======");
-			log.info("Producer로 보낼 EndPoint & 메시지 : '{}' / {}", towhere, jsonString);
+			log.info("(sendMsgToProducer) - Producer로 보낼 EndPoint & 메시지 : '{}' / {}", towhere, jsonString);
 
 			WebClient webClient = WebClient.builder().baseUrl(domain + ":" + port).build();
 
@@ -41,8 +40,6 @@ public class MessageToProducer {
 			});
 
 		}
-
-		
 
 	}
 

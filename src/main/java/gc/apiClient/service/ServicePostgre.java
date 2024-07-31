@@ -12,7 +12,6 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -80,11 +79,18 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	@Override
 	@Transactional
 	public Entity_CampRt insertCampRt(Entity_CampRt entity_CampRt) {
+		
+		int coid =  entity_CampRt.getId().getCoid();
+		int rlsq =  entity_CampRt.getId().getRlsq();
+		
+		if( coid == 0 && rlsq == 0 ) {//2024-07-31 테이블 키 값이 없는경우(정상이 아닐 경우) 바로 함수 종료
+			throw new RuntimeException("복합키 coid와 rlsq의 값이 모두 0입니다. 레코드를 테이블에 추가할 수 없습니다.");
+		}
 
 		//디비에서 해당 레코드를 찾는다. 엔티티(레코드)가 매개변수로 들어왔고, 그것의 키값(entity_CampRt.getId())으로 디비를 조회한다(findById). 
 		Optional<Entity_CampRt> existingEntity = repositoryCampRt.findById(entity_CampRt.getId());  
 
-		if (existingEntity.isPresent()) {//조회 결과 해당 레코드가 테이블에 이미 존재한다면 에러를 발생시킨다. ㄴ
+		if (existingEntity.isPresent()) {//조회 결과 해당 레코드가 테이블에 이미 존재한다면 에러를 발생시킨다.
 			throw new DataIntegrityViolationException("주어진 복합키를 가진 레코드가 이미 테이블에 존재합니다.");
 		}
 
@@ -96,7 +102,12 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	@Override
 	@Transactional
 	public Entity_CampMa insertCampMa(Entity_CampMa entityCampMa) {
-
+		
+		String cpid = entityCampMa.getCpid();
+		if(cpid.equals("")) {
+			throw new RuntimeException("캠페인 아이디가 공백입니다. 레코드를 테이블에 추가할 수 없습니다.");
+		}
+		
 		Optional<Entity_CampMa> existingEntity = repositoryCampMa.findByCpid(entityCampMa.getCpid()); // db에 인서트 하기 전. 키 값인 캠페인 아이디로 먼저 조회를 한다.
 
 		if (existingEntity.isPresent()) {// 조회 해본 결과 레코드가 이미 있는 상황이라면 에러는 발생시킨다.
@@ -111,6 +122,11 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	@Transactional
 	public Entity_CampMa_D insertCampMa_D(Entity_CampMa_D entityCampMa_D) throws Exception {
 		
+		String cpid = entityCampMa_D.getCpid();
+		if(cpid.equals("")) {
+			throw new RuntimeException("캠페인 아이디가 공백입니다. 레코드를 테이블에 추가할 수 없습니다.");
+		}
+		
 		Optional<Entity_CampMa_D> existingEntity = repositoryCampMa_D.findByCpid(entityCampMa_D.getCpid()); // db에 인서트 하기 전. 키 값인 캠페인 아이디로 먼저 조회를 한다.
 
 		if (existingEntity.isPresent()) {// 조회 해본 결과 레코드가 이미 있는 상황이라면 에러는 발생시킨다.
@@ -124,6 +140,13 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	@Override
 	@Transactional
 	public Entity_Ucrm insertUcrm(Entity_Ucrm entityUcrm) {
+		
+		String cpsq = entityUcrm.getId().getCpsq();
+		String cpid = entityUcrm.getId().getCpid();
+		
+		if( cpid.equals("") && cpsq.equals("") ) {//2024-07-31 테이블 키 값이 없는경우(정상이 아닐 경우) 예외 발생 후 바로 함수 종료
+			throw new RuntimeException("복합키 cpsq와 cpid의 값이 없습니다. 레코드를 테이블에 추가할 수 없습니다.");
+		}
 
 		Optional<Entity_Ucrm> existingEntity = repositoryUcrm.findById(entityUcrm.getId());
 
@@ -137,6 +160,13 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	@Override
 	@Transactional
 	public Entity_ContactLt insertContactLt(Entity_ContactLt entityContactLt) {
+		
+		int cpsq =  entityContactLt.getId().getCpsq();
+		String cpid = entityContactLt.getId().getCpid();
+		
+		if( cpid.equals("") && cpsq ==0 ) {//2024-07-31 테이블 키 값이 없는경우(정상이 아닐 경우) 예외 발생 후 바로 함수 종료
+			throw new RuntimeException("복합키 cpsq와 cpid의 값이 없습니다. 레코드를 테이블에 추가할 수 없습니다.");
+		}
 
 		Optional<Entity_ContactLt> existingEntity = repositoryContactLt.findById(entityContactLt.getId());
 
@@ -152,9 +182,9 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		try {
 			Optional<Entity_CampMa> optionalEntity = repositoryCampMa.findByCpid(cpid);//주어진 값(여기서는 'cpid')으로 주어진 값과 일치하는 값을 가지고 있는 레코드를 디비에서 찾는다. 
 			return optionalEntity.orElse(null); //있다면 찾은 레코드를 반환하고 없으면 null을 반환한다.
-		} catch (IncorrectResultSizeDataAccessException ex) {
-			log.error("Error retrieving Entity_CampMa by cpid: {}", cpid);
-			errorLogger.error("Error retrieving Entity_CampMa by cpid: {}", cpid, ex);
+		} catch (Exception e) {
+			log.error("(findCampMaByCpid) - 에러 발생 : {}", e.getMessage());
+			errorLogger.error(e.getMessage(), e);
 			return null;
 		}
 	}
@@ -166,9 +196,9 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		try {
 			Optional<Entity_CampMa_D> optionalEntity = repositoryCampMa_D.findByCpid(cpid);
 			return optionalEntity.orElse(null);
-		} catch (IncorrectResultSizeDataAccessException ex) {
-			log.error("Error retrieving Entity_CampMa by cpid: {}", cpid);
-			errorLogger.error("Error retrieving Entity_CampMa by cpid: {}", cpid, ex);
+		} catch (Exception e) {
+			log.error("(findCampMa_DByCpid) - 에러 발생 : {}", e.getMessage());
+			errorLogger.error(e.getMessage(), e);
 			return null;
 		}
 	}
@@ -188,16 +218,16 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 		try {
 			Optional<Integer> optionalEntity = repositoryCampRt.findMaxRlsq();
 			return optionalEntity.orElse(null);
-		} catch (IncorrectResultSizeDataAccessException ex) {
-			log.error("Error retrieving Entity_CampRt which has hightest value of 'rlsq' column: {}", ex.getMessage());
-			errorLogger.error("Error retrieving Entity_CampRt which has hightest value of 'rlsq' column: {}", ex.getMessage(), ex);
+		} catch (Exception e) {
+			log.error("(findCampRtMaxRlsq) - 에러 발생 : {}", e.getMessage());
+			errorLogger.error(e.getMessage(), e);
 			return null;
 		}
 	}
 
 	@Override
 	public int getRecordCount() {
-		log.info("Campma 테이블 레코드 수 : {}", repositoryCampMa.countBy());
+		log.info("(getRecordCount) - Campma 테이블 레코드 수 : {}", repositoryCampMa.countBy());
 		return repositoryCampMa.countBy();
 	}
 
@@ -339,6 +369,13 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	@Override
 	@Transactional
 	public Entity_CallbotRt insertCallbotRt(Entity_CallbotRt enCallbotRt) throws Exception {
+		
+		String cpsq = enCallbotRt.getId().getCpsq();
+		String cpid = enCallbotRt.getId().getCpid();
+		
+		if( cpid.equals("") && cpsq.equals("") ) {//2024-07-31 테이블 키 값이 없는경우(정상이 아닐 경우) 예외 발생 후 바로 함수 종료
+			throw new RuntimeException("복합키 cpsq와 cpid의 값이 없습니다. 레코드를 테이블에 추가할 수 없습니다.");
+		}
 
 		Optional<Entity_CallbotRt> existingEntity = repositoryCallbotRt.findById(enCallbotRt.getId());
 
@@ -352,6 +389,14 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	@Override
 	@Transactional
 	public Entity_UcrmRt insertUcrmRt(Entity_UcrmRt enUcrmRt) throws Exception {
+		
+		String cpsq = enUcrmRt.getId().getCpsq();
+		String cpid = enUcrmRt.getId().getCpid();
+		
+		if( cpid.equals("") && cpsq.equals("") ) {//2024-07-31 테이블 키 값이 없는경우(정상이 아닐 경우) 예외 발생 후 바로 함수 종료
+			throw new RuntimeException("복합키 cpsq와 cpid의 값이 없습니다. 레코드를 테이블에 추가할 수 없습니다.");
+		}
+		
 		Optional<Entity_UcrmRt> existingEntity = repositoryUcrmRt.findById(enUcrmRt.getId());
 
 		if (existingEntity.isPresent()) {
@@ -364,6 +409,14 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	@Override
 	@Transactional
 	public Entity_ApimRt insertApimRt(Entity_ApimRt enApimRt) throws Exception {
+		
+		String cpsq = enApimRt.getId().getCpsq();
+		String cpid = enApimRt.getId().getCpid();
+		
+		if( cpid.equals("") && cpsq.equals("") ) {//2024-07-31 테이블 키 값이 없는경우(정상이 아닐 경우) 예외 발생 후 바로 함수 종료
+			throw new RuntimeException("복합키 cpsq와 cpid의 값이 없습니다. 레코드를 테이블에 추가할 수 없습니다.");
+		}
+		
 		Optional<Entity_ApimRt> existingEntity = repositoryApimRt.findById(enApimRt.getId());
 
 		if (existingEntity.isPresent()) {

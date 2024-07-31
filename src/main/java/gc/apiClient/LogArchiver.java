@@ -50,8 +50,8 @@ public class LogArchiver {
 		Date now = new Date();
 		String nowtime = form.format(now);
 		
-		log.info("{}, apiClient 로그 시작",nowtime);
-		errorLogger.error("{}, apiClient_error 로그 시작",nowtime); 
+		log.info("(startlogs) {}, apiClient 로그 시작",nowtime);
+		errorLogger.error("(startlogs) {}, apiClient_error 로그 시작",nowtime); 
 	
 	}
 

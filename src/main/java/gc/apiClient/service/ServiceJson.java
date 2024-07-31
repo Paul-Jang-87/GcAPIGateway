@@ -160,7 +160,7 @@ public class ServiceJson {
 	public static JSONObject ExtractCampMaUpdateOrDel(String stringMsg) throws Exception {
 		// cpid::coid::cpna::divisionid::action
 		
-		log.info("Method : ExtractCampMaUpdateOrDel / 인입 메시지 : {} ", stringMsg);
+		log.info("(ExtractCampMaUpdateOrDel) - 인입 메시지 : {} ", stringMsg);
 		
 		String jsonResponse = stringMsg;
 
@@ -255,7 +255,7 @@ public class ServiceJson {
 			result = "";
 		}
 
-		log.info("추출 이후 결과 값 rs: {}", result);
+		log.info("(ExtractContacts) - 추출 이후 결과 값 rs: {}", result);
 
 		return jsonObj;
 	}
@@ -263,21 +263,23 @@ public class ServiceJson {
 	public static int ExtractDict(String stringMsg) throws Exception {
 
 		String jsonResponse = stringMsg;
-		if(jsonResponse.equals("")) {//2024-07-30 stringMsg이 빈 값이란 얘기는 앞 선 api호출에서 문제가 있었다는 뜻. => String result = crmapi.getStatusApiReq("campaign_stats", campid); 검색!
-			log.error("dict 값을 가져오는 과정에서 에러가 발생했습니다. dict 값을 0으로 리턴합니다." );
-		}
-
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode jsonNode = null;
-		int result = 0;
+		int result = 1;//2024-07-31 초기화 값 0에서 1로 수정
+		
+		if(jsonResponse.equals("")) {//2024-07-30 stringMsg이 빈 값이란 얘기는 앞 선 api호출에서 문제가 있었다는 뜻. => String result = crmapi.getStatusApiReq("campaign_stats", campid); 검색!
+			log.error("(ExtractDict) - dict 값을 가져오는 과정에서 에러가 발생했습니다. dict 값을 초기화 값 1로 리턴합니다." );
+			return result;
+		}
 
-		//2024-07-30 stringMsg가 빈 값으로 왔을 경우 try catch문으로 처리 -> 0 값으로 대체한다.
+		
 		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
 			result = jsonNode.path("contactRate").path("attempts").asInt();
-		} catch (Exception e) {
-			log.error("dict 값을 가져오는 과정에서 에러가 발생했습니다. dict 값을 0으로 리턴합니다." );
+		} catch (Exception e) {//2024-07-30 파싱에러가 발생했을 경우 dict 0으로 리턴
+			log.error("(ExtractDict) - dict 값을 가져오는 과정에서 에러가 발생했습니다. dict 값을 초기화 값 1로 리턴합니다." );
 			errorLogger.error(e.getMessage(), e);
+			return result;
 		}
 
 		return result;
@@ -315,7 +317,6 @@ public class ServiceJson {
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode jsonNode = null;
 		JSONObject jsonobj = new JSONObject();
-		String result = "";
 
 		jsonNode = objectMapper.readTree(jsonResponse);
 		String cpid = jsonNode.path("cpid").asText();
@@ -326,11 +327,7 @@ public class ServiceJson {
 		jsonobj.put("cpsq", cpsq);
 		jsonobj.put("divisionid", divisionid);
 
-		result = cpid + "::" + cpsq + "::" + divisionid;
-		log.info("result : {}", result);
-		log.info("cpid(캠페인아이디) : {}", cpid);
-		log.info("cpsq(캠페인시퀀스) : {}", cpsq);
-		log.info("divisionid(디비전아이디) : {}", divisionid);
+		log.info("(ExtrSaveRtData) - result : {}", jsonobj.toString());
 
 		return jsonobj;
 	}

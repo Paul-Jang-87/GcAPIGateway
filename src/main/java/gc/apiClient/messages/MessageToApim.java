@@ -20,20 +20,19 @@ public class MessageToApim {
 	public void sendMsgToApim(String towhere, String entity) {
 
 		if (entity.equals("{}") || entity.equals("")) {
-			log.info("Apim(으)로 보낼 메시지가 없습니다.");
+			log.info("(sendMsgToApim) - Apim(으)로 보낼 메시지가 없습니다.");
 			return;
 		} else {
-			log.info("====== Method : sendMsgToApim ======");
 
 			WebClient webClient = WebClient.builder().baseUrl(domain + ":" + port).defaultHeader("Accept", "application/json").defaultHeader("Content-Type", "application/json").build();
 
 			String endpointUrl = towhere;
 
-			log.info("ToApim Endpoint : {}", endpointUrl);
-			log.info("Apim으로 보낼 메시지: {}", entity);
+			log.info("(sendMsgToApim) - ToApim Endpoint : {}", endpointUrl);
+			log.info("(sendMsgToApim) - Apim으로 보낼 메시지: {}", entity);
 
 			webClient.post().uri(endpointUrl).body(BodyInserters.fromValue(entity)).retrieve().bodyToMono(String.class).onErrorResume(error -> {
-				log.error("Error making API request: {}", error.getMessage());
+				log.error("(sendMsgToApim) - 에러 발생 : {}", error.getMessage());
 				return Mono.empty();
 			}).block(); // Wait for the result
 		}

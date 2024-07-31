@@ -3,6 +3,8 @@ package gc.apiClient.webclient;
 import java.util.List;
 
 import org.springframework.web.reactive.function.client.ExchangeStrategies;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClient.RequestHeadersUriSpec;
@@ -41,8 +43,8 @@ public class WebClientApp {
 	 */
 	private static int index = 0;
 	private static String[] tokenlist = new String[15];
-
 	private static WebClient webClient;
+	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
 
 	public WebClientApp() {
 
@@ -113,7 +115,8 @@ public class WebClientApp {
 
 //			log.info("Access token이 성공적으로 발급되었습니다.");
 		} catch (Exception e) {
-			log.error("토큰 발급 과정에서 에러가 발생했습니다 : {}", e.getMessage());
+			log.error("(getAccessToken) - 에러 발생 : {}", e.getMessage());
+			errorLogger.error(e.getMessage(), e);
 		}
 
 	}

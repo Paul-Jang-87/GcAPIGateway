@@ -4,7 +4,6 @@ import org.springframework.stereotype.Component;
 
 import gc.apiClient.AppConfig;
 import jakarta.annotation.PostConstruct;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  *  현재 앱'GcAPIGateway'에서 사용하는 제네시스 api들과 endpoint들 모아둔 컴포넌트. 
@@ -13,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 
  
 @Component
-@Slf4j
 public class WebClientConfig {		// api들의 정보들 수록.
 	private static final String API_BASE_URL = "https://api.apne2.pure.cloud"; //제네시스 기본 api 주소.
 	
@@ -24,7 +22,6 @@ public class WebClientConfig {		// api들의 정보들 수록.
     private void init() {
 		CLIENT_ID 		= AppConfig.getId();
 		CLIENT_SECRET 	= AppConfig.getSecret();
-		log.info("CLIENT_ID & CLIENT_SECRET = {} / {}" , CLIENT_ID,CLIENT_SECRET);
 		
     }
 	

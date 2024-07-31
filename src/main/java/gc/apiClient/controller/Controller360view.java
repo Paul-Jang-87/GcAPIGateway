@@ -60,7 +60,7 @@ public class Controller360view {
                 throw new ClassCastException("매서드의 결과가 (" + methodName + ") Mono<Void> 타입이 아닙니다.");
             }
         } catch (Exception e) {
-            log.error("매서드를 불러오는데 에러가 발생하셨습니다. {}: {}", methodName, e.getMessage());
+            log.error("(invokeMethod) 매서드를 불러오는데 에러가 발생하셨습니다. {}: {}", methodName, e.getMessage());
             errorLogger.error(e.getMessage(), e);
             return Mono.error(e);
         }

@@ -19,7 +19,6 @@ import gc.apiClient.datamapping.MappingCenter;
 import gc.apiClient.entity.Entity_CampMaJsonUcrm;
 import gc.apiClient.entity.postgresql.Entity_CampMa;
 import gc.apiClient.entity.postgresql.Entity_CampRt;
-import gc.apiClient.interfaceCollection.InterfaceDBPostgreSQL;
 import gc.apiClient.interfaceCollection.InterfaceKafMsg;
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,15 +31,6 @@ import lombok.extern.slf4j.Slf4j;
  */
 public class MsgUcrm implements InterfaceKafMsg { 
 	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
-	private InterfaceDBPostgreSQL serviceDb;
-
-	public MsgUcrm(InterfaceDBPostgreSQL serviceDb) {
-		this.serviceDb = serviceDb;
-	}
-
-	public MsgUcrm() {
-	}
-
 	
 	@Override
 	/**
@@ -48,27 +38,43 @@ public class MsgUcrm implements InterfaceKafMsg {
 	 * datachgcd(insert,update,delete)에 따라 보내질 메시지 내용이 달라진다. 
 	 */
 	public String makeMaMsg(Entity_CampMa enCampMa, String datachgcd) throws Exception {  // MA 메시지
+		
+		if(enCampMa.getCpid().equals("")) {//키 값이 없으면(정상이 아닐 경우) 함수 바로 종료
+			return "";
+		}
 
-		log.info("====== Method : maMassage ======");
 		Entity_CampMaJsonUcrm enCampMaJson = new Entity_CampMaJsonUcrm();
 		ObjectMapper objectMapper = new ObjectMapper();
+		MappingCenter mappingData = new MappingCenter();
 		String jsonString = "";
 
 		Date now = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSSSSS");
 		String topcDataIsueDtm = "";
 		String coid = "";
-		MappingCenter mappingData = new MappingCenter();
+		String cpid = "";
+		String cpna = "";
+		String temp_coid = "";
+		
+		try {
+			
+			cpid = enCampMa.getCpid();
+			cpna = enCampMa.getCpna();
+			temp_coid = Integer.toString(enCampMa.getCoid());
+			
+		} catch (Exception e) {//2024-07-31 데이터 가져오는 과정 중 에러 발생 시 공백으로 리턴 후 종료
+			return "";
+		}
 
 		switch (datachgcd.trim()) {
 			case "insert":
 			case "update":
 	
-				coid = mappingData.getCentercodeById(Integer.toString(enCampMa.getCoid()));//센터코드 맵핑된 거 'id'를 키 값으로 하여 가지고 옴. 
+				coid = mappingData.getCentercodeById(temp_coid);//센터코드 맵핑된 거 'id'를 키 값으로 하여 가지고 옴. 
 				coid = coid != null ? coid : "EX";
 				enCampMaJson.setCenterCd(coid);//센터코드
-				enCampMaJson.setCmpnId(enCampMa.getCpid());//캠페인아이디
-				enCampMaJson.setCmpnNm(enCampMa.getCpna());//캠페인명
+				enCampMaJson.setCmpnId(cpid);//캠페인아이디
+				enCampMaJson.setCmpnNm(cpna);//캠페인명
 	
 				topcDataIsueDtm = formatter.format(now);
 	
@@ -78,10 +84,10 @@ public class MsgUcrm implements InterfaceKafMsg {
 				break;
 				
 			case "delete":
-				coid = mappingData.getCentercodeById(Integer.toString(enCampMa.getCoid()));
+				coid = mappingData.getCentercodeById(temp_coid);
 				coid = coid != null ? coid : "EX";
 				enCampMaJson.setCenterCd(coid);
-				enCampMaJson.setCmpnId(enCampMa.getCpid());
+				enCampMaJson.setCmpnId(cpid);
 				enCampMaJson.setCmpnNm("");
 	
 				topcDataIsueDtm = formatter.format(now);
@@ -93,46 +99,54 @@ public class MsgUcrm implements InterfaceKafMsg {
 				
 			default:
 			
-				log.info("유효하지 않은 CRUD 작업요청입니다. : {}",datachgcd);
+				log.info("(makeMaMsg) - 유효하지 않은 CRUD 작업요청입니다. : {}",datachgcd);
 				break;
 		}
 
 		jsonString = objectMapper.writeValueAsString(enCampMaJson);	// 객체를 String 타입으로 변환. 
-		log.info("enCampMaJson : {}", jsonString);
+		log.info("(makeMaMsg) - enCampMaJson : {}", jsonString);
 		return jsonString;
 	}
 
 	
 	@Override
 	public String makeRtMsg(Entity_CampRt enCampRt) throws Exception { //RT 메시지, 발신결과 메시지.
+		
+		if( enCampRt.getId().getCoid() == 0 && enCampRt.getId().getRlsq() == 0 ) {//테이블 키 값이 없는경우(정상이 아닐 경우) 바로 함수 종료
+			return "";
+		}
 
 		JSONObject obj = new JSONObject();
+		String coid = "";
+		String temp_coid = "";
+		String didt = "";
+		String formattedTime = "";
+		Date date = null;
+		long hubId = 0;
+		int dirt = 0;
+		int dict = 0;
+		
 		try {
+			
 			Date now = new Date();
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSSSSS");
 			String topcDataIsueDtm = formatter.format(now);
 
-			long hubId = enCampRt.getHubid();
-			int dirt = enCampRt.getDirt();
-			int dict = enCampRt.getDict();
-			String coid = "";
-			String campid = enCampRt.getCpid();
-			String didt = "";
-			String formattedTime = "";
+			hubId = enCampRt.getHubid();
+			dirt = enCampRt.getDirt();
+			dict = enCampRt.getDict();
+			date = enCampRt.getDidt();
+			dirt = enCampRt.getDirt();
+			temp_coid = Integer.toString(enCampRt.getId().getCoid());
 
-			if( enCampRt.getDidt() !=null ) {
+			if( date !=null ) {
 				SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 				outputFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-				String formattedDateString = outputFormat.format(enCampRt.getDidt());
+				String formattedDateString = outputFormat.format(date);
 				didt = formattedDateString;
 			}
 
-			dirt = enCampRt.getDirt();
-
-			Entity_CampMa enCampMa = new Entity_CampMa();
-
-			enCampMa = serviceDb.findCampMaByCpid(campid);
-			coid = Integer.toString(enCampMa.getCoid());
+			coid = temp_coid;
 			MappingCenter mappingData = new MappingCenter();
 			coid = mappingData.getCentercodeById(coid);
 			coid = coid != null ? coid : "EX";
@@ -155,11 +169,15 @@ public class MsgUcrm implements InterfaceKafMsg {
 			obj.put("totAttempt", dict);
 			obj.put("lastResult", dirt);
 
+			return obj.toString();
+			
 		} catch (Exception e) {
+			
+			log.error("(makeRtMsg) - 파싱 중 에러가 발생했습니다. 초기 인입 값을 다시 확인해주세요 : {}", enCampRt.toString());
 			errorLogger.error(e.getMessage(), e);
+			return "";
 		}
 
-		return obj.toString();
 	}
 
 }

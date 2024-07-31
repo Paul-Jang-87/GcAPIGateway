@@ -383,8 +383,8 @@ public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 	
 
 	private void logError(Exception e) {
-		log.error("에러 메시지 : {}", e.getMessage());
-		errorLogger.error("ServiceMsgObjOrcl - 에러메시지 = " + e);
+		log.error("에러 발생 : {}", e.getMessage());
+		errorLogger.error(e.getMessage(), e);
 	}
 
 

@@ -23,5 +23,7 @@ public interface Repository_UcrmRt extends CrudRepository<Entity_UcrmRt, UcrmCam
 	@Query("SELECT c FROM Entity_UcrmRt c WHERE c.id = :id")
 	Optional<Entity_UcrmRt> findById(@Param("id") UcrmCampRt id);
 
+	@Lock(LockModeType.PESSIMISTIC_WRITE)
+	@Query("SELECT e FROM Entity_UcrmRt e")
 	Page<Entity_UcrmRt> findAll(Pageable pageable);
 }

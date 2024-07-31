@@ -12,6 +12,9 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
+/**
+ * 제네시스 api호출 담당 서비스
+ */
 public class ServiceWebClient implements InterfaceWebClient {
 	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
 
@@ -50,8 +53,14 @@ public class ServiceWebClient implements InterfaceWebClient {
 
 		String result = "";
 
-		WebClientApp webClient = new WebClientApp();
-		result = webClient.makeApiRequest(endpoint, "GET", campaignId);
+		//2024-07-30 에러 발생 시 try - catch문 이용 처리. 
+		try {
+			WebClientApp webClient = new WebClientApp();
+			result = webClient.makeApiRequest(endpoint, "GET", campaignId);
+		} catch (Exception e) {
+			log.error("api호출 과정에서 에러가 발생했습니다");
+			 errorLogger.error(e.getMessage(), e);
+		}
 
 		return result;
 	}
@@ -96,8 +105,12 @@ public class ServiceWebClient implements InterfaceWebClient {
 		log.info("====== Method : gostContactLtApiRequet {} ======", endpoint);
 
 		String result = "";
-		WebClientApp webClient = new WebClientApp();
-		result = webClient.apiReqPushContacts(endpoint, contactListId, msg.toString());
+		try {
+			WebClientApp webClient = new WebClientApp();
+			result = webClient.apiReqPushContacts(endpoint, contactListId, msg.toString());
+		} catch (Exception e) {
+			log.error("api호출 과정에서 에러가 발생했습니다");
+		}
 
 
 //		log.info("postContactLtApiRequet 요청 후 결과 값 : {} || 컨텍리스트 아이디 : {}", rs,contactListId);
@@ -118,8 +131,12 @@ public class ServiceWebClient implements InterfaceWebClient {
 		String result = "";
 		log.info("contactListId : {}, cskes : {}", contactListId, cskes.toString());
 
-		WebClientApp webClient = new WebClientApp();
-		result = webClient.apiReqGetRtOfContacts(endpoint, contactListId, cskes);
+		try {
+			WebClientApp webClient = new WebClientApp();
+			result = webClient.apiReqGetRtOfContacts(endpoint, contactListId, cskes);
+		} catch (Exception e) {
+			log.error("api호출 과정에서 에러가 발생했습니다");
+		}
 
 		
 //		log.info("postContactLtApiBulk 요청 후 결과 값 result : {}", rs);

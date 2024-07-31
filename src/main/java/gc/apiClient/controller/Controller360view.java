@@ -24,9 +24,8 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * 
  * IVR쪽에서 그 쪽 담당자들이 만들어 놓은 쉐도우 테이블에 주기적(정확히는 트리거 발생시)으로 테이터를 쌓는다.
- * 360view 로직은 그 쉐도우 테이블들에 쌓이 데이터들을 주기적(배치 30초마다)으로 읽어와서 어떠한 조작 없이
- * 바로 카프카 서버로 전송한다. 엄밀히 말하면 'Producer APP' 보낸다. 카프카 서버로 메시지 보내는 것은 
- * 전적으로 'Producer APP'이 담당.
+ * 360view 로직은 그 쉐도우 테이블들에 쌓인 데이터들을 주기적(배치 30초마다)으로 읽어와서 어떠한 조작 없이 바로 카프카 서버로 전송한다. 
+ * 엄밀히 말하면 'Producer APP' 보낸다. 카프카 서버로 메시지 보내는 것은 전적으로 'Producer APP'이 담당.
  * 
  */
 public class Controller360view {
@@ -45,9 +44,9 @@ public class Controller360view {
      * 
      * @param methodName
      * @return 없음.
+     * 서비스 'SchedulerService'에 의해 실행된다. 
+     * 360view의 16개 함수를 각각 스케줄 돌리는 대신 이 함수를 대표적으로 실행함으로써 16개 함수를 모두 스케줄 실행시킬 수 있다. 
      * 
-     * Mono란 반응형 프로그래밍을 지원 하는 라이브러리 Reactor library에서 Publisher를 상속 받은 객체이다. 
-     * 반응형 프로그래밍에서 아이템을 Mono객체 1개당 1개의 아이템만 다룰 수 있다. 여기서는 void타입으로서 아무런 아이템도 emit하지 않는다.  
      */
     public Mono<Void> invokeMethod(String methodName) {
         try {
@@ -148,7 +147,7 @@ public class Controller360view {
     }
 
     /**
-     * 데이터베이스에서 레코드를 가져와 처리한 후, 외부 시스템에 메시지를 전송하고 해당 레코드를 삭제하는 프로세스를 구현한 매서드
+     * 데이터베이스에서 레코드를 가져와 카프카 서버로 메시지 형태로 보낸 후 레코드를 테이블에서 삭제하는 프로세스를 구현한 매서드
      * @param <T>
      * @param topicId 처리할 레코드의 토픽 ID.
      * @param entityClass  처리할 엔티티 클래스.

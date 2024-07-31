@@ -10,7 +10,11 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "UCRMLT")
-
+/**
+ * UCRM 아웃바운드 발신 대상자들의 정보가 임시적으로 쌓이는 쉐도우 테이블이다. 
+ * 
+ * 
+ */
 public class Entity_Ucrm {
 	
 	@EmbeddedId

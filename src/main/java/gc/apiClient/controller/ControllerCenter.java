@@ -39,6 +39,7 @@ import gc.apiClient.service.CreateEntity;
 import gc.apiClient.service.ServiceJson;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
@@ -329,9 +330,11 @@ public class ControllerCenter {
 	}
 
 	@GetMapping("/sendapimrt")
+	@Transactional //2024-07-30 '@Transactional' 어노테이션 추가. 쉐도우 테이블에서 레코드 가져오는 것부터 트렌젝션 시작. 
 	public Mono<ResponseEntity<String>> sendApimRt() {
 
 		try {
+//			log.info("Transaction active sendApimRt: {}", TransactionSynchronizationManager.isActualTransactionActive());
 			log.info("====== Method : sendApimRt ======");
 
 			Page<Entity_ApimRt> entitylist = serviceDb.getAllApimRt();// apim 발신 결과와 관련된 테이블의 레코드들을 최대 1000개까지 가지고 온다.

@@ -213,17 +213,19 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 
 	
 	@Override
-	//레코드를 가지고 온다. 한번에 최대 1000개까지
+	@Transactional
 	public Page<Entity_UcrmRt> getAllUcrmRt() throws Exception {
-		return repositoryUcrmRt.findAll(PageRequest.of(0, 1000));
+		return repositoryUcrmRt.findAll(PageRequest.of(0, 1000));//레코드를 가지고 온다. 한번에 최대 1000개까지
 	}
 
 	@Override
+	@Transactional
 	public Page<Entity_CallbotRt> getAllCallBotRt() throws Exception {
 		return repositoryCallbotRt.findAll(PageRequest.of(0, 1000));
 	}
 
 	@Override
+	@Transactional
 	public Page<Entity_ApimRt> getAllApimRt() throws Exception {
 		return repositoryApimRt.findAll(PageRequest.of(0, 1000));
 	}

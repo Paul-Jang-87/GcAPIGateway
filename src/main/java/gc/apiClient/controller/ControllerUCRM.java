@@ -560,6 +560,7 @@ public class ControllerUCRM {
 	}
 
 	@GetMapping("/senducrmrt")
+	@Transactional //2024-07-30 '@Transactional' 어노테이션 추가. 쉐도우 테이블에서 레코드 가져오는 것부터 트렌젝션 시작. 
 	public Mono<ResponseEntity<String>> sendUcrmRt() {
 
 		try {
@@ -692,14 +693,14 @@ public class ControllerUCRM {
 		Map<String, String> businessLogic = BusinessLogic.rtSelectedBusiness(divisionid);
 		String topic_id = businessLogic.get("topic_id");
 
-		for (int i = 0; i < values.size(); i++) {
+		for (int i = 0; i < values.size(); i++) {//리스트에 담긴 각 콜들에 대해, 발신결과를 메시지형태로 카프카로 보내고 디비에 저장. 리스트 예)[73558350, 73558386, 73558408]
 			contactsresult = ServiceJson.extractObjVal("ExtractContacts", result, i);
 			if (contactsresult == null) {
 				log.info("결과 없음, 다음으로 건너 뜀.");
 				continue;
 			}
 
-			entityCmRt = createEntity.createCampRtMsg(contactsresult, enCampMa); // db 인서트 하기 위한 entity.
+			entityCmRt = createEntity.createCampRtMsg(contactsresult, enCampMa); // 카프카로 메시지 전달을 위한 entity.
 
 			MsgUcrm msgucrm = new MsgUcrm(serviceDb);
 			String msg = msgucrm.makeRtMsg(entityCmRt);

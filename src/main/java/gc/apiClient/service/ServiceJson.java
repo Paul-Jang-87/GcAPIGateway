@@ -3,6 +3,8 @@ package gc.apiClient.service;
 import java.util.List;
 
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,17 +15,20 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 /**
  * (1번) 제네시스 api를 호출 하면 결과 값을 받는다. 
- * (2번) 제네시스에서 특정 이벤트가 발생하면 Request body 값을 받는다. 
+ * (2번) 제네시스에서 특정 이벤트가 발생하면 Request body를 통해 데이터를 받는다. 
  * 
  * 이 앱에서는 그 값들(1번, 2번)에서 특정 값들을 추출하여 db에 적재를 하거나 카프카로 메시지를 보내는 경우가 있다. 
- * 이 클래스'ServiceJson'는 값들을 추출하여 db에 적재를 하거나 카프카로 메시지를 보내기 위해 재가공(?)리턴해주는 역할을 한다. 
+ * 이 서비스'ServiceJson'는 데이터를 db에 적재를 하거나 카프카로 메시지를 보내기 위해 (1번,2번을 통해)받은 값들 중에 필요한 값들만을 추출하고 그 것을 리턴해주는 역할을 한다. 
  * 
  * 크게 2가지 함수가 있다. 
  * int 타입을 리턴해주는 함수끼리 모아둔 'extractIntVal'함수
  * JSONObject 타입을 리턴해주는 함수끼리 모아둔 'extractObjVal'함수
  *   
  */
+
+
 public class ServiceJson {
+	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
 
 	public static int extractIntVal(String methodNm, Object... params) throws Exception {
 
@@ -258,13 +263,22 @@ public class ServiceJson {
 	public static int ExtractDict(String stringMsg) throws Exception {
 
 		String jsonResponse = stringMsg;
+		if(jsonResponse.equals("")) {//2024-07-30 stringMsg이 빈 값이란 얘기는 앞 선 api호출에서 문제가 있었다는 뜻. => String result = crmapi.getStatusApiReq("campaign_stats", campid); 검색!
+			log.error("dict 값을 가져오는 과정에서 에러가 발생했습니다. dict 값을 0으로 리턴합니다." );
+		}
 
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode jsonNode = null;
 		int result = 0;
 
-		jsonNode = objectMapper.readTree(jsonResponse);
-		result = jsonNode.path("contactRate").path("attempts").asInt();
+		//2024-07-30 stringMsg가 빈 값으로 왔을 경우 try catch문으로 처리 -> 0 값으로 대체한다.
+		try {
+			jsonNode = objectMapper.readTree(jsonResponse);
+			result = jsonNode.path("contactRate").path("attempts").asInt();
+		} catch (Exception e) {
+			log.error("dict 값을 가져오는 과정에서 에러가 발생했습니다. dict 값을 0으로 리턴합니다." );
+			errorLogger.error(e.getMessage(), e);
+		}
 
 		return result;
 	}

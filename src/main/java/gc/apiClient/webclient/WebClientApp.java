@@ -19,7 +19,7 @@ import reactor.core.publisher.Mono;
 
 /**
  * 
- * 제네시스의 다양한 api를 호출하기 위한 함수들을 모아둔 클래스
+ * 제네시스의 api를 호출하기 위해 필요한 webclient 객체를 만들어주는 클래스
  *   
  */
 @Slf4j
@@ -65,17 +65,17 @@ public class WebClientApp {
 		 * 15개가 채워질때까지 이쪽 if구간을 타고 15개가 차면 배열'tokenlist'이 하루에 한번 비워지는 것으로 초기화 될때까지 else문을 탄다.
 		 */
 		if (tokenlist[index] == null || tokenlist[index].equals("")) {
-			log.info("토큰 없음");
-			log.info("현재 인덱스 : {}", index);
+//			log.info("토큰 없음");
+//			log.info("현재 인덱스 : {}", index);
 			getAccessToken(index);
 			index++;
 			if (index % 15 == 0) {
 				index = 0;
 			}
-			log.info("발급 후 현재 인덱스 : {}", index);
+//			log.info("발급 후 현재 인덱스 : {}", index);
 		} else {
-			log.info("토큰 있음 : {}", tokenlist[index]);
-			log.info("현재 인덱스 : {}", index);
+//			log.info("토큰 있음 : {}", tokenlist[index]);
+//			log.info("현재 인덱스 : {}", index);
 			accessToken = tokenlist[index];
 			index++;
 			if (index % 15 == 0) {
@@ -88,7 +88,7 @@ public class WebClientApp {
 			clientCodecConfigurer.defaultCodecs().maxInMemorySize(bufferSize);
 		}).build();
 
-		log.info("발급 받은 토큰 : {}", accessToken);
+//		log.info("발급 받은 토큰 : {}", accessToken);
 
 		webClient = WebClient.builder().exchangeStrategies(exchangeStrategies).baseUrl(API_BASE_URL)
 				.defaultHeader("Accept", "application/json").defaultHeader("Content-Type", "application/json")
@@ -111,7 +111,7 @@ public class WebClientApp {
 			accessToken = newAccessToken;
 			tokenlist[index] = newAccessToken;
 
-			log.info("Access token이 성공적으로 발급되었습니다.");
+//			log.info("Access token이 성공적으로 발급되었습니다.");
 		} catch (Exception e) {
 			log.error("토큰 발급 과정에서 에러가 발생했습니다 : {}", e.getMessage());
 		}
@@ -123,8 +123,8 @@ public class WebClientApp {
 	 * 아래 2개의 함수들이 첫번째 두번째 파라미터들은 공통적인 내용이다. 
 	 * 'WebClientConfig'클래스의 'getApiEndpoint'메서드 참조.
 	 * 
-	 * @param endpoint 어떤 endpoint로 어떤 api를 호출 할지??? 
-	 * @param httpmethod 어떤 http메서트로 호출할지??? POST,GET,DELETE,PUT 등등...
+	 * @param endpoint 어떤 endpoint로 어떤 api를 호출 할지
+	 * @param httpmethod 어떤 http메서트로 호출할지 POST,GET,DELETE,PUT 등등...
 	 * @param param path 파라미터나 Query 파라미터가 있는 경우.
 	 * @return
 	 */

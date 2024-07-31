@@ -34,6 +34,7 @@ import gc.apiClient.messages.MessageToProducer;
 import gc.apiClient.service.CreateEntity;
 import gc.apiClient.service.ServiceInstCmpRt;
 import gc.apiClient.service.ServiceJson;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
@@ -69,10 +70,10 @@ public class ControllerCallBot {
 
 	/**
 	 * 
-	 * 캠페인 대상자 전송 To Genesys (from kafka-consumer)
+	 * 카프카로부터 아웃바운드 발신 대상자 리스트를 받아 DB에 적재(contactlt테이블)하고 제네시스 api를 호출을 통해 제네시스쪽으로 발신대상자 리스트를 넣어주는 메소드
 	 * 
-	 * @param tranId
-	 * @param msg
+	 * @param 카프카 컨슈머 앱에서 호출하는 GcAPIGateway 앱쪽의 API endpoint
+	 * @param msg 카프카로 부터 받은 메시지
 	 * @return
 	 */
 	@PostMapping("/contactlt/{topic}")
@@ -88,7 +89,7 @@ public class ControllerCallBot {
 
 		try {
 			jsonNode = objectMapper.readTree(jsonResponse);
-			casenum = jsonNode.path("cmpnItemDto").size();
+			casenum = jsonNode.path("cmpnItemDto").size();//카프카로부터 전해 받은 메시지 리스트에 발신대상자가 몇 명인지 파악.
 
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
@@ -109,12 +110,13 @@ public class ControllerCallBot {
 
 		switch (topic_id) {
 
-		case "callbothome":// IF-CRM_003
-		case "callbotmobile":// IF-CRM_004
+		case "callbothome":
+		case "callbotmobile":
 
 			try {
 
-				contactltObj = ServiceJson.extractObjVal("ExtractValCallBot", msg, 0);// 뽑아온다.cpid::cpsq::cske::csno::tkda::flag
+				//카프카로부터 받은 메시지(발신 대상자리스트)로부터 앞으로 진행될 프로세스에서 필요한 데이터들만을 추출한다.(cpid::cpsq::cske::csno::tkda::flag)
+				contactltObj = ServiceJson.extractObjVal("ExtractValCallBot", msg, 0);
 
 				Entity_ContactLt enContactLt = createEntity.createContactLtMsg(contactltObj);// ContactLt 테이블에 들어갈 값들을
 				// Entity_ContactLt 객체에 매핑시킨다.
@@ -167,9 +169,11 @@ public class ControllerCallBot {
 	 * @return
 	 */
 	@GetMapping("/sendcallbotrt")
+	@Transactional
 	public Mono<ResponseEntity<String>> sendCallBotRt() {
 
 		try {
+//			log.info("Transaction active sendCallBotRt: {}", TransactionSynchronizationManager.isActualTransactionActive());
 			log.info("====== Method : sendCallBotRt ======");
 
 			Page<Entity_CallbotRt> entitylist = serviceDb.getAllCallBotRt();

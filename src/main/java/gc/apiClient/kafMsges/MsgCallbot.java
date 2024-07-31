@@ -17,8 +17,6 @@ import gc.apiClient.entity.postgresql.Entity_CampMa;
 import gc.apiClient.entity.postgresql.Entity_CampRt;
 import gc.apiClient.interfaceCollection.InterfaceDBPostgreSQL;
 import gc.apiClient.interfaceCollection.InterfaceKafMsg;
-import gc.apiClient.service.ServiceJson;
-import gc.apiClient.service.ServiceWebClient;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -95,6 +93,7 @@ public class MsgCallbot implements InterfaceKafMsg {
 		log.info("enCampMaJson : {}", jsonString);
 		return jsonString;
 	}
+	
 
 	@Override
 	public String makeRtMsg(Entity_CampRt enCampRt) throws Exception {
@@ -122,10 +121,6 @@ public class MsgCallbot implements InterfaceKafMsg {
 			}
 
 			dirt = enCampRt.getDirt();
-
-			ServiceWebClient crmapi = new ServiceWebClient();
-			String result = crmapi.getStatusApiReq("campaign_stats", campid);
-			dict = ServiceJson.extractIntVal("ExtractDict", result);
 
 			Entity_CampMa enCampMa = new Entity_CampMa();
 

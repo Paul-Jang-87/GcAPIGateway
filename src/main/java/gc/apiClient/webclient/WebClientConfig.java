@@ -7,8 +7,11 @@ import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- *  사용하는 api들과 endpoint들 정리, 제네시스 OAuth ID,Secret 관련 클래스.
+ *  현재 앱'GcAPIGateway'에서 사용하는 제네시스 api들과 endpoint들 모아둔 컴포넌트. 
+ *  제네시스 api호출을 위해 필요할 설정(제네시스 도메인, 제네시스 OAuth 아이디, 비번)들도 정리되어있다. 
  */
+
+ 
 @Component
 @Slf4j
 public class WebClientConfig {		// api들의 정보들 수록.

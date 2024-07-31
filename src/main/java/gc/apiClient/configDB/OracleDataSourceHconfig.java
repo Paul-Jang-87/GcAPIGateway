@@ -30,9 +30,10 @@ import jakarta.persistence.EntityManagerFactory;
 )
 
 /*
- * 360view home 관련 db에 관려한 설정들을 정의해주는 클래스
+ * 360view home 관련 db에 관련한 설정들을 정의해주는 클래스
  * 엔티티 매니저 팩토리, 트랜젝션 매니저 팩토리를 정의하고 프로젝트 전역에서 사용할 수 있도록 도와주는 역할의 클래스.
  */
+
 @Profile("oracleH")
 public class OracleDataSourceHconfig {
 

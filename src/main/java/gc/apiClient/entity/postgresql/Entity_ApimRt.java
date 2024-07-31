@@ -12,6 +12,7 @@ import gc.apiClient.embeddable.ApimCampRt;
 @Table(name = "CAMPRT_UCUBE_W")
 /**
  * 'CAMPRT_UCUBE_W'테이블을 대표하는 JPA 앤티티이다. 
+ *  APIM 발신 결과 쉐도우 테이블이다. 1분마다 테이블에 있는 데이터들을 가져와서 APIM쪽으로 보낼 메시지 포맷에 맞춰 제가공한 뒤 카프카로 메시지를 보낸다. 
  */
 public class Entity_ApimRt {
 	

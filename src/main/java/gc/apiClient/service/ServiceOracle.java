@@ -57,7 +57,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * 오라클 관련 클래스들은 전부 360view 비지니스 로직과 관련이 있다. 
  * 관련 클래스 'Controller360view', 'OracleDataSourceHconfig', 'OracleDataSourceMConfig','MessageTo360View'
- * 
+ * 오라클 DB관련 DML작업(select, insert, delete update )이 구현되어있는 서비스 
  */
 public class ServiceOracle implements InterfaceDBOracle {
 	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");

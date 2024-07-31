@@ -23,5 +23,7 @@ public interface Repository_ApimRt extends CrudRepository<Entity_ApimRt, ApimCam
 	@Query("SELECT c FROM Entity_ApimRt c WHERE c.id = :id")
 	Optional<Entity_ApimRt> findById(@Param("id") ApimCampRt id);
 
+	@Lock(LockModeType.PESSIMISTIC_WRITE)
+	@Query("SELECT e FROM Entity_ApimRt e")
 	Page<Entity_ApimRt> findAll(Pageable pageable);
 }

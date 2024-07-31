@@ -13,8 +13,12 @@ import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
 /**
- * 프로젝트 내에서 배치관련 스케줄러들만 모아둔 클래스. 
+ * 현재 앱('GcApiGateway')에서는 배치도는 서비스가 많다. 원래는 컨트롤러마다 몇 개씩이었는데 분관관리가 어려워 
+ * 이 서비스 한곳에서 관리하기로 했다. 프로젝트 내에서 배치관련 스케줄러들만 모아둔 서비스이다.
+ *  
  */
+
+
 @Service 
 public class SchedulerService {
 

@@ -31,9 +31,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 /**
  *  360view 로직은 홈 8테이블, 모바일 8테이블 총 16테이블이 있다.16개 테이블 각각에 대해서 데이터들을 카프카 서버로 메시지형태로 보내는데
- *  이 클래스는 각 테이블에 들어온 데이터들을 카프카로 보낼 메시지로 파싱해주는 역할을 한다. 
+ *  이 서비스는 각 테이블에 들어온 데이터들을 카프카로 보낼 메시지로 파싱해주는 역할을 한다. 
  *  
  */
+
+
 public class ServiceMsgObjOrcl implements InterfaceMsgObjOrcl {
 	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
 

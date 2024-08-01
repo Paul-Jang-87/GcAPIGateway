@@ -6,7 +6,8 @@ import org.springframework.stereotype.Service;
 import gc.apiClient.entity.postgresql.Entity_CampMa;
 import gc.apiClient.entity.postgresql.Entity_CampRt;
 import gc.apiClient.interfaceCollection.InterfaceDBPostgreSQL;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.annotation.Propagation;
 //import lombok.extern.slf4j.Slf4j;
 //
 //import org.springframework.transaction.support.TransactionSynchronizationManager;
@@ -33,7 +34,7 @@ public class ServiceInstCmpRt {
 		this.createEntity = createEntity;
 	}
 	
-	@Transactional
+	@Transactional(timeout = 30, propagation = Propagation.REQUIRED)//트랜젝션 대기 30초. 30초 이후에도 안되면 자동트랜젝션 종료.
 	public void insrtCmpRt (JSONObject contactsresult, Entity_CampMa enCampMa) {
 //		log.info("Transaction active insrtCmpRt: {}", TransactionSynchronizationManager.isActualTransactionActive());
 		Entity_CampRt entityCmRt = createEntity.createCampRtMsg(contactsresult, enCampMa);// db 인서트 하기 위한 entity.

@@ -32,7 +32,6 @@ import gc.apiClient.messages.MessageToProducer;
 import gc.apiClient.service.CreateEntity;
 import gc.apiClient.service.ServiceInstCmpRt;
 import gc.apiClient.service.ServiceJson;
-import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
@@ -119,6 +118,9 @@ public class ControllerCallBot {
 				contactltObj = ServiceJson.extractObjVal("ExtractValCallBot", msg, 0);
 
 				Entity_ContactLt enContactLt = createEntity.createContactLtMsg(contactltObj);// ContactLt 테이블에 들어갈 값들을
+				if(enContactLt == null) {
+					return Mono.empty();
+				}
 				// Entity_ContactLt 객체에 매핑시킨다.
 				cpid = enContactLt.getId().getCpid();// 캠페인 아이디를 가져온다.
 				enCpma = serviceDb.findCampMaByCpid(cpid);
@@ -132,6 +134,9 @@ public class ControllerCallBot {
 					contactltObj.put("contactltid", contactLtId);
 					
 					enContactLt = createEntity.createContactLtMsg(contactltObj);// ContactLt 테이블에 들어갈 값들을
+					if(enContactLt == null) {
+						continue;
+					}
 					String contactltMapper = createEntity.createContactLtGC(contactltObj);
 
 					if( !contactltMapper.equals("") ) {
@@ -169,11 +174,9 @@ public class ControllerCallBot {
 	 * @return
 	 */
 	@GetMapping("/sendcallbotrt")
-	@Transactional
-	public Mono<ResponseEntity<String>> sendCallBotRt() {
+	public Mono<ResponseEntity<String>> sendCallBotRt() {//2024-08-01 @Transactional 어노테이션 삭제
 
 		try {
-//			log.info("Transaction active sendCallBotRt: {}", TransactionSynchronizationManager.isActualTransactionActive());
 
 			Page<Entity_CallbotRt> entitylist = serviceDb.getAllCallBotRt();
 
@@ -292,7 +295,7 @@ public class ControllerCallBot {
 		// 컨택리스트(contactListId)별 컨택데이터(contact-cpsq)를 Genesys Cloud로 전송 (Bulk)
 		String result = serviceWeb.postContactLtApiBulk("contactList", contactLtId, values); // api : "/api/v2/outbound/contactlists/{contactListId}/contacts/bulk";
 
-		if (result.equals("[]")) {
+		if (result.equals("")) {
 			values.clear();
 			return Mono.empty();
 		}
@@ -320,6 +323,10 @@ public class ControllerCallBot {
 			}
 
 			entityCmRt = createEntity.createCampRtMsg(contactsresult, enCampMa);// db 인서트 하기 위한 entity.
+			if(entityCmRt == null) {
+				continue;
+			}
+			
 			String msg = msgCallbot.makeRtMsg(entityCmRt);//2024-07-31 DB접근하는 로직 제거
 
 			MessageToProducer producer = new MessageToProducer();

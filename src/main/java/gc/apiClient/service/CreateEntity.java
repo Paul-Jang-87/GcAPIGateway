@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.Map;
 import java.util.TimeZone;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +31,6 @@ import gc.apiClient.entity.postgresql.Entity_ContactLt;
 import gc.apiClient.entity.postgresql.Entity_Ucrm;
 import gc.apiClient.entity.postgresql.Entity_UcrmRt;
 import gc.apiClient.interfaceCollection.InterfaceDBPostgreSQL;
-import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -48,13 +48,14 @@ public class CreateEntity {
 	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
 	private final InterfaceDBPostgreSQL serviceDb;
 
-	public CreateEntity(CustomProperties customProperties, InterfaceDBPostgreSQL serviceDb) {
+	public CreateEntity(CustomProperties customProperties
+			, InterfaceDBPostgreSQL serviceDb) {
 
 		this.customProperties = customProperties;
 		this.serviceDb = serviceDb;
 	}
 
-	@Transactional
+	//2024-08-01 @Transactional 어노테이션 삭제
 	public Entity_CampRt createCampRtMsg(JSONObject jsonobj, Entity_CampMa enCampMa) {
 		// contactid::contactListId::cpid::CPSQ::dirt::tkda::dateCreated
 
@@ -81,6 +82,7 @@ public class CreateEntity {
 			contactLtId = jsonobj.getString("contactListId");
 			contactId = jsonobj.optString("id", "");
 			tkda = jsonobj.optString("tkda", "");
+			dict = Integer.parseInt(jsonobj.optString("dict", "1"));
 
 			if (tkda.charAt(0) == 'C') {
 				hubId = Long.parseLong(tkda.split(",")[1]);
@@ -106,11 +108,6 @@ public class CreateEntity {
 			Map<String, String> properties = customProperties.getProperties();
 			dirt = Integer.parseInt(properties.getOrDefault(jsonobj.optString("lastResult", ""), "1").trim());
 
-			// dict값(발신시도 횟수)를 제네시스로 부터 가져오기 위해 cpid로 제네시스 api를 호출한다. api =>
-			// "/api/v2/outbound/campaigns/{campaignId}/stats"
-			ServiceWebClient crmapi = new ServiceWebClient();
-			String result = crmapi.getStatusApiReq("campaign_stats", campid);
-			dict = ServiceJson.extractIntVal("ExtractDict", result);
 
 			coid = enCampMa.getCoid();
 			rlsq = serviceDb.findCampRtMaxRlsq().intValue();
@@ -129,43 +126,32 @@ public class CreateEntity {
 			enCampRt.setDirt(dirt);
 			enCampRt.setDict(dict);
 			
-			return enCampRt;
 
-		} catch (Exception e) {// 2024-07-30 파싱 에러가 나면 초기 인입 값이 어떻게 들어왔는지 확인하기 쉽게 에러 로그에 찍어주고 초기값으로 세팅해줌(로직이 막혀서 서비스에 지장 줄 일 없게 끔).
+		} catch (StringIndexOutOfBoundsException e) {
+			log.error("(createCampRtMsg) - StringIndexOutOfBoundsException 에러가 발생했습니다. 초기 인입 값을 다시 확인해주세요 : {}", jsonobj.toString());
+			return null;
+	    } catch (ArrayIndexOutOfBoundsException e) {
+	    	log.error("(createCampRtMsg) - ArrayIndexOutOfBoundsException 에러가 발생했습니다. 초기 인입 값을 다시 확인해주세요 : {}", jsonobj.toString());
+	    	return null;
+	    } catch (NumberFormatException e) {
+	    	log.error("(createCampRtMsg) - NumberFormatException 에러가 발생했습니다. 초기 인입 값을 다시 확인해주세요 : {}", jsonobj.toString());
+	    	return null;
+	    }catch (JSONException e) {// 2024-08-01 파싱에러 발생 시 null 리턴 jsonException 처리
+			
+			log.error("(createCampRtMsg) - 파싱 중 에러가 발생했습니다. 초기 인입 값을 다시 확인해주세요 : {}", jsonobj.toString());
+			errorLogger.error(e.getMessage(), e);
+			
+			return null;
+			
+		}catch (Exception e) {// 2024-08-01 파싱에러 발생 시 null 리턴
 
 			log.error("(createCampRtMsg) - 에러 발생 : {}", e.getMessage());
 			errorLogger.error(e.getMessage(), e);
-			log.error("(createCampRtMsg) - 파싱 중 에러가 발생했습니다. 초기 인입 값을 다시 확인해주세요 : {}", jsonobj.toString());
 			
-			coid = 0;
-			cpsq = 0;
-			hubId = 0;
-			dirt = 0;
-			dict = 0;
-			rlsq = 0;
-			campid = "";
-			contactLtId = "";
-			contactId = "";
-			tkda = "";
-			didt = null;
-
-			id.setRlsq(rlsq);
-			id.setCoid(coid);
-			enCampRt.setId(id);
-			enCampRt.setContactLtId(contactLtId);
-			enCampRt.setContactid(contactId);
-			enCampRt.setCpid(campid);
-			enCampRt.setTkda(tkda);
-			enCampRt.setCamp_seq(cpsq);
-			enCampRt.setHubid(hubId);
-			enCampRt.setDidt(didt);
-			enCampRt.setDirt(dirt);
-			enCampRt.setDict(dict);
-
-			return enCampRt;
+			return null;
 		}
-
 		
+		return enCampRt;
 	}
 
 	public Entity_CampMa createEnCampMa(JSONObject jsonobj) {
@@ -193,15 +179,8 @@ public class CreateEntity {
 			divisionnm = jsonobj.optString("divisionnm", ""); // 디비전아이디
 			insdate = jsonobj.optString("insdate", "");// 최초생성일
 			moddate = jsonobj.optString("moddate", ""); // 마지막수정일
+			coid = Integer.parseInt(jsonobj.optString("coid", "99")); // 센터구분 코드
 
-			try {
-				coid = Integer.parseInt(jsonobj.optString("coid", "99")); // 센터구분 코드
-
-			} catch (Exception e) {
-				log.info("(createEnCampMa) - 잘못된 coid(센터구분 코드)입니다 coid(센터구분 코드)는 두 자리 숫자여야 합니다 : {}", jsonobj.getString("coid"));
-				coid = 99;
-				log.info("(createEnCampMa) - coid(센터구분 코드)임의로 숫자 '99'로 변경 : {}", coid);
-			}
 
 			enCampMa.setCpid(cpid);
 			enCampMa.setCoid(coid);
@@ -213,37 +192,25 @@ public class CreateEntity {
 			enCampMa.setDivisionnm(divisionnm);
 			enCampMa.setInsdate(insdate);
 			enCampMa.setModdate(moddate);
+
+		}catch (NumberFormatException e) {
 			
-			return enCampMa;
-
-		} catch (Exception e) {// 2024-07-31 파싱 에러가 나면 초기 인입 값이 어떻게 들어왔는지 확인하기 쉽게 에러 로그에 찍어주고 초기값으로 세팅해줌(로직이 막혀서 서비스에 지장 줄 일 없게 끔).
-
+			log.info("(createEnCampMa) - 잘못된 coid(센터구분 코드)입니다 coid(센터구분 코드)는 두 자리 숫자여야 합니다 : {}", jsonobj.getString("coid"));
+			coid = 99;
+			log.info("(createEnCampMa) - coid(센터구분 코드)임의로 숫자 '99'로 변경 : {}", coid);
+			
+		}catch (JSONException e) {
+			
 			log.error("(createEnCampMa) - 파싱 중 에러가 발생했습니다. 초기 인입 값을 다시 확인해주세요 : {}", jsonobj.toString());
-			
-			cpid = "";
-			coid = 0;
-			cpnm = "";
-			contactListid = "";
-			contactListnm = "";
-			queueid = "";
-			divisionid = "";
-			divisionnm = "";
-			insdate = "";
-			moddate = "";
-
-			enCampMa.setCpid(cpid);
-			enCampMa.setCoid(coid);
-			enCampMa.setCpna(cpnm);
-			enCampMa.setContactltid(contactListid);
-			enCampMa.setContactltnm(contactListnm);
-			enCampMa.setQueueid(queueid);
-			enCampMa.setDivisionid(divisionid);
-			enCampMa.setDivisionnm(divisionnm);
-			enCampMa.setInsdate(insdate);
-			enCampMa.setModdate(moddate);
-			
-			return enCampMa;
+			errorLogger.error(e.getMessage(), e);
+			return null;
+		}catch (Exception e) {
+			log.error("(createEnCampMa) - 에러 발생 : {}", e.getMessage());
+			errorLogger.error(e.getMessage(), e);
+			return null;
 		}
+		
+		return enCampMa;
 	}
 
 	public Entity_CampMa_D createEnCampMa_D(Entity_CampMa enCampma) { // 매개변수로 받는 String msg = > cpid::coid::cpna::division
@@ -293,38 +260,18 @@ public class CreateEntity {
 			enCampMa_D.setDivisionnm(divisionnm);
 			enCampMa_D.setInsdate(insdate);
 			enCampMa_D.setModdate(moddate);
-			
-			return enCampMa_D;
 
-		} catch (Exception e) {// 2024-07-31 파싱 에러가 나면 초기 인입 값이 어떻게 들어왔는지 확인하기 쉽게 에러 로그에 찍어주고 초기값으로 세팅해줌(로직이 막혀서 서비스에 지장 줄 일 없게 끔).
-
+		} catch (JSONException e) {
 			log.error("(createEnCampMa_D) - 파싱 중 에러가 발생했습니다. 초기 인입 값을 다시 확인해주세요 : {}", enCampma.toString());
-			
-			cpid = "";
-			coid = 0;
-			cpnm = "";
-			contactListid = "";
-			contactListnm = "";
-			queueid = "";
-			divisionid = "";
-			divisionnm = "";
-			insdate = "";
-			moddate = "";
-			
-			enCampMa_D.setCpid(cpid);
-			enCampMa_D.setCoid(coid);
-			enCampMa_D.setCpna(cpnm);
-			enCampMa_D.setContactltid(contactListid);
-			enCampMa_D.setContactltnm(contactListnm);
-			enCampMa_D.setQueueid(queueid);
-			enCampMa_D.setDivisionid(divisionid);
-			enCampMa_D.setDivisionnm(divisionnm);
-			enCampMa_D.setInsdate(insdate);
-			enCampMa_D.setModdate(moddate);
-			
-			return enCampMa_D;
-
+			errorLogger.error(e.getMessage(), e);
+			return null;
+		}catch (Exception e) {// 2024-07-31 파싱 에러가 나면 초기 인입 값이 어떻게 들어왔는지 확인하기 쉽게 에러 로그에 찍어주고 초기값으로 세팅해줌(로직이 막혀서 서비스에 지장 줄 일 없게 끔).
+			log.error("(createEnCampMa_D) - 에러 발생 : {}", e.getMessage());
+			errorLogger.error(e.getMessage(), e);
+			return null;
 		}
+		
+		return enCampMa_D;
 		
 	}
 
@@ -337,7 +284,7 @@ public class CreateEntity {
 		ContactLtId id = new ContactLtId();
 
 		String cpid = "";
-		String cpsq = "99";
+		int cpsq = 0;
 		String cske = "";
 		String csno = "";
 		String tkda = "";
@@ -346,14 +293,14 @@ public class CreateEntity {
 		try {
 
 			cpid = jsonobj.getString("cpid");
-			cpsq = jsonobj.getString("cpsq");
+			cpsq = Integer.parseInt(jsonobj.getString("cpsq"));
 			cske = jsonobj.optString("cske", "");
 			csno = jsonobj.optString("csno", "");
 			tkda = jsonobj.optString("tkda", "");
 			flag = jsonobj.optString("flag", "");
 
 			id.setCpid(cpid);
-			id.setCpsq(Integer.parseInt(cpsq));
+			id.setCpsq(cpsq);
 			enContactLt.setId(id);
 			enContactLt.setCske(cske);
 			enContactLt.setTno1(csno);
@@ -361,34 +308,23 @@ public class CreateEntity {
 			enContactLt.setTkda(tkda);
 			enContactLt.setDate(seoulTime.toLocalDateTime());
 			
-			return enContactLt;
 
-		} catch (Exception e) {// 2024-07-31 파싱 에러가 나면 초기 인입 값이 어떻게 들어왔는지 확인하기 쉽게 에러 로그에 찍어주고 초기값으로 세팅해줌(로직이 막혀서 서비스에 지장 줄 일 없게 끔).
-
+		}catch (NumberFormatException e) {
+			log.error("(createContactLtMsg) - cpsq 파싱 과정 중 에러가 발생했습니다. 값을 99로 대체합니다. 초기 인입 값을 다시 확인해주세요 : {}", jsonobj.toString());
+			cpsq = 99;
+			errorLogger.error(e.getMessage(), e);
+			return null;
+		}catch (JSONException e) {
 			log.error("(createContactLtMsg) - 파싱 중 에러가 발생했습니다. 초기 인입 값을 다시 확인해주세요 : {}", jsonobj.toString());
-			
-			cpid = "";
-			cpsq = "99";
-			cske = "";
-			csno = "";
-			tkda = "";
-			flag = "";
-			
-			id.setCpid(cpid);
-			id.setCpsq(Integer.parseInt(cpsq));
-			enContactLt.setId(id);
-			enContactLt.setCske(cske);
-			enContactLt.setTno1(csno);
-			enContactLt.setFlag(flag);
-			enContactLt.setTkda(tkda);
-			enContactLt.setDate(seoulTime.toLocalDateTime());
-
+			errorLogger.error(e.getMessage(), e);
+			return null;
+		}catch (Exception e) {
 			log.error("(createContactLtMsg) - 에러 발생 : {}", e.getMessage());
 			errorLogger.error(e.getMessage(), e);
-			
-			return enContactLt;
+			return null;
 		}
 
+		return enContactLt;
 		
 	}
 
@@ -448,44 +384,18 @@ public class CreateEntity {
 			enUcrm.setTrdtCntn(trdtCntn);
 			enUcrm.setWorkDivsCd(workDivsCd);
 			
-			return enUcrm;
 			
-		} catch (Exception e) {// 2024-07-31 파싱 에러가 나면 초기 인입 값이 어떻게 들어왔는지 확인하기 쉽게 에러 로그에 찍어주고 초기값으로 세팅해줌(로직이 막혀서 서비스에 지장 줄 일 없게 끔).
-
+		} catch (JSONException e) {
 			log.error("(createUcrm) - 파싱 중 에러가 발생했습니다. 초기 인입 값을 다시 확인해주세요 : {}", msg);
+			errorLogger.error(e.getMessage(), e);
+			return null;
 			
-			ctiCmpnId = "";    
-			ctiCmpnSno = "";   
-			cablTlno = "";     
-			custNm = "";       
-			custTlno = "";     
-			hldrCustId = "";   
-			subssDataChgCd = "";
-			subssDataDelYn = "";
-			tlno = "";         
-			topcDataIsueDtm = "";
-			topcDataIsueSno = "";
-			trdtCntn = "";     
-			workDivsCd = "";   
-			
-			id.setCpid(ctiCmpnId);
-			id.setCpsq(ctiCmpnSno);
-			enUcrm.setId(id);
-			enUcrm.setCablTlno(cablTlno);
-			enUcrm.setCustNm(custNm);
-			enUcrm.setCustTlno(custTlno);
-			enUcrm.setHldrCustId(hldrCustId);
-			enUcrm.setSubssDataChgCd(subssDataChgCd);
-			enUcrm.setSubssDataDelYn(subssDataDelYn);
-			enUcrm.setTlno(tlno);
-			enUcrm.setTopcDataIsueDtm(topcDataIsueDtm);
-			enUcrm.setTopcDataIsueSno(topcDataIsueSno);
-			enUcrm.setTrdtCntn(trdtCntn);
-			enUcrm.setWorkDivsCd(workDivsCd);
-
-			return enUcrm;
+		}catch (Exception e) {
+			log.error("(createUcrm) - 에러 발생 : {}", e.getMessage());
+			errorLogger.error(e.getMessage(), e);
+			return null;
 		}
-
+		return enUcrm;
 	}
 
 	public String createContactLtGC(JSONObject jsonobj) {
@@ -531,15 +441,21 @@ public class CreateEntity {
 			mainObj.put("id", cpsq);
 			mainObj.put("contactListId", contactltid);
 			
-			return mainObj.toString();
+			
 
-		} catch (Exception e) {// 2024-07-31 파싱 에러가 나면 초기 인입 값이 어떻게 들어왔는지 확인하기 쉽게 에러 로그에 찍어주고 초기값으로 세팅해줌(로직이 막혀서 서비스에 지장 줄 일 없게 끔).
-
+		} catch (JSONException e) {
 			log.error("(createContactLtGC) - 파싱 중 에러가 발생했습니다. 초기 인입 값을 다시 확인해주세요 : {}", jsonobj.toString());
+			errorLogger.error(e.getMessage(), e);
+			return ""; 
+			
+		}catch (Exception e) {
+
 			log.error("(createContactLtGC) - 에러 발생 :{}", e.getMessage());
 			errorLogger.error(e.getMessage(), e);
 			return ""; //발신 대상자의 정보가 이상할 경유 공백으로 리턴한다.
 		}
+		
+		return mainObj.toString();
 
 	}
 
@@ -561,21 +477,18 @@ public class CreateEntity {
 			ucrmCampRt.setCpsq(cpsq);
 			enUcrmRt.setId(ucrmCampRt);
 			enUcrmRt.setDivisionid(divisionid);
-			return enUcrmRt;
 
-		} catch (Exception e) {// 2024-07-31 파싱 에러가 나면 초기 인입 값이 어떻게 들어왔는지 확인하기 쉽게 에러 로그에 찍어주고 초기값으로 세팅해줌(로직이 막혀서 서비스에 지장 줄 일 없게 끔).
-
-			cpid = "";
-			cpsq = "";
-			divisionid = "";
-			
+		} catch (JSONException e) {
 			log.error("(createUcrmRt) - 파싱 중 에러가 발생했습니다. 초기 인입 값을 다시 확인해주세요 : {}", jsonobj.toString());
-			ucrmCampRt.setCpid(cpid);
-			ucrmCampRt.setCpsq(cpsq);
-			enUcrmRt.setId(ucrmCampRt);
-			enUcrmRt.setDivisionid(divisionid);
-			return enUcrmRt;
+			errorLogger.error(e.getMessage(), e);
+			return null;
+		}catch (Exception e) {
+			
+			log.error("(createUcrmRt) - 에러 발생 :{}", e.getMessage());
+			errorLogger.error(e.getMessage(), e);
+			return null;
 		}
+		return enUcrmRt;
 	}
 
 	public Entity_CallbotRt createCallbotRt(JSONObject jsonobj) throws Exception {
@@ -596,24 +509,20 @@ public class CreateEntity {
 			enCallbotRt.setId(callbotCampRt);
 			enCallbotRt.setDivisionid(divisionid);
 			
-			return enCallbotRt;
 
-		} catch (Exception e) {// 2024-07-31 파싱 에러가 나면 초기 인입 값이 어떻게 들어왔는지 확인하기 쉽게 에러 로그에 찍어주고 초기값으로 세팅해줌(로직이 막혀서 서비스에 지장 줄 일 없게 끔).
-
+		} catch (JSONException e) {
 			log.error("(createCallbotRt) - 파싱 중 에러가 발생했습니다. 초기 인입 값을 다시 확인해주세요 : {}", jsonobj.toString());
+			errorLogger.error(e.getMessage(), e);
+			return null;
 			
-			cpid = "";
-			cpsq = "";
-			divisionid = "";
-			
-			callbotCampRt.setCpid(cpid);
-			callbotCampRt.setCpsq(cpsq);
-			enCallbotRt.setId(callbotCampRt);
-			enCallbotRt.setDivisionid(divisionid);
-			
-			return enCallbotRt;
+		}catch (Exception e) {// 2024-07-31 파싱 에러가 나면 초기 인입 값이 어떻게 들어왔는지 확인하기 쉽게 에러 로그에 찍어주고 초기값으로 세팅해줌(로직이 막혀서 서비스에 지장 줄 일 없게 끔).
+
+			log.error("(createCallbotRt) - 에러 발생 :{}", e.getMessage());
+			errorLogger.error(e.getMessage(), e);
+			return null;
 
 		}
+		return enCallbotRt;
 	}
 
 	public Entity_ApimRt createApimRt(JSONObject jsonobj) throws Exception {
@@ -634,24 +543,18 @@ public class CreateEntity {
 			apimCampRt.setCpsq(cpsq);
 			apimRt.setId(apimCampRt);
 			apimRt.setDivisionid(divisionid);
-			
-			return apimRt;
 
-		} catch (Exception e) {// 2024-07-31 파싱 에러가 나면 초기 인입 값이 어떻게 들어왔는지 확인하기 쉽게 에러 로그에 찍어주고 초기값으로 세팅해줌(로직이 막혀서 서비스에 지장 줄 일 없게 끔).
-
+		} catch (JSONException e) {
 			log.error("(createApimRt) - 파싱 중 에러가 발생했습니다. 초기 인입 값을 다시 확인해주세요 : {}", jsonobj.toString());
+			errorLogger.error(e.getMessage(), e);
+			return null;
 			
-			cpid = "";
-			cpsq = "";
-			divisionid = "";
-			
-			apimCampRt.setCpid(cpid);
-			apimCampRt.setCpsq(cpsq);
-			apimRt.setId(apimCampRt);
-			apimRt.setDivisionid(divisionid);
-			
-			return apimRt;
+		}catch (Exception e) {
+			log.error("(createApimRt) - 에러 발생 :{}", e.getMessage());
+			errorLogger.error(e.getMessage(), e);
+			return null;
 		}
+		return apimRt;
 	}
 
 	public Entity_ContactLt createContactUcrm(JSONObject jsonobj) throws Exception {
@@ -663,7 +566,7 @@ public class CreateEntity {
 		JSONObject dataObject = null;
 
 		String cpid = "";
-		String cpsq = "99";
+		int cpsq = 0;
 		String cske = "";
 		String tkda = "";
 		String tno1 = "";
@@ -671,45 +574,38 @@ public class CreateEntity {
 		try {
 			dataObject = jsonobj.getJSONObject("data");
 			cpid = dataObject.getString("CPID");
-			cpsq = dataObject.getString("CPSQ");
+			cpsq = Integer.parseInt(dataObject.getString("CPSQ"));
 			cske = dataObject.getString("CSKE");
 			tkda = dataObject.getString("TKDA");
 			tno1 = dataObject.getString("TNO1");
 
 			id.setCpid(cpid);
-			id.setCpsq(Integer.parseInt(cpsq));
+			id.setCpsq(cpsq);
 			enContactLt.setId(id);
 			enContactLt.setCske(cske);
 			enContactLt.setFlag("A");
 			enContactLt.setTkda(tkda);
 			enContactLt.setTno1(tno1);
 			enContactLt.setDate(seoulTime.toLocalDateTime());
-			
-			return enContactLt;
 
-		} catch (Exception e) {// 2024-07-31 파싱 에러가 나면 초기 인입 값이 어떻게 들어왔는지 확인하기 쉽게 에러 로그에 찍어주고 초기값으로 세팅해줌(로직이 막혀서 서비스에 지장 줄 일 없게 끔).
-
+		}catch (NumberFormatException e) {
+			log.error("(createContactUcrm) - cpsq 파싱 과정 중 에러가 발생했습니다. 값을 99로 대체합니다. 초기 인입 값을 다시 확인해주세요 : {}", jsonobj.toString());
+			cpsq = 99;
+			errorLogger.error(e.getMessage(), e);
+			return null;
+		}catch (JSONException e) {
 			log.error("(createContactUcrm) - 파싱 중 에러가 발생했습니다. 초기 인입 값을 다시 확인해주세요 : {}", jsonobj.toString());
+			errorLogger.error(e.getMessage(), e);
+			return null;
 			
-			cpid = "";   
-			cpsq = "99"; 
-			cske = "";   
-			tkda = "";   
-			tno1 = "";   
+		}catch (Exception e) {// 2024-07-31 파싱 에러가 나면 초기 인입 값이 어떻게 들어왔는지 확인하기 쉽게 에러 로그에 찍어주고 초기값으로 세팅해줌(로직이 막혀서 서비스에 지장 줄 일 없게 끔).
 			
-			id.setCpid(cpid);
-			id.setCpsq(Integer.parseInt(cpsq));
-			enContactLt.setId(id);
-			enContactLt.setCske(cske);
-			enContactLt.setFlag("A");
-			enContactLt.setTkda(tkda);
-			enContactLt.setTno1(tno1);
-			enContactLt.setDate(seoulTime.toLocalDateTime());
 			log.error("(createContactUcrm) - 에러 발생 : {}", e.getMessage());
 			errorLogger.error(e.getMessage(), e);
+			return null;
 			
-			return enContactLt;
 		}
+		return enContactLt;
 	}
 
 }

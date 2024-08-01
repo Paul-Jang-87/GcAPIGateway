@@ -35,7 +35,6 @@ import gc.apiClient.messages.MessageToApim;
 import gc.apiClient.messages.MessageToProducer;
 import gc.apiClient.service.CreateEntity;
 import gc.apiClient.service.ServiceJson;
-import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
@@ -80,7 +79,10 @@ public class ControllerCenter {
 
 				List<JSONObject> camplist = new ArrayList<JSONObject>();
 				JSONObject campInfoObj = null;
-				result = serviceWeb.getApiReq("campaigns", 1); // 제네시스 api 호출. 'campaignId'는 'WebClientApp'클래스에 미리 정의해둔 endpoint. api :
+				result = serviceWeb.getApiReq("campaigns", 1); // 제네시스 api 호출. 'campaignId'는 'WebClientApp'클래스에 미리 정의해둔 endpoint. api :"/api/v2/outbound/campaigns"
+				if(result.equals("")) {
+					return Mono.empty();
+				}
 				int reps = ServiceJson.extractIntVal("CampaignListSize", result);// G.C에서 불러온 캠페인 개수.
 				log.info("(receiveMessage) - 제네시스에서 조회한 캠페인 수 : {} ", reps);
 
@@ -97,6 +99,9 @@ public class ControllerCenter {
 					while ((reps / 100) != 0) {
 						++page;
 						result = serviceWeb.getApiReq("campaigns", page);
+						if(result.equals("")) {
+							return Mono.empty();
+						}
 						for (int i = 0; i < 100; i++) {
 							campInfoObj = ServiceJson.extractObjVal("ExtractValCrm", result, i);
 							if(!camplist.contains(campInfoObj)) {
@@ -107,6 +112,9 @@ public class ControllerCenter {
 					}
 					++page;
 					result = serviceWeb.getApiReq("campaigns", page);
+					if(result.equals("")) {
+						return Mono.empty();
+					}
 					reps = reps % 100;
 					for (int i = 0; i < reps; i++) {
 						campInfoObj = ServiceJson.extractObjVal("ExtractValCrm", result, i);
@@ -154,6 +162,9 @@ public class ControllerCenter {
 
 			campInfoObj = ServiceJson.extractObjVal("ExtractCampMaUpdateOrDel", msg);
 			enCampMa = createEntity.createEnCampMa(campInfoObj);
+			if(enCampMa == null) {
+				return Mono.empty();
+			}
 			String cpid = campInfoObj.getString("cpid");
 			String cpna = campInfoObj.getString("cpnm");
 			String divisionid = campInfoObj.getString("divisionid");
@@ -198,6 +209,9 @@ public class ControllerCenter {
 					
 					Entity_CampMa enCpma = serviceDb.findCampMaByCpid(cpid);
 					Entity_CampMa_D enCpma_D = createEntity.createEnCampMa_D(enCpma);
+					if(enCpma_D == null) {
+						return Mono.empty();
+					}
 					serviceDb.delCampMaById(cpid);
 					serviceDb.insertCampMa_D(enCpma_D);
 					
@@ -233,6 +247,9 @@ public class ControllerCenter {
 					
 					Entity_CampMa enCpma = serviceDb.findCampMaByCpid(cpid);
 					Entity_CampMa_D enCpma_D = createEntity.createEnCampMa_D(enCpma);
+					if(enCpma_D == null) {
+						return Mono.empty();
+					}
 					serviceDb.delCampMaById(cpid);
 					serviceDb.insertCampMa_D(enCpma_D);
 					
@@ -266,6 +283,9 @@ public class ControllerCenter {
 					
 					Entity_CampMa enCpma = serviceDb.findCampMaByCpid(cpid);
 					Entity_CampMa_D enCpma_D = createEntity.createEnCampMa_D(enCpma);
+					if(enCpma_D == null) {
+						return Mono.empty();
+					}
 					serviceDb.delCampMaById(cpid);
 					serviceDb.insertCampMa_D(enCpma_D);
 				}
@@ -293,6 +313,9 @@ public class ControllerCenter {
 			case "232637ae-d261-46e5-92ea-62e8e4696eb5": //모바일
 
 				Entity_UcrmRt enUcrmrt = createEntity.createUcrmRt(result);
+				if(enUcrmrt == null) {
+					return Mono.empty();
+				}
 				serviceDb.insertUcrmRt(enUcrmrt);
 				return Mono.just(ResponseEntity.ok("Ucrm 데이터가 성공적으로 인서트 되었습니다."));
 
@@ -300,10 +323,16 @@ public class ControllerCenter {
 			case "b26cc9f6-0608-46d9-a059-ab3d6b943771": //콜봇모바일
 
 				Entity_CallbotRt enCallBotRt = createEntity.createCallbotRt(result);
+				if(enCallBotRt == null) {
+					return Mono.empty();
+				}
 				serviceDb.insertCallbotRt(enCallBotRt);
 				return Mono.just(ResponseEntity.ok("Callbot 데이터가 성공적으로 인서트 되었습니다."));
 			default:
 				Entity_ApimRt enApimRt = createEntity.createApimRt(result);
+				if(enApimRt == null) {
+					return Mono.empty();
+				}
 				serviceDb.insertApimRt(enApimRt);
 				return Mono.just(ResponseEntity.ok("Apim 데이터가 성공적으로 인서트 되었습니다."));
 			}
@@ -315,11 +344,9 @@ public class ControllerCenter {
 	}
 
 	@GetMapping("/sendapimrt")
-	@Transactional //2024-07-30 '@Transactional' 어노테이션 추가. 쉐도우 테이블에서 레코드 가져오는 것부터 트렌젝션 시작. 
-	public Mono<ResponseEntity<String>> sendApimRt() {
+	public Mono<ResponseEntity<String>> sendApimRt() {//2024-08-01 @Transactional 어노테이션 삭제.
 
 		try {
-//			log.info("Transaction active sendApimRt: {}", TransactionSynchronizationManager.isActualTransactionActive());
 
 			Page<Entity_ApimRt> entitylist = serviceDb.getAllApimRt();// apim 발신 결과와 관련된 테이블의 레코드들을 최대 1000개까지 가지고 온다.
 
@@ -420,7 +447,7 @@ public class ControllerCenter {
 		ObjectMapper objectMapper = null;
 		String result = serviceWeb.postContactLtApiBulk("contactList", contactLtId, values);
 
-		if (result.equals("[]")) {
+		if (result.equals("")) {
 			values.clear();
 			return Mono.empty();
 		}
@@ -441,8 +468,10 @@ public class ControllerCenter {
 			contactsresult = ServiceJson.extractObjVal("ExtractContacts", result, i);
 
 			entityCmRt = createEntity.createCampRtMsg(contactsresult, enCampMa);
+			if(entityCmRt == null) {
+				continue;
+			}
 			enToApim = msgapim.rstMassage(entityCmRt);
-
 			apimEntitylt.add(enToApim);
 		}
 
@@ -521,6 +550,9 @@ public class ControllerCenter {
 				
 
 				Entity_CampMa enCampMa = createEntity.createEnCampMa(campInfoObj);
+				if(enCampMa == null) {
+					continue;
+				}
 
 				switch (business.trim()) {// 여기서 비즈니스 로직 구분. default는 'apim'
 				case "UCRM":

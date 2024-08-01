@@ -6,7 +6,6 @@ public interface InterfaceWebClient {
 
 	String getApiReq(String endpoint, int pagenumber)throws Exception;
 	Void postContactLtClearReq(String endpoint,String contactListId)throws Exception;
-	String getStatusApiReq(String endpoint, String campaignId) throws Exception;
 	String getCampaignsApiReq(String endpoint, String campaignId);
 	String postContactLtApiReq(String endpoint, String contactListId, List<String> msg) throws Exception;
 	String delContacts(String endpoint, String contactListId, List<String> msg) throws Exception;

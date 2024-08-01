@@ -25,6 +25,10 @@ public class MsgApim implements InterfaceKafMsg {
 
 	@Override
 	public String makeMaMsg(Entity_CampMa enCampMa, String datachgcd) throws Exception {
+		
+		if(enCampMa.getCpid().equals("")) {//키 값이 없으면(정상이 아닐 경우) 함수 바로 종료
+			return "";
+		}
 
 		JSONObject obj = new JSONObject();
 		MappingCenter mappingData = new MappingCenter();

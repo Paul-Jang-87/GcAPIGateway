@@ -64,6 +64,9 @@ public class ControllerUCRM {
 		try {
 
 			Entity_Ucrm enUcrm = createEntity.createUcrm(msg); // 전달 받은 String 형태의 메시지를 쉐도우테이블('UCRMLT')에 인서트 하기 위해서 Entity 형태로 제가공해준다.
+			if(enUcrm == null) {
+				return Mono.empty();
+			}
 			serviceDb.insertUcrm(enUcrm);
 			log.info("(saveUcrmData) - 저장된 메시지 : {}", msg);
 
@@ -113,16 +116,14 @@ public class ControllerUCRM {
 
 						if (contactLtId == null || contactLtId.equals("")) {// cpid로 Map(mapcontactltId)을 조회했는데 Map 안에 그것(cpid)에 대응하는 contactltId가 없다면,
 
-							if (invalid_camp.contains(cpid)) {// 지금 레코드에 있는 캠페인 아이디가 유효하지 않은 캠페인 아이디라면 api호출 없이 DB에서 해당 레코드 삭제 후 그냥 다음 레코드로
-																// 넘어감.
+							if (invalid_camp.contains(cpid)) {// 지금 레코드에 있는 캠페인 아이디가 유효하지 않은 캠페인 아이디라면 api호출 없이 DB에서 해당 레코드 삭제 후 그냥 다음 레코드로 넘어감.
 								serviceDb.delUcrmLtById(entitylist.getContent().get(i).getTopcDataIsueSno());
 								continue;
 							}
 
 							String result = serviceWeb.getCampaignsApiReq("campaignId", cpid); // cpid를 가지고 직접 제네시스 api를 호출해서 contactltId를 알아낸다
 
-							if (result.equals("")) {// cpid를 가지고 직접 제네시스 api를 호출해서 contactltId를 알아내려고 했는데 결과 값이 없다면, 혹시 campma_d테이블에
-													// 존재하는지 조회.
+							if (result.equals("")) {// cpid를 가지고 직접 제네시스 api를 호출해서 contactltId를 알아내려고 했는데 결과 값이 없다면, 혹시 campma_d테이블에 존재하는지 조회.
 
 								try {
 									log.info("(addUcrmMsgFrmConsumer) - 캠페인 아이디 ({})로 api호출 결과 결과가 없습니다. 마스터D 테이블을 조회합니다.", cpid);
@@ -209,7 +210,9 @@ public class ControllerUCRM {
 									cpid = dataObject.getString("CPID");
 									String cpsq = dataObject.getString("CPSQ");
 									Entity_ContactLt enContactLt = createEntity.createContactUcrm(jsonObject);
-
+									if(enContactLt == null) {
+										continue;
+									}
 									serviceDb.delUcrmltRecord(cpid, cpsq);// ucrmlt (쉐도우테이블에서 삭제)
 									serviceDb.insertContactLt(enContactLt); // contactlt테이블에 인서트
 								}
@@ -441,6 +444,9 @@ public class ControllerUCRM {
 				jsonObj = jsonArray.getJSONObject(i);
 				singleDate = jsonObj.toString();
 				Entity_Ucrm enUcrm = createEntity.createUcrm(singleDate); // 전달 받은 String 형태의 메시지를 쉐도우테이블('UCRMLT')에 인서트 하기 위해서 Entity 형태로 재가공해준다.
+				if(enUcrm == null) {
+					return Mono.empty();
+				}
 				serviceDb.insertUcrm(enUcrm);
 				log.info("저장된 메시지 : {}", msg);
 			}
@@ -455,7 +461,6 @@ public class ControllerUCRM {
 	}
 	
 
-	@Transactional
 	@GetMapping("/pushucrm/{cpid}")
 	public Mono<ResponseEntity<String>> pushucrm(@PathVariable("cpid") String cpid) { // 이 함수는 스케줄러에 의해 5초마다 실행되면서 쉐도우 테이블('UCRMLT')에 있는 데이터들을 처리해주는 작업을 수행한다.
 
@@ -558,11 +563,9 @@ public class ControllerUCRM {
 	}
 
 	@GetMapping("/senducrmrt")
-	@Transactional //2024-07-30 '@Transactional' 어노테이션 추가. 쉐도우 테이블에서 레코드 가져오는 것부터 트렌젝션 시작. 
-	public Mono<ResponseEntity<String>> sendUcrmRt() {
+	public Mono<ResponseEntity<String>> sendUcrmRt() {//2024-08-01 @Transactional 어노테이션 삭제.
 
 		try {
-//			log.info("Transaction active sendUcrmRt: {}", TransactionSynchronizationManager.isActualTransactionActive());
 
 			Page<Entity_UcrmRt> entitylist = serviceDb.getAllUcrmRt();
 
@@ -665,12 +668,13 @@ public class ControllerUCRM {
 
 		return Mono.just(ResponseEntity.ok("Successfully processed the message."));
 	}
+	
 
 	public Mono<Void> sendCampRtToCUcrm(String contactLtId, List<String> values, String divisionid) throws Exception {
 
 		String result = serviceWeb.postContactLtApiBulk("contactList", contactLtId, values);
 
-		if (result.equals("[]")) {
+		if (result.equals("")) {
 			log.info("(sendCampRtToCUcrm) - 결과 없음, 다음으로 건너 뜀.");
 			values.clear();
 			return Mono.empty();
@@ -695,6 +699,9 @@ public class ControllerUCRM {
 			}
 
 			entityCmRt = createEntity.createCampRtMsg(contactsresult, enCampMa); // 카프카로 메시지 전달을 위한 entity.
+			if(entityCmRt == null) {
+				continue;
+			}
 			String msg = msgUcrm.makeRtMsg(entityCmRt);
 
 			int dirt = entityCmRt.getDirt();// 응답코드

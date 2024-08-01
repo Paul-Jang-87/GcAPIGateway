@@ -33,6 +33,10 @@ public class MsgCallbot implements InterfaceKafMsg {
 	 * datachgcd(insert,update,delete)에 따라 보내질 메시지 내용이 달라진다. 
 	 */
 	public String makeMaMsg(Entity_CampMa enCampMa, String datachgcd) throws Exception {
+		
+		if(enCampMa.getCpid().equals("")) {//키 값이 없으면(정상이 아닐 경우) 함수 바로 종료
+			return "";
+		}
 
 		Entity_CampMaJson enCampMaJson = new Entity_CampMaJson();
 		ObjectMapper objectMapper = new ObjectMapper();

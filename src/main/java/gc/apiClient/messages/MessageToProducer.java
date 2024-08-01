@@ -22,7 +22,6 @@ public class MessageToProducer {
 
 		if (jsonString.equals("{}") || jsonString.equals("")) {
 			log.info("(sendMsgToProducer) - 카프카로 보낼 메시지가 없습니다.");
-			return;
 		} else {
 			
 			log.info("(sendMsgToProducer) - Producer로 보낼 EndPoint & 메시지 : '{}' / {}", towhere, jsonString);

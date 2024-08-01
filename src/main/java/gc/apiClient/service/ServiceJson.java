@@ -28,7 +28,6 @@ import lombok.extern.slf4j.Slf4j;
 
 
 public class ServiceJson {
-	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
 
 	public static int extractIntVal(String methodNm, Object... params) throws Exception {
 
@@ -37,8 +36,6 @@ public class ServiceJson {
 		switch (methodNm) {
 		case "CampaignListSize":
 			return CampaignListSize((String) params[0]);
-		case "ExtractDict":
-			return ExtractDict((String) params[0]);
 		default:
 			throw new IllegalArgumentException("Invalid strategy type");
 		}
@@ -232,58 +229,23 @@ public class ServiceJson {
 		JSONObject jsonObj = new JSONObject();
 		ObjectMapper objectMapper = new ObjectMapper();
 		JsonNode jsonNode = null;
-		String result = "";
 
 		jsonNode = objectMapper.readTree(jsonResponse);
-		result = jsonNode.path(i).path("id").asText();
-		result = result + "::" + jsonNode.path(i).path("contactListId").asText();
-		result = result + "::" + jsonNode.path(i).path("data").path("CPID").asText();
-		result = result + "::" + jsonNode.path(i).path("data").path("CPSQ").asText();
-		result = result + "::" + jsonNode.path(i).path("callRecords").path("TNO1").path("lastResult").asText();
-		result = result + "::" + jsonNode.path(i).path("data").path("TKDA").asText();
-		result = result + "::" + jsonNode.path(i).path("callRecords").path("TNO1").path("lastAttempt").asText();
 		
 		jsonObj.put("id", jsonNode.path(i).path("id").asText());
 		jsonObj.put("contactListId", jsonNode.path(i).path("contactListId").asText());
 		jsonObj.put("cpid", jsonNode.path(i).path("data").path("CPID").asText());
 		jsonObj.put("cpsq", jsonNode.path(i).path("data").path("CPSQ").asText());
+		jsonObj.put("dict", jsonNode.path(i).path("data").path("TRYCNT").asText());
 		jsonObj.put("lastResult", jsonNode.path(i).path("callRecords").path("TNO1").path("lastResult").asText());
 		jsonObj.put("tkda", jsonNode.path(i).path("data").path("TKDA").asText());
 		jsonObj.put("lastAttempt", jsonNode.path(i).path("callRecords").path("TNO1").path("lastAttempt").asText());
 
-		if (result.equals("::::::::::::")) {
-			result = "";
-		}
-
-		log.info("(ExtractContacts) - 추출 이후 결과 값 rs: {}", result);
+		log.info("(ExtractContacts) - 추출 이후 결과 값 : {}", jsonObj.toString());
 
 		return jsonObj;
 	}
 
-	public static int ExtractDict(String stringMsg) throws Exception {
-
-		String jsonResponse = stringMsg;
-		ObjectMapper objectMapper = new ObjectMapper();
-		JsonNode jsonNode = null;
-		int result = 1;//2024-07-31 초기화 값 0에서 1로 수정
-		
-		if(jsonResponse.equals("")) {//2024-07-30 stringMsg이 빈 값이란 얘기는 앞 선 api호출에서 문제가 있었다는 뜻. => String result = crmapi.getStatusApiReq("campaign_stats", campid); 검색!
-			log.error("(ExtractDict) - dict 값을 가져오는 과정에서 에러가 발생했습니다. dict 값을 초기화 값 1로 리턴합니다." );
-			return result;
-		}
-
-		
-		try {
-			jsonNode = objectMapper.readTree(jsonResponse);
-			result = jsonNode.path("contactRate").path("attempts").asInt();
-		} catch (Exception e) {//2024-07-30 파싱에러가 발생했을 경우 dict 0으로 리턴
-			log.error("(ExtractDict) - dict 값을 가져오는 과정에서 에러가 발생했습니다. dict 값을 초기화 값 1로 리턴합니다." );
-			errorLogger.error(e.getMessage(), e);
-			return result;
-		}
-
-		return result;
-	}
 
 	public static JSONObject ExtractContactLtId(String stringMsg) throws Exception {
 

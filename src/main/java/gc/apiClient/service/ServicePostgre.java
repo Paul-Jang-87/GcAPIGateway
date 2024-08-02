@@ -79,13 +79,6 @@ public class ServicePostgre implements InterfaceDBPostgreSQL {
 	@Override
 	@Transactional
 	public Entity_CampRt insertCampRt(Entity_CampRt entity_CampRt) {
-		
-		int coid =  entity_CampRt.getId().getCoid();
-		int rlsq =  entity_CampRt.getId().getRlsq();
-		
-		if( coid == 0 && rlsq == 0 ) {//2024-07-31 테이블 키 값이 없는경우(정상이 아닐 경우) 바로 함수 종료
-			throw new RuntimeException("(insertCampRt) - 복합키 coid와 rlsq의 값이 모두 0입니다. 레코드를 테이블에 추가할 수 없습니다.");
-		}
 
 		//디비에서 해당 레코드를 찾는다. 엔티티(레코드)가 매개변수로 들어왔고, 그것의 키값(entity_CampRt.getId())으로 디비를 조회한다(findById). 
 		Optional<Entity_CampRt> existingEntity = repositoryCampRt.findById(entity_CampRt.getId());  

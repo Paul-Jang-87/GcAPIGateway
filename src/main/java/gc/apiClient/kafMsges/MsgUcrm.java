@@ -112,7 +112,7 @@ public class MsgUcrm implements InterfaceKafMsg {
 	@Override
 	public String makeRtMsg(Entity_CampRt enCampRt) throws Exception { //RT 메시지, 발신결과 메시지.
 		
-		if( enCampRt.getId().getCoid() == 0 && enCampRt.getId().getRlsq() == 0 ) {//테이블 키 값이 없는경우(정상이 아닐 경우) 바로 함수 종료
+		if( enCampRt.getId().getCoid() == 0 && enCampRt.getId().getRlsq() == 0 ) {//혹시라도 테이블 키 값이 없는경우(정상이 아닐 경우) 바로 함수 종료
 			return "";
 		}
 

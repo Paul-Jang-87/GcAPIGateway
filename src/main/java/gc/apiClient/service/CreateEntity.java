@@ -108,7 +108,6 @@ public class CreateEntity {
 			Map<String, String> properties = customProperties.getProperties();
 			dirt = Integer.parseInt(properties.getOrDefault(jsonobj.optString("lastResult", ""), "1").trim());
 
-
 			coid = enCampMa.getCoid();
 			rlsq = serviceDb.findCampRtMaxRlsq().intValue();
 			rlsq++;

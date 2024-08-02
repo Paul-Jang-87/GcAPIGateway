@@ -1,6 +1,8 @@
 package gc.apiClient.service;
 
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import gc.apiClient.entity.postgresql.Entity_CampMa;
@@ -28,6 +30,7 @@ public class ServiceInstCmpRt {
 	
 	private final InterfaceDBPostgreSQL serviceDb;
 	private final CreateEntity createEntity;
+	private static final Logger errorLogger = LoggerFactory.getLogger("ErrorLogger");
 	
 	public ServiceInstCmpRt(InterfaceDBPostgreSQL serviceDb,CreateEntity createEntity) {
 		this.serviceDb = serviceDb;
@@ -41,6 +44,7 @@ public class ServiceInstCmpRt {
 		try {
 			serviceDb.insertCampRt(entityCmRt);
 		} catch (Exception e) {
+			errorLogger.error(e.getMessage(), e);
 		}
 	}
 }
